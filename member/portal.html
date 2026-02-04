@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Member Portal</title>
+  <link rel="stylesheet" href="/styles.css"/>
+</head>
+<body>
+  <main style="max-width:920px;margin:40px auto;padding:0 16px">
+    <h1>Khu Thành Viên</h1>
+    <p id="who"></p>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
+      <a href="/program" class="btn">Chương trình</a>
+      <a href="/events" class="btn">Sự kiện</a>
+      <a href="/scripts" class="btn">Kịch bản</a>
+      <button id="logout" class="btn">Đăng xuất</button>
+    </div>
+
+    <hr style="margin:18px 0">
+    <p>Đây là khu riêng cho thành viên (core/editor/local). Nội dung sẽ mở rộng theo CMS.</p>
+  </main>
+
+<script type="module">
+  import { supabase, requireMember } from "./member.js";
+  const me = await requireMember(["founder","core","editor","local"]);
+  if(me) document.getElementById("who").textContent = `Đăng nhập: ${me.email} — role: ${me.role}`;
+  document.getElementById("logout").onclick = async ()=>{ await supabase.auth.signOut(); location.href="/member/index.html"; };
+</script>
+</body>
+</html>
