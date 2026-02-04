@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Bài viết</title>
+  <link rel="stylesheet" href="/app.css"/>
+</head>
+<body>
+  <div class="topbar">
+    <div class="nav">
+      <div class="brand"><a href="/">Đường Sao Tỏa Sáng</a></div>
+      <div class="right">
+        <span class="pill" id="langPill">VI</span>
+        <button class="btn" id="toggleLang">VI / EN</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+      <h1 id="t">Bài viết</h1>
+      <p class="muted" id="d">Tất cả bài viết published trong CMS.</p>
+      <div class="hr"></div>
+      <div class="list" id="list"></div>
+    </div>
+  </div>
+
+<script type="module">
+  import { getLang, setLang, fetchLatestPosts, esc } from "/app.js";
+  const lang = getLang();
+  langPill.textContent = lang.toUpperCase();
+  toggleLang.onclick = ()=> setLang(lang==="vi"?"en":"vi");
+
+  if(lang==="en"){
+    t.textContent = "Posts";
+    d.textContent = "All published posts from CMS.";
+  }
+
+  const list = document.getElementById("list");
+  list.innerHTML = `<div class="small muted">Loading...</div>`;
+
+  try{
+    const posts = await fetchLatestPosts(200);
+    if(!posts.length){
+      list.innerHTML = `<div class="small muted">No published posts.</div>`;
+    } else {
+      list.innerHTML = posts.map(p=>{
+        const title = (lang==="en" ? (p.title_en || p.title_vi) : (p.title_vi || p.title_en)) || "(untitled)";
+        return `
+          <a class="item" href="/content.html?slug=${encodeURIComponent(p.slug||"")}">
+            <div><b>${esc(title)}</b></div>
+            <div class="small muted">${p.updated_at ? new Date(p.updated_at).toLocaleString() : ""}</div>
+          </a>
+        `;
+      }).join("");
+    }
+  }catch(e){
+    list.innerHTML = `<div class="small" style="color:#fb7185">${esc(e.message || String(e))}</div>`;
+  }
+</script>
+</body>
+</html>
