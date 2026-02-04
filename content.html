@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Content</title>
+  <link rel="stylesheet" href="/app.css"/>
+</head>
+<body>
+  <div class="topbar">
+    <div class="nav">
+      <div class="brand"><a href="/">Đường Sao Tỏa Sáng</a></div>
+      <div class="menu">
+        <a href="/">Trang chủ</a>
+        <a href="/about">Giới thiệu</a>
+        <a href="/program">Chương trình</a>
+        <a href="/events">Sự kiện</a>
+        <a href="/scripts">Kịch bản</a>
+        <a href="/donate">Gây quỹ</a>
+        <a href="/transparency">Minh bạch</a>
+        <a href="/legal">Pháp lý</a>
+        <a href="/contact">Liên hệ</a>
+      </div>
+      <div class="right">
+        <span class="pill" id="langPill">VI</span>
+        <button class="btn" id="toggleLang">VI / EN</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+      <h1 id="title">Loading…</h1>
+      <div class="small muted" id="meta"></div>
+      <div class="hr"></div>
+      <div id="content" class="muted"></div>
+    </div>
+
+    <div id="embedArea"></div>
+
+    <div class="footer">
+      <div>Contact: contact@duongsaotoasang.com</div>
+    </div>
+  </div>
+
+<script type="module">
+  import { qs, getLang, setLang, fetchPageBySlug, esc, renderCustomCode } from "/app.js";
+
+  const lang = getLang();
+  langPill.textContent = lang.toUpperCase();
+  toggleLang.onclick = ()=> setLang(lang === "vi" ? "en" : "vi");
+
+  const slug = qs("slug") || "home";
+  document.title = `Đường Sao Tỏa Sáng — ${slug}`;
+
+  try{
+    const page = await fetchPageBySlug(slug);
+    if(!page){
+      title.textContent = "Không tìm thấy nội dung";
+      content.innerHTML = `<div class="small muted">Slug: <kbd>${esc(slug)}</kbd> chưa có hoặc chưa publish.</div>`;
+      return;
+    }
+
+    const t = (lang==="en" ? (page.title_en || page.title_vi) : (page.title_vi || page.title_en)) || "(untitled)";
+    title.textContent = t;
+    meta.textContent = page.updated_at ? `Updated: ${new Date(page.updated_at).toLocaleString()}` : "";
+
+    const body = (lang==="en" ? (page.content_en || page.content_vi) : (page.content_vi || page.content_en)) || "";
+    // Render text as simple HTML (admin can paste basic HTML). If plain text, it still shows.
+    content.innerHTML = body;
+
+    // embedded custom code block (safe iframe)
+    renderCustomCode(document.getElementById("embedArea"), page.custom_code || "");
+
+  }catch(e){
+    title.textContent = "Load failed";
+    content.innerHTML = `<div class="small" style="color:#fb7185">${esc(e.message || String(e))}</div>`;
+  }
+</script>
+</body>
+</html>
