@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Lịch sử</title>
+  <link rel="stylesheet" href="/styles.css"/>
+</head>
+<body>
+<main style="max-width:920px;margin:60px auto;padding:0 16px">
+  <div style="display:flex;justify-content:space-between;gap:12px;align-items:center">
+    <div>
+      <h1>Lịch sử truy cập</h1>
+      <p class="small">Giai đoạn 1: lưu trên máy (local). Giai đoạn 2: lưu vào DB (access_logs).</p>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a href="/account/scripts.html">Kịch bản</a>
+      <a href="/account/profile.html">Profile</a>
+      <button id="logout">Đăng xuất</button>
+    </div>
+  </div>
+
+  <div id="box" style="margin-top:14px"></div>
+</main>
+
+<script type="module">
+  import { requireLogin, logout, readLocalHistory, esc } from "./account.js";
+  await requireLogin();
+  document.getElementById("logout").onclick = logout;
+
+  const box = document.getElementById("box");
+  const arr = readLocalHistory();
+
+  function card(html){
+    return `<div style="padding:16px;border:1px solid rgba(255,255,255,.12);border-radius:14px;margin-top:12px">${html}</div>`;
+  }
+
+  if(arr.length === 0){
+    box.innerHTML = card(`<p class="small">Chưa có lịch sử.</p>`);
+  } else {
+    const rows = arr.map(x => `
+      <tr>
+        <td class="small">${esc(new Date(x.at).toLocaleString())}</td>
+        <td><a href="/${esc(x.slug)}">${esc(x.title_vi || x.slug)}</a></td>
+        <td class="small">${esc(x.type||"")}</td>
+      </tr>
+    `).join("");
+
+    box.innerHTML = card(`
+      <table class="table">
+        <thead><tr><th>Thời gian</th><th>Nội dung</th><th>Loại</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    `);
+  }
+</script>
+</body>
+</html>
