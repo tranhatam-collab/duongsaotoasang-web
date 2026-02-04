@@ -1,0 +1,11 @@
+/about          /content.html?slug=about          302
+/program        /content.html?slug=program        302
+/events         /content.html?slug=events         302
+/scripts        /content.html?slug=scripts        302
+/donate         /content.html?slug=donate         302
+/transparency   /content.html?slug=transparency   302
+/legal          /content.html?slug=legal          302
+/contact        /content.html?slug=contact        302
+
+/content        /content.html                     200
+/posts          /posts.html                       200
