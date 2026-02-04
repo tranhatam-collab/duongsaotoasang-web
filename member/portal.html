@@ -3,30 +3,56 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Member Portal</title>
+  <title>Member Reset Password</title>
   <link rel="stylesheet" href="/styles.css"/>
 </head>
 <body>
-  <main style="max-width:920px;margin:40px auto;padding:0 16px">
-    <h1>Khu Thành Viên</h1>
-    <p id="who"></p>
+  <main style="max-width:560px;margin:60px auto;padding:0 16px">
+    <h1>Đặt Lại Mật Khẩu (Member)</h1>
+    <p>Nhập mật khẩu mới. Sau đó đăng nhập lại hoặc vào thẳng Khu Thành Viên.</p>
 
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
-      <a href="/program" class="btn">Chương trình</a>
-      <a href="/events" class="btn">Sự kiện</a>
-      <a href="/scripts" class="btn">Kịch bản</a>
-      <button id="logout" class="btn">Đăng xuất</button>
+    <label>Mật khẩu mới</label>
+    <input id="p1" type="password" style="width:100%;padding:10px" placeholder="Ít nhất 8 ký tự"/>
+
+    <label style="display:block;margin-top:10px">Nhập lại</label>
+    <input id="p2" type="password" style="width:100%;padding:10px" placeholder="Nhập lại mật khẩu"/>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+      <button id="save">Lưu mật khẩu</button>
+      <a href="/member/index.html">Về trang login</a>
     </div>
 
-    <hr style="margin:18px 0">
-    <p>Đây là khu riêng cho thành viên (core/editor/local). Nội dung sẽ mở rộng theo CMS.</p>
+    <p id="msg" style="margin-top:12px"></p>
   </main>
 
 <script type="module">
-  import { supabase, requireMember } from "./member.js";
-  const me = await requireMember(["founder","core","editor","local"]);
-  if(me) document.getElementById("who").textContent = `Đăng nhập: ${me.email} — role: ${me.role}`;
-  document.getElementById("logout").onclick = async ()=>{ await supabase.auth.signOut(); location.href="/member/index.html"; };
+  import { supabase } from "./member.js";
+
+  const msg = document.getElementById("msg");
+
+  // Sau khi click link reset trong email, Supabase tạo session dạng recovery
+  const { data } = await supabase.auth.getSession();
+  if(!data?.session){
+    msg.textContent = "Link không hợp lệ hoặc đã hết hạn. Hãy gửi lại “Quên mật khẩu”.";
+  }
+
+  document.getElementById("save").onclick = async () => {
+    const p1 = document.getElementById("p1").value || "";
+    const p2 = document.getElementById("p2").value || "";
+
+    if(p1.length < 8){ msg.textContent = "Mật khẩu tối thiểu 8 ký tự."; return; }
+    if(p1 !== p2){ msg.textContent = "Mật khẩu nhập lại không khớp."; return; }
+
+    msg.textContent = "Đang lưu...";
+    const { error } = await supabase.auth.updateUser({ password: p1 });
+
+    if(error){
+      msg.textContent = "Error: " + error.message;
+      return;
+    }
+    msg.textContent = "Đã đổi mật khẩu. Đang chuyển vào Khu Thành Viên...";
+    setTimeout(()=> location.href="/member/portal.html", 800);
+  };
 </script>
 </body>
 </html>
