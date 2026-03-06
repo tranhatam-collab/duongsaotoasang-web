@@ -3,15 +3,140 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>404</title>
+  <title>404 | Đường Sao Tỏa Sáng</title>
+  <meta name="description" content="Trang không tồn tại hoặc chưa được xuất bản."/>
+  <meta name="robots" content="noindex,nofollow"/>
+  <link rel="canonical" href="https://duongsaotoasang.com/404.html"/>
+  <meta property="og:title" content="404 | Đường Sao Tỏa Sáng"/>
+  <meta property="og:description" content="Trang không tồn tại hoặc chưa được xuất bản."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://duongsaotoasang.com/404.html"/>
+  <meta name="twitter:card" content="summary_large_image"/>
   <link rel="stylesheet" href="/app.css"/>
 </head>
 <body>
-  <div class="wrap" style="margin-top:30px">
-    <div class="card">
-      <h1>404</h1>
-      <p class="muted">Trang không tồn tại. Về <a class="btn" href="/">Trang chủ</a></p>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="row">
+        <div class="brand">
+          <b>Đường Sao Tỏa Sáng</b>
+          <span class="small muted">Star Path Light Up</span>
+        </div>
+
+        <nav class="nav">
+          <a data-nav href="/">Trang chủ</a>
+          <a data-nav href="/content?slug=about">Giới thiệu</a>
+          <a data-nav href="/content?slug=program">Chương trình</a>
+          <a data-nav href="/content?slug=events">Sự kiện</a>
+          <a data-nav href="/content?slug=scripts">Kịch bản</a>
+          <a data-nav href="/content?slug=donate">Gây quỹ</a>
+          <a data-nav href="/content?slug=transparency">Minh bạch</a>
+          <a data-nav href="/content?slug=legal">Pháp lý</a>
+          <a data-nav href="/content?slug=contact">Liên hệ</a>
+          <a class="btn" href="/posts.html">Bài viết</a>
+          <button class="langbtn" data-lang-toggle><span data-lang-badge>VI</span> / EN</button>
+        </nav>
+      </div>
     </div>
-  </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card">
+      <div class="small muted" id="codeLabel">Lỗi điều hướng</div>
+      <h1 id="title" style="font-size:52px;margin:10px 0 0">404</h1>
+      <p class="muted" id="desc" style="line-height:1.8;margin-top:12px">
+        Trang anh/chị đang tìm không tồn tại, chưa được xuất bản, hoặc đường dẫn đã thay đổi.
+      </p>
+
+      <div class="hr"></div>
+
+      <div class="grid">
+        <div class="card" style="grid-column: span 7">
+          <h2 id="suggestTitle">Gợi ý xử lý</h2>
+          <div class="small" style="line-height:1.9" id="suggestBody">
+            <p>1. Kiểm tra lại đường dẫn URL đang mở.</p>
+            <p>2. Nếu đây là một trang nội dung theo slug, hãy thử quay về Trang chủ hoặc Danh sách bài viết.</p>
+            <p>3. Nếu anh/chị là quản trị viên, hãy kiểm tra slug trong CMS hoặc file <code>_redirects</code>.</p>
+          </div>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+            <a class="btn primary" href="/" id="btnHome">Về Trang chủ</a>
+            <a class="btn" href="/posts.html" id="btnPosts">Xem Bài viết</a>
+            <a class="btn" href="/content?slug=contact" id="btnContact">Liên hệ</a>
+          </div>
+        </div>
+
+        <div class="card" style="grid-column: span 5">
+          <h2 id="quickTitle">Đi nhanh</h2>
+          <div class="list">
+            <div class="item">
+              <b><a href="/content?slug=about" id="q1t">Giới thiệu</a></b>
+              <div class="small muted" id="q1d">Tổng quan về hệ thống và mục tiêu dài hạn.</div>
+            </div>
+            <div class="item">
+              <b><a href="/content?slug=scripts" id="q2t">Kịch bản</a></b>
+              <div class="small muted" id="q2d">Dòng sản phẩm ưu tiên giai đoạn 1.</div>
+            </div>
+            <div class="item">
+              <b><a href="/content?slug=donate" id="q3t">Donate / Gây quỹ</a></b>
+              <div class="small muted" id="q3d">Cơ chế gây quỹ minh bạch và có báo cáo.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { mountTopbar, getLang, setSeo } from "/app.js";
+
+    mountTopbar();
+
+    const lang = getLang();
+    const T = (vi, en) => lang === "vi" ? vi : en;
+
+    document.getElementById("codeLabel").textContent = T("Lỗi điều hướng", "Routing error");
+    document.getElementById("desc").textContent = T(
+      "Trang anh/chị đang tìm không tồn tại, chưa được xuất bản, hoặc đường dẫn đã thay đổi.",
+      "The page you are looking for does not exist, is not published yet, or the URL has changed."
+    );
+
+    document.getElementById("suggestTitle").textContent = T("Gợi ý xử lý", "What to do next");
+    document.getElementById("suggestBody").innerHTML = `
+      <p>1. ${T("Kiểm tra lại đường dẫn URL đang mở.", "Check the URL you are trying to open.")}</p>
+      <p>2. ${T("Nếu đây là một trang nội dung theo slug, hãy thử quay về Trang chủ hoặc Danh sách bài viết.", "If this is a CMS slug page, return to Home or Posts.")}</p>
+      <p>3. ${T("Nếu anh/chị là quản trị viên, hãy kiểm tra slug trong CMS hoặc file _redirects.", "If you are an administrator, check the CMS slug or the _redirects file.")}</p>
+    `;
+
+    document.getElementById("btnHome").textContent = T("Về Trang chủ", "Back to Home");
+    document.getElementById("btnPosts").textContent = T("Xem Bài viết", "View Posts");
+    document.getElementById("btnContact").textContent = T("Liên hệ", "Contact");
+
+    document.getElementById("quickTitle").textContent = T("Đi nhanh", "Quick links");
+    document.getElementById("q1t").textContent = T("Giới thiệu", "About");
+    document.getElementById("q1d").textContent = T(
+      "Tổng quan về hệ thống và mục tiêu dài hạn.",
+      "System overview and long-term purpose."
+    );
+    document.getElementById("q2t").textContent = T("Kịch bản", "Scripts");
+    document.getElementById("q2d").textContent = T(
+      "Dòng sản phẩm ưu tiên giai đoạn 1.",
+      "Primary product line in phase one."
+    );
+    document.getElementById("q3t").textContent = T("Donate / Gây quỹ", "Donate");
+    document.getElementById("q3d").textContent = T(
+      "Cơ chế gây quỹ minh bạch và có báo cáo.",
+      "Transparent fundraising with reporting."
+    );
+
+    setSeo({
+      title: T("404 | Đường Sao Tỏa Sáng", "404 | Star Path Light Up"),
+      description: T(
+        "Trang không tồn tại hoặc chưa được xuất bản.",
+        "The page does not exist or has not been published."
+      ),
+      canonical: "https://duongsaotoasang.com/404.html"
+    });
+  </script>
 </body>
 </html>
