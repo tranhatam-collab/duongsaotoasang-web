@@ -8,9 +8,6 @@
 /contact        /content.html          200
 
 /posts          /posts.html            200
+/posts/*        /content.html          200
 
-# legacy route vẫn giữ để không gãy link cũ
 /content        /content.html          200
-
-# file thật thì tự phục vụ, còn route lạ rơi vào 404
-/*              /404.html              404
