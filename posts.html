@@ -213,6 +213,7 @@
       border-radius:20px;
       padding:18px;
       transition:all .25s ease;
+      display:block;
     }
 
     .item:hover{
@@ -314,15 +315,15 @@
 
         <div class="menu" id="mainMenu">
           <a href="/">Trang chủ</a>
-          <a href="/content?slug=about">Giới thiệu</a>
-          <a href="/content?slug=program">Chương trình</a>
-          <a href="/content?slug=events">Sự kiện</a>
-          <a href="/content?slug=scripts">Kịch bản</a>
-          <a href="/content?slug=donate">Gây quỹ</a>
-          <a href="/content?slug=transparency">Minh bạch</a>
-          <a href="/content?slug=legal">Pháp lý</a>
-          <a href="/content?slug=contact">Liên hệ</a>
-          <a href="/posts">Bài viết</a>
+          <a href="/about">Giới thiệu</a>
+          <a href="/program">Chương trình</a>
+          <a href="/events">Sự kiện</a>
+          <a href="/scripts">Kịch bản</a>
+          <a href="/donate">Gây quỹ</a>
+          <a href="/transparency">Minh bạch</a>
+          <a href="/legal">Pháp lý</a>
+          <a href="/contact">Liên hệ</a>
+          <a href="/posts" class="active">Bài viết</a>
         </div>
 
         <div class="right">
@@ -372,22 +373,22 @@
         <div class="hr"></div>
 
         <div class="list">
-          <a class="item" href="/content?slug=about">
+          <a class="item" href="/about">
             <b id="q1t">Giới thiệu</b>
             <div class="excerpt" id="q1d">Hiểu nền tảng, tầm nhìn và lý do tồn tại của hệ thống.</div>
           </a>
 
-          <a class="item" href="/content?slug=program">
+          <a class="item" href="/program">
             <b id="q2t">Chương trình</b>
             <div class="excerpt" id="q2d">Xem cấu trúc triển khai, mô-đun vận hành và lộ trình.</div>
           </a>
 
-          <a class="item" href="/content?slug=scripts">
+          <a class="item" href="/scripts">
             <b id="q3t">Kịch bản</b>
             <div class="excerpt" id="q3d">Đi thẳng vào dòng sản phẩm ưu tiên giai đoạn 1.</div>
           </a>
 
-          <a class="item" href="/content?slug=donate">
+          <a class="item" href="/donate">
             <b id="q4t">Donate / Gây quỹ</b>
             <div class="excerpt" id="q4d">Hiểu cách đóng góp và nguyên tắc minh bạch đi kèm.</div>
           </a>
@@ -403,14 +404,14 @@
       </p>
 
       <div class="actions" style="margin-top:16px">
-        <a class="btn" href="/content?slug=about">about</a>
-        <a class="btn" href="/content?slug=program">program</a>
-        <a class="btn" href="/content?slug=events">events</a>
-        <a class="btn" href="/content?slug=scripts">scripts</a>
-        <a class="btn" href="/content?slug=donate">donate</a>
-        <a class="btn" href="/content?slug=transparency">transparency</a>
-        <a class="btn" href="/content?slug=legal">legal</a>
-        <a class="btn" href="/content?slug=contact">contact</a>
+        <a class="btn" href="/about">about</a>
+        <a class="btn" href="/program">program</a>
+        <a class="btn" href="/events">events</a>
+        <a class="btn" href="/scripts">scripts</a>
+        <a class="btn" href="/donate">donate</a>
+        <a class="btn" href="/transparency">transparency</a>
+        <a class="btn" href="/legal">legal</a>
+        <a class="btn" href="/contact">contact</a>
       </div>
     </section>
 
@@ -425,6 +426,8 @@
 
   <script type="module">
     import { getLang, toggleLang, listContents, setSeo } from "/app.js";
+
+    const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
     const lang = getLang();
     const T = (vi, en) => lang === "vi" ? vi : en;
@@ -539,6 +542,17 @@
 
     let masterItems = [];
 
+    function toHref(item){
+      const slug = item.slug || "";
+      const type = item.type || "post";
+
+      if(type === "post"){
+        return `/posts/${encodeURIComponent(slug)}`;
+      }
+
+      return `/${encodeURIComponent(slug)}`;
+    }
+
     function renderItems(filter = "all"){
       let items = masterItems;
       if(filter !== "all"){
@@ -567,7 +581,7 @@
         const typeLabel = item.type || "post";
 
         return `
-          <a class="item" href="/content?slug=${encodeURIComponent(item.slug || "")}">
+          <a class="item" href="${toHref(item)}">
             <div class="item-top">
               <b>${title}</b>
               <span class="tag">${typeLabel}</span>
@@ -595,7 +609,7 @@
       });
 
       masterItems = (items && items.length ? items : fallbackItems).map(item => ({
-        slug: item.slug || "",
+        slug: item.slug || item.raw?.slug || "",
         type: item.type || item.raw?.type || "post",
         title_vi: item.raw?.title_vi || item.title_vi || item.title || "",
         title_en: item.raw?.title_en || item.title_en || item.title || "",
