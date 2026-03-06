@@ -1,259 +1,122 @@
-<!doctype html>
-<html lang="vi">
-<head>
-
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<title>Nội dung | Đường Sao Tỏa Sáng</title>
-
-<meta name="description" content="Nội dung chi tiết các chương trình, bài viết và thông tin minh bạch của hệ thống Đường Sao Tỏa Sáng.">
-
-<link rel="canonical" href="https://duongsaotoasang.com/content">
-
-<meta property="og:type" content="article">
-<meta property="og:title" content="Đường Sao Tỏa Sáng">
-<meta property="og:description" content="Chương trình, bài viết và hệ thống minh bạch của Đường Sao Tỏa Sáng.">
-<meta property="og:url" content="https://duongsaotoasang.com/content">
-
-<meta name="twitter:card" content="summary_large_image">
-
-<link rel="stylesheet" href="/app.css">
-
-</head>
-
-<body>
-
-<header class="topbar">
-<div class="wrap">
-
-<div class="nav">
-
-<div class="brand">
-
-<div class="brand-mark"></div>
-
-<div>
-<div class="brand-title">Đường Sao Tỏa Sáng</div>
-<div class="brand-sub">Star Path Light Up</div>
-</div>
-
-</div>
-
-<button class="mobile-toggle" id="mobileToggle">☰</button>
-
-<div class="menu" id="mainMenu">
-
-<a href="/">Trang chủ</a>
-
-<a href="/content?slug=about">Giới thiệu</a>
-
-<a href="/content?slug=program">Chương trình</a>
-
-<a href="/content?slug=events">Sự kiện</a>
-
-<a href="/content?slug=scripts">Kịch bản</a>
-
-<a href="/content?slug=donate">Gây quỹ</a>
-
-<a href="/content?slug=transparency">Minh bạch</a>
-
-<a href="/content?slug=legal">Pháp lý</a>
-
-<a href="/content?slug=contact">Liên hệ</a>
-
-<a href="/posts">Bài viết</a>
-
-</div>
-
-<div class="right">
-
-<span class="pill" id="langPill">VI</span>
-
-<button class="btn" id="toggleLang">VI / EN</button>
-
-</div>
-
-</div>
-</div>
-</header>
-
-<main class="wrap">
-
-<nav class="breadcrumb" id="breadcrumb" style="margin-bottom:20px;color:var(--muted);font-size:13px"></nav>
-
-<article class="article" id="article">
-
-<h1 id="title">Đang tải...</h1>
-
-<div id="meta" style="color:var(--muted);margin-bottom:20px"></div>
-
-<div id="body"></div>
-
-</article>
-
-<section style="margin-top:60px">
-
-<h2 style="margin-bottom:20px">Bài viết liên quan</h2>
-
-<div id="related" class="posts-grid"></div>
-
-</section>
-
-</main>
-
-<footer>
-
-<div class="wrap">
-
-© 2026 Đường Sao Tỏa Sáng
-
-</div>
-
-</footer>
-
 <script type="module">
+  import { getLang, toggleLang, loadBySlug, renderRichHtml, setSeo } from "/app.js";
 
-import { getLang, toggleLang, listContents } from "/app.js";
+  const lang = getLang();
+  const T = (vi, en) => lang === "vi" ? vi : en;
 
-const lang = getLang()
+  document.documentElement.lang = lang;
+  document.getElementById("langPill").textContent = lang.toUpperCase();
+  document.getElementById("toggleLang").onclick = () => toggleLang();
 
-document.documentElement.lang = lang
+  document.getElementById("mobileToggle").onclick = () => {
+    document.getElementById("mainMenu").classList.toggle("open");
+  };
 
-document.getElementById("langPill").textContent = lang.toUpperCase()
+  function resolveSlug(){
+    const path = location.pathname.replace(/^\/+|\/+$/g, "");
+    const qs = new URLSearchParams(location.search);
+    const qSlug = (qs.get("slug") || "").trim();
 
-document.getElementById("toggleLang").onclick = toggleLang
+    // Ưu tiên URL đẹp: /program, /about...
+    if(path && path !== "content" && path !== "content.html"){
+      return path;
+    }
 
-document.getElementById("mobileToggle").onclick = () => {
-document.getElementById("mainMenu").classList.toggle("open")
-}
+    // Hỗ trợ link cũ: /content?slug=about
+    if(qSlug){
+      return qSlug;
+    }
 
-const params = new URLSearchParams(location.search)
+    return "about";
+  }
 
-const slug = params.get("slug") || "about"
+  const slug = resolveSlug();
 
-function fallbackContent(slug){
+  const titleEl = document.getElementById("title");
+  const subEl = document.getElementById("sub");
+  const bodyEl = document.getElementById("body");
+  const crumbEl = document.getElementById("crumb");
 
-const data = {
+  crumbEl.innerHTML = `<a href="/">Trang chủ</a> / <b>${slug}</b>`;
 
-about:{
-title_vi:"Giới thiệu Đường Sao Tỏa Sáng",
-title_en:"About Star Path Light Up",
-body_vi:`Đường Sao Tỏa Sáng là một hệ thống phát triển các hoạt động văn hóa, nghệ thuật và cộng đồng nhằm lan tỏa những giá trị tích cực trong xã hội.`,
-body_en:`Star Path Light Up is a system developing cultural, artistic and community activities that spread positive values in society.`
-},
+  const FALLBACKS = {
+    about: {
+      title: T("Giới thiệu", "About"),
+      desc: T("Giới thiệu nền tảng Đường Sao Tỏa Sáng.", "About the Star Path Light Up platform."),
+      body: `<p>...</p>`
+    },
+    program: {
+      title: T("Chương trình", "Program"),
+      desc: T("Khung vận hành, mô hình triển khai và lộ trình phát triển.", "Operating framework, implementation model, and roadmap."),
+      body: `<p>...</p>`
+    },
+    events: {
+      title: T("Sự kiện", "Events"),
+      desc: T("Thông tin các sự kiện, hoạt động và kế hoạch công bố theo từng giai đoạn.", "Events, activities, and phased announcements."),
+      body: `<p>...</p>`
+    },
+    scripts: {
+      title: T("Kịch bản", "Scripts"),
+      desc: T("Danh mục kịch bản, gói mua và quyền truy cập.", "Script catalog, purchase packages, and access rights."),
+      body: `<p>...</p>`
+    },
+    donate: {
+      title: T("Gây quỹ / Donate", "Donate / Fundraising"),
+      desc: T("Cơ chế donate và gây quỹ minh bạch.", "Transparent donation and fundraising mechanism."),
+      body: `<p>...</p>`
+    },
+    transparency: {
+      title: T("Minh bạch", "Transparency"),
+      desc: T("Nguyên tắc công khai, báo cáo và kiểm tra.", "Principles of disclosure, reporting, and accountability."),
+      body: `<p>...</p>`
+    },
+    legal: {
+      title: T("Pháp lý", "Legal"),
+      desc: T("Điều khoản sử dụng, chính sách riêng tư và tuyên bố miễn trừ.", "Terms of Use, Privacy Policy, and Disclaimer."),
+      body: `<p>...</p>`
+    },
+    contact: {
+      title: T("Liên hệ", "Contact"),
+      desc: T("Thông tin liên hệ chính thức của dự án.", "Official contact information."),
+      body: `<p>...</p>`
+    }
+  };
 
-program:{
-title_vi:"Chương trình",
-title_en:"Programs",
-body_vi:`Chương trình tập trung vào các hoạt động sáng tạo, đào tạo và hỗ trợ cộng đồng.`,
-body_en:`Programs focus on creative activities, education and community support.`
-},
+  async function run(){
+    const fallback = FALLBACKS[slug] || {
+      title: T("Nội dung đang cập nhật", "Content is being updated"),
+      desc: T("Trang này đã được tạo nhưng chưa có nội dung hoàn chỉnh.", "This page exists but content is not complete yet."),
+      body: `<p>${T("Slug này hiện chưa có nội dung fallback riêng.", "This slug does not yet have a dedicated fallback.")}</p>`
+    };
 
-events:{
-title_vi:"Sự kiện",
-title_en:"Events",
-body_vi:`Các sự kiện được tổ chức nhằm kết nối cộng đồng và lan tỏa giá trị tích cực.`,
-body_en:`Events are organized to connect communities and spread positive values.`
-},
+    titleEl.textContent = fallback.title;
+    subEl.textContent = fallback.desc;
+    bodyEl.innerHTML = fallback.body;
 
-scripts:{
-title_vi:"Kịch bản",
-title_en:"Scripts",
-body_vi:`Kịch bản là một trục quan trọng trong hệ thống phát triển nội dung.`,
-body_en:`Scripts are an important axis in the content development system.`
-},
+    setSeo({
+      title: `${fallback.title} | Đường Sao Tỏa Sáng`,
+      description: fallback.desc,
+      canonical: `https://duongsaotoasang.com/${encodeURIComponent(slug)}`
+    });
 
-donate:{
-title_vi:"Gây quỹ",
-title_en:"Donate",
-body_vi:`Hoạt động gây quỹ nhằm hỗ trợ các chương trình cộng đồng.`,
-body_en:`Fundraising activities support community programs.`
-},
+    try{
+      const item = await loadBySlug(slug);
+      if(item){
+        titleEl.textContent = item.title || fallback.title;
+        subEl.textContent = item.excerpt || fallback.desc;
+        if(item.body) renderRichHtml(bodyEl, item.body);
 
-transparency:{
-title_vi:"Minh bạch",
-title_en:"Transparency",
-body_vi:`Tất cả nguồn quỹ đều được công bố minh bạch.`,
-body_en:`All funds are publicly reported for transparency.`
-},
+        setSeo({
+          title: `${titleEl.textContent} | Đường Sao Tỏa Sáng`,
+          description: item.excerpt || fallback.desc,
+          canonical: `https://duongsaotoasang.com/${encodeURIComponent(slug)}`,
+          ogImage: item.cover || null
+        });
+      }
+    }catch(e){
+      console.warn("CMS fallback used:", e);
+    }
+  }
 
-legal:{
-title_vi:"Pháp lý",
-title_en:"Legal",
-body_vi:`Thông tin pháp lý và điều khoản sử dụng.`,
-body_en:`Legal information and terms of use.`
-},
-
-contact:{
-title_vi:"Liên hệ",
-title_en:"Contact",
-body_vi:`Liên hệ với hệ thống Đường Sao Tỏa Sáng.`,
-body_en:`Contact the Star Path Light Up system.`
-}
-
-}
-
-return data[slug]
-
-}
-
-function render(data){
-
-const title = lang === "vi" ? data.title_vi : data.title_en
-
-const body = lang === "vi" ? data.body_vi : data.body_en
-
-document.title = title + " | Đường Sao Tỏa Sáng"
-
-document.getElementById("title").innerText = title
-
-document.getElementById("body").innerHTML = "<p>"+body+"</p>"
-
-document.getElementById("breadcrumb").innerHTML =
-`<a href="/">Trang chủ</a> / <span>${title}</span>`
-
-}
-
-async function run(){
-
-try{
-
-const items = await listContents({
-slug
-})
-
-if(items && items.length){
-
-render(items[0])
-
-return
-
-}
-
-}catch(e){
-
-}
-
-const fallback = fallbackContent(slug)
-
-if(fallback){
-
-render(fallback)
-
-}else{
-
-document.getElementById("title").innerText="404"
-
-document.getElementById("body").innerHTML="<p>Nội dung không tồn tại</p>"
-
-}
-
-}
-
-run()
-
+  run();
 </script>
-
-</body>
-</html>
