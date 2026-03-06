@@ -7,27 +7,30 @@
   <meta name="description" content="Đường Sao Tỏa Sáng là nền tảng kết nối, tổ chức và lan tỏa các dự án nghệ thuật, giáo dục, cộng đồng, kịch bản và gây quỹ minh bạch theo định hướng dài hạn."/>
   <link rel="canonical" href="https://duongsaotoasang.com/"/>
   <meta property="og:title" content="Đường Sao Tỏa Sáng | Star Path Light Up"/>
-  <meta property="og:description" content="Nền tảng kết nối, tổ chức và lan tỏa các dự án nghệ thuật, giáo dục, cộng đồng, kịch bản và gây quỹ minh bạch."/>
+  <meta property="og:description" content="Nền tảng kết nối, tổ chức và lan tỏa các dự án nghệ thuật, giáo dục, cộng đồng, kịch bản và gây quỹ minh bạch theo định hướng dài hạn."/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://duongsaotoasang.com/"/>
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="theme-color" content="#0b0d10"/>
+  <meta name="theme-color" content="#0b0e12"/>
   <link rel="stylesheet" href="/app.css"/>
 
   <style>
     :root{
-      --bg:#0a0c0f;
-      --bg-soft:#11151b;
-      --card:rgba(255,255,255,.045);
-      --card-2:rgba(255,255,255,.032);
+      --bg:#090c10;
+      --bg-soft:#10141a;
+      --panel:rgba(255,255,255,.045);
+      --panel-2:rgba(255,255,255,.032);
+      --panel-3:rgba(255,255,255,.022);
       --line:rgba(255,255,255,.085);
-      --text:#f2f4f7;
-      --muted:#a7afb9;
+      --text:#f3f5f7;
+      --muted:#a8b0ba;
       --gold:#d8bc77;
-      --gold-soft:rgba(216,188,119,.18);
-      --white-soft:rgba(255,255,255,.78);
-      --shadow:0 16px 60px rgba(0,0,0,.38);
-      --r:22px;
+      --gold-2:#b18a3d;
+      --gold-soft:rgba(216,188,119,.16);
+      --blue-soft:rgba(132,176,255,.14);
+      --white-soft:rgba(255,255,255,.82);
+      --shadow:0 18px 70px rgba(0,0,0,.42);
+      --radius:24px;
       --max:1240px;
     }
 
@@ -36,11 +39,11 @@
     body{
       margin:0;
       color:var(--text);
-      background:
-        radial-gradient(900px 500px at 0% 0%, rgba(216,188,119,.10), transparent 60%),
-        radial-gradient(700px 500px at 100% 10%, rgba(138,198,255,.08), transparent 55%),
-        linear-gradient(180deg, #090b0d 0%, #0c1014 100%);
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(900px 520px at 0% 0%, rgba(216,188,119,.10), transparent 60%),
+        radial-gradient(760px 480px at 100% 10%, rgba(132,176,255,.10), transparent 58%),
+        linear-gradient(180deg,#080b0f 0%, #0c1117 100%);
       overflow-x:hidden;
     }
 
@@ -49,9 +52,9 @@
     .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
 
     .topbar{
-      position:sticky;top:0;z-index:60;
+      position:sticky;top:0;z-index:80;
       backdrop-filter:blur(16px);
-      background:rgba(10,12,15,.68);
+      background:rgba(10,12,16,.72);
       border-bottom:1px solid var(--line);
     }
 
@@ -65,23 +68,32 @@
     }
 
     .brand-mark{
-      width:42px;height:42px;border-radius:14px;
+      width:44px;height:44px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
       background:
         radial-gradient(circle at 30% 30%, rgba(255,255,255,.16), transparent 35%),
         linear-gradient(135deg, rgba(216,188,119,.28), rgba(255,255,255,.05));
-      border:1px solid rgba(255,255,255,.10);
       box-shadow:var(--shadow);
       flex:0 0 auto;
     }
 
-    .brand-text{min-width:0}
     .brand-title{
-      font-weight:800;font-size:17px;letter-spacing:.2px;line-height:1.1;
-      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+      font-weight:800;
+      font-size:17px;
+      letter-spacing:.2px;
+      line-height:1.05;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
+
     .brand-sub{
-      font-size:12px;color:var(--muted);margin-top:3px;
-      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+      font-size:12px;
+      color:var(--muted);
+      margin-top:4px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
     .menu{
@@ -89,16 +101,17 @@
     }
 
     .menu a{
-      padding:10px 12px;border-radius:12px;
+      padding:10px 12px;
+      border-radius:12px;
       color:var(--white-soft);
-      transition:all .25s ease;
       border:1px solid transparent;
+      transition:all .25s ease;
     }
 
     .menu a:hover,
     .menu a.active{
       color:#fff;
-      background:rgba(255,255,255,.045);
+      background:rgba(255,255,255,.05);
       border-color:var(--line);
       text-decoration:none;
     }
@@ -109,7 +122,8 @@
 
     .pill{
       border:1px solid var(--line);
-      padding:9px 12px;border-radius:999px;
+      padding:9px 12px;
+      border-radius:999px;
       color:var(--muted);
       background:rgba(255,255,255,.03);
       font-size:13px;
@@ -117,7 +131,8 @@
 
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:8px;
-      padding:10px 14px;border-radius:14px;
+      padding:10px 14px;
+      border-radius:14px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.04);
       color:#fff;
@@ -127,100 +142,128 @@
 
     .btn:hover{
       transform:translateY(-1px);
-      background:rgba(255,255,255,.07);
+      background:rgba(255,255,255,.08);
       text-decoration:none;
     }
 
     .btn.primary{
-      border-color:rgba(216,188,119,.34);
-      background:linear-gradient(180deg, rgba(216,188,119,.16), rgba(216,188,119,.07));
-      box-shadow:0 10px 30px rgba(216,188,119,.08);
+      border-color:rgba(216,188,119,.38);
+      background:linear-gradient(180deg, rgba(216,188,119,.18), rgba(216,188,119,.08));
+      box-shadow:0 10px 30px rgba(216,188,119,.10);
     }
 
     .mobile-toggle{
       display:none;
-      width:44px;height:44px;border-radius:12px;
+      width:44px;height:44px;
+      border-radius:12px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.04);
-      color:#fff;cursor:pointer;
+      color:#fff;
+      cursor:pointer;
     }
 
     .hero{
-      padding:36px 0 18px;
+      padding:38px 0 18px;
     }
 
     .hero-shell{
-      position:relative;overflow:hidden;
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:28px;
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.085);
+      border-radius:30px;
       background:
-        radial-gradient(700px 280px at 10% 0%, rgba(216,188,119,.10), transparent 60%),
-        radial-gradient(600px 260px at 100% 10%, rgba(138,198,255,.08), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+        radial-gradient(780px 320px at 10% 0%, rgba(216,188,119,.12), transparent 62%),
+        radial-gradient(680px 280px at 100% 8%, rgba(132,176,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.018));
       box-shadow:var(--shadow);
-      padding:28px;
+      padding:30px;
+    }
+
+    .hero-shell::before{
+      content:"";
+      position:absolute;
+      inset:auto -80px -80px auto;
+      width:240px;height:240px;
+      background:radial-gradient(circle, rgba(216,188,119,.14), transparent 65%);
+      pointer-events:none;
+      filter:blur(10px);
     }
 
     .hero-grid{
-      display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:18px;
+      align-items:stretch;
     }
 
     .hero-copy h1{
       margin:0;
-      font-size:54px;
-      line-height:1.02;
-      letter-spacing:-.03em;
-      max-width:880px;
+      font-size:56px;
+      line-height:1.01;
+      letter-spacing:-.035em;
+      max-width:900px;
     }
 
-    .hero-copy .lead{
+    .lead{
       margin:18px 0 0;
       color:var(--muted);
-      line-height:1.9;
+      line-height:1.92;
       font-size:16px;
-      max-width:880px;
+      max-width:900px;
     }
 
     .hero-actions{
-      display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;
+      display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;
     }
 
     .hero-kpis{
-      display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;
+      display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;
     }
 
     .kpi{
-      min-width:150px;
+      min-width:165px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.025);
       border-radius:18px;
       padding:14px;
     }
 
-    .kpi b{display:block;font-size:20px}
-    .kpi span{display:block;margin-top:4px;font-size:13px;color:var(--muted)}
-
-    .hero-side{
-      display:grid;gap:14px;
+    .kpi b{
+      display:block;
+      font-size:20px;
+      line-height:1.1;
     }
 
-    .glow-card,
-    .card{
-      border:1px solid var(--line);
-      background:var(--card);
-      border-radius:var(--r);
-      padding:18px;
-      box-shadow:var(--shadow);
+    .kpi span{
+      display:block;
+      margin-top:5px;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .hero-side{
+      display:grid;
+      gap:14px;
+    }
+
+    .card,
+    .glow-card{
       position:relative;
       overflow:hidden;
+      border:1px solid var(--line);
+      background:var(--panel);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--shadow);
     }
 
     .glow-card::before{
       content:"";
       position:absolute;inset:-1px;
       background:
-        radial-gradient(circle at top right, rgba(216,188,119,.16), transparent 28%),
-        radial-gradient(circle at left bottom, rgba(138,198,255,.12), transparent 28%);
+        radial-gradient(circle at top right, rgba(216,188,119,.16), transparent 26%),
+        radial-gradient(circle at left bottom, rgba(132,176,255,.12), transparent 28%);
       pointer-events:none;
     }
 
@@ -246,12 +289,13 @@
 
     .small{font-size:13px}
     .hr{
-      height:1px;background:var(--line);
+      height:1px;
+      background:var(--line);
       margin:16px 0;
     }
 
     .section{
-      padding:12px 0 6px;
+      padding:14px 0 8px;
     }
 
     .section-header{
@@ -269,8 +313,8 @@
     .section-header p{
       margin:0;
       color:var(--muted);
-      max-width:760px;
-      line-height:1.8;
+      max-width:780px;
+      line-height:1.85;
     }
 
     .grid{
@@ -283,65 +327,16 @@
     .span-5{grid-column:span 5}
     .span-4{grid-column:span 4}
 
-    .chip-row{
-      display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;
-    }
-
-    .chip{
-      padding:9px 12px;border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      color:var(--white-soft);
-      font-size:13px;
-    }
-
-    .metric-box{
-      display:grid;gap:10px;
-    }
-
-    .metric{
-      display:flex;gap:12px;align-items:flex-start;
-      padding:12px;border:1px solid var(--line);border-radius:16px;
-      background:var(--card-2);
-    }
-
-    .metric-index{
-      width:32px;height:32px;border-radius:999px;
-      display:flex;align-items:center;justify-content:center;
-      background:var(--gold-soft);
-      color:#fff;font-weight:700;flex:0 0 auto;
-    }
-
-    .list{
-      display:grid;gap:12px;
-    }
-
-    .item{
-      border:1px solid var(--line);
-      background:var(--card-2);
-      border-radius:18px;
-      padding:16px;
-      transition:transform .25s ease, border-color .25s ease, background .25s ease;
-      display:block;
-    }
-
-    .item:hover{
-      transform:translateY(-2px);
-      border-color:rgba(216,188,119,.22);
-      background:rgba(255,255,255,.05);
-      text-decoration:none;
-    }
-
-    .item b{display:block;font-size:17px;margin-bottom:8px}
-    .item .meta{color:var(--muted);font-size:13px;margin-top:8px}
-
     .vision-links{
-      display:grid;grid-template-columns:repeat(2,1fr);gap:12px;
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
     }
 
     .vision-link{
       display:block;
-      padding:16px;border-radius:20px;
+      padding:18px;
+      border-radius:20px;
       border:1px solid var(--line);
       background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
       transition:all .25s ease;
@@ -349,24 +344,113 @@
 
     .vision-link:hover{
       transform:translateY(-2px);
-      border-color:rgba(216,188,119,.22);
+      border-color:rgba(216,188,119,.24);
+      background:rgba(255,255,255,.06);
       text-decoration:none;
     }
 
-    .vision-link b{display:block;margin-bottom:8px;font-size:17px}
-    .vision-link span{display:block;color:var(--muted);line-height:1.7;font-size:14px}
+    .vision-link b{
+      display:block;
+      margin-bottom:8px;
+      font-size:17px;
+    }
+
+    .vision-link span{
+      display:block;
+      color:var(--muted);
+      line-height:1.72;
+      font-size:14px;
+    }
+
+    .metric-box{
+      display:grid;
+      gap:10px;
+    }
+
+    .metric{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:12px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:var(--panel-2);
+    }
+
+    .metric-index{
+      width:32px;height:32px;
+      border-radius:999px;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--gold-soft);
+      color:#fff;
+      font-weight:700;
+      flex:0 0 auto;
+    }
+
+    .chip-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    .chip{
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--white-soft);
+      font-size:13px;
+    }
+
+    .list{
+      display:grid;
+      gap:12px;
+    }
+
+    .item{
+      display:block;
+      border:1px solid var(--line);
+      background:var(--panel-2);
+      border-radius:18px;
+      padding:16px;
+      transition:transform .25s ease,border-color .25s ease,background .25s ease;
+    }
+
+    .item:hover{
+      transform:translateY(-2px);
+      border-color:rgba(216,188,119,.22);
+      background:rgba(255,255,255,.055);
+      text-decoration:none;
+    }
+
+    .item b{
+      display:block;
+      font-size:17px;
+      line-height:1.35;
+      margin-bottom:8px;
+    }
+
+    .item .meta{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:8px;
+    }
 
     .footer{
-      margin-top:22px;
-      padding:22px 0 50px;
+      margin-top:26px;
+      padding:24px 0 54px;
       border-top:1px solid var(--line);
       color:var(--muted);
-      line-height:1.8;
+      line-height:1.85;
       font-size:14px;
     }
 
     .footer-grid{
-      display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:16px;
+      align-items:start;
     }
 
     .reveal{
@@ -410,7 +494,7 @@
       <div class="nav">
         <div class="brand">
           <div class="brand-mark" aria-hidden="true"></div>
-          <div class="brand-text">
+          <div>
             <div class="brand-title">Đường Sao Tỏa Sáng</div>
             <div class="brand-sub">Star Path Light Up</div>
           </div>
@@ -419,7 +503,7 @@
         <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">☰</button>
 
         <div class="menu" id="mainMenu">
-          <a href="/">Trang chủ</a>
+          <a href="/" class="active">Trang chủ</a>
           <a href="/about">Giới thiệu</a>
           <a href="/program">Chương trình</a>
           <a href="/events">Sự kiện</a>
@@ -477,7 +561,7 @@
               <div class="eyebrow" id="side1k">MỞ ĐẦU ĐÚNG</div>
               <h2 id="side1t">Không bắt đầu từ sự ồn ào</h2>
               <p class="muted" id="side1d">
-                Dự án này không được xây để tạo cảm giác lớn ngay lập tức, mà để tạo ra một cấu trúc có thể sống lâu, làm thật, đi thật, và để lại giá trị thật.
+                Dự án này không được xây để tạo cảm giác lớn ngay lập tức, mà để tạo ra một cấu trúc có thể sống lâu, làm thật, đi thật và để lại giá trị thật.
               </p>
             </div>
 
@@ -507,7 +591,7 @@
       <div class="vision-links">
         <a class="vision-link" href="/about">
           <b id="v1t">Giới thiệu</b>
-          <span id="v1d">Hiểu nền tảng, lý do tồn tại, và logic vận hành tổng thể của Đường Sao Tỏa Sáng.</span>
+          <span id="v1d">Hiểu nền tảng, lý do tồn tại và logic vận hành tổng thể của Đường Sao Tỏa Sáng.</span>
         </a>
         <a class="vision-link" href="/program">
           <b id="v2t">Chương trình</b>
@@ -515,7 +599,7 @@
         </a>
         <a class="vision-link" href="/events">
           <b id="v3t">Sự kiện</b>
-          <span id="v3d">Nơi công bố hoạt động, workshop, hội thảo, biểu diễn, hoặc các cột mốc cộng đồng.</span>
+          <span id="v3d">Nơi công bố hoạt động, workshop, hội thảo, biểu diễn hoặc các cột mốc cộng đồng.</span>
         </a>
         <a class="vision-link" href="/scripts">
           <b id="v4t">Kịch bản</b>
@@ -531,11 +615,11 @@
         </a>
         <a class="vision-link" href="/legal">
           <b id="v7t">Pháp lý</b>
-          <span id="v7d">Điều khoản, chính sách riêng tư, và các tuyên bố cần thiết để hệ thống vận hành rõ ràng.</span>
+          <span id="v7d">Điều khoản, chính sách riêng tư và các tuyên bố cần thiết để hệ thống vận hành rõ ràng.</span>
         </a>
         <a class="vision-link" href="/contact">
           <b id="v8t">Liên hệ</b>
-          <span id="v8d">Các kênh chính thức để hợp tác, tài trợ, đề xuất chương trình, hoặc gửi yêu cầu làm việc.</span>
+          <span id="v8d">Các kênh chính thức để hợp tác, tài trợ, đề xuất chương trình hoặc gửi yêu cầu làm việc.</span>
         </a>
       </div>
     </section>
@@ -554,7 +638,7 @@
       <div class="grid">
         <div class="card span-4">
           <h2 id="f1t">Nội dung chuẩn hóa</h2>
-          <p class="muted" id="f1d">Mọi phần quan trọng đều có slug, có trang đích, có SEO, và có thể được thay thế bằng CMS khi cần.</p>
+          <p class="muted" id="f1d">Mọi phần quan trọng đều có slug, có trang đích, có SEO và có thể được thay thế bằng CMS khi cần.</p>
         </div>
 
         <div class="card span-4">
@@ -564,7 +648,7 @@
 
         <div class="card span-4">
           <h2 id="f3t">Donate là trục cộng đồng</h2>
-          <p class="muted" id="f3d">Gây quỹ chỉ được triển khai khi có mục tiêu rõ, dòng sử dụng rõ, và cơ chế công bố rõ.</p>
+          <p class="muted" id="f3d">Gây quỹ chỉ được triển khai khi có mục tiêu rõ, dòng sử dụng rõ và cơ chế công bố rõ.</p>
         </div>
       </div>
     </section>
@@ -700,7 +784,6 @@
     document.documentElement.lang = lang;
     document.getElementById("langPill").textContent = lang.toUpperCase();
     document.getElementById("toggleLang").onclick = () => toggleLang();
-
     document.getElementById("mobileToggle").onclick = () => {
       document.getElementById("mainMenu").classList.toggle("open");
     };
@@ -740,7 +823,7 @@
     document.getElementById("side1k").textContent = T("MỞ ĐẦU ĐÚNG", "BEGIN THE RIGHT WAY");
     document.getElementById("side1t").textContent = T("Không bắt đầu từ sự ồn ào", "Do not begin with noise");
     document.getElementById("side1d").textContent = T(
-      "Dự án này không được xây để tạo cảm giác lớn ngay lập tức, mà để tạo ra một cấu trúc có thể sống lâu, làm thật, đi thật, và để lại giá trị thật.",
+      "Dự án này không được xây để tạo cảm giác lớn ngay lập tức, mà để tạo ra một cấu trúc có thể sống lâu, làm thật, đi thật và để lại giá trị thật.",
       "This project is not built to appear big immediately, but to create a structure that can endure, act genuinely, and leave real value."
     );
 
@@ -759,11 +842,11 @@
     );
 
     document.getElementById("v1t").textContent = T("Giới thiệu", "About");
-    document.getElementById("v1d").textContent = T("Hiểu nền tảng, lý do tồn tại, và logic vận hành tổng thể của Đường Sao Tỏa Sáng.", "Understand the platform, its reason for existing, and its overall operating logic.");
+    document.getElementById("v1d").textContent = T("Hiểu nền tảng, lý do tồn tại và logic vận hành tổng thể của Đường Sao Tỏa Sáng.", "Understand the platform, its reason for existing, and its overall operating logic.");
     document.getElementById("v2t").textContent = T("Chương trình", "Program");
     document.getElementById("v2d").textContent = T("Khung vận hành, mô-đun triển khai, lộ trình và các trục ưu tiên trong từng giai đoạn.", "Operating framework, implementation modules, roadmap, and priority axes.");
     document.getElementById("v3t").textContent = T("Sự kiện", "Events");
-    document.getElementById("v3d").textContent = T("Nơi công bố hoạt động, workshop, hội thảo, biểu diễn, hoặc các cột mốc cộng đồng.", "Where activities, workshops, talks, performances, and community milestones are announced.");
+    document.getElementById("v3d").textContent = T("Nơi công bố hoạt động, workshop, hội thảo, biểu diễn hoặc các cột mốc cộng đồng.", "Where activities, workshops, talks, performances, or community milestones are announced.");
     document.getElementById("v4t").textContent = T("Kịch bản", "Scripts");
     document.getElementById("v4d").textContent = T("Dòng sản phẩm trọng tâm giai đoạn 1, tạo doanh thu bền vững cho hệ sinh thái.", "The core product line in phase one, generating sustainable revenue.");
     document.getElementById("v5t").textContent = T("Gây quỹ", "Donate");
@@ -771,9 +854,9 @@
     document.getElementById("v6t").textContent = T("Minh bạch", "Transparency");
     document.getElementById("v6d").textContent = T("Nguyên tắc báo cáo, công khai dòng lực, trách nhiệm và kiểm chứng.", "Principles of reporting, disclosure, accountability, and verification.");
     document.getElementById("v7t").textContent = T("Pháp lý", "Legal");
-    document.getElementById("v7d").textContent = T("Điều khoản, chính sách riêng tư, và các tuyên bố cần thiết để hệ thống vận hành rõ ràng.", "Terms, privacy policy, and disclaimers needed for clear operations.");
+    document.getElementById("v7d").textContent = T("Điều khoản, chính sách riêng tư và các tuyên bố cần thiết để hệ thống vận hành rõ ràng.", "Terms, privacy policy, and disclaimers needed for clear operations.");
     document.getElementById("v8t").textContent = T("Liên hệ", "Contact");
-    document.getElementById("v8d").textContent = T("Các kênh chính thức để hợp tác, tài trợ, đề xuất chương trình, hoặc gửi yêu cầu làm việc.", "Official channels for collaboration, sponsorship, program proposals, and work requests.");
+    document.getElementById("v8d").textContent = T("Các kênh chính thức để hợp tác, tài trợ, đề xuất chương trình hoặc gửi yêu cầu làm việc.", "Official channels for collaboration, sponsorship, program proposals, and work requests.");
 
     document.getElementById("foundEyebrow").textContent = T("NỀN MÓNG VẬN HÀNH", "OPERATING FOUNDATION");
     document.getElementById("foundTitle").textContent = T("Không chỉ là website. Đây là hệ thống.", "Not just a website. This is a system.");
@@ -782,11 +865,11 @@
       "Each content item, campaign, and program needs goals, process, access rules, and responsibility. The homepage must reflect this logic from the start."
     );
     document.getElementById("f1t").textContent = T("Nội dung chuẩn hóa", "Standardized content");
-    document.getElementById("f1d").textContent = T("Mọi phần quan trọng đều có slug, có trang đích, có SEO, và có thể được thay thế bằng CMS khi cần.", "Every important section has a slug, destination page, SEO, and can later be replaced by CMS content.");
+    document.getElementById("f1d").textContent = T("Mọi phần quan trọng đều có slug, có trang đích, có SEO và có thể được thay thế bằng CMS khi cần.", "Every important section has a slug, destination page, SEO, and can later be replaced by CMS content.");
     document.getElementById("f2t").textContent = T("Kịch bản là trục kinh doanh", "Scripts are the business axis");
     document.getElementById("f2d").textContent = T("Kịch bản không chỉ là một loại nội dung. Nó là dòng sản phẩm chiến lược để tạo doanh thu minh bạch và bền vững.", "Scripts are not just content. They are the strategic product line for transparent sustainable revenue.");
     document.getElementById("f3t").textContent = T("Donate là trục cộng đồng", "Donate is the community axis");
-    document.getElementById("f3d").textContent = T("Gây quỹ chỉ được triển khai khi có mục tiêu rõ, dòng sử dụng rõ, và cơ chế công bố rõ.", "Fundraising is deployed only when goals, use flow, and disclosure are clear.");
+    document.getElementById("f3d").textContent = T("Gây quỹ chỉ được triển khai khi có mục tiêu rõ, dòng sử dụng rõ và cơ chế công bố rõ.", "Fundraising is deployed only when goals, use flow, and disclosure are clear.");
 
     document.getElementById("pathEyebrow").textContent = T("ĐI NHANH ĐÚNG HƯỚNG", "MOVE FAST THE RIGHT WAY");
     document.getElementById("pathTitle").textContent = T("Lộ trình điều hướng không gãy", "Navigation path without broken links");
