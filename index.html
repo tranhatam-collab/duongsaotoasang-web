@@ -26,8 +26,6 @@
       --gold:#d8bc77;
       --gold-soft:rgba(216,188,119,.18);
       --white-soft:rgba(255,255,255,.78);
-      --cyan-soft:rgba(138,198,255,.22);
-      --green-soft:rgba(121,211,163,.18);
       --shadow:0 16px 60px rgba(0,0,0,.38);
       --r:22px;
       --max:1240px;
@@ -42,7 +40,7 @@
         radial-gradient(900px 500px at 0% 0%, rgba(216,188,119,.10), transparent 60%),
         radial-gradient(700px 500px at 100% 10%, rgba(138,198,255,.08), transparent 55%),
         linear-gradient(180deg, #090b0d 0%, #0c1014 100%);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       overflow-x:hidden;
     }
 
@@ -52,7 +50,7 @@
 
     .topbar{
       position:sticky;top:0;z-index:60;
-      backdrop-filter: blur(16px);
+      backdrop-filter:blur(16px);
       background:rgba(10,12,15,.68);
       border-bottom:1px solid var(--line);
     }
@@ -72,7 +70,7 @@
         radial-gradient(circle at 30% 30%, rgba(255,255,255,.16), transparent 35%),
         linear-gradient(135deg, rgba(216,188,119,.28), rgba(255,255,255,.05));
       border:1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow);
+      box-shadow:var(--shadow);
       flex:0 0 auto;
     }
 
@@ -95,7 +93,6 @@
       color:var(--white-soft);
       transition:all .25s ease;
       border:1px solid transparent;
-      position:relative;
     }
 
     .menu a:hover,
@@ -197,7 +194,7 @@
       border:1px solid var(--line);
       background:rgba(255,255,255,.025);
       border-radius:18px;
-      padding:14px 14px;
+      padding:14px;
     }
 
     .kpi b{display:block;font-size:20px}
@@ -282,13 +279,9 @@
       gap:14px;
     }
 
-    .span-12{grid-column:span 12}
-    .span-8{grid-column:span 8}
     .span-7{grid-column:span 7}
-    .span-6{grid-column:span 6}
     .span-5{grid-column:span 5}
     .span-4{grid-column:span 4}
-    .span-3{grid-column:span 3}
 
     .chip-row{
       display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;
@@ -329,6 +322,7 @@
       border-radius:18px;
       padding:16px;
       transition:transform .25s ease, border-color .25s ease, background .25s ease;
+      display:block;
     }
 
     .item:hover{
@@ -349,8 +343,7 @@
       display:block;
       padding:16px;border-radius:20px;
       border:1px solid var(--line);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
       transition:all .25s ease;
     }
 
@@ -390,7 +383,7 @@
     @media (max-width:1080px){
       .hero-grid{grid-template-columns:1fr}
       .hero-copy h1{font-size:44px}
-      .span-8,.span-7,.span-6,.span-5,.span-4,.span-3{grid-column:span 12}
+      .span-7,.span-5,.span-4{grid-column:span 12}
       .vision-links{grid-template-columns:1fr}
     }
 
@@ -427,15 +420,15 @@
 
         <div class="menu" id="mainMenu">
           <a href="/">Trang chủ</a>
-          <a href="/content?slug=about">Giới thiệu</a>
-          <a href="/content?slug=program">Chương trình</a>
-          <a href="/content?slug=events">Sự kiện</a>
-          <a href="/content?slug=scripts">Kịch bản</a>
-          <a href="/content?slug=donate">Gây quỹ</a>
-          <a href="/content?slug=transparency">Minh bạch</a>
-          <a href="/content?slug=legal">Pháp lý</a>
-          <a href="/content?slug=contact">Liên hệ</a>
-          <a href="/posts.html">Bài viết</a>
+          <a href="/about">Giới thiệu</a>
+          <a href="/program">Chương trình</a>
+          <a href="/events">Sự kiện</a>
+          <a href="/scripts">Kịch bản</a>
+          <a href="/donate">Gây quỹ</a>
+          <a href="/transparency">Minh bạch</a>
+          <a href="/legal">Pháp lý</a>
+          <a href="/contact">Liên hệ</a>
+          <a href="/posts">Bài viết</a>
         </div>
 
         <div class="right">
@@ -458,9 +451,9 @@
             </p>
 
             <div class="hero-actions">
-              <a class="btn primary" href="/content?slug=program" id="ctaMain1">Khám phá chương trình</a>
-              <a class="btn" href="/content?slug=scripts" id="ctaMain2">Xem kịch bản</a>
-              <a class="btn" href="/content?slug=donate" id="ctaMain3">Donate / Gây quỹ</a>
+              <a class="btn primary" href="/program" id="ctaMain1">Khám phá chương trình</a>
+              <a class="btn" href="/scripts" id="ctaMain2">Xem kịch bản</a>
+              <a class="btn" href="/donate" id="ctaMain3">Donate / Gây quỹ</a>
             </div>
 
             <div class="hero-kpis">
@@ -512,35 +505,35 @@
       </div>
 
       <div class="vision-links">
-        <a class="vision-link" href="/content?slug=about">
+        <a class="vision-link" href="/about">
           <b id="v1t">Giới thiệu</b>
           <span id="v1d">Hiểu nền tảng, lý do tồn tại, và logic vận hành tổng thể của Đường Sao Tỏa Sáng.</span>
         </a>
-        <a class="vision-link" href="/content?slug=program">
+        <a class="vision-link" href="/program">
           <b id="v2t">Chương trình</b>
           <span id="v2d">Khung vận hành, mô-đun triển khai, lộ trình và các trục ưu tiên trong từng giai đoạn.</span>
         </a>
-        <a class="vision-link" href="/content?slug=events">
+        <a class="vision-link" href="/events">
           <b id="v3t">Sự kiện</b>
           <span id="v3d">Nơi công bố hoạt động, workshop, hội thảo, biểu diễn, hoặc các cột mốc cộng đồng.</span>
         </a>
-        <a class="vision-link" href="/content?slug=scripts">
+        <a class="vision-link" href="/scripts">
           <b id="v4t">Kịch bản</b>
           <span id="v4d">Dòng sản phẩm trọng tâm giai đoạn 1, tạo doanh thu bền vững cho hệ sinh thái.</span>
         </a>
-        <a class="vision-link" href="/content?slug=donate">
+        <a class="vision-link" href="/donate">
           <b id="v5t">Gây quỹ</b>
           <span id="v5d">Cơ chế donate minh bạch, có mục tiêu, có phạm vi sử dụng và có báo cáo.</span>
         </a>
-        <a class="vision-link" href="/content?slug=transparency">
+        <a class="vision-link" href="/transparency">
           <b id="v6t">Minh bạch</b>
           <span id="v6d">Nguyên tắc báo cáo, công khai dòng lực, trách nhiệm và kiểm chứng.</span>
         </a>
-        <a class="vision-link" href="/content?slug=legal">
+        <a class="vision-link" href="/legal">
           <b id="v7t">Pháp lý</b>
           <span id="v7d">Điều khoản, chính sách riêng tư, và các tuyên bố cần thiết để hệ thống vận hành rõ ràng.</span>
         </a>
-        <a class="vision-link" href="/content?slug=contact">
+        <a class="vision-link" href="/contact">
           <b id="v8t">Liên hệ</b>
           <span id="v8d">Các kênh chính thức để hợp tác, tài trợ, đề xuất chương trình, hoặc gửi yêu cầu làm việc.</span>
         </a>
@@ -618,14 +611,14 @@
         <div class="card span-5">
           <h2 id="pathRightTitle">Liên kết nhanh</h2>
           <div class="chip-row">
-            <a class="chip" href="/content?slug=about">about</a>
-            <a class="chip" href="/content?slug=program">program</a>
-            <a class="chip" href="/content?slug=events">events</a>
-            <a class="chip" href="/content?slug=scripts">scripts</a>
-            <a class="chip" href="/content?slug=donate">donate</a>
-            <a class="chip" href="/content?slug=transparency">transparency</a>
-            <a class="chip" href="/content?slug=legal">legal</a>
-            <a class="chip" href="/content?slug=contact">contact</a>
+            <a class="chip" href="/about">about</a>
+            <a class="chip" href="/program">program</a>
+            <a class="chip" href="/events">events</a>
+            <a class="chip" href="/scripts">scripts</a>
+            <a class="chip" href="/donate">donate</a>
+            <a class="chip" href="/transparency">transparency</a>
+            <a class="chip" href="/legal">legal</a>
+            <a class="chip" href="/contact">contact</a>
           </div>
           <div class="hr"></div>
           <p class="muted small" id="pathRightDesc">
@@ -649,8 +642,8 @@
       <div class="list" id="posts"></div>
 
       <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
-        <a class="btn primary" href="/posts.html" id="latestBtn">Xem tất cả bài viết</a>
-        <a class="btn" href="/content?slug=scripts" id="latestBtn2">Đi tới Kịch bản</a>
+        <a class="btn primary" href="/posts" id="latestBtn">Xem tất cả bài viết</a>
+        <a class="btn" href="/scripts" id="latestBtn2">Đi tới Kịch bản</a>
       </div>
     </section>
 
@@ -670,9 +663,9 @@
         <div class="hr"></div>
 
         <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <a class="btn primary" href="/content?slug=contact" id="endBtn1">Liên hệ ngay</a>
-          <a class="btn" href="/content?slug=legal" id="endBtn2">Xem pháp lý</a>
-          <a class="btn" href="/content?slug=transparency" id="endBtn3">Xem minh bạch</a>
+          <a class="btn primary" href="/contact" id="endBtn1">Liên hệ ngay</a>
+          <a class="btn" href="/legal" id="endBtn2">Xem pháp lý</a>
+          <a class="btn" href="/transparency" id="endBtn3">Xem minh bạch</a>
         </div>
       </div>
     </section>
@@ -724,7 +717,6 @@
       canonical: "https://duongsaotoasang.com/"
     });
 
-    // text content
     document.getElementById("heroEyebrow").textContent = T("TẦM NHÌN TỔNG THỂ", "OVERALL VISION");
     document.getElementById("hTitle").textContent = T(
       "Một nền tảng để kết nối, tổ chức và lan tỏa những dự án có giá trị dài hạn.",
@@ -843,24 +835,21 @@
       "Hybrid model: nonprofit + transparent business.<br/>Phase 1 priority: Scripts + Donate."
     );
 
-    // scroll reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add("in");
-        }
+        if(entry.isIntersecting) entry.target.classList.add("in");
       });
     }, { threshold: 0.12 });
 
     document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
-    // latest posts
     const postsEl = document.getElementById("posts");
     postsEl.innerHTML = `<div class="item"><b>${T("Đang tải bài viết...", "Loading posts...")}</b></div>`;
 
     const fallbackPosts = [
       {
         slug: "about",
+        type: "page",
         title_vi: "Giới thiệu hệ thống Đường Sao Tỏa Sáng",
         title_en: "About Star Path Light Up",
         excerpt_vi: "Tổng quan nền tảng, lý do tồn tại và logic vận hành tổng thể.",
@@ -868,6 +857,7 @@
       },
       {
         slug: "scripts",
+        type: "script",
         title_vi: "Kịch bản là trục kinh doanh giai đoạn đầu",
         title_en: "Scripts are the early business axis",
         excerpt_vi: "Dòng sản phẩm tạo doanh thu minh bạch và bền vững cho hệ sinh thái.",
@@ -875,6 +865,7 @@
       },
       {
         slug: "donate",
+        type: "page",
         title_vi: "Gây quỹ minh bạch cần những gì",
         title_en: "What transparent fundraising requires",
         excerpt_vi: "Mục tiêu rõ, phạm vi sử dụng rõ và báo cáo rõ.",
@@ -882,9 +873,16 @@
       }
     ];
 
+    function toHref(item){
+      const slug = item.slug || "";
+      const type = item.type || "post";
+      return type === "post"
+        ? `/posts/${encodeURIComponent(slug)}`
+        : `/${encodeURIComponent(slug)}`;
+    }
+
     try{
       const posts = await loadLatestPosts({ limit: 8 });
-
       const data = posts && posts.length ? posts : fallbackPosts;
 
       postsEl.innerHTML = data.map(p => {
@@ -897,9 +895,10 @@
           : (p.excerpt_en || p.excerpt || p.excerpt_vi || "");
 
         return `
-          <a class="item" href="/content?slug=${encodeURIComponent(p.slug || "")}">
+          <a class="item" href="${toHref(p)}">
             <b>${esc(title)}</b>
             <div class="small muted">${esc(excerpt || T("Nhấn để đọc chi tiết.", "Open to read details."))}</div>
+            <div class="meta">${esc(p.type || "post")} • ${esc(p.slug || "")}</div>
           </a>
         `;
       }).join("");
@@ -908,9 +907,10 @@
         const title = lang === "vi" ? p.title_vi : p.title_en;
         const excerpt = lang === "vi" ? p.excerpt_vi : p.excerpt_en;
         return `
-          <a class="item" href="/content?slug=${encodeURIComponent(p.slug || "")}">
+          <a class="item" href="${toHref(p)}">
             <b>${esc(title)}</b>
             <div class="small muted">${esc(excerpt)}</div>
+            <div class="meta">${esc(p.type || "page")} • ${esc(p.slug || "")}</div>
           </a>
         `;
       }).join("");
