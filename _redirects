@@ -1,7 +1,3 @@
-# ===============================
-# DUONG SAO TOA SANG ROUTING
-# ===============================
-
 /about          /content.html?slug=about          200
 /program        /content.html?slug=program        200
 /events         /content.html?slug=events         200
@@ -14,5 +10,4 @@
 /posts          /posts.html                       200
 /content        /content.html                     200
 
-# fallback
 /*              /404.html                         404
