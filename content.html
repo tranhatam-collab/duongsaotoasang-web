@@ -1,122 +1,854 @@
-<script type="module">
-  import { getLang, toggleLang, loadBySlug, renderRichHtml, setSeo } from "/app.js";
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nội dung | Đường Sao Tỏa Sáng</title>
+  <meta name="description" content="Nội dung chi tiết các chương trình, bài viết và thông tin công khai của hệ thống Đường Sao Tỏa Sáng."/>
+  <link rel="canonical" href="https://duongsaotoasang.com/content"/>
+  <meta property="og:title" content="Nội dung | Đường Sao Tỏa Sáng"/>
+  <meta property="og:description" content="Nội dung chi tiết các chương trình, bài viết và thông tin công khai của hệ thống Đường Sao Tỏa Sáng."/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://duongsaotoasang.com/content"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <link rel="stylesheet" href="/app.css"/>
 
-  const lang = getLang();
-  const T = (vi, en) => lang === "vi" ? vi : en;
-
-  document.documentElement.lang = lang;
-  document.getElementById("langPill").textContent = lang.toUpperCase();
-  document.getElementById("toggleLang").onclick = () => toggleLang();
-
-  document.getElementById("mobileToggle").onclick = () => {
-    document.getElementById("mainMenu").classList.toggle("open");
-  };
-
-  function resolveSlug(){
-    const path = location.pathname.replace(/^\/+|\/+$/g, "");
-    const qs = new URLSearchParams(location.search);
-    const qSlug = (qs.get("slug") || "").trim();
-
-    // Ưu tiên URL đẹp: /program, /about...
-    if(path && path !== "content" && path !== "content.html"){
-      return path;
+  <style>
+    :root{
+      --bg:#0a0c10;
+      --bg-soft:#10151d;
+      --card:rgba(255,255,255,.045);
+      --line:rgba(255,255,255,.085);
+      --text:#f2f4f7;
+      --muted:#a8b0bb;
+      --gold:#d8bc77;
+      --gold-soft:rgba(216,188,119,.18);
+      --shadow:0 14px 50px rgba(0,0,0,.35);
+      --r:22px;
+      --max:1240px;
     }
 
-    // Hỗ trợ link cũ: /content?slug=about
-    if(qSlug){
-      return qSlug;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(900px 460px at 0% 0%, rgba(216,188,119,.10), transparent 55%),
+        radial-gradient(700px 420px at 100% 10%, rgba(138,198,255,.08), transparent 55%),
+        linear-gradient(180deg,#090b0f 0%, #0d1117 100%);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      overflow-x:hidden;
     }
 
-    return "about";
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+
+    .topbar{
+      position:sticky;top:0;z-index:60;
+      backdrop-filter:blur(16px);
+      background:rgba(10,12,16,.72);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;gap:14px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;align-items:center;gap:12px;
+    }
+
+    .brand-mark{
+      width:40px;height:40px;border-radius:14px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.15), transparent 36%),
+        linear-gradient(135deg, rgba(216,188,119,.28), rgba(255,255,255,.05));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:var(--shadow);
+    }
+
+    .brand-title{font-weight:800;font-size:17px}
+    .brand-sub{font-size:12px;color:var(--muted);margin-top:3px}
+
+    .menu{
+      display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    }
+
+    .menu a{
+      padding:10px 12px;border-radius:12px;
+      border:1px solid transparent;
+      color:rgba(255,255,255,.82);
+      transition:all .25s ease;
+    }
+
+    .menu a:hover,
+    .menu a.active{
+      background:rgba(255,255,255,.05);
+      border-color:var(--line);
+      text-decoration:none;
+      color:#fff;
+    }
+
+    .right{display:flex;align-items:center;gap:10px}
+
+    .pill{
+      border:1px solid var(--line);
+      padding:9px 12px;border-radius:999px;
+      color:var(--muted);
+      background:rgba(255,255,255,.03);
+      font-size:13px;
+    }
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:10px 14px;border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:#fff;cursor:pointer;
+      transition:all .25s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.07);
+      text-decoration:none;
+    }
+
+    .btn.primary{
+      border-color:rgba(216,188,119,.34);
+      background:linear-gradient(180deg, rgba(216,188,119,.15), rgba(216,188,119,.07));
+    }
+
+    .mobile-toggle{
+      display:none;
+      width:44px;height:44px;border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:#fff;cursor:pointer;
+    }
+
+    .hero{
+      padding:28px 0 12px;
+    }
+
+    .hero-shell{
+      border:1px solid var(--line);
+      background:
+        radial-gradient(700px 260px at 10% 0%, rgba(216,188,119,.09), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border-radius:28px;
+      padding:26px;
+      box-shadow:var(--shadow);
+    }
+
+    .eyebrow{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:var(--gold);
+      margin-bottom:10px;
+    }
+
+    h1{
+      margin:0;
+      font-size:46px;
+      line-height:1.04;
+      letter-spacing:-.03em;
+    }
+
+    h2{
+      margin:0 0 12px;
+      font-size:28px;
+      line-height:1.2;
+    }
+
+    .muted{
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .small{font-size:13px}
+    .hr{
+      height:1px;background:var(--line);
+      margin:16px 0;
+    }
+
+    .article-wrap{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:14px;
+      margin-top:14px;
+    }
+
+    .article-main{
+      grid-column:span 8;
+      border:1px solid var(--line);
+      background:var(--card);
+      border-radius:var(--r);
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .article-side{
+      grid-column:span 4;
+      display:grid;
+      gap:14px;
+      align-content:start;
+    }
+
+    .card{
+      border:1px solid var(--line);
+      background:var(--card);
+      border-radius:var(--r);
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .breadcrumb{
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:10px;
+      line-height:1.7;
+    }
+
+    .breadcrumb a{color:inherit}
+    .article-body{
+      font-size:16px;
+      line-height:1.92;
+      color:#e7edf3;
+    }
+
+    .article-body p{margin:0 0 16px}
+    .article-body h2,
+    .article-body h3{
+      margin:28px 0 12px;
+      line-height:1.3;
+    }
+    .article-body ul,
+    .article-body ol{
+      margin:0 0 18px 22px;
+    }
+    .article-body li{
+      margin-bottom:8px;
+    }
+
+    .tag{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;border-radius:999px;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      font-size:12px;color:var(--muted);
+    }
+
+    .related-list{
+      display:grid;
+      gap:12px;
+    }
+
+    .related-item{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      border-radius:18px;
+      padding:16px;
+      display:block;
+      transition:all .25s ease;
+    }
+
+    .related-item:hover{
+      transform:translateY(-2px);
+      border-color:rgba(216,188,119,.22);
+      background:rgba(255,255,255,.05);
+      text-decoration:none;
+    }
+
+    .related-item b{
+  display:block;
+  font-size:18px;
+  line-height:1.35;
+  margin-bottom:8px;
+}
+
+.related-item .excerpt{
+  color:var(--muted);
+  line-height:1.75;
+  font-size:14px;
+}
+
+.related-item .meta{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.footer{
+  margin-top:34px;
+  padding:24px 0 50px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  line-height:1.8;
+  font-size:14px;
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .65s ease, transform .65s ease;
+}
+
+.reveal.in{
+  opacity:1;
+  transform:none;
+}
+
+@media (max-width:1080px){
+  .article-grid,
+  .related-grid{
+    grid-template-columns:1fr;
   }
+  h1{
+    font-size:38px;
+  }
+}
 
-  const slug = resolveSlug();
+@media (max-width:860px){
+  .menu{
+    display:none;
+    width:100%;
+    padding-top:10px;
+  }
+  .menu.open{
+    display:flex;
+  }
+  .mobile-toggle{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .right{
+    display:none;
+  }
+  h1{
+    font-size:32px;
+  }
+  .hero-shell,
+  .article-card,
+  .sidebar-card{
+    padding:20px;
+  }
+}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          <div class="brand-mark"></div>
+          <div>
+            <div class="brand-title">Đường Sao Tỏa Sáng</div>
+            <div class="brand-sub">Star Path Light Up</div>
+          </div>
+        </div>
 
-  const titleEl = document.getElementById("title");
-  const subEl = document.getElementById("sub");
-  const bodyEl = document.getElementById("body");
-  const crumbEl = document.getElementById("crumb");
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">☰</button>
 
-  crumbEl.innerHTML = `<a href="/">Trang chủ</a> / <b>${slug}</b>`;
+        <div class="menu" id="mainMenu">
+          <a href="/">Trang chủ</a>
+          <a href="/about">Giới thiệu</a>
+          <a href="/program">Chương trình</a>
+          <a href="/events">Sự kiện</a>
+          <a href="/scripts">Kịch bản</a>
+          <a href="/donate">Gây quỹ</a>
+          <a href="/transparency">Minh bạch</a>
+          <a href="/legal">Pháp lý</a>
+          <a href="/contact">Liên hệ</a>
+          <a href="/posts">Bài viết</a>
+        </div>
 
-  const FALLBACKS = {
-    about: {
-      title: T("Giới thiệu", "About"),
-      desc: T("Giới thiệu nền tảng Đường Sao Tỏa Sáng.", "About the Star Path Light Up platform."),
-      body: `<p>...</p>`
-    },
-    program: {
-      title: T("Chương trình", "Program"),
-      desc: T("Khung vận hành, mô hình triển khai và lộ trình phát triển.", "Operating framework, implementation model, and roadmap."),
-      body: `<p>...</p>`
-    },
-    events: {
-      title: T("Sự kiện", "Events"),
-      desc: T("Thông tin các sự kiện, hoạt động và kế hoạch công bố theo từng giai đoạn.", "Events, activities, and phased announcements."),
-      body: `<p>...</p>`
-    },
-    scripts: {
-      title: T("Kịch bản", "Scripts"),
-      desc: T("Danh mục kịch bản, gói mua và quyền truy cập.", "Script catalog, purchase packages, and access rights."),
-      body: `<p>...</p>`
-    },
-    donate: {
-      title: T("Gây quỹ / Donate", "Donate / Fundraising"),
-      desc: T("Cơ chế donate và gây quỹ minh bạch.", "Transparent donation and fundraising mechanism."),
-      body: `<p>...</p>`
-    },
-    transparency: {
-      title: T("Minh bạch", "Transparency"),
-      desc: T("Nguyên tắc công khai, báo cáo và kiểm tra.", "Principles of disclosure, reporting, and accountability."),
-      body: `<p>...</p>`
-    },
-    legal: {
-      title: T("Pháp lý", "Legal"),
-      desc: T("Điều khoản sử dụng, chính sách riêng tư và tuyên bố miễn trừ.", "Terms of Use, Privacy Policy, and Disclaimer."),
-      body: `<p>...</p>`
-    },
-    contact: {
-      title: T("Liên hệ", "Contact"),
-      desc: T("Thông tin liên hệ chính thức của dự án.", "Official contact information."),
-      body: `<p>...</p>`
-    }
-  };
+        <div class="right">
+          <span class="pill" id="langPill">VI</span>
+          <button class="btn" id="toggleLang">VI / EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
 
-  async function run(){
-    const fallback = FALLBACKS[slug] || {
-      title: T("Nội dung đang cập nhật", "Content is being updated"),
-      desc: T("Trang này đã được tạo nhưng chưa có nội dung hoàn chỉnh.", "This page exists but content is not complete yet."),
-      body: `<p>${T("Slug này hiện chưa có nội dung fallback riêng.", "This slug does not yet have a dedicated fallback.")}</p>`
+  <main class="wrap">
+    <section class="hero reveal">
+      <div class="hero-shell">
+        <div class="eyebrow" id="heroEyebrow">NỘI DUNG CHI TIẾT</div>
+        <div class="breadcrumb" id="breadcrumb">
+          <a href="/">Trang chủ</a>
+          <span>/</span>
+          <a href="/posts">Bài viết</a>
+          <span>/</span>
+          <span id="crumbCurrent">...</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-grid reveal">
+      <article class="article-card">
+        <div class="article-meta-top">
+          <span class="tag" id="typeTag">page</span>
+          <span class="meta-inline" id="dateLine"></span>
+        </div>
+
+        <h1 id="title">Đang tải nội dung...</h1>
+        <p class="lead" id="lead">
+          Vui lòng chờ trong giây lát. Hệ thống đang tải nội dung theo slug.
+        </p>
+
+        <div class="hr"></div>
+
+        <div class="article-body" id="body">
+          <p>Loading...</p>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="actions">
+          <a class="btn primary" href="/posts" id="backPostsBtn">Quay lại bài viết</a>
+          <a class="btn" href="/" id="homeBtn">Về trang chủ</a>
+        </div>
+      </article>
+
+      <aside class="sidebar-card">
+        <div class="eyebrow" id="sideEyebrow">ĐI NHANH</div>
+        <h2 class="section-title" id="sideTitle">Các hướng liên quan</h2>
+
+        <div class="quick-links">
+          <a class="quick-link" href="/about">
+            <b id="q1t">Giới thiệu</b>
+            <span id="q1d">Hiểu nền tảng và lý do tồn tại của hệ thống.</span>
+          </a>
+          <a class="quick-link" href="/program">
+            <b id="q2t">Chương trình</b>
+            <span id="q2d">Khung vận hành và lộ trình phát triển.</span>
+          </a>
+          <a class="quick-link" href="/scripts">
+            <b id="q3t">Kịch bản</b>
+            <span id="q3d">Dòng sản phẩm ưu tiên giai đoạn đầu.</span>
+          </a>
+          <a class="quick-link" href="/donate">
+            <b id="q4t">Donate</b>
+            <span id="q4d">Nguyên tắc gây quỹ minh bạch.</span>
+          </a>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="small muted" id="sideNote">
+          URL đẹp đang được dùng cho toàn site. Các slug sẽ tự nối vào hệ thống khi anh publish nội dung từ CMS.
+        </div>
+      </aside>
+    </section>
+
+    <section class="related-wrap reveal">
+      <div class="section-header">
+        <div>
+          <div class="eyebrow" id="relatedEyebrow">LIÊN QUAN</div>
+          <h2 class="section-title" id="relatedTitle">Nội dung liên quan</h2>
+        </div>
+        <div class="small muted" id="relatedHint">Tự lấy từ CMS. Nếu chưa có dữ liệu, hệ thống dùng fallback.</div>
+      </div>
+
+      <div class="related-grid" id="relatedList"></div>
+    </section>
+
+    <footer class="footer">
+      <div><b>Contact:</b> contact@duongsaotoasang.com</div>
+      <div><b>Admin:</b> duongsaotoasang@gmail.com</div>
+      <div class="small" id="footerNote" style="margin-top:10px">
+        File này là renderer trung tâm cho toàn bộ URL đẹp: /about, /program, /events, /scripts, /donate, /transparency, /legal, /contact và /posts/slug.
+      </div>
+    </footer>
+  </main>
+
+  <script type="module">
+    import { getLang, toggleLang, loadBySlug, listContents, renderRichHtml, setSeo, formatDate } from "/app.js";
+
+    const lang = getLang();
+    const T = (vi, en) => lang === "vi" ? vi : en;
+
+    const esc = (s = "") => String(s).replace(/[&<>"']/g, m => ({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+    }[m]));
+
+    document.documentElement.lang = lang;
+    document.getElementById("langPill").textContent = lang.toUpperCase();
+    document.getElementById("toggleLang").onclick = () => toggleLang();
+
+    document.getElementById("mobileToggle").onclick = () => {
+      document.getElementById("mainMenu").classList.toggle("open");
     };
 
-    titleEl.textContent = fallback.title;
-    subEl.textContent = fallback.desc;
-    bodyEl.innerHTML = fallback.body;
+    const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-    setSeo({
-      title: `${fallback.title} | Đường Sao Tỏa Sáng`,
-      description: fallback.desc,
-      canonical: `https://duongsaotoasang.com/${encodeURIComponent(slug)}`
-    });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add("in");
+      });
+    }, { threshold: 0.12 });
 
-    try{
-      const item = await loadBySlug(slug);
-      if(item){
-        titleEl.textContent = item.title || fallback.title;
-        subEl.textContent = item.excerpt || fallback.desc;
-        if(item.body) renderRichHtml(bodyEl, item.body);
+    qsa(".reveal").forEach(el => observer.observe(el));
 
-        setSeo({
-          title: `${titleEl.textContent} | Đường Sao Tỏa Sáng`,
-          description: item.excerpt || fallback.desc,
-          canonical: `https://duongsaotoasang.com/${encodeURIComponent(slug)}`,
-          ogImage: item.cover || null
-        });
+    function resolveSlug() {
+      const path = location.pathname.replace(/^\/+|\/+$/g, "");
+      const parts = path.split("/").filter(Boolean);
+      const qs = new URLSearchParams(location.search);
+      const qSlug = (qs.get("slug") || "").trim();
+
+      // /posts/slug
+      if (parts.length >= 2 && parts[0] === "posts") {
+        return decodeURIComponent(parts.slice(1).join("/"));
       }
-    }catch(e){
-      console.warn("CMS fallback used:", e);
-    }
-  }
 
-  run();
-</script>
+      // /program, /events, /about...
+      if (parts.length === 1 && parts[0] !== "content" && parts[0] !== "posts" && parts[0] !== "posts.html") {
+        return decodeURIComponent(parts[0]);
+      }
+
+      // legacy /content?slug=about
+      if (qSlug) return qSlug;
+
+      return "about";
+    }
+
+    function canonicalFor(slug, type = "page") {
+      if (type === "post") return `https://duongsaotoasang.com/posts/${encodeURIComponent(slug)}`;
+      return `https://duongsaotoasang.com/${encodeURIComponent(slug)}`;
+    }
+
+    const FALLBACKS = {
+      about: {
+        type: "page",
+        title_vi: "Giới thiệu Đường Sao Tỏa Sáng",
+        title_en: "About Star Path Light Up",
+        excerpt_vi: "Tổng quan về nền tảng, lý do tồn tại và cấu trúc vận hành tổng thể.",
+        excerpt_en: "Overview of the platform, its reason for existence, and overall operating structure.",
+        body_vi: `
+          <p><b>Đường Sao Tỏa Sáng</b> là một nền tảng được xây dựng để kết nối con người, ý tưởng, chương trình và nguồn lực có giá trị thật với nhau theo hướng dài hạn, minh bạch và có thể vận hành thực tế.</p>
+          <p>Đây không chỉ là một website giới thiệu. Đây là một hệ thống để những chương trình nghệ thuật, giáo dục, cộng đồng và gây quỹ có thể được tổ chức rõ ràng, công bố công khai, và đi đường dài mà không rơi vào sự rời rạc hay cảm tính.</p>
+          <p>Giai đoạn đầu, hệ thống ưu tiên hai hướng chính: <b>kịch bản</b> như một dòng sản phẩm có thể tạo doanh thu bền vững, và <b>gây quỹ minh bạch</b> để hỗ trợ các mục tiêu cộng đồng và tương lai trẻ em.</p>
+        `,
+        body_en: `
+          <p><b>Star Path Light Up</b> is a platform created to connect people, ideas, programs, and real resources in a long term, transparent, and practical way.</p>
+          <p>This is not merely an informational site. It is a system for artistic, educational, community, and fundraising programs to be organized clearly, published openly, and sustained over time.</p>
+          <p>In phase one, the project prioritizes two main directions: <b>scripts</b> as a sustainable business line and <b>transparent fundraising</b> for community and future children initiatives.</p>
+        `
+      },
+      program: {
+        type: "page",
+        title_vi: "Chương trình",
+        title_en: "Program",
+        excerpt_vi: "Khung vận hành, mô-đun triển khai, lộ trình và các trục ưu tiên của hệ thống.",
+        excerpt_en: "Operating framework, implementation modules, roadmap, and priority axes.",
+        body_vi: `
+          <p>Chương trình của Đường Sao Tỏa Sáng được xây dựng theo cấu trúc có mục tiêu, nội dung, dòng lực, cơ chế phối hợp và báo cáo rõ ràng.</p>
+          <p>Giai đoạn đầu ưu tiên chuẩn hoá nội dung, xây dựng hệ thống kịch bản, cấu trúc gây quỹ minh bạch, và tạo nền tảng cộng đồng có thể đồng hành lâu dài.</p>
+        `,
+        body_en: `
+          <p>The program is designed with clear goals, content logic, resource flow, collaboration mechanisms, and reporting standards.</p>
+          <p>Phase one focuses on content standardization, script system building, transparent fundraising, and a community platform for long-term collaboration.</p>
+        `
+      },
+      events: {
+        type: "page",
+        title_vi: "Sự kiện",
+        title_en: "Events",
+        excerpt_vi: "Thông tin các hoạt động, workshop, hội thảo và các cột mốc cộng đồng.",
+        excerpt_en: "Information about activities, workshops, talks, and community milestones.",
+        body_vi: `
+          <p>Trang này dùng để công bố các hoạt động, workshop, đối thoại, hoặc các buổi ra mắt nội dung trong hệ thống Đường Sao Tỏa Sáng.</p>
+          <p>Hiện tại, giai đoạn đầu chưa ưu tiên bán vé sự kiện, mà tập trung vào hai mảng chính là <b>kịch bản</b> và <b>donate</b>.</p>
+        `,
+        body_en: `
+          <p>This page is used to announce events, workshops, dialogues, or content launches within the Star Path Light Up system.</p>
+          <p>At the moment, phase one does not prioritize ticket sales, but focuses on <b>scripts</b> and <b>donate</b>.</p>
+        `
+      },
+      scripts: {
+        type: "script",
+        title_vi: "Kịch bản",
+        title_en: "Scripts",
+        excerpt_vi: "Danh mục kịch bản, gói mua và quyền truy cập.",
+        excerpt_en: "Script catalog, purchase packages, and access rights.",
+        body_vi: `
+          <p><b>Kịch bản</b> là dòng sản phẩm ưu tiên trong giai đoạn đầu. Đây là nền tảng để tạo dòng tiền minh bạch, bền vững, và gắn trực tiếp với giá trị nội dung.</p>
+          <p>Kịch bản không chỉ là tài liệu biểu diễn. Nó có thể là sản phẩm nghệ thuật, giáo dục, sân khấu, truyền thông hoặc các cấu trúc kể chuyện có thể được ứng dụng vào nhiều loại hình dự án khác nhau.</p>
+        `,
+        body_en: `
+          <p><b>Scripts</b> are the primary product line in phase one. They help create a transparent and sustainable revenue stream directly tied to meaningful content.</p>
+          <p>A script can function as an artistic, educational, theatrical, media, or storytelling structure applicable across various project types.</p>
+        `
+      },
+      donate: {
+        type: "page",
+        title_vi: "Gây quỹ / Donate",
+        title_en: "Donate / Fundraising",
+        excerpt_vi: "Cơ chế donate và gây quỹ minh bạch, có mục tiêu và có báo cáo.",
+        excerpt_en: "Transparent donation and fundraising with clear goals and reporting.",
+        body_vi: `
+          <p>Đường Sao Tỏa Sáng triển khai gây quỹ trên nguyên tắc: có mục tiêu, có lý do sử dụng, có giới hạn trách nhiệm, và có báo cáo công khai theo kỳ.</p>
+          <p>Donate không phải là mua lợi nhuận. Donate là hành vi đồng hành cho một mục tiêu có ý nghĩa, với nguyên tắc minh bạch và có thể kiểm tra.</p>
+        `,
+        body_en: `
+          <p>Star Path Light Up runs fundraising based on clear goals, purpose of use, responsibility scope, and periodic public reporting.</p>
+          <p>Donate is not buying financial return. It is accompanying a meaningful purpose with transparency and accountability.</p>
+        `
+      },
+      transparency: {
+        type: "page",
+        title_vi: "Minh bạch",
+        title_en: "Transparency",
+        excerpt_vi: "Nguyên tắc công khai, báo cáo theo kỳ và trách nhiệm kiểm chứng.",
+        excerpt_en: "Disclosure principles, periodic reporting, and accountability.",
+        body_vi: `
+          <p>Minh bạch là một trong những trụ cột nền tảng của toàn bộ hệ thống này. Mọi chiến dịch, mọi nguồn lực và mọi đóng góp đều phải có cách ghi nhận, trạng thái, và phương thức công bố rõ ràng.</p>
+        `,
+        body_en: `
+          <p>Transparency is one of the foundational pillars of the entire platform. Every campaign, resource, and contribution must have a clear recording method, status, and disclosure mechanism.</p>
+        `
+      },
+      legal: {
+        type: "page",
+        title_vi: "Pháp lý",
+        title_en: "Legal",
+        excerpt_vi: "Điều khoản sử dụng, chính sách riêng tư và các tuyên bố cần thiết.",
+        excerpt_en: "Terms of Use, Privacy Policy, and necessary disclaimers.",
+        body_vi: `
+          <p>Trang pháp lý tập hợp các thông tin nền tảng liên quan đến điều khoản sử dụng, chính sách riêng tư, và các nguyên tắc miễn trừ trách nhiệm trong hoạt động gây quỹ hoặc sử dụng nội dung.</p>
+        `,
+        body_en: `
+          <p>The legal page includes the foundation information regarding Terms of Use, Privacy Policy, and applicable disclaimers in fundraising and content usage.</p>
+        `
+      },
+      contact: {
+        type: "page",
+        title_vi: "Liên hệ",
+        title_en: "Contact",
+        excerpt_vi: "Thông tin liên hệ chính thức của dự án.",
+        excerpt_en: "Official contact information.",
+        body_vi: `
+          <p><b>Email pháp lý:</b> contact@duongsaotoasang.com</p>
+          <p><b>Email quản trị tạm thời:</b> duongsaotoasang@gmail.com</p>
+          <p><b>Email phản hồi:</b> reply@duongsaotoasang.com</p>
+        `,
+        body_en: `
+          <p><b>Legal email:</b> contact@duongsaotoasang.com</p>
+          <p><b>Temporary admin email:</b> duongsaotoasang@gmail.com</p>
+          <p><b>Reply email:</b> reply@duongsaotoasang.com</p>
+        `
+      }
+    };
+
+    const slug = resolveSlug();
+
+    const titleEl = document.getElementById("title");
+    const leadEl = document.getElementById("lead");
+    const bodyEl = document.getElementById("body");
+    const typeTag = document.getElementById("typeTag");
+    const dateLine = document.getElementById("dateLine");
+    const crumbCurrent = document.getElementById("crumbCurrent");
+    const relatedList = document.getElementById("relatedList");
+
+    function fallbackItemFor(slugKey) {
+      const f = FALLBACKS[slugKey];
+      if (!f) return null;
+      return {
+        slug: slugKey,
+        type: f.type,
+        title: lang === "vi" ? f.title_vi : f.title_en,
+        excerpt: lang === "vi" ? f.excerpt_vi : f.excerpt_en,
+        body: lang === "vi" ? f.body_vi : f.body_en,
+        createdAt: "",
+        updatedAt: "",
+        cover: ""
+      };
+    }
+
+    function renderMain(item) {
+      const type = item.type || "page";
+      const title = item.title || slug;
+      const excerpt = item.excerpt || T("Nội dung đang được cập nhật.", "Content is being updated.");
+      const body = item.body || `<p>${T("Nội dung đang được cập nhật.", "Content is being updated.")}</p>`;
+
+      titleEl.textContent = title;
+      leadEl.textContent = excerpt;
+      typeTag.textContent = type;
+      crumbCurrent.textContent = title;
+
+      const when = item.updatedAt || item.createdAt || "";
+      dateLine.textContent = when ? formatDate(when) : T("Đang cập nhật", "Updating");
+
+      renderRichHtml(bodyEl, body);
+
+      setSeo({
+        title: `${title} | Đường Sao Tỏa Sáng`,
+        description: excerpt,
+        canonical: canonicalFor(slug, type),
+        ogImage: item.cover || null
+      });
+
+      updateSchema({
+        title,
+        description: excerpt,
+        canonical: canonicalFor(slug, type),
+        datePublished: item.createdAt || "",
+        dateModified: item.updatedAt || item.createdAt || ""
+      });
+    }
+
+    function updateSchema({ title, description, canonical, datePublished, dateModified }) {
+      const old = document.getElementById("articleSchema");
+      if (old) old.remove();
+
+      const schema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": title,
+        "description": description,
+        "mainEntityOfPage": canonical,
+        "datePublished": datePublished || undefined,
+        "dateModified": dateModified || undefined,
+        "publisher": {
+          "@type": "Organization",
+          "name": "Đường Sao Tỏa Sáng"
+        }
+      };
+
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.id = "articleSchema";
+      script.textContent = JSON.stringify(schema);
+      document.head.appendChild(script);
+    }
+
+    function toHref(item) {
+      const itemType = item.type || "page";
+      if (itemType === "post") return `/posts/${encodeURIComponent(item.slug || "")}`;
+      return `/${encodeURIComponent(item.slug || "")}`;
+    }
+
+    function renderRelated(items) {
+      if (!items || !items.length) {
+        relatedList.innerHTML = `
+          <div class="related-item">
+            <b>${T("Chưa có nội dung liên quan", "No related content yet")}</b>
+            <div class="excerpt">${T("Hệ thống sẽ tự bổ sung khi có thêm dữ liệu từ CMS.", "The system will populate this section when more CMS content exists.")}</div>
+          </div>
+        `;
+        return;
+      }
+
+      relatedList.innerHTML = items.map(item => `
+        <a class="related-item" href="${toHref(item)}">
+          <b>${esc(item.title || item.slug || "")}</b>
+          <div class="excerpt">${esc(item.excerpt || T("Nhấn để đọc chi tiết.", "Open to read details."))}</div>
+          <div class="meta">${esc(item.type || "post")} • ${esc(item.slug || "")}</div>
+        </a>
+      `).join("");
+    }
+
+    async function loadRelated(currentSlug, currentType) {
+      const fallbackRelated = Object.keys(FALLBACKS)
+        .filter(key => key !== currentSlug)
+        .slice(0, 4)
+        .map(key => fallbackItemFor(key))
+        .filter(Boolean);
+
+      try {
+        const items = await listContents({
+          visibility: "public",
+          limit: 12,
+          order: "created_at.desc"
+        });
+
+        const normalized = (items || [])
+          .filter(x => x.slug && x.slug !== currentSlug)
+          .map(x => ({
+            slug: x.slug,
+            type: x.type || x.raw?.type || "post",
+            title: x.title || x.raw?.title_vi || x.raw?.title_en || x.slug,
+            excerpt: x.excerpt || x.raw?.excerpt_vi || x.raw?.excerpt_en || ""
+          }))
+          .slice(0, 4);
+
+        renderRelated(normalized.length ? normalized : fallbackRelated);
+      } catch (e) {
+        console.warn("related fallback used:", e);
+        renderRelated(fallbackRelated);
+      }
+    }
+
+    function applyUiText() {
+      document.getElementById("heroEyebrow").textContent = T("NỘI DUNG CHI TIẾT", "CONTENT DETAIL");
+      document.getElementById("backPostsBtn").textContent = T("Quay lại bài viết", "Back to posts");
+      document.getElementById("homeBtn").textContent = T("Về trang chủ", "Back to home");
+
+      document.getElementById("sideEyebrow").textContent = T("ĐI NHANH", "QUICK ACCESS");
+      document.getElementById("sideTitle").textContent = T("Các hướng liên quan", "Related directions");
+      document.getElementById("q1t").textContent = T("Giới thiệu", "About");
+      document.getElementById("q1d").textContent = T("Hiểu nền tảng và lý do tồn tại của hệ thống.", "Understand the platform and why the system exists.");
+      document.getElementById("q2t").textContent = T("Chương trình", "Program");
+      document.getElementById("q2d").textContent = T("Khung vận hành và lộ trình phát triển.", "Operating framework and roadmap.");
+      document.getElementById("q3t").textContent = T("Kịch bản", "Scripts");
+      document.getElementById("q3d").textContent = T("Dòng sản phẩm ưu tiên giai đoạn đầu.", "Primary product line in phase one.");
+      document.getElementById("q4t").textContent = T("Donate", "Donate");
+      document.getElementById("q4d").textContent = T("Nguyên tắc gây quỹ minh bạch.", "Transparent fundraising principles.");
+      document.getElementById("sideNote").textContent = T(
+        "URL đẹp đang được dùng cho toàn site. Các slug sẽ tự nối vào hệ thống khi anh publish nội dung từ CMS.",
+        "Beautiful URLs are used across the site. Slugs will automatically connect when content is published from CMS."
+      );
+
+      document.getElementById("relatedEyebrow").textContent = T("LIÊN QUAN", "RELATED");
+      document.getElementById("relatedTitle").textContent = T("Nội dung liên quan", "Related content");
+      document.getElementById("relatedHint").textContent = T(
+        "Tự lấy từ CMS. Nếu chưa có dữ liệu, hệ thống dùng fallback.",
+        "Loaded from CMS. If no data exists, the system uses fallback."
+      );
+
+      document.getElementById("footerNote").textContent = T(
+        "File này là renderer trung tâm cho toàn bộ URL đẹp: /about, /program, /events, /scripts, /donate, /transparency, /legal, /contact và /posts/slug.",
+        "This file is the central renderer for all clean URLs: /about, /program, /events, /scripts, /donate, /transparency, /legal, /contact, and /posts/slug."
+      );
+    }
+
+    async function run() {
+      applyUiText();
+
+      const fallback = fallbackItemFor(slug) || {
+        slug,
+        type: "page",
+        title: T("Nội dung đang cập nhật", "Content is being updated"),
+        excerpt: T("Trang này đã được tạo nhưng chưa có nội dung hoàn chỉnh.", "This page exists but content is not complete yet."),
+        body: `<p>${T("Slug này hiện chưa có nội dung fallback riêng.", "This slug does not yet have dedicated fallback content.")}</p>`,
+        createdAt: "",
+        updatedAt: "",
+        cover: ""
+      };
+
+      renderMain(fallback);
+      loadRelated(slug, fallback.type);
+
+      try {
+        const item = await loadBySlug(slug);
+        if (item) {
+          renderMain(item);
+          loadRelated(slug, item.type || "page");
+        }
+      } catch (e) {
+        console.warn("content fallback used:", e);
+      }
+    }
+
+    run();
+  </script>
+</body>
+</html>
