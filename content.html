@@ -5,12 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Nội dung | Đường Sao Tỏa Sáng</title>
   <meta name="description" content="Nội dung chi tiết các chương trình, bài viết và thông tin công khai của hệ thống Đường Sao Tỏa Sáng."/>
-  <link rel="canonical" href="https://duongsaotoasang.com/content"/>
-  <meta property="og:title" content="Nội dung | Đường Sao Tỏa Sáng"/>
-  <meta property="og:description" content="Nội dung chi tiết các chương trình, bài viết và thông tin công khai của hệ thống Đường Sao Tỏa Sáng."/>
-  <meta property="og:type" content="article"/>
-  <meta property="og:url" content="https://duongsaotoasang.com/content"/>
-  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="theme-color" content="#0b0e12"/>
   <link rel="stylesheet" href="/app.css"/>
 
   <style>
@@ -26,6 +21,7 @@
       --r:22px;
       --max:1240px;
     }
+
     *{box-sizing:border-box}
     body{
       margin:0;
@@ -37,19 +33,26 @@
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       overflow-x:hidden;
     }
+
     a{color:inherit;text-decoration:none}
     .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+
     .topbar{
       position:sticky;top:0;z-index:60;
       backdrop-filter:blur(16px);
       background:rgba(10,12,16,.72);
       border-bottom:1px solid var(--line);
     }
+
     .nav{
       display:flex;align-items:center;justify-content:space-between;gap:14px;
       padding:14px 0;
     }
-    .brand{display:flex;align-items:center;gap:12px}
+
+    .brand{
+      display:flex;align-items:center;gap:12px;
+    }
+
     .brand-mark{
       width:40px;height:40px;border-radius:14px;
       background:
@@ -58,19 +61,27 @@
       border:1px solid rgba(255,255,255,.10);
       box-shadow:var(--shadow);
     }
+
     .brand-title{font-weight:800;font-size:17px}
     .brand-sub{font-size:12px;color:var(--muted);margin-top:3px}
-    .menu{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+    .menu{
+      display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    }
+
     .menu a{
       padding:10px 12px;border-radius:12px;border:1px solid transparent;
       color:rgba(255,255,255,.82);transition:all .25s ease;
     }
+
     .menu a:hover,.menu a.active{
       background:rgba(255,255,255,.05);
       border-color:var(--line);
       color:#fff;text-decoration:none;
     }
+
     .right{display:flex;align-items:center;gap:10px}
+
     .pill{
       border:1px solid var(--line);
       padding:9px 12px;border-radius:999px;
@@ -78,6 +89,7 @@
       background:rgba(255,255,255,.03);
       font-size:13px;
     }
+
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:8px;
       padding:10px 14px;border-radius:14px;
@@ -85,16 +97,25 @@
       background:rgba(255,255,255,.04);
       color:#fff;cursor:pointer;transition:all .25s ease;
     }
-    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.07);text-decoration:none}
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.07);
+      text-decoration:none;
+    }
+
     .btn.primary{
       border-color:rgba(216,188,119,.34);
       background:linear-gradient(180deg, rgba(216,188,119,.15), rgba(216,188,119,.07));
     }
+
     .mobile-toggle{
       display:none;width:44px;height:44px;border-radius:12px;
       border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;cursor:pointer;
     }
+
     .hero{padding:28px 0 12px}
+
     .hero-shell{
       border:1px solid var(--line);
       background:
@@ -102,68 +123,130 @@
         linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
       border-radius:28px;padding:26px;box-shadow:var(--shadow);
     }
+
     .eyebrow{
       font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin-bottom:10px;
     }
-    .breadcrumb{color:var(--muted);font-size:13px;line-height:1.7}
-    .breadcrumb span{margin:0 6px}
+
+    .breadcrumb{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.7;
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      align-items:center;
+    }
+
     h1{margin:0;font-size:46px;line-height:1.04;letter-spacing:-.03em}
     h2{margin:0 0 12px;font-size:26px;line-height:1.2}
     .muted{color:var(--muted);line-height:1.8}
     .small{font-size:13px}
     .hr{height:1px;background:var(--line);margin:16px 0}
+
     .article-grid{
-      display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:14px;
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:14px;
+      margin-top:14px;
     }
+
     .article-card{
       grid-column:span 8;border:1px solid var(--line);background:var(--card);
       border-radius:var(--r);padding:22px;box-shadow:var(--shadow);
     }
+
     .sidebar-card{
       grid-column:span 4;border:1px solid var(--line);background:var(--card);
       border-radius:var(--r);padding:18px;box-shadow:var(--shadow);align-self:start;
     }
+
     .article-meta-top{
       display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;
     }
+
     .tag{
       display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;
       background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:12px;color:var(--muted);
     }
+
     .meta-inline{font-size:13px;color:var(--muted)}
     .lead{margin:16px 0 0;color:var(--muted);line-height:1.85}
-    .article-body{font-size:16px;line-height:1.92;color:#e7edf3}
+
+    .article-body{
+      font-size:16px;
+      line-height:1.92;
+      color:#e7edf3;
+    }
+
     .article-body p{margin:0 0 16px}
     .article-body h2,.article-body h3{margin:28px 0 12px;line-height:1.3}
     .article-body ul,.article-body ol{margin:0 0 18px 22px}
     .article-body li{margin-bottom:8px}
+
     .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
     .quick-links,.related-grid{display:grid;gap:12px}
+
     .quick-link,.related-item{
-      border:1px solid var(--line);background:rgba(255,255,255,.03);
-      border-radius:18px;padding:16px;display:block;transition:all .25s ease;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      border-radius:18px;
+      padding:16px;
+      display:block;
+      transition:all .25s ease;
     }
+
     .quick-link:hover,.related-item:hover{
-      transform:translateY(-2px);border-color:rgba(216,188,119,.22);
-      background:rgba(255,255,255,.05);text-decoration:none;
+      transform:translateY(-2px);
+      border-color:rgba(216,188,119,.22);
+      background:rgba(255,255,255,.05);
+      text-decoration:none;
     }
+
     .quick-link b,.related-item b{
-      display:block;font-size:18px;line-height:1.35;margin-bottom:8px;
+      display:block;
+      font-size:18px;
+      line-height:1.35;
+      margin-bottom:8px;
     }
+
     .quick-link span,.related-item .excerpt{
-      color:var(--muted);line-height:1.75;font-size:14px;
+      color:var(--muted);
+      line-height:1.75;
+      font-size:14px;
     }
-    .related-item .meta{margin-top:10px;color:var(--muted);font-size:12px}
+
+    .related-item .meta{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:12px;
+    }
+
     .footer{
-      margin-top:34px;padding:24px 0 50px;border-top:1px solid var(--line);
-      color:var(--muted);line-height:1.8;font-size:14px;
+      margin-top:34px;
+      padding:24px 0 50px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      line-height:1.8;
+      font-size:14px;
     }
-    .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease, transform .65s ease}
-    .reveal.in{opacity:1;transform:none}
+
+    .reveal{
+      opacity:0;
+      transform:translateY(20px);
+      transition:opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.in{
+      opacity:1;
+      transform:none;
+    }
+
     @media (max-width:1080px){
       .article-card,.sidebar-card{grid-column:span 12}
       h1{font-size:38px}
     }
+
     @media (max-width:860px){
       .menu{display:none;width:100%;padding-top:10px}
       .menu.open{display:flex}
@@ -213,9 +296,7 @@
     <section class="hero reveal">
       <div class="hero-shell">
         <div class="eyebrow" id="heroEyebrow">NỘI DUNG CHI TIẾT</div>
-        <div class="breadcrumb" id="breadcrumb">
-          <a href="/">Trang chủ</a><span>/</span><a href="/posts">Bài viết</a><span>/</span><span id="crumbCurrent">...</span>
-        </div>
+        <div class="breadcrumb" id="breadcrumb"></div>
       </div>
     </section>
 
@@ -269,7 +350,7 @@
         <div class="hr"></div>
 
         <div class="small muted" id="sideNote">
-          URL đẹp đang được dùng cho toàn site. Các slug sẽ tự nối vào hệ thống khi anh publish nội dung từ CMS.
+          URL đẹp đang được dùng cho toàn site. Các slug sẽ tự nối vào hệ thống khi publish nội dung từ CMS.
         </div>
       </aside>
     </section>
@@ -318,16 +399,25 @@
 
     qsa(".reveal").forEach(el => observer.observe(el));
 
-    function resolveSlug() {
+    function resolveRoute() {
       const path = location.pathname.replace(/^\/+|\/+$/g, "");
       const parts = path.split("/").filter(Boolean);
       const qs = new URLSearchParams(location.search);
       const qSlug = (qs.get("slug") || "").trim();
 
-      if (parts.length >= 2 && parts[0] === "posts") return decodeURIComponent(parts.slice(1).join("/"));
-      if (parts.length === 1 && parts[0] !== "content" && parts[0] !== "posts" && parts[0] !== "posts.html") return decodeURIComponent(parts[0]);
-      if (qSlug) return qSlug;
-      return "about";
+      if (parts.length >= 2 && parts[0] === "posts") {
+        return { slug: decodeURIComponent(parts.slice(1).join("/")), type: "post" };
+      }
+
+      if (parts.length === 1 && parts[0] !== "content" && parts[0] !== "posts" && parts[0] !== "posts.html") {
+        return { slug: decodeURIComponent(parts[0]), type: "page" };
+      }
+
+      if (qSlug) {
+        return { slug: qSlug, type: "page" };
+      }
+
+      return { slug: "about", type: "page" };
     }
 
     function canonicalFor(slug, type = "page") {
@@ -345,7 +435,7 @@
         excerpt_en: "Overview of the platform, its reason for existence, and overall operating structure.",
         body_vi: `
           <p><b>Đường Sao Tỏa Sáng</b> là một nền tảng được xây dựng để kết nối con người, ý tưởng, chương trình và nguồn lực có giá trị thật với nhau theo hướng dài hạn, minh bạch và có thể vận hành thực tế.</p>
-          <p>Đây không chỉ là một website giới thiệu. Đây là một hệ thống để những chương trình nghệ thuật, giáo dục, cộng đồng và gây quỹ có thể được tổ chức rõ ràng, công bố công khai, và đi đường dài mà không rơi vào sự rời rạc hay cảm tính.</p>
+          <p>Đây không chỉ là một website giới thiệu. Đây là một hệ thống để những chương trình nghệ thuật, giáo dục, cộng đồng và gây quỹ có thể được tổ chức rõ ràng, công bố công khai và đi đường dài mà không rơi vào sự rời rạc hay cảm tính.</p>
           <p>Giai đoạn đầu, hệ thống ưu tiên hai hướng chính: <b>kịch bản</b> như một dòng sản phẩm có thể tạo doanh thu bền vững, và <b>gây quỹ minh bạch</b> để hỗ trợ các mục tiêu cộng đồng và tương lai trẻ em.</p>
         `,
         body_en: `
@@ -362,7 +452,7 @@
         excerpt_en: "Operating framework, implementation modules, roadmap, and priority axes.",
         body_vi: `
           <p>Chương trình của Đường Sao Tỏa Sáng được xây dựng theo cấu trúc có mục tiêu, nội dung, dòng lực, cơ chế phối hợp và báo cáo rõ ràng.</p>
-          <p>Giai đoạn đầu ưu tiên chuẩn hoá nội dung, xây dựng hệ thống kịch bản, cấu trúc gây quỹ minh bạch, và tạo nền tảng cộng đồng có thể đồng hành lâu dài.</p>
+          <p>Giai đoạn đầu ưu tiên chuẩn hoá nội dung, xây dựng hệ thống kịch bản, cấu trúc gây quỹ minh bạch và tạo nền tảng cộng đồng có thể đồng hành lâu dài.</p>
         `,
         body_en: `
           <p>The program is designed with clear goals, content logic, resource flow, collaboration mechanisms, and reporting standards.</p>
@@ -376,8 +466,8 @@
         excerpt_vi: "Thông tin các hoạt động, workshop, hội thảo và các cột mốc cộng đồng.",
         excerpt_en: "Information about activities, workshops, talks, and community milestones.",
         body_vi: `
-          <p>Trang này dùng để công bố các hoạt động, workshop, đối thoại, hoặc các buổi ra mắt nội dung trong hệ thống Đường Sao Tỏa Sáng.</p>
-          <p>Hiện tại, giai đoạn đầu chưa ưu tiên bán vé sự kiện, mà tập trung vào hai mảng chính là <b>kịch bản</b> và <b>donate</b>.</p>
+          <p>Trang này dùng để công bố các hoạt động, workshop, đối thoại hoặc các buổi ra mắt nội dung trong hệ thống Đường Sao Tỏa Sáng.</p>
+          <p>Hiện tại, giai đoạn đầu chưa ưu tiên bán vé sự kiện mà tập trung vào hai mảng chính là <b>kịch bản</b> và <b>donate</b>.</p>
         `,
         body_en: `
           <p>This page is used to announce events, workshops, dialogues, or content launches within the Star Path Light Up system.</p>
@@ -391,7 +481,7 @@
         excerpt_vi: "Danh mục kịch bản, gói mua và quyền truy cập.",
         excerpt_en: "Script catalog, purchase packages, and access rights.",
         body_vi: `
-          <p><b>Kịch bản</b> là dòng sản phẩm ưu tiên trong giai đoạn đầu. Đây là nền tảng để tạo dòng tiền minh bạch, bền vững, và gắn trực tiếp với giá trị nội dung.</p>
+          <p><b>Kịch bản</b> là dòng sản phẩm ưu tiên trong giai đoạn đầu. Đây là nền tảng để tạo dòng tiền minh bạch, bền vững và gắn trực tiếp với giá trị nội dung.</p>
           <p>Kịch bản không chỉ là tài liệu biểu diễn. Nó có thể là sản phẩm nghệ thuật, giáo dục, sân khấu, truyền thông hoặc các cấu trúc kể chuyện có thể được ứng dụng vào nhiều loại hình dự án khác nhau.</p>
         `,
         body_en: `
@@ -406,7 +496,7 @@
         excerpt_vi: "Cơ chế donate và gây quỹ minh bạch, có mục tiêu và có báo cáo.",
         excerpt_en: "Transparent donation and fundraising with clear goals and reporting.",
         body_vi: `
-          <p>Đường Sao Tỏa Sáng triển khai gây quỹ trên nguyên tắc: có mục tiêu, có lý do sử dụng, có giới hạn trách nhiệm, và có báo cáo công khai theo kỳ.</p>
+          <p>Đường Sao Tỏa Sáng triển khai gây quỹ trên nguyên tắc: có mục tiêu, có lý do sử dụng, có giới hạn trách nhiệm và có báo cáo công khai theo kỳ.</p>
           <p>Donate không phải là mua lợi nhuận. Donate là hành vi đồng hành cho một mục tiêu có ý nghĩa, với nguyên tắc minh bạch và có thể kiểm tra.</p>
         `,
         body_en: `
@@ -421,7 +511,7 @@
         excerpt_vi: "Nguyên tắc công khai, báo cáo theo kỳ và trách nhiệm kiểm chứng.",
         excerpt_en: "Disclosure principles, periodic reporting, and accountability.",
         body_vi: `
-          <p>Minh bạch là một trong những trụ cột nền tảng của toàn bộ hệ thống này. Mọi chiến dịch, mọi nguồn lực và mọi đóng góp đều phải có cách ghi nhận, trạng thái, và phương thức công bố rõ ràng.</p>
+          <p>Minh bạch là một trong những trụ cột nền tảng của toàn bộ hệ thống này. Mọi chiến dịch, mọi nguồn lực và mọi đóng góp đều phải có cách ghi nhận, trạng thái và phương thức công bố rõ ràng.</p>
         `,
         body_en: `
           <p>Transparency is one of the foundational pillars of the entire platform. Every campaign, resource, and contribution must have a clear recording method, status, and disclosure mechanism.</p>
@@ -434,7 +524,7 @@
         excerpt_vi: "Điều khoản sử dụng, chính sách riêng tư và các tuyên bố cần thiết.",
         excerpt_en: "Terms of Use, Privacy Policy, and necessary disclaimers.",
         body_vi: `
-          <p>Trang pháp lý tập hợp các thông tin nền tảng liên quan đến điều khoản sử dụng, chính sách riêng tư, và các nguyên tắc miễn trừ trách nhiệm trong hoạt động gây quỹ hoặc sử dụng nội dung.</p>
+          <p>Trang pháp lý tập hợp các thông tin nền tảng liên quan đến điều khoản sử dụng, chính sách riêng tư và các nguyên tắc miễn trừ trách nhiệm trong hoạt động gây quỹ hoặc sử dụng nội dung.</p>
         `,
         body_en: `
           <p>The legal page includes the foundation information regarding Terms of Use, Privacy Policy, and applicable disclaimers in fundraising and content usage.</p>
@@ -459,21 +549,24 @@
       }
     };
 
-    const slug = resolveSlug();
+    const route = resolveRoute();
+    const slug = route.slug;
+    const routeType = route.type;
+
     const titleEl = document.getElementById("title");
     const leadEl = document.getElementById("lead");
     const bodyEl = document.getElementById("body");
     const typeTag = document.getElementById("typeTag");
     const dateLine = document.getElementById("dateLine");
-    const crumbCurrent = document.getElementById("crumbCurrent");
+    const breadcrumb = document.getElementById("breadcrumb");
     const relatedList = document.getElementById("relatedList");
 
-    function fallbackItemFor(slugKey) {
+    function fallbackItemFor(slugKey, forcedType = "page") {
       const f = FALLBACKS[slugKey];
       if (!f) return null;
       return {
         slug: slugKey,
-        type: f.type,
+        type: f.type || forcedType,
         title: lang === "vi" ? f.title_vi : f.title_en,
         excerpt: lang === "vi" ? f.excerpt_vi : f.excerpt_en,
         body: lang === "vi" ? f.body_vi : f.body_en,
@@ -483,8 +576,26 @@
       };
     }
 
+    function renderBreadcrumb(title, type) {
+      if (type === "post") {
+        breadcrumb.innerHTML = `
+          <a href="/">Trang chủ</a>
+          <span>/</span>
+          <a href="/posts">${T("Bài viết", "Posts")}</a>
+          <span>/</span>
+          <span>${esc(title)}</span>
+        `;
+      } else {
+        breadcrumb.innerHTML = `
+          <a href="/">Trang chủ</a>
+          <span>/</span>
+          <span>${esc(title)}</span>
+        `;
+      }
+    }
+
     function renderMain(item) {
-      const type = item.type || "page";
+      const type = item.type || routeType || "page";
       const title = item.title || slug;
       const excerpt = item.excerpt || T("Nội dung đang được cập nhật.", "Content is being updated.");
       const body = item.body || `<p>${T("Nội dung đang được cập nhật.", "Content is being updated.")}</p>`;
@@ -492,8 +603,10 @@
       titleEl.textContent = title;
       leadEl.textContent = excerpt;
       typeTag.textContent = type;
-      crumbCurrent.textContent = title;
-      dateLine.textContent = item.updatedAt || item.createdAt ? formatDate(item.updatedAt || item.createdAt) : T("Đang cập nhật", "Updating");
+      renderBreadcrumb(title, type);
+
+      const rawDate = item.updatedAt || item.createdAt || "";
+      dateLine.textContent = rawDate ? formatDate(rawDate) : T("Đang cập nhật", "Updating");
 
       renderRichHtml(bodyEl, body);
 
@@ -510,7 +623,7 @@
 
       const schema = {
         "@context":"https://schema.org",
-        "@type":"Article",
+        "@type": type === "post" ? "Article" : "WebPage",
         "headline": title,
         "description": excerpt,
         "mainEntityOfPage": canonical,
@@ -595,7 +708,7 @@
     document.getElementById("q4t").textContent = T("Donate", "Donate");
     document.getElementById("q4d").textContent = T("Nguyên tắc gây quỹ minh bạch.", "Transparent fundraising principles.");
     document.getElementById("sideNote").textContent = T(
-      "URL đẹp đang được dùng cho toàn site. Các slug sẽ tự nối vào hệ thống khi anh publish nội dung từ CMS.",
+      "URL đẹp đang được dùng cho toàn site. Các slug sẽ tự nối vào hệ thống khi publish nội dung từ CMS.",
       "Beautiful URLs are used across the site. Slugs will automatically connect when content is published from CMS."
     );
     document.getElementById("relatedEyebrow").textContent = T("LIÊN QUAN", "RELATED");
@@ -610,9 +723,9 @@
     );
 
     async function run() {
-      const fallback = fallbackItemFor(slug) || {
+      const fallback = fallbackItemFor(slug, routeType) || {
         slug,
-        type: "page",
+        type: routeType,
         title: T("Nội dung đang cập nhật", "Content is being updated"),
         excerpt: T("Trang này đã được tạo nhưng chưa có nội dung hoàn chỉnh.", "This page exists but content is not complete yet."),
         body: `<p>${T("Slug này hiện chưa có nội dung fallback riêng.", "This slug does not yet have dedicated fallback content.")}</p>`,
