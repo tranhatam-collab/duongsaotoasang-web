@@ -16,7 +16,6 @@
   <style>
     :root{
       --bg:#0a0c10;
-      --bg-soft:#10151d;
       --card:rgba(255,255,255,.045);
       --line:rgba(255,255,255,.085);
       --text:#f2f4f7;
@@ -27,7 +26,6 @@
       --r:22px;
       --max:1240px;
     }
-
     *{box-sizing:border-box}
     body{
       margin:0;
@@ -39,26 +37,19 @@
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       overflow-x:hidden;
     }
-
     a{color:inherit;text-decoration:none}
     .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
-
     .topbar{
       position:sticky;top:0;z-index:60;
       backdrop-filter:blur(16px);
       background:rgba(10,12,16,.72);
       border-bottom:1px solid var(--line);
     }
-
     .nav{
       display:flex;align-items:center;justify-content:space-between;gap:14px;
       padding:14px 0;
     }
-
-    .brand{
-      display:flex;align-items:center;gap:12px;
-    }
-
+    .brand{display:flex;align-items:center;gap:12px}
     .brand-mark{
       width:40px;height:40px;border-radius:14px;
       background:
@@ -67,31 +58,19 @@
       border:1px solid rgba(255,255,255,.10);
       box-shadow:var(--shadow);
     }
-
     .brand-title{font-weight:800;font-size:17px}
     .brand-sub{font-size:12px;color:var(--muted);margin-top:3px}
-
-    .menu{
-      display:flex;align-items:center;gap:8px;flex-wrap:wrap;
-    }
-
+    .menu{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
     .menu a{
-      padding:10px 12px;border-radius:12px;
-      border:1px solid transparent;
-      color:rgba(255,255,255,.82);
-      transition:all .25s ease;
+      padding:10px 12px;border-radius:12px;border:1px solid transparent;
+      color:rgba(255,255,255,.82);transition:all .25s ease;
     }
-
-    .menu a:hover,
-    .menu a.active{
+    .menu a:hover,.menu a.active{
       background:rgba(255,255,255,.05);
       border-color:var(--line);
-      text-decoration:none;
-      color:#fff;
+      color:#fff;text-decoration:none;
     }
-
     .right{display:flex;align-items:center;gap:10px}
-
     .pill{
       border:1px solid var(--line);
       padding:9px 12px;border-radius:999px;
@@ -99,244 +78,100 @@
       background:rgba(255,255,255,.03);
       font-size:13px;
     }
-
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:8px;
       padding:10px 14px;border-radius:14px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.04);
-      color:#fff;cursor:pointer;
-      transition:all .25s ease;
+      color:#fff;cursor:pointer;transition:all .25s ease;
     }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.07);
-      text-decoration:none;
-    }
-
+    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.07);text-decoration:none}
     .btn.primary{
       border-color:rgba(216,188,119,.34);
       background:linear-gradient(180deg, rgba(216,188,119,.15), rgba(216,188,119,.07));
     }
-
     .mobile-toggle{
-      display:none;
-      width:44px;height:44px;border-radius:12px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:#fff;cursor:pointer;
+      display:none;width:44px;height:44px;border-radius:12px;
+      border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;cursor:pointer;
     }
-
-    .hero{
-      padding:28px 0 12px;
-    }
-
+    .hero{padding:28px 0 12px}
     .hero-shell{
       border:1px solid var(--line);
       background:
         radial-gradient(700px 260px at 10% 0%, rgba(216,188,119,.09), transparent 60%),
         linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border-radius:28px;
-      padding:26px;
-      box-shadow:var(--shadow);
+      border-radius:28px;padding:26px;box-shadow:var(--shadow);
     }
-
     .eyebrow{
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.18em;
-      color:var(--gold);
-      margin-bottom:10px;
+      font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin-bottom:10px;
     }
-
-    h1{
-      margin:0;
-      font-size:46px;
-      line-height:1.04;
-      letter-spacing:-.03em;
-    }
-
-    h2{
-      margin:0 0 12px;
-      font-size:28px;
-      line-height:1.2;
-    }
-
-    .muted{
-      color:var(--muted);
-      line-height:1.8;
-    }
-
+    .breadcrumb{color:var(--muted);font-size:13px;line-height:1.7}
+    .breadcrumb span{margin:0 6px}
+    h1{margin:0;font-size:46px;line-height:1.04;letter-spacing:-.03em}
+    h2{margin:0 0 12px;font-size:26px;line-height:1.2}
+    .muted{color:var(--muted);line-height:1.8}
     .small{font-size:13px}
-    .hr{
-      height:1px;background:var(--line);
-      margin:16px 0;
+    .hr{height:1px;background:var(--line);margin:16px 0}
+    .article-grid{
+      display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:14px;
     }
-
-    .article-wrap{
-      display:grid;
-      grid-template-columns:repeat(12,1fr);
-      gap:14px;
-      margin-top:14px;
+    .article-card{
+      grid-column:span 8;border:1px solid var(--line);background:var(--card);
+      border-radius:var(--r);padding:22px;box-shadow:var(--shadow);
     }
-
-    .article-main{
-      grid-column:span 8;
-      border:1px solid var(--line);
-      background:var(--card);
-      border-radius:var(--r);
-      padding:22px;
-      box-shadow:var(--shadow);
+    .sidebar-card{
+      grid-column:span 4;border:1px solid var(--line);background:var(--card);
+      border-radius:var(--r);padding:18px;box-shadow:var(--shadow);align-self:start;
     }
-
-    .article-side{
-      grid-column:span 4;
-      display:grid;
-      gap:14px;
-      align-content:start;
+    .article-meta-top{
+      display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;
     }
-
-    .card{
-      border:1px solid var(--line);
-      background:var(--card);
-      border-radius:var(--r);
-      padding:18px;
-      box-shadow:var(--shadow);
-    }
-
-    .breadcrumb{
-      color:var(--muted);
-      font-size:13px;
-      margin-bottom:10px;
-      line-height:1.7;
-    }
-
-    .breadcrumb a{color:inherit}
-    .article-body{
-      font-size:16px;
-      line-height:1.92;
-      color:#e7edf3;
-    }
-
-    .article-body p{margin:0 0 16px}
-    .article-body h2,
-    .article-body h3{
-      margin:28px 0 12px;
-      line-height:1.3;
-    }
-    .article-body ul,
-    .article-body ol{
-      margin:0 0 18px 22px;
-    }
-    .article-body li{
-      margin-bottom:8px;
-    }
-
     .tag{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:6px 10px;border-radius:999px;
-      background:rgba(255,255,255,.04);
-      border:1px solid var(--line);
-      font-size:12px;color:var(--muted);
+      display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;
+      background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:12px;color:var(--muted);
     }
-
-    .related-list{
-      display:grid;
-      gap:12px;
+    .meta-inline{font-size:13px;color:var(--muted)}
+    .lead{margin:16px 0 0;color:var(--muted);line-height:1.85}
+    .article-body{font-size:16px;line-height:1.92;color:#e7edf3}
+    .article-body p{margin:0 0 16px}
+    .article-body h2,.article-body h3{margin:28px 0 12px;line-height:1.3}
+    .article-body ul,.article-body ol{margin:0 0 18px 22px}
+    .article-body li{margin-bottom:8px}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .quick-links,.related-grid{display:grid;gap:12px}
+    .quick-link,.related-item{
+      border:1px solid var(--line);background:rgba(255,255,255,.03);
+      border-radius:18px;padding:16px;display:block;transition:all .25s ease;
     }
-
-    .related-item{
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      border-radius:18px;
-      padding:16px;
-      display:block;
-      transition:all .25s ease;
+    .quick-link:hover,.related-item:hover{
+      transform:translateY(-2px);border-color:rgba(216,188,119,.22);
+      background:rgba(255,255,255,.05);text-decoration:none;
     }
-
-    .related-item:hover{
-      transform:translateY(-2px);
-      border-color:rgba(216,188,119,.22);
-      background:rgba(255,255,255,.05);
-      text-decoration:none;
+    .quick-link b,.related-item b{
+      display:block;font-size:18px;line-height:1.35;margin-bottom:8px;
     }
-
-    .related-item b{
-  display:block;
-  font-size:18px;
-  line-height:1.35;
-  margin-bottom:8px;
-}
-
-.related-item .excerpt{
-  color:var(--muted);
-  line-height:1.75;
-  font-size:14px;
-}
-
-.related-item .meta{
-  margin-top:10px;
-  color:var(--muted);
-  font-size:12px;
-}
-
-.footer{
-  margin-top:34px;
-  padding:24px 0 50px;
-  border-top:1px solid var(--line);
-  color:var(--muted);
-  line-height:1.8;
-  font-size:14px;
-}
-
-.reveal{
-  opacity:0;
-  transform:translateY(20px);
-  transition:opacity .65s ease, transform .65s ease;
-}
-
-.reveal.in{
-  opacity:1;
-  transform:none;
-}
-
-@media (max-width:1080px){
-  .article-grid,
-  .related-grid{
-    grid-template-columns:1fr;
-  }
-  h1{
-    font-size:38px;
-  }
-}
-
-@media (max-width:860px){
-  .menu{
-    display:none;
-    width:100%;
-    padding-top:10px;
-  }
-  .menu.open{
-    display:flex;
-  }
-  .mobile-toggle{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .right{
-    display:none;
-  }
-  h1{
-    font-size:32px;
-  }
-  .hero-shell,
-  .article-card,
-  .sidebar-card{
-    padding:20px;
-  }
-}
+    .quick-link span,.related-item .excerpt{
+      color:var(--muted);line-height:1.75;font-size:14px;
+    }
+    .related-item .meta{margin-top:10px;color:var(--muted);font-size:12px}
+    .footer{
+      margin-top:34px;padding:24px 0 50px;border-top:1px solid var(--line);
+      color:var(--muted);line-height:1.8;font-size:14px;
+    }
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease, transform .65s ease}
+    .reveal.in{opacity:1;transform:none}
+    @media (max-width:1080px){
+      .article-card,.sidebar-card{grid-column:span 12}
+      h1{font-size:38px}
+    }
+    @media (max-width:860px){
+      .menu{display:none;width:100%;padding-top:10px}
+      .menu.open{display:flex}
+      .mobile-toggle{display:inline-flex;align-items:center;justify-content:center}
+      .right{display:none}
+      h1{font-size:32px}
+      .hero-shell,.article-card,.sidebar-card{padding:20px}
+    }
   </style>
 </head>
 <body>
@@ -379,11 +214,7 @@
       <div class="hero-shell">
         <div class="eyebrow" id="heroEyebrow">NỘI DUNG CHI TIẾT</div>
         <div class="breadcrumb" id="breadcrumb">
-          <a href="/">Trang chủ</a>
-          <span>/</span>
-          <a href="/posts">Bài viết</a>
-          <span>/</span>
-          <span id="crumbCurrent">...</span>
+          <a href="/">Trang chủ</a><span>/</span><a href="/posts">Bài viết</a><span>/</span><span id="crumbCurrent">...</span>
         </div>
       </div>
     </section>
@@ -396,9 +227,7 @@
         </div>
 
         <h1 id="title">Đang tải nội dung...</h1>
-        <p class="lead" id="lead">
-          Vui lòng chờ trong giây lát. Hệ thống đang tải nội dung theo slug.
-        </p>
+        <p class="lead" id="lead">Vui lòng chờ trong giây lát. Hệ thống đang tải nội dung theo slug.</p>
 
         <div class="hr"></div>
 
@@ -416,7 +245,7 @@
 
       <aside class="sidebar-card">
         <div class="eyebrow" id="sideEyebrow">ĐI NHANH</div>
-        <h2 class="section-title" id="sideTitle">Các hướng liên quan</h2>
+        <h2 id="sideTitle">Các hướng liên quan</h2>
 
         <div class="quick-links">
           <a class="quick-link" href="/about">
@@ -445,16 +274,14 @@
       </aside>
     </section>
 
-    <section class="related-wrap reveal">
-      <div class="section-header">
-        <div>
-          <div class="eyebrow" id="relatedEyebrow">LIÊN QUAN</div>
-          <h2 class="section-title" id="relatedTitle">Nội dung liên quan</h2>
-        </div>
-        <div class="small muted" id="relatedHint">Tự lấy từ CMS. Nếu chưa có dữ liệu, hệ thống dùng fallback.</div>
+    <section class="reveal" style="margin-top:14px">
+      <div class="card">
+        <div class="eyebrow" id="relatedEyebrow">LIÊN QUAN</div>
+        <h2 id="relatedTitle">Nội dung liên quan</h2>
+        <p class="muted" id="relatedHint">Tự lấy từ CMS. Nếu chưa có dữ liệu, hệ thống dùng fallback.</p>
+        <div class="hr"></div>
+        <div class="related-grid" id="relatedList"></div>
       </div>
-
-      <div class="related-grid" id="relatedList"></div>
     </section>
 
     <footer class="footer">
@@ -471,24 +298,17 @@
 
     const lang = getLang();
     const T = (vi, en) => lang === "vi" ? vi : en;
-
     const esc = (s = "") => String(s).replace(/[&<>"']/g, m => ({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#39;"
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
     }[m]));
+    const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
     document.documentElement.lang = lang;
     document.getElementById("langPill").textContent = lang.toUpperCase();
     document.getElementById("toggleLang").onclick = () => toggleLang();
-
     document.getElementById("mobileToggle").onclick = () => {
       document.getElementById("mainMenu").classList.toggle("open");
     };
-
-    const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -504,25 +324,16 @@
       const qs = new URLSearchParams(location.search);
       const qSlug = (qs.get("slug") || "").trim();
 
-      // /posts/slug
-      if (parts.length >= 2 && parts[0] === "posts") {
-        return decodeURIComponent(parts.slice(1).join("/"));
-      }
-
-      // /program, /events, /about...
-      if (parts.length === 1 && parts[0] !== "content" && parts[0] !== "posts" && parts[0] !== "posts.html") {
-        return decodeURIComponent(parts[0]);
-      }
-
-      // legacy /content?slug=about
+      if (parts.length >= 2 && parts[0] === "posts") return decodeURIComponent(parts.slice(1).join("/"));
+      if (parts.length === 1 && parts[0] !== "content" && parts[0] !== "posts" && parts[0] !== "posts.html") return decodeURIComponent(parts[0]);
       if (qSlug) return qSlug;
-
       return "about";
     }
 
     function canonicalFor(slug, type = "page") {
-      if (type === "post") return `https://duongsaotoasang.com/posts/${encodeURIComponent(slug)}`;
-      return `https://duongsaotoasang.com/${encodeURIComponent(slug)}`;
+      return type === "post"
+        ? `https://duongsaotoasang.com/posts/${encodeURIComponent(slug)}`
+        : `https://duongsaotoasang.com/${encodeURIComponent(slug)}`;
     }
 
     const FALLBACKS = {
@@ -649,7 +460,6 @@
     };
 
     const slug = resolveSlug();
-
     const titleEl = document.getElementById("title");
     const leadEl = document.getElementById("lead");
     const bodyEl = document.getElementById("body");
@@ -683,44 +493,28 @@
       leadEl.textContent = excerpt;
       typeTag.textContent = type;
       crumbCurrent.textContent = title;
-
-      const when = item.updatedAt || item.createdAt || "";
-      dateLine.textContent = when ? formatDate(when) : T("Đang cập nhật", "Updating");
+      dateLine.textContent = item.updatedAt || item.createdAt ? formatDate(item.updatedAt || item.createdAt) : T("Đang cập nhật", "Updating");
 
       renderRichHtml(bodyEl, body);
 
+      const canonical = canonicalFor(slug, type);
       setSeo({
         title: `${title} | Đường Sao Tỏa Sáng`,
         description: excerpt,
-        canonical: canonicalFor(slug, type),
+        canonical,
         ogImage: item.cover || null
       });
 
-      updateSchema({
-        title,
-        description: excerpt,
-        canonical: canonicalFor(slug, type),
-        datePublished: item.createdAt || "",
-        dateModified: item.updatedAt || item.createdAt || ""
-      });
-    }
-
-    function updateSchema({ title, description, canonical, datePublished, dateModified }) {
       const old = document.getElementById("articleSchema");
       if (old) old.remove();
 
       const schema = {
-        "@context": "https://schema.org",
-        "@type": "Article",
+        "@context":"https://schema.org",
+        "@type":"Article",
         "headline": title,
-        "description": description,
+        "description": excerpt,
         "mainEntityOfPage": canonical,
-        "datePublished": datePublished || undefined,
-        "dateModified": dateModified || undefined,
-        "publisher": {
-          "@type": "Organization",
-          "name": "Đường Sao Tỏa Sáng"
-        }
+        "publisher":{"@type":"Organization","name":"Đường Sao Tỏa Sáng"}
       };
 
       const script = document.createElement("script");
@@ -731,9 +525,9 @@
     }
 
     function toHref(item) {
-      const itemType = item.type || "page";
-      if (itemType === "post") return `/posts/${encodeURIComponent(item.slug || "")}`;
-      return `/${encodeURIComponent(item.slug || "")}`;
+      return item.type === "post"
+        ? `/posts/${encodeURIComponent(item.slug || "")}`
+        : `/${encodeURIComponent(item.slug || "")}`;
     }
 
     function renderRelated(items) {
@@ -756,7 +550,7 @@
       `).join("");
     }
 
-    async function loadRelated(currentSlug, currentType) {
+    async function loadRelated(currentSlug) {
       const fallbackRelated = Object.keys(FALLBACKS)
         .filter(key => key !== currentSlug)
         .slice(0, 4)
@@ -787,42 +581,35 @@
       }
     }
 
-    function applyUiText() {
-      document.getElementById("heroEyebrow").textContent = T("NỘI DUNG CHI TIẾT", "CONTENT DETAIL");
-      document.getElementById("backPostsBtn").textContent = T("Quay lại bài viết", "Back to posts");
-      document.getElementById("homeBtn").textContent = T("Về trang chủ", "Back to home");
-
-      document.getElementById("sideEyebrow").textContent = T("ĐI NHANH", "QUICK ACCESS");
-      document.getElementById("sideTitle").textContent = T("Các hướng liên quan", "Related directions");
-      document.getElementById("q1t").textContent = T("Giới thiệu", "About");
-      document.getElementById("q1d").textContent = T("Hiểu nền tảng và lý do tồn tại của hệ thống.", "Understand the platform and why the system exists.");
-      document.getElementById("q2t").textContent = T("Chương trình", "Program");
-      document.getElementById("q2d").textContent = T("Khung vận hành và lộ trình phát triển.", "Operating framework and roadmap.");
-      document.getElementById("q3t").textContent = T("Kịch bản", "Scripts");
-      document.getElementById("q3d").textContent = T("Dòng sản phẩm ưu tiên giai đoạn đầu.", "Primary product line in phase one.");
-      document.getElementById("q4t").textContent = T("Donate", "Donate");
-      document.getElementById("q4d").textContent = T("Nguyên tắc gây quỹ minh bạch.", "Transparent fundraising principles.");
-      document.getElementById("sideNote").textContent = T(
-        "URL đẹp đang được dùng cho toàn site. Các slug sẽ tự nối vào hệ thống khi anh publish nội dung từ CMS.",
-        "Beautiful URLs are used across the site. Slugs will automatically connect when content is published from CMS."
-      );
-
-      document.getElementById("relatedEyebrow").textContent = T("LIÊN QUAN", "RELATED");
-      document.getElementById("relatedTitle").textContent = T("Nội dung liên quan", "Related content");
-      document.getElementById("relatedHint").textContent = T(
-        "Tự lấy từ CMS. Nếu chưa có dữ liệu, hệ thống dùng fallback.",
-        "Loaded from CMS. If no data exists, the system uses fallback."
-      );
-
-      document.getElementById("footerNote").textContent = T(
-        "File này là renderer trung tâm cho toàn bộ URL đẹp: /about, /program, /events, /scripts, /donate, /transparency, /legal, /contact và /posts/slug.",
-        "This file is the central renderer for all clean URLs: /about, /program, /events, /scripts, /donate, /transparency, /legal, /contact, and /posts/slug."
-      );
-    }
+    document.getElementById("heroEyebrow").textContent = T("NỘI DUNG CHI TIẾT", "CONTENT DETAIL");
+    document.getElementById("backPostsBtn").textContent = T("Quay lại bài viết", "Back to posts");
+    document.getElementById("homeBtn").textContent = T("Về trang chủ", "Back to home");
+    document.getElementById("sideEyebrow").textContent = T("ĐI NHANH", "QUICK ACCESS");
+    document.getElementById("sideTitle").textContent = T("Các hướng liên quan", "Related directions");
+    document.getElementById("q1t").textContent = T("Giới thiệu", "About");
+    document.getElementById("q1d").textContent = T("Hiểu nền tảng và lý do tồn tại của hệ thống.", "Understand the platform and why the system exists.");
+    document.getElementById("q2t").textContent = T("Chương trình", "Program");
+    document.getElementById("q2d").textContent = T("Khung vận hành và lộ trình phát triển.", "Operating framework and roadmap.");
+    document.getElementById("q3t").textContent = T("Kịch bản", "Scripts");
+    document.getElementById("q3d").textContent = T("Dòng sản phẩm ưu tiên giai đoạn đầu.", "Primary product line in phase one.");
+    document.getElementById("q4t").textContent = T("Donate", "Donate");
+    document.getElementById("q4d").textContent = T("Nguyên tắc gây quỹ minh bạch.", "Transparent fundraising principles.");
+    document.getElementById("sideNote").textContent = T(
+      "URL đẹp đang được dùng cho toàn site. Các slug sẽ tự nối vào hệ thống khi anh publish nội dung từ CMS.",
+      "Beautiful URLs are used across the site. Slugs will automatically connect when content is published from CMS."
+    );
+    document.getElementById("relatedEyebrow").textContent = T("LIÊN QUAN", "RELATED");
+    document.getElementById("relatedTitle").textContent = T("Nội dung liên quan", "Related content");
+    document.getElementById("relatedHint").textContent = T(
+      "Tự lấy từ CMS. Nếu chưa có dữ liệu, hệ thống dùng fallback.",
+      "Loaded from CMS. If no data exists, the system uses fallback."
+    );
+    document.getElementById("footerNote").textContent = T(
+      "File này là renderer trung tâm cho toàn bộ URL đẹp: /about, /program, /events, /scripts, /donate, /transparency, /legal, /contact và /posts/slug.",
+      "This file is the central renderer for all clean URLs: /about, /program, /events, /scripts, /donate, /transparency, /legal, /contact, and /posts/slug."
+    );
 
     async function run() {
-      applyUiText();
-
       const fallback = fallbackItemFor(slug) || {
         slug,
         type: "page",
@@ -835,13 +622,13 @@
       };
 
       renderMain(fallback);
-      loadRelated(slug, fallback.type);
+      loadRelated(slug);
 
       try {
         const item = await loadBySlug(slug);
         if (item) {
           renderMain(item);
-          loadRelated(slug, item.type || "page");
+          loadRelated(slug);
         }
       } catch (e) {
         console.warn("content fallback used:", e);
