@@ -3,61 +3,230 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Bài viết</title>
+  <title>Bài viết | Đường Sao Tỏa Sáng</title>
+  <meta name="description" content="Danh sách bài viết, chia sẻ, phân tích và các nội dung công khai từ hệ thống Đường Sao Tỏa Sáng."/>
+  <link rel="canonical" href="https://duongsaotoasang.com/posts.html"/>
+  <meta property="og:title" content="Bài viết | Đường Sao Tỏa Sáng"/>
+  <meta property="og:description" content="Danh sách bài viết, chia sẻ, phân tích và các nội dung công khai từ hệ thống Đường Sao Tỏa Sáng."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://duongsaotoasang.com/posts.html"/>
+  <meta name="twitter:card" content="summary_large_image"/>
   <link rel="stylesheet" href="/app.css"/>
 </head>
 <body>
-  <div class="topbar">
-    <div class="nav">
-      <div class="brand"><a href="/">Đường Sao Tỏa Sáng</a></div>
-      <div class="right">
-        <span class="pill" id="langPill">VI</span>
-        <button class="btn" id="toggleLang">VI / EN</button>
+  <header class="topbar">
+    <div class="wrap">
+      <div class="row">
+        <div class="brand">
+          <b>Đường Sao Tỏa Sáng</b>
+          <span class="small muted">Star Path Light Up</span>
+        </div>
+
+        <nav class="nav">
+          <a data-nav href="/">Trang chủ</a>
+          <a data-nav href="/content?slug=about">Giới thiệu</a>
+          <a data-nav href="/content?slug=program">Chương trình</a>
+          <a data-nav href="/content?slug=events">Sự kiện</a>
+          <a data-nav href="/content?slug=scripts">Kịch bản</a>
+          <a data-nav href="/content?slug=donate">Gây quỹ</a>
+          <a data-nav href="/content?slug=transparency">Minh bạch</a>
+          <a data-nav href="/content?slug=legal">Pháp lý</a>
+          <a data-nav href="/content?slug=contact">Liên hệ</a>
+          <a class="btn" href="/posts.html">Bài viết</a>
+          <button class="langbtn" data-lang-toggle><span data-lang-badge>VI</span> / EN</button>
+        </nav>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="wrap">
-    <div class="card">
-      <h1 id="t">Bài viết</h1>
-      <p class="muted" id="d">Tất cả bài viết published trong CMS.</p>
+  <main class="wrap">
+    <section class="card">
+      <h1 id="pageTitle">Bài viết</h1>
+      <p class="muted" id="pageDesc" style="line-height:1.7;margin-top:10px">
+        Danh sách bài viết, cập nhật, ghi chú và các chia sẻ công khai từ hệ thống Đường Sao Tỏa Sáng.
+      </p>
       <div class="hr"></div>
-      <div class="list" id="list"></div>
-    </div>
-  </div>
 
-<script type="module">
-  import { getLang, setLang, fetchLatestPosts, esc } from "/app.js";
-  const lang = getLang();
-  langPill.textContent = lang.toUpperCase();
-  toggleLang.onclick = ()=> setLang(lang==="vi"?"en":"vi");
+      <div class="grid">
+        <div class="card" style="grid-column: span 4">
+          <h2 id="f1t">Mục đích</h2>
+          <div class="small muted" id="f1d">
+            Tổng hợp các bài viết công khai, bài phân tích, thông báo và nội dung chia sẻ từ hệ thống.
+          </div>
+        </div>
+        <div class="card" style="grid-column: span 4">
+          <h2 id="f2t">Nguyên tắc</h2>
+          <div class="small muted" id="f2d">
+            Bài viết được quản trị từ CMS. Nếu chưa publish, trang này vẫn hiển thị fallback và không để trống.
+          </div>
+        </div>
+        <div class="card" style="grid-column: span 4">
+          <h2 id="f3t">Liên kết</h2>
+          <div class="small muted" id="f3d">
+            Mỗi bài sẽ dẫn tới trang chi tiết theo slug để đọc đầy đủ nội dung.
+          </div>
+        </div>
+      </div>
+    </section>
 
-  if(lang==="en"){
-    t.textContent = "Posts";
-    d.textContent = "All published posts from CMS.";
-  }
+    <section class="card" style="margin-top:14px">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap">
+        <div>
+          <h2 style="margin:0" id="listTitle">Danh sách bài viết</h2>
+          <div class="small muted" id="listHint" style="margin-top:6px">
+            Tự động lấy từ CMS với điều kiện public + type = post.
+          </div>
+        </div>
+        <div class="small muted" id="countInfo"></div>
+      </div>
 
-  const list = document.getElementById("list");
-  list.innerHTML = `<div class="small muted">Loading...</div>`;
+      <div class="hr"></div>
 
-  try{
-    const posts = await fetchLatestPosts(200);
-    if(!posts.length){
-      list.innerHTML = `<div class="small muted">No published posts.</div>`;
-    } else {
-      list.innerHTML = posts.map(p=>{
-        const title = (lang==="en" ? (p.title_en || p.title_vi) : (p.title_vi || p.title_en)) || "(untitled)";
+      <div id="postsList" class="list"></div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { mountTopbar, getLang, listContents, setSeo } from "/app.js";
+
+    mountTopbar();
+
+    const lang = getLang();
+    const T = (vi, en) => lang === "vi" ? vi : en;
+
+    const pageTitle = document.getElementById("pageTitle");
+    const pageDesc = document.getElementById("pageDesc");
+    const listTitle = document.getElementById("listTitle");
+    const listHint = document.getElementById("listHint");
+    const countInfo = document.getElementById("countInfo");
+    const postsList = document.getElementById("postsList");
+
+    document.getElementById("f1t").textContent = T("Mục đích", "Purpose");
+    document.getElementById("f1d").textContent = T(
+      "Tổng hợp các bài viết công khai, bài phân tích, thông báo và nội dung chia sẻ từ hệ thống.",
+      "A collection of public posts, analysis, notices, and shared content from the system."
+    );
+    document.getElementById("f2t").textContent = T("Nguyên tắc", "Principle");
+    document.getElementById("f2d").textContent = T(
+      "Bài viết được quản trị từ CMS. Nếu chưa publish, trang này vẫn hiển thị fallback và không để trống.",
+      "Posts are managed from CMS. If nothing is published yet, this page still shows fallback content."
+    );
+    document.getElementById("f3t").textContent = T("Liên kết", "Links");
+    document.getElementById("f3d").textContent = T(
+      "Mỗi bài sẽ dẫn tới trang chi tiết theo slug để đọc đầy đủ nội dung.",
+      "Each post links to a detail page by slug."
+    );
+
+    pageTitle.textContent = T("Bài viết", "Posts");
+    pageDesc.textContent = T(
+      "Danh sách bài viết, cập nhật, ghi chú và các chia sẻ công khai từ hệ thống Đường Sao Tỏa Sáng.",
+      "A list of public posts, updates, notes, and shared content from Star Path Light Up."
+    );
+    listTitle.textContent = T("Danh sách bài viết", "Post list");
+    listHint.textContent = T(
+      "Tự động lấy từ CMS với điều kiện public + type = post.",
+      "Loaded automatically from CMS with public visibility + type = post."
+    );
+
+    setSeo({
+      title: T("Bài viết | Đường Sao Tỏa Sáng", "Posts | Star Path Light Up"),
+      description: T(
+        "Danh sách bài viết, chia sẻ, phân tích và các nội dung công khai từ hệ thống Đường Sao Tỏa Sáng.",
+        "Public posts, analysis, and shared content from Star Path Light Up."
+      ),
+      canonical: "https://duongsaotoasang.com/posts.html"
+    });
+
+    function fallbackPosts(){
+      const fallback = [
+        {
+          slug: "about",
+          title_vi: "Giới thiệu hệ thống Đường Sao Tỏa Sáng",
+          title_en: "About Star Path Light Up",
+          excerpt_vi: "Nền tảng kết nối, tổ chức và vận hành các dự án có giá trị dài hạn.",
+          excerpt_en: "A platform to connect, organize, and operate long-term meaningful projects."
+        },
+        {
+          slug: "scripts",
+          title_vi: "Kịch bản là dòng sản phẩm ưu tiên giai đoạn 1",
+          title_en: "Scripts are the phase one priority product line",
+          excerpt_vi: "Kịch bản tạo dòng tiền minh bạch và bền vững cho hoạt động cộng đồng.",
+          excerpt_en: "Scripts create a transparent and sustainable revenue line for community impact."
+        },
+        {
+          slug: "donate",
+          title_vi: "Nguyên tắc gây quỹ minh bạch",
+          title_en: "Transparent fundraising principles",
+          excerpt_vi: "Mọi chiến dịch gây quỹ phải có mục tiêu, phạm vi sử dụng và báo cáo rõ ràng.",
+          excerpt_en: "Every fundraising campaign requires clear goals, usage scope, and reporting."
+        }
+      ];
+
+      countInfo.textContent = T("Fallback: 3 mục mặc định", "Fallback: 3 default items");
+
+      postsList.innerHTML = fallback.map(p => {
+        const title = lang === "vi" ? p.title_vi : p.title_en;
+        const excerpt = lang === "vi" ? p.excerpt_vi : p.excerpt_en;
         return `
-          <a class="item" href="/content.html?slug=${encodeURIComponent(p.slug||"")}">
-            <div><b>${esc(title)}</b></div>
-            <div class="small muted">${p.updated_at ? new Date(p.updated_at).toLocaleString() : ""}</div>
-          </a>
+          <div class="item">
+            <b><a href="/content?slug=${encodeURIComponent(p.slug)}">${title}</a></b>
+            <div class="small muted" style="margin-top:6px">${excerpt}</div>
+            <div style="margin-top:10px">
+              <a class="btn" href="/content?slug=${encodeURIComponent(p.slug)}">${T("Đọc tiếp", "Read more")}</a>
+            </div>
+          </div>
         `;
       }).join("");
     }
-  }catch(e){
-    list.innerHTML = `<div class="small" style="color:#fb7185">${esc(e.message || String(e))}</div>`;
-  }
-</script>
+
+    async function run(){
+      try{
+        const items = await listContents({
+          type: "post",
+          visibility: "public",
+          limit: 24,
+          order: "created_at.desc"
+        });
+
+        if(!items || items.length === 0){
+          fallbackPosts();
+          return;
+        }
+
+        countInfo.textContent = T(
+          `Tổng cộng ${items.length} bài`,
+          `${items.length} posts`
+        );
+
+        postsList.innerHTML = items.map(item => {
+          const title = item.title || item.slug || "Untitled";
+          const excerpt = item.excerpt || T(
+            "Nhấn để đọc nội dung chi tiết.",
+            "Open to read the full content."
+          );
+
+          return `
+            <div class="item">
+              <b><a href="/content?slug=${encodeURIComponent(item.slug || "")}">${title}</a></b>
+              <div class="small muted" style="margin-top:6px">${excerpt}</div>
+              <div class="small muted" style="margin-top:6px">
+                ${item.type || "post"} • ${item.visibility || "public"}
+              </div>
+              <div style="margin-top:10px">
+                <a class="btn" href="/content?slug=${encodeURIComponent(item.slug || "")}">
+                  ${T("Đọc tiếp", "Read more")}
+                </a>
+              </div>
+            </div>
+          `;
+        }).join("");
+      }catch(e){
+        console.warn("posts fallback used:", e);
+        fallbackPosts();
+      }
+    }
+
+    run();
+  </script>
 </body>
 </html>
