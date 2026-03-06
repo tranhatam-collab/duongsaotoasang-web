@@ -182,7 +182,6 @@
       box-shadow:var(--shadow);
     }
 
-    .span-12{grid-column:span 12}
     .span-8{grid-column:span 8}
     .span-4{grid-column:span 4}
 
@@ -276,7 +275,7 @@
     .reveal{
       opacity:0;
       transform:translateY(22px);
-      transition:opacity .7s ease, transform .7s ease;
+      transition:all .7s ease;
     }
 
     .reveal.in{
@@ -428,7 +427,6 @@
     import { getLang, toggleLang, listContents, setSeo } from "/app.js";
 
     const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-
     const lang = getLang();
     const T = (vi, en) => lang === "vi" ? vi : en;
 
@@ -491,12 +489,9 @@
       "This post page is designed to always show content, whether CMS already has posts or not. No blank page, no broken links, no loss of direction."
     );
 
-    // reveal animation
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add("in");
-        }
+        if(entry.isIntersecting) entry.target.classList.add("in");
       });
     }, { threshold: 0.12 });
 
@@ -545,12 +540,9 @@
     function toHref(item){
       const slug = item.slug || "";
       const type = item.type || "post";
-
-      if(type === "post"){
-        return `/posts/${encodeURIComponent(slug)}`;
-      }
-
-      return `/${encodeURIComponent(slug)}`;
+      return type === "post"
+        ? `/posts/${encodeURIComponent(slug)}`
+        : `/${encodeURIComponent(slug)}`;
     }
 
     function renderItems(filter = "all"){
@@ -583,11 +575,11 @@
         return `
           <a class="item" href="${toHref(item)}">
             <div class="item-top">
-              <b>${title}</b>
-              <span class="tag">${typeLabel}</span>
+              <b>${esc(title)}</b>
+              <span class="tag">${esc(typeLabel)}</span>
             </div>
-            <div class="excerpt">${excerpt}</div>
-            <div class="meta">${T("Slug", "Slug")}: ${item.slug || ""}</div>
+            <div class="excerpt">${esc(excerpt)}</div>
+            <div class="meta">${T("Slug", "Slug")}: ${esc(item.slug || "")}</div>
           </a>
         `;
       }).join("");
