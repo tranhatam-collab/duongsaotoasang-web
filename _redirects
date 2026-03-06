@@ -1,13 +1,13 @@
-/admin/* https://admin.duongsaotoasang.com/:splat 301
+/about          /about.html          200
+/program        /program.html        200
+/events         /events.html         200
+/scripts        /scripts.html        200
+/donate         /donate.html         200
+/transparency   /transparency.html   200
+/legal          /legal.html          200
+/contact        /contact.html        200
+/posts          /posts.html          200
 
-/posts /posts.html
-/post /posts.html
+/p/*            /content.html        200
 
-/content /content.html
-
-/profile /profile/profile.html
-/reset /reset/reset.html
-
-/member /member/portal.html
-
-/* /404.html 404
+/*              /404.html            404
