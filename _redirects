@@ -1,13 +1,13 @@
-/about          /about.html          200
-/program        /program.html        200
-/events         /events.html         200
-/scripts        /scripts.html        200
-/donate         /donate.html         200
-/transparency   /transparency.html   200
-/legal          /legal.html          200
-/contact        /contact.html        200
-/posts          /posts.html          200
+/about          /content.html?slug=about          200
+/program        /content.html?slug=program        200
+/events         /content.html?slug=events         200
+/scripts        /content.html?slug=scripts        200
+/donate         /content.html?slug=donate         200
+/transparency   /content.html?slug=transparency   200
+/legal          /content.html?slug=legal          200
+/contact        /content.html?slug=contact        200
 
-/p/*            /content.html        200
+/posts          /posts.html                       200
+/content        /content.html                     200
 
-/*              /404.html            404
+/*              /404.html                         404
