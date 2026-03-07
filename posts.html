@@ -15,17 +15,16 @@
 
   <style>
     :root{
-      --bg:#0a0c10;
-      --bg-soft:#10151d;
+      --bg:#090c11;
       --card:rgba(255,255,255,.045);
       --line:rgba(255,255,255,.085);
       --text:#f2f4f7;
       --muted:#a8b0bb;
       --gold:#d8bc77;
       --gold-soft:rgba(216,188,119,.18);
-      --shadow:0 14px 50px rgba(0,0,0,.35);
-      --r:22px;
-      --max:1240px;
+      --shadow:0 18px 60px rgba(0,0,0,.38);
+      --r:24px;
+      --max:1260px;
     }
 
     *{box-sizing:border-box}
@@ -35,7 +34,7 @@
       background:
         radial-gradient(900px 460px at 0% 0%, rgba(216,188,119,.10), transparent 55%),
         radial-gradient(700px 420px at 100% 10%, rgba(138,198,255,.08), transparent 55%),
-        linear-gradient(180deg,#090b0f 0%, #0d1117 100%);
+        linear-gradient(180deg,#080b0f 0%, #0d1218 100%);
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       overflow-x:hidden;
     }
@@ -44,186 +43,166 @@
     .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
 
     .topbar{
-      position:sticky;top:0;z-index:60;
+      position:sticky;top:0;z-index:70;
       backdrop-filter:blur(16px);
       background:rgba(10,12,16,.72);
       border-bottom:1px solid var(--line);
     }
 
     .nav{
-      display:flex;align-items:center;justify-content:space-between;gap:14px;
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
       padding:14px 0;
     }
 
-    .brand{
-      display:flex;align-items:center;gap:12px;
-    }
-
+    .brand{display:flex;align-items:center;gap:12px}
     .brand-mark{
-      width:40px;height:40px;border-radius:14px;
+      width:42px;height:42px;border-radius:14px;
       background:
         radial-gradient(circle at 30% 30%, rgba(255,255,255,.15), transparent 36%),
         linear-gradient(135deg, rgba(216,188,119,.28), rgba(255,255,255,.05));
       border:1px solid rgba(255,255,255,.10);
       box-shadow:var(--shadow);
     }
-
     .brand-title{font-weight:800;font-size:17px}
     .brand-sub{font-size:12px;color:var(--muted);margin-top:3px}
 
-    .menu{
-      display:flex;align-items:center;gap:8px;flex-wrap:wrap;
-    }
-
+    .menu{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
     .menu a{
-      padding:10px 12px;border-radius:12px;
-      border:1px solid transparent;
-      color:rgba(255,255,255,.82);
-      transition:all .25s ease;
+      padding:10px 12px;border-radius:12px;border:1px solid transparent;
+      color:rgba(255,255,255,.82);transition:all .25s ease;
     }
-
-    .menu a:hover,
-    .menu a.active{
+    .menu a:hover,.menu a.active{
       background:rgba(255,255,255,.05);
       border-color:var(--line);
-      text-decoration:none;
       color:#fff;
     }
 
     .right{display:flex;align-items:center;gap:10px}
-
-    .pill{
-      border:1px solid var(--line);
-      padding:9px 12px;border-radius:999px;
-      color:var(--muted);
+    .lang-links{display:flex;gap:8px;align-items:center}
+    .lang-link{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-width:46px;height:40px;padding:0 12px;
+      border-radius:999px;border:1px solid var(--line);
       background:rgba(255,255,255,.03);
-      font-size:13px;
-    }
-
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:8px;
-      padding:10px 14px;border-radius:14px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:#fff;cursor:pointer;
+      color:var(--muted);font-size:13px;font-weight:700;
       transition:all .25s ease;
     }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.07);
-      text-decoration:none;
-    }
-
-    .btn.primary{
-      border-color:rgba(216,188,119,.34);
-      background:linear-gradient(180deg, rgba(216,188,119,.15), rgba(216,188,119,.07));
+    .lang-link.active{
+      color:#fff;
+      background:rgba(216,188,119,.14);
+      border-color:rgba(216,188,119,.32);
     }
 
     .mobile-toggle{
-      display:none;
-      width:44px;height:44px;border-radius:12px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:#fff;cursor:pointer;
+      display:none;width:44px;height:44px;border-radius:12px;
+      border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;cursor:pointer;
     }
 
-    .hero{
-      padding:32px 0 12px;
-    }
-
+    .hero{padding:34px 0 16px}
     .hero-shell{
       border:1px solid var(--line);
       background:
-        radial-gradient(700px 260px at 10% 0%, rgba(216,188,119,.09), transparent 60%),
+        radial-gradient(700px 260px at 10% 0%, rgba(216,188,119,.10), transparent 60%),
         linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border-radius:28px;
-      padding:26px;
+      border-radius:30px;
+      padding:28px;
       box-shadow:var(--shadow);
     }
 
     .eyebrow{
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.18em;
-      color:var(--gold);
-      margin-bottom:10px;
+      font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin-bottom:10px;
     }
 
     h1{
       margin:0;
-      font-size:46px;
-      line-height:1.04;
+      font-size:50px;
+      line-height:1.02;
       letter-spacing:-.03em;
+      max-width:950px;
     }
 
-    .muted{
-      color:var(--muted);
-      line-height:1.8;
-    }
-
+    .muted{color:var(--muted);line-height:1.84}
     .small{font-size:13px}
-    .hr{
-      height:1px;background:var(--line);
-      margin:16px 0;
+    .hr{height:1px;background:var(--line);margin:16px 0}
+
+    .hero-tools{
+      display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;
     }
 
-    .grid{
+    .filter-btn{
+      padding:10px 14px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:#fff;cursor:pointer;transition:all .2s ease;
+    }
+
+    .filter-btn.active{
+      background:rgba(216,188,119,.18);
+      border-color:rgba(216,188,119,.30);
+    }
+
+    .layout{
       display:grid;
-      grid-template-columns:repeat(12,1fr);
-      gap:14px;
+      grid-template-columns:1.75fr .95fr;
+      gap:16px;
+      margin-top:16px;
     }
 
     .card{
       border:1px solid var(--line);
       background:var(--card);
       border-radius:var(--r);
-      padding:18px;
+      padding:20px;
       box-shadow:var(--shadow);
     }
 
-    .span-8{grid-column:span 8}
-    .span-4{grid-column:span 4}
-
-    .filters{
-      display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;
-    }
-
-    .filter-btn{
-      padding:9px 12px;border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      color:#fff;cursor:pointer;
-      transition:all .2s ease;
-    }
-
-    .filter-btn.active{
-      background:var(--gold-soft);
-      border-color:rgba(216,188,119,.28);
+    .section-title{
+      margin:0;
+      font-size:26px;
+      line-height:1.2;
     }
 
     .list{
-      display:grid;gap:14px;
+      display:grid;
+      gap:14px;
+      margin-top:14px;
     }
 
-    .item{
+    .post-card{
+      display:block;
       border:1px solid var(--line);
       background:rgba(255,255,255,.03);
-      border-radius:20px;
-      padding:18px;
-      transition:all .25s ease;
-      display:block;
+      border-radius:22px;
+      overflow:hidden;
+      transition:all .28s ease;
     }
 
-    .item:hover{
-      transform:translateY(-2px);
-      border-color:rgba(216,188,119,.22);
+    .post-card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(216,188,119,.24);
       background:rgba(255,255,255,.05);
-      text-decoration:none;
     }
 
-    .item-top{
-      display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;
+    .thumb{
+      aspect-ratio:16/8;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(216,188,119,.18), transparent 30%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border-bottom:1px solid var(--line);
+      overflow:hidden;
+    }
+
+    .thumb img{
+      width:100%;height:100%;object-fit:cover;
+    }
+
+    .post-body{
+      padding:18px;
+    }
+
+    .post-meta-top{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+      margin-bottom:8px;
     }
 
     .tag{
@@ -234,48 +213,64 @@
       font-size:12px;color:var(--muted);
     }
 
-    .item b{
-      display:block;
-      font-size:20px;
-      line-height:1.3;
+    .post-title{
+      font-size:24px;
+      line-height:1.24;
       margin:0 0 10px;
+      letter-spacing:-.02em;
     }
 
-    .item .excerpt{
+    .post-excerpt{
       color:var(--muted);
-      line-height:1.8;
+      line-height:1.85;
       font-size:14px;
     }
 
-    .item .meta{
+    .post-footer{
       margin-top:12px;
-      color:var(--muted);
-      font-size:13px;
+      display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+      color:var(--muted);font-size:13px;
     }
 
-    .actions{
-      display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;
+    .quick-list{
+      display:grid;gap:12px;
     }
 
-    .section-title{
-      margin:0;
-      font-size:24px;
-      line-height:1.2;
+    .quick-item{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      border-radius:18px;
+      padding:16px;
+      display:block;
+      transition:all .25s ease;
+    }
+
+    .quick-item:hover{
+      transform:translateY(-2px);
+      border-color:rgba(216,188,119,.22);
+      background:rgba(255,255,255,.05);
+    }
+
+    .quick-item b{
+      display:block;
+      font-size:18px;
+      margin-bottom:8px;
+      line-height:1.3;
     }
 
     .footer{
-      margin-top:24px;
-      padding:24px 0 50px;
+      margin-top:26px;
+      padding:24px 0 52px;
       border-top:1px solid var(--line);
       color:var(--muted);
-      line-height:1.8;
+      line-height:1.85;
       font-size:14px;
     }
 
     .reveal{
       opacity:0;
-      transform:translateY(22px);
-      transition:all .7s ease;
+      transform:translateY(20px);
+      transition:opacity .7s ease, transform .7s ease;
     }
 
     .reveal.in{
@@ -284,8 +279,8 @@
     }
 
     @media (max-width:1080px){
-      .span-8,.span-4{grid-column:span 12}
-      h1{font-size:38px}
+      .layout{grid-template-columns:1fr}
+      h1{font-size:40px}
     }
 
     @media (max-width:860px){
@@ -293,8 +288,9 @@
       .menu.open{display:flex}
       .mobile-toggle{display:inline-flex;align-items:center;justify-content:center}
       .right{display:none}
-      h1{font-size:32px}
-      .hero-shell{padding:20px}
+      h1{font-size:34px}
+      .hero-shell,.card{padding:18px}
+      .post-title{font-size:22px}
     }
   </style>
 </head>
@@ -326,8 +322,10 @@
         </div>
 
         <div class="right">
-          <span class="pill" id="langPill">VI</span>
-          <button class="btn" id="toggleLang">VI / EN</button>
+          <div class="lang-links">
+            <a id="langViLink" class="lang-link" href="/posts">VI</a>
+            <a id="langEnLink" class="lang-link" href="/posts?lang=en">EN</a>
+          </div>
         </div>
       </div>
     </div>
@@ -336,13 +334,13 @@
   <main class="wrap">
     <section class="hero reveal">
       <div class="hero-shell">
-        <div class="eyebrow" id="heroEyebrow">KHO NỘI DUNG CÔNG KHAI</div>
+        <div class="eyebrow" id="heroEyebrow">THƯ VIỆN BÀI VIẾT</div>
         <h1 id="pageTitle">Bài viết, ghi chú, phân tích và các điểm chạm công khai</h1>
         <p class="muted" id="pageDesc" style="margin-top:16px;max-width:920px">
-          Đây là nơi tập hợp toàn bộ bài viết public trong hệ thống. Khi có bài mới được publish từ CMS, trang này sẽ tự cập nhật. Nếu chưa có bài nào, trang vẫn hiển thị định hướng và các liên kết nền để không bị trống.
+          Đây là nơi tập hợp toàn bộ bài viết public trong hệ thống. Khi có bài mới được publish từ CMS, trang này sẽ tự cập nhật. Nếu chưa có bài nào, trang vẫn hiển thị định hướng và các liên kết nền thay vì để trống.
         </p>
 
-        <div class="filters" id="filters">
+        <div class="hero-tools">
           <button class="filter-btn active" data-filter="all" id="fAll">Tất cả</button>
           <button class="filter-btn" data-filter="post" id="fPost">Bài viết</button>
           <button class="filter-btn" data-filter="script" id="fScript">Kịch bản</button>
@@ -351,88 +349,67 @@
       </div>
     </section>
 
-    <section class="grid reveal">
-      <div class="card span-8">
+    <section class="layout reveal">
+      <div class="card">
         <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-end;flex-wrap:wrap">
           <div>
-            <div class="eyebrow" id="listEyebrow">DANH SÁCH NỘI DUNG</div>
-            <h2 class="section-title" id="listTitle">Các bài viết hiện có</h2>
+            <div class="eyebrow" id="listEyebrow">DANH SÁCH CÔNG KHAI</div>
+            <h2 class="section-title" id="listTitle">Bài viết hiện có</h2>
           </div>
           <div class="small muted" id="countInfo">Đang tải dữ liệu...</div>
         </div>
 
         <div class="hr"></div>
-
         <div class="list" id="postsList"></div>
       </div>
 
-      <div class="card span-4">
+      <aside class="card">
         <div class="eyebrow" id="sideEyebrow">ĐI NHANH</div>
-        <h2 class="section-title" id="sideTitle">Những hướng đọc quan trọng</h2>
+        <h2 class="section-title" id="sideTitle">Hướng đọc quan trọng</h2>
         <div class="hr"></div>
 
-        <div class="list">
-          <a class="item" href="/about">
+        <div class="quick-list">
+          <a class="quick-item" href="/about" id="quick1">
             <b id="q1t">Giới thiệu</b>
-            <div class="excerpt" id="q1d">Hiểu nền tảng, tầm nhìn và lý do tồn tại của hệ thống.</div>
+            <div class="muted" id="q1d">Hiểu nền tảng, tầm nhìn và lý do tồn tại của hệ thống.</div>
           </a>
 
-          <a class="item" href="/program">
+          <a class="quick-item" href="/program" id="quick2">
             <b id="q2t">Chương trình</b>
-            <div class="excerpt" id="q2d">Xem cấu trúc triển khai, mô-đun vận hành và lộ trình.</div>
+            <div class="muted" id="q2d">Khung triển khai, mô-đun vận hành và lộ trình phát triển.</div>
           </a>
 
-          <a class="item" href="/scripts">
+          <a class="quick-item" href="/scripts" id="quick3">
             <b id="q3t">Kịch bản</b>
-            <div class="excerpt" id="q3d">Đi thẳng vào dòng sản phẩm ưu tiên giai đoạn 1.</div>
+            <div class="muted" id="q3d">Dòng sản phẩm ưu tiên giai đoạn đầu.</div>
           </a>
 
-          <a class="item" href="/donate">
+          <a class="quick-item" href="/donate" id="quick4">
             <b id="q4t">Donate / Gây quỹ</b>
-            <div class="excerpt" id="q4d">Hiểu cách đóng góp và nguyên tắc minh bạch đi kèm.</div>
+            <div class="muted" id="q4d">Hiểu cơ chế đồng hành minh bạch đi kèm báo cáo.</div>
           </a>
         </div>
-      </div>
-    </section>
-
-    <section class="card reveal" style="margin-top:14px">
-      <div class="eyebrow" id="presetEyebrow">LIÊN KẾT SẴN</div>
-      <h2 class="section-title" id="presetTitle">Hệ liên kết ẩn đã đặt sẵn cho tương lai</h2>
-      <p class="muted" id="presetDesc" style="margin-top:10px">
-        Từ trang này, các liên kết quan trọng đã được set sẵn. Sau này khi anh publish bài hoặc tạo thêm slug trong CMS, hệ thống sẽ tự nối vào đúng luồng mà không cần đập lại cấu trúc.
-      </p>
-
-      <div class="actions" style="margin-top:16px">
-        <a class="btn" href="/about">about</a>
-        <a class="btn" href="/program">program</a>
-        <a class="btn" href="/events">events</a>
-        <a class="btn" href="/scripts">scripts</a>
-        <a class="btn" href="/donate">donate</a>
-        <a class="btn" href="/transparency">transparency</a>
-        <a class="btn" href="/legal">legal</a>
-        <a class="btn" href="/contact">contact</a>
-      </div>
+      </aside>
     </section>
 
     <footer class="footer">
       <div><b>Contact:</b> contact@duongsaotoasang.com</div>
       <div><b>Admin:</b> duongsaotoasang@gmail.com</div>
       <div class="small" id="footerNote" style="margin-top:10px">
-        Trang bài viết được thiết kế để luôn có nội dung hiển thị, dù CMS đã có bài hay chưa. Không để trống, không gãy link, không mất phương hướng.
+        Trang bài viết được thiết kế để luôn có nội dung hiển thị, có nút ngôn ngữ riêng bằng link thật, không dùng chuyển đổi giả.
       </div>
     </footer>
   </main>
 
   <script type="module">
-    import { getLang, toggleLang, listContents, setSeo } from "/app.js";
+    import { getLang, mountLangLinks, listContents, setSeo, formatDate, esc } from "/app.js";
 
-    const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
     const lang = getLang();
     const T = (vi, en) => lang === "vi" ? vi : en;
+    const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
     document.documentElement.lang = lang;
-    document.getElementById("langPill").textContent = lang.toUpperCase();
-    document.getElementById("toggleLang").onclick = () => toggleLang();
+    mountLangLinks("langViLink", "langEnLink");
 
     document.getElementById("mobileToggle").onclick = () => {
       document.getElementById("mainMenu").classList.toggle("open");
@@ -444,17 +421,19 @@
         "Danh sách bài viết, ghi chú, phân tích và các nội dung công khai từ hệ thống Đường Sao Tỏa Sáng.",
         "Posts, notes, analysis, and public content from Star Path Light Up."
       ),
-      canonical: "https://duongsaotoasang.com/posts"
+      canonical: lang === "en"
+        ? "https://duongsaotoasang.com/posts?lang=en"
+        : "https://duongsaotoasang.com/posts"
     });
 
-    document.getElementById("heroEyebrow").textContent = T("KHO NỘI DUNG CÔNG KHAI", "PUBLIC CONTENT LIBRARY");
+    document.getElementById("heroEyebrow").textContent = T("THƯ VIỆN BÀI VIẾT", "POST LIBRARY");
     document.getElementById("pageTitle").textContent = T(
       "Bài viết, ghi chú, phân tích và các điểm chạm công khai",
       "Posts, notes, analysis, and public touchpoints"
     );
     document.getElementById("pageDesc").textContent = T(
-      "Đây là nơi tập hợp toàn bộ bài viết public trong hệ thống. Khi có bài mới được publish từ CMS, trang này sẽ tự cập nhật. Nếu chưa có bài nào, trang vẫn hiển thị định hướng và các liên kết nền để không bị trống.",
-      "This page gathers all public posts in the system. When new posts are published from CMS, it updates automatically. If there are no posts yet, it still shows direction and base links instead of leaving the page empty."
+      "Đây là nơi tập hợp toàn bộ bài viết public trong hệ thống. Khi có bài mới được publish từ CMS, trang này sẽ tự cập nhật. Nếu chưa có bài nào, trang vẫn hiển thị định hướng và các liên kết nền thay vì để trống.",
+      "This page gathers all public posts in the system. When new posts are published from CMS, this page updates automatically. If there are no posts yet, it still shows direction and foundation links instead of being empty."
     );
 
     document.getElementById("fAll").textContent = T("Tất cả", "All");
@@ -462,165 +441,168 @@
     document.getElementById("fScript").textContent = T("Kịch bản", "Scripts");
     document.getElementById("fPage").textContent = T("Trang nền", "Pages");
 
-    document.getElementById("listEyebrow").textContent = T("DANH SÁCH NỘI DUNG", "CONTENT LIST");
-    document.getElementById("listTitle").textContent = T("Các bài viết hiện có", "Current content");
-
+    document.getElementById("listEyebrow").textContent = T("DANH SÁCH CÔNG KHAI", "PUBLIC LIST");
+    document.getElementById("listTitle").textContent = T("Bài viết hiện có", "Current posts");
     document.getElementById("sideEyebrow").textContent = T("ĐI NHANH", "QUICK ACCESS");
-    document.getElementById("sideTitle").textContent = T("Những hướng đọc quan trọng", "Important reading paths");
+    document.getElementById("sideTitle").textContent = T("Hướng đọc quan trọng", "Important reading paths");
 
     document.getElementById("q1t").textContent = T("Giới thiệu", "About");
-    document.getElementById("q1d").textContent = T("Hiểu nền tảng, tầm nhìn và lý do tồn tại của hệ thống.", "Understand the platform, vision, and why the system exists.");
-    document.getElementById("q2t").textContent = T("Chương trình", "Program");
-    document.getElementById("q2d").textContent = T("Xem cấu trúc triển khai, mô-đun vận hành và lộ trình.", "See implementation structure, operating modules, and roadmap.");
-    document.getElementById("q3t").textContent = T("Kịch bản", "Scripts");
-    document.getElementById("q3d").textContent = T("Đi thẳng vào dòng sản phẩm ưu tiên giai đoạn 1.", "Go directly to the phase one priority product line.");
-    document.getElementById("q4t").textContent = T("Donate / Gây quỹ", "Donate");
-    document.getElementById("q4d").textContent = T("Hiểu cách đóng góp và nguyên tắc minh bạch đi kèm.", "Understand how to contribute and the transparency principle behind it.");
+document.getElementById("q1d").textContent = T("Hiểu nền tảng, tầm nhìn và lý do tồn tại của hệ thống.", "Understand the platform, vision, and why the system exists.");
+document.getElementById("q2t").textContent = T("Chương trình", "Program");
+document.getElementById("q2d").textContent = T("Xem cấu trúc triển khai, mô-đun vận hành và lộ trình.", "See implementation structure, operating modules, and roadmap.");
+document.getElementById("q3t").textContent = T("Kịch bản", "Scripts");
+document.getElementById("q3d").textContent = T("Đi thẳng vào dòng sản phẩm ưu tiên giai đoạn 1.", "Go directly to the phase one priority product line.");
+document.getElementById("q4t").textContent = T("Donate / Gây quỹ", "Donate");
+document.getElementById("q4d").textContent = T("Hiểu cách đóng góp và nguyên tắc minh bạch đi kèm.", "Understand how to contribute and the transparency principle behind it.");
 
-    document.getElementById("presetEyebrow").textContent = T("LIÊN KẾT SẴN", "PRESET LINKS");
-    document.getElementById("presetTitle").textContent = T("Hệ liên kết ẩn đã đặt sẵn cho tương lai", "Preset future-ready link system");
-    document.getElementById("presetDesc").textContent = T(
-      "Từ trang này, các liên kết quan trọng đã được set sẵn. Sau này khi anh publish bài hoặc tạo thêm slug trong CMS, hệ thống sẽ tự nối vào đúng luồng mà không cần đập lại cấu trúc.",
-      "From this page, important links are already preset. Later, when posts or slugs are published in CMS, the system connects them without rebuilding the structure."
-    );
+document.getElementById("presetEyebrow").textContent = T("LIÊN KẾT SẴN", "PRESET LINKS");
+document.getElementById("presetTitle").textContent = T("Hệ liên kết ẩn đã đặt sẵn cho tương lai", "Preset future-ready link system");
+document.getElementById("presetDesc").textContent = T(
+  "Từ trang này, các liên kết quan trọng đã được set sẵn. Sau này khi anh publish bài hoặc tạo thêm slug trong CMS, hệ thống sẽ tự nối vào đúng luồng mà không cần đập lại cấu trúc.",
+  "From this page, important links are already preset. Later, when posts or slugs are published in CMS, the system connects them without rebuilding the structure."
+);
 
-    document.getElementById("footerNote").textContent = T(
-      "Trang bài viết được thiết kế để luôn có nội dung hiển thị, dù CMS đã có bài hay chưa. Không để trống, không gãy link, không mất phương hướng.",
-      "This post page is designed to always show content, whether CMS already has posts or not. No blank page, no broken links, no loss of direction."
-    );
+document.getElementById("footerNote").textContent = T(
+  "Trang bài viết được thiết kế để luôn có nội dung hiển thị, dù CMS đã có bài hay chưa. Không để trống, không gãy link, không mất phương hướng.",
+  "This posts page is designed to always show content, whether CMS already has posts or not. No blank page, no broken links, no loss of direction."
+);
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) entry.target.classList.add("in");
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-
-    const postsList = document.getElementById("postsList");
-    const countInfo = document.getElementById("countInfo");
-
-    const fallbackItems = [
-      {
-        slug: "about",
-        type: "page",
-        title_vi: "Giới thiệu hệ thống Đường Sao Tỏa Sáng",
-        title_en: "About Star Path Light Up",
-        excerpt_vi: "Tổng quan nền tảng, lý do tồn tại và logic vận hành tổng thể.",
-        excerpt_en: "Overall platform, reason for existence, and operating logic."
-      },
-      {
-        slug: "program",
-        type: "page",
-        title_vi: "Khung chương trình và mô-đun vận hành",
-        title_en: "Program framework and operating modules",
-        excerpt_vi: "Cách hệ thống được cấu trúc để triển khai các dự án theo từng giai đoạn.",
-        excerpt_en: "How the system is structured to implement projects in phases."
-      },
-      {
-        slug: "scripts",
-        type: "script",
-        title_vi: "Kịch bản là dòng sản phẩm ưu tiên giai đoạn đầu",
-        title_en: "Scripts are the phase one priority product line",
-        excerpt_vi: "Dòng sản phẩm trọng tâm để tạo doanh thu minh bạch và bền vững.",
-        excerpt_en: "A core product line to generate transparent and sustainable revenue."
-      },
-      {
-        slug: "donate",
-        type: "page",
-        title_vi: "Nguyên tắc gây quỹ minh bạch",
-        title_en: "Transparent fundraising principles",
-        excerpt_vi: "Donate phải gắn với mục tiêu rõ, sử dụng rõ và báo cáo rõ.",
-        excerpt_en: "Donations must be tied to clear goals, use, and reporting."
-      }
-    ];
-
-    let masterItems = [];
-
-    function toHref(item){
-      const slug = item.slug || "";
-      const type = item.type || "post";
-      return type === "post"
-        ? `/posts/${encodeURIComponent(slug)}`
-        : `/${encodeURIComponent(slug)}`;
+// reveal animation
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("in");
     }
+  });
+}, { threshold: 0.12 });
 
-    function renderItems(filter = "all"){
-      let items = masterItems;
-      if(filter !== "all"){
-        items = items.filter(x => (x.type || "") === filter);
-      }
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
-      if(!items.length){
-        postsList.innerHTML = `
-          <div class="item">
-            <b>${T("Chưa có nội dung phù hợp", "No matching content")}</b>
-            <div class="excerpt">${T("Hiện chưa có bài nào đúng bộ lọc đang chọn.", "There is no content for the current filter.")}</div>
-          </div>
-        `;
-        return;
-      }
+const postsList = document.getElementById("postsList");
+const countInfo = document.getElementById("countInfo");
 
-      postsList.innerHTML = items.map(item => {
-        const title = lang === "vi"
-          ? (item.title_vi || item.title || item.title_en || item.slug || "(untitled)")
-          : (item.title_en || item.title || item.title_vi || item.slug || "(untitled)");
+const fallbackItems = [
+  {
+    slug: "about",
+    type: "page",
+    title_vi: "Giới thiệu hệ thống Đường Sao Tỏa Sáng",
+    title_en: "About Star Path Light Up",
+    excerpt_vi: "Tổng quan nền tảng, lý do tồn tại và logic vận hành tổng thể.",
+    excerpt_en: "Overall platform, reason for existence, and operating logic."
+  },
+  {
+    slug: "program",
+    type: "page",
+    title_vi: "Khung chương trình và mô-đun vận hành",
+    title_en: "Program framework and operating modules",
+    excerpt_vi: "Cách hệ thống được cấu trúc để triển khai các dự án theo từng giai đoạn.",
+    excerpt_en: "How the system is structured to implement projects in phases."
+  },
+  {
+    slug: "scripts",
+    type: "script",
+    title_vi: "Kịch bản là dòng sản phẩm ưu tiên giai đoạn đầu",
+    title_en: "Scripts are the phase one priority product line",
+    excerpt_vi: "Dòng sản phẩm trọng tâm để tạo doanh thu minh bạch và bền vững.",
+    excerpt_en: "A core product line to generate transparent and sustainable revenue."
+  },
+  {
+    slug: "donate",
+    type: "page",
+    title_vi: "Nguyên tắc gây quỹ minh bạch",
+    title_en: "Transparent fundraising principles",
+    excerpt_vi: "Donate phải gắn với mục tiêu rõ, sử dụng rõ và báo cáo rõ.",
+    excerpt_en: "Donations must be tied to clear goals, use, and reporting."
+  }
+];
 
-        const excerpt = lang === "vi"
-          ? (item.excerpt_vi || item.excerpt || item.excerpt_en || T("Nhấn để đọc chi tiết.", "Open to read details."))
-          : (item.excerpt_en || item.excerpt || item.excerpt_vi || T("Open to read details.", "Open to read details."));
+let masterItems = [];
 
-        const typeLabel = item.type || "post";
+function toHref(item) {
+  const slug = item.slug || "";
+  const type = item.type || "post";
 
-        return `
-          <a class="item" href="${toHref(item)}">
-            <div class="item-top">
-              <b>${esc(title)}</b>
-              <span class="tag">${esc(typeLabel)}</span>
-            </div>
-            <div class="excerpt">${esc(excerpt)}</div>
-            <div class="meta">${T("Slug", "Slug")}: ${esc(item.slug || "")}</div>
-          </a>
-        `;
-      }).join("");
-    }
+  if (type === "post") {
+    return `/posts/${encodeURIComponent(slug)}`;
+  }
 
-    qsa(".filter-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        qsa(".filter-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        renderItems(btn.dataset.filter || "all");
-      });
-    });
+  return `/${encodeURIComponent(slug)}`;
+}
 
-    try{
-      const items = await listContents({
-        visibility: "public",
-        limit: 36,
-        order: "created_at.desc"
-      });
+function renderItems(filter = "all") {
+  let items = masterItems;
 
-      masterItems = (items && items.length ? items : fallbackItems).map(item => ({
-        slug: item.slug || item.raw?.slug || "",
-        type: item.type || item.raw?.type || "post",
-        title_vi: item.raw?.title_vi || item.title_vi || item.title || "",
-        title_en: item.raw?.title_en || item.title_en || item.title || "",
-        excerpt_vi: item.raw?.excerpt_vi || item.excerpt_vi || item.excerpt || "",
-        excerpt_en: item.raw?.excerpt_en || item.excerpt_en || item.excerpt || ""
-      }));
+  if (filter !== "all") {
+    items = items.filter(x => (x.type || "") === filter);
+  }
 
-      countInfo.textContent = T(
-        `Tổng cộng ${masterItems.length} mục`,
-        `${masterItems.length} items`
-      );
+  if (!items.length) {
+    postsList.innerHTML = `
+      <div class="item">
+        <b>${T("Chưa có nội dung phù hợp", "No matching content")}</b>
+        <div class="excerpt">${T("Hiện chưa có bài nào đúng bộ lọc đang chọn.", "There is no content for the current filter.")}</div>
+      </div>
+    `;
+    return;
+  }
 
-      renderItems("all");
-    }catch(e){
-      masterItems = fallbackItems;
-      countInfo.textContent = T("Đang dùng nội dung dự phòng", "Using fallback content");
-      renderItems("all");
-      console.warn("posts fallback used:", e);
-    }
-  </script>
-</body>
-</html>
+  postsList.innerHTML = items.map(item => {
+    const title = lang === "vi"
+      ? (item.title_vi || item.title || item.title_en || item.slug || "(untitled)")
+      : (item.title_en || item.title || item.title_vi || item.slug || "(untitled)");
+
+    const excerpt = lang === "vi"
+      ? (item.excerpt_vi || item.excerpt || item.excerpt_en || T("Nhấn để đọc chi tiết.", "Open to read details."))
+      : (item.excerpt_en || item.excerpt || item.excerpt_vi || T("Open to read details.", "Open to read details."));
+
+    const typeLabel = item.type || "post";
+
+    return `
+      <a class="item" href="${toHref(item)}">
+        <div class="item-top">
+          <b>${esc(title)}</b>
+          <span class="tag">${esc(typeLabel)}</span>
+        </div>
+        <div class="excerpt">${esc(excerpt)}</div>
+        <div class="meta">${T("Slug", "Slug")}: ${esc(item.slug || "")}</div>
+      </a>
+    `;
+  }).join("");
+}
+
+qsa(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    qsa(".filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderItems(btn.dataset.filter || "all");
+  });
+});
+
+try {
+  const items = await listContents({
+    visibility: "public",
+    limit: 36,
+    order: "created_at.desc"
+  });
+
+  masterItems = (items && items.length ? items : fallbackItems).map(item => ({
+    slug: item.slug || item.raw?.slug || "",
+    type: item.type || item.raw?.type || "post",
+    title_vi: item.raw?.title_vi || item.title_vi || item.title || "",
+    title_en: item.raw?.title_en || item.title_en || item.title || "",
+    excerpt_vi: item.raw?.excerpt_vi || item.excerpt_vi || item.excerpt || "",
+    excerpt_en: item.raw?.excerpt_en || item.excerpt_en || item.excerpt || ""
+  }));
+
+  countInfo.textContent = T(
+    `Tổng cộng ${masterItems.length} mục`,
+    `${masterItems.length} items`
+  );
+
+  renderItems("all");
+} catch (e) {
+  masterItems = fallbackItems;
+  countInfo.textContent = T("Đang dùng nội dung dự phòng", "Using fallback content");
+  renderItems("all");
+  console.warn("posts fallback used:", e);
+}
