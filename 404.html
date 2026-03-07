@@ -4,139 +4,615 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>404 | Đường Sao Tỏa Sáng</title>
-  <meta name="description" content="Trang không tồn tại hoặc chưa được xuất bản."/>
-  <meta name="robots" content="noindex,nofollow"/>
-  <link rel="canonical" href="https://duongsaotoasang.com/404.html"/>
-  <meta property="og:title" content="404 | Đường Sao Tỏa Sáng"/>
-  <meta property="og:description" content="Trang không tồn tại hoặc chưa được xuất bản."/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://duongsaotoasang.com/404.html"/>
-  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="description" content="Trang anh đang tìm hiện chưa tồn tại, đã được đổi đường dẫn, hoặc đang trong quá trình cập nhật nội dung."/>
+  <meta name="theme-color" content="#0b0e12"/>
   <link rel="stylesheet" href="/app.css"/>
+
+  <style>
+    :root{
+      --bg:#090c10;
+      --panel:rgba(255,255,255,.045);
+      --panel-2:rgba(255,255,255,.032);
+      --line:rgba(255,255,255,.085);
+      --text:#f3f5f7;
+      --muted:#a8b0ba;
+      --gold:#d8bc77;
+      --gold-soft:rgba(216,188,119,.16);
+      --blue-soft:rgba(132,176,255,.14);
+      --white-soft:rgba(255,255,255,.82);
+      --shadow:0 18px 70px rgba(0,0,0,.42);
+      --radius:24px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(900px 520px at 0% 0%, rgba(216,188,119,.10), transparent 60%),
+        radial-gradient(760px 480px at 100% 10%, rgba(132,176,255,.10), transparent 58%),
+        linear-gradient(180deg,#080b0f 0%, #0c1117 100%);
+      overflow-x:hidden;
+      min-height:100vh;
+    }
+
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+
+    .topbar{
+      position:sticky;top:0;z-index:80;
+      backdrop-filter:blur(16px);
+      background:rgba(10,12,16,.72);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;align-items:center;gap:12px;min-width:0;
+    }
+
+    .brand-mark{
+      width:44px;height:44px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.16), transparent 35%),
+        linear-gradient(135deg, rgba(216,188,119,.28), rgba(255,255,255,.05));
+      box-shadow:var(--shadow);
+      flex:0 0 auto;
+    }
+
+    .brand-title{
+      font-weight:800;
+      font-size:17px;
+      letter-spacing:.2px;
+      line-height:1.05;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .brand-sub{
+      font-size:12px;
+      color:var(--muted);
+      margin-top:4px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .menu{
+      display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;
+    }
+
+    .menu a{
+      padding:10px 12px;
+      border-radius:12px;
+      color:var(--white-soft);
+      border:1px solid transparent;
+      transition:all .25s ease;
+    }
+
+    .menu a:hover,
+    .menu a.active{
+      color:#fff;
+      background:rgba(255,255,255,.05);
+      border-color:var(--line);
+    }
+
+    .right{
+      display:flex;align-items:center;gap:10px;flex:0 0 auto;
+    }
+
+    .lang-links{
+      display:flex;gap:8px;align-items:center;
+    }
+
+    .lang-link{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-width:46px;height:40px;padding:0 12px;
+      border-radius:999px;border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--muted);font-size:13px;font-weight:700;
+      transition:all .25s ease;
+    }
+
+    .lang-link.active{
+      color:#fff;
+      background:rgba(216,188,119,.14);
+      border-color:rgba(216,188,119,.32);
+    }
+
+    .mobile-toggle{
+      display:none;
+      width:44px;height:44px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      cursor:pointer;
+    }
+
+    .hero{
+      padding:44px 0 18px;
+    }
+
+    .hero-shell{
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.085);
+      border-radius:30px;
+      background:
+        radial-gradient(780px 320px at 10% 0%, rgba(216,188,119,.12), transparent 62%),
+        radial-gradient(680px 280px at 100% 8%, rgba(132,176,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.018));
+      box-shadow:var(--shadow);
+      padding:34px;
+      text-align:center;
+    }
+
+    .hero-shell::before{
+      content:"";
+      position:absolute;
+      inset:auto -80px -80px auto;
+      width:240px;height:240px;
+      background:radial-gradient(circle, rgba(216,188,119,.14), transparent 65%);
+      pointer-events:none;
+      filter:blur(10px);
+    }
+
+    .eyebrow{
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:12px;
+    }
+
+    .code404{
+      font-size:92px;
+      line-height:1;
+      font-weight:800;
+      letter-spacing:-.05em;
+      margin:0;
+      background:linear-gradient(180deg, #fff 0%, rgba(216,188,119,.95) 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero h1{
+      margin:14px auto 0;
+      font-size:42px;
+      line-height:1.08;
+      letter-spacing:-.03em;
+      max-width:880px;
+    }
+
+    .lead{
+      margin:18px auto 0;
+      color:var(--muted);
+      line-height:1.92;
+      font-size:16px;
+      max-width:820px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:24px;
+    }
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:10px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      cursor:pointer;
+      transition:all .25s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+      text-decoration:none;
+    }
+
+    .btn.primary{
+      border-color:rgba(216,188,119,.38);
+      background:linear-gradient(180deg, rgba(216,188,119,.18), rgba(216,188,119,.08));
+      box-shadow:0 10px 30px rgba(216,188,119,.10);
+    }
+
+    .section{
+      padding:12px 0 8px;
+    }
+
+    .section-header{
+      display:flex;align-items:end;justify-content:space-between;gap:14px;flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+
+    .section-header h2{
+      margin:0;
+      font-size:30px;
+      line-height:1.1;
+      letter-spacing:-.02em;
+    }
+
+    .section-header p{
+      margin:0;
+      color:var(--muted);
+      max-width:760px;
+      line-height:1.85;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:14px;
+    }
+
+    .card{
+      border:1px solid var(--line);
+      background:var(--panel);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:var(--shadow);
+    }
+
+    .span-4{grid-column:span 4}
+    .span-6{grid-column:span 6}
+
+    .card h2{
+      margin:0 0 10px;
+      font-size:20px;
+      line-height:1.2;
+    }
+
+    .muted{
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .list{
+      display:grid;
+      gap:12px;
+    }
+
+    .item{
+      display:block;
+      border:1px solid var(--line);
+      background:var(--panel-2);
+      border-radius:18px;
+      padding:16px;
+      transition:transform .25s ease,border-color .25s ease,background .25s ease;
+    }
+
+    .item:hover{
+      transform:translateY(-2px);
+      border-color:rgba(216,188,119,.22);
+      background:rgba(255,255,255,.055);
+    }
+
+    .item b{
+      display:block;
+      font-size:17px;
+      line-height:1.35;
+      margin-bottom:8px;
+    }
+
+    .item .meta{
+      color:var(--muted);
+      font-size:13px;
+      margin-top:8px;
+    }
+
+    .footer{
+      margin-top:26px;
+      padding:24px 0 54px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      line-height:1.85;
+      font-size:14px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:16px;
+      align-items:start;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(26px);
+      transition:opacity .75s ease, transform .75s ease;
+    }
+
+    .reveal.in{
+      opacity:1;
+      transform:none;
+    }
+
+    @media (max-width:1080px){
+      .span-4,.span-6{grid-column:span 12}
+      .hero h1{font-size:34px}
+      .code404{font-size:78px}
+    }
+
+    @media (max-width:860px){
+      .nav{align-items:flex-start}
+      .menu{
+        display:none;
+        width:100%;
+        padding-top:10px;
+      }
+      .menu.open{display:flex}
+      .mobile-toggle{display:inline-flex;align-items:center;justify-content:center}
+      .right{display:none}
+      .hero-shell{padding:22px}
+      .footer-grid{grid-template-columns:1fr}
+      .code404{font-size:64px}
+      .hero h1{font-size:28px}
+    }
+  </style>
 </head>
 <body>
   <header class="topbar">
     <div class="wrap">
-      <div class="row">
+      <div class="nav">
         <div class="brand">
-          <b>Đường Sao Tỏa Sáng</b>
-          <span class="small muted">Star Path Light Up</span>
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div>
+            <div class="brand-title">Đường Sao Tỏa Sáng</div>
+            <div class="brand-sub">Star Path Light Up</div>
+          </div>
         </div>
 
-        <nav class="nav">
-          <a data-nav href="/">Trang chủ</a>
-          <a data-nav href="/content?slug=about">Giới thiệu</a>
-          <a data-nav href="/content?slug=program">Chương trình</a>
-          <a data-nav href="/content?slug=events">Sự kiện</a>
-          <a data-nav href="/content?slug=scripts">Kịch bản</a>
-          <a data-nav href="/content?slug=donate">Gây quỹ</a>
-          <a data-nav href="/content?slug=transparency">Minh bạch</a>
-          <a data-nav href="/content?slug=legal">Pháp lý</a>
-          <a data-nav href="/content?slug=contact">Liên hệ</a>
-          <a class="btn" href="/posts.html">Bài viết</a>
-          <button class="langbtn" data-lang-toggle><span data-lang-badge>VI</span> / EN</button>
-        </nav>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">☰</button>
+
+        <div class="menu" id="mainMenu">
+          <a href="/">Trang chủ</a>
+          <a href="/about">Giới thiệu</a>
+          <a href="/program">Chương trình</a>
+          <a href="/events">Sự kiện</a>
+          <a href="/scripts">Kịch bản</a>
+          <a href="/donate">Gây quỹ</a>
+          <a href="/transparency">Minh bạch</a>
+          <a href="/legal">Pháp lý</a>
+          <a href="/contact">Liên hệ</a>
+          <a href="/posts">Bài viết</a>
+        </div>
+
+        <div class="right">
+          <div class="lang-links">
+            <a id="langViLink" class="lang-link" href="#">VI</a>
+            <a id="langEnLink" class="lang-link" href="#">EN</a>
+          </div>
+        </div>
       </div>
     </div>
   </header>
 
   <main class="wrap">
-    <section class="card">
-      <div class="small muted" id="codeLabel">Lỗi điều hướng</div>
-      <h1 id="title" style="font-size:52px;margin:10px 0 0">404</h1>
-      <p class="muted" id="desc" style="line-height:1.8;margin-top:12px">
-        Trang anh/chị đang tìm không tồn tại, chưa được xuất bản, hoặc đường dẫn đã thay đổi.
-      </p>
+    <section class="hero reveal">
+      <div class="hero-shell">
+        <div class="eyebrow" id="heroEyebrow">TRANG KHÔNG TỒN TẠI</div>
+        <div class="code404">404</div>
+        <h1 id="heroTitle">Trang anh đang tìm hiện chưa tồn tại hoặc đã được đổi đường dẫn.</h1>
+        <p class="lead" id="heroDesc">
+          Có thể nội dung này chưa được publish, đã chuyển sang một slug mới, hoặc đường dẫn vừa nhập chưa đúng. Anh có thể quay về trang chủ hoặc đi thẳng tới các mục chính bên dưới.
+        </p>
 
-      <div class="hr"></div>
+        <div class="hero-actions">
+          <a class="btn primary" href="/" id="ctaHome">Về trang chủ</a>
+          <a class="btn" href="/posts" id="ctaPosts">Xem bài viết</a>
+          <a class="btn" href="/contact" id="ctaContact">Liên hệ</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-header">
+        <div>
+          <div class="eyebrow" id="pathsEyebrow">LỐI ĐI NHANH</div>
+          <h2 id="pathsTitle">Những hướng điều hướng an toàn</h2>
+        </div>
+        <p id="pathsDesc">
+          Nếu anh mở từ một link cũ hoặc link chia sẻ chưa cập nhật, hãy dùng các đường dẫn nền dưới đây để quay về đúng luồng nội dung chính của hệ thống.
+        </p>
+      </div>
 
       <div class="grid">
-        <div class="card" style="grid-column: span 7">
-          <h2 id="suggestTitle">Gợi ý xử lý</h2>
-          <div class="small" style="line-height:1.9" id="suggestBody">
-            <p>1. Kiểm tra lại đường dẫn URL đang mở.</p>
-            <p>2. Nếu đây là một trang nội dung theo slug, hãy thử quay về Trang chủ hoặc Danh sách bài viết.</p>
-            <p>3. Nếu anh/chị là quản trị viên, hãy kiểm tra slug trong CMS hoặc file <code>_redirects</code>.</p>
-          </div>
-
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
-            <a class="btn primary" href="/" id="btnHome">Về Trang chủ</a>
-            <a class="btn" href="/posts.html" id="btnPosts">Xem Bài viết</a>
-            <a class="btn" href="/content?slug=contact" id="btnContact">Liên hệ</a>
+        <div class="card span-4">
+          <h2 id="f1t">Trang chủ</h2>
+          <p class="muted" id="f1d">Điểm quay về tổng quát nhất để xem lại tầm nhìn, cấu trúc hệ thống và các hướng đi chính.</p>
+          <div style="margin-top:14px">
+            <a class="btn primary" href="/" id="f1btn">Mở trang chủ</a>
           </div>
         </div>
 
-        <div class="card" style="grid-column: span 5">
-          <h2 id="quickTitle">Đi nhanh</h2>
-          <div class="list">
+        <div class="card span-4">
+          <h2 id="f2t">Bài viết</h2>
+          <p class="muted" id="f2d">Nếu anh đang tìm một bài cụ thể, hãy vào thư viện bài viết để tìm lại theo danh sách công khai.</p>
+          <div style="margin-top:14px">
+            <a class="btn primary" href="/posts" id="f2btn">Mở bài viết</a>
+          </div>
+        </div>
+
+        <div class="card span-4">
+          <h2 id="f3t">Liên hệ</h2>
+          <p class="muted" id="f3d">Nếu đây là link quan trọng cần được phục hồi hoặc cập nhật, anh có thể đi thẳng tới phần liên hệ.</p>
+          <div style="margin-top:14px">
+            <a class="btn primary" href="/contact" id="f3btn">Mở liên hệ</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="grid">
+        <div class="card span-6">
+          <div class="eyebrow" id="quickEyebrow">TRANG NỀN</div>
+          <h2 id="quickTitle">Các trang nền quan trọng</h2>
+          <div class="list" style="margin-top:14px">
+            <a class="item" href="/about">
+              <b id="q1t">Giới thiệu</b>
+              <div class="muted" id="q1d">Hiểu nền tảng, tầm nhìn và lý do tồn tại của hệ thống.</div>
+            </a>
+
+            <a class="item" href="/program">
+              <b id="q2t">Chương trình</b>
+              <div class="muted" id="q2d">Khung vận hành, mô-đun triển khai và lộ trình phát triển.</div>
+            </a>
+
+            <a class="item" href="/scripts">
+              <b id="q3t">Kịch bản</b>
+              <div class="muted" id="q3d">Dòng sản phẩm ưu tiên giai đoạn đầu và cấu trúc nội dung liên quan.</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="card span-6">
+          <div class="eyebrow" id="helpEyebrow">GỢI Ý</div>
+          <h2 id="helpTitle">Vì sao anh gặp trang 404</h2>
+          <div class="list" style="margin-top:14px">
             <div class="item">
-              <b><a href="/content?slug=about" id="q1t">Giới thiệu</a></b>
-              <div class="small muted" id="q1d">Tổng quan về hệ thống và mục tiêu dài hạn.</div>
+              <b id="r1t">Slug đã đổi</b>
+              <div class="muted" id="r1d">Trang cũ có thể đã được đổi sang một URL đẹp mới, ví dụ từ dạng query sang dạng đường dẫn tĩnh.</div>
             </div>
+
             <div class="item">
-              <b><a href="/content?slug=scripts" id="q2t">Kịch bản</a></b>
-              <div class="small muted" id="q2d">Dòng sản phẩm ưu tiên giai đoạn 1.</div>
+              <b id="r2t">Nội dung chưa publish</b>
+              <div class="muted" id="r2d">Bài viết hoặc trang có thể đã được tạo trong hệ thống nhưng chưa được công khai.</div>
             </div>
+
             <div class="item">
-              <b><a href="/content?slug=donate" id="q3t">Donate / Gây quỹ</a></b>
-              <div class="small muted" id="q3d">Cơ chế gây quỹ minh bạch và có báo cáo.</div>
+              <b id="r3t">Link bên ngoài đã cũ</b>
+              <div class="muted" id="r3d">Một link cũ được chia sẻ từ trước có thể không còn khớp với cấu trúc URL hiện tại của website.</div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <div><b>Contact:</b> contact@duongsaotoasang.com</div>
+          <div><b>Admin:</b> duongsaotoasang@gmail.com</div>
+          <div class="small" id="footerNote" style="margin-top:10px">
+            Trang 404 được thiết kế để không tạo cảm giác đứt mạch. Dù người dùng đi nhầm đường, họ vẫn có lối quay về đúng hệ thống.
+          </div>
+        </div>
+        <div class="small muted" id="footerRight">
+          Cloudflare Pages + Functions + D1 + R2
+        </div>
+      </div>
+    </footer>
   </main>
 
   <script type="module">
-    import { mountTopbar, getLang, setSeo } from "/app.js";
-
-    mountTopbar();
+    import { getLang, mountLangLinks, setSeo } from "/app.js";
 
     const lang = getLang();
     const T = (vi, en) => lang === "vi" ? vi : en;
 
-    document.getElementById("codeLabel").textContent = T("Lỗi điều hướng", "Routing error");
-    document.getElementById("desc").textContent = T(
-      "Trang anh/chị đang tìm không tồn tại, chưa được xuất bản, hoặc đường dẫn đã thay đổi.",
-      "The page you are looking for does not exist, is not published yet, or the URL has changed."
-    );
+    document.documentElement.lang = lang;
+    mountLangLinks("langViLink", "langEnLink");
 
-    document.getElementById("suggestTitle").textContent = T("Gợi ý xử lý", "What to do next");
-    document.getElementById("suggestBody").innerHTML = `
-      <p>1. ${T("Kiểm tra lại đường dẫn URL đang mở.", "Check the URL you are trying to open.")}</p>
-      <p>2. ${T("Nếu đây là một trang nội dung theo slug, hãy thử quay về Trang chủ hoặc Danh sách bài viết.", "If this is a CMS slug page, return to Home or Posts.")}</p>
-      <p>3. ${T("Nếu anh/chị là quản trị viên, hãy kiểm tra slug trong CMS hoặc file _redirects.", "If you are an administrator, check the CMS slug or the _redirects file.")}</p>
-    `;
-
-    document.getElementById("btnHome").textContent = T("Về Trang chủ", "Back to Home");
-    document.getElementById("btnPosts").textContent = T("Xem Bài viết", "View Posts");
-    document.getElementById("btnContact").textContent = T("Liên hệ", "Contact");
-
-    document.getElementById("quickTitle").textContent = T("Đi nhanh", "Quick links");
-    document.getElementById("q1t").textContent = T("Giới thiệu", "About");
-    document.getElementById("q1d").textContent = T(
-      "Tổng quan về hệ thống và mục tiêu dài hạn.",
-      "System overview and long-term purpose."
-    );
-    document.getElementById("q2t").textContent = T("Kịch bản", "Scripts");
-    document.getElementById("q2d").textContent = T(
-      "Dòng sản phẩm ưu tiên giai đoạn 1.",
-      "Primary product line in phase one."
-    );
-    document.getElementById("q3t").textContent = T("Donate / Gây quỹ", "Donate");
-    document.getElementById("q3d").textContent = T(
-      "Cơ chế gây quỹ minh bạch và có báo cáo.",
-      "Transparent fundraising with reporting."
-    );
+    document.getElementById("mobileToggle").onclick = () => {
+      document.getElementById("mainMenu").classList.toggle("open");
+    };
 
     setSeo({
-      title: T("404 | Đường Sao Tỏa Sáng", "404 | Star Path Light Up"),
-      description: T(
-        "Trang không tồn tại hoặc chưa được xuất bản.",
-        "The page does not exist or has not been published."
+      title: T(
+        "404 | Đường Sao Tỏa Sáng",
+        "404 | Star Path Light Up"
       ),
-      canonical: "https://duongsaotoasang.com/404.html"
+      description: T(
+        "Trang anh đang tìm hiện chưa tồn tại, đã được đổi đường dẫn, hoặc đang trong quá trình cập nhật nội dung.",
+        "The page you are looking for does not exist, has moved, or is currently being updated."
+      ),
+      canonical: lang === "en"
+        ? "https://duongsaotoasang.com/404.html?lang=en"
+        : "https://duongsaotoasang.com/404.html"
     });
+
+    document.getElementById("heroEyebrow").textContent = T("TRANG KHÔNG TỒN TẠI", "PAGE NOT FOUND");
+    document.getElementById("heroTitle").textContent = T(
+      "Trang anh đang tìm hiện chưa tồn tại hoặc đã được đổi đường dẫn.",
+      "The page you are looking for does not exist or has moved."
+    );
+    document.getElementById("heroDesc").textContent = T(
+      "Có thể nội dung này chưa được publish, đã chuyển sang một slug mới, hoặc đường dẫn vừa nhập chưa đúng. Anh có thể quay về trang chủ hoặc đi thẳng tới các mục chính bên dưới.",
+      "This content may not be published yet, may have moved to a new slug, or the URL may be incorrect. You can return home or go directly to the main sections below."
+    );
+
+    document.getElementById("ctaHome").textContent = T("Về trang chủ", "Back home");
+    document.getElementById("ctaPosts").textContent = T("Xem bài viết", "View posts");
+    document.getElementById("ctaContact").textContent = T("Liên hệ", "Contact");
+
+    document.getElementById("pathsEyebrow").textContent = T("LỐI ĐI NHANH", "QUICK PATHS");
+    document.getElementById("pathsTitle").textContent = T("Những hướng điều hướng an toàn", "Safe navigation paths");
+    document.getElementById("pathsDesc").textContent = T(
+      "Nếu anh mở từ một link cũ hoặc link chia sẻ chưa cập nhật, hãy dùng các đường dẫn nền dưới đây để quay về đúng luồng nội dung chính của hệ thống.",
+      "If you opened an older or outdated shared link, use the routes below to return to the main content flow of the system."
+    );
+
+    document.getElementById("f1t").textContent = T("Trang chủ", "Homepage");
+    document.getElementById("f1d").textContent = T("Điểm quay về tổng quát nhất để xem lại tầm nhìn, cấu trúc hệ thống và các hướng đi chính.", "The best place to return and review the overall vision, system structure, and primary directions.");
+    document.getElementById("f1btn").textContent = T("Mở trang chủ", "Open homepage");
+
+    document.getElementById("f2t").textContent = T("Bài viết", "Posts");
+    document.getElementById("f2d").textContent = T("Nếu anh đang tìm một bài cụ thể, hãy vào thư viện bài viết để tìm lại theo danh sách công khai.", "If you are looking for a specific article, go to the public post library and find it there.");
+    document.getElementById("f2btn").textContent = T("Mở bài viết", "Open posts");
+
+    document.getElementById("f3t").textContent = T("Liên hệ", "Contact");
+    document.getElementById("f3d").textContent = T("Nếu đây là link quan trọng cần được phục hồi hoặc cập nhật, anh có thể đi thẳng tới phần liên hệ.", "If this is an important link that needs recovery or updating, go directly to the contact section.");
+    document.getElementById("f3btn").textContent = T("Mở liên hệ", "Open contact");
+
+    document.getElementById("quickEyebrow").textContent = T("TRANG NỀN", "CORE PAGES");
+    document.getElementById("quickTitle").textContent = T("Các trang nền quan trọng", "Important foundation pages");
+    document.getElementById("q1t").textContent = T("Giới thiệu", "About");
+    document.getElementById("q1d").textContent = T("Hiểu nền tảng, tầm nhìn và lý do tồn tại của hệ thống.", "Understand the platform, vision, and why the system exists.");
+    document.getElementById("q2t").textContent = T("Chương trình", "Program");
+    document.getElementById("q2d").textContent = T("Khung vận hành, mô-đun triển khai và lộ trình phát triển.", "Operating framework, implementation modules, and development roadmap.");
+    document.getElementById("q3t").textContent = T("Kịch bản", "Scripts");
+    document.getElementById("q3d").textContent = T("Dòng sản phẩm ưu tiên giai đoạn đầu và cấu trúc nội dung liên quan.", "The early priority product line and its related content structure.");
+
+    document.getElementById("helpEyebrow").textContent = T("GỢI Ý", "GUIDANCE");
+    document.getElementById("helpTitle").textContent = T("Vì sao anh gặp trang 404", "Why you are seeing a 404 page");
+    document.getElementById("r1t").textContent = T("Slug đã đổi", "Slug has changed");
+    document.getElementById("r1d").textContent = T("Trang cũ có thể đã được đổi sang một URL đẹp mới, ví dụ từ dạng query sang dạng đường dẫn tĩnh.", "An old page may have moved to a cleaner new URL, for example from a query format to a static path.");
+    document.getElementById("r2t").textContent = T("Nội dung chưa publish", "Content not published yet");
+    document.getElementById("r2d").textContent = T("Bài viết hoặc trang có thể đã được tạo trong hệ thống nhưng chưa được công khai.", "An article or page may already exist in the system but has not yet been made public.");
+    document.getElementById("r3t").textContent = T("Link bên ngoài đã cũ", "External link is outdated");
+    document.getElementById("r3d").textContent = T("Một link cũ được chia sẻ từ trước có thể không còn khớp với cấu trúc URL hiện tại của website.", "An older shared link may no longer match the website’s current URL structure.");
+
+    document.getElementById("footerNote").textContent = T(
+      "Trang 404 được thiết kế để không tạo cảm giác đứt mạch. Dù người dùng đi nhầm đường, họ vẫn có lối quay về đúng hệ thống.",
+      "This 404 page is designed to avoid a broken experience. Even if users go to the wrong path, they still have clear ways back into the system."
+    );
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add("in");
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
