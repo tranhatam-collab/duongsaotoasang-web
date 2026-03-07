@@ -5,18 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Bài viết | Đường Sao Tỏa Sáng</title>
   <meta name="description" content="Danh sách bài viết, cập nhật, chia sẻ và các nội dung công khai từ hệ thống Đường Sao Tỏa Sáng."/>
-  <link rel="canonical" href="https://duongsaotoasang.com/posts"/>
-  <meta property="og:title" content="Bài viết | Đường Sao Tỏa Sáng"/>
-  <meta property="og:description" content="Danh sách bài viết, cập nhật, chia sẻ và các nội dung công khai từ hệ thống Đường Sao Tỏa Sáng."/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://duongsaotoasang.com/posts"/>
-  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="theme-color" content="#0b0e12"/>
   <link rel="stylesheet" href="/app.css"/>
 
   <style>
     :root{
       --bg:#090c11;
       --card:rgba(255,255,255,.045);
+      --card-2:rgba(255,255,255,.03);
       --line:rgba(255,255,255,.085);
       --text:#f2f4f7;
       --muted:#a8b0bb;
@@ -28,6 +24,7 @@
     }
 
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       color:var(--text);
@@ -40,53 +37,109 @@
     }
 
     a{color:inherit;text-decoration:none}
-    .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+    img{max-width:100%;display:block}
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 18px;
+    }
 
     .topbar{
-      position:sticky;top:0;z-index:70;
+      position:sticky;
+      top:0;
+      z-index:70;
       backdrop-filter:blur(16px);
       background:rgba(10,12,16,.72);
       border-bottom:1px solid var(--line);
     }
 
     .nav{
-      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
       padding:14px 0;
     }
 
-    .brand{display:flex;align-items:center;gap:12px}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
     .brand-mark{
-      width:42px;height:42px;border-radius:14px;
+      width:42px;
+      height:42px;
+      border-radius:14px;
       background:
         radial-gradient(circle at 30% 30%, rgba(255,255,255,.15), transparent 36%),
         linear-gradient(135deg, rgba(216,188,119,.28), rgba(255,255,255,.05));
       border:1px solid rgba(255,255,255,.10);
       box-shadow:var(--shadow);
     }
-    .brand-title{font-weight:800;font-size:17px}
-    .brand-sub{font-size:12px;color:var(--muted);margin-top:3px}
 
-    .menu{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-    .menu a{
-      padding:10px 12px;border-radius:12px;border:1px solid transparent;
-      color:rgba(255,255,255,.82);transition:all .25s ease;
+    .brand-title{
+      font-weight:800;
+      font-size:17px;
     }
-    .menu a:hover,.menu a.active{
+
+    .brand-sub{
+      font-size:12px;
+      color:var(--muted);
+      margin-top:3px;
+    }
+
+    .menu{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .menu a{
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid transparent;
+      color:rgba(255,255,255,.82);
+      transition:all .25s ease;
+    }
+
+    .menu a:hover,
+    .menu a.active{
       background:rgba(255,255,255,.05);
       border-color:var(--line);
       color:#fff;
     }
 
-    .right{display:flex;align-items:center;gap:10px}
-    .lang-links{display:flex;gap:8px;align-items:center}
+    .right{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .lang-links{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
     .lang-link{
-      display:inline-flex;align-items:center;justify-content:center;
-      min-width:46px;height:40px;padding:0 12px;
-      border-radius:999px;border:1px solid var(--line);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:46px;
+      height:40px;
+      padding:0 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
       background:rgba(255,255,255,.03);
-      color:var(--muted);font-size:13px;font-weight:700;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:700;
       transition:all .25s ease;
     }
+
     .lang-link.active{
       color:#fff;
       background:rgba(216,188,119,.14);
@@ -94,11 +147,20 @@
     }
 
     .mobile-toggle{
-      display:none;width:44px;height:44px;border-radius:12px;
-      border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;cursor:pointer;
+      display:none;
+      width:44px;
+      height:44px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      cursor:pointer;
     }
 
-    .hero{padding:34px 0 16px}
+    .hero{
+      padding:34px 0 16px;
+    }
+
     .hero-shell{
       border:1px solid var(--line);
       background:
@@ -110,7 +172,11 @@
     }
 
     .eyebrow{
-      font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin-bottom:10px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:var(--gold);
+      margin-bottom:10px;
     }
 
     h1{
@@ -121,19 +187,33 @@
       max-width:950px;
     }
 
-    .muted{color:var(--muted);line-height:1.84}
+    .muted{
+      color:var(--muted);
+      line-height:1.84;
+    }
+
     .small{font-size:13px}
-    .hr{height:1px;background:var(--line);margin:16px 0}
+    .hr{
+      height:1px;
+      background:var(--line);
+      margin:16px 0;
+    }
 
     .hero-tools{
-      display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:18px;
     }
 
     .filter-btn{
-      padding:10px 14px;border-radius:999px;
+      padding:10px 14px;
+      border-radius:999px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.03);
-      color:#fff;cursor:pointer;transition:all .2s ease;
+      color:#fff;
+      cursor:pointer;
+      transition:all .2s ease;
     }
 
     .filter-btn.active{
@@ -193,7 +273,9 @@
     }
 
     .thumb img{
-      width:100%;height:100%;object-fit:cover;
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
     .post-body{
@@ -201,16 +283,24 @@
     }
 
     .post-meta-top{
-      display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
       margin-bottom:8px;
     }
 
     .tag{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:6px 10px;border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
       background:rgba(255,255,255,.04);
       border:1px solid var(--line);
-      font-size:12px;color:var(--muted);
+      font-size:12px;
+      color:var(--muted);
     }
 
     .post-title{
@@ -228,17 +318,22 @@
 
     .post-footer{
       margin-top:12px;
-      display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
-      color:var(--muted);font-size:13px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:13px;
     }
 
     .quick-list{
-      display:grid;gap:12px;
+      display:grid;
+      gap:12px;
     }
 
     .quick-item{
       border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
+      background:var(--card-2);
       border-radius:18px;
       padding:16px;
       display:block;
@@ -323,8 +418,8 @@
 
         <div class="right">
           <div class="lang-links">
-            <a id="langViLink" class="lang-link" href="/posts">VI</a>
-            <a id="langEnLink" class="lang-link" href="/posts?lang=en">EN</a>
+            <a id="langViLink" class="lang-link" href="#">VI</a>
+            <a id="langEnLink" class="lang-link" href="#">EN</a>
           </div>
         </div>
       </div>
@@ -369,22 +464,22 @@
         <div class="hr"></div>
 
         <div class="quick-list">
-          <a class="quick-item" href="/about" id="quick1">
+          <a class="quick-item" href="/about">
             <b id="q1t">Giới thiệu</b>
             <div class="muted" id="q1d">Hiểu nền tảng, tầm nhìn và lý do tồn tại của hệ thống.</div>
           </a>
 
-          <a class="quick-item" href="/program" id="quick2">
+          <a class="quick-item" href="/program">
             <b id="q2t">Chương trình</b>
             <div class="muted" id="q2d">Khung triển khai, mô-đun vận hành và lộ trình phát triển.</div>
           </a>
 
-          <a class="quick-item" href="/scripts" id="quick3">
+          <a class="quick-item" href="/scripts">
             <b id="q3t">Kịch bản</b>
             <div class="muted" id="q3d">Dòng sản phẩm ưu tiên giai đoạn đầu.</div>
           </a>
 
-          <a class="quick-item" href="/donate" id="quick4">
+          <a class="quick-item" href="/donate">
             <b id="q4t">Donate / Gây quỹ</b>
             <div class="muted" id="q4d">Hiểu cơ chế đồng hành minh bạch đi kèm báo cáo.</div>
           </a>
@@ -402,7 +497,14 @@
   </main>
 
   <script type="module">
-    import { getLang, mountLangLinks, listContents, setSeo, formatDate, esc } from "/app.js";
+    import {
+      getLang,
+      mountLangLinks,
+      listContents,
+      setSeo,
+      formatDate,
+      esc
+    } from "/app.js";
 
     const lang = getLang();
     const T = (vi, en) => lang === "vi" ? vi : en;
@@ -447,162 +549,165 @@
     document.getElementById("sideTitle").textContent = T("Hướng đọc quan trọng", "Important reading paths");
 
     document.getElementById("q1t").textContent = T("Giới thiệu", "About");
-document.getElementById("q1d").textContent = T("Hiểu nền tảng, tầm nhìn và lý do tồn tại của hệ thống.", "Understand the platform, vision, and why the system exists.");
-document.getElementById("q2t").textContent = T("Chương trình", "Program");
-document.getElementById("q2d").textContent = T("Xem cấu trúc triển khai, mô-đun vận hành và lộ trình.", "See implementation structure, operating modules, and roadmap.");
-document.getElementById("q3t").textContent = T("Kịch bản", "Scripts");
-document.getElementById("q3d").textContent = T("Đi thẳng vào dòng sản phẩm ưu tiên giai đoạn 1.", "Go directly to the phase one priority product line.");
-document.getElementById("q4t").textContent = T("Donate / Gây quỹ", "Donate");
-document.getElementById("q4d").textContent = T("Hiểu cách đóng góp và nguyên tắc minh bạch đi kèm.", "Understand how to contribute and the transparency principle behind it.");
+    document.getElementById("q1d").textContent = T("Hiểu nền tảng, tầm nhìn và lý do tồn tại của hệ thống.", "Understand the platform, vision, and why the system exists.");
+    document.getElementById("q2t").textContent = T("Chương trình", "Program");
+    document.getElementById("q2d").textContent = T("Khung triển khai, mô-đun vận hành và lộ trình phát triển.", "Implementation framework, operation modules, and roadmap.");
+    document.getElementById("q3t").textContent = T("Kịch bản", "Scripts");
+    document.getElementById("q3d").textContent = T("Dòng sản phẩm ưu tiên giai đoạn đầu.", "The priority product line in phase one.");
+    document.getElementById("q4t").textContent = T("Donate / Gây quỹ", "Donate");
+    document.getElementById("q4d").textContent = T("Hiểu cơ chế đồng hành minh bạch đi kèm báo cáo.", "Understand the transparent support mechanism with reporting.");
 
-document.getElementById("presetEyebrow").textContent = T("LIÊN KẾT SẴN", "PRESET LINKS");
-document.getElementById("presetTitle").textContent = T("Hệ liên kết ẩn đã đặt sẵn cho tương lai", "Preset future-ready link system");
-document.getElementById("presetDesc").textContent = T(
-  "Từ trang này, các liên kết quan trọng đã được set sẵn. Sau này khi anh publish bài hoặc tạo thêm slug trong CMS, hệ thống sẽ tự nối vào đúng luồng mà không cần đập lại cấu trúc.",
-  "From this page, important links are already preset. Later, when posts or slugs are published in CMS, the system connects them without rebuilding the structure."
-);
+    document.getElementById("footerNote").textContent = T(
+      "Trang bài viết được thiết kế để luôn có nội dung hiển thị, có nút ngôn ngữ riêng bằng link thật, không dùng chuyển đổi giả.",
+      "The posts page is designed to always display content, with real language links instead of fake toggles."
+    );
 
-document.getElementById("footerNote").textContent = T(
-  "Trang bài viết được thiết kế để luôn có nội dung hiển thị, dù CMS đã có bài hay chưa. Không để trống, không gãy link, không mất phương hướng.",
-  "This posts page is designed to always show content, whether CMS already has posts or not. No blank page, no broken links, no loss of direction."
-);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("in");
+      });
+    }, { threshold: 0.12 });
 
-// reveal animation
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("in");
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    const postsList = document.getElementById("postsList");
+    const countInfo = document.getElementById("countInfo");
+
+    const fallbackItems = [
+      {
+        slug: "about",
+        type: "page",
+        title_vi: "Giới thiệu hệ thống Đường Sao Tỏa Sáng",
+        title_en: "About Star Path Light Up",
+        excerpt_vi: "Tổng quan nền tảng, lý do tồn tại và logic vận hành tổng thể.",
+        excerpt_en: "Overall platform, reason for existence, and operating logic.",
+        cover_url: ""
+      },
+      {
+        slug: "scripts",
+        type: "script",
+        title_vi: "Kịch bản là dòng sản phẩm ưu tiên giai đoạn đầu",
+        title_en: "Scripts are the phase one priority product line",
+        excerpt_vi: "Dòng sản phẩm trọng tâm để tạo doanh thu minh bạch và bền vững.",
+        excerpt_en: "A core product line to generate transparent and sustainable revenue.",
+        cover_url: ""
+      },
+      {
+        slug: "donate",
+        type: "page",
+        title_vi: "Nguyên tắc gây quỹ minh bạch",
+        title_en: "Transparent fundraising principles",
+        excerpt_vi: "Donate phải gắn với mục tiêu rõ, sử dụng rõ và báo cáo rõ.",
+        excerpt_en: "Donations must be tied to clear goals, use, and reporting.",
+        cover_url: ""
+      }
+    ];
+
+    let masterItems = [];
+
+    function toHref(item) {
+      const slug = item.slug || "";
+      const type = item.type || "post";
+      const suffix = lang === "en" ? "?lang=en" : "";
+
+      return type === "post"
+        ? `/posts/${encodeURIComponent(slug)}${suffix}`
+        : `/${encodeURIComponent(slug)}${suffix}`;
     }
-  });
-}, { threshold: 0.12 });
 
-document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+    function renderItems(filter = "all") {
+      let items = masterItems;
 
-const postsList = document.getElementById("postsList");
-const countInfo = document.getElementById("countInfo");
+      if (filter !== "all") {
+        items = items.filter(x => (x.type || "") === filter);
+      }
 
-const fallbackItems = [
-  {
-    slug: "about",
-    type: "page",
-    title_vi: "Giới thiệu hệ thống Đường Sao Tỏa Sáng",
-    title_en: "About Star Path Light Up",
-    excerpt_vi: "Tổng quan nền tảng, lý do tồn tại và logic vận hành tổng thể.",
-    excerpt_en: "Overall platform, reason for existence, and operating logic."
-  },
-  {
-    slug: "program",
-    type: "page",
-    title_vi: "Khung chương trình và mô-đun vận hành",
-    title_en: "Program framework and operating modules",
-    excerpt_vi: "Cách hệ thống được cấu trúc để triển khai các dự án theo từng giai đoạn.",
-    excerpt_en: "How the system is structured to implement projects in phases."
-  },
-  {
-    slug: "scripts",
-    type: "script",
-    title_vi: "Kịch bản là dòng sản phẩm ưu tiên giai đoạn đầu",
-    title_en: "Scripts are the phase one priority product line",
-    excerpt_vi: "Dòng sản phẩm trọng tâm để tạo doanh thu minh bạch và bền vững.",
-    excerpt_en: "A core product line to generate transparent and sustainable revenue."
-  },
-  {
-    slug: "donate",
-    type: "page",
-    title_vi: "Nguyên tắc gây quỹ minh bạch",
-    title_en: "Transparent fundraising principles",
-    excerpt_vi: "Donate phải gắn với mục tiêu rõ, sử dụng rõ và báo cáo rõ.",
-    excerpt_en: "Donations must be tied to clear goals, use, and reporting."
-  }
-];
+      if (!items.length) {
+        postsList.innerHTML = `
+          <div class="post-card">
+            <div class="post-body">
+              <h3 class="post-title">${T("Chưa có nội dung phù hợp", "No matching content")}</h3>
+              <div class="post-excerpt">${T("Hiện chưa có bài nào đúng bộ lọc đang chọn.", "There is no content for the current filter.")}</div>
+            </div>
+          </div>
+        `;
+        return;
+      }
 
-let masterItems = [];
+      postsList.innerHTML = items.map(item => {
+        const title = lang === "vi"
+          ? (item.title_vi || item.title || item.title_en || item.slug || "(untitled)")
+          : (item.title_en || item.title || item.title_vi || item.slug || "(untitled)");
 
-function toHref(item) {
-  const slug = item.slug || "";
-  const type = item.type || "post";
+        const excerpt = lang === "vi"
+          ? (item.excerpt_vi || item.excerpt || item.excerpt_en || T("Nhấn để đọc chi tiết.", "Open to read details."))
+          : (item.excerpt_en || item.excerpt || item.excerpt_vi || T("Open to read details.", "Open to read details."));
 
-  if (type === "post") {
-    return `/posts/${encodeURIComponent(slug)}`;
-  }
+        const cover = item.cover_url || "";
+        const typeLabel = item.type || "post";
+        const updated = item.updated_at || item.created_at || "";
 
-  return `/${encodeURIComponent(slug)}`;
-}
+        return `
+          <a class="post-card" href="${toHref(item)}">
+            <div class="thumb">
+              ${cover ? `<img src="${esc(cover)}" alt="${esc(title)}"/>` : ``}
+            </div>
+            <div class="post-body">
+              <div class="post-meta-top">
+                <span class="tag">${esc(typeLabel)}</span>
+                <span class="small muted">${updated ? esc(formatDate(updated)) : ""}</span>
+              </div>
+              <h3 class="post-title">${esc(title)}</h3>
+              <div class="post-excerpt">${esc(excerpt)}</div>
+              <div class="post-footer">
+                <span>${T("Slug", "Slug")}: ${esc(item.slug || "")}</span>
+                <span>${T("Mở chi tiết", "Open detail")} →</span>
+              </div>
+            </div>
+          </a>
+        `;
+      }).join("");
+    }
 
-function renderItems(filter = "all") {
-  let items = masterItems;
+    qsa(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        qsa(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderItems(btn.dataset.filter || "all");
+      });
+    });
 
-  if (filter !== "all") {
-    items = items.filter(x => (x.type || "") === filter);
-  }
+    try {
+      const items = await listContents({
+        visibility: "public",
+        limit: 36,
+        order: "updated_at.desc"
+      });
 
-  if (!items.length) {
-    postsList.innerHTML = `
-      <div class="item">
-        <b>${T("Chưa có nội dung phù hợp", "No matching content")}</b>
-        <div class="excerpt">${T("Hiện chưa có bài nào đúng bộ lọc đang chọn.", "There is no content for the current filter.")}</div>
-      </div>
-    `;
-    return;
-  }
+      masterItems = (items && items.length ? items : fallbackItems).map(item => ({
+        slug: item.slug || item.raw?.slug || "",
+        type: item.type || item.raw?.type || "post",
+        title_vi: item.raw?.title_vi || item.title_vi || item.title || "",
+        title_en: item.raw?.title_en || item.title_en || item.title || "",
+        excerpt_vi: item.raw?.excerpt_vi || item.excerpt_vi || item.excerpt || "",
+        excerpt_en: item.raw?.excerpt_en || item.excerpt_en || item.excerpt || "",
+        cover_url: item.raw?.cover_url || item.cover_url || "",
+        created_at: item.raw?.created_at || item.created_at || "",
+        updated_at: item.raw?.updated_at || item.updated_at || ""
+      }));
 
-  postsList.innerHTML = items.map(item => {
-    const title = lang === "vi"
-      ? (item.title_vi || item.title || item.title_en || item.slug || "(untitled)")
-      : (item.title_en || item.title || item.title_vi || item.slug || "(untitled)");
+      countInfo.textContent = T(
+        `Tổng cộng ${masterItems.length} mục`,
+        `${masterItems.length} items`
+      );
 
-    const excerpt = lang === "vi"
-      ? (item.excerpt_vi || item.excerpt || item.excerpt_en || T("Nhấn để đọc chi tiết.", "Open to read details."))
-      : (item.excerpt_en || item.excerpt || item.excerpt_vi || T("Open to read details.", "Open to read details."));
-
-    const typeLabel = item.type || "post";
-
-    return `
-      <a class="item" href="${toHref(item)}">
-        <div class="item-top">
-          <b>${esc(title)}</b>
-          <span class="tag">${esc(typeLabel)}</span>
-        </div>
-        <div class="excerpt">${esc(excerpt)}</div>
-        <div class="meta">${T("Slug", "Slug")}: ${esc(item.slug || "")}</div>
-      </a>
-    `;
-  }).join("");
-}
-
-qsa(".filter-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    qsa(".filter-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    renderItems(btn.dataset.filter || "all");
-  });
-});
-
-try {
-  const items = await listContents({
-    visibility: "public",
-    limit: 36,
-    order: "created_at.desc"
-  });
-
-  masterItems = (items && items.length ? items : fallbackItems).map(item => ({
-    slug: item.slug || item.raw?.slug || "",
-    type: item.type || item.raw?.type || "post",
-    title_vi: item.raw?.title_vi || item.title_vi || item.title || "",
-    title_en: item.raw?.title_en || item.title_en || item.title || "",
-    excerpt_vi: item.raw?.excerpt_vi || item.excerpt_vi || item.excerpt || "",
-    excerpt_en: item.raw?.excerpt_en || item.excerpt_en || item.excerpt || ""
-  }));
-
-  countInfo.textContent = T(
-    `Tổng cộng ${masterItems.length} mục`,
-    `${masterItems.length} items`
-  );
-
-  renderItems("all");
-} catch (e) {
-  masterItems = fallbackItems;
-  countInfo.textContent = T("Đang dùng nội dung dự phòng", "Using fallback content");
-  renderItems("all");
-  console.warn("posts fallback used:", e);
-}
+      renderItems("all");
+    } catch (e) {
+      masterItems = fallbackItems;
+      countInfo.textContent = T("Đang dùng nội dung dự phòng", "Using fallback content");
+      renderItems("all");
+      console.warn("posts fallback used:", e);
+    }
+  </script>
+</body>
+</html>
