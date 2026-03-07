@@ -1,5 +1,5 @@
 const SUPABASE_URL = "https://ujucoljgaklwdkcckerl.supabase.co";
-const SUPABASE_ANON_KEY = "YOUR_EXISTING_ANON_KEY_HERE";
+const SUPABASE_ANON_KEY = "Matrb72ygwe7gbfyw6gduashcdgcagd7zgchbscybshb";
 
 const REST_BASE = `${SUPABASE_URL}/rest/v1`;
 
