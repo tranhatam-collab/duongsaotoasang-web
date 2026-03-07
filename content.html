@@ -12,13 +12,14 @@
     :root{
       --bg:#0a0c10;
       --card:rgba(255,255,255,.045);
+      --card-2:rgba(255,255,255,.03);
       --line:rgba(255,255,255,.085);
       --text:#f2f4f7;
       --muted:#a8b0bb;
       --gold:#d8bc77;
       --gold-soft:rgba(216,188,119,.18);
-      --shadow:0 14px 50px rgba(0,0,0,.35);
-      --r:22px;
+      --shadow:0 16px 60px rgba(0,0,0,.38);
+      --r:24px;
       --max:1240px;
     }
 
@@ -35,6 +36,7 @@
     }
 
     a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
     .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
 
     .topbar{
@@ -49,64 +51,44 @@
       padding:14px 0;
     }
 
-    .brand{
-      display:flex;align-items:center;gap:12px;
-    }
-
+    .brand{display:flex;align-items:center;gap:12px}
     .brand-mark{
-      width:40px;height:40px;border-radius:14px;
+      width:42px;height:42px;border-radius:14px;
       background:
         radial-gradient(circle at 30% 30%, rgba(255,255,255,.15), transparent 36%),
         linear-gradient(135deg, rgba(216,188,119,.28), rgba(255,255,255,.05));
       border:1px solid rgba(255,255,255,.10);
       box-shadow:var(--shadow);
     }
-
     .brand-title{font-weight:800;font-size:17px}
     .brand-sub{font-size:12px;color:var(--muted);margin-top:3px}
 
-    .menu{
-      display:flex;align-items:center;gap:8px;flex-wrap:wrap;
-    }
-
+    .menu{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
     .menu a{
       padding:10px 12px;border-radius:12px;border:1px solid transparent;
       color:rgba(255,255,255,.82);transition:all .25s ease;
     }
-
     .menu a:hover,.menu a.active{
       background:rgba(255,255,255,.05);
       border-color:var(--line);
-      color:#fff;text-decoration:none;
-    }
-
-    .right{display:flex;align-items:center;gap:10px}
-
-    .pill{
-      border:1px solid var(--line);
-      padding:9px 12px;border-radius:999px;
-      color:var(--muted);
-      background:rgba(255,255,255,.03);
-      font-size:13px;
-    }
-
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:8px;
-      padding:10px 14px;border-radius:14px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:#fff;cursor:pointer;transition:all .25s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.07);
+      color:#fff;
       text-decoration:none;
     }
 
-    .btn.primary{
-      border-color:rgba(216,188,119,.34);
-      background:linear-gradient(180deg, rgba(216,188,119,.15), rgba(216,188,119,.07));
+    .right{display:flex;align-items:center;gap:10px}
+    .lang-links{display:flex;gap:8px;align-items:center}
+    .lang-link{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-width:46px;height:40px;padding:0 12px;
+      border-radius:999px;border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--muted);font-size:13px;font-weight:700;
+      transition:all .25s ease;
+    }
+    .lang-link.active{
+      color:#fff;
+      background:rgba(216,188,119,.14);
+      border-color:rgba(216,188,119,.32);
     }
 
     .mobile-toggle{
@@ -115,7 +97,6 @@
     }
 
     .hero{padding:28px 0 12px}
-
     .hero-shell{
       border:1px solid var(--line);
       background:
@@ -136,33 +117,28 @@
       flex-wrap:wrap;
       gap:6px;
       align-items:center;
+      margin-bottom:10px;
     }
 
-    h1{margin:0;font-size:46px;line-height:1.04;letter-spacing:-.03em}
+    h1{margin:0;font-size:48px;line-height:1.03;letter-spacing:-.03em}
     h2{margin:0 0 12px;font-size:26px;line-height:1.2}
     .muted{color:var(--muted);line-height:1.8}
     .small{font-size:13px}
     .hr{height:1px;background:var(--line);margin:16px 0}
 
-    .article-grid{
+    .layout{
       display:grid;
-      grid-template-columns:repeat(12,1fr);
-      gap:14px;
+      grid-template-columns:1.75fr .95fr;
+      gap:16px;
       margin-top:14px;
     }
 
-    .article-card{
-      grid-column:span 8;border:1px solid var(--line);background:var(--card);
-      border-radius:var(--r);padding:22px;box-shadow:var(--shadow);
-    }
-
-    .sidebar-card{
-      grid-column:span 4;border:1px solid var(--line);background:var(--card);
-      border-radius:var(--r);padding:18px;box-shadow:var(--shadow);align-self:start;
-    }
-
-    .article-meta-top{
-      display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;
+    .card{
+      border:1px solid var(--line);
+      background:var(--card);
+      border-radius:var(--r);
+      padding:20px;
+      box-shadow:var(--shadow);
     }
 
     .tag{
@@ -171,63 +147,122 @@
     }
 
     .meta-inline{font-size:13px;color:var(--muted)}
+    .article-meta-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
     .lead{margin:16px 0 0;color:var(--muted);line-height:1.85}
 
     .article-body{
       font-size:16px;
-      line-height:1.92;
+      line-height:1.95;
       color:#e7edf3;
     }
 
     .article-body p{margin:0 0 16px}
-    .article-body h2,.article-body h3{margin:28px 0 12px;line-height:1.3}
+    .article-body h2,.article-body h3{margin:30px 0 12px;line-height:1.3}
     .article-body ul,.article-body ol{margin:0 0 18px 22px}
     .article-body li{margin-bottom:8px}
+    .article-body blockquote{
+      margin:22px 0;
+      padding:14px 16px;
+      border-left:3px solid rgba(216,188,119,.45);
+      background:rgba(255,255,255,.03);
+      border-radius:0 14px 14px 0;
+      color:#eef2f6;
+    }
 
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-    .quick-links,.related-grid{display:grid;gap:12px}
+    .article-figure{
+      margin:22px 0;
+      border:1px solid var(--line);
+      border-radius:20px;
+      overflow:hidden;
+      background:rgba(255,255,255,.03);
+    }
 
-    .quick-link,.related-item{
+    .article-figure img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    .article-figure figcaption{
+      padding:12px 14px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.7;
+      border-top:1px solid var(--line);
+    }
+
+    .video-wrap{
+      position:relative;
+      width:100%;
+      padding-top:56.25%;
+      margin:22px 0;
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:#000;
+    }
+
+    .video-wrap iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    .article-cover{
+      margin:18px 0 0;
+      border-radius:22px;
+      overflow:hidden;
       border:1px solid var(--line);
       background:rgba(255,255,255,.03);
+    }
+
+    .article-cover img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+
+    .quick-list,.related-grid{display:grid;gap:12px}
+    .quick-item,.related-item{
+      border:1px solid var(--line);
+      background:var(--card-2);
       border-radius:18px;
       padding:16px;
       display:block;
       transition:all .25s ease;
     }
 
-    .quick-link:hover,.related-item:hover{
+    .quick-item:hover,.related-item:hover{
       transform:translateY(-2px);
       border-color:rgba(216,188,119,.22);
       background:rgba(255,255,255,.05);
-      text-decoration:none;
     }
 
-    .quick-link b,.related-item b{
+    .quick-item b,.related-item b{
       display:block;
       font-size:18px;
       line-height:1.35;
       margin-bottom:8px;
     }
 
-    .quick-link span,.related-item .excerpt{
+    .quick-item span,.related-item .excerpt{
       color:var(--muted);
       line-height:1.75;
       font-size:14px;
     }
 
-    .related-item .meta{
-      margin-top:10px;
-      color:var(--muted);
-      font-size:12px;
-    }
+    .related-item .meta{margin-top:10px;color:var(--muted);font-size:12px}
 
     .footer{
-      margin-top:34px;
-      padding:24px 0 50px;
+      margin-top:30px;
+      padding:24px 0 52px;
       border-top:1px solid var(--line);
       color:var(--muted);
-      line-height:1.8;
+      line-height:1.85;
       font-size:14px;
     }
 
@@ -243,8 +278,8 @@
     }
 
     @media (max-width:1080px){
-      .article-card,.sidebar-card{grid-column:span 12}
-      h1{font-size:38px}
+      .layout{grid-template-columns:1fr}
+      h1{font-size:40px}
     }
 
     @media (max-width:860px){
@@ -252,8 +287,8 @@
       .menu.open{display:flex}
       .mobile-toggle{display:inline-flex;align-items:center;justify-content:center}
       .right{display:none}
-      h1{font-size:32px}
-      .hero-shell,.article-card,.sidebar-card{padding:20px}
+      h1{font-size:34px}
+      .hero-shell,.card{padding:18px}
     }
   </style>
 </head>
@@ -285,8 +320,10 @@
         </div>
 
         <div class="right">
-          <span class="pill" id="langPill">VI</span>
-          <button class="btn" id="toggleLang">VI / EN</button>
+          <div class="lang-links">
+            <a id="langViLink" class="lang-link" href="#">VI</a>
+            <a id="langEnLink" class="lang-link" href="#">EN</a>
+          </div>
         </div>
       </div>
     </div>
@@ -300,8 +337,8 @@
       </div>
     </section>
 
-    <section class="article-grid reveal">
-      <article class="article-card">
+    <section class="layout reveal">
+      <article class="card">
         <div class="article-meta-top">
           <span class="tag" id="typeTag">page</span>
           <span class="meta-inline" id="dateLine"></span>
@@ -310,13 +347,15 @@
         <h1 id="title">Đang tải nội dung...</h1>
         <p class="lead" id="lead">Vui lòng chờ trong giây lát. Hệ thống đang tải nội dung theo slug.</p>
 
+        <div class="article-cover" id="coverWrap" style="display:none">
+          <img id="coverImg" src="" alt=""/>
+        </div>
+
         <div class="hr"></div>
 
         <div class="article-body" id="body">
           <p>Loading...</p>
         </div>
-
-        <div class="hr"></div>
 
         <div class="actions">
           <a class="btn primary" href="/posts" id="backPostsBtn">Quay lại bài viết</a>
@@ -324,24 +363,24 @@
         </div>
       </article>
 
-      <aside class="sidebar-card">
+      <aside class="card">
         <div class="eyebrow" id="sideEyebrow">ĐI NHANH</div>
         <h2 id="sideTitle">Các hướng liên quan</h2>
 
-        <div class="quick-links">
-          <a class="quick-link" href="/about">
+        <div class="quick-list">
+          <a class="quick-item" href="/about">
             <b id="q1t">Giới thiệu</b>
             <span id="q1d">Hiểu nền tảng và lý do tồn tại của hệ thống.</span>
           </a>
-          <a class="quick-link" href="/program">
+          <a class="quick-item" href="/program">
             <b id="q2t">Chương trình</b>
             <span id="q2d">Khung vận hành và lộ trình phát triển.</span>
           </a>
-          <a class="quick-link" href="/scripts">
+          <a class="quick-item" href="/scripts">
             <b id="q3t">Kịch bản</b>
             <span id="q3d">Dòng sản phẩm ưu tiên giai đoạn đầu.</span>
           </a>
-          <a class="quick-link" href="/donate">
+          <a class="quick-item" href="/donate">
             <b id="q4t">Donate</b>
             <span id="q4d">Nguyên tắc gây quỹ minh bạch.</span>
           </a>
@@ -350,7 +389,7 @@
         <div class="hr"></div>
 
         <div class="small muted" id="sideNote">
-          URL đẹp đang được dùng cho toàn site. Các slug sẽ tự nối vào hệ thống khi publish nội dung từ CMS.
+          URL đẹp đang được dùng cho toàn site. Mỗi ngôn ngữ là một link riêng để chia sẻ trực tiếp.
         </div>
       </aside>
     </section>
@@ -369,24 +408,19 @@
       <div><b>Contact:</b> contact@duongsaotoasang.com</div>
       <div><b>Admin:</b> duongsaotoasang@gmail.com</div>
       <div class="small" id="footerNote" style="margin-top:10px">
-        File này là renderer trung tâm cho toàn bộ URL đẹp: /about, /program, /events, /scripts, /donate, /transparency, /legal, /contact và /posts/slug.
+        File này là renderer trung tâm cho URL đẹp, có nút ngôn ngữ là link thật và hỗ trợ hình ảnh, video trong từng bài.
       </div>
     </footer>
   </main>
 
   <script type="module">
-    import { getLang, toggleLang, loadBySlug, listContents, renderRichHtml, setSeo, formatDate } from "/app.js";
+    import { getLang, mountLangLinks, loadBySlug, listContents, renderRichHtml, setSeo, formatDate, esc } from "/app.js";
 
     const lang = getLang();
     const T = (vi, en) => lang === "vi" ? vi : en;
-    const esc = (s = "") => String(s).replace(/[&<>"']/g, m => ({
-      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-    }[m]));
     const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
     document.documentElement.lang = lang;
-    document.getElementById("langPill").textContent = lang.toUpperCase();
-    document.getElementById("toggleLang").onclick = () => toggleLang();
     document.getElementById("mobileToggle").onclick = () => {
       document.getElementById("mainMenu").classList.toggle("open");
     };
@@ -405,11 +439,11 @@
       const qs = new URLSearchParams(location.search);
       const qSlug = (qs.get("slug") || "").trim();
 
-      if (parts.length >= 2 && parts[0] === "posts") {
+      if (parts.length >= 2 && (parts[0] === "posts" || parts[0] === "post")) {
         return { slug: decodeURIComponent(parts.slice(1).join("/")), type: "post" };
       }
 
-      if (parts.length === 1 && parts[0] !== "content" && parts[0] !== "posts" && parts[0] !== "posts.html") {
+      if (parts.length === 1 && parts[0] !== "content" && parts[0] !== "posts" && parts[0] !== "post") {
         return { slug: decodeURIComponent(parts[0]), type: "page" };
       }
 
@@ -420,10 +454,17 @@
       return { slug: "about", type: "page" };
     }
 
+    const route = resolveRoute();
+    const slug = route.slug;
+    const routeType = route.type;
+
+    mountLangLinks("langViLink", "langEnLink");
+
     function canonicalFor(slug, type = "page") {
+      const suffix = lang === "en" ? "?lang=en" : "";
       return type === "post"
-        ? `https://duongsaotoasang.com/posts/${encodeURIComponent(slug)}`
-        : `https://duongsaotoasang.com/${encodeURIComponent(slug)}`;
+        ? `https://duongsaotoasang.com/posts/${encodeURIComponent(slug)}${suffix}`
+        : `https://duongsaotoasang.com/${encodeURIComponent(slug)}${suffix}`;
     }
 
     const FALLBACKS = {
@@ -435,86 +476,11 @@
         excerpt_en: "Overview of the platform, its reason for existence, and overall operating structure.",
         body_vi: `
           <p><b>Đường Sao Tỏa Sáng</b> là một nền tảng được xây dựng để kết nối con người, ý tưởng, chương trình và nguồn lực có giá trị thật với nhau theo hướng dài hạn, minh bạch và có thể vận hành thực tế.</p>
-          <p>Đây không chỉ là một website giới thiệu. Đây là một hệ thống để những chương trình nghệ thuật, giáo dục, cộng đồng và gây quỹ có thể được tổ chức rõ ràng, công bố công khai và đi đường dài mà không rơi vào sự rời rạc hay cảm tính.</p>
-          <p>Giai đoạn đầu, hệ thống ưu tiên hai hướng chính: <b>kịch bản</b> như một dòng sản phẩm có thể tạo doanh thu bền vững, và <b>gây quỹ minh bạch</b> để hỗ trợ các mục tiêu cộng đồng và tương lai trẻ em.</p>
+          <p>Đây không chỉ là một website giới thiệu. Đây là một hệ thống để những chương trình nghệ thuật, giáo dục, cộng đồng và gây quỹ có thể được tổ chức rõ ràng, công bố công khai và đi đường dài.</p>
         `,
         body_en: `
           <p><b>Star Path Light Up</b> is a platform created to connect people, ideas, programs, and real resources in a long term, transparent, and practical way.</p>
           <p>This is not merely an informational site. It is a system for artistic, educational, community, and fundraising programs to be organized clearly, published openly, and sustained over time.</p>
-          <p>In phase one, the project prioritizes two main directions: <b>scripts</b> as a sustainable business line and <b>transparent fundraising</b> for community and future children initiatives.</p>
-        `
-      },
-      program: {
-        type: "page",
-        title_vi: "Chương trình",
-        title_en: "Program",
-        excerpt_vi: "Khung vận hành, mô-đun triển khai, lộ trình và các trục ưu tiên của hệ thống.",
-        excerpt_en: "Operating framework, implementation modules, roadmap, and priority axes.",
-        body_vi: `
-          <p>Chương trình của Đường Sao Tỏa Sáng được xây dựng theo cấu trúc có mục tiêu, nội dung, dòng lực, cơ chế phối hợp và báo cáo rõ ràng.</p>
-          <p>Giai đoạn đầu ưu tiên chuẩn hoá nội dung, xây dựng hệ thống kịch bản, cấu trúc gây quỹ minh bạch và tạo nền tảng cộng đồng có thể đồng hành lâu dài.</p>
-        `,
-        body_en: `
-          <p>The program is designed with clear goals, content logic, resource flow, collaboration mechanisms, and reporting standards.</p>
-          <p>Phase one focuses on content standardization, script system building, transparent fundraising, and a community platform for long-term collaboration.</p>
-        `
-      },
-      events: {
-        type: "page",
-        title_vi: "Sự kiện",
-        title_en: "Events",
-        excerpt_vi: "Thông tin các hoạt động, workshop, hội thảo và các cột mốc cộng đồng.",
-        excerpt_en: "Information about activities, workshops, talks, and community milestones.",
-        body_vi: `
-          <p>Trang này dùng để công bố các hoạt động, workshop, đối thoại hoặc các buổi ra mắt nội dung trong hệ thống Đường Sao Tỏa Sáng.</p>
-          <p>Hiện tại, giai đoạn đầu chưa ưu tiên bán vé sự kiện mà tập trung vào hai mảng chính là <b>kịch bản</b> và <b>donate</b>.</p>
-        `,
-        body_en: `
-          <p>This page is used to announce events, workshops, dialogues, or content launches within the Star Path Light Up system.</p>
-          <p>At the moment, phase one does not prioritize ticket sales, but focuses on <b>scripts</b> and <b>donate</b>.</p>
-        `
-      },
-      scripts: {
-        type: "script",
-        title_vi: "Kịch bản",
-        title_en: "Scripts",
-        excerpt_vi: "Danh mục kịch bản, gói mua và quyền truy cập.",
-        excerpt_en: "Script catalog, purchase packages, and access rights.",
-        body_vi: `
-          <p><b>Kịch bản</b> là dòng sản phẩm ưu tiên trong giai đoạn đầu. Đây là nền tảng để tạo dòng tiền minh bạch, bền vững và gắn trực tiếp với giá trị nội dung.</p>
-          <p>Kịch bản không chỉ là tài liệu biểu diễn. Nó có thể là sản phẩm nghệ thuật, giáo dục, sân khấu, truyền thông hoặc các cấu trúc kể chuyện có thể được ứng dụng vào nhiều loại hình dự án khác nhau.</p>
-        `,
-        body_en: `
-          <p><b>Scripts</b> are the primary product line in phase one. They help create a transparent and sustainable revenue stream directly tied to meaningful content.</p>
-          <p>A script can function as an artistic, educational, theatrical, media, or storytelling structure applicable across various project types.</p>
-        `
-      },
-      donate: {
-        type: "page",
-        title_vi: "Gây quỹ / Donate",
-        title_en: "Donate / Fundraising",
-        excerpt_vi: "Cơ chế donate và gây quỹ minh bạch, có mục tiêu và có báo cáo.",
-        excerpt_en: "Transparent donation and fundraising with clear goals and reporting.",
-        body_vi: `
-          <p>Đường Sao Tỏa Sáng triển khai gây quỹ trên nguyên tắc: có mục tiêu, có lý do sử dụng, có giới hạn trách nhiệm và có báo cáo công khai theo kỳ.</p>
-          <p>Donate không phải là mua lợi nhuận. Donate là hành vi đồng hành cho một mục tiêu có ý nghĩa, với nguyên tắc minh bạch và có thể kiểm tra.</p>
-        `,
-        body_en: `
-          <p>Star Path Light Up runs fundraising based on clear goals, purpose of use, responsibility scope, and periodic public reporting.</p>
-          <p>Donate is not buying financial return. It is accompanying a meaningful purpose with transparency and accountability.</p>
-        `
-      },
-      transparency: {
-        type: "page",
-        title_vi: "Minh bạch",
-        title_en: "Transparency",
-        excerpt_vi: "Nguyên tắc công khai, báo cáo theo kỳ và trách nhiệm kiểm chứng.",
-        excerpt_en: "Disclosure principles, periodic reporting, and accountability.",
-        body_vi: `
-          <p>Minh bạch là một trong những trụ cột nền tảng của toàn bộ hệ thống này. Mọi chiến dịch, mọi nguồn lực và mọi đóng góp đều phải có cách ghi nhận, trạng thái và phương thức công bố rõ ràng.</p>
-        `,
-        body_en: `
-          <p>Transparency is one of the foundational pillars of the entire platform. Every campaign, resource, and contribution must have a clear recording method, status, and disclosure mechanism.</p>
         `
       },
       legal: {
@@ -529,29 +495,8 @@
         body_en: `
           <p>The legal page includes the foundation information regarding Terms of Use, Privacy Policy, and applicable disclaimers in fundraising and content usage.</p>
         `
-      },
-      contact: {
-        type: "page",
-        title_vi: "Liên hệ",
-        title_en: "Contact",
-        excerpt_vi: "Thông tin liên hệ chính thức của dự án.",
-        excerpt_en: "Official contact information.",
-        body_vi: `
-          <p><b>Email pháp lý:</b> contact@duongsaotoasang.com</p>
-          <p><b>Email quản trị tạm thời:</b> duongsaotoasang@gmail.com</p>
-          <p><b>Email phản hồi:</b> reply@duongsaotoasang.com</p>
-        `,
-        body_en: `
-          <p><b>Legal email:</b> contact@duongsaotoasang.com</p>
-          <p><b>Temporary admin email:</b> duongsaotoasang@gmail.com</p>
-          <p><b>Reply email:</b> reply@duongsaotoasang.com</p>
-        `
       }
     };
-
-    const route = resolveRoute();
-    const slug = route.slug;
-    const routeType = route.type;
 
     const titleEl = document.getElementById("title");
     const leadEl = document.getElementById("lead");
@@ -560,6 +505,8 @@
     const dateLine = document.getElementById("dateLine");
     const breadcrumb = document.getElementById("breadcrumb");
     const relatedList = document.getElementById("relatedList");
+    const coverWrap = document.getElementById("coverWrap");
+    const coverImg = document.getElementById("coverImg");
 
     function fallbackItemFor(slugKey, forcedType = "page") {
       const f = FALLBACKS[slugKey];
@@ -572,33 +519,60 @@
         body: lang === "vi" ? f.body_vi : f.body_en,
         createdAt: "",
         updatedAt: "",
-        cover: ""
+        cover_url: "",
+        video_url: ""
       };
     }
 
     function renderBreadcrumb(title, type) {
+      const suffix = lang === "en" ? "?lang=en" : "";
       if (type === "post") {
         breadcrumb.innerHTML = `
-          <a href="/">Trang chủ</a>
+          <a href="/">${T("Trang chủ", "Home")}</a>
           <span>/</span>
-          <a href="/posts">${T("Bài viết", "Posts")}</a>
+          <a href="/posts${suffix}">${T("Bài viết", "Posts")}</a>
           <span>/</span>
           <span>${esc(title)}</span>
         `;
       } else {
         breadcrumb.innerHTML = `
-          <a href="/">Trang chủ</a>
+          <a href="/">${T("Trang chủ", "Home")}</a>
           <span>/</span>
           <span>${esc(title)}</span>
         `;
       }
     }
 
+    function videoEmbed(url) {
+      if (!url) return "";
+      if (url.includes("youtube.com/watch?v=")) {
+        const id = new URL(url).searchParams.get("v");
+        return id ? `https://www.youtube.com/embed/${id}` : "";
+      }
+      if (url.includes("youtu.be/")) {
+        const id = url.split("youtu.be/")[1]?.split("?")[0];
+        return id ? `https://www.youtube.com/embed/${id}` : "";
+      }
+      if (url.includes("youtube.com/embed/")) return url;
+      if (url.includes("vimeo.com/")) {
+        const id = url.split("vimeo.com/")[1]?.split("?")[0];
+        return id ? `https://player.vimeo.com/video/${id}` : "";
+      }
+      return "";
+    }
+
     function renderMain(item) {
       const type = item.type || routeType || "page";
       const title = item.title || slug;
       const excerpt = item.excerpt || T("Nội dung đang được cập nhật.", "Content is being updated.");
-      const body = item.body || `<p>${T("Nội dung đang được cập nhật.", "Content is being updated.")}</p>`;
+      let body = item.body || `<p>${T("Nội dung đang được cập nhật.", "Content is being updated.")}</p>`;
+
+      if (item.video_url) {
+        const embed = videoEmbed(item.video_url);
+        if (embed) {
+          body += `<div class="video-wrap"><iframe src="${esc(embed)}" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>`;
+        }
+      }
 
       titleEl.textContent = title;
       leadEl.textContent = excerpt;
@@ -608,6 +582,15 @@
       const rawDate = item.updatedAt || item.createdAt || "";
       dateLine.textContent = rawDate ? formatDate(rawDate) : T("Đang cập nhật", "Updating");
 
+      if (item.cover_url) {
+        coverWrap.style.display = "";
+        coverImg.src = item.cover_url;
+        coverImg.alt = title;
+      } else {
+        coverWrap.style.display = "none";
+        coverImg.src = "";
+      }
+
       renderRichHtml(bodyEl, body);
 
       const canonical = canonicalFor(slug, type);
@@ -615,7 +598,7 @@
         title: `${title} | Đường Sao Tỏa Sáng`,
         description: excerpt,
         canonical,
-        ogImage: item.cover || null
+        ogImage: item.cover_url || null
       });
 
       const old = document.getElementById("articleSchema");
@@ -638,9 +621,10 @@
     }
 
     function toHref(item) {
+      const suffix = lang === "en" ? "?lang=en" : "";
       return item.type === "post"
-        ? `/posts/${encodeURIComponent(item.slug || "")}`
-        : `/${encodeURIComponent(item.slug || "")}`;
+        ? `/posts/${encodeURIComponent(item.slug || "")}${suffix}`
+        : `/${encodeURIComponent(item.slug || "")}${suffix}`;
     }
 
     function renderRelated(items) {
@@ -674,7 +658,7 @@
         const items = await listContents({
           visibility: "public",
           limit: 12,
-          order: "created_at.desc"
+          order: "updated_at.desc"
         });
 
         const normalized = (items || [])
@@ -708,8 +692,8 @@
     document.getElementById("q4t").textContent = T("Donate", "Donate");
     document.getElementById("q4d").textContent = T("Nguyên tắc gây quỹ minh bạch.", "Transparent fundraising principles.");
     document.getElementById("sideNote").textContent = T(
-      "URL đẹp đang được dùng cho toàn site. Các slug sẽ tự nối vào hệ thống khi publish nội dung từ CMS.",
-      "Beautiful URLs are used across the site. Slugs will automatically connect when content is published from CMS."
+      "URL đẹp đang được dùng cho toàn site. Mỗi ngôn ngữ là một link riêng để chia sẻ trực tiếp.",
+      "Clean URLs are used across the site. Each language has its own shareable link."
     );
     document.getElementById("relatedEyebrow").textContent = T("LIÊN QUAN", "RELATED");
     document.getElementById("relatedTitle").textContent = T("Nội dung liên quan", "Related content");
@@ -718,8 +702,8 @@
       "Loaded from CMS. If no data exists, the system uses fallback."
     );
     document.getElementById("footerNote").textContent = T(
-      "File này là renderer trung tâm cho toàn bộ URL đẹp: /about, /program, /events, /scripts, /donate, /transparency, /legal, /contact và /posts/slug.",
-      "This file is the central renderer for all clean URLs: /about, /program, /events, /scripts, /donate, /transparency, /legal, /contact, and /posts/slug."
+      "File này là renderer trung tâm cho URL đẹp, có nút ngôn ngữ là link thật và hỗ trợ hình ảnh, video trong từng bài.",
+      "This file renders clean URLs, uses real language links, and supports images and video in each article."
     );
 
     async function run() {
@@ -731,7 +715,8 @@
         body: `<p>${T("Slug này hiện chưa có nội dung fallback riêng.", "This slug does not yet have dedicated fallback content.")}</p>`,
         createdAt: "",
         updatedAt: "",
-        cover: ""
+        cover_url: "",
+        video_url: ""
       };
 
       renderMain(fallback);
@@ -740,7 +725,17 @@
       try {
         const item = await loadBySlug(slug);
         if (item) {
-          renderMain(item);
+          renderMain({
+            slug: item.slug,
+            type: item.type,
+            title: item.title,
+            excerpt: item.excerpt,
+            body: item.body,
+            createdAt: item.created_at,
+            updatedAt: item.updated_at,
+            cover_url: item.cover_url,
+            video_url: item.video_url
+          });
           loadRelated(slug);
         }
       } catch (e) {
