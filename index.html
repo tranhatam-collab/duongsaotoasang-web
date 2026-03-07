@@ -5,12 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Đường Sao Tỏa Sáng | Star Path Light Up</title>
   <meta name="description" content="Đường Sao Tỏa Sáng là nền tảng kết nối, tổ chức và lan tỏa các dự án nghệ thuật, giáo dục, cộng đồng, kịch bản và gây quỹ minh bạch theo định hướng dài hạn."/>
-  <link rel="canonical" href="https://duongsaotoasang.com/"/>
-  <meta property="og:title" content="Đường Sao Tỏa Sáng | Star Path Light Up"/>
-  <meta property="og:description" content="Nền tảng kết nối, tổ chức và lan tỏa các dự án nghệ thuật, giáo dục, cộng đồng, kịch bản và gây quỹ minh bạch theo định hướng dài hạn."/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://duongsaotoasang.com/"/>
-  <meta name="twitter:card" content="summary_large_image"/>
   <meta name="theme-color" content="#0b0e12"/>
   <link rel="stylesheet" href="/app.css"/>
 
@@ -25,7 +19,6 @@
       --text:#f3f5f7;
       --muted:#a8b0ba;
       --gold:#d8bc77;
-      --gold-2:#b18a3d;
       --gold-soft:rgba(216,188,119,.16);
       --blue-soft:rgba(132,176,255,.14);
       --white-soft:rgba(255,255,255,.82);
@@ -113,20 +106,29 @@
       color:#fff;
       background:rgba(255,255,255,.05);
       border-color:var(--line);
-      text-decoration:none;
     }
 
     .right{
       display:flex;align-items:center;gap:10px;flex:0 0 auto;
     }
 
-    .pill{
-      border:1px solid var(--line);
-      padding:9px 12px;
-      border-radius:999px;
-      color:var(--muted);
+    .lang-links{
+      display:flex;gap:8px;align-items:center;
+    }
+
+    .lang-link{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-width:46px;height:40px;padding:0 12px;
+      border-radius:999px;border:1px solid var(--line);
       background:rgba(255,255,255,.03);
-      font-size:13px;
+      color:var(--muted);font-size:13px;font-weight:700;
+      transition:all .25s ease;
+    }
+
+    .lang-link.active{
+      color:#fff;
+      background:rgba(216,188,119,.14);
+      border-color:rgba(216,188,119,.32);
     }
 
     .btn{
@@ -346,7 +348,6 @@
       transform:translateY(-2px);
       border-color:rgba(216,188,119,.24);
       background:rgba(255,255,255,.06);
-      text-decoration:none;
     }
 
     .vision-link b{
@@ -421,7 +422,6 @@
       transform:translateY(-2px);
       border-color:rgba(216,188,119,.22);
       background:rgba(255,255,255,.055);
-      text-decoration:none;
     }
 
     .item b{
@@ -435,6 +435,23 @@
       color:var(--muted);
       font-size:13px;
       margin-top:8px;
+    }
+
+    .thumb{
+      aspect-ratio:16/8;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(216,188,119,.18), transparent 30%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:18px;
+      overflow:hidden;
+      margin-bottom:12px;
+    }
+
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
     .footer{
@@ -516,8 +533,10 @@
         </div>
 
         <div class="right">
-          <span class="pill" id="langPill">VI</span>
-          <button class="btn" id="toggleLang">VI / EN</button>
+          <div class="lang-links">
+            <a id="langViLink" class="lang-link" href="#">VI</a>
+            <a id="langEnLink" class="lang-link" href="#">EN</a>
+          </div>
         </div>
       </div>
     </div>
@@ -719,7 +738,7 @@
           <h2 id="latestTitle">Bài viết mới</h2>
         </div>
         <p id="latestDesc">
-          Phần này tự lấy từ CMS. Nếu chưa có bài published, hệ thống sẽ hiển thị fallback thay vì để trống.
+          Phần này tự lấy từ API nội bộ. Nếu chưa có bài published, hệ thống sẽ hiển thị fallback thay vì để trống.
         </p>
       </div>
 
@@ -761,7 +780,7 @@
           <div><b>Admin:</b> duongsaotoasang@gmail.com</div>
           <div><b>Reply:</b> reply@duongsaotoasang.com</div>
           <div class="small" id="footerNote" style="margin-top:10px">
-            Powered by Cloudflare Pages + Supabase. Tầm nhìn tổng thể, liên kết tổng thể và hệ menu đã được đặt sẵn để không gãy mạch khi cập nhật nội dung sau này.
+            Powered by Cloudflare Pages + Functions + D1 + R2. Tầm nhìn tổng thể, liên kết tổng thể và hệ menu đã được đặt sẵn để không gãy mạch khi cập nhật nội dung sau này.
           </div>
         </div>
         <div class="small muted" id="footerRight">
@@ -773,17 +792,20 @@
   </main>
 
   <script type="module">
-    import { getLang, toggleLang, loadLatestPosts, setSeo } from "/app.js";
+    import {
+      getLang,
+      mountLangLinks,
+      loadLatestPosts,
+      setSeo,
+      esc
+    } from "/app.js";
 
     const lang = getLang();
     const T = (vi, en) => lang === "vi" ? vi : en;
-    const esc = (s = "") => String(s).replace(/[&<>"']/g, m => ({
-      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-    }[m]));
 
     document.documentElement.lang = lang;
-    document.getElementById("langPill").textContent = lang.toUpperCase();
-    document.getElementById("toggleLang").onclick = () => toggleLang();
+    mountLangLinks("langViLink", "langEnLink");
+
     document.getElementById("mobileToggle").onclick = () => {
       document.getElementById("mainMenu").classList.toggle("open");
     };
@@ -797,7 +819,9 @@
         "Đường Sao Tỏa Sáng là nền tảng kết nối, tổ chức và lan tỏa các dự án nghệ thuật, giáo dục, cộng đồng, kịch bản và gây quỹ minh bạch.",
         "Star Path Light Up is a platform for arts, education, community projects, scripts, and transparent fundraising."
       ),
-      canonical: "https://duongsaotoasang.com/"
+      canonical: lang === "en"
+        ? "https://duongsaotoasang.com/?lang=en"
+        : "https://duongsaotoasang.com/"
     });
 
     document.getElementById("heroEyebrow").textContent = T("TẦM NHÌN TỔNG THỂ", "OVERALL VISION");
@@ -838,7 +862,7 @@
     document.getElementById("visionTitle").textContent = T("Mỗi liên kết là một phần của hệ thống tổng thể", "Each link is part of the whole system");
     document.getElementById("visionDesc").textContent = T(
       "Từ trang chủ này, mọi đường dẫn đều đã được đặt sẵn để không bị gãy. Dù CMS đã có nội dung hay chưa, người dùng vẫn luôn mở được đúng phần mình cần.",
-      "From this homepage, every route is already set so it does not break. Whether CMS content exists or not, users can always reach the correct section."
+      "From this homepage, every route is already set so it does not break. Whether content exists or not, users can always reach the correct section."
     );
 
     document.getElementById("v1t").textContent = T("Giới thiệu", "About");
@@ -875,7 +899,7 @@
     document.getElementById("pathTitle").textContent = T("Lộ trình điều hướng không gãy", "Navigation path without broken links");
     document.getElementById("pathDesc").textContent = T(
       "Ngay cả khi một phần nội dung trong CMS chưa hoàn chỉnh, người dùng vẫn luôn được dẫn đến đúng nhóm thông tin. Không có cảm giác cụt, chết link hoặc mất phương hướng.",
-      "Even if part of the CMS content is unfinished, users are still led to the correct group of information. No dead ends, no broken links, no confusion."
+      "Even if part of the content is unfinished, users are still led to the correct group of information. No dead ends, no broken links, no confusion."
     );
     document.getElementById("pathLeftTitle").textContent = T("Các đường đi cốt lõi", "Core paths");
     document.getElementById("m1t").textContent = T("Người mới", "New visitor");
@@ -893,8 +917,8 @@
     document.getElementById("latestEyebrow").textContent = T("NỘI DUNG MỚI", "LATEST CONTENT");
     document.getElementById("latestTitle").textContent = T("Bài viết mới", "Latest posts");
     document.getElementById("latestDesc").textContent = T(
-      "Phần này tự lấy từ CMS. Nếu chưa có bài published, hệ thống sẽ hiển thị fallback thay vì để trống.",
-      "This section loads from CMS. If there are no published posts yet, the system shows a fallback instead of leaving the area empty."
+      "Phần này tự lấy từ API nội bộ. Nếu chưa có bài published, hệ thống sẽ hiển thị fallback thay vì để trống.",
+      "This section loads from the internal API. If there are no published posts yet, the system shows a fallback instead of leaving the area empty."
     );
     document.getElementById("latestBtn").textContent = T("Xem tất cả bài viết", "View all posts");
     document.getElementById("latestBtn2").textContent = T("Đi tới Kịch bản", "Go to Scripts");
@@ -910,8 +934,8 @@
     document.getElementById("endBtn3").textContent = T("Xem minh bạch", "View transparency");
 
     document.getElementById("footerNote").textContent = T(
-      "Powered by Cloudflare Pages + Supabase. Tầm nhìn tổng thể, liên kết tổng thể và hệ menu đã được đặt sẵn để không gãy mạch khi cập nhật nội dung sau này.",
-      "Powered by Cloudflare Pages + Supabase. The overall vision, total link structure, and menu system are preset to avoid broken flow when content is updated later."
+      "Powered by Cloudflare Pages + Functions + D1 + R2. Tầm nhìn tổng thể, liên kết tổng thể và hệ menu đã được đặt sẵn để không gãy mạch khi cập nhật nội dung sau này.",
+      "Powered by Cloudflare Pages + Functions + D1 + R2. The overall vision, total link structure, and menu system are preset to avoid broken flow when content is updated later."
     );
     document.getElementById("footerRight").innerHTML = T(
       "Hybrid model: phi lợi nhuận + kinh doanh minh bạch.<br/>Giai đoạn 1 ưu tiên: Kịch bản + Donate.",
@@ -936,7 +960,8 @@
         title_vi: "Giới thiệu hệ thống Đường Sao Tỏa Sáng",
         title_en: "About Star Path Light Up",
         excerpt_vi: "Tổng quan nền tảng, lý do tồn tại và logic vận hành tổng thể.",
-        excerpt_en: "The overall platform, reason for existence, and operating logic."
+        excerpt_en: "The overall platform, reason for existence, and operating logic.",
+        cover_url: ""
       },
       {
         slug: "scripts",
@@ -944,7 +969,8 @@
         title_vi: "Kịch bản là trục kinh doanh giai đoạn đầu",
         title_en: "Scripts are the early business axis",
         excerpt_vi: "Dòng sản phẩm tạo doanh thu minh bạch và bền vững cho hệ sinh thái.",
-        excerpt_en: "A product line that creates transparent and sustainable revenue."
+        excerpt_en: "A product line that creates transparent and sustainable revenue.",
+        cover_url: ""
       },
       {
         slug: "donate",
@@ -952,16 +978,19 @@
         title_vi: "Gây quỹ minh bạch cần những gì",
         title_en: "What transparent fundraising requires",
         excerpt_vi: "Mục tiêu rõ, phạm vi sử dụng rõ và báo cáo rõ.",
-        excerpt_en: "Clear goal, clear use scope, and clear reporting."
+        excerpt_en: "Clear goal, clear use scope, and clear reporting.",
+        cover_url: ""
       }
     ];
 
     function toHref(item){
       const slug = item.slug || "";
       const type = item.type || "post";
+      const suffix = lang === "en" ? "?lang=en" : "";
+
       return type === "post"
-        ? `/posts/${encodeURIComponent(slug)}`
-        : `/${encodeURIComponent(slug)}`;
+        ? `/posts/${encodeURIComponent(slug)}${suffix}`
+        : `/${encodeURIComponent(slug)}${suffix}`;
     }
 
     try{
@@ -977,8 +1006,11 @@
           ? (p.excerpt_vi || p.excerpt || p.excerpt_en || "")
           : (p.excerpt_en || p.excerpt || p.excerpt_vi || "");
 
+        const cover = p.cover_url || "";
+
         return `
           <a class="item" href="${toHref(p)}">
+            ${cover ? `<div class="thumb"><img src="${esc(cover)}" alt="${esc(title)}"/></div>` : ``}
             <b>${esc(title)}</b>
             <div class="small muted">${esc(excerpt || T("Nhấn để đọc chi tiết.", "Open to read details."))}</div>
             <div class="meta">${esc(p.type || "post")} • ${esc(p.slug || "")}</div>
