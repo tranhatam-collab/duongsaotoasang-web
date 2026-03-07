@@ -67,6 +67,7 @@
       display:flex;
       align-items:center;
       gap:12px;
+      min-width:0;
     }
 
     .brand-mark{
@@ -78,17 +79,24 @@
         linear-gradient(135deg, rgba(216,188,119,.28), rgba(255,255,255,.05));
       border:1px solid rgba(255,255,255,.10);
       box-shadow:var(--shadow);
+      flex:0 0 auto;
     }
 
     .brand-title{
       font-weight:800;
       font-size:17px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
     .brand-sub{
       font-size:12px;
       color:var(--muted);
       margin-top:3px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
     .menu{
@@ -268,10 +276,7 @@
       color:#e7edf3;
     }
 
-    .article-body p{
-      margin:0 0 16px;
-    }
-
+    .article-body p{margin:0 0 16px}
     .article-body h2,
     .article-body h3{
       margin:30px 0 12px;
@@ -283,9 +288,7 @@
       margin:0 0 18px 22px;
     }
 
-    .article-body li{
-      margin-bottom:8px;
-    }
+    .article-body li{margin-bottom:8px}
 
     .article-body blockquote{
       margin:22px 0;
@@ -475,16 +478,16 @@
         <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">☰</button>
 
         <div class="menu" id="mainMenu">
-          <a href="/">Trang chủ</a>
-          <a href="/about">Giới thiệu</a>
-          <a href="/program">Chương trình</a>
-          <a href="/events">Sự kiện</a>
-          <a href="/scripts">Kịch bản</a>
-          <a href="/donate">Gây quỹ</a>
-          <a href="/transparency">Minh bạch</a>
-          <a href="/legal">Pháp lý</a>
-          <a href="/contact">Liên hệ</a>
-          <a href="/posts">Bài viết</a>
+          <a href="/" id="navHome">Trang chủ</a>
+          <a href="/about" id="navAbout">Giới thiệu</a>
+          <a href="/program" id="navProgram">Chương trình</a>
+          <a href="/events" id="navEvents">Sự kiện</a>
+          <a href="/scripts" id="navScripts">Kịch bản</a>
+          <a href="/donate" id="navDonate">Gây quỹ</a>
+          <a href="/transparency" id="navTransparency">Minh bạch</a>
+          <a href="/legal" id="navLegal">Pháp lý</a>
+          <a href="/contact" id="navContact">Liên hệ</a>
+          <a href="/posts" id="navPosts">Bài viết</a>
         </div>
 
         <div class="right">
@@ -590,7 +593,8 @@
       renderRichHtml,
       setSeo,
       formatDate,
-      esc
+      esc,
+      resolveCurrentRoute
     } from "/app.js";
 
     const lang = getLang();
@@ -613,25 +617,36 @@
 
     qsa(".reveal").forEach(el => observer.observe(el));
 
-    function resolveRoute() {
-      const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
-      const parts = path.split("/").filter(Boolean);
-      const qs = new URLSearchParams(window.location.search);
-      const qSlug = (qs.get("slug") || "").trim();
+    function markActiveMenu(type, slug) {
+      const navMap = {
+        home: "navHome",
+        about: "navAbout",
+        program: "navProgram",
+        events: "navEvents",
+        scripts: "navScripts",
+        donate: "navDonate",
+        transparency: "navTransparency",
+        legal: "navLegal",
+        contact: "navContact",
+        posts: "navPosts"
+      };
 
-      if (parts.length >= 2 && (parts[0] === "posts" || parts[0] === "post")) {
-        return { slug: decodeURIComponent(parts.slice(1).join("/")), type: "post" };
+      Object.values(navMap).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove("active");
+      });
+
+      if (type === "post") {
+        document.getElementById("navPosts")?.classList.add("active");
+        return;
       }
 
-      if (parts.length === 1 && parts[0] !== "content" && parts[0] !== "posts" && parts[0] !== "post") {
-        return { slug: decodeURIComponent(parts[0]), type: "page" };
+      if (slug && navMap[slug]) {
+        document.getElementById(navMap[slug])?.classList.add("active");
+        return;
       }
 
-      if (qSlug) {
-        return { slug: qSlug, type: "page" };
-      }
-
-      return { slug: "about", type: "page" };
+      document.getElementById("navHome")?.classList.add("active");
     }
 
     function canonicalFor(slug, type = "page") {
@@ -696,12 +711,27 @@
         body_en: `
           <p>The legal page includes the foundation information regarding Terms of Use, Privacy Policy, and applicable disclaimers in fundraising and content usage.</p>
         `
+      },
+      program: {
+        type: "page",
+        title_vi: "Chương trình",
+        title_en: "Program",
+        excerpt_vi: "Khung vận hành, mô-đun triển khai, lộ trình và các trục ưu tiên của hệ thống.",
+        excerpt_en: "Operating framework, implementation modules, roadmap, and priority axes of the system.",
+        body_vi: `
+          <p>Chương trình của Đường Sao Tỏa Sáng được xây dựng theo cấu trúc có mục tiêu, nội dung, dòng lực, cơ chế phối hợp và báo cáo rõ ràng.</p>
+          <p>Giai đoạn đầu ưu tiên chuẩn hoá nội dung, xây dựng hệ thống kịch bản, cấu trúc gây quỹ minh bạch và tạo nền tảng cộng đồng có thể đồng hành lâu dài.</p>
+        `,
+        body_en: `
+          <p>The program is designed with clear goals, content logic, resource flow, collaboration mechanisms, and reporting standards.</p>
+          <p>Phase one focuses on content standardization, script system building, transparent fundraising, and a community platform for long-term collaboration.</p>
+        `
       }
     };
 
-    const route = resolveRoute();
-    const slug = route.slug;
-    const routeType = route.type;
+    const route = resolveCurrentRoute();
+    const slug = route.slug || "about";
+    const routeType = route.type === "post" ? "post" : "page";
 
     const titleEl = document.getElementById("contentTitle");
     const leadEl = document.getElementById("contentLead");
@@ -712,6 +742,8 @@
     const coverWrapEl = document.getElementById("contentCoverWrap");
     const coverImgEl = document.getElementById("contentCover");
     const relatedListEl = document.getElementById("relatedList");
+
+    markActiveMenu(routeType, slug);
 
     function fallbackItemFor(slugKey, forcedType = "page") {
       const f = FALLBACKS[slugKey];
@@ -836,6 +868,7 @@
       try {
         const items = await listContents({
           visibility: "public",
+          status: "published",
           limit: 12,
           order: "updated_at.desc"
         });
