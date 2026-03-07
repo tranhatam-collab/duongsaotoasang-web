@@ -9,3 +9,5 @@
 
 /posts          /posts.html            200
 /posts/*        /content.html          200
+/post           /posts.html            200
+/post/*         /content.html          200
