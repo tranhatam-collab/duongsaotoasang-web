@@ -24,6 +24,8 @@
     }
 
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
     body{
       margin:0;
       color:var(--text);
@@ -37,54 +39,108 @@
 
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
-    .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 18px;
+    }
 
     .topbar{
-      position:sticky;top:0;z-index:60;
+      position:sticky;
+      top:0;
+      z-index:70;
       backdrop-filter:blur(16px);
       background:rgba(10,12,16,.72);
       border-bottom:1px solid var(--line);
     }
 
     .nav{
-      display:flex;align-items:center;justify-content:space-between;gap:14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
       padding:14px 0;
     }
 
-    .brand{display:flex;align-items:center;gap:12px}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
     .brand-mark{
-      width:42px;height:42px;border-radius:14px;
+      width:42px;
+      height:42px;
+      border-radius:14px;
       background:
         radial-gradient(circle at 30% 30%, rgba(255,255,255,.15), transparent 36%),
         linear-gradient(135deg, rgba(216,188,119,.28), rgba(255,255,255,.05));
       border:1px solid rgba(255,255,255,.10);
       box-shadow:var(--shadow);
     }
-    .brand-title{font-weight:800;font-size:17px}
-    .brand-sub{font-size:12px;color:var(--muted);margin-top:3px}
 
-    .menu{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-    .menu a{
-      padding:10px 12px;border-radius:12px;border:1px solid transparent;
-      color:rgba(255,255,255,.82);transition:all .25s ease;
+    .brand-title{
+      font-weight:800;
+      font-size:17px;
     }
-    .menu a:hover,.menu a.active{
+
+    .brand-sub{
+      font-size:12px;
+      color:var(--muted);
+      margin-top:3px;
+    }
+
+    .menu{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .menu a{
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid transparent;
+      color:rgba(255,255,255,.82);
+      transition:all .25s ease;
+    }
+
+    .menu a:hover,
+    .menu a.active{
       background:rgba(255,255,255,.05);
       border-color:var(--line);
       color:#fff;
-      text-decoration:none;
     }
 
-    .right{display:flex;align-items:center;gap:10px}
-    .lang-links{display:flex;gap:8px;align-items:center}
+    .right{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .lang-links{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+
     .lang-link{
-      display:inline-flex;align-items:center;justify-content:center;
-      min-width:46px;height:40px;padding:0 12px;
-      border-radius:999px;border:1px solid var(--line);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:46px;
+      height:40px;
+      padding:0 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
       background:rgba(255,255,255,.03);
-      color:var(--muted);font-size:13px;font-weight:700;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:700;
       transition:all .25s ease;
     }
+
     .lang-link.active{
       color:#fff;
       background:rgba(216,188,119,.14);
@@ -92,21 +148,36 @@
     }
 
     .mobile-toggle{
-      display:none;width:44px;height:44px;border-radius:12px;
-      border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;cursor:pointer;
+      display:none;
+      width:44px;
+      height:44px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      cursor:pointer;
     }
 
-    .hero{padding:28px 0 12px}
+    .hero{
+      padding:28px 0 12px;
+    }
+
     .hero-shell{
       border:1px solid var(--line);
       background:
         radial-gradient(700px 260px at 10% 0%, rgba(216,188,119,.09), transparent 60%),
         linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border-radius:28px;padding:26px;box-shadow:var(--shadow);
+      border-radius:28px;
+      padding:26px;
+      box-shadow:var(--shadow);
     }
 
     .eyebrow{
-      font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:var(--gold);margin-bottom:10px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:var(--gold);
+      margin-bottom:10px;
     }
 
     .breadcrumb{
@@ -117,14 +188,24 @@
       flex-wrap:wrap;
       gap:6px;
       align-items:center;
-      margin-bottom:10px;
+      margin-bottom:8px;
     }
 
-    h1{margin:0;font-size:48px;line-height:1.03;letter-spacing:-.03em}
-    h2{margin:0 0 12px;font-size:26px;line-height:1.2}
-    .muted{color:var(--muted);line-height:1.8}
-    .small{font-size:13px}
-    .hr{height:1px;background:var(--line);margin:16px 0}
+    .page-title{
+      margin:0;
+      font-size:50px;
+      line-height:1.02;
+      letter-spacing:-.03em;
+      max-width:960px;
+    }
+
+    .lead{
+      margin:14px 0 0;
+      color:var(--muted);
+      line-height:1.85;
+      max-width:900px;
+      font-size:16px;
+    }
 
     .layout{
       display:grid;
@@ -141,14 +222,45 @@
       box-shadow:var(--shadow);
     }
 
-    .tag{
-      display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;
-      background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:12px;color:var(--muted);
+    .article-meta-top{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
     }
 
-    .meta-inline{font-size:13px;color:var(--muted)}
-    .article-meta-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
-    .lead{margin:16px 0 0;color:var(--muted);line-height:1.85}
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .meta-inline{
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    .article-cover{
+      margin:16px 0 18px;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      display:none;
+    }
+
+    .article-cover img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
 
     .article-body{
       font-size:16px;
@@ -156,10 +268,25 @@
       color:#e7edf3;
     }
 
-    .article-body p{margin:0 0 16px}
-    .article-body h2,.article-body h3{margin:30px 0 12px;line-height:1.3}
-    .article-body ul,.article-body ol{margin:0 0 18px 22px}
-    .article-body li{margin-bottom:8px}
+    .article-body p{
+      margin:0 0 16px;
+    }
+
+    .article-body h2,
+    .article-body h3{
+      margin:30px 0 12px;
+      line-height:1.3;
+    }
+
+    .article-body ul,
+    .article-body ol{
+      margin:0 0 18px 22px;
+    }
+
+    .article-body li{
+      margin-bottom:8px;
+    }
+
     .article-body blockquote{
       margin:22px 0;
       padding:14px 16px;
@@ -210,24 +337,52 @@
       border:0;
     }
 
-    .article-cover{
-      margin:18px 0 0;
-      border-radius:22px;
-      overflow:hidden;
+    .hr{
+      height:1px;
+      background:var(--line);
+      margin:16px 0;
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:14px;
       border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      cursor:pointer;
+      transition:all .25s ease;
     }
 
-    .article-cover img{
-      width:100%;
-      height:auto;
-      display:block;
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.07);
+      text-decoration:none;
     }
 
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .btn.primary{
+      border-color:rgba(216,188,119,.34);
+      background:linear-gradient(180deg, rgba(216,188,119,.15), rgba(216,188,119,.07));
+    }
 
-    .quick-list,.related-grid{display:grid;gap:12px}
-    .quick-item,.related-item{
+    .quick-list,
+    .related-grid{
+      display:grid;
+      gap:12px;
+    }
+
+    .quick-item,
+    .related-item{
       border:1px solid var(--line);
       background:var(--card-2);
       border-radius:18px;
@@ -236,26 +391,39 @@
       transition:all .25s ease;
     }
 
-    .quick-item:hover,.related-item:hover{
+    .quick-item:hover,
+    .related-item:hover{
       transform:translateY(-2px);
       border-color:rgba(216,188,119,.22);
       background:rgba(255,255,255,.05);
     }
 
-    .quick-item b,.related-item b{
+    .quick-item b,
+    .related-item b{
       display:block;
       font-size:18px;
       line-height:1.35;
       margin-bottom:8px;
     }
 
-    .quick-item span,.related-item .excerpt{
+    .quick-item span,
+    .related-item .excerpt{
       color:var(--muted);
       line-height:1.75;
       font-size:14px;
     }
 
-    .related-item .meta{margin-top:10px;color:var(--muted);font-size:12px}
+    .related-item .meta{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .section-title{
+      margin:0;
+      font-size:26px;
+      line-height:1.2;
+    }
 
     .footer{
       margin-top:30px;
@@ -279,7 +447,7 @@
 
     @media (max-width:1080px){
       .layout{grid-template-columns:1fr}
-      h1{font-size:40px}
+      .page-title{font-size:40px}
     }
 
     @media (max-width:860px){
@@ -287,7 +455,7 @@
       .menu.open{display:flex}
       .mobile-toggle{display:inline-flex;align-items:center;justify-content:center}
       .right{display:none}
-      h1{font-size:34px}
+      .page-title{font-size:34px}
       .hero-shell,.card{padding:18px}
     }
   </style>
@@ -334,26 +502,23 @@
       <div class="hero-shell">
         <div class="eyebrow" id="heroEyebrow">NỘI DUNG CHI TIẾT</div>
         <div class="breadcrumb" id="breadcrumb"></div>
+        <h1 class="page-title" id="contentTitle">Đang tải nội dung...</h1>
+        <p class="lead" id="contentLead">Vui lòng chờ trong giây lát. Hệ thống đang tải nội dung theo slug.</p>
       </div>
     </section>
 
     <section class="layout reveal">
       <article class="card">
         <div class="article-meta-top">
-          <span class="tag" id="typeTag">page</span>
-          <span class="meta-inline" id="dateLine"></span>
+          <span class="tag" id="contentTypeTag">page</span>
+          <span class="meta-inline" id="contentDate"></span>
         </div>
 
-        <h1 id="title">Đang tải nội dung...</h1>
-        <p class="lead" id="lead">Vui lòng chờ trong giây lát. Hệ thống đang tải nội dung theo slug.</p>
-
-        <div class="article-cover" id="coverWrap" style="display:none">
-          <img id="coverImg" src="" alt=""/>
+        <div class="article-cover" id="contentCoverWrap">
+          <img id="contentCover" src="" alt=""/>
         </div>
 
-        <div class="hr"></div>
-
-        <div class="article-body" id="body">
+        <div class="article-body" id="contentBody">
           <p>Loading...</p>
         </div>
 
@@ -365,21 +530,24 @@
 
       <aside class="card">
         <div class="eyebrow" id="sideEyebrow">ĐI NHANH</div>
-        <h2 id="sideTitle">Các hướng liên quan</h2>
+        <h2 class="section-title" id="sideTitle">Các hướng liên quan</h2>
 
         <div class="quick-list">
           <a class="quick-item" href="/about">
             <b id="q1t">Giới thiệu</b>
             <span id="q1d">Hiểu nền tảng và lý do tồn tại của hệ thống.</span>
           </a>
+
           <a class="quick-item" href="/program">
             <b id="q2t">Chương trình</b>
             <span id="q2d">Khung vận hành và lộ trình phát triển.</span>
           </a>
+
           <a class="quick-item" href="/scripts">
             <b id="q3t">Kịch bản</b>
             <span id="q3d">Dòng sản phẩm ưu tiên giai đoạn đầu.</span>
           </a>
+
           <a class="quick-item" href="/donate">
             <b id="q4t">Donate</b>
             <span id="q4d">Nguyên tắc gây quỹ minh bạch.</span>
@@ -397,7 +565,7 @@
     <section class="reveal" style="margin-top:14px">
       <div class="card">
         <div class="eyebrow" id="relatedEyebrow">LIÊN QUAN</div>
-        <h2 id="relatedTitle">Nội dung liên quan</h2>
+        <h2 class="section-title" id="relatedTitle">Nội dung liên quan</h2>
         <p class="muted" id="relatedHint">Tự lấy từ CMS. Nếu chưa có dữ liệu, hệ thống dùng fallback.</p>
         <div class="hr"></div>
         <div class="related-grid" id="relatedList"></div>
@@ -414,29 +582,41 @@
   </main>
 
   <script type="module">
-    import { getLang, mountLangLinks, loadBySlug, listContents, renderRichHtml, setSeo, formatDate, esc } from "/app.js";
+    import {
+      getLang,
+      mountLangLinks,
+      loadBySlug,
+      listContents,
+      renderRichHtml,
+      setSeo,
+      formatDate,
+      esc
+    } from "/app.js";
 
     const lang = getLang();
     const T = (vi, en) => lang === "vi" ? vi : en;
     const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
     document.documentElement.lang = lang;
+
     document.getElementById("mobileToggle").onclick = () => {
       document.getElementById("mainMenu").classList.toggle("open");
     };
 
+    mountLangLinks("langViLink", "langEnLink");
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if(entry.isIntersecting) entry.target.classList.add("in");
+        if (entry.isIntersecting) entry.target.classList.add("in");
       });
     }, { threshold: 0.12 });
 
     qsa(".reveal").forEach(el => observer.observe(el));
 
     function resolveRoute() {
-      const path = location.pathname.replace(/^\/+|\/+$/g, "");
+      const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
       const parts = path.split("/").filter(Boolean);
-      const qs = new URLSearchParams(location.search);
+      const qs = new URLSearchParams(window.location.search);
       const qSlug = (qs.get("slug") || "").trim();
 
       if (parts.length >= 2 && (parts[0] === "posts" || parts[0] === "post")) {
@@ -454,17 +634,38 @@
       return { slug: "about", type: "page" };
     }
 
-    const route = resolveRoute();
-    const slug = route.slug;
-    const routeType = route.type;
-
-    mountLangLinks("langViLink", "langEnLink");
-
     function canonicalFor(slug, type = "page") {
       const suffix = lang === "en" ? "?lang=en" : "";
       return type === "post"
         ? `https://duongsaotoasang.com/posts/${encodeURIComponent(slug)}${suffix}`
         : `https://duongsaotoasang.com/${encodeURIComponent(slug)}${suffix}`;
+    }
+
+    function videoEmbed(url) {
+      if (!url) return "";
+
+      try {
+        if (url.includes("youtube.com/watch?v=")) {
+          const id = new URL(url).searchParams.get("v");
+          return id ? `https://www.youtube.com/embed/${id}` : "";
+        }
+
+        if (url.includes("youtu.be/")) {
+          const id = url.split("youtu.be/")[1]?.split("?")[0];
+          return id ? `https://www.youtube.com/embed/${id}` : "";
+        }
+
+        if (url.includes("youtube.com/embed/")) return url;
+
+        if (url.includes("vimeo.com/")) {
+          const id = url.split("vimeo.com/")[1]?.split("?")[0];
+          return id ? `https://player.vimeo.com/video/${id}` : "";
+        }
+      } catch (e) {
+        console.warn("video parse error:", e);
+      }
+
+      return "";
     }
 
     const FALLBACKS = {
@@ -498,15 +699,19 @@
       }
     };
 
-    const titleEl = document.getElementById("title");
-    const leadEl = document.getElementById("lead");
-    const bodyEl = document.getElementById("body");
-    const typeTag = document.getElementById("typeTag");
-    const dateLine = document.getElementById("dateLine");
-    const breadcrumb = document.getElementById("breadcrumb");
-    const relatedList = document.getElementById("relatedList");
-    const coverWrap = document.getElementById("coverWrap");
-    const coverImg = document.getElementById("coverImg");
+    const route = resolveRoute();
+    const slug = route.slug;
+    const routeType = route.type;
+
+    const titleEl = document.getElementById("contentTitle");
+    const leadEl = document.getElementById("contentLead");
+    const bodyEl = document.getElementById("contentBody");
+    const typeTagEl = document.getElementById("contentTypeTag");
+    const dateEl = document.getElementById("contentDate");
+    const breadcrumbEl = document.getElementById("breadcrumb");
+    const coverWrapEl = document.getElementById("contentCoverWrap");
+    const coverImgEl = document.getElementById("contentCover");
+    const relatedListEl = document.getElementById("relatedList");
 
     function fallbackItemFor(slugKey, forcedType = "page") {
       const f = FALLBACKS[slugKey];
@@ -517,8 +722,8 @@
         title: lang === "vi" ? f.title_vi : f.title_en,
         excerpt: lang === "vi" ? f.excerpt_vi : f.excerpt_en,
         body: lang === "vi" ? f.body_vi : f.body_en,
-        createdAt: "",
-        updatedAt: "",
+        created_at: "",
+        updated_at: "",
         cover_url: "",
         video_url: ""
       };
@@ -526,8 +731,9 @@
 
     function renderBreadcrumb(title, type) {
       const suffix = lang === "en" ? "?lang=en" : "";
+
       if (type === "post") {
-        breadcrumb.innerHTML = `
+        breadcrumbEl.innerHTML = `
           <a href="/">${T("Trang chủ", "Home")}</a>
           <span>/</span>
           <a href="/posts${suffix}">${T("Bài viết", "Posts")}</a>
@@ -535,7 +741,7 @@
           <span>${esc(title)}</span>
         `;
       } else {
-        breadcrumb.innerHTML = `
+        breadcrumbEl.innerHTML = `
           <a href="/">${T("Trang chủ", "Home")}</a>
           <span>/</span>
           <span>${esc(title)}</span>
@@ -543,22 +749,11 @@
       }
     }
 
-    function videoEmbed(url) {
-      if (!url) return "";
-      if (url.includes("youtube.com/watch?v=")) {
-        const id = new URL(url).searchParams.get("v");
-        return id ? `https://www.youtube.com/embed/${id}` : "";
-      }
-      if (url.includes("youtu.be/")) {
-        const id = url.split("youtu.be/")[1]?.split("?")[0];
-        return id ? `https://www.youtube.com/embed/${id}` : "";
-      }
-      if (url.includes("youtube.com/embed/")) return url;
-      if (url.includes("vimeo.com/")) {
-        const id = url.split("vimeo.com/")[1]?.split("?")[0];
-        return id ? `https://player.vimeo.com/video/${id}` : "";
-      }
-      return "";
+    function toHref(item) {
+      const suffix = lang === "en" ? "?lang=en" : "";
+      return item.type === "post"
+        ? `/posts/${encodeURIComponent(item.slug || "")}${suffix}`
+        : `/${encodeURIComponent(item.slug || "")}${suffix}`;
     }
 
     function renderMain(item) {
@@ -570,66 +765,50 @@
       if (item.video_url) {
         const embed = videoEmbed(item.video_url);
         if (embed) {
-          body += `<div class="video-wrap"><iframe src="${esc(embed)}" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>`;
+          body += `
+            <div class="video-wrap">
+              <iframe
+                src="${esc(embed)}"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin">
+              </iframe>
+            </div>
+          `;
         }
       }
 
       titleEl.textContent = title;
       leadEl.textContent = excerpt;
-      typeTag.textContent = type;
+      typeTagEl.textContent = type;
       renderBreadcrumb(title, type);
 
-      const rawDate = item.updatedAt || item.createdAt || "";
-      dateLine.textContent = rawDate ? formatDate(rawDate) : T("Đang cập nhật", "Updating");
+      const rawDate = item.updated_at || item.created_at || "";
+      dateEl.textContent = rawDate ? formatDate(rawDate) : T("Đang cập nhật", "Updating");
 
       if (item.cover_url) {
-        coverWrap.style.display = "";
-        coverImg.src = item.cover_url;
-        coverImg.alt = title;
+        coverWrapEl.style.display = "block";
+        coverImgEl.src = item.cover_url;
+        coverImgEl.alt = title;
       } else {
-        coverWrap.style.display = "none";
-        coverImg.src = "";
+        coverWrapEl.style.display = "none";
+        coverImgEl.src = "";
+        coverImgEl.alt = "";
       }
 
       renderRichHtml(bodyEl, body);
 
-      const canonical = canonicalFor(slug, type);
       setSeo({
         title: `${title} | Đường Sao Tỏa Sáng`,
         description: excerpt,
-        canonical,
+        canonical: canonicalFor(slug, type),
         ogImage: item.cover_url || null
       });
-
-      const old = document.getElementById("articleSchema");
-      if (old) old.remove();
-
-      const schema = {
-        "@context":"https://schema.org",
-        "@type": type === "post" ? "Article" : "WebPage",
-        "headline": title,
-        "description": excerpt,
-        "mainEntityOfPage": canonical,
-        "publisher":{"@type":"Organization","name":"Đường Sao Tỏa Sáng"}
-      };
-
-      const script = document.createElement("script");
-      script.type = "application/ld+json";
-      script.id = "articleSchema";
-      script.textContent = JSON.stringify(schema);
-      document.head.appendChild(script);
-    }
-
-    function toHref(item) {
-      const suffix = lang === "en" ? "?lang=en" : "";
-      return item.type === "post"
-        ? `/posts/${encodeURIComponent(item.slug || "")}${suffix}`
-        : `/${encodeURIComponent(item.slug || "")}${suffix}`;
     }
 
     function renderRelated(items) {
       if (!items || !items.length) {
-        relatedList.innerHTML = `
+        relatedListEl.innerHTML = `
           <div class="related-item">
             <b>${T("Chưa có nội dung liên quan", "No related content yet")}</b>
             <div class="excerpt">${T("Hệ thống sẽ tự bổ sung khi có thêm dữ liệu từ CMS.", "The system will populate this section when more CMS content exists.")}</div>
@@ -638,7 +817,7 @@
         return;
       }
 
-      relatedList.innerHTML = items.map(item => `
+      relatedListEl.innerHTML = items.map(item => `
         <a class="related-item" href="${toHref(item)}">
           <b>${esc(item.title || item.slug || "")}</b>
           <div class="excerpt">${esc(item.excerpt || T("Nhấn để đọc chi tiết.", "Open to read details."))}</div>
@@ -713,8 +892,8 @@
         title: T("Nội dung đang cập nhật", "Content is being updated"),
         excerpt: T("Trang này đã được tạo nhưng chưa có nội dung hoàn chỉnh.", "This page exists but content is not complete yet."),
         body: `<p>${T("Slug này hiện chưa có nội dung fallback riêng.", "This slug does not yet have dedicated fallback content.")}</p>`,
-        createdAt: "",
-        updatedAt: "",
+        created_at: "",
+        updated_at: "",
         cover_url: "",
         video_url: ""
       };
@@ -725,17 +904,7 @@
       try {
         const item = await loadBySlug(slug);
         if (item) {
-          renderMain({
-            slug: item.slug,
-            type: item.type,
-            title: item.title,
-            excerpt: item.excerpt,
-            body: item.body,
-            createdAt: item.created_at,
-            updatedAt: item.updated_at,
-            cover_url: item.cover_url,
-            video_url: item.video_url
-          });
+          renderMain(item);
           loadRelated(slug);
         }
       } catch (e) {
