@@ -176,7 +176,7 @@ const FALLBACK_CONTENTS = [
       <p>Building from real living is different. It begins with a real need, a real observation, something genuinely useful for human life. Then the product or service is born not only to sell, but to solve something real.</p>
       <p>A person who builds from real living may not move faster, but they often go farther. They may seem slower at the beginning, yet because the root is sound, the long-term structure tends to be much stronger.</p>
       <p>This requires honesty. Honesty to examine why you are building at all. Honesty to see how much of your decision comes from principle, and how much comes from fear of being overlooked or left behind.</p>
-      <p>When entrepreneurship begins from clear seeing and from real life, it becomes more than a money-making model. It can grow into an ecosystem of value able to endure.</p>
+            <p>When entrepreneurship begins from clear seeing and from real life, it becomes more than a money-making model. It can grow into an ecosystem of value able to endure.</p>
     `,
     cover: "",
     cover_url: "",
