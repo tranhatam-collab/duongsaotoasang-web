@@ -4,23 +4,30 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Bài viết | Đường Sao Tỏa Sáng</title>
-  <meta name="description" content="Danh sách bài viết, cập nhật, chia sẻ và các nội dung công khai từ hệ thống Đường Sao Tỏa Sáng."/>
+  <meta name="description" content="Thư viện bài viết của Đường Sao Tỏa Sáng, nơi tập hợp các bài viết về nhận thức, hành trình, sáng tạo, cộng đồng và định hướng sống."/>
   <meta name="theme-color" content="#0b0e12"/>
+  <meta name="robots" content="index,follow"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <link rel="canonical" href="https://duongsaotoasang.com/posts"/>
   <link rel="stylesheet" href="/app.css"/>
 
   <style>
     :root{
-      --bg:#090c11;
-      --card:rgba(255,255,255,.045);
-      --card-2:rgba(255,255,255,.03);
+      --bg:#090c10;
+      --bg-soft:#10141a;
+      --panel:rgba(255,255,255,.045);
+      --panel-2:rgba(255,255,255,.032);
       --line:rgba(255,255,255,.085);
-      --text:#f2f4f7;
-      --muted:#a8b0bb;
+      --line-strong:rgba(255,255,255,.14);
+      --text:#f3f5f7;
+      --muted:#a8b0ba;
       --gold:#d8bc77;
-      --gold-soft:rgba(216,188,119,.18);
-      --shadow:0 18px 60px rgba(0,0,0,.38);
-      --r:24px;
-      --max:1260px;
+      --gold-soft:rgba(216,188,119,.16);
+      --white-soft:rgba(255,255,255,.82);
+      --shadow:0 18px 70px rgba(0,0,0,.42);
+      --radius:24px;
+      --max:1240px;
+      --focus:0 0 0 3px rgba(216,188,119,.25);
     }
 
     *{box-sizing:border-box}
@@ -28,27 +35,39 @@
     body{
       margin:0;
       color:var(--text);
-      background:
-        radial-gradient(900px 460px at 0% 0%, rgba(216,188,119,.10), transparent 55%),
-        radial-gradient(700px 420px at 100% 10%, rgba(138,198,255,.08), transparent 55%),
-        linear-gradient(180deg,#080b0f 0%, #0d1218 100%);
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(900px 520px at 0% 0%, rgba(216,188,119,.10), transparent 60%),
+        radial-gradient(760px 480px at 100% 10%, rgba(132,176,255,.10), transparent 58%),
+        linear-gradient(180deg,#080b0f 0%, #0c1117 100%);
       overflow-x:hidden;
+      text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
+    button,input,select,textarea{font:inherit}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
 
-    .wrap{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:0 18px;
+    .skip-link{
+      position:absolute;
+      left:16px;
+      top:-60px;
+      z-index:999;
+      padding:10px 14px;
+      border-radius:12px;
+      background:#fff;
+      color:#111;
+      transition:top .2s ease;
     }
+    .skip-link:focus{top:16px}
 
     .topbar{
       position:sticky;
       top:0;
-      z-index:70;
+      z-index:80;
       backdrop-filter:blur(16px);
       background:rgba(10,12,16,.72);
       border-bottom:1px solid var(--line);
@@ -70,13 +89,11 @@
     }
 
     .brand-mark{
-      width:42px;
-      height:42px;
-      border-radius:14px;
+      width:44px;height:44px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
       background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.15), transparent 36%),
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.16), transparent 35%),
         linear-gradient(135deg, rgba(216,188,119,.28), rgba(255,255,255,.05));
-      border:1px solid rgba(255,255,255,.10);
       box-shadow:var(--shadow);
       flex:0 0 auto;
     }
@@ -84,12 +101,26 @@
     .brand-title{
       font-weight:800;
       font-size:17px;
+      letter-spacing:.2px;
+      line-height:1.05;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
     .brand-sub{
       font-size:12px;
       color:var(--muted);
-      margin-top:3px;
+      margin-top:4px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .nav-shell{
+      display:flex;
+      align-items:center;
+      gap:12px;
     }
 
     .menu{
@@ -97,27 +128,30 @@
       align-items:center;
       gap:8px;
       flex-wrap:wrap;
+      justify-content:center;
     }
 
     .menu a{
       padding:10px 12px;
       border-radius:12px;
+      color:var(--white-soft);
       border:1px solid transparent;
-      color:rgba(255,255,255,.82);
       transition:all .25s ease;
     }
 
     .menu a:hover,
-    .menu a.active{
+    .menu a.active,
+    .menu a[aria-current="page"]{
+      color:#fff;
       background:rgba(255,255,255,.05);
       border-color:var(--line);
-      color:#fff;
     }
 
     .right{
       display:flex;
       align-items:center;
       gap:10px;
+      flex:0 0 auto;
     }
 
     .lang-links{
@@ -142,10 +176,54 @@
       transition:all .25s ease;
     }
 
+    .lang-link:hover{
+      color:#fff;
+      border-color:var(--line-strong);
+      background:rgba(255,255,255,.05);
+    }
+
     .lang-link.active{
       color:#fff;
       background:rgba(216,188,119,.14);
       border-color:rgba(216,188,119,.32);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      cursor:pointer;
+      transition:all .25s ease;
+      min-height:44px;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+      text-decoration:none;
+    }
+
+    .btn.primary{
+      border-color:rgba(216,188,119,.38);
+      background:linear-gradient(180deg, rgba(216,188,119,.18), rgba(216,188,119,.08));
+      box-shadow:0 10px 30px rgba(216,188,119,.10);
+    }
+
+    .btn:focus-visible,
+    .menu a:focus-visible,
+    .lang-link:focus-visible,
+    .mobile-toggle:focus-visible,
+    .field:focus-visible,
+    .chip:focus-visible,
+    .card-link:focus-visible{
+      outline:none;
+      box-shadow:var(--focus);
     }
 
     .mobile-toggle{
@@ -157,144 +235,232 @@
       background:rgba(255,255,255,.04);
       color:#fff;
       cursor:pointer;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .page{
+      padding:30px 0 54px;
     }
 
     .hero{
-      padding:34px 0 16px;
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.085);
+      border-radius:30px;
+      background:
+        radial-gradient(780px 320px at 10% 0%, rgba(216,188,119,.12), transparent 62%),
+        radial-gradient(680px 280px at 100% 8%, rgba(132,176,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.018));
+      box-shadow:var(--shadow);
+      padding:30px;
     }
 
-    .hero-shell{
-      border:1px solid var(--line);
-      background:
-        radial-gradient(700px 260px at 10% 0%, rgba(216,188,119,.10), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border-radius:30px;
-      padding:28px;
-      box-shadow:var(--shadow);
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:18px;
+      align-items:stretch;
     }
 
     .eyebrow{
       font-size:12px;
-      text-transform:uppercase;
       letter-spacing:.18em;
+      text-transform:uppercase;
       color:var(--gold);
       margin-bottom:10px;
     }
 
-    h1{
+    .hero h1{
       margin:0;
-      font-size:50px;
+      font-size:clamp(36px,6vw,60px);
       line-height:1.02;
-      letter-spacing:-.03em;
-      max-width:950px;
+      letter-spacing:-.04em;
+      max-width:860px;
     }
 
-    .muted{
+    .hero p{
+      margin:16px 0 0;
       color:var(--muted);
-      line-height:1.84;
+      line-height:1.9;
+      font-size:16px;
+      max-width:820px;
     }
 
-    .small{font-size:13px}
-
-    .hr{
-      height:1px;
-      background:var(--line);
-      margin:16px 0;
-    }
-
-    .hero-tools{
+    .hero-actions{
       display:flex;
-      gap:10px;
+      gap:12px;
       flex-wrap:wrap;
-      margin-top:18px;
-      align-items:center;
+      margin-top:22px;
     }
 
-    .filter-btn{
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      color:#fff;
-      cursor:pointer;
-      transition:all .2s ease;
-    }
-
-    .filter-btn.active{
-      background:rgba(216,188,119,.18);
-      border-color:rgba(216,188,119,.30);
-    }
-
-    .search-input{
-      width:min(520px,100%);
-      padding:14px 16px;
-      border-radius:16px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:#fff;
-      outline:none;
-      font:inherit;
-    }
-
-    .search-input::placeholder{
-      color:var(--muted);
-    }
-
-    .layout{
+    .hero-side{
       display:grid;
-      grid-template-columns:1.75fr .95fr;
-      gap:16px;
-      margin-top:16px;
+      gap:14px;
     }
 
     .card{
       border:1px solid var(--line);
-      background:var(--card);
-      border-radius:var(--r);
-      padding:20px;
+      background:var(--panel);
+      border-radius:24px;
+      padding:18px;
       box-shadow:var(--shadow);
     }
 
-    .section-title{
-      margin:0;
-      font-size:26px;
+    .card h2{
+      margin:0 0 10px;
+      font-size:20px;
       line-height:1.2;
     }
 
-    .list{
-      display:grid;
+    .muted{
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .section{
+      padding:22px 0 6px;
+      scroll-margin-top:100px;
+    }
+
+    .section-header{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
       gap:16px;
-      margin-top:14px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+
+    .section-header h2{
+      margin:0;
+      font-size:30px;
+      line-height:1.1;
+      letter-spacing:-.02em;
+    }
+
+    .section-header p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.85;
+      max-width:760px;
+    }
+
+    .toolbar{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:14px;
+      align-items:center;
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:rgba(255,255,255,.035);
+      box-shadow:var(--shadow);
+    }
+
+    .search-wrap{
+      display:grid;
+      gap:8px;
+    }
+
+    .search-label{
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    .field{
+      width:100%;
+      min-height:48px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.035);
+      color:#fff;
+      padding:0 15px;
+    }
+
+    .field::placeholder{color:#8f98a4}
+
+    .chip-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--white-soft);
+      font-size:13px;
+      cursor:pointer;
+      transition:all .25s ease;
+    }
+
+    .chip:hover{
+      background:rgba(255,255,255,.06);
+      border-color:rgba(216,188,119,.22);
+      color:#fff;
+    }
+
+    .chip.active{
+      color:#fff;
+      border-color:rgba(216,188,119,.34);
+      background:rgba(216,188,119,.12);
+    }
+
+    .meta-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:12px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:16px;
+      margin-top:16px;
     }
 
     .post-card{
-      display:block;
+      grid-column:span 4;
+      display:flex;
+      flex-direction:column;
+      min-height:100%;
       border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      border-radius:22px;
+      background:var(--panel);
+      border-radius:24px;
       overflow:hidden;
-      transition:all .28s ease;
+      box-shadow:var(--shadow);
+      transition:transform .25s ease,border-color .25s ease,background .25s ease;
     }
 
     .post-card:hover{
       transform:translateY(-3px);
-      border-color:rgba(216,188,119,.24);
-      background:rgba(255,255,255,.05);
+      border-color:rgba(216,188,119,.22);
+      background:rgba(255,255,255,.055);
     }
 
-    .thumb{
-      aspect-ratio:16/8;
+    .post-cover{
+      aspect-ratio:16/9;
       background:
         radial-gradient(circle at 20% 20%, rgba(216,188,119,.18), transparent 30%),
         linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
       border-bottom:1px solid var(--line);
       overflow:hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
     }
 
-    .thumb img{
+    .post-cover img{
       width:100%;
       height:100%;
       object-fit:cover;
@@ -302,92 +468,122 @@
 
     .post-body{
       padding:18px;
-    }
-
-    .post-meta-top{
       display:flex;
-      align-items:center;
-      justify-content:space-between;
+      flex-direction:column;
       gap:10px;
-      flex-wrap:wrap;
-      margin-bottom:8px;
+      flex:1 1 auto;
     }
 
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:6px 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,.04);
-      border:1px solid var(--line);
-      font-size:12px;
-      color:var(--muted);
+    .post-type{
+      font-size:11px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--gold);
     }
 
     .post-title{
-      font-size:24px;
-      line-height:1.24;
-      margin:0 0 10px;
+      margin:0;
+      font-size:22px;
+      line-height:1.2;
       letter-spacing:-.02em;
     }
 
     .post-excerpt{
       color:var(--muted);
-      line-height:1.85;
-      font-size:14px;
+      line-height:1.8;
+      font-size:15px;
+      flex:1 1 auto;
     }
 
-    .post-footer{
-      margin-top:12px;
+    .post-meta{
       display:flex;
+      align-items:center;
       justify-content:space-between;
-      gap:12px;
+      gap:10px;
       flex-wrap:wrap;
       color:var(--muted);
       font-size:13px;
+      margin-top:6px;
     }
 
-    .quick-list{
+    .post-link{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:#fff;
+      font-weight:600;
+    }
+
+    .post-link span:last-child{
+      color:var(--gold);
+    }
+
+    .skeleton-grid{
       display:grid;
-      gap:12px;
+      grid-template-columns:repeat(12,1fr);
+      gap:16px;
+      margin-top:16px;
     }
 
-    .quick-item{
+    .skeleton-card{
+      grid-column:span 4;
+      min-height:320px;
+      border-radius:24px;
       border:1px solid var(--line);
-      background:var(--card-2);
-      border-radius:18px;
-      padding:16px;
-      display:block;
-      transition:all .25s ease;
+      background:rgba(255,255,255,.03);
+      position:relative;
+      overflow:hidden;
     }
 
-    .quick-item:hover{
-      transform:translateY(-2px);
-      border-color:rgba(216,188,119,.22);
-      background:rgba(255,255,255,.05);
+    .skeleton-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      transform:translateX(-100%);
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);
+      animation:shimmer 1.3s infinite;
     }
 
-    .quick-item b{
-      display:block;
-      font-size:18px;
-      margin-bottom:8px;
-      line-height:1.3;
+    .empty{
+      margin-top:16px;
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:rgba(255,255,255,.03);
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    .empty h3{
+      margin:0 0 8px;
+      font-size:22px;
+    }
+
+    .empty p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
     }
 
     .footer{
-      margin-top:26px;
-      padding:24px 0 52px;
+      margin-top:30px;
+      padding:24px 0 54px;
       border-top:1px solid var(--line);
       color:var(--muted);
       line-height:1.85;
       font-size:14px;
     }
 
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:16px;
+      align-items:start;
+    }
+
     .reveal{
       opacity:0;
-      transform:translateY(20px);
-      transition:opacity .7s ease, transform .7s ease;
+      transform:translateY(26px);
+      transition:opacity .75s ease, transform .75s ease;
     }
 
     .reveal.in{
@@ -395,127 +591,225 @@
       transform:none;
     }
 
+    [hidden]{display:none !important}
+
+    @keyframes shimmer{
+      to{transform:translateX(100%)}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .reveal,
+      .post-card,
+      .btn,
+      .menu a,
+      .lang-link,
+      .chip{
+        transition:none !important;
+        animation:none !important;
+      }
+      .reveal{
+        opacity:1;
+        transform:none;
+      }
+    }
+
     @media (max-width:1080px){
-      .layout{grid-template-columns:1fr}
-      h1{font-size:40px}
+      .hero-grid{grid-template-columns:1fr}
+      .post-card{grid-column:span 6}
+      .skeleton-card{grid-column:span 6}
     }
 
     @media (max-width:860px){
-      .menu{display:none;width:100%;padding-top:10px}
+      .nav{
+        align-items:center;
+        flex-wrap:wrap;
+      }
+
+      .nav-shell{
+        width:100%;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+      }
+
+      .menu{
+        display:none;
+        width:100%;
+        padding-top:10px;
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .menu a{width:100%}
       .menu.open{display:flex}
-      .mobile-toggle{display:inline-flex;align-items:center;justify-content:center}
+      .mobile-toggle{display:inline-flex}
       .right{display:none}
-      h1{font-size:34px}
-      .hero-shell,.card{padding:18px}
-      .post-title{font-size:22px}
+
+      .page{padding-top:20px}
+      .hero{padding:20px}
+      .toolbar{
+        grid-template-columns:1fr;
+      }
+      .chip-row{
+        justify-content:flex-start;
+      }
+      .post-card{grid-column:span 12}
+      .skeleton-card{grid-column:span 12}
+      .footer-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#mainContent">Bỏ qua menu</a>
+
   <header class="topbar">
     <div class="wrap">
       <div class="nav">
-        <div class="brand">
-          <div class="brand-mark"></div>
+        <a class="brand" href="/" aria-label="Đường Sao Tỏa Sáng">
+          <div class="brand-mark" aria-hidden="true"></div>
           <div>
             <div class="brand-title">Đường Sao Tỏa Sáng</div>
             <div class="brand-sub">Star Path Light Up</div>
           </div>
-        </div>
+        </a>
 
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">☰</button>
+        <div class="nav-shell">
+          <button
+            class="mobile-toggle"
+            id="mobileToggle"
+            aria-label="Mở menu"
+            aria-expanded="false"
+            aria-controls="mainMenu"
+            type="button">☰</button>
 
-        <div class="menu" id="mainMenu">
-          <a href="/" id="navHome">Trang chủ</a>
-          <a href="/about" id="navAbout">Giới thiệu</a>
-          <a href="/program" id="navProgram">Chương trình</a>
-          <a href="/events" id="navEvents">Sự kiện</a>
-          <a href="/scripts" id="navScripts">Kịch bản</a>
-          <a href="/donate" id="navDonate">Gây quỹ</a>
-          <a href="/transparency" id="navTransparency">Minh bạch</a>
-          <a href="/legal" id="navLegal">Pháp lý</a>
-          <a href="/contact" id="navContact">Liên hệ</a>
-          <a href="/posts" id="navPosts" class="active">Bài viết</a>
-        </div>
-
-        <div class="right">
-          <div class="lang-links">
-            <a id="langViLink" class="lang-link" href="#">VI</a>
-            <a id="langEnLink" class="lang-link" href="#">EN</a>
+          <div class="right">
+            <div class="lang-links" aria-label="Language switch">
+              <a id="langViLink" class="lang-link" href="/posts">VI</a>
+              <a id="langEnLink" class="lang-link" href="/posts?lang=en">EN</a>
+            </div>
           </div>
         </div>
+
+        <nav class="menu" id="mainMenu" aria-label="Main navigation">
+          <a href="/">Trang chủ</a>
+          <a href="/about">Giới thiệu</a>
+          <a href="/program">Chương trình</a>
+          <a href="/events">Sự kiện</a>
+          <a href="/scripts">Kịch bản</a>
+          <a href="/donate">Gây quỹ</a>
+          <a href="/transparency">Minh bạch</a>
+          <a href="/legal">Pháp lý</a>
+          <a href="/contact">Liên hệ</a>
+          <a href="/posts" class="active" aria-current="page">Bài viết</a>
+        </nav>
       </div>
     </div>
   </header>
 
-  <main class="wrap">
+  <main class="wrap page" id="mainContent">
     <section class="hero reveal">
-      <div class="hero-shell">
-        <div class="eyebrow" id="heroEyebrow">THƯ VIỆN BÀI VIẾT</div>
-        <h1 id="pageTitle">Bài viết, ghi chú, phân tích và các điểm chạm công khai</h1>
-        <p class="muted" id="pageDesc" style="margin-top:16px;max-width:920px">
-          Đây là nơi tập hợp toàn bộ bài viết public trong hệ thống. Khi có bài mới được publish từ CMS, trang này sẽ tự cập nhật. Nếu chưa có bài nào, trang vẫn hiển thị định hướng và các liên kết nền thay vì để trống.
-        </p>
-
-        <div class="hero-tools">
-          <input id="searchInput" class="search-input" placeholder="Tìm bài viết..."/>
-
-          <button class="filter-btn active" data-filter="all" id="fAll">Tất cả</button>
-          <button class="filter-btn" data-filter="post" id="fPost">Bài viết</button>
-          <button class="filter-btn" data-filter="script" id="fScript">Kịch bản</button>
-          <button class="filter-btn" data-filter="page" id="fPage">Trang nền</button>
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow" id="heroEyebrow">THƯ VIỆN TRI THỨC</div>
+          <h1 id="heroTitle">Những bài viết để đọc chậm, nghĩ sâu và đi xa hơn.</h1>
+          <p id="heroDesc">
+            Đây là nơi tập hợp những bài viết về nhận thức, hành trình, cộng đồng, sáng tạo và định hướng sống. Khi chưa có dữ liệu từ hệ thống, trang này vẫn tự hiển thị bài mẫu để toàn bộ giao diện luôn chạy hoàn chỉnh.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="/" id="heroBtn1">Về trang chủ</a>
+            <a class="btn" href="/contact" id="heroBtn2">Liên hệ</a>
+          </div>
         </div>
+
+        <aside class="hero-side">
+          <div class="card">
+            <div class="eyebrow" id="sideEyebrow1">CÁCH ĐỌC</div>
+            <h2 id="sideTitle1">Không phải để lướt qua</h2>
+            <p class="muted" id="sideDesc1">
+              Mỗi bài viết ở đây được xây như một điểm dừng để người đọc nhìn lại chính mình, nhìn lại thế giới và nhận ra con đường đáng đi.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="eyebrow" id="sideEyebrow2">CẤU TRÚC</div>
+            <h2 id="sideTitle2">Tự chạy kể cả khi chưa có CMS</h2>
+            <p class="muted" id="sideDesc2">
+              Nếu API chưa trả dữ liệu hoặc hệ quản trị chưa có bài viết xuất bản, hệ thống sẽ tự hiển thị bài mẫu hoàn chỉnh để không tạo cảm giác trống hoặc đứt mạch.
+            </p>
+          </div>
+        </aside>
       </div>
     </section>
 
-    <section class="layout reveal">
-      <div class="card">
-        <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-end;flex-wrap:wrap">
-          <div>
-            <div class="eyebrow" id="listEyebrow">DANH SÁCH CÔNG KHAI</div>
-            <h2 class="section-title" id="listTitle">Bài viết hiện có</h2>
-          </div>
-          <div class="small muted" id="countInfo">Đang tải dữ liệu...</div>
+    <section class="section reveal">
+      <div class="section-header">
+        <div>
+          <div class="eyebrow" id="filterEyebrow">BỘ LỌC NỘI DUNG</div>
+          <h2 id="filterTitle">Tìm bài viết phù hợp với điều anh đang cần</h2>
         </div>
-
-        <div class="hr"></div>
-        <div class="list" id="postsList"></div>
+        <p id="filterDesc">
+          Có thể tìm theo từ khóa hoặc chọn nhanh theo nhóm chủ đề. Tất cả sẽ giữ nguyên trải nghiệm nhẹ, nhanh và không cần framework nặng.
+        </p>
       </div>
 
-      <aside class="card">
-        <div class="eyebrow" id="sideEyebrow">ĐI NHANH</div>
-        <h2 class="section-title" id="sideTitle">Hướng đọc quan trọng</h2>
-        <div class="hr"></div>
-
-        <div class="quick-list">
-          <a class="quick-item" href="/about">
-            <b id="q1t">Giới thiệu</b>
-            <div class="muted" id="q1d">Hiểu nền tảng, tầm nhìn và lý do tồn tại của hệ thống.</div>
-          </a>
-
-          <a class="quick-item" href="/program">
-            <b id="q2t">Chương trình</b>
-            <div class="muted" id="q2d">Khung triển khai, mô-đun vận hành và lộ trình phát triển.</div>
-          </a>
-
-          <a class="quick-item" href="/scripts">
-            <b id="q3t">Kịch bản</b>
-            <div class="muted" id="q3d">Dòng sản phẩm ưu tiên giai đoạn đầu.</div>
-          </a>
-
-          <a class="quick-item" href="/donate">
-            <b id="q4t">Donate / Gây quỹ</b>
-            <div class="muted" id="q4d">Hiểu cơ chế đồng hành minh bạch đi kèm báo cáo.</div>
-          </a>
+      <div class="toolbar">
+        <div class="search-wrap">
+          <label class="search-label" for="searchInput" id="searchLabel">Tìm kiếm bài viết</label>
+          <input
+            id="searchInput"
+            class="field"
+            type="search"
+            autocomplete="off"
+            placeholder="Nhập từ khóa như: nhận thức, sáng tạo, cộng đồng..."
+          />
         </div>
-      </aside>
+
+        <div class="chip-row" id="quickFilters">
+          <button class="chip active" type="button" data-filter="all">Tất cả</button>
+          <button class="chip" type="button" data-filter="nhận thức">Nhận thức</button>
+          <button class="chip" type="button" data-filter="hành trình">Hành trình</button>
+          <button class="chip" type="button" data-filter="sáng tạo">Sáng tạo</button>
+          <button class="chip" type="button" data-filter="cộng đồng">Cộng đồng</button>
+        </div>
+      </div>
+
+      <div class="meta-row">
+        <div id="resultCount">Đang tải bài viết...</div>
+        <div id="resultHint">Dữ liệu sẽ lấy từ API, nếu trống sẽ dùng fallback.</div>
+      </div>
+
+      <div id="loadingGrid" class="skeleton-grid" aria-hidden="true">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+
+      <div id="postsGrid" class="grid" hidden></div>
+
+      <div id="emptyState" class="empty" hidden>
+        <h3 id="emptyTitle">Chưa có bài viết phù hợp</h3>
+        <p id="emptyDesc">Hãy thử từ khóa khác hoặc quay lại tất cả bài viết để tiếp tục khám phá.</p>
+      </div>
     </section>
 
     <footer class="footer">
-      <div><b>Contact:</b> contact@duongsaotoasang.com</div>
-      <div><b>Admin:</b> duongsaotoasang@gmail.com</div>
-      <div class="small" id="footerNote" style="margin-top:10px">
-        Trang bài viết được thiết kế để luôn có nội dung hiển thị, có nút ngôn ngữ riêng bằng link thật, không dùng chuyển đổi giả.
+      <div class="footer-grid">
+        <div>
+          <div><b>Contact:</b> <a href="mailto:contact@duongsaotoasang.com">contact@duongsaotoasang.com</a></div>
+          <div><b>Admin:</b> <a href="mailto:duongsaotoasang@gmail.com">duongsaotoasang@gmail.com</a></div>
+          <div><b>Reply:</b> <a href="mailto:reply@duongsaotoasang.com">reply@duongsaotoasang.com</a></div>
+          <div class="small" id="footerNote" style="margin-top:10px">
+            Powered by Cloudflare Pages + Functions + D1 + R2. Thư viện bài viết được giữ theo hướng nhanh, nhẹ và có fallback để giao diện luôn hoạt động.
+          </div>
+        </div>
+        <div class="small muted" id="footerRight">
+          Hybrid model: nonprofit + transparent business.<br/>
+          Phase 1 priority: Scripts + Donate.
+        </div>
       </div>
     </footer>
   </main>
@@ -524,238 +818,367 @@
     import {
       getLang,
       mountLangLinks,
-      listContents,
-      searchContents,
       setSeo,
+      applyActiveNav,
+      initMobileMenu,
+      initReveal,
+      withLang,
+      loadPostList,
+      searchContents,
+      esc,
+      truncate,
       formatDate,
-      esc
+      getContentHref,
+      resolveContentTitle,
+      resolveContentExcerpt
     } from "/app.js";
 
     const lang = getLang();
-    const T = (vi, en) => lang === "vi" ? vi : en;
-    const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-
+    const isEn = lang === "en";
     document.documentElement.lang = lang;
-    mountLangLinks("langViLink", "langEnLink");
 
-    document.getElementById("mobileToggle").onclick = () => {
-      document.getElementById("mainMenu").classList.toggle("open");
-    };
+    mountLangLinks("langViLink", "langEnLink");
+    applyActiveNav(".menu", window.location.pathname);
+    initMobileMenu();
+    initReveal(".reveal", "in");
 
     setSeo({
-      title: T("Bài viết | Đường Sao Tỏa Sáng", "Posts | Star Path Light Up"),
-      description: T(
-        "Danh sách bài viết, ghi chú, phân tích và các nội dung công khai từ hệ thống Đường Sao Tỏa Sáng.",
-        "Posts, notes, analysis, and public content from Star Path Light Up."
-      ),
-      canonical: lang === "en"
-        ? "https://duongsaotoasang.com/posts?lang=en"
-        : "https://duongsaotoasang.com/posts"
+      title: isEn ? "Posts | Đường Sao Tỏa Sáng" : "Bài viết | Đường Sao Tỏa Sáng",
+      description: isEn
+        ? "Explore the knowledge library of Star Path Light Up."
+        : "Khám phá thư viện bài viết của Đường Sao Tỏa Sáng.",
+      canonical: `${window.location.origin}${withLang("/posts", lang)}`
     });
 
-    document.getElementById("heroEyebrow").textContent = T("THƯ VIỆN BÀI VIẾT", "POST LIBRARY");
-    document.getElementById("pageTitle").textContent = T(
-      "Bài viết, ghi chú, phân tích và các điểm chạm công khai",
-      "Posts, notes, analysis, and public touchpoints"
-    );
-    document.getElementById("pageDesc").textContent = T(
-      "Đây là nơi tập hợp toàn bộ bài viết public trong hệ thống. Khi có bài mới được publish từ CMS, trang này sẽ tự cập nhật. Nếu chưa có bài nào, trang vẫn hiển thị định hướng và các liên kết nền thay vì để trống.",
-      "This page gathers all public posts in the system. When new posts are published from CMS, this page updates automatically. If there are no posts yet, it still shows direction and foundation links instead of being empty."
-    );
+    const copy = {
+      heroEyebrow: { vi: "THƯ VIỆN TRI THỨC", en: "KNOWLEDGE LIBRARY" },
+      heroTitle: {
+        vi: "Những bài viết để đọc chậm, nghĩ sâu và đi xa hơn.",
+        en: "Writing meant to be read slowly, considered deeply, and carried further."
+      },
+      heroDesc: {
+        vi: "Đây là nơi tập hợp những bài viết về nhận thức, hành trình, cộng đồng, sáng tạo và định hướng sống. Khi chưa có dữ liệu từ hệ thống, trang này vẫn tự hiển thị bài mẫu để toàn bộ giao diện luôn chạy hoàn chỉnh.",
+        en: "This is where writing on awareness, journey, community, creativity, and life direction is gathered. When the system has no data yet, this page still shows complete sample posts so the interface always runs fully."
+      },
+      heroBtn1: { vi: "Về trang chủ", en: "Back to home" },
+      heroBtn2: { vi: "Liên hệ", en: "Contact" },
 
-    document.getElementById("searchInput").placeholder = T("Tìm bài viết...", "Search posts...");
+      sideEyebrow1: { vi: "CÁCH ĐỌC", en: "HOW TO READ" },
+      sideTitle1: { vi: "Không phải để lướt qua", en: "Not meant to be skimmed" },
+      sideDesc1: {
+        vi: "Mỗi bài viết ở đây được xây như một điểm dừng để người đọc nhìn lại chính mình, nhìn lại thế giới và nhận ra con đường đáng đi.",
+        en: "Each piece here is built like a stopping point for the reader to look at themselves, look at the world, and see the path worth taking."
+      },
 
-    document.getElementById("fAll").textContent = T("Tất cả", "All");
-    document.getElementById("fPost").textContent = T("Bài viết", "Posts");
-    document.getElementById("fScript").textContent = T("Kịch bản", "Scripts");
-    document.getElementById("fPage").textContent = T("Trang nền", "Pages");
+      sideEyebrow2: { vi: "CẤU TRÚC", en: "STRUCTURE" },
+      sideTitle2: { vi: "Tự chạy kể cả khi chưa có CMS", en: "Runs even before CMS exists" },
+      sideDesc2: {
+        vi: "Nếu API chưa trả dữ liệu hoặc hệ quản trị chưa có bài viết xuất bản, hệ thống sẽ tự hiển thị bài mẫu hoàn chỉnh để không tạo cảm giác trống hoặc đứt mạch.",
+        en: "If the API has no data yet or the admin system has no published posts, the system automatically shows complete sample posts so nothing feels empty or broken."
+      },
 
-    document.getElementById("listEyebrow").textContent = T("DANH SÁCH CÔNG KHAI", "PUBLIC LIST");
-    document.getElementById("listTitle").textContent = T("Bài viết hiện có", "Current posts");
-    document.getElementById("sideEyebrow").textContent = T("ĐI NHANH", "QUICK ACCESS");
-    document.getElementById("sideTitle").textContent = T("Hướng đọc quan trọng", "Important reading paths");
+      filterEyebrow: { vi: "BỘ LỌC NỘI DUNG", en: "CONTENT FILTER" },
+      filterTitle: {
+        vi: "Tìm bài viết phù hợp với điều anh đang cần",
+        en: "Find the writing that fits what you need right now"
+      },
+      filterDesc: {
+        vi: "Có thể tìm theo từ khóa hoặc chọn nhanh theo nhóm chủ đề. Tất cả sẽ giữ nguyên trải nghiệm nhẹ, nhanh và không cần framework nặng.",
+        en: "Search by keyword or choose quickly by theme. Everything stays light, fast, and framework-free."
+      },
+      searchLabel: { vi: "Tìm kiếm bài viết", en: "Search posts" },
+      emptyTitle: { vi: "Chưa có bài viết phù hợp", en: "No matching posts yet" },
+      emptyDesc: {
+        vi: "Hãy thử từ khóa khác hoặc quay lại tất cả bài viết để tiếp tục khám phá.",
+        en: "Try another keyword or return to all posts to continue exploring."
+      },
+      footerNote: {
+        vi: "Powered by Cloudflare Pages + Functions + D1 + R2. Thư viện bài viết được giữ theo hướng nhanh, nhẹ và có fallback để giao diện luôn hoạt động.",
+        en: "Powered by Cloudflare Pages + Functions + D1 + R2. The post library is kept fast, light, and fallback-ready so the interface always works."
+      },
+      footerRight: {
+        vi: "Hybrid model: phi lợi nhuận + kinh doanh minh bạch.<br/>Giai đoạn 1 ưu tiên: Kịch bản + Donate.",
+        en: "Hybrid model: nonprofit + transparent business.<br/>Phase 1 priority: Scripts + Donate."
+      }
+    };
 
-    document.getElementById("q1t").textContent = T("Giới thiệu", "About");
-    document.getElementById("q1d").textContent = T("Hiểu nền tảng, tầm nhìn và lý do tồn tại của hệ thống.", "Understand the platform, vision, and why the system exists.");
-    document.getElementById("q2t").textContent = T("Chương trình", "Program");
-    document.getElementById("q2d").textContent = T("Khung triển khai, mô-đun vận hành và lộ trình phát triển.", "Implementation framework, operation modules, and roadmap.");
-    document.getElementById("q3t").textContent = T("Kịch bản", "Scripts");
-    document.getElementById("q3d").textContent = T("Dòng sản phẩm ưu tiên giai đoạn đầu.", "The priority product line in phase one.");
-    document.getElementById("q4t").textContent = T("Donate / Gây quỹ", "Donate");
-    document.getElementById("q4d").textContent = T("Hiểu cơ chế đồng hành minh bạch đi kèm báo cáo.", "Understand the transparent support mechanism with reporting.");
+    function setText(id, value, html = false){
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (html) el.innerHTML = value;
+      else el.textContent = value;
+    }
 
-    document.getElementById("footerNote").textContent = T(
-      "Trang bài viết được thiết kế để luôn có nội dung hiển thị, có nút ngôn ngữ riêng bằng link thật, không dùng chuyển đổi giả.",
-      "The posts page is designed to always display content, with real language links instead of fake toggles."
-    );
+    Object.entries(copy).forEach(([id, value]) => {
+      const content = value?.[lang] || value?.vi || "";
+      setText(id, content, id === "footerRight");
+    });
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add("in");
-      });
-    }, { threshold: 0.12 });
+    document.getElementById("heroBtn1").href = withLang("/", lang);
+    document.getElementById("heroBtn2").href = withLang("/contact", lang);
 
-    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-
-    const postsList = document.getElementById("postsList");
-    const countInfo = document.getElementById("countInfo");
     const searchInput = document.getElementById("searchInput");
+    searchInput.placeholder = isEn
+      ? "Type keywords like: awareness, creativity, community..."
+      : "Nhập từ khóa như: nhận thức, sáng tạo, cộng đồng...";
 
-    const fallbackItems = [
+    const filterButtons = Array.from(document.querySelectorAll("[data-filter]"));
+    const loadingGrid = document.getElementById("loadingGrid");
+    const postsGrid = document.getElementById("postsGrid");
+    const emptyState = document.getElementById("emptyState");
+    const resultCount = document.getElementById("resultCount");
+    const resultHint = document.getElementById("resultHint");
+
+    const fallbackPosts = [
       {
-        slug: "about",
-        type: "page",
-        title_vi: "Giới thiệu hệ thống Đường Sao Tỏa Sáng",
-        title_en: "About Star Path Light Up",
-        excerpt_vi: "Tổng quan nền tảng, lý do tồn tại và logic vận hành tổng thể.",
-        excerpt_en: "Overall platform, reason for existence, and operating logic.",
-        cover_url: "",
-        created_at: "",
-        updated_at: ""
+        slug: "hanh-trinh-nhin-lai-chinh-minh",
+        type: "post",
+        title_vi: "Hành trình nhìn lại chính mình trong một thế giới quá ồn",
+        title_en: "Looking back at yourself in an overly noisy world",
+        excerpt_vi: "Có những giai đoạn con người không thiếu thông tin, mà thiếu sự lắng lại đủ sâu để nhận ra mình đang đi về đâu.",
+        excerpt_en: "There are times when people do not lack information, but lack enough stillness to see where they are heading.",
+        cover: "",
+        created_at: "2026-03-01",
+        tags: "nhận thức, hành trình"
       },
       {
-        slug: "scripts",
-        type: "script",
-        title_vi: "Kịch bản là dòng sản phẩm ưu tiên giai đoạn đầu",
-        title_en: "Scripts are the phase one priority product line",
-        excerpt_vi: "Dòng sản phẩm trọng tâm để tạo doanh thu minh bạch và bền vững.",
-        excerpt_en: "A core product line to generate transparent and sustainable revenue.",
-        cover_url: "",
-        created_at: "",
-        updated_at: ""
+        slug: "sang-tao-khong-bat-dau-tu-tham-vong",
+        type: "post",
+        title_vi: "Sáng tạo không bắt đầu từ tham vọng mà từ sự thấy rõ",
+        title_en: "Creativity does not begin with ambition but with clarity",
+        excerpt_vi: "Điều tạo nên giá trị bền vững không phải là làm cho thật nhiều, mà là tạo ra đúng thứ cần được sinh ra.",
+        excerpt_en: "What creates lasting value is not doing more, but bringing forth what truly needs to exist.",
+        cover: "",
+        created_at: "2026-02-26",
+        tags: "sáng tạo, nhận thức"
       },
       {
-        slug: "donate",
-        type: "page",
-        title_vi: "Nguyên tắc gây quỹ minh bạch",
-        title_en: "Transparent fundraising principles",
-        excerpt_vi: "Donate phải gắn với mục tiêu rõ, sử dụng rõ và báo cáo rõ.",
-        excerpt_en: "Donations must be tied to clear goals, use, and reporting.",
-        cover_url: "",
-        created_at: "",
-        updated_at: ""
+        slug: "cong-dong-khong-phai-dam-dong",
+        type: "post",
+        title_vi: "Cộng đồng không phải đám đông, mà là những người cùng giữ một hướng đi",
+        title_en: "Community is not a crowd, but people holding the same direction",
+        excerpt_vi: "Một cộng đồng đúng không được xây bằng tiếng ồn, mà bằng sự tin cậy, trách nhiệm và khả năng cùng đi xa.",
+        excerpt_en: "A true community is not built by noise, but by trust, responsibility, and the capacity to travel far together.",
+        cover: "",
+        created_at: "2026-02-20",
+        tags: "cộng đồng"
+      },
+      {
+        slug: "mot-doi-song-khong-bi-pha-tan-boi-xa-hoi",
+        type: "post",
+        title_vi: "Một đời sống không bị phân tán bởi xã hội cần được xây thế nào",
+        title_en: "How to build a life not scattered by society",
+        excerpt_vi: "Khi không tự thiết kế đời sống của mình, con người sẽ bị kéo vào chương trình của người khác mà không hề nhận ra.",
+        excerpt_en: "When you do not design your own life, you get pulled into someone else's program without noticing.",
+        cover: "",
+        created_at: "2026-02-14",
+        tags: "nhận thức, định hướng"
+      },
+      {
+        slug: "doc-cham-de-song-sau",
+        type: "post",
+        title_vi: "Đọc chậm để sống sâu hơn trong thời đại đọc lướt",
+        title_en: "Read slowly to live more deeply in an age of skimming",
+        excerpt_vi: "Một bài viết tốt không chỉ cung cấp thông tin, mà mở ra một không gian để người đọc tự gặp lại chính mình.",
+        excerpt_en: "A strong piece of writing does not only provide information, but opens a space for the reader to meet themselves again.",
+        cover: "",
+        created_at: "2026-02-10",
+        tags: "hành trình, nhận thức"
+      },
+      {
+        slug: "khoi-nghiep-tu-noi-song-that",
+        type: "post",
+        title_vi: "Khởi nghiệp từ nơi sống thật thay vì từ nỗi sợ phải chứng minh",
+        title_en: "Building from real living instead of the fear of proving yourself",
+        excerpt_vi: "Nếu bắt đầu chỉ để chứng minh mình hơn người khác, ta sẽ rất nhanh kiệt sức trước khi đi đến giá trị thật.",
+        excerpt_en: "If you begin only to prove yourself against others, exhaustion arrives long before true value does.",
+        cover: "",
+        created_at: "2026-02-06",
+        tags: "sáng tạo, hành trình"
+      },
+      {
+        slug: "vi-sao-con-nguoi-mat-phuong-huong",
+        type: "post",
+        title_vi: "Vì sao con người mất phương hướng dù có quá nhiều lựa chọn",
+        title_en: "Why people lose direction even with too many choices",
+        excerpt_vi: "Sự phong phú bên ngoài không thể thay thế cho một la bàn bên trong. Không có hướng đi, lựa chọn càng nhiều càng dễ mệt.",
+        excerpt_en: "Outer abundance cannot replace an inner compass. Without direction, more choices often mean more exhaustion.",
+        cover: "",
+        created_at: "2026-01-28",
+        tags: "nhận thức"
+      },
+      {
+        slug: "duong-di-cua-nhung-nguoi-muon-song-khac",
+        type: "post",
+        title_vi: "Đường đi của những người muốn sống khác nhưng chưa biết bắt đầu từ đâu",
+        title_en: "The path for those who want to live differently but do not know where to begin",
+        excerpt_vi: "Điểm bắt đầu không nằm ở việc đổi hết mọi thứ ngay lập tức, mà ở việc nhìn ra đâu là điều cần giữ và đâu là điều cần dừng.",
+        excerpt_en: "The beginning is not changing everything at once, but seeing clearly what must be kept and what must stop.",
+        cover: "",
+        created_at: "2026-01-22",
+        tags: "hành trình, định hướng"
       }
     ];
 
-    let masterItems = [];
-    let currentFilter = "all";
+    let allPosts = [];
+    let activeFilter = "all";
 
-    function toHref(item) {
-      const slug = item.slug || "";
-      const type = item.type || "post";
-      const suffix = lang === "en" ? "?lang=en" : "";
-
-      return type === "post"
-        ? `/posts/${encodeURIComponent(slug)}${suffix}`
-        : `/${encodeURIComponent(slug)}${suffix}`;
+    function normalize(value){
+      return String(value || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
     }
 
-    function renderItemsWithData(items) {
-      if (!items.length) {
-        postsList.innerHTML = `
-          <div class="post-card">
-            <div class="post-body">
-              <h3 class="post-title">${T("Chưa có nội dung phù hợp", "No matching content")}</h3>
-              <div class="post-excerpt">${T("Hiện chưa có bài nào đúng điều kiện đang chọn.", "There is no content matching the current condition.")}</div>
-            </div>
-          </div>
-        `;
-        return;
-      }
+    function getTitle(item){
+      return isEn
+        ? (item.title_en || item.title || item.title_vi || item.slug || "(untitled)")
+        : (item.title_vi || item.title || item.title_en || item.slug || "(chưa có tiêu đề)");
+    }
 
-      postsList.innerHTML = items.map(item => {
-        const title = lang === "vi"
-          ? (item.title_vi || item.title || item.title_en || item.slug || "(untitled)")
-          : (item.title_en || item.title || item.title_vi || item.slug || "(untitled)");
+    function getExcerpt(item){
+      return isEn
+        ? (item.excerpt_en || item.excerpt || item.excerpt_vi || "")
+        : (item.excerpt_vi || item.excerpt || item.excerpt_en || "");
+    }
 
-        const excerpt = lang === "vi"
-          ? (item.excerpt_vi || item.excerpt || item.excerpt_en || T("Nhấn để đọc chi tiết.", "Open to read details."))
-          : (item.excerpt_en || item.excerpt || item.excerpt_vi || T("Open to read details.", "Open to read details."));
+    function getTags(item){
+      return normalize(item.tags || "");
+    }
 
-        const cover = item.cover_url || "";
-        const typeLabel = item.type || "post";
-        const updated = item.updated_at || item.created_at || "";
+    function renderCards(list){
+      postsGrid.innerHTML = list.map(item => {
+        const title = getTitle(item);
+        const excerpt = truncate(getExcerpt(item), 180);
+        const href = getContentHref(item, lang);
+        const cover = item.cover_url || item.cover || "";
+        const typeLabel = item.type === "post"
+          ? (isEn ? "Article" : "Bài viết")
+          : (item.type || "post");
+        const date = formatDate(item.created_at || item.published_at, lang);
+        const readMore = isEn ? "Read more" : "Đọc tiếp";
 
         return `
-          <a class="post-card" href="${toHref(item)}">
-            <div class="thumb">
-              ${cover ? `<img src="${esc(cover)}" alt="${esc(title)}" loading="lazy" decoding="async"/>` : ``}
-            </div>
+          <article class="post-card">
+            <a class="card-link" href="${href}">
+              <div class="post-cover">
+                ${cover
+                  ? `<img src="${esc(cover)}" alt="${esc(title)}" loading="lazy" decoding="async"/>`
+                  : ``}
+              </div>
+            </a>
             <div class="post-body">
-              <div class="post-meta-top">
-                <span class="tag">${esc(typeLabel)}</span>
-                <span class="small muted">${updated ? esc(formatDate(updated)) : ""}</span>
-              </div>
-              <h3 class="post-title">${esc(title)}</h3>
+              <div class="post-type">${esc(typeLabel)}</div>
+              <h3 class="post-title">
+                <a class="card-link" href="${href}">${esc(title)}</a>
+              </h3>
               <div class="post-excerpt">${esc(excerpt)}</div>
-              <div class="post-footer">
-                <span>${T("Slug", "Slug")}: ${esc(item.slug || "")}</span>
-                <span>${T("Mở chi tiết", "Open detail")} →</span>
+              <div class="post-meta">
+                <span>${esc(date || (isEn ? "Recent" : "Gần đây"))}</span>
+                <a class="post-link" href="${href}">
+                  <span>${readMore}</span>
+                  <span>→</span>
+                </a>
               </div>
             </div>
-          </a>
+          </article>
         `;
       }).join("");
     }
 
-    function applyFilterAndSearch() {
-      const keyword = searchInput.value.trim();
-      let items = masterItems;
+    function applyFilters(){
+      const q = normalize(searchInput.value.trim());
+      let list = [...allPosts];
 
-      if (currentFilter !== "all") {
-        items = items.filter(x => (x.type || "") === currentFilter);
+      if (activeFilter !== "all") {
+        list = list.filter(item => {
+          const title = normalize(getTitle(item));
+          const excerpt = normalize(getExcerpt(item));
+          const tags = getTags(item);
+          return title.includes(activeFilter) || excerpt.includes(activeFilter) || tags.includes(activeFilter);
+        });
       }
 
-      items = searchContents(items, keyword);
+      if (q) {
+        list = list.filter(item => {
+          const title = normalize(getTitle(item));
+          const excerpt = normalize(getExcerpt(item));
+          const tags = getTags(item);
+          return title.includes(q) || excerpt.includes(q) || tags.includes(q);
+        });
+      }
 
-      countInfo.textContent = T(
-        `Hiển thị ${items.length} mục`,
-        `${items.length} items shown`
-      );
+      loadingGrid.hidden = true;
 
-      renderItemsWithData(items);
+      if (!list.length) {
+        postsGrid.hidden = true;
+        emptyState.hidden = false;
+        resultCount.textContent = isEn ? "0 posts found" : "0 bài viết phù hợp";
+        resultHint.textContent = isEn
+          ? "Try another keyword or choose another topic."
+          : "Hãy thử từ khóa khác hoặc chọn chủ đề khác.";
+        return;
+      }
+
+      emptyState.hidden = true;
+      postsGrid.hidden = false;
+      renderCards(list);
+
+      resultCount.textContent = isEn
+        ? `${list.length} posts`
+        : `${list.length} bài viết`;
+
+      resultHint.textContent = isEn
+        ? "Results are loaded from API first, then fallback to sample posts if needed."
+        : "Kết quả ưu tiên lấy từ API, sau đó mới dùng bài mẫu fallback khi cần.";
     }
 
-    qsa(".filter-btn").forEach(btn => {
+    filterButtons.forEach(btn => {
       btn.addEventListener("click", () => {
-        qsa(".filter-btn").forEach(b => b.classList.remove("active"));
+        filterButtons.forEach(x => x.classList.remove("active"));
         btn.classList.add("active");
-        currentFilter = btn.dataset.filter || "all";
-        applyFilterAndSearch();
+        activeFilter = normalize(btn.dataset.filter || "all");
+        applyFilters();
       });
     });
 
-    searchInput.addEventListener("input", () => {
-      applyFilterAndSearch();
+    let searchTimer = null;
+    searchInput.addEventListener("input", async () => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(async () => {
+        const q = searchInput.value.trim();
+
+        if (q.length >= 2) {
+          try {
+            const results = await searchContents(q, { limit: 24, lang });
+            allPosts = Array.isArray(results) && results.length ? results : fallbackPosts;
+          } catch {
+            allPosts = fallbackPosts;
+          }
+        } else {
+          try {
+            const items = await loadPostList({ limit: 24, type: "post", lang });
+            allPosts = Array.isArray(items) && items.length ? items : fallbackPosts;
+          } catch {
+            allPosts = fallbackPosts;
+          }
+        }
+
+        applyFilters();
+      }, 220);
     });
 
-    try {
-      const items = await listContents({
-        visibility: "public",
-        status: "published",
-        limit: 36,
-        order: "updated_at.desc"
-      });
-
-      masterItems = (items && items.length ? items : fallbackItems).map(item => ({
-        slug: item.slug || item.raw?.slug || "",
-        type: item.type || item.raw?.type || "post",
-        title_vi: item.raw?.title_vi || item.title_vi || item.title || "",
-        title_en: item.raw?.title_en || item.title_en || item.title || "",
-        excerpt_vi: item.raw?.excerpt_vi || item.excerpt_vi || item.excerpt || "",
-        excerpt_en: item.raw?.excerpt_en || item.excerpt_en || item.excerpt || "",
-        cover_url: item.raw?.cover_url || item.cover_url || "",
-        created_at: item.raw?.created_at || item.created_at || "",
-        updated_at: item.raw?.updated_at || item.updated_at || ""
-      }));
-
-      applyFilterAndSearch();
-    } catch (e) {
-      masterItems = fallbackItems;
-      countInfo.textContent = T("Đang dùng nội dung dự phòng", "Using fallback content");
-      applyFilterAndSearch();
-      console.warn("posts fallback used:", e);
+    async function bootPosts(){
+      try {
+        const items = await loadPostList({ limit: 24, type: "post", lang });
+        allPosts = Array.isArray(items) && items.length ? items : fallbackPosts;
+      } catch {
+        allPosts = fallbackPosts;
+      }
+      applyFilters();
     }
+
+    await bootPosts();
   </script>
 </body>
 </html>
