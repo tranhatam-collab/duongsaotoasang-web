@@ -14,7 +14,6 @@
 /legal/                /content.html    200
 /contact               /content.html    200
 /contact/              /content.html    200
-
 /posts                 /posts.html      200
 /posts/                /posts.html      200
 /posts/*               /content.html    200
