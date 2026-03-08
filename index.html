@@ -6,6 +6,22 @@
   <title>Đường Sao Tỏa Sáng | Star Path Light Up</title>
   <meta name="description" content="Đường Sao Tỏa Sáng là nền tảng kết nối, tổ chức và lan tỏa các dự án nghệ thuật, giáo dục, cộng đồng, kịch bản và gây quỹ minh bạch theo định hướng dài hạn."/>
   <meta name="theme-color" content="#0b0e12"/>
+  <meta name="robots" content="index,follow"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <link rel="canonical" href="https://duongsaotoasang.com/"/>
+
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Đường Sao Tỏa Sáng"/>
+  <meta property="og:title" content="Đường Sao Tỏa Sáng | Star Path Light Up"/>
+  <meta property="og:description" content="Nền tảng kết nối, tổ chức và lan tỏa các dự án nghệ thuật, giáo dục, cộng đồng, kịch bản và gây quỹ minh bạch theo định hướng dài hạn."/>
+  <meta property="og:url" content="https://duongsaotoasang.com/"/>
+  <meta property="og:image" content="https://duongsaotoasang.com/og.png"/>
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Đường Sao Tỏa Sáng | Star Path Light Up"/>
+  <meta name="twitter:description" content="Nền tảng kết nối, tổ chức và lan tỏa các dự án nghệ thuật, giáo dục, cộng đồng, kịch bản và gây quỹ minh bạch theo định hướng dài hạn."/>
+  <meta name="twitter:image" content="https://duongsaotoasang.com/og.png"/>
+
   <link rel="stylesheet" href="/app.css"/>
 
   <style>
@@ -16,6 +32,7 @@
       --panel-2:rgba(255,255,255,.032);
       --panel-3:rgba(255,255,255,.022);
       --line:rgba(255,255,255,.085);
+      --line-strong:rgba(255,255,255,.14);
       --text:#f3f5f7;
       --muted:#a8b0ba;
       --gold:#d8bc77;
@@ -25,6 +42,7 @@
       --shadow:0 18px 70px rgba(0,0,0,.42);
       --radius:24px;
       --max:1240px;
+      --focus:0 0 0 3px rgba(216,188,119,.25);
     }
 
     *{box-sizing:border-box}
@@ -38,26 +56,51 @@
         radial-gradient(760px 480px at 100% 10%, rgba(132,176,255,.10), transparent 58%),
         linear-gradient(180deg,#080b0f 0%, #0c1117 100%);
       overflow-x:hidden;
+      text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
+    button,input,select,textarea{font:inherit}
     .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
 
+    .skip-link{
+      position:absolute;
+      left:16px;
+      top:-60px;
+      z-index:999;
+      padding:10px 14px;
+      border-radius:12px;
+      background:#fff;
+      color:#111;
+      transition:top .2s ease;
+    }
+    .skip-link:focus{top:16px}
+
     .topbar{
-      position:sticky;top:0;z-index:80;
+      position:sticky;
+      top:0;
+      z-index:80;
       backdrop-filter:blur(16px);
       background:rgba(10,12,16,.72);
       border-bottom:1px solid var(--line);
     }
 
     .nav{
-      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
       padding:14px 0;
     }
 
     .brand{
-      display:flex;align-items:center;gap:12px;min-width:0;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
     }
 
     .brand-mark{
@@ -89,8 +132,18 @@
       text-overflow:ellipsis;
     }
 
+    .nav-shell{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
     .menu{
-      display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:center;
     }
 
     .menu a{
@@ -102,27 +155,46 @@
     }
 
     .menu a:hover,
-    .menu a.active{
+    .menu a.active,
+    .menu a[aria-current="page"]{
       color:#fff;
       background:rgba(255,255,255,.05);
       border-color:var(--line);
     }
 
     .right{
-      display:flex;align-items:center;gap:10px;flex:0 0 auto;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex:0 0 auto;
     }
 
     .lang-links{
-      display:flex;gap:8px;align-items:center;
+      display:flex;
+      gap:8px;
+      align-items:center;
     }
 
     .lang-link{
-      display:inline-flex;align-items:center;justify-content:center;
-      min-width:46px;height:40px;padding:0 12px;
-      border-radius:999px;border:1px solid var(--line);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:46px;
+      height:40px;
+      padding:0 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
       background:rgba(255,255,255,.03);
-      color:var(--muted);font-size:13px;font-weight:700;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:700;
       transition:all .25s ease;
+    }
+
+    .lang-link:hover{
+      color:#fff;
+      border-color:var(--line-strong);
+      background:rgba(255,255,255,.05);
     }
 
     .lang-link.active{
@@ -132,7 +204,10 @@
     }
 
     .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
       padding:10px 14px;
       border-radius:14px;
       border:1px solid var(--line);
@@ -140,6 +215,7 @@
       color:#fff;
       cursor:pointer;
       transition:all .25s ease;
+      min-height:44px;
     }
 
     .btn:hover{
@@ -154,14 +230,28 @@
       box-shadow:0 10px 30px rgba(216,188,119,.10);
     }
 
+    .btn:focus-visible,
+    .menu a:focus-visible,
+    .lang-link:focus-visible,
+    .vision-link:focus-visible,
+    .item:focus-visible,
+    .chip:focus-visible,
+    .mobile-toggle:focus-visible{
+      outline:none;
+      box-shadow:var(--focus);
+    }
+
     .mobile-toggle{
       display:none;
-      width:44px;height:44px;
+      width:44px;
+      height:44px;
       border-radius:12px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.04);
       color:#fff;
       cursor:pointer;
+      align-items:center;
+      justify-content:center;
     }
 
     .hero{
@@ -185,7 +275,8 @@
       content:"";
       position:absolute;
       inset:auto -80px -80px auto;
-      width:240px;height:240px;
+      width:240px;
+      height:240px;
       background:radial-gradient(circle, rgba(216,188,119,.14), transparent 65%);
       pointer-events:none;
       filter:blur(10px);
@@ -215,11 +306,17 @@
     }
 
     .hero-actions{
-      display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:24px;
     }
 
     .hero-kpis{
-      display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:24px;
     }
 
     .kpi{
@@ -262,7 +359,8 @@
 
     .glow-card::before{
       content:"";
-      position:absolute;inset:-1px;
+      position:absolute;
+      inset:-1px;
       background:
         radial-gradient(circle at top right, rgba(216,188,119,.16), transparent 26%),
         radial-gradient(circle at left bottom, rgba(132,176,255,.12), transparent 28%);
@@ -290,6 +388,7 @@
     }
 
     .small{font-size:13px}
+
     .hr{
       height:1px;
       background:var(--line);
@@ -298,10 +397,15 @@
 
     .section{
       padding:14px 0 8px;
+      scroll-margin-top:100px;
     }
 
     .section-header{
-      display:flex;align-items:end;justify-content:space-between;gap:14px;flex-wrap:wrap;
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
       margin-bottom:14px;
     }
 
@@ -379,9 +483,12 @@
     }
 
     .metric-index{
-      width:32px;height:32px;
+      width:32px;
+      height:32px;
       border-radius:999px;
-      display:flex;align-items:center;justify-content:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       background:var(--gold-soft);
       color:#fff;
       font-weight:700;
@@ -402,6 +509,11 @@
       background:rgba(255,255,255,.03);
       color:var(--white-soft);
       font-size:13px;
+    }
+
+    .chip:hover{
+      background:rgba(255,255,255,.06);
+      border-color:rgba(216,188,119,.2);
     }
 
     .list{
@@ -454,6 +566,28 @@
       object-fit:cover;
     }
 
+    .skeleton{
+      position:relative;
+      overflow:hidden;
+      min-height:110px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(255,255,255,.03);
+    }
+
+    .skeleton::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      transform:translateX(-100%);
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);
+      animation:shimmer 1.3s infinite;
+    }
+
+    @keyframes shimmer{
+      to{transform:translateX(100%)}
+    }
+
     .footer{
       margin-top:26px;
       padding:24px 0 54px;
@@ -481,6 +615,23 @@
       transform:none;
     }
 
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .reveal,
+      .item,
+      .vision-link,
+      .btn,
+      .menu a,
+      .lang-link{
+        transition:none !important;
+        animation:none !important;
+      }
+      .reveal{
+        opacity:1;
+        transform:none;
+      }
+    }
+
     @media (max-width:1080px){
       .hero-grid{grid-template-columns:1fr}
       .hero-copy h1{font-size:44px}
@@ -489,14 +640,32 @@
     }
 
     @media (max-width:860px){
-      .nav{align-items:flex-start}
+      .nav{
+        align-items:center;
+        flex-wrap:wrap;
+      }
+
+      .nav-shell{
+        width:100%;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+      }
+
       .menu{
         display:none;
         width:100%;
         padding-top:10px;
+        flex-direction:column;
+        align-items:stretch;
       }
+
+      .menu a{
+        width:100%;
+      }
+
       .menu.open{display:flex}
-      .mobile-toggle{display:inline-flex;align-items:center;justify-content:center}
+      .mobile-toggle{display:inline-flex}
       .right{display:none}
       .hero-copy h1{font-size:36px}
       .hero-shell{padding:20px}
@@ -506,21 +675,38 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#mainContent">Bỏ qua menu</a>
+
   <header class="topbar">
     <div class="wrap">
       <div class="nav">
-        <div class="brand">
+        <a class="brand" href="/" aria-label="Đường Sao Tỏa Sáng">
           <div class="brand-mark" aria-hidden="true"></div>
           <div>
             <div class="brand-title">Đường Sao Tỏa Sáng</div>
             <div class="brand-sub">Star Path Light Up</div>
           </div>
+        </a>
+
+        <div class="nav-shell">
+          <button
+            class="mobile-toggle"
+            id="mobileToggle"
+            aria-label="Mở menu"
+            aria-expanded="false"
+            aria-controls="mainMenu"
+            type="button">☰</button>
+
+          <div class="right">
+            <div class="lang-links" aria-label="Language switch">
+              <a id="langViLink" class="lang-link" href="/">VI</a>
+              <a id="langEnLink" class="lang-link" href="/?lang=en">EN</a>
+            </div>
+          </div>
         </div>
 
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">☰</button>
-
-        <div class="menu" id="mainMenu">
-          <a href="/" class="active">Trang chủ</a>
+        <nav class="menu" id="mainMenu" aria-label="Main navigation">
+          <a href="/" class="active" aria-current="page">Trang chủ</a>
           <a href="/about">Giới thiệu</a>
           <a href="/program">Chương trình</a>
           <a href="/events">Sự kiện</a>
@@ -530,20 +716,13 @@
           <a href="/legal">Pháp lý</a>
           <a href="/contact">Liên hệ</a>
           <a href="/posts">Bài viết</a>
-        </div>
-
-        <div class="right">
-          <div class="lang-links">
-            <a id="langViLink" class="lang-link" href="#">VI</a>
-            <a id="langEnLink" class="lang-link" href="#">EN</a>
-          </div>
-        </div>
+        </nav>
       </div>
     </div>
   </header>
 
-  <main class="wrap">
-    <section class="hero reveal">
+  <main class="wrap" id="mainContent">
+    <section class="hero reveal" aria-labelledby="hTitle">
       <div class="hero-shell">
         <div class="hero-grid">
           <div class="hero-copy">
@@ -575,7 +754,7 @@
             </div>
           </div>
 
-          <div class="hero-side">
+          <aside class="hero-side" aria-label="Highlights">
             <div class="glow-card">
               <div class="eyebrow" id="side1k">MỞ ĐẦU ĐÚNG</div>
               <h2 id="side1t">Không bắt đầu từ sự ồn ào</h2>
@@ -591,12 +770,12 @@
                 Giai đoạn đầu tập trung vào ba trục: phát triển nội dung nền, xây dựng dòng sản phẩm kịch bản, và mở cơ chế gây quỹ minh bạch để tạo lực phát triển bền vững.
               </p>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </section>
 
-    <section class="section reveal">
+    <section class="section reveal" aria-labelledby="visionTitle">
       <div class="section-header">
         <div>
           <div class="eyebrow" id="visionEyebrow">BẢN ĐỒ TẦM NHÌN</div>
@@ -643,7 +822,7 @@
       </div>
     </section>
 
-    <section class="section reveal">
+    <section class="section reveal" aria-labelledby="foundTitle">
       <div class="section-header">
         <div>
           <div class="eyebrow" id="foundEyebrow">NỀN MÓNG VẬN HÀNH</div>
@@ -655,24 +834,24 @@
       </div>
 
       <div class="grid">
-        <div class="card span-4">
+        <article class="card span-4">
           <h2 id="f1t">Nội dung chuẩn hóa</h2>
           <p class="muted" id="f1d">Mọi phần quan trọng đều có slug, có trang đích, có SEO và có thể được thay thế bằng CMS khi cần.</p>
-        </div>
+        </article>
 
-        <div class="card span-4">
+        <article class="card span-4">
           <h2 id="f2t">Kịch bản là trục kinh doanh</h2>
           <p class="muted" id="f2d">Kịch bản không chỉ là một loại nội dung. Nó là dòng sản phẩm chiến lược để tạo doanh thu minh bạch và bền vững.</p>
-        </div>
+        </article>
 
-        <div class="card span-4">
+        <article class="card span-4">
           <h2 id="f3t">Donate là trục cộng đồng</h2>
           <p class="muted" id="f3d">Gây quỹ chỉ được triển khai khi có mục tiêu rõ, dòng sử dụng rõ và cơ chế công bố rõ.</p>
-        </div>
+        </article>
       </div>
     </section>
 
-    <section class="section reveal">
+    <section class="section reveal" aria-labelledby="pathTitle">
       <div class="section-header">
         <div>
           <div class="eyebrow" id="pathEyebrow">ĐI NHANH ĐÚNG HƯỚNG</div>
@@ -731,7 +910,7 @@
       </div>
     </section>
 
-    <section class="section reveal">
+    <section class="section reveal" aria-labelledby="latestTitle">
       <div class="section-header">
         <div>
           <div class="eyebrow" id="latestEyebrow">NỘI DUNG MỚI</div>
@@ -742,7 +921,11 @@
         </p>
       </div>
 
-      <div class="list" id="posts"></div>
+      <div class="list" id="posts" aria-live="polite">
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+      </div>
 
       <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
         <a class="btn primary" href="/posts" id="latestBtn">Xem tất cả bài viết</a>
@@ -750,7 +933,7 @@
       </div>
     </section>
 
-    <section class="section reveal">
+    <section class="section reveal" aria-labelledby="endTitle">
       <div class="card">
         <div class="section-header" style="margin-bottom:10px">
           <div>
@@ -776,9 +959,9 @@
     <footer class="footer">
       <div class="footer-grid">
         <div>
-          <div><b>Contact:</b> contact@duongsaotoasang.com</div>
-          <div><b>Admin:</b> duongsaotoasang@gmail.com</div>
-          <div><b>Reply:</b> reply@duongsaotoasang.com</div>
+          <div><b>Contact:</b> <a href="mailto:contact@duongsaotoasang.com">contact@duongsaotoasang.com</a></div>
+          <div><b>Admin:</b> <a href="mailto:duongsaotoasang@gmail.com">duongsaotoasang@gmail.com</a></div>
+          <div><b>Reply:</b> <a href="mailto:reply@duongsaotoasang.com">reply@duongsaotoasang.com</a></div>
           <div class="small" id="footerNote" style="margin-top:10px">
             Powered by Cloudflare Pages + Functions + D1 + R2. Tầm nhìn tổng thể, liên kết tổng thể và hệ menu đã được đặt sẵn để không gãy mạch khi cập nhật nội dung sau này.
           </div>
@@ -801,157 +984,195 @@
     } from "/app.js";
 
     const lang = getLang();
-    const T = (vi, en) => lang === "vi" ? vi : en;
-
+    const isEn = lang === "en";
     document.documentElement.lang = lang;
+
     mountLangLinks("langViLink", "langEnLink");
 
-    document.getElementById("mobileToggle").onclick = () => {
-      document.getElementById("mainMenu").classList.toggle("open");
+    const seo = {
+      vi: {
+        title: "Đường Sao Tỏa Sáng | Nền tảng kết nối và lan tỏa giá trị dài hạn",
+        description: "Đường Sao Tỏa Sáng là nền tảng kết nối, tổ chức và lan tỏa các dự án nghệ thuật, giáo dục, cộng đồng, kịch bản và gây quỹ minh bạch.",
+        canonical: "https://duongsaotoasang.com/"
+      },
+      en: {
+        title: "Star Path Light Up | A platform for long-term meaningful impact",
+        description: "Star Path Light Up is a platform for arts, education, community projects, scripts, and transparent fundraising.",
+        canonical: "https://duongsaotoasang.com/?lang=en"
+      }
     };
 
-    setSeo({
-      title: T(
-        "Đường Sao Tỏa Sáng | Nền tảng kết nối và lan tỏa giá trị dài hạn",
-        "Star Path Light Up | A platform for long-term meaningful impact"
-      ),
-      description: T(
-        "Đường Sao Tỏa Sáng là nền tảng kết nối, tổ chức và lan tỏa các dự án nghệ thuật, giáo dục, cộng đồng, kịch bản và gây quỹ minh bạch.",
-        "Star Path Light Up is a platform for arts, education, community projects, scripts, and transparent fundraising."
-      ),
-      canonical: lang === "en"
-        ? "https://duongsaotoasang.com/?lang=en"
-        : "https://duongsaotoasang.com/"
+    setSeo(seo[lang] || seo.vi);
+
+    const copy = {
+      heroEyebrow: {
+        vi: "TẦM NHÌN TỔNG THỂ",
+        en: "OVERALL VISION"
+      },
+      hTitle: {
+        vi: "Một nền tảng để kết nối, tổ chức và lan tỏa những dự án có giá trị dài hạn.",
+        en: "A platform to connect, organize, and sustain long-term meaningful projects."
+      },
+      hDesc: {
+        vi: "Đường Sao Tỏa Sáng là một hệ thống được xây dựng để vận hành các chương trình nghệ thuật, giáo dục, cộng đồng, kịch bản và gây quỹ minh bạch theo hướng bền vững, có thể mở rộng lâu dài.",
+        en: "Star Path Light Up is a system built to operate artistic, educational, community, script, and transparent fundraising programs in a sustainable and expandable way."
+      },
+      ctaMain1: { vi: "Khám phá chương trình", en: "Explore the program" },
+      ctaMain2: { vi: "Xem kịch bản", en: "View scripts" },
+      ctaMain3: { vi: "Donate / Gây quỹ", en: "Donate" },
+
+      k1: { vi: "Kịch bản", en: "Scripts" },
+      k1d: { vi: "Dòng sản phẩm ưu tiên giai đoạn 1", en: "Primary product line in phase one" },
+      k2: { vi: "Minh bạch", en: "Transparency" },
+      k2d: { vi: "Mọi dòng lực đều cần báo cáo", en: "Every flow needs reporting" },
+      k3: { vi: "Cộng đồng", en: "Community" },
+      k3d: { vi: "Kết nối những người đồng hành dài hạn", en: "Connecting long-term companions" },
+
+      side1k: { vi: "MỞ ĐẦU ĐÚNG", en: "BEGIN THE RIGHT WAY" },
+      side1t: { vi: "Không bắt đầu từ sự ồn ào", en: "Do not begin with noise" },
+      side1d: {
+        vi: "Dự án này không được xây để tạo cảm giác lớn ngay lập tức, mà để tạo ra một cấu trúc có thể sống lâu, làm thật, đi thật và để lại giá trị thật.",
+        en: "This project is not built to appear big immediately, but to create a structure that can endure, act genuinely, and leave real value."
+      },
+
+      side2k: { vi: "TRỤC ƯU TIÊN", en: "PRIORITY AXIS" },
+      side2t: { vi: "Kịch bản + Donate + Hệ thống nội dung", en: "Scripts + Donate + Content System" },
+      side2d: {
+        vi: "Giai đoạn đầu tập trung vào ba trục: phát triển nội dung nền, xây dựng dòng sản phẩm kịch bản, và mở cơ chế gây quỹ minh bạch để tạo lực phát triển bền vững.",
+        en: "Phase one focuses on three axes: foundational content, the script product line, and transparent fundraising as sustainable support."
+      },
+
+      visionEyebrow: { vi: "BẢN ĐỒ TẦM NHÌN", en: "VISION MAP" },
+      visionTitle: { vi: "Mỗi liên kết là một phần của hệ thống tổng thể", en: "Each link is part of the whole system" },
+      visionDesc: {
+        vi: "Từ trang chủ này, mọi đường dẫn đều đã được đặt sẵn để không bị gãy. Dù CMS đã có nội dung hay chưa, người dùng vẫn luôn mở được đúng phần mình cần.",
+        en: "From this homepage, every route is already set so it does not break. Whether content exists or not, users can always reach the correct section."
+      },
+
+      v1t: { vi: "Giới thiệu", en: "About" },
+      v1d: { vi: "Hiểu nền tảng, lý do tồn tại và logic vận hành tổng thể của Đường Sao Tỏa Sáng.", en: "Understand the platform, its reason for existing, and its overall operating logic." },
+      v2t: { vi: "Chương trình", en: "Program" },
+      v2d: { vi: "Khung vận hành, mô-đun triển khai, lộ trình và các trục ưu tiên trong từng giai đoạn.", en: "Operating framework, implementation modules, roadmap, and priority axes." },
+      v3t: { vi: "Sự kiện", en: "Events" },
+      v3d: { vi: "Nơi công bố hoạt động, workshop, hội thảo, biểu diễn hoặc các cột mốc cộng đồng.", en: "Where activities, workshops, talks, performances, or community milestones are announced." },
+      v4t: { vi: "Kịch bản", en: "Scripts" },
+      v4d: { vi: "Dòng sản phẩm trọng tâm giai đoạn 1, tạo doanh thu bền vững cho hệ sinh thái.", en: "The core product line in phase one, generating sustainable revenue." },
+      v5t: { vi: "Gây quỹ", en: "Donate" },
+      v5d: { vi: "Cơ chế donate minh bạch, có mục tiêu, có phạm vi sử dụng và có báo cáo.", en: "A transparent donation mechanism with goals, usage scope, and reporting." },
+      v6t: { vi: "Minh bạch", en: "Transparency" },
+      v6d: { vi: "Nguyên tắc báo cáo, công khai dòng lực, trách nhiệm và kiểm chứng.", en: "Principles of reporting, disclosure, accountability, and verification." },
+      v7t: { vi: "Pháp lý", en: "Legal" },
+      v7d: { vi: "Điều khoản, chính sách riêng tư và các tuyên bố cần thiết để hệ thống vận hành rõ ràng.", en: "Terms, privacy policy, and disclaimers needed for clear operations." },
+      v8t: { vi: "Liên hệ", en: "Contact" },
+      v8d: { vi: "Các kênh chính thức để hợp tác, tài trợ, đề xuất chương trình hoặc gửi yêu cầu làm việc.", en: "Official channels for collaboration, sponsorship, program proposals, and work requests." },
+
+      foundEyebrow: { vi: "NỀN MÓNG VẬN HÀNH", en: "OPERATING FOUNDATION" },
+      foundTitle: { vi: "Không chỉ là website. Đây là hệ thống.", en: "Not just a website. This is a system." },
+      foundDesc: {
+        vi: "Mỗi nội dung, mỗi chiến dịch, mỗi chương trình đều cần có mục tiêu, quy trình, quyền truy cập và trách nhiệm. Trang chủ phải phản ánh được toàn bộ logic đó ngay từ đầu.",
+        en: "Each content item, campaign, and program needs goals, process, access rules, and responsibility. The homepage must reflect this logic from the start."
+      },
+      f1t: { vi: "Nội dung chuẩn hóa", en: "Standardized content" },
+      f1d: { vi: "Mọi phần quan trọng đều có slug, có trang đích, có SEO và có thể được thay thế bằng CMS khi cần.", en: "Every important section has a slug, destination page, SEO, and can later be replaced by CMS content." },
+      f2t: { vi: "Kịch bản là trục kinh doanh", en: "Scripts are the business axis" },
+      f2d: { vi: "Kịch bản không chỉ là một loại nội dung. Nó là dòng sản phẩm chiến lược để tạo doanh thu minh bạch và bền vững.", en: "Scripts are not just content. They are the strategic product line for transparent sustainable revenue." },
+      f3t: { vi: "Donate là trục cộng đồng", en: "Donate is the community axis" },
+      f3d: { vi: "Gây quỹ chỉ được triển khai khi có mục tiêu rõ, dòng sử dụng rõ và cơ chế công bố rõ.", en: "Fundraising is deployed only when goals, use flow, and disclosure are clear." },
+
+      pathEyebrow: { vi: "ĐI NHANH ĐÚNG HƯỚNG", en: "MOVE FAST THE RIGHT WAY" },
+      pathTitle: { vi: "Lộ trình điều hướng không gãy", en: "Navigation path without broken links" },
+      pathDesc: {
+        vi: "Ngay cả khi một phần nội dung trong CMS chưa hoàn chỉnh, người dùng vẫn luôn được dẫn đến đúng nhóm thông tin. Không có cảm giác cụt, chết link hoặc mất phương hướng.",
+        en: "Even if part of the content is unfinished, users are still led to the correct group of information. No dead ends, no broken links, no confusion."
+      },
+      pathLeftTitle: { vi: "Các đường đi cốt lõi", en: "Core paths" },
+      m1t: { vi: "Người mới", en: "New visitor" },
+      m1d: { vi: "Trang chủ → Giới thiệu → Chương trình → Liên hệ", en: "Home → About → Program → Contact" },
+      m2t: { vi: "Người muốn mua", en: "Buyer path" },
+      m2d: { vi: "Trang chủ → Kịch bản → Tìm hiểu gói → Khu khách hàng", en: "Home → Scripts → Packages → Customer area" },
+      m3t: { vi: "Người muốn đóng góp", en: "Contributor path" },
+      m3d: { vi: "Trang chủ → Gây quỹ → Minh bạch → Pháp lý → Liên hệ", en: "Home → Donate → Transparency → Legal → Contact" },
+      pathRightTitle: { vi: "Liên kết nhanh", en: "Quick links" },
+      pathRightDesc: {
+        vi: "Những đường dẫn này đã được set sẵn để bất kỳ file nội dung nào cập nhật sau đó cũng tự nối vào đúng kiến trúc web mà không cần sửa lại logic trang chủ.",
+        en: "These links are preset so any later content file can plug into the website architecture without changing homepage logic."
+      },
+
+      latestEyebrow: { vi: "NỘI DUNG MỚI", en: "LATEST CONTENT" },
+      latestTitle: { vi: "Bài viết mới", en: "Latest posts" },
+      latestDesc: {
+        vi: "Phần này tự lấy từ API nội bộ. Nếu chưa có bài published, hệ thống sẽ hiển thị fallback thay vì để trống.",
+        en: "This section loads from the internal API. If there are no published posts yet, the system shows a fallback instead of leaving the area empty."
+      },
+      latestBtn: { vi: "Xem tất cả bài viết", en: "View all posts" },
+      latestBtn2: { vi: "Đi tới Kịch bản", en: "Go to Scripts" },
+
+      endEyebrow: { vi: "ĐIỂM CHẠM CUỐI", en: "FINAL TOUCHPOINT" },
+      endTitle: { vi: "Một website phải cho thấy được toàn bộ hướng đi", en: "A website must reveal the whole direction" },
+      endDesc: {
+        vi: "Trang chủ này được xây để không chỉ đẹp hơn, mượt hơn, mà còn cho thấy rõ cấu trúc tổng thể của hệ thống. Từ đây, mọi file nội dung phía sau chỉ việc cập nhật đúng slug là web tự nối mạch liền nhau.",
+        en: "This homepage is built not only to look better and feel smoother, but to clearly reveal the total structure of the system. From here, all later content files only need the right slug to connect seamlessly."
+      },
+      endBtn1: { vi: "Liên hệ ngay", en: "Contact now" },
+      endBtn2: { vi: "Xem pháp lý", en: "View legal" },
+      endBtn3: { vi: "Xem minh bạch", en: "View transparency" },
+
+      footerNote: {
+        vi: "Powered by Cloudflare Pages + Functions + D1 + R2. Tầm nhìn tổng thể, liên kết tổng thể và hệ menu đã được đặt sẵn để không gãy mạch khi cập nhật nội dung sau này.",
+        en: "Powered by Cloudflare Pages + Functions + D1 + R2. The overall vision, total link structure, and menu system are preset to avoid broken flow when content is updated later."
+      },
+      footerRight: {
+        vi: "Hybrid model: phi lợi nhuận + kinh doanh minh bạch.<br/>Giai đoạn 1 ưu tiên: Kịch bản + Donate.",
+        en: "Hybrid model: nonprofit + transparent business.<br/>Phase 1 priority: Scripts + Donate."
+      }
+    };
+
+    function setText(id, value, html = false){
+      const el = document.getElementById(id);
+      if(!el) return;
+      if(html) el.innerHTML = value;
+      else el.textContent = value;
+    }
+
+    Object.entries(copy).forEach(([id, value]) => {
+      const content = value?.[lang] || value?.vi || "";
+      const isHtml = id === "footerRight";
+      setText(id, content, isHtml);
     });
 
-    document.getElementById("heroEyebrow").textContent = T("TẦM NHÌN TỔNG THỂ", "OVERALL VISION");
-    document.getElementById("hTitle").textContent = T(
-      "Một nền tảng để kết nối, tổ chức và lan tỏa những dự án có giá trị dài hạn.",
-      "A platform to connect, organize, and sustain long-term meaningful projects."
-    );
-    document.getElementById("hDesc").textContent = T(
-      "Đường Sao Tỏa Sáng là một hệ thống được xây dựng để vận hành các chương trình nghệ thuật, giáo dục, cộng đồng, kịch bản và gây quỹ minh bạch theo hướng bền vững, có thể mở rộng lâu dài.",
-      "Star Path Light Up is a system built to operate artistic, educational, community, script, and transparent fundraising programs in a sustainable and expandable way."
-    );
-    document.getElementById("ctaMain1").textContent = T("Khám phá chương trình", "Explore the program");
-    document.getElementById("ctaMain2").textContent = T("Xem kịch bản", "View scripts");
-    document.getElementById("ctaMain3").textContent = T("Donate / Gây quỹ", "Donate");
+    const mobileToggle = document.getElementById("mobileToggle");
+    const mainMenu = document.getElementById("mainMenu");
 
-    document.getElementById("k1").textContent = T("Kịch bản", "Scripts");
-    document.getElementById("k1d").textContent = T("Dòng sản phẩm ưu tiên giai đoạn 1", "Primary product line in phase one");
-    document.getElementById("k2").textContent = T("Minh bạch", "Transparency");
-    document.getElementById("k2d").textContent = T("Mọi dòng lực đều cần báo cáo", "Every flow needs reporting");
-    document.getElementById("k3").textContent = T("Cộng đồng", "Community");
-    document.getElementById("k3d").textContent = T("Kết nối những người đồng hành dài hạn", "Connecting long-term companions");
+    mobileToggle?.addEventListener("click", () => {
+      const open = mainMenu.classList.toggle("open");
+      mobileToggle.setAttribute("aria-expanded", String(open));
+    });
 
-    document.getElementById("side1k").textContent = T("MỞ ĐẦU ĐÚNG", "BEGIN THE RIGHT WAY");
-    document.getElementById("side1t").textContent = T("Không bắt đầu từ sự ồn ào", "Do not begin with noise");
-    document.getElementById("side1d").textContent = T(
-      "Dự án này không được xây để tạo cảm giác lớn ngay lập tức, mà để tạo ra một cấu trúc có thể sống lâu, làm thật, đi thật và để lại giá trị thật.",
-      "This project is not built to appear big immediately, but to create a structure that can endure, act genuinely, and leave real value."
-    );
-
-    document.getElementById("side2k").textContent = T("TRỤC ƯU TIÊN", "PRIORITY AXIS");
-    document.getElementById("side2t").textContent = T("Kịch bản + Donate + Hệ thống nội dung", "Scripts + Donate + Content System");
-    document.getElementById("side2d").textContent = T(
-      "Giai đoạn đầu tập trung vào ba trục: phát triển nội dung nền, xây dựng dòng sản phẩm kịch bản, và mở cơ chế gây quỹ minh bạch để tạo lực phát triển bền vững.",
-      "Phase one focuses on three axes: foundational content, the script product line, and transparent fundraising as sustainable support."
-    );
-
-    document.getElementById("visionEyebrow").textContent = T("BẢN ĐỒ TẦM NHÌN", "VISION MAP");
-    document.getElementById("visionTitle").textContent = T("Mỗi liên kết là một phần của hệ thống tổng thể", "Each link is part of the whole system");
-    document.getElementById("visionDesc").textContent = T(
-      "Từ trang chủ này, mọi đường dẫn đều đã được đặt sẵn để không bị gãy. Dù CMS đã có nội dung hay chưa, người dùng vẫn luôn mở được đúng phần mình cần.",
-      "From this homepage, every route is already set so it does not break. Whether content exists or not, users can always reach the correct section."
-    );
-
-    document.getElementById("v1t").textContent = T("Giới thiệu", "About");
-    document.getElementById("v1d").textContent = T("Hiểu nền tảng, lý do tồn tại và logic vận hành tổng thể của Đường Sao Tỏa Sáng.", "Understand the platform, its reason for existing, and its overall operating logic.");
-    document.getElementById("v2t").textContent = T("Chương trình", "Program");
-    document.getElementById("v2d").textContent = T("Khung vận hành, mô-đun triển khai, lộ trình và các trục ưu tiên trong từng giai đoạn.", "Operating framework, implementation modules, roadmap, and priority axes.");
-    document.getElementById("v3t").textContent = T("Sự kiện", "Events");
-    document.getElementById("v3d").textContent = T("Nơi công bố hoạt động, workshop, hội thảo, biểu diễn hoặc các cột mốc cộng đồng.", "Where activities, workshops, talks, performances, or community milestones are announced.");
-    document.getElementById("v4t").textContent = T("Kịch bản", "Scripts");
-    document.getElementById("v4d").textContent = T("Dòng sản phẩm trọng tâm giai đoạn 1, tạo doanh thu bền vững cho hệ sinh thái.", "The core product line in phase one, generating sustainable revenue.");
-    document.getElementById("v5t").textContent = T("Gây quỹ", "Donate");
-    document.getElementById("v5d").textContent = T("Cơ chế donate minh bạch, có mục tiêu, có phạm vi sử dụng và có báo cáo.", "A transparent donation mechanism with goals, usage scope, and reporting.");
-    document.getElementById("v6t").textContent = T("Minh bạch", "Transparency");
-    document.getElementById("v6d").textContent = T("Nguyên tắc báo cáo, công khai dòng lực, trách nhiệm và kiểm chứng.", "Principles of reporting, disclosure, accountability, and verification.");
-    document.getElementById("v7t").textContent = T("Pháp lý", "Legal");
-    document.getElementById("v7d").textContent = T("Điều khoản, chính sách riêng tư và các tuyên bố cần thiết để hệ thống vận hành rõ ràng.", "Terms, privacy policy, and disclaimers needed for clear operations.");
-    document.getElementById("v8t").textContent = T("Liên hệ", "Contact");
-    document.getElementById("v8d").textContent = T("Các kênh chính thức để hợp tác, tài trợ, đề xuất chương trình hoặc gửi yêu cầu làm việc.", "Official channels for collaboration, sponsorship, program proposals, and work requests.");
-
-    document.getElementById("foundEyebrow").textContent = T("NỀN MÓNG VẬN HÀNH", "OPERATING FOUNDATION");
-    document.getElementById("foundTitle").textContent = T("Không chỉ là website. Đây là hệ thống.", "Not just a website. This is a system.");
-    document.getElementById("foundDesc").textContent = T(
-      "Mỗi nội dung, mỗi chiến dịch, mỗi chương trình đều cần có mục tiêu, quy trình, quyền truy cập và trách nhiệm. Trang chủ phải phản ánh được toàn bộ logic đó ngay từ đầu.",
-      "Each content item, campaign, and program needs goals, process, access rules, and responsibility. The homepage must reflect this logic from the start."
-    );
-    document.getElementById("f1t").textContent = T("Nội dung chuẩn hóa", "Standardized content");
-    document.getElementById("f1d").textContent = T("Mọi phần quan trọng đều có slug, có trang đích, có SEO và có thể được thay thế bằng CMS khi cần.", "Every important section has a slug, destination page, SEO, and can later be replaced by CMS content.");
-    document.getElementById("f2t").textContent = T("Kịch bản là trục kinh doanh", "Scripts are the business axis");
-    document.getElementById("f2d").textContent = T("Kịch bản không chỉ là một loại nội dung. Nó là dòng sản phẩm chiến lược để tạo doanh thu minh bạch và bền vững.", "Scripts are not just content. They are the strategic product line for transparent sustainable revenue.");
-    document.getElementById("f3t").textContent = T("Donate là trục cộng đồng", "Donate is the community axis");
-    document.getElementById("f3d").textContent = T("Gây quỹ chỉ được triển khai khi có mục tiêu rõ, dòng sử dụng rõ và cơ chế công bố rõ.", "Fundraising is deployed only when goals, use flow, and disclosure are clear.");
-
-    document.getElementById("pathEyebrow").textContent = T("ĐI NHANH ĐÚNG HƯỚNG", "MOVE FAST THE RIGHT WAY");
-    document.getElementById("pathTitle").textContent = T("Lộ trình điều hướng không gãy", "Navigation path without broken links");
-    document.getElementById("pathDesc").textContent = T(
-      "Ngay cả khi một phần nội dung trong CMS chưa hoàn chỉnh, người dùng vẫn luôn được dẫn đến đúng nhóm thông tin. Không có cảm giác cụt, chết link hoặc mất phương hướng.",
-      "Even if part of the content is unfinished, users are still led to the correct group of information. No dead ends, no broken links, no confusion."
-    );
-    document.getElementById("pathLeftTitle").textContent = T("Các đường đi cốt lõi", "Core paths");
-    document.getElementById("m1t").textContent = T("Người mới", "New visitor");
-    document.getElementById("m1d").textContent = T("Trang chủ → Giới thiệu → Chương trình → Liên hệ", "Home → About → Program → Contact");
-    document.getElementById("m2t").textContent = T("Người muốn mua", "Buyer path");
-    document.getElementById("m2d").textContent = T("Trang chủ → Kịch bản → Tìm hiểu gói → Khu khách hàng", "Home → Scripts → Packages → Customer area");
-    document.getElementById("m3t").textContent = T("Người muốn đóng góp", "Contributor path");
-    document.getElementById("m3d").textContent = T("Trang chủ → Gây quỹ → Minh bạch → Pháp lý → Liên hệ", "Home → Donate → Transparency → Legal → Contact");
-    document.getElementById("pathRightTitle").textContent = T("Liên kết nhanh", "Quick links");
-    document.getElementById("pathRightDesc").textContent = T(
-      "Những đường dẫn này đã được set sẵn để bất kỳ file nội dung nào cập nhật sau đó cũng tự nối vào đúng kiến trúc web mà không cần sửa lại logic trang chủ.",
-      "These links are preset so any later content file can plug into the website architecture without changing homepage logic."
-    );
-
-    document.getElementById("latestEyebrow").textContent = T("NỘI DUNG MỚI", "LATEST CONTENT");
-    document.getElementById("latestTitle").textContent = T("Bài viết mới", "Latest posts");
-    document.getElementById("latestDesc").textContent = T(
-      "Phần này tự lấy từ API nội bộ. Nếu chưa có bài published, hệ thống sẽ hiển thị fallback thay vì để trống.",
-      "This section loads from the internal API. If there are no published posts yet, the system shows a fallback instead of leaving the area empty."
-    );
-    document.getElementById("latestBtn").textContent = T("Xem tất cả bài viết", "View all posts");
-    document.getElementById("latestBtn2").textContent = T("Đi tới Kịch bản", "Go to Scripts");
-
-    document.getElementById("endEyebrow").textContent = T("ĐIỂM CHẠM CUỐI", "FINAL TOUCHPOINT");
-    document.getElementById("endTitle").textContent = T("Một website phải cho thấy được toàn bộ hướng đi", "A website must reveal the whole direction");
-    document.getElementById("endDesc").textContent = T(
-      "Trang chủ này được xây để không chỉ đẹp hơn, mượt hơn, mà còn cho thấy rõ cấu trúc tổng thể của hệ thống. Từ đây, mọi file nội dung phía sau chỉ việc cập nhật đúng slug là web tự nối mạch liền nhau.",
-      "This homepage is built not only to look better and feel smoother, but to clearly reveal the total structure of the system. From here, all later content files only need the right slug to connect seamlessly."
-    );
-    document.getElementById("endBtn1").textContent = T("Liên hệ ngay", "Contact now");
-    document.getElementById("endBtn2").textContent = T("Xem pháp lý", "View legal");
-    document.getElementById("endBtn3").textContent = T("Xem minh bạch", "View transparency");
-
-    document.getElementById("footerNote").textContent = T(
-      "Powered by Cloudflare Pages + Functions + D1 + R2. Tầm nhìn tổng thể, liên kết tổng thể và hệ menu đã được đặt sẵn để không gãy mạch khi cập nhật nội dung sau này.",
-      "Powered by Cloudflare Pages + Functions + D1 + R2. The overall vision, total link structure, and menu system are preset to avoid broken flow when content is updated later."
-    );
-    document.getElementById("footerRight").innerHTML = T(
-      "Hybrid model: phi lợi nhuận + kinh doanh minh bạch.<br/>Giai đoạn 1 ưu tiên: Kịch bản + Donate.",
-      "Hybrid model: nonprofit + transparent business.<br/>Phase 1 priority: Scripts + Donate."
-    );
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) entry.target.classList.add("in");
+    document.querySelectorAll("#mainMenu a").forEach(link => {
+      link.addEventListener("click", () => {
+        if(window.innerWidth <= 860){
+          mainMenu.classList.remove("open");
+          mobileToggle.setAttribute("aria-expanded", "false");
+        }
       });
-    }, { threshold: 0.12 });
+    });
 
-    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+    if("IntersectionObserver" in window){
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add("in");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+    }else{
+      document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+    }
 
     const postsEl = document.getElementById("posts");
-    postsEl.innerHTML = `<div class="item"><b>${T("Đang tải bài viết...", "Loading posts...")}</b></div>`;
 
     const fallbackPosts = [
       {
@@ -986,50 +1207,58 @@
     function toHref(item){
       const slug = item.slug || "";
       const type = item.type || "post";
-      const suffix = lang === "en" ? "?lang=en" : "";
-
+      const suffix = isEn ? "?lang=en" : "";
       return type === "post"
         ? `/posts/${encodeURIComponent(slug)}${suffix}`
         : `/${encodeURIComponent(slug)}${suffix}`;
     }
 
+    function resolveTitle(item){
+      return isEn
+        ? (item.title_en || item.title || item.title_vi || item.slug || "(untitled)")
+        : (item.title_vi || item.title || item.title_en || item.slug || "(untitled)");
+    }
+
+    function resolveExcerpt(item){
+      return isEn
+        ? (item.excerpt_en || item.excerpt || item.excerpt_vi || "")
+        : (item.excerpt_vi || item.excerpt || item.excerpt_en || "");
+    }
+
+    function renderPosts(list){
+      postsEl.innerHTML = list.map(item => {
+        const title = resolveTitle(item);
+        const excerpt = resolveExcerpt(item);
+        const cover = item.cover_url || item.cover || "";
+        const type = item.type || "post";
+        const slug = item.slug || "";
+
+        return `
+          <a class="item" href="${toHref(item)}">
+            ${cover ? `
+              <div class="thumb">
+                <img
+                  src="${esc(cover)}"
+                  alt="${esc(title)}"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ` : ``}
+            <b>${esc(title)}</b>
+            <div class="small muted">${esc(excerpt || (isEn ? "Open to read details." : "Nhấn để đọc chi tiết."))}</div>
+            <div class="meta">${esc(type)} • ${esc(slug)}</div>
+          </a>
+        `;
+      }).join("");
+    }
+
     try{
       const posts = await loadLatestPosts({ limit: 8 });
-      const data = posts && posts.length ? posts : fallbackPosts;
-
-      postsEl.innerHTML = data.map(p => {
-        const title = lang === "vi"
-          ? (p.title_vi || p.title || p.title_en || p.slug || "(untitled)")
-          : (p.title_en || p.title || p.title_vi || p.slug || "(untitled)");
-
-        const excerpt = lang === "vi"
-          ? (p.excerpt_vi || p.excerpt || p.excerpt_en || "")
-          : (p.excerpt_en || p.excerpt || p.excerpt_vi || "");
-
-        const cover = p.cover_url || "";
-
-        return `
-          <a class="item" href="${toHref(p)}">
-            ${cover ? `<div class="thumb"><img src="${esc(cover)}" alt="${esc(title)}"/></div>` : ``}
-            <b>${esc(title)}</b>
-            <div class="small muted">${esc(excerpt || T("Nhấn để đọc chi tiết.", "Open to read details."))}</div>
-            <div class="meta">${esc(p.type || "post")} • ${esc(p.slug || "")}</div>
-          </a>
-        `;
-      }).join("");
-    }catch(e){
-      postsEl.innerHTML = fallbackPosts.map(p => {
-        const title = lang === "vi" ? p.title_vi : p.title_en;
-        const excerpt = lang === "vi" ? p.excerpt_vi : p.excerpt_en;
-        return `
-          <a class="item" href="${toHref(p)}">
-            <b>${esc(title)}</b>
-            <div class="small muted">${esc(excerpt)}</div>
-            <div class="meta">${esc(p.type || "page")} • ${esc(p.slug || "")}</div>
-          </a>
-        `;
-      }).join("");
-      console.warn("latest posts fallback used:", e);
+      renderPosts(Array.isArray(posts) && posts.length ? posts : fallbackPosts);
+    }catch(error){
+      renderPosts(fallbackPosts);
+      console.warn("latest posts fallback used:", error);
     }
   </script>
 </body>
