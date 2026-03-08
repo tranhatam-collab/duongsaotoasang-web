@@ -3,54 +3,73 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Nội dung | Đường Sao Tỏa Sáng</title>
-  <meta name="description" content="Nội dung chi tiết các chương trình, bài viết và thông tin công khai của hệ thống Đường Sao Tỏa Sáng."/>
+  <title>Đường Sao Tỏa Sáng</title>
+  <meta name="description" content="Trang nội dung của Đường Sao Tỏa Sáng."/>
   <meta name="theme-color" content="#0b0e12"/>
+  <meta name="robots" content="index,follow"/>
+  <meta name="format-detection" content="telephone=no"/>
+  <link rel="canonical" href="https://duongsaotoasang.com/"/>
   <link rel="stylesheet" href="/app.css"/>
 
   <style>
     :root{
-      --bg:#0a0c10;
-      --card:rgba(255,255,255,.045);
-      --card-2:rgba(255,255,255,.03);
+      --bg:#090c10;
+      --bg-soft:#10141a;
+      --panel:rgba(255,255,255,.045);
+      --panel-2:rgba(255,255,255,.032);
       --line:rgba(255,255,255,.085);
-      --text:#f2f4f7;
-      --muted:#a8b0bb;
+      --line-strong:rgba(255,255,255,.14);
+      --text:#f3f5f7;
+      --muted:#a8b0ba;
       --gold:#d8bc77;
-      --gold-soft:rgba(216,188,119,.18);
-      --shadow:0 16px 60px rgba(0,0,0,.38);
-      --r:24px;
+      --gold-soft:rgba(216,188,119,.16);
+      --white-soft:rgba(255,255,255,.82);
+      --shadow:0 18px 70px rgba(0,0,0,.42);
+      --radius:24px;
       --max:1240px;
-      --article-max:780px;
+      --content:820px;
+      --focus:0 0 0 3px rgba(216,188,119,.25);
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-
     body{
       margin:0;
       color:var(--text);
-      background:
-        radial-gradient(900px 460px at 0% 0%, rgba(216,188,119,.10), transparent 55%),
-        radial-gradient(700px 420px at 100% 10%, rgba(138,198,255,.08), transparent 55%),
-        linear-gradient(180deg,#090b0f 0%, #0d1117 100%);
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(900px 520px at 0% 0%, rgba(216,188,119,.10), transparent 60%),
+        radial-gradient(760px 480px at 100% 10%, rgba(132,176,255,.10), transparent 58%),
+        linear-gradient(180deg,#080b0f 0%, #0c1117 100%);
       overflow-x:hidden;
+      text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
+    button,input,select,textarea{font:inherit}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+    .content-wrap{max-width:var(--content);margin:0 auto}
 
-    .wrap{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:0 18px;
+    .skip-link{
+      position:absolute;
+      left:16px;
+      top:-60px;
+      z-index:999;
+      padding:10px 14px;
+      border-radius:12px;
+      background:#fff;
+      color:#111;
+      transition:top .2s ease;
     }
+    .skip-link:focus{top:16px}
 
     .topbar{
       position:sticky;
       top:0;
-      z-index:70;
+      z-index:80;
       backdrop-filter:blur(16px);
       background:rgba(10,12,16,.72);
       border-bottom:1px solid var(--line);
@@ -60,7 +79,7 @@
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:14px;
+      gap:16px;
       padding:14px 0;
     }
 
@@ -72,13 +91,11 @@
     }
 
     .brand-mark{
-      width:42px;
-      height:42px;
-      border-radius:14px;
+      width:44px;height:44px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
       background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.15), transparent 36%),
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.16), transparent 35%),
         linear-gradient(135deg, rgba(216,188,119,.28), rgba(255,255,255,.05));
-      border:1px solid rgba(255,255,255,.10);
       box-shadow:var(--shadow);
       flex:0 0 auto;
     }
@@ -86,6 +103,8 @@
     .brand-title{
       font-weight:800;
       font-size:17px;
+      letter-spacing:.2px;
+      line-height:1.05;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
@@ -94,10 +113,16 @@
     .brand-sub{
       font-size:12px;
       color:var(--muted);
-      margin-top:3px;
+      margin-top:4px;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
+    }
+
+    .nav-shell{
+      display:flex;
+      align-items:center;
+      gap:12px;
     }
 
     .menu{
@@ -105,27 +130,30 @@
       align-items:center;
       gap:8px;
       flex-wrap:wrap;
+      justify-content:center;
     }
 
     .menu a{
       padding:10px 12px;
       border-radius:12px;
+      color:var(--white-soft);
       border:1px solid transparent;
-      color:rgba(255,255,255,.82);
       transition:all .25s ease;
     }
 
     .menu a:hover,
-    .menu a.active{
+    .menu a.active,
+    .menu a[aria-current="page"]{
+      color:#fff;
       background:rgba(255,255,255,.05);
       border-color:var(--line);
-      color:#fff;
     }
 
     .right{
       display:flex;
       align-items:center;
       gap:10px;
+      flex:0 0 auto;
     }
 
     .lang-links{
@@ -150,237 +178,16 @@
       transition:all .25s ease;
     }
 
+    .lang-link:hover{
+      color:#fff;
+      border-color:var(--line-strong);
+      background:rgba(255,255,255,.05);
+    }
+
     .lang-link.active{
       color:#fff;
       background:rgba(216,188,119,.14);
       border-color:rgba(216,188,119,.32);
-    }
-
-    .mobile-toggle{
-      display:none;
-      width:44px;
-      height:44px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:#fff;
-      cursor:pointer;
-    }
-
-    .hero{
-      padding:28px 0 14px;
-    }
-
-    .hero-shell{
-      border:1px solid var(--line);
-      background:
-        radial-gradient(700px 260px at 10% 0%, rgba(216,188,119,.09), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border-radius:28px;
-      padding:28px;
-      box-shadow:var(--shadow);
-    }
-
-    .eyebrow{
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.18em;
-      color:var(--gold);
-      margin-bottom:10px;
-    }
-
-    .breadcrumb{
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.7;
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-      align-items:center;
-      margin-bottom:10px;
-    }
-
-    .page-title{
-      margin:0;
-      font-size:54px;
-      line-height:1.02;
-      letter-spacing:-.035em;
-      max-width:980px;
-    }
-
-    .lead{
-      margin:16px 0 0;
-      color:var(--muted);
-      line-height:1.9;
-      max-width:860px;
-      font-size:17px;
-    }
-
-    .layout{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) 320px;
-      gap:16px;
-      margin-top:14px;
-      align-items:start;
-    }
-
-    .card{
-      border:1px solid var(--line);
-      background:var(--card);
-      border-radius:var(--r);
-      padding:20px;
-      box-shadow:var(--shadow);
-    }
-
-    .article-card{
-      padding:24px;
-    }
-
-    .article-shell{
-      max-width:var(--article-max);
-      margin:0 auto;
-    }
-
-    .article-meta-top{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-bottom:16px;
-    }
-
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:6px 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,.04);
-      border:1px solid var(--line);
-      font-size:12px;
-      color:var(--muted);
-    }
-
-    .meta-inline{
-      font-size:13px;
-      color:var(--muted);
-    }
-
-    .article-cover{
-      margin:18px 0 22px;
-      border-radius:24px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      display:none;
-      box-shadow:var(--shadow);
-    }
-
-    .article-cover img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-
-    .article-body{
-      font-size:18px;
-      line-height:1.95;
-      color:#e7edf3;
-      letter-spacing:.002em;
-    }
-
-    .article-body p{
-      margin:0 0 18px;
-    }
-
-    .article-body h2{
-      font-size:34px;
-      line-height:1.18;
-      margin:42px 0 16px;
-      letter-spacing:-.02em;
-    }
-
-    .article-body h3{
-      font-size:26px;
-      line-height:1.25;
-      margin:30px 0 14px;
-      letter-spacing:-.015em;
-    }
-
-    .article-body ul,
-    .article-body ol{
-      margin:0 0 20px 24px;
-    }
-
-    .article-body li{
-      margin-bottom:8px;
-    }
-
-    .article-body blockquote{
-      margin:26px 0;
-      padding:18px 20px;
-      border-left:3px solid rgba(216,188,119,.45);
-      background:rgba(255,255,255,.03);
-      border-radius:0 16px 16px 0;
-      color:#eef2f6;
-      font-size:17px;
-      line-height:1.85;
-    }
-
-    .article-figure{
-      margin:26px 0;
-      border:1px solid var(--line);
-      border-radius:22px;
-      overflow:hidden;
-      background:rgba(255,255,255,.03);
-      box-shadow:var(--shadow);
-    }
-
-    .article-figure img{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-
-    .article-figure figcaption{
-      padding:13px 16px;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.7;
-      border-top:1px solid var(--line);
-    }
-
-    .video-wrap{
-      position:relative;
-      width:100%;
-      padding-top:56.25%;
-      margin:26px 0;
-      border-radius:22px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      background:#000;
-      box-shadow:var(--shadow);
-    }
-
-    .video-wrap iframe{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      border:0;
-    }
-
-    .hr{
-      height:1px;
-      background:var(--line);
-      margin:18px 0;
-    }
-
-    .actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:18px;
     }
 
     .btn{
@@ -395,82 +202,372 @@
       color:#fff;
       cursor:pointer;
       transition:all .25s ease;
+      min-height:44px;
     }
 
     .btn:hover{
       transform:translateY(-1px);
-      background:rgba(255,255,255,.07);
+      background:rgba(255,255,255,.08);
       text-decoration:none;
     }
 
     .btn.primary{
-      border-color:rgba(216,188,119,.34);
-      background:linear-gradient(180deg, rgba(216,188,119,.15), rgba(216,188,119,.07));
+      border-color:rgba(216,188,119,.38);
+      background:linear-gradient(180deg, rgba(216,188,119,.18), rgba(216,188,119,.08));
+      box-shadow:0 10px 30px rgba(216,188,119,.10);
     }
 
-    .quick-list,
-    .related-grid{
+    .btn:focus-visible,
+    .menu a:focus-visible,
+    .lang-link:focus-visible,
+    .mobile-toggle:focus-visible,
+    .back-link:focus-visible{
+      outline:none;
+      box-shadow:var(--focus);
+    }
+
+    .mobile-toggle{
+      display:none;
+      width:44px;
+      height:44px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .page{
+      padding:28px 0 54px;
+    }
+
+    .article-shell{
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.085);
+      border-radius:30px;
+      background:
+        radial-gradient(780px 320px at 10% 0%, rgba(216,188,119,.10), transparent 62%),
+        radial-gradient(680px 280px at 100% 8%, rgba(132,176,255,.08), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.018));
+      box-shadow:var(--shadow);
+      padding:30px;
+    }
+
+    .breadcrumb{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:13px;
+      margin-bottom:16px;
+    }
+
+    .breadcrumb a{
+      color:var(--white-soft);
+    }
+
+    .breadcrumb .sep{
+      color:rgba(255,255,255,.28);
+    }
+
+    .article-head{
+      padding-bottom:18px;
+      border-bottom:1px solid var(--line);
+      margin-bottom:22px;
+    }
+
+    .eyebrow{
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:10px;
+    }
+
+    .article-title{
+      margin:0;
+      font-size:clamp(34px,5.5vw,60px);
+      line-height:1.03;
+      letter-spacing:-.04em;
+    }
+
+    .article-excerpt{
+      margin:16px 0 0;
+      color:var(--muted);
+      line-height:1.9;
+      font-size:17px;
+      max-width:760px;
+    }
+
+    .article-meta{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:20px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .meta-dot{
+      width:4px;
+      height:4px;
+      border-radius:999px;
+      background:rgba(255,255,255,.24);
+    }
+
+    .cover{
+      margin:0 0 24px;
+      border-radius:24px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(216,188,119,.18), transparent 30%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+    }
+
+    .cover img{
+      width:100%;
+      height:auto;
+      object-fit:cover;
+    }
+
+    .article-body{
+      color:var(--text);
+      line-height:1.95;
+      font-size:18px;
+    }
+
+    .article-body > *:first-child{
+      margin-top:0 !important;
+    }
+
+    .article-body h1,
+    .article-body h2,
+    .article-body h3,
+    .article-body h4{
+      color:#fff;
+      line-height:1.18;
+      letter-spacing:-.03em;
+      margin:1.7em 0 .6em;
+    }
+
+    .article-body h1{font-size:40px}
+    .article-body h2{font-size:32px}
+    .article-body h3{font-size:25px}
+    .article-body h4{font-size:21px}
+
+    .article-body p,
+    .article-body ul,
+    .article-body ol,
+    .article-body blockquote,
+    .article-body figure,
+    .article-body table{
+      margin:0 0 1.15em;
+    }
+
+    .article-body ul,
+    .article-body ol{
+      padding-left:1.3em;
+    }
+
+    .article-body li{
+      margin:.35em 0;
+    }
+
+    .article-body blockquote{
+      margin:1.4em 0;
+      padding:16px 18px;
+      border-left:3px solid rgba(216,188,119,.42);
+      border-radius:0 18px 18px 0;
+      background:rgba(255,255,255,.035);
+      color:var(--white-soft);
+    }
+
+    .article-body hr{
+      border:none;
+      height:1px;
+      background:var(--line);
+      margin:2em 0;
+    }
+
+    .article-body a{
+      color:var(--gold);
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
+
+    .article-body img{
+      width:100%;
+      height:auto;
+      border-radius:20px;
+      border:1px solid var(--line);
+      margin:18px 0;
+    }
+
+    .article-body code{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+      font-size:.92em;
+      padding:.16em .42em;
+      border-radius:8px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .article-body pre{
+      overflow:auto;
+      padding:16px;
+      border-radius:18px;
+      background:#0c1117;
+      border:1px solid var(--line);
+      margin:1.25em 0;
+    }
+
+    .article-body pre code{
+      padding:0;
+      border:none;
+      background:transparent;
+    }
+
+    .aside-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:18px;
+      margin-top:26px;
+    }
+
+    .card{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:var(--panel);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:var(--shadow);
+    }
+
+    .card h2{
+      margin:0 0 10px;
+      font-size:22px;
+      line-height:1.2;
+    }
+
+    .muted{
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .small{font-size:13px}
+
+    .related-list{
       display:grid;
       gap:12px;
+      margin-top:14px;
     }
 
-    .quick-item,
-    .related-item{
+    .item{
+      display:block;
       border:1px solid var(--line);
-      background:var(--card-2);
+      background:var(--panel-2);
       border-radius:18px;
       padding:16px;
-      display:block;
-      transition:all .25s ease;
+      transition:transform .25s ease,border-color .25s ease,background .25s ease;
     }
 
-    .quick-item:hover,
-    .related-item:hover{
+    .item:hover{
       transform:translateY(-2px);
       border-color:rgba(216,188,119,.22);
-      background:rgba(255,255,255,.05);
+      background:rgba(255,255,255,.055);
     }
 
-    .quick-item b,
-    .related-item b{
+    .item b{
       display:block;
-      font-size:18px;
+      font-size:17px;
       line-height:1.35;
       margin-bottom:8px;
     }
 
-    .quick-item span,
-    .related-item .excerpt{
-      color:var(--muted);
-      line-height:1.75;
-      font-size:14px;
+    .back-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:20px;
     }
 
-    .related-item .meta{
-      margin-top:10px;
-      color:var(--muted);
-      font-size:12px;
+    .back-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:10px 14px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      transition:all .25s ease;
     }
 
-    .section-title{
-      margin:0;
-      font-size:26px;
-      line-height:1.2;
+    .back-link:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .loading-shell{
+      display:grid;
+      gap:14px;
+    }
+
+    .skeleton{
+      position:relative;
+      overflow:hidden;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+    }
+
+    .skeleton::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      transform:translateX(-100%);
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);
+      animation:shimmer 1.3s infinite;
+    }
+
+    .sk-title{height:58px}
+    .sk-text{height:18px}
+    .sk-cover{height:min(42vw,420px)}
+    .sk-body{height:220px}
+
+    @keyframes shimmer{
+      to{transform:translateX(100%)}
     }
 
     .footer{
       margin-top:30px;
-      padding:24px 0 52px;
+      padding:24px 0 54px;
       border-top:1px solid var(--line);
       color:var(--muted);
       line-height:1.85;
       font-size:14px;
     }
 
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:16px;
+      align-items:start;
+    }
+
     .reveal{
       opacity:0;
-      transform:translateY(20px);
-      transition:opacity .65s ease, transform .65s ease;
+      transform:translateY(26px);
+      transition:opacity .75s ease, transform .75s ease;
     }
 
     .reveal.in{
@@ -478,163 +575,191 @@
       transform:none;
     }
 
-    @media (max-width:1080px){
-      .layout{
-        grid-template-columns:1fr;
+    [hidden]{display:none !important}
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .reveal,
+      .item,
+      .btn,
+      .menu a,
+      .lang-link,
+      .back-link{
+        transition:none !important;
+        animation:none !important;
       }
-      .page-title{
-        font-size:42px;
-      }
-      .article-body{
-        font-size:17px;
-      }
-      .article-body h2{
-        font-size:30px;
-      }
-      .article-body h3{
-        font-size:24px;
+      .reveal{
+        opacity:1;
+        transform:none;
       }
     }
 
     @media (max-width:860px){
-      .menu{display:none;width:100%;padding-top:10px}
+      .nav{
+        align-items:center;
+        flex-wrap:wrap;
+      }
+
+      .nav-shell{
+        width:100%;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+      }
+
+      .menu{
+        display:none;
+        width:100%;
+        padding-top:10px;
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .menu a{width:100%}
       .menu.open{display:flex}
-      .mobile-toggle{display:inline-flex;align-items:center;justify-content:center}
+      .mobile-toggle{display:inline-flex}
       .right{display:none}
-      .page-title{font-size:34px}
-      .hero-shell,.card,.article-card{padding:18px}
-      .article-body{
-        font-size:16.5px;
-        line-height:1.9;
-      }
-      .article-body h2{
-        font-size:28px;
-      }
-      .article-body h3{
-        font-size:22px;
-      }
+
+      .page{padding-top:20px}
+      .article-shell{padding:20px}
+      .article-body{font-size:17px}
+      .article-body h1{font-size:32px}
+      .article-body h2{font-size:28px}
+      .article-body h3{font-size:22px}
+      .footer-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#mainContent">Bỏ qua menu</a>
+
   <header class="topbar">
     <div class="wrap">
       <div class="nav">
-        <div class="brand">
-          <div class="brand-mark"></div>
+        <a class="brand" href="/" aria-label="Đường Sao Tỏa Sáng">
+          <div class="brand-mark" aria-hidden="true"></div>
           <div>
             <div class="brand-title">Đường Sao Tỏa Sáng</div>
             <div class="brand-sub">Star Path Light Up</div>
           </div>
-        </div>
+        </a>
 
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">☰</button>
+        <div class="nav-shell">
+          <button
+            class="mobile-toggle"
+            id="mobileToggle"
+            aria-label="Mở menu"
+            aria-expanded="false"
+            aria-controls="mainMenu"
+            type="button">☰</button>
 
-        <div class="menu" id="mainMenu">
-          <a href="/" id="navHome">Trang chủ</a>
-          <a href="/about" id="navAbout">Giới thiệu</a>
-          <a href="/program" id="navProgram">Chương trình</a>
-          <a href="/events" id="navEvents">Sự kiện</a>
-          <a href="/scripts" id="navScripts">Kịch bản</a>
-          <a href="/donate" id="navDonate">Gây quỹ</a>
-          <a href="/transparency" id="navTransparency">Minh bạch</a>
-          <a href="/legal" id="navLegal">Pháp lý</a>
-          <a href="/contact" id="navContact">Liên hệ</a>
-          <a href="/posts" id="navPosts">Bài viết</a>
-        </div>
-
-        <div class="right">
-          <div class="lang-links">
-            <a id="langViLink" class="lang-link" href="#">VI</a>
-            <a id="langEnLink" class="lang-link" href="#">EN</a>
+          <div class="right">
+            <div class="lang-links" aria-label="Language switch">
+              <a id="langViLink" class="lang-link" href="/">VI</a>
+              <a id="langEnLink" class="lang-link" href="/?lang=en">EN</a>
+            </div>
           </div>
         </div>
+
+        <nav class="menu" id="mainMenu" aria-label="Main navigation">
+          <a href="/">Trang chủ</a>
+          <a href="/about">Giới thiệu</a>
+          <a href="/program">Chương trình</a>
+          <a href="/events">Sự kiện</a>
+          <a href="/scripts">Kịch bản</a>
+          <a href="/donate">Gây quỹ</a>
+          <a href="/transparency">Minh bạch</a>
+          <a href="/legal">Pháp lý</a>
+          <a href="/contact">Liên hệ</a>
+          <a href="/posts">Bài viết</a>
+        </nav>
       </div>
     </div>
   </header>
 
-  <main class="wrap">
-    <section class="hero reveal">
-      <div class="hero-shell">
-        <div class="eyebrow" id="heroEyebrow">NỘI DUNG CHI TIẾT</div>
-        <div class="breadcrumb" id="breadcrumb"></div>
-        <h1 class="page-title" id="contentTitle">Đang tải nội dung...</h1>
-        <p class="lead" id="contentLead">Vui lòng chờ trong giây lát. Hệ thống đang tải nội dung theo slug.</p>
-      </div>
-    </section>
-
-    <section class="layout reveal">
-      <article class="card article-card">
-        <div class="article-shell">
-          <div class="article-meta-top">
-            <span class="tag" id="contentTypeTag">page</span>
-            <span class="meta-inline" id="contentDate"></span>
-          </div>
-
-          <div class="article-cover" id="contentCoverWrap">
-            <img id="contentCover" src="" alt=""/>
-          </div>
-
-          <div class="article-body" id="contentBody">
-            <p>Loading...</p>
-          </div>
-
-          <div class="actions">
-            <a class="btn primary" href="/posts" id="backPostsBtn">Quay lại bài viết</a>
-            <a class="btn" href="/" id="homeBtn">Về trang chủ</a>
-          </div>
-        </div>
-      </article>
-
-      <aside class="card">
-        <div class="eyebrow" id="sideEyebrow">ĐI NHANH</div>
-        <h2 class="section-title" id="sideTitle">Các hướng liên quan</h2>
-
-        <div class="quick-list">
-          <a class="quick-item" href="/about">
-            <b id="q1t">Giới thiệu</b>
-            <span id="q1d">Hiểu nền tảng và lý do tồn tại của hệ thống.</span>
-          </a>
-
-          <a class="quick-item" href="/program">
-            <b id="q2t">Chương trình</b>
-            <span id="q2d">Khung vận hành và lộ trình phát triển.</span>
-          </a>
-
-          <a class="quick-item" href="/scripts">
-            <b id="q3t">Kịch bản</b>
-            <span id="q3d">Dòng sản phẩm ưu tiên giai đoạn đầu.</span>
-          </a>
-
-          <a class="quick-item" href="/donate">
-            <b id="q4t">Donate</b>
-            <span id="q4d">Nguyên tắc gây quỹ minh bạch.</span>
-          </a>
+  <main class="wrap page" id="mainContent">
+    <div class="content-wrap">
+      <section class="article-shell reveal">
+        <div class="breadcrumb" id="breadcrumb">
+          <a id="crumbHome" href="/">Trang chủ</a>
+          <span class="sep">/</span>
+          <a id="crumbSection" href="/posts">Bài viết</a>
+          <span class="sep">/</span>
+          <span id="crumbCurrent">Đang tải...</span>
         </div>
 
-        <div class="hr"></div>
-
-        <div class="small muted" id="sideNote">
-          URL đẹp đang được dùng cho toàn site. Mỗi ngôn ngữ là một link riêng để chia sẻ trực tiếp.
+        <div id="loadingState" class="loading-shell" aria-hidden="true">
+          <div class="skeleton sk-title"></div>
+          <div class="skeleton sk-text"></div>
+          <div class="skeleton sk-text"></div>
+          <div class="skeleton sk-cover"></div>
+          <div class="skeleton sk-body"></div>
         </div>
-      </aside>
-    </section>
 
-    <section class="reveal" style="margin-top:14px">
-      <div class="card">
-        <div class="eyebrow" id="relatedEyebrow">LIÊN QUAN</div>
-        <h2 class="section-title" id="relatedTitle">Nội dung liên quan</h2>
-        <p class="muted" id="relatedHint">Tự lấy từ CMS. Nếu chưa có dữ liệu, hệ thống dùng fallback.</p>
-        <div class="hr"></div>
-        <div class="related-grid" id="relatedList"></div>
-      </div>
-    </section>
+        <article id="articleView" hidden>
+          <header class="article-head">
+            <div class="eyebrow" id="articleType">NỘI DUNG</div>
+            <h1 class="article-title" id="title">Đang tải...</h1>
+            <p class="article-excerpt" id="excerpt"></p>
+
+            <div class="article-meta">
+              <span id="metaLabel">Đường Sao Tỏa Sáng</span>
+              <span class="meta-dot"></span>
+              <time id="date" hidden></time>
+            </div>
+          </header>
+
+          <figure class="cover" id="cover" hidden></figure>
+
+          <div class="article-body" id="content">
+            <p>Đang tải nội dung...</p>
+          </div>
+
+          <div class="back-row">
+            <a class="back-link" id="backToPosts" href="/posts">Xem tất cả bài viết</a>
+            <a class="back-link" id="backHome" href="/">Về trang chủ</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="aside-grid reveal">
+        <aside class="card" id="relatedSection" hidden>
+          <div class="eyebrow" id="relatedEyebrow">LIÊN QUAN</div>
+          <h2 id="relatedTitle">Bài viết liên quan</h2>
+          <p class="muted" id="relatedDesc">
+            Một vài nội dung khác để tiếp tục hành trình đọc và mở rộng bối cảnh.
+          </p>
+          <div class="related-list" id="relatedPosts"></div>
+        </aside>
+
+        <aside class="card reveal">
+          <div class="eyebrow" id="contactEyebrow">KẾT NỐI</div>
+          <h2 id="contactTitle">Cần trao đổi thêm?</h2>
+          <p class="muted" id="contactDesc">
+            Nếu anh chị muốn hợp tác, tài trợ, trao đổi chương trình hoặc cần một kênh làm việc chính thức, hãy đi đến trang liên hệ.
+          </p>
+          <div class="back-row">
+            <a class="btn primary" id="contactBtn" href="/contact">Liên hệ</a>
+            <a class="btn" id="legalBtn" href="/legal">Pháp lý</a>
+          </div>
+        </aside>
+      </section>
+    </div>
 
     <footer class="footer">
-      <div><b>Contact:</b> contact@duongsaotoasang.com</div>
-      <div><b>Admin:</b> duongsaotoasang@gmail.com</div>
-      <div class="small" id="footerNote" style="margin-top:10px">
-        File này là renderer trung tâm cho URL đẹp, có nút ngôn ngữ là link thật và hỗ trợ hình ảnh, video trong từng bài.
+      <div class="footer-grid">
+        <div>
+          <div><b>Contact:</b> <a href="mailto:contact@duongsaotoasang.com">contact@duongsaotoasang.com</a></div>
+          <div><b>Admin:</b> <a href="mailto:duongsaotoasang@gmail.com">duongsaotoasang@gmail.com</a></div>
+          <div><b>Reply:</b> <a href="mailto:reply@duongsaotoasang.com">reply@duongsaotoasang.com</a></div>
+          <div class="small" id="footerNote" style="margin-top:10px">
+            Powered by Cloudflare Pages + Functions + D1 + R2. Cấu trúc nội dung được giữ ổn định theo slug để toàn bộ hệ thống kết nối liền mạch.
+          </div>
+        </div>
+        <div class="small muted" id="footerRight">
+          Hybrid model: nonprofit + transparent business.<br/>
+          Phase 1 priority: Scripts + Donate.
+        </div>
       </div>
     </footer>
   </main>
@@ -643,366 +768,131 @@
     import {
       getLang,
       mountLangLinks,
-      loadBySlug,
-      listContents,
-      renderRichHtml,
+      getPathInfo,
       setSeo,
-      formatDate,
-      esc,
-      resolveCurrentRoute
+      renderContentPage,
+      applyActiveNav,
+      initMobileMenu,
+      initReveal,
+      withLang
     } from "/app.js";
 
     const lang = getLang();
-    const T = (vi, en) => lang === "vi" ? vi : en;
-    const qsa = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-
+    const isEn = lang === "en";
     document.documentElement.lang = lang;
 
-    document.getElementById("mobileToggle").onclick = () => {
-      document.getElementById("mainMenu").classList.toggle("open");
-    };
-
     mountLangLinks("langViLink", "langEnLink");
+    applyActiveNav(".menu", window.location.pathname);
+    initMobileMenu();
+    initReveal(".reveal", "in");
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add("in");
-      });
-    }, { threshold: 0.12 });
+    const copy = {
+      crumbHome: { vi: "Trang chủ", en: "Home" },
+      metaLabel: { vi: "Đường Sao Tỏa Sáng", en: "Star Path Light Up" },
+      backToPosts: { vi: "Xem tất cả bài viết", en: "View all posts" },
+      backHome: { vi: "Về trang chủ", en: "Back to home" },
 
-    qsa(".reveal").forEach(el => observer.observe(el));
-
-    function markActiveMenu(type, slug) {
-      const navMap = {
-        home: "navHome",
-        about: "navAbout",
-        program: "navProgram",
-        events: "navEvents",
-        scripts: "navScripts",
-        donate: "navDonate",
-        transparency: "navTransparency",
-        legal: "navLegal",
-        contact: "navContact",
-        posts: "navPosts"
-      };
-
-      Object.values(navMap).forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.remove("active");
-      });
-
-      if (type === "post") {
-        document.getElementById("navPosts")?.classList.add("active");
-        return;
-      }
-
-      if (slug && navMap[slug]) {
-        document.getElementById(navMap[slug])?.classList.add("active");
-        return;
-      }
-
-      document.getElementById("navHome")?.classList.add("active");
-    }
-
-    function canonicalFor(slug, type = "page") {
-      const suffix = lang === "en" ? "?lang=en" : "";
-      return type === "post"
-        ? `https://duongsaotoasang.com/posts/${encodeURIComponent(slug)}${suffix}`
-        : `https://duongsaotoasang.com/${encodeURIComponent(slug)}${suffix}`;
-    }
-
-    function videoEmbed(url) {
-      if (!url) return "";
-
-      try {
-        if (url.includes("youtube.com/watch?v=")) {
-          const id = new URL(url).searchParams.get("v");
-          return id ? `https://www.youtube.com/embed/${id}` : "";
-        }
-
-        if (url.includes("youtu.be/")) {
-          const id = url.split("youtu.be/")[1]?.split("?")[0];
-          return id ? `https://www.youtube.com/embed/${id}` : "";
-        }
-
-        if (url.includes("youtube.com/embed/")) return url;
-
-        if (url.includes("vimeo.com/")) {
-          const id = url.split("vimeo.com/")[1]?.split("?")[0];
-          return id ? `https://player.vimeo.com/video/${id}` : "";
-        }
-      } catch (e) {
-        console.warn("video parse error:", e);
-      }
-
-      return "";
-    }
-
-    const FALLBACKS = {
-      about: {
-        type: "page",
-        title_vi: "Giới thiệu Đường Sao Tỏa Sáng",
-        title_en: "About Star Path Light Up",
-        excerpt_vi: "Tổng quan về nền tảng, lý do tồn tại và cấu trúc vận hành tổng thể.",
-        excerpt_en: "Overview of the platform, its reason for existence, and overall operating structure.",
-        body_vi: `
-          <p><b>Đường Sao Tỏa Sáng</b> là một nền tảng được xây dựng để kết nối con người, ý tưởng, chương trình và nguồn lực có giá trị thật với nhau theo hướng dài hạn, minh bạch và có thể vận hành thực tế.</p>
-          <p>Đây không chỉ là một website giới thiệu. Đây là một hệ thống để những chương trình nghệ thuật, giáo dục, cộng đồng và gây quỹ có thể được tổ chức rõ ràng, công bố công khai và đi đường dài.</p>
-        `,
-        body_en: `
-          <p><b>Star Path Light Up</b> is a platform created to connect people, ideas, programs, and real resources in a long term, transparent, and practical way.</p>
-          <p>This is not merely an informational site. It is a system for artistic, educational, community, and fundraising programs to be organized clearly, published openly, and sustained over time.</p>
-        `
+      relatedEyebrow: { vi: "LIÊN QUAN", en: "RELATED" },
+      relatedTitle: { vi: "Bài viết liên quan", en: "Related posts" },
+      relatedDesc: {
+        vi: "Một vài nội dung khác để tiếp tục hành trình đọc và mở rộng bối cảnh.",
+        en: "A few more pieces to continue the reading journey and widen the context."
       },
-      legal: {
-        type: "page",
-        title_vi: "Pháp lý",
-        title_en: "Legal",
-        excerpt_vi: "Điều khoản sử dụng, chính sách riêng tư và các tuyên bố cần thiết.",
-        excerpt_en: "Terms of Use, Privacy Policy, and necessary disclaimers.",
-        body_vi: `
-          <p>Trang pháp lý tập hợp các thông tin nền tảng liên quan đến điều khoản sử dụng, chính sách riêng tư và các nguyên tắc miễn trừ trách nhiệm trong hoạt động gây quỹ hoặc sử dụng nội dung.</p>
-        `,
-        body_en: `
-          <p>The legal page includes the foundation information regarding Terms of Use, Privacy Policy, and applicable disclaimers in fundraising and content usage.</p>
-        `
+
+      contactEyebrow: { vi: "KẾT NỐI", en: "CONNECT" },
+      contactTitle: { vi: "Cần trao đổi thêm?", en: "Need to discuss further?" },
+      contactDesc: {
+        vi: "Nếu anh chị muốn hợp tác, tài trợ, trao đổi chương trình hoặc cần một kênh làm việc chính thức, hãy đi đến trang liên hệ.",
+        en: "If you want to collaborate, sponsor, discuss a program, or need an official working channel, go to the contact page."
       },
-      program: {
-        type: "page",
-        title_vi: "Chương trình",
-        title_en: "Program",
-        excerpt_vi: "Khung vận hành, mô-đun triển khai, lộ trình và các trục ưu tiên của hệ thống.",
-        excerpt_en: "Operating framework, implementation modules, roadmap, and priority axes of the system.",
-        body_vi: `
-          <p>Chương trình của Đường Sao Tỏa Sáng được xây dựng theo cấu trúc có mục tiêu, nội dung, dòng lực, cơ chế phối hợp và báo cáo rõ ràng.</p>
-          <p>Giai đoạn đầu ưu tiên chuẩn hoá nội dung, xây dựng hệ thống kịch bản, cấu trúc gây quỹ minh bạch và tạo nền tảng cộng đồng có thể đồng hành lâu dài.</p>
-        `,
-        body_en: `
-          <p>The program is designed with clear goals, content logic, resource flow, collaboration mechanisms, and reporting standards.</p>
-          <p>Phase one focuses on content standardization, script system building, transparent fundraising, and a community platform for long-term collaboration.</p>
-        `
+      contactBtn: { vi: "Liên hệ", en: "Contact" },
+      legalBtn: { vi: "Pháp lý", en: "Legal" },
+
+      footerNote: {
+        vi: "Powered by Cloudflare Pages + Functions + D1 + R2. Cấu trúc nội dung được giữ ổn định theo slug để toàn bộ hệ thống kết nối liền mạch.",
+        en: "Powered by Cloudflare Pages + Functions + D1 + R2. The content structure stays stable by slug so the whole system remains seamless."
+      },
+      footerRight: {
+        vi: "Hybrid model: phi lợi nhuận + kinh doanh minh bạch.<br/>Giai đoạn 1 ưu tiên: Kịch bản + Donate.",
+        en: "Hybrid model: nonprofit + transparent business.<br/>Phase 1 priority: Scripts + Donate."
       }
     };
 
-    const route = resolveCurrentRoute();
-    const slug = route.slug || "about";
-    const routeType = route.type === "post" ? "post" : "page";
-
-    const titleEl = document.getElementById("contentTitle");
-    const leadEl = document.getElementById("contentLead");
-    const bodyEl = document.getElementById("contentBody");
-    const typeTagEl = document.getElementById("contentTypeTag");
-    const dateEl = document.getElementById("contentDate");
-    const breadcrumbEl = document.getElementById("breadcrumb");
-    const coverWrapEl = document.getElementById("contentCoverWrap");
-    const coverImgEl = document.getElementById("contentCover");
-    const relatedListEl = document.getElementById("relatedList");
-
-    markActiveMenu(routeType, slug);
-
-    function fallbackItemFor(slugKey, forcedType = "page") {
-      const f = FALLBACKS[slugKey];
-      if (!f) return null;
-      return {
-        slug: slugKey,
-        type: f.type || forcedType,
-        title: lang === "vi" ? f.title_vi : f.title_en,
-        excerpt: lang === "vi" ? f.excerpt_vi : f.excerpt_en,
-        body: lang === "vi" ? f.body_vi : f.body_en,
-        created_at: "",
-        updated_at: "",
-        cover_url: "",
-        video_url: ""
-      };
+    function setText(id, value, html = false){
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (html) el.innerHTML = value;
+      else el.textContent = value;
     }
 
-    function renderBreadcrumb(title, type) {
-      const suffix = lang === "en" ? "?lang=en" : "";
+    Object.entries(copy).forEach(([id, value]) => {
+      const content = value?.[lang] || value?.vi || "";
+      const isHtml = id === "footerRight";
+      setText(id, content, isHtml);
+    });
 
-      if (type === "post") {
-        breadcrumbEl.innerHTML = `
-          <a href="/">${T("Trang chủ", "Home")}</a>
-          <span>/</span>
-          <a href="/posts${suffix}">${T("Bài viết", "Posts")}</a>
-          <span>/</span>
-          <span>${esc(title)}</span>
-        `;
-      } else {
-        breadcrumbEl.innerHTML = `
-          <a href="/">${T("Trang chủ", "Home")}</a>
-          <span>/</span>
-          <span>${esc(title)}</span>
-        `;
+    document.getElementById("backToPosts").href = withLang("/posts", lang);
+    document.getElementById("backHome").href = withLang("/", lang);
+    document.getElementById("contactBtn").href = withLang("/contact", lang);
+    document.getElementById("legalBtn").href = withLang("/legal", lang);
+
+    const pathInfo = getPathInfo(window.location.pathname);
+    const isPost = pathInfo.type === "post";
+
+    const sectionLabel = isPost
+      ? (isEn ? "Posts" : "Bài viết")
+      : (isEn ? "Pages" : "Trang nội dung");
+
+    const sectionHref = isPost
+      ? withLang("/posts", lang)
+      : withLang(`/${pathInfo.slug || ""}`, lang);
+
+    setText("crumbSection", sectionLabel);
+    document.getElementById("crumbSection").href = sectionHref;
+    setText("crumbCurrent", isEn ? "Loading..." : "Đang tải...");
+
+    setSeo({
+      title: isEn ? "Loading content..." : "Đang tải nội dung...",
+      description: isEn ? "Loading content from Star Path Light Up." : "Đang tải nội dung từ Đường Sao Tỏa Sáng.",
+      canonical: `${window.location.origin}${withLang(window.location.pathname, lang)}`,
+      type: isPost ? "article" : "website"
+    });
+
+    await renderContentPage({
+      titleId: "title",
+      excerptId: "excerpt",
+      contentId: "content",
+      coverId: "cover",
+      dateId: "date",
+      relatedId: "relatedPosts",
+      notFoundTitle: {
+        vi: "Nội dung không tồn tại",
+        en: "Content not found"
+      },
+      notFoundDesc: {
+        vi: "Liên kết này chưa có nội dung hoặc đã được thay đổi.",
+        en: "This link has no content yet or has been changed."
       }
+    });
+
+    document.getElementById("loadingState").hidden = true;
+    document.getElementById("articleView").hidden = false;
+
+    const currentTitle = document.getElementById("title")?.textContent?.trim() || (isEn ? "Content" : "Nội dung");
+    setText("crumbCurrent", currentTitle);
+
+    const typeEl = document.getElementById("articleType");
+    if (typeEl) {
+      typeEl.textContent = isPost
+        ? (isEn ? "ARTICLE" : "BÀI VIẾT")
+        : (isEn ? "PAGE" : "TRANG");
     }
 
-    function toHref(item) {
-      const suffix = lang === "en" ? "?lang=en" : "";
-      return item.type === "post"
-        ? `/posts/${encodeURIComponent(item.slug || "")}${suffix}`
-        : `/${encodeURIComponent(item.slug || "")}${suffix}`;
+    const relatedPosts = document.getElementById("relatedPosts");
+    const relatedSection = document.getElementById("relatedSection");
+    if (relatedPosts && relatedSection) {
+      relatedSection.hidden = !relatedPosts.innerHTML.trim();
     }
-
-    function renderMain(item) {
-      const type = item.type || routeType || "page";
-      const title = item.title || slug;
-      const excerpt = item.excerpt || T("Nội dung đang được cập nhật.", "Content is being updated.");
-      let body = item.body || `<p>${T("Nội dung đang được cập nhật.", "Content is being updated.")}</p>`;
-
-      if (item.video_url) {
-        const embed = videoEmbed(item.video_url);
-        if (embed) {
-          body += `
-            <div class="video-wrap">
-              <iframe
-                src="${esc(embed)}"
-                allowfullscreen
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin">
-              </iframe>
-            </div>
-          `;
-        }
-      }
-
-      titleEl.textContent = title;
-      leadEl.textContent = excerpt;
-      typeTagEl.textContent = type;
-      renderBreadcrumb(title, type);
-
-      const rawDate = item.updated_at || item.created_at || "";
-      dateEl.textContent = rawDate ? formatDate(rawDate) : T("Đang cập nhật", "Updating");
-
-      if (item.cover_url) {
-        coverWrapEl.style.display = "block";
-        coverImgEl.src = item.cover_url;
-        coverImgEl.alt = title;
-        coverImgEl.loading = "eager";
-        coverImgEl.decoding = "async";
-      } else {
-        coverWrapEl.style.display = "none";
-        coverImgEl.src = "";
-        coverImgEl.alt = "";
-      }
-
-      renderRichHtml(bodyEl, body);
-
-      setSeo({
-        title: `${title} | Đường Sao Tỏa Sáng`,
-        description: excerpt,
-        canonical: canonicalFor(slug, type),
-        ogImage: item.cover_url || null
-      });
-    }
-
-    function renderRelated(items) {
-      if (!items || !items.length) {
-        relatedListEl.innerHTML = `
-          <div class="related-item">
-            <b>${T("Chưa có nội dung liên quan", "No related content yet")}</b>
-            <div class="excerpt">${T("Hệ thống sẽ tự bổ sung khi có thêm dữ liệu từ CMS.", "The system will populate this section when more CMS content exists.")}</div>
-          </div>
-        `;
-        return;
-      }
-
-      relatedListEl.innerHTML = items.map(item => `
-        <a class="related-item" href="${toHref(item)}">
-          <b>${esc(item.title || item.slug || "")}</b>
-          <div class="excerpt">${esc(item.excerpt || T("Nhấn để đọc chi tiết.", "Open to read details."))}</div>
-          <div class="meta">${esc(item.type || "post")} • ${esc(item.slug || "")}</div>
-        </a>
-      `).join("");
-    }
-
-    async function loadRelated(currentSlug) {
-      const fallbackRelated = Object.keys(FALLBACKS)
-        .filter(key => key !== currentSlug)
-        .slice(0, 4)
-        .map(key => fallbackItemFor(key))
-        .filter(Boolean);
-
-      try {
-        const items = await listContents({
-          visibility: "public",
-          status: "published",
-          limit: 12,
-          order: "updated_at.desc"
-        });
-
-        const normalized = (items || [])
-          .filter(x => x.slug && x.slug !== currentSlug)
-          .map(x => ({
-            slug: x.slug,
-            type: x.type || x.raw?.type || "post",
-            title: x.title || x.raw?.title_vi || x.raw?.title_en || x.slug,
-            excerpt: x.excerpt || x.raw?.excerpt_vi || x.raw?.excerpt_en || ""
-          }))
-          .slice(0, 4);
-
-        renderRelated(normalized.length ? normalized : fallbackRelated);
-      } catch (e) {
-        console.warn("related fallback used:", e);
-        renderRelated(fallbackRelated);
-      }
-    }
-
-    document.getElementById("heroEyebrow").textContent = T("NỘI DUNG CHI TIẾT", "CONTENT DETAIL");
-    document.getElementById("backPostsBtn").textContent = T("Quay lại bài viết", "Back to posts");
-    document.getElementById("homeBtn").textContent = T("Về trang chủ", "Back to home");
-    document.getElementById("sideEyebrow").textContent = T("ĐI NHANH", "QUICK ACCESS");
-    document.getElementById("sideTitle").textContent = T("Các hướng liên quan", "Related directions");
-    document.getElementById("q1t").textContent = T("Giới thiệu", "About");
-    document.getElementById("q1d").textContent = T("Hiểu nền tảng và lý do tồn tại của hệ thống.", "Understand the platform and why the system exists.");
-    document.getElementById("q2t").textContent = T("Chương trình", "Program");
-    document.getElementById("q2d").textContent = T("Khung vận hành và lộ trình phát triển.", "Operating framework and roadmap.");
-    document.getElementById("q3t").textContent = T("Kịch bản", "Scripts");
-    document.getElementById("q3d").textContent = T("Dòng sản phẩm ưu tiên giai đoạn đầu.", "Primary product line in phase one.");
-    document.getElementById("q4t").textContent = T("Donate", "Donate");
-    document.getElementById("q4d").textContent = T("Nguyên tắc gây quỹ minh bạch.", "Transparent fundraising principles.");
-    document.getElementById("sideNote").textContent = T(
-      "URL đẹp đang được dùng cho toàn site. Mỗi ngôn ngữ là một link riêng để chia sẻ trực tiếp.",
-      "Clean URLs are used across the site. Each language has its own shareable link."
-    );
-    document.getElementById("relatedEyebrow").textContent = T("LIÊN QUAN", "RELATED");
-    document.getElementById("relatedTitle").textContent = T("Nội dung liên quan", "Related content");
-    document.getElementById("relatedHint").textContent = T(
-      "Tự lấy từ CMS. Nếu chưa có dữ liệu, hệ thống dùng fallback.",
-      "Loaded from CMS. If no data exists, the system uses fallback."
-    );
-    document.getElementById("footerNote").textContent = T(
-      "File này là renderer trung tâm cho URL đẹp, có nút ngôn ngữ là link thật và hỗ trợ hình ảnh, video trong từng bài.",
-      "This file renders clean URLs, uses real language links, and supports images and video in each article."
-    );
-
-    async function run() {
-      const fallback = fallbackItemFor(slug, routeType) || {
-        slug,
-        type: routeType,
-        title: T("Nội dung đang cập nhật", "Content is being updated"),
-        excerpt: T("Trang này đã được tạo nhưng chưa có nội dung hoàn chỉnh.", "This page exists but content is not complete yet."),
-        body: `<p>${T("Slug này hiện chưa có nội dung fallback riêng.", "This slug does not yet have dedicated fallback content.")}</p>`,
-        created_at: "",
-        updated_at: "",
-        cover_url: "",
-        video_url: ""
-      };
-
-      renderMain(fallback);
-      loadRelated(slug);
-
-      try {
-        const item = await loadBySlug(slug);
-        if (item) {
-          renderMain(item);
-          loadRelated(slug);
-        }
-      } catch (e) {
-        console.warn("content fallback used:", e);
-      }
-    }
-
-    run();
   </script>
 </body>
 </html>
