@@ -6,18 +6,22 @@
   <title>Thư viện bài viết | Đường Sao Tỏa Sáng</title>
   <meta name="description" content="Thư viện bài viết của Đường Sao Tỏa Sáng. Những bài viết về nhận thức, sáng tạo, cộng đồng và hành trình sống có chiều sâu.">
   <meta name="theme-color" content="#0b0f14">
+  <link rel="canonical" href="https://duongsaotoasang.com/posts">
+  <meta property="og:title" content="Thư viện bài viết | Đường Sao Tỏa Sáng">
+  <meta property="og:description" content="Thư viện bài viết của Đường Sao Tỏa Sáng. Những bài viết về nhận thức, sáng tạo, cộng đồng và hành trình sống có chiều sâu.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://duongsaotoasang.com/posts">
+  <meta name="twitter:card" content="summary_large_image">
 
   <style>
     :root{
       --bg:#0b0f14;
       --panel:#121821;
-      --card:#151d28;
       --text:#e9eef5;
       --muted:#98a6b7;
       --line:rgba(255,255,255,.09);
       --gold:#d8bc77;
       --shadow:0 18px 50px rgba(0,0,0,.28);
-      --radius:22px;
       --wrap:1180px;
     }
 
@@ -35,11 +39,7 @@
 
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
-
-    .wrap{
-      width:min(var(--wrap), calc(100% - 32px));
-      margin:0 auto;
-    }
+    .wrap{width:min(var(--wrap), calc(100% - 32px));margin:0 auto}
 
     .topbar{
       position:sticky;
@@ -148,6 +148,7 @@
       gap:10px;
       flex:1 1 520px;
       max-width:700px;
+      flex-wrap:wrap;
     }
 
     .search-input{
@@ -178,28 +179,19 @@
       font-size:14px;
       font-weight:600;
       transition:.2s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
     }
 
     .btn:hover{
       background:rgba(255,255,255,.08);
+      transform:translateY(-1px);
     }
 
     .btn.primary{
       border-color:rgba(216,188,119,.34);
       background:linear-gradient(180deg, rgba(216,188,119,.18), rgba(216,188,119,.08));
-    }
-
-    .btn-link{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      height:52px;
-      padding:0 16px;
-      border-radius:16px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:var(--text);
-      font-weight:600;
     }
 
     .section{
@@ -244,6 +236,13 @@
       display:flex;
       flex-direction:column;
       min-height:100%;
+      transition:transform .25s ease,border-color .25s ease,background .25s ease;
+    }
+
+    .post-card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(216,188,119,.24);
+      background:rgba(255,255,255,.055);
     }
 
     .post-cover{
@@ -303,6 +302,7 @@
       font-size:13px;
       padding-top:4px;
       border-top:1px solid var(--line);
+      flex-wrap:wrap;
     }
 
     .status-box{
@@ -321,16 +321,12 @@
       line-height:1.8;
     }
 
-    @media (max-width: 1080px){
-      .posts-grid{
-        grid-template-columns:repeat(2, minmax(0,1fr));
-      }
-      h1{
-        font-size:40px;
-      }
+    @media (max-width:1080px){
+      .posts-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      h1{font-size:40px}
     }
 
-    @media (max-width: 720px){
+    @media (max-width:720px){
       .nav{
         align-items:flex-start;
         padding:12px 0;
@@ -359,6 +355,10 @@
 
       .section-title{
         font-size:26px;
+      }
+
+      .btn{
+        width:100%;
       }
     }
   </style>
@@ -402,7 +402,7 @@
             <button class="btn primary" type="submit" id="searchBtn">Tìm kiếm</button>
           </form>
 
-          <a class="btn-link" href="/posts" id="resetBtn">Xem tất cả</a>
+          <a class="btn" href="/posts" id="resetBtn">Xem tất cả</a>
         </div>
       </div>
     </section>
@@ -417,20 +417,21 @@
         </div>
       </div>
 
-      <div id="posts" class="posts-grid"></div>
+      <div id="postsStatus" class="status-box">Đang tải bài viết...</div>
+      <div id="postsGrid" class="posts-grid" hidden></div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="wrap" id="footerText">
-      Đường Sao Tỏa Sáng · Publishing platform for deep knowledge, awareness, creativity and community.
+      Đường Sao Tỏa Sáng · Nền tảng xuất bản cho tri thức sâu, nhận thức, sáng tạo và cộng đồng.
     </div>
   </footer>
 
   <script src="/assets/app.js"></script>
   <script>
-    (function () {
-      const lang = new URL(window.location.href).searchParams.get("lang") === "en" ? "en" : "vi";
+    (async function () {
+      const lang = DSTS.getLang();
       document.documentElement.lang = lang;
 
       const T = {
@@ -450,10 +451,11 @@
           resetBtn: "Xem tất cả",
           sectionTitle: "Danh sách bài viết",
           sectionDesc: "Mỗi bài viết là một điểm dừng để đọc lại, nhìn lại và mở rộng hướng đi trong đời sống.",
-          empty: "Chưa có bài viết phù hợp.",
+          loading: "Đang tải bài viết...",
           failed: "Không thể tải danh sách bài viết.",
-          typePost: "Bài viết",
-          typePage: "Trang",
+          empty: "Chưa có bài viết phù hợp.",
+          post: "Bài viết",
+          page: "Trang",
           footer: "Đường Sao Tỏa Sáng · Nền tảng xuất bản cho tri thức sâu, nhận thức, sáng tạo và cộng đồng."
         },
         en: {
@@ -472,10 +474,11 @@
           resetBtn: "View all",
           sectionTitle: "Post library",
           sectionDesc: "Each article is a place to pause, reflect, and widen one’s direction in life.",
-          empty: "No matching posts found.",
+          loading: "Loading posts...",
           failed: "Unable to load posts.",
-          typePost: "Post",
-          typePage: "Page",
+          empty: "No matching posts found.",
+          post: "Post",
+          page: "Page",
           footer: "Đường Sao Tỏa Sáng · Publishing platform for deep knowledge, awareness, creativity, and community."
         }
       }[lang];
@@ -489,109 +492,67 @@
       document.getElementById("navProgram").textContent = T.navProgram;
       document.getElementById("navPosts").textContent = T.navPosts;
       document.getElementById("navContact").textContent = T.navContact;
-
       document.getElementById("heroEyebrow").textContent = T.heroEyebrow;
       document.getElementById("heroTitle").textContent = T.heroTitle;
       document.getElementById("heroDesc").textContent = T.heroDesc;
       document.getElementById("searchInput").placeholder = T.searchPlaceholder;
       document.getElementById("searchBtn").textContent = T.searchBtn;
       document.getElementById("resetBtn").textContent = T.resetBtn;
+      document.getElementById("resetBtn").href = DSTS.withLang("/posts");
       document.getElementById("sectionTitle").textContent = T.sectionTitle;
       document.getElementById("sectionDesc").textContent = T.sectionDesc;
+      document.getElementById("postsStatus").textContent = T.loading;
       document.getElementById("footerText").textContent = T.footer;
 
-      const form = document.getElementById("searchForm");
-      const input = document.getElementById("searchInput");
-
+      const postsStatus = document.getElementById("postsStatus");
+      const postsGrid = document.getElementById("postsGrid");
+      const searchForm = document.getElementById("searchForm");
+      const searchInput = document.getElementById("searchInput");
       const url = new URL(window.location.href);
-      const q = url.searchParams.get("q") || "";
-      input.value = q;
+      const q = (url.searchParams.get("q") || "").trim();
+      searchInput.value = q;
 
-      form.addEventListener("submit", function (e) {
+      searchForm.addEventListener("submit", function (e) {
         e.preventDefault();
-        const next = new URL(window.location.href);
-        const value = input.value.trim();
 
-        if (value) {
-          next.searchParams.set("q", value);
-        } else {
-          next.searchParams.delete("q");
-        }
+        const nextUrl = new URL(window.location.href);
+        const value = searchInput.value.trim();
 
-        if (lang === "en") {
-          next.searchParams.set("lang", "en");
-        } else {
-          next.searchParams.delete("lang");
-        }
+        if (value) nextUrl.searchParams.set("q", value);
+        else nextUrl.searchParams.delete("q");
 
-        window.location.href = next.toString();
+        if (lang === "en") nextUrl.searchParams.set("lang", "en");
+        else nextUrl.searchParams.delete("lang");
+
+        window.location.href = nextUrl.toString();
       });
 
-      const postsEl = document.getElementById("posts");
+      try {
+        const endpoint = q
+          ? `/search?q=${encodeURIComponent(q)}&lang=${lang}`
+          : `/contents?type=post&lang=${lang}`;
 
-      function esc(str) {
-        return String(str || "")
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;");
-      }
+        const data = await DSTS.apiFetch(endpoint);
 
-      function formatDate(dateStr) {
-        if (!dateStr) return "";
-        const d = new Date(dateStr);
-        return d.toLocaleDateString(lang === "en" ? "en-US" : "vi-VN");
-      }
-
-      function typeLabel(type) {
-        if (type === "page") return T.typePage;
-        return T.typePost;
-      }
-
-      function itemHref(item) {
-        const suffix = lang === "en" ? "?lang=en" : "";
-        if (item.type === "page") return `/${item.slug}${suffix}`;
-        return `/content.html?slug=${encodeURIComponent(item.slug)}${suffix}`;
-      }
-
-      async function load() {
-        try {
-          const endpoint = q
-            ? `/api/search?q=${encodeURIComponent(q)}&lang=${lang}`
-            : `/api/contents?type=post&lang=${lang}`;
-
-          const res = await fetch(endpoint);
-          if (!res.ok) throw new Error("load failed");
-
-          const data = await res.json();
-
-          if (!Array.isArray(data) || !data.length) {
-            postsEl.innerHTML = `<div class="status-box">${esc(T.empty)}</div>`;
-            return;
-          }
-
-          postsEl.innerHTML = data.map(item => `
-            <article class="post-card">
-              ${item.cover_url ? `<img class="post-cover" src="${esc(item.cover_url)}" alt="${esc(item.title)}">` : ""}
-              <div class="post-body">
-                <div class="post-type">${esc(typeLabel(item.type))}</div>
-                <h2 class="post-title">
-                  <a href="${itemHref(item)}">${esc(item.title)}</a>
-                </h2>
-                <p class="post-excerpt">${esc(item.excerpt || "")}</p>
-                <div class="post-meta">
-                  <span>${esc(formatDate(item.created_at))}</span>
-                  <span>${esc((item.tags || "").split(",")[0] || "")}</span>
-                </div>
-              </div>
-            </article>
-          `).join("");
-        } catch (err) {
-          postsEl.innerHTML = `<div class="status-box">${esc(T.failed)}</div>`;
+        if (!Array.isArray(data) || !data.length) {
+          postsStatus.hidden = false;
+          postsGrid.hidden = true;
+          postsStatus.textContent = T.empty;
+          return;
         }
-      }
 
-      load();
+        postsGrid.innerHTML = data.map(item => DSTS.renderPostCard(item, {
+          post: T.post,
+          page: T.page
+        })).join("");
+
+        postsStatus.hidden = true;
+        postsGrid.hidden = false;
+      } catch (_err) {
+        postsStatus.hidden = false;
+        postsGrid.hidden = true;
+        postsStatus.textContent = T.failed;
+      }
     })();
   </script>
 </body>
