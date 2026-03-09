@@ -1,3 +1,4 @@
-/about
-/content.html
-200
+/about                 /content.html?slug=about                200
+/program               /content.html?slug=program              200
+/contact               /content.html?slug=contact              200
+/posts                 /posts.html                             200
