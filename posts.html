@@ -6,128 +6,55 @@
   <title>Thư viện bài viết | Đường Sao Tỏa Sáng</title>
   <meta name="description" content="Thư viện bài viết của Đường Sao Tỏa Sáng. Những bài viết về nhận thức, sáng tạo, cộng đồng và hành trình sống có chiều sâu.">
   <meta name="theme-color" content="#0b0f14">
+  <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://duongsaotoasang.com/posts">
   <meta property="og:title" content="Thư viện bài viết | Đường Sao Tỏa Sáng">
   <meta property="og:description" content="Thư viện bài viết của Đường Sao Tỏa Sáng. Những bài viết về nhận thức, sáng tạo, cộng đồng và hành trình sống có chiều sâu.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://duongsaotoasang.com/posts">
+  <meta property="og:image" content="https://duongsaotoasang.com/og.png">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Thư viện bài viết | Đường Sao Tỏa Sáng">
+  <meta name="twitter:description" content="Thư viện bài viết của Đường Sao Tỏa Sáng. Những bài viết về nhận thức, sáng tạo, cộng đồng và hành trình sống có chiều sâu.">
+  <meta name="twitter:image" content="https://duongsaotoasang.com/og.png">
+
+  <link rel="stylesheet" href="/app.css">
 
   <style>
-    :root{
-      --bg:#0b0f14;
-      --panel:#121821;
-      --text:#e9eef5;
-      --muted:#98a6b7;
-      --line:rgba(255,255,255,.09);
-      --gold:#d8bc77;
-      --shadow:0 18px 50px rgba(0,0,0,.28);
-      --wrap:1180px;
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(900px 500px at 0% 0%, rgba(216,188,119,.08), transparent 60%),
-        radial-gradient(900px 500px at 100% 0%, rgba(90,130,180,.08), transparent 60%),
-        linear-gradient(180deg,#0a0d12 0%, #0f141b 100%);
-    }
-
-    a{color:inherit;text-decoration:none}
-    img{display:block;max-width:100%}
-    .wrap{width:min(var(--wrap), calc(100% - 32px));margin:0 auto}
-
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:20;
-      backdrop-filter:blur(14px);
-      background:rgba(10,13,18,.76);
-      border-bottom:1px solid var(--line);
-    }
-
-    .nav{
-      min-height:72px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight:700;
-      letter-spacing:.2px;
-    }
-
-    .brand-mark{
-      width:40px;
-      height:40px;
-      border-radius:14px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.14), transparent 35%),
-        linear-gradient(135deg, rgba(216,188,119,.32), rgba(255,255,255,.04));
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-    }
-
-    .nav-links{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:flex-end;
-    }
-
-    .nav-links a{
-      padding:10px 12px;
-      border-radius:12px;
-      color:var(--muted);
-      transition:.2s ease;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active{
-      color:var(--text);
-      background:rgba(255,255,255,.05);
-    }
-
     .hero{
-      padding:54px 0 24px;
+      padding:34px 0 18px;
     }
 
     .hero-card{
-      border:1px solid var(--line);
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.085);
       border-radius:30px;
       background:
-        radial-gradient(700px 240px at 10% 0%, rgba(216,188,119,.10), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+        radial-gradient(780px 320px at 10% 0%, rgba(216,188,119,.12), transparent 62%),
+        radial-gradient(680px 280px at 100% 8%, rgba(132,176,255,.10), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.018));
       box-shadow:var(--shadow);
       padding:30px;
     }
 
     .eyebrow{
-      color:var(--gold);
       font-size:12px;
       letter-spacing:.18em;
       text-transform:uppercase;
-      margin-bottom:12px;
+      color:var(--gold);
+      margin-bottom:10px;
     }
 
-    h1{
+    .hero-title{
       margin:0;
       font-size:48px;
       line-height:1.04;
       letter-spacing:-.03em;
+      max-width:900px;
     }
 
-    .lead{
+    .hero-desc{
       margin:16px 0 0;
       max-width:800px;
       color:var(--muted);
@@ -147,7 +74,7 @@
       display:flex;
       gap:10px;
       flex:1 1 520px;
-      max-width:700px;
+      max-width:760px;
       flex-wrap:wrap;
     }
 
@@ -169,19 +96,20 @@
     }
 
     .btn{
-      height:52px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:52px;
+      padding:0 16px;
       border-radius:16px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.04);
       color:var(--text);
-      padding:0 16px;
       cursor:pointer;
-      font-size:14px;
-      font-weight:600;
       transition:.2s ease;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
+      font-weight:600;
+      font-size:14px;
     }
 
     .btn:hover{
@@ -218,93 +146,7 @@
       margin:0;
       color:var(--muted);
       line-height:1.8;
-      max-width:700px;
-    }
-
-    .posts-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:18px;
-    }
-
-    .post-card{
-      border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.02));
-      border-radius:24px;
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      min-height:100%;
-      transition:transform .25s ease,border-color .25s ease,background .25s ease;
-    }
-
-    .post-card:hover{
-      transform:translateY(-2px);
-      border-color:rgba(216,188,119,.24);
-      background:rgba(255,255,255,.055);
-    }
-
-    .post-cover{
-      width:100%;
-      aspect-ratio:16/9;
-      object-fit:cover;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(216,188,119,.18), transparent 30%),
-        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-    }
-
-    .post-body{
-      padding:18px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      flex:1;
-    }
-
-    .post-type{
-      display:inline-flex;
-      align-items:center;
-      width:max-content;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-      color:var(--muted);
-      padding:6px 10px;
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-    }
-
-    .post-title{
-      margin:0;
-      font-size:22px;
-      line-height:1.32;
-      letter-spacing:-.02em;
-    }
-
-    .post-title a:hover{
-      color:var(--gold);
-    }
-
-    .post-excerpt{
-      margin:0;
-      color:var(--muted);
-      line-height:1.82;
-      font-size:15px;
-      flex:1;
-    }
-
-    .post-meta{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      color:var(--muted);
-      font-size:13px;
-      padding-top:4px;
-      border-top:1px solid var(--line);
-      flex-wrap:wrap;
+      max-width:780px;
     }
 
     .status-box{
@@ -313,83 +155,110 @@
       padding:20px;
       color:var(--muted);
       background:rgba(255,255,255,.02);
-    }
-
-    .footer{
-      border-top:1px solid var(--line);
-      padding:28px 0 48px;
-      color:var(--muted);
-      font-size:14px;
       line-height:1.8;
     }
 
-    @media (max-width:1080px){
-      .posts-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      h1{font-size:40px}
+    .post-list{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
     }
 
-    @media (max-width:720px){
-      .nav{
-        align-items:flex-start;
-        padding:12px 0;
-        flex-direction:column;
-      }
+    .item{
+      display:block;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      border-radius:18px;
+      padding:16px;
+      transition:transform .25s ease,border-color .25s ease,background .25s ease;
+      box-shadow:var(--shadow);
+    }
 
-      .nav-links{
-        justify-content:flex-start;
-      }
+    .item:hover{
+      transform:translateY(-2px);
+      border-color:rgba(216,188,119,.22);
+      background:rgba(255,255,255,.055);
+    }
 
-      .posts-grid{
-        grid-template-columns:1fr;
-      }
+    .thumb{
+      aspect-ratio:16/9;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(216,188,119,.18), transparent 30%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:18px;
+      overflow:hidden;
+      margin-bottom:12px;
+    }
 
-      .search-form{
-        flex-direction:column;
-      }
+    .thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
 
-      h1{
-        font-size:34px;
-      }
+    .item b{
+      display:block;
+      font-size:20px;
+      line-height:1.34;
+      margin-bottom:8px;
+      letter-spacing:-.02em;
+    }
 
-      .hero-card{
-        padding:22px;
-      }
+    .item .excerpt{
+      color:var(--muted);
+      line-height:1.82;
+      font-size:15px;
+    }
 
-      .section-title{
-        font-size:26px;
-      }
+    .item .meta{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:13px;
+      margin-top:12px;
+      padding-top:8px;
+      border-top:1px solid var(--line);
+    }
 
-      .btn{
-        width:100%;
-      }
+    .reveal{
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.in{
+      opacity:1;
+      transform:none;
+    }
+
+    @media (max-width:1080px){
+      .hero-title{font-size:40px}
+      .post-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+
+    @media (max-width:760px){
+      .hero-card{padding:22px}
+      .hero-title{font-size:34px}
+      .section-title{font-size:26px}
+      .search-form{flex-direction:column}
+      .btn{width:100%}
+      .post-list{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap nav">
-      <a href="/" class="brand">
-        <div class="brand-mark"></div>
-        <div>Đường Sao Tỏa Sáng</div>
-      </a>
+  <div id="siteHeader"></div>
 
-      <nav class="nav-links">
-        <a href="/" id="navHome">Trang chủ</a>
-        <a href="/about" id="navAbout">Giới thiệu</a>
-        <a href="/program" id="navProgram">Chương trình</a>
-        <a href="/posts" class="active" id="navPosts">Bài viết</a>
-        <a href="/contact" id="navContact">Liên hệ</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <section class="hero">
+  <main class="wrap" id="mainContent">
+    <section class="hero reveal">
       <div class="hero-card">
         <div class="eyebrow" id="heroEyebrow">THƯ VIỆN TRI THỨC</div>
-        <h1 id="heroTitle">Những bài viết để đọc chậm, nghĩ sâu và đi xa hơn.</h1>
-        <p class="lead" id="heroDesc">
-          Đây là nơi lưu trữ những bài viết về nhận thức, cộng đồng, sáng tạo và hành trình sống. Mỗi bài viết được đặt ở đây như một phần của thư viện tri thức dài hạn.
+        <h1 class="hero-title" id="heroTitle">Những bài viết để đọc chậm, nghĩ sâu và đi xa hơn.</h1>
+        <p class="hero-desc" id="heroDesc">
+          Đây là nơi lưu trữ những bài viết về nhận thức, sáng tạo, cộng đồng và hành trình sống. Nếu hệ thống dữ liệu gặp lỗi, website vẫn phải hiện nội dung mẫu đầy đủ để không bao giờ bị trống.
         </p>
 
         <div class="toolbar">
@@ -409,287 +278,181 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section reveal">
       <div class="section-head">
         <div>
-          <h2 class="section-title" id="sectionTitle">Danh sách bài viết</h2>
-          <p class="section-desc" id="sectionDesc">
-            Mỗi bài viết là một điểm dừng để đọc lại, nhìn lại và mở rộng hướng đi trong đời sống.
-          </p>
+          <div class="eyebrow" id="listEyebrow">DANH SÁCH BÀI VIẾT</div>
+          <h2 class="section-title" id="listTitle">Thư viện bài viết</h2>
         </div>
+        <p class="section-desc" id="listDesc">
+          Mỗi bài viết là một điểm dừng để đọc lại, nhìn lại và mở rộng hướng đi trong đời sống. Khi dữ liệu thật chưa sẵn sàng, hệ thống sẽ hiện nội dung mẫu tương ứng.
+        </p>
       </div>
 
       <div id="postsStatus" class="status-box">Đang tải bài viết...</div>
-      <div id="postsGrid" class="posts-grid" hidden></div>
+      <div id="postsGrid" class="post-list" hidden></div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="wrap" id="footerText">
-      Đường Sao Tỏa Sáng · Nền tảng xuất bản cho tri thức sâu, nhận thức, sáng tạo và cộng đồng.
-    </div>
-  </footer>
+  <div id="siteFooter"></div>
 
   <script src="/assets/app.js"></script>
   <script>
     (async function () {
       const lang = DSTS.getLang();
       document.documentElement.lang = lang;
-
-      const FALLBACK_POSTS = {
-        vi: [
-          {
-            slug: "hanh-trinh-nhin-lai-chinh-minh",
-            type: "post",
-            title: "Hành trình nhìn lại chính mình trong một thế giới quá ồn",
-            excerpt: "Có những giai đoạn con người không thiếu thông tin, mà thiếu sự lắng lại đủ sâu để nhận ra mình đang đi về đâu.",
-            tags: "nhận thức,hành trình",
-            created_at: "2026-03-01T08:00:00.000Z",
-            cover_url: ""
-          },
-          {
-            slug: "sang-tao-khong-bat-dau-tu-tham-vong",
-            type: "post",
-            title: "Sáng tạo không bắt đầu từ tham vọng mà từ sự thấy rõ",
-            excerpt: "Điều tạo nên giá trị bền vững không phải là làm cho thật nhiều, mà là tạo ra đúng thứ cần được sinh ra.",
-            tags: "sáng tạo,nhận thức",
-            created_at: "2026-02-26T08:00:00.000Z",
-            cover_url: ""
-          },
-          {
-            slug: "cong-dong-khong-phai-dam-dong",
-            type: "post",
-            title: "Cộng đồng không phải đám đông, mà là những người cùng giữ một hướng đi",
-            excerpt: "Một cộng đồng đúng không được xây bằng tiếng ồn, mà bằng sự tin cậy, trách nhiệm và khả năng cùng đi xa.",
-            tags: "cộng đồng",
-            created_at: "2026-02-20T08:00:00.000Z",
-            cover_url: ""
-          },
-          {
-            slug: "mot-doi-song-khong-bi-pha-tan-boi-xa-hoi",
-            type: "post",
-            title: "Một đời sống không bị phân tán bởi xã hội cần được xây thế nào",
-            excerpt: "Khi không tự thiết kế đời sống của mình, con người sẽ bị kéo vào chương trình của người khác mà không hề nhận ra.",
-            tags: "nhận thức,định hướng",
-            created_at: "2026-02-14T08:00:00.000Z",
-            cover_url: ""
-          },
-          {
-            slug: "doc-cham-de-song-sau",
-            type: "post",
-            title: "Đọc chậm để sống sâu hơn trong thời đại đọc lướt",
-            excerpt: "Một bài viết tốt không chỉ cung cấp thông tin, mà mở ra một không gian để người đọc tự gặp lại chính mình.",
-            tags: "hành trình,nhận thức",
-            created_at: "2026-02-10T08:00:00.000Z",
-            cover_url: ""
-          },
-          {
-            slug: "khoi-nghiep-tu-noi-song-that",
-            type: "post",
-            title: "Khởi nghiệp từ nơi sống thật thay vì từ nỗi sợ phải chứng minh",
-            excerpt: "Nếu bắt đầu chỉ để chứng minh mình hơn người khác, ta sẽ rất nhanh kiệt sức trước khi đi đến giá trị thật.",
-            tags: "sáng tạo,hành trình",
-            created_at: "2026-02-06T08:00:00.000Z",
-            cover_url: ""
-          }
-        ],
-        en: [
-          {
-            slug: "hanh-trinh-nhin-lai-chinh-minh",
-            type: "post",
-            title: "Looking back at yourself in an overly noisy world",
-            excerpt: "There are times when people do not lack information, but lack enough stillness to see where they are heading.",
-            tags: "awareness,journey",
-            created_at: "2026-03-01T08:00:00.000Z",
-            cover_url: ""
-          },
-          {
-            slug: "sang-tao-khong-bat-dau-tu-tham-vong",
-            type: "post",
-            title: "Creativity does not begin with ambition but with clarity",
-            excerpt: "What creates lasting value is not doing more, but bringing forth what truly needs to exist.",
-            tags: "creativity,awareness",
-            created_at: "2026-02-26T08:00:00.000Z",
-            cover_url: ""
-          },
-          {
-            slug: "cong-dong-khong-phai-dam-dong",
-            type: "post",
-            title: "Community is not a crowd, but people holding the same direction",
-            excerpt: "A true community is not built by noise, but by trust, responsibility, and the capacity to travel far together.",
-            tags: "community",
-            created_at: "2026-02-20T08:00:00.000Z",
-            cover_url: ""
-          },
-          {
-            slug: "mot-doi-song-khong-bi-pha-tan-boi-xa-hoi",
-            type: "post",
-            title: "How to build a life not scattered by society",
-            excerpt: "When you do not design your own life, you get pulled into someone else's program without noticing.",
-            tags: "awareness,direction",
-            created_at: "2026-02-14T08:00:00.000Z",
-            cover_url: ""
-          },
-          {
-            slug: "doc-cham-de-song-sau",
-            type: "post",
-            title: "Read slowly to live more deeply in an age of skimming",
-            excerpt: "A strong piece of writing does not only provide information, but opens a space for the reader to meet themselves again.",
-            tags: "journey,awareness",
-            created_at: "2026-02-10T08:00:00.000Z",
-            cover_url: ""
-          },
-          {
-            slug: "khoi-nghiep-tu-noi-song-that",
-            type: "post",
-            title: "Building from real living instead of the fear of proving yourself",
-            excerpt: "If you begin only to prove yourself against others, exhaustion arrives long before true value does.",
-            tags: "creativity,journey",
-            created_at: "2026-02-06T08:00:00.000Z",
-            cover_url: ""
-          }
-        ]
-      };
+      DSTS.mountSiteChrome({ active: "posts" });
 
       const T = {
         vi: {
           title: "Thư viện bài viết | Đường Sao Tỏa Sáng",
           description: "Thư viện bài viết của Đường Sao Tỏa Sáng. Những bài viết về nhận thức, sáng tạo, cộng đồng và hành trình sống có chiều sâu.",
-          navHome: "Trang chủ",
-          navAbout: "Giới thiệu",
-          navProgram: "Chương trình",
-          navPosts: "Bài viết",
-          navContact: "Liên hệ",
           heroEyebrow: "THƯ VIỆN TRI THỨC",
           heroTitle: "Những bài viết để đọc chậm, nghĩ sâu và đi xa hơn.",
-          heroDesc: "Đây là nơi lưu trữ những bài viết về nhận thức, cộng đồng, sáng tạo và hành trình sống. Mỗi bài viết được đặt ở đây như một phần của thư viện tri thức dài hạn.",
+          heroDesc: "Đây là nơi lưu trữ những bài viết về nhận thức, sáng tạo, cộng đồng và hành trình sống. Nếu hệ thống dữ liệu gặp lỗi, website vẫn phải hiện nội dung mẫu đầy đủ để không bao giờ bị trống.",
           searchPlaceholder: "Tìm bài viết theo chủ đề, từ khóa, định hướng...",
           searchBtn: "Tìm kiếm",
           resetBtn: "Xem tất cả",
-          sectionTitle: "Danh sách bài viết",
-          sectionDesc: "Mỗi bài viết là một điểm dừng để đọc lại, nhìn lại và mở rộng hướng đi trong đời sống.",
+          listEyebrow: "DANH SÁCH BÀI VIẾT",
+          listTitle: "Thư viện bài viết",
+          listDesc: "Mỗi bài viết là một điểm dừng để đọc lại, nhìn lại và mở rộng hướng đi trong đời sống. Khi dữ liệu thật chưa sẵn sàng, hệ thống sẽ hiện nội dung mẫu tương ứng.",
           loading: "Đang tải bài viết...",
-          failed: "Không thể tải dữ liệu từ hệ thống. Đang hiển thị nội dung mẫu để website luôn dùng được ngay.",
+          fallbackNote: "Không thể tải dữ liệu từ hệ thống. Đang hiển thị nội dung mẫu để website luôn dùng được ngay.",
           empty: "Chưa có bài viết phù hợp.",
           post: "Bài viết",
-          page: "Trang",
-          footer: "Đường Sao Tỏa Sáng · Nền tảng xuất bản cho tri thức sâu, nhận thức, sáng tạo và cộng đồng."
+          page: "Trang"
         },
         en: {
-          title: "Post Library | Đường Sao Tỏa Sáng",
+          title: "Article Library | Đường Sao Tỏa Sáng",
           description: "The article library of Đường Sao Tỏa Sáng. Essays on awareness, creativity, community, and meaningful living.",
-          navHome: "Home",
-          navAbout: "About",
-          navProgram: "Program",
-          navPosts: "Posts",
-          navContact: "Contact",
           heroEyebrow: "KNOWLEDGE LIBRARY",
-          heroTitle: "Essays to read slowly, think deeply, and walk farther.",
-          heroDesc: "This is a long-term library of essays on awareness, community, creativity, and the journey of living. Each article is placed here as part of a growing body of original knowledge.",
+          heroTitle: "Articles to read slowly, think deeply, and walk farther.",
+          heroDesc: "This is where essays on awareness, creativity, community, and the journey of living are stored. If the data system fails, the website must still show complete sample content and never be empty.",
           searchPlaceholder: "Search by topic, keyword, direction...",
           searchBtn: "Search",
           resetBtn: "View all",
-          sectionTitle: "Post library",
-          sectionDesc: "Each article is a place to pause, reflect, and widen one’s direction in life.",
-          loading: "Loading posts...",
-          failed: "The system data could not be loaded. Showing built-in sample content so the website remains usable.",
-          empty: "No matching posts found.",
-          post: "Post",
-          page: "Page",
-          footer: "Đường Sao Tỏa Sáng · Publishing platform for deep knowledge, awareness, creativity, and community."
+          listEyebrow: "ARTICLE LIST",
+          listTitle: "Article library",
+          listDesc: "Each article is a point to pause, reflect, and expand one’s direction in life. When real data is not available, the system shows matching built-in sample content.",
+          loading: "Loading articles...",
+          fallbackNote: "System data could not be loaded. Showing built-in sample content so the website remains usable.",
+          empty: "No matching articles found.",
+          post: "Article",
+          page: "Page"
         }
       }[lang];
+
+      function setText(id, value) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value;
+      }
 
       document.title = T.title;
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) metaDesc.setAttribute("content", T.description);
 
-      document.getElementById("navHome").textContent = T.navHome;
-      document.getElementById("navAbout").textContent = T.navAbout;
-      document.getElementById("navProgram").textContent = T.navProgram;
-      document.getElementById("navPosts").textContent = T.navPosts;
-      document.getElementById("navContact").textContent = T.navContact;
-      document.getElementById("heroEyebrow").textContent = T.heroEyebrow;
-      document.getElementById("heroTitle").textContent = T.heroTitle;
-      document.getElementById("heroDesc").textContent = T.heroDesc;
-      document.getElementById("searchInput").placeholder = T.searchPlaceholder;
-      document.getElementById("searchBtn").textContent = T.searchBtn;
-      document.getElementById("resetBtn").textContent = T.resetBtn;
-      document.getElementById("resetBtn").href = DSTS.withLang("/posts");
-      document.getElementById("sectionTitle").textContent = T.sectionTitle;
-      document.getElementById("sectionDesc").textContent = T.sectionDesc;
-      document.getElementById("postsStatus").textContent = T.loading;
-      document.getElementById("footerText").textContent = T.footer;
+      [
+        "heroEyebrow","heroTitle","heroDesc",
+        "searchBtn","resetBtn",
+        "listEyebrow","listTitle","listDesc"
+      ].forEach(id => setText(id, T[id]));
 
-      const postsStatus = document.getElementById("postsStatus");
-      const postsGrid = document.getElementById("postsGrid");
-      const searchForm = document.getElementById("searchForm");
-      const searchInput = document.getElementById("searchInput");
+      document.getElementById("searchInput").placeholder = T.searchPlaceholder;
+
       const url = new URL(window.location.href);
       const q = (url.searchParams.get("q") || "").trim();
-      searchInput.value = q;
+      const postsStatus = document.getElementById("postsStatus");
+      const postsGrid = document.getElementById("postsGrid");
+      const searchInput = document.getElementById("searchInput");
+      const searchForm = document.getElementById("searchForm");
+      const resetBtn = document.getElementById("resetBtn");
 
-      function esc(str) {
-        return String(str || "")
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;");
+      searchInput.value = q;
+      resetBtn.href = DSTS.withLang("/posts");
+
+      const fallbackPosts = [
+        {
+          slug: "hanh-trinh-nhin-lai-chinh-minh",
+          type: "post",
+          title_vi: "Hành trình nhìn lại chính mình trong một thế giới quá ồn",
+          title_en: "Looking back at yourself in an overly noisy world",
+          excerpt_vi: "Có những giai đoạn con người không thiếu thông tin, mà thiếu sự lắng lại đủ sâu để nhận ra mình đang đi về đâu.",
+          excerpt_en: "There are times when people do not lack information, but lack enough stillness to see where they are heading.",
+          tags: "nhận thức,hành trình",
+          created_at: "2026-03-01T08:00:00.000Z",
+          cover_url: ""
+        },
+        {
+          slug: "sang-tao-khong-bat-dau-tu-tham-vong",
+          type: "post",
+          title_vi: "Sáng tạo không bắt đầu từ tham vọng mà từ sự thấy rõ",
+          title_en: "Creativity does not begin with ambition but with clarity",
+          excerpt_vi: "Điều tạo nên giá trị bền vững không phải là làm cho thật nhiều, mà là tạo ra đúng thứ cần được sinh ra.",
+          excerpt_en: "What creates lasting value is not doing more, but bringing forth what truly needs to exist.",
+          tags: "sáng tạo,nhận thức",
+          created_at: "2026-02-26T08:00:00.000Z",
+          cover_url: ""
+        },
+        {
+          slug: "cong-dong-khong-phai-dam-dong",
+          type: "post",
+          title_vi: "Cộng đồng không phải đám đông, mà là những người cùng giữ một hướng đi",
+          title_en: "Community is not a crowd, but people holding the same direction",
+          excerpt_vi: "Một cộng đồng đúng không được xây bằng tiếng ồn, mà bằng sự tin cậy, trách nhiệm và khả năng cùng đi xa.",
+          excerpt_en: "A true community is not built by noise, but by trust, responsibility, and the capacity to travel far together.",
+          tags: "cộng đồng",
+          created_at: "2026-02-20T08:00:00.000Z",
+          cover_url: ""
+        },
+        {
+          slug: "mot-doi-song-khong-bi-pha-tan-boi-xa-hoi",
+          type: "post",
+          title_vi: "Một đời sống không bị phân tán bởi xã hội cần được xây thế nào",
+          title_en: "How to build a life not scattered by society",
+          excerpt_vi: "Khi không tự thiết kế đời sống của mình, con người sẽ bị kéo vào chương trình của người khác mà không hề nhận ra.",
+          excerpt_en: "When you do not design your own life, you get pulled into someone else's program without noticing.",
+          tags: "nhận thức,định hướng",
+          created_at: "2026-02-14T08:00:00.000Z",
+          cover_url: ""
+        },
+        {
+          slug: "doc-cham-de-song-sau",
+          type: "post",
+          title_vi: "Đọc chậm để sống sâu hơn trong thời đại đọc lướt",
+          title_en: "Read slowly to live more deeply in an age of skimming",
+          excerpt_vi: "Một bài viết tốt không chỉ cung cấp thông tin, mà mở ra một không gian để người đọc tự gặp lại chính mình.",
+          excerpt_en: "A strong piece of writing does not only provide information, but opens a space for the reader to meet themselves again.",
+          tags: "hành trình,nhận thức",
+          created_at: "2026-02-10T08:00:00.000Z",
+          cover_url: ""
+        },
+        {
+          slug: "khoi-nghiep-tu-noi-song-that",
+          type: "post",
+          title_vi: "Khởi nghiệp từ nơi sống thật thay vì từ nỗi sợ phải chứng minh",
+          title_en: "Building from real living instead of the fear of proving yourself",
+          excerpt_vi: "Nếu bắt đầu chỉ để chứng minh mình hơn người khác, ta sẽ rất nhanh kiệt sức trước khi đi đến giá trị thật.",
+          excerpt_en: "If you begin only to prove yourself against others, exhaustion arrives long before true value does.",
+          tags: "sáng tạo,hành trình",
+          created_at: "2026-02-06T08:00:00.000Z",
+          cover_url: ""
+        }
+      ];
+
+      function resolveTitle(item) {
+        return lang === "en"
+          ? (item.title_en || item.title || item.title_vi || item.slug || "(untitled)")
+          : (item.title_vi || item.title || item.title_en || item.slug || "(untitled)");
       }
 
-      function formatDate(dateStr) {
-        if (!dateStr) return "";
-        const d = new Date(dateStr);
-        return d.toLocaleDateString(lang === "en" ? "en-US" : "vi-VN");
+      function resolveExcerpt(item) {
+        return lang === "en"
+          ? (item.excerpt_en || item.excerpt || item.excerpt_vi || "")
+          : (item.excerpt_vi || item.excerpt || item.excerpt_en || "");
       }
 
       function firstTag(tags) {
-        const arr = String(tags || "")
-          .split(",")
-          .map(s => s.trim())
-          .filter(Boolean);
-        return arr[0] || "";
-      }
-
-      function typeLabel(type) {
-        return type === "page" ? T.page : T.post;
-      }
-
-      function itemHref(item) {
-        const suffix = lang === "en" ? "?lang=en" : "";
-        if (item.type === "page") return `/${encodeURIComponent(item.slug)}${suffix}`;
-        return `/content.html?slug=${encodeURIComponent(item.slug)}${suffix}`;
-      }
-
-      function renderCard(item) {
-        return `
-          <article class="post-card">
-            ${item.cover_url ? `<img class="post-cover" src="${esc(item.cover_url)}" alt="${esc(item.title)}">` : ``}
-            <div class="post-body">
-              <div class="post-type">${esc(typeLabel(item.type))}</div>
-              <h3 class="post-title"><a href="${itemHref(item)}">${esc(item.title)}</a></h3>
-              <p class="post-excerpt">${esc(item.excerpt || "")}</p>
-              <div class="post-meta">
-                <span>${esc(formatDate(item.created_at))}</span>
-                <span>${esc(firstTag(item.tags))}</span>
-              </div>
-            </div>
-          </article>
-        `;
-      }
-
-      function renderList(data, noteText) {
-        if (!Array.isArray(data) || data.length === 0) {
-          postsStatus.hidden = false;
-          postsGrid.hidden = true;
-          postsStatus.textContent = T.empty;
-          return;
-        }
-
-        postsGrid.innerHTML = data.map(renderCard).join("");
-        postsGrid.hidden = false;
-        postsStatus.hidden = false;
-        postsStatus.textContent = noteText;
+        return String(tags || "").split(",").map(s => s.trim()).filter(Boolean)[0] || "";
       }
 
       function filterFallback(items, keyword) {
@@ -697,17 +460,62 @@
         const k = keyword.toLowerCase();
         return items.filter(item => {
           return [
-            item.title,
-            item.excerpt,
-            item.tags,
-            item.slug
+            item.slug,
+            item.title_vi,
+            item.title_en,
+            item.excerpt_vi,
+            item.excerpt_en,
+            item.tags
           ].join(" ").toLowerCase().includes(k);
         });
       }
 
+      function renderCard(item) {
+        const title = resolveTitle(item);
+        const excerpt = resolveExcerpt(item);
+        const cover = item.cover_url || item.cover || "";
+        const type = item.type || "post";
+        const href = DSTS.getContentUrl(item.slug, type);
+
+        return `
+          <a class="item" href="${href}">
+            ${cover ? `
+              <div class="thumb">
+                <img src="${DSTS.escapeHTML(cover)}" alt="${DSTS.escapeHTML(title)}" loading="lazy" decoding="async">
+              </div>
+            ` : ``}
+            <b>${DSTS.escapeHTML(title)}</b>
+            <div class="excerpt">${DSTS.escapeHTML(excerpt)}</div>
+            <div class="meta">
+              <span>${DSTS.escapeHTML(type === "page" ? T.page : T.post)}</span>
+              <span>${DSTS.escapeHTML(firstTag(item.tags))}</span>
+              <span>${DSTS.escapeHTML(DSTS.formatDate(item.created_at))}</span>
+            </div>
+          </a>
+        `;
+      }
+
+      function renderList(list, noteText = "") {
+        if (!Array.isArray(list) || !list.length) {
+          postsStatus.hidden = false;
+          postsGrid.hidden = true;
+          postsStatus.textContent = T.empty;
+          return;
+        }
+
+        postsGrid.innerHTML = list.map(renderCard).join("");
+        postsGrid.hidden = false;
+
+        if (noteText) {
+          postsStatus.hidden = false;
+          postsStatus.textContent = noteText;
+        } else {
+          postsStatus.hidden = true;
+        }
+      }
+
       searchForm.addEventListener("submit", function (e) {
         e.preventDefault();
-
         const nextUrl = new URL(window.location.href);
         const value = searchInput.value.trim();
 
@@ -721,24 +529,38 @@
       });
 
       try {
+        postsStatus.textContent = T.loading;
+
         const endpoint = q
           ? `/search?q=${encodeURIComponent(q)}&lang=${lang}`
-          : `/contents?type=post&lang=${lang}`;
+          : `/contents?type=post&limit=24&lang=${lang}`;
 
-        const data = await DSTS.apiFetch(endpoint);
+        const res = await fetch(`/api${endpoint}`);
+        if (!res.ok) throw new Error("Failed to load post list");
 
-        if (!Array.isArray(data) || !data.length) {
-          const fallback = filterFallback(FALLBACK_POSTS[lang], q);
-          renderList(fallback, fallback.length ? T.failed : T.empty);
-          return;
+        const data = await res.json();
+        if (Array.isArray(data) && data.length) {
+          renderList(data);
+        } else {
+          renderList(filterFallback(fallbackPosts, q), T.fallbackNote);
         }
-
-        postsGrid.innerHTML = data.map(renderCard).join("");
-        postsGrid.hidden = false;
-        postsStatus.hidden = true;
       } catch (_err) {
-        const fallback = filterFallback(FALLBACK_POSTS[lang], q);
-        renderList(fallback, fallback.length ? T.failed : T.empty);
+        renderList(filterFallback(fallbackPosts, q), T.fallbackNote);
+      }
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+      } else {
+        document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
       }
     })();
   </script>
