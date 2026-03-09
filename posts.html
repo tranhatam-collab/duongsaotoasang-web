@@ -249,7 +249,9 @@
       width:100%;
       aspect-ratio:16/9;
       object-fit:cover;
-      background:linear-gradient(135deg, rgba(216,188,119,.18), rgba(255,255,255,.03));
+      background:
+        radial-gradient(circle at 20% 20%, rgba(216,188,119,.18), transparent 30%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
     }
 
     .post-body{
@@ -434,6 +436,121 @@
       const lang = DSTS.getLang();
       document.documentElement.lang = lang;
 
+      const FALLBACK_POSTS = {
+        vi: [
+          {
+            slug: "hanh-trinh-nhin-lai-chinh-minh",
+            type: "post",
+            title: "Hành trình nhìn lại chính mình trong một thế giới quá ồn",
+            excerpt: "Có những giai đoạn con người không thiếu thông tin, mà thiếu sự lắng lại đủ sâu để nhận ra mình đang đi về đâu.",
+            tags: "nhận thức,hành trình",
+            created_at: "2026-03-01T08:00:00.000Z",
+            cover_url: ""
+          },
+          {
+            slug: "sang-tao-khong-bat-dau-tu-tham-vong",
+            type: "post",
+            title: "Sáng tạo không bắt đầu từ tham vọng mà từ sự thấy rõ",
+            excerpt: "Điều tạo nên giá trị bền vững không phải là làm cho thật nhiều, mà là tạo ra đúng thứ cần được sinh ra.",
+            tags: "sáng tạo,nhận thức",
+            created_at: "2026-02-26T08:00:00.000Z",
+            cover_url: ""
+          },
+          {
+            slug: "cong-dong-khong-phai-dam-dong",
+            type: "post",
+            title: "Cộng đồng không phải đám đông, mà là những người cùng giữ một hướng đi",
+            excerpt: "Một cộng đồng đúng không được xây bằng tiếng ồn, mà bằng sự tin cậy, trách nhiệm và khả năng cùng đi xa.",
+            tags: "cộng đồng",
+            created_at: "2026-02-20T08:00:00.000Z",
+            cover_url: ""
+          },
+          {
+            slug: "mot-doi-song-khong-bi-pha-tan-boi-xa-hoi",
+            type: "post",
+            title: "Một đời sống không bị phân tán bởi xã hội cần được xây thế nào",
+            excerpt: "Khi không tự thiết kế đời sống của mình, con người sẽ bị kéo vào chương trình của người khác mà không hề nhận ra.",
+            tags: "nhận thức,định hướng",
+            created_at: "2026-02-14T08:00:00.000Z",
+            cover_url: ""
+          },
+          {
+            slug: "doc-cham-de-song-sau",
+            type: "post",
+            title: "Đọc chậm để sống sâu hơn trong thời đại đọc lướt",
+            excerpt: "Một bài viết tốt không chỉ cung cấp thông tin, mà mở ra một không gian để người đọc tự gặp lại chính mình.",
+            tags: "hành trình,nhận thức",
+            created_at: "2026-02-10T08:00:00.000Z",
+            cover_url: ""
+          },
+          {
+            slug: "khoi-nghiep-tu-noi-song-that",
+            type: "post",
+            title: "Khởi nghiệp từ nơi sống thật thay vì từ nỗi sợ phải chứng minh",
+            excerpt: "Nếu bắt đầu chỉ để chứng minh mình hơn người khác, ta sẽ rất nhanh kiệt sức trước khi đi đến giá trị thật.",
+            tags: "sáng tạo,hành trình",
+            created_at: "2026-02-06T08:00:00.000Z",
+            cover_url: ""
+          }
+        ],
+        en: [
+          {
+            slug: "hanh-trinh-nhin-lai-chinh-minh",
+            type: "post",
+            title: "Looking back at yourself in an overly noisy world",
+            excerpt: "There are times when people do not lack information, but lack enough stillness to see where they are heading.",
+            tags: "awareness,journey",
+            created_at: "2026-03-01T08:00:00.000Z",
+            cover_url: ""
+          },
+          {
+            slug: "sang-tao-khong-bat-dau-tu-tham-vong",
+            type: "post",
+            title: "Creativity does not begin with ambition but with clarity",
+            excerpt: "What creates lasting value is not doing more, but bringing forth what truly needs to exist.",
+            tags: "creativity,awareness",
+            created_at: "2026-02-26T08:00:00.000Z",
+            cover_url: ""
+          },
+          {
+            slug: "cong-dong-khong-phai-dam-dong",
+            type: "post",
+            title: "Community is not a crowd, but people holding the same direction",
+            excerpt: "A true community is not built by noise, but by trust, responsibility, and the capacity to travel far together.",
+            tags: "community",
+            created_at: "2026-02-20T08:00:00.000Z",
+            cover_url: ""
+          },
+          {
+            slug: "mot-doi-song-khong-bi-pha-tan-boi-xa-hoi",
+            type: "post",
+            title: "How to build a life not scattered by society",
+            excerpt: "When you do not design your own life, you get pulled into someone else's program without noticing.",
+            tags: "awareness,direction",
+            created_at: "2026-02-14T08:00:00.000Z",
+            cover_url: ""
+          },
+          {
+            slug: "doc-cham-de-song-sau",
+            type: "post",
+            title: "Read slowly to live more deeply in an age of skimming",
+            excerpt: "A strong piece of writing does not only provide information, but opens a space for the reader to meet themselves again.",
+            tags: "journey,awareness",
+            created_at: "2026-02-10T08:00:00.000Z",
+            cover_url: ""
+          },
+          {
+            slug: "khoi-nghiep-tu-noi-song-that",
+            type: "post",
+            title: "Building from real living instead of the fear of proving yourself",
+            excerpt: "If you begin only to prove yourself against others, exhaustion arrives long before true value does.",
+            tags: "creativity,journey",
+            created_at: "2026-02-06T08:00:00.000Z",
+            cover_url: ""
+          }
+        ]
+      };
+
       const T = {
         vi: {
           title: "Thư viện bài viết | Đường Sao Tỏa Sáng",
@@ -452,7 +569,7 @@
           sectionTitle: "Danh sách bài viết",
           sectionDesc: "Mỗi bài viết là một điểm dừng để đọc lại, nhìn lại và mở rộng hướng đi trong đời sống.",
           loading: "Đang tải bài viết...",
-          failed: "Không thể tải danh sách bài viết.",
+          failed: "Không thể tải dữ liệu từ hệ thống. Đang hiển thị nội dung mẫu để website luôn dùng được ngay.",
           empty: "Chưa có bài viết phù hợp.",
           post: "Bài viết",
           page: "Trang",
@@ -475,7 +592,7 @@
           sectionTitle: "Post library",
           sectionDesc: "Each article is a place to pause, reflect, and widen one’s direction in life.",
           loading: "Loading posts...",
-          failed: "Unable to load posts.",
+          failed: "The system data could not be loaded. Showing built-in sample content so the website remains usable.",
           empty: "No matching posts found.",
           post: "Post",
           page: "Page",
@@ -512,6 +629,82 @@
       const q = (url.searchParams.get("q") || "").trim();
       searchInput.value = q;
 
+      function esc(str) {
+        return String(str || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function formatDate(dateStr) {
+        if (!dateStr) return "";
+        const d = new Date(dateStr);
+        return d.toLocaleDateString(lang === "en" ? "en-US" : "vi-VN");
+      }
+
+      function firstTag(tags) {
+        const arr = String(tags || "")
+          .split(",")
+          .map(s => s.trim())
+          .filter(Boolean);
+        return arr[0] || "";
+      }
+
+      function typeLabel(type) {
+        return type === "page" ? T.page : T.post;
+      }
+
+      function itemHref(item) {
+        const suffix = lang === "en" ? "?lang=en" : "";
+        if (item.type === "page") return `/${encodeURIComponent(item.slug)}${suffix}`;
+        return `/content.html?slug=${encodeURIComponent(item.slug)}${suffix}`;
+      }
+
+      function renderCard(item) {
+        return `
+          <article class="post-card">
+            ${item.cover_url ? `<img class="post-cover" src="${esc(item.cover_url)}" alt="${esc(item.title)}">` : ``}
+            <div class="post-body">
+              <div class="post-type">${esc(typeLabel(item.type))}</div>
+              <h3 class="post-title"><a href="${itemHref(item)}">${esc(item.title)}</a></h3>
+              <p class="post-excerpt">${esc(item.excerpt || "")}</p>
+              <div class="post-meta">
+                <span>${esc(formatDate(item.created_at))}</span>
+                <span>${esc(firstTag(item.tags))}</span>
+              </div>
+            </div>
+          </article>
+        `;
+      }
+
+      function renderList(data, noteText) {
+        if (!Array.isArray(data) || data.length === 0) {
+          postsStatus.hidden = false;
+          postsGrid.hidden = true;
+          postsStatus.textContent = T.empty;
+          return;
+        }
+
+        postsGrid.innerHTML = data.map(renderCard).join("");
+        postsGrid.hidden = false;
+        postsStatus.hidden = false;
+        postsStatus.textContent = noteText;
+      }
+
+      function filterFallback(items, keyword) {
+        if (!keyword) return items;
+        const k = keyword.toLowerCase();
+        return items.filter(item => {
+          return [
+            item.title,
+            item.excerpt,
+            item.tags,
+            item.slug
+          ].join(" ").toLowerCase().includes(k);
+        });
+      }
+
       searchForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
@@ -535,23 +728,17 @@
         const data = await DSTS.apiFetch(endpoint);
 
         if (!Array.isArray(data) || !data.length) {
-          postsStatus.hidden = false;
-          postsGrid.hidden = true;
-          postsStatus.textContent = T.empty;
+          const fallback = filterFallback(FALLBACK_POSTS[lang], q);
+          renderList(fallback, fallback.length ? T.failed : T.empty);
           return;
         }
 
-        postsGrid.innerHTML = data.map(item => DSTS.renderPostCard(item, {
-          post: T.post,
-          page: T.page
-        })).join("");
-
-        postsStatus.hidden = true;
+        postsGrid.innerHTML = data.map(renderCard).join("");
         postsGrid.hidden = false;
+        postsStatus.hidden = true;
       } catch (_err) {
-        postsStatus.hidden = false;
-        postsGrid.hidden = true;
-        postsStatus.textContent = T.failed;
+        const fallback = filterFallback(FALLBACK_POSTS[lang], q);
+        renderList(fallback, fallback.length ? T.failed : T.empty);
       }
     })();
   </script>
