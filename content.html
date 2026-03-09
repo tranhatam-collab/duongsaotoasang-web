@@ -1,898 +1,382 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Đường Sao Tỏa Sáng</title>
-  <meta name="description" content="Trang nội dung của Đường Sao Tỏa Sáng."/>
-  <meta name="theme-color" content="#0b0e12"/>
-  <meta name="robots" content="index,follow"/>
-  <meta name="format-detection" content="telephone=no"/>
-  <link rel="canonical" href="https://duongsaotoasang.com/"/>
-  <link rel="stylesheet" href="/app.css"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Nội dung | Đường Sao Tỏa Sáng</title>
+  <meta name="description" content="Nội dung chi tiết của Đường Sao Tỏa Sáng.">
+  <meta name="theme-color" content="#0b0f14">
 
   <style>
     :root{
-      --bg:#090c10;
-      --bg-soft:#10141a;
-      --panel:rgba(255,255,255,.045);
-      --panel-2:rgba(255,255,255,.032);
-      --line:rgba(255,255,255,.085);
-      --line-strong:rgba(255,255,255,.14);
-      --text:#f3f5f7;
-      --muted:#a8b0ba;
+      --bg:#0b0f14;
+      --panel:#121821;
+      --card:#151d28;
+      --text:#e9eef5;
+      --muted:#98a6b7;
+      --line:rgba(255,255,255,.09);
       --gold:#d8bc77;
-      --gold-soft:rgba(216,188,119,.16);
-      --white-soft:rgba(255,255,255,.82);
-      --shadow:0 18px 70px rgba(0,0,0,.42);
-      --radius:24px;
-      --max:1240px;
-      --content:820px;
-      --focus:0 0 0 3px rgba(216,188,119,.25);
+      --shadow:0 18px 50px rgba(0,0,0,.28);
+      --radius:22px;
+      --wrap:980px;
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
       color:var(--text);
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       background:
-        radial-gradient(900px 520px at 0% 0%, rgba(216,188,119,.10), transparent 60%),
-        radial-gradient(760px 480px at 100% 10%, rgba(132,176,255,.10), transparent 58%),
-        linear-gradient(180deg,#080b0f 0%, #0c1117 100%);
-      overflow-x:hidden;
-      text-rendering:optimizeLegibility;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+        radial-gradient(900px 500px at 0% 0%, rgba(216,188,119,.08), transparent 60%),
+        radial-gradient(900px 500px at 100% 0%, rgba(90,130,180,.08), transparent 60%),
+        linear-gradient(180deg,#0a0d12 0%, #0f141b 100%);
     }
 
     a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
-    button,input,select,textarea{font:inherit}
-    .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
-    .content-wrap{max-width:var(--content);margin:0 auto}
+    img{display:block;max-width:100%}
 
-    .skip-link{
-      position:absolute;
-      left:16px;
-      top:-60px;
-      z-index:999;
-      padding:10px 14px;
-      border-radius:12px;
-      background:#fff;
-      color:#111;
-      transition:top .2s ease;
+    .wrap{
+      width:min(var(--wrap), calc(100% - 32px));
+      margin:0 auto;
     }
-    .skip-link:focus{top:16px}
 
     .topbar{
       position:sticky;
       top:0;
-      z-index:80;
-      backdrop-filter:blur(16px);
-      background:rgba(10,12,16,.72);
+      z-index:20;
+      backdrop-filter:blur(14px);
+      background:rgba(10,13,18,.76);
       border-bottom:1px solid var(--line);
     }
 
     .nav{
+      min-height:72px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      padding:14px 0;
     }
 
     .brand{
       display:flex;
       align-items:center;
       gap:12px;
-      min-width:0;
+      font-weight:700;
+      letter-spacing:.2px;
     }
 
     .brand-mark{
-      width:44px;height:44px;border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
+      width:40px;
+      height:40px;
+      border-radius:14px;
       background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.16), transparent 35%),
-        linear-gradient(135deg, rgba(216,188,119,.28), rgba(255,255,255,.05));
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.14), transparent 35%),
+        linear-gradient(135deg, rgba(216,188,119,.32), rgba(255,255,255,.04));
+      border:1px solid var(--line);
       box-shadow:var(--shadow);
-      flex:0 0 auto;
     }
 
-    .brand-title{
-      font-weight:800;
-      font-size:17px;
-      letter-spacing:.2px;
-      line-height:1.05;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .brand-sub{
-      font-size:12px;
-      color:var(--muted);
-      margin-top:4px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-
-    .nav-shell{
+    .nav-links{
       display:flex;
-      align-items:center;
-      gap:12px;
-    }
-
-    .menu{
-      display:flex;
-      align-items:center;
-      gap:8px;
+      gap:10px;
       flex-wrap:wrap;
-      justify-content:center;
+      align-items:center;
+      justify-content:flex-end;
     }
 
-    .menu a{
+    .nav-links a{
       padding:10px 12px;
       border-radius:12px;
-      color:var(--white-soft);
-      border:1px solid transparent;
-      transition:all .25s ease;
-    }
-
-    .menu a:hover,
-    .menu a.active,
-    .menu a[aria-current="page"]{
-      color:#fff;
-      background:rgba(255,255,255,.05);
-      border-color:var(--line);
-    }
-
-    .right{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex:0 0 auto;
-    }
-
-    .lang-links{
-      display:flex;
-      gap:8px;
-      align-items:center;
-    }
-
-    .lang-link{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:46px;
-      height:40px;
-      padding:0 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
       color:var(--muted);
-      font-size:13px;
-      font-weight:700;
-      transition:all .25s ease;
+      transition:.2s ease;
     }
 
-    .lang-link:hover{
-      color:#fff;
-      border-color:var(--line-strong);
+    .nav-links a:hover,
+    .nav-links a.active{
+      color:var(--text);
       background:rgba(255,255,255,.05);
     }
 
-    .lang-link.active{
-      color:#fff;
-      background:rgba(216,188,119,.14);
-      border-color:rgba(216,188,119,.32);
+    .hero{
+      padding:40px 0 20px;
     }
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      padding:10px 14px;
-      border-radius:14px;
+    .hero-card{
       border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:#fff;
-      cursor:pointer;
-      transition:all .25s ease;
-      min-height:44px;
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-      text-decoration:none;
-    }
-
-    .btn.primary{
-      border-color:rgba(216,188,119,.38);
-      background:linear-gradient(180deg, rgba(216,188,119,.18), rgba(216,188,119,.08));
-      box-shadow:0 10px 30px rgba(216,188,119,.10);
-    }
-
-    .btn:focus-visible,
-    .menu a:focus-visible,
-    .lang-link:focus-visible,
-    .mobile-toggle:focus-visible,
-    .back-link:focus-visible{
-      outline:none;
-      box-shadow:var(--focus);
-    }
-
-    .mobile-toggle{
-      display:none;
-      width:44px;
-      height:44px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:#fff;
-      cursor:pointer;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .page{
-      padding:28px 0 54px;
-    }
-
-    .article-shell{
-      position:relative;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.085);
       border-radius:30px;
       background:
-        radial-gradient(780px 320px at 10% 0%, rgba(216,188,119,.10), transparent 62%),
-        radial-gradient(680px 280px at 100% 8%, rgba(132,176,255,.08), transparent 62%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.018));
+        radial-gradient(700px 240px at 10% 0%, rgba(216,188,119,.10), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
       box-shadow:var(--shadow);
       padding:30px;
     }
 
-    .breadcrumb{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-      color:var(--muted);
-      font-size:13px;
-      margin-bottom:16px;
-    }
-
-    .breadcrumb a{
-      color:var(--white-soft);
-    }
-
-    .breadcrumb .sep{
-      color:rgba(255,255,255,.28);
-    }
-
-    .article-head{
-      padding-bottom:18px;
-      border-bottom:1px solid var(--line);
-      margin-bottom:22px;
-    }
-
     .eyebrow{
+      color:var(--gold);
       font-size:12px;
       letter-spacing:.18em;
       text-transform:uppercase;
-      color:var(--gold);
-      margin-bottom:10px;
+      margin-bottom:12px;
     }
 
-    .article-title{
+    .page-title{
       margin:0;
-      font-size:clamp(34px,5.5vw,60px);
-      line-height:1.03;
-      letter-spacing:-.04em;
+      font-size:50px;
+      line-height:1.04;
+      letter-spacing:-.03em;
     }
 
-    .article-excerpt{
+    .page-excerpt{
       margin:16px 0 0;
-      color:var(--muted);
-      line-height:1.9;
-      font-size:17px;
       max-width:760px;
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.85;
     }
 
-    .article-meta{
+    .meta{
       display:flex;
-      align-items:center;
-      gap:12px;
       flex-wrap:wrap;
+      gap:12px;
       margin-top:20px;
       color:var(--muted);
-      font-size:14px;
+      font-size:13px;
     }
 
-    .meta-dot{
-      width:4px;
-      height:4px;
+    .meta-pill{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 12px;
       border-radius:999px;
-      background:rgba(255,255,255,.24);
-    }
-
-    .cover{
-      margin:0 0 24px;
-      border-radius:24px;
-      overflow:hidden;
       border:1px solid var(--line);
-      background:
-        radial-gradient(circle at 20% 20%, rgba(216,188,119,.18), transparent 30%),
-        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-      box-shadow:var(--shadow);
+      background:rgba(255,255,255,.03);
     }
 
-    .cover img{
+    .cover-wrap{
+      margin-top:20px;
+      overflow:hidden;
+      border-radius:24px;
+      border:1px solid var(--line);
+    }
+
+    .cover-wrap img{
       width:100%;
-      height:auto;
+      aspect-ratio:16/8;
       object-fit:cover;
+      background:linear-gradient(135deg, rgba(216,188,119,.18), rgba(255,255,255,.03));
+    }
+
+    .article-shell{
+      padding:10px 0 70px;
+    }
+
+    .article-card{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.02));
+      border-radius:30px;
+      box-shadow:var(--shadow);
+      padding:34px;
     }
 
     .article-body{
-      color:var(--text);
-      line-height:1.95;
       font-size:18px;
+      line-height:1.95;
+      color:var(--text);
     }
 
-    .article-body > *:first-child{
-      margin-top:0 !important;
+    .article-body p{
+      margin:0 0 1.25em;
     }
 
-    .article-body h1,
     .article-body h2,
     .article-body h3,
     .article-body h4{
-      color:#fff;
-      line-height:1.18;
-      letter-spacing:-.03em;
-      margin:1.7em 0 .6em;
-    }
-
-    .article-body h1{font-size:40px}
-    .article-body h2{font-size:32px}
-    .article-body h3{font-size:25px}
-    .article-body h4{font-size:21px}
-
-    .article-body p,
-    .article-body ul,
-    .article-body ol,
-    .article-body blockquote,
-    .article-body figure,
-    .article-body table{
-      margin:0 0 1.15em;
-    }
-
-    .article-body ul,
-    .article-body ol{
-      padding-left:1.3em;
-    }
-
-    .article-body li{
-      margin:.35em 0;
-    }
-
-    .article-body blockquote{
-      margin:1.4em 0;
-      padding:16px 18px;
-      border-left:3px solid rgba(216,188,119,.42);
-      border-radius:0 18px 18px 0;
-      background:rgba(255,255,255,.035);
-      color:var(--white-soft);
-    }
-
-    .article-body hr{
-      border:none;
-      height:1px;
-      background:var(--line);
-      margin:2em 0;
+      margin:1.8em 0 .7em;
+      line-height:1.3;
+      letter-spacing:-.02em;
     }
 
     .article-body a{
       color:var(--gold);
       text-decoration:underline;
-      text-underline-offset:3px;
     }
 
-    .article-body img{
-      width:100%;
-      height:auto;
-      border-radius:20px;
-      border:1px solid var(--line);
-      margin:18px 0;
+    .article-body ul,
+    .article-body ol{
+      padding-left:1.25em;
+      margin:0 0 1.2em;
     }
 
-    .article-body code{
-      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
-      font-size:.92em;
-      padding:.16em .42em;
-      border-radius:8px;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .article-body pre{
-      overflow:auto;
-      padding:16px;
-      border-radius:18px;
-      background:#0c1117;
-      border:1px solid var(--line);
-      margin:1.25em 0;
-    }
-
-    .article-body pre code{
-      padding:0;
-      border:none;
-      background:transparent;
-    }
-
-    .aside-grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:18px;
-      margin-top:26px;
-    }
-
-    .card{
-      position:relative;
-      overflow:hidden;
-      border:1px solid var(--line);
-      background:var(--panel);
-      border-radius:var(--radius);
-      padding:20px;
-      box-shadow:var(--shadow);
-    }
-
-    .card h2{
-      margin:0 0 10px;
-      font-size:22px;
-      line-height:1.2;
-    }
-
-    .muted{
+    .article-body blockquote{
+      margin:1.5em 0;
+      padding:14px 18px;
+      border-left:3px solid var(--gold);
+      background:rgba(255,255,255,.03);
       color:var(--muted);
-      line-height:1.8;
+      border-radius:12px;
     }
 
-    .small{font-size:13px}
-
-    .related-list{
-      display:grid;
-      gap:12px;
-      margin-top:14px;
-    }
-
-    .item{
-      display:block;
-      border:1px solid var(--line);
-      background:var(--panel-2);
-      border-radius:18px;
-      padding:16px;
-      transition:transform .25s ease,border-color .25s ease,background .25s ease;
-    }
-
-    .item:hover{
-      transform:translateY(-2px);
-      border-color:rgba(216,188,119,.22);
-      background:rgba(255,255,255,.055);
-    }
-
-    .item b{
-      display:block;
-      font-size:17px;
-      line-height:1.35;
-      margin-bottom:8px;
-    }
-
-    .back-row{
+    .bottom-nav{
+      margin-top:26px;
       display:flex;
-      gap:10px;
+      gap:12px;
       flex-wrap:wrap;
-      margin-top:20px;
     }
 
-    .back-link{
+    .btn-link{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-height:44px;
-      padding:10px 14px;
-      border-radius:14px;
+      min-height:50px;
+      padding:0 16px;
+      border-radius:16px;
       border:1px solid var(--line);
       background:rgba(255,255,255,.04);
-      color:#fff;
-      transition:all .25s ease;
+      color:var(--text);
+      font-weight:600;
     }
 
-    .back-link:hover{
-      transform:translateY(-1px);
+    .btn-link:hover{
       background:rgba(255,255,255,.08);
     }
 
-    .loading-shell{
-      display:grid;
-      gap:14px;
-    }
-
-    .skeleton{
-      position:relative;
-      overflow:hidden;
-      border-radius:18px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.03);
-    }
-
-    .skeleton::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      transform:translateX(-100%);
-      background:linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);
-      animation:shimmer 1.3s infinite;
-    }
-
-    .sk-title{height:58px}
-    .sk-text{height:18px}
-    .sk-cover{height:min(42vw,420px)}
-    .sk-body{height:220px}
-
-    @keyframes shimmer{
-      to{transform:translateX(100%)}
+        .status-box{
+      border:1px dashed var(--line);
+      border-radius:20px;
+      padding:20px;
+      color:var(--muted);
+      background:rgba(255,255,255,.02);
     }
 
     .footer{
-      margin-top:30px;
-      padding:24px 0 54px;
       border-top:1px solid var(--line);
+      padding:28px 0 48px;
       color:var(--muted);
-      line-height:1.85;
       font-size:14px;
+      line-height:1.8;
     }
 
-    .footer-grid{
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:16px;
-      align-items:start;
-    }
-
-    .reveal{
-      opacity:0;
-      transform:translateY(26px);
-      transition:opacity .75s ease, transform .75s ease;
-    }
-
-    .reveal.in{
-      opacity:1;
-      transform:none;
-    }
-
-    [hidden]{display:none !important}
-
-    @media (prefers-reduced-motion: reduce){
-      html{scroll-behavior:auto}
-      .reveal,
-      .item,
-      .btn,
-      .menu a,
-      .lang-link,
-      .back-link{
-        transition:none !important;
-        animation:none !important;
-      }
-      .reveal{
-        opacity:1;
-        transform:none;
+    @media (max-width: 900px){
+      .post-title{
+        font-size:36px;
       }
     }
 
-    @media (max-width:860px){
+    @media (max-width: 640px){
+      .post-title{
+        font-size:30px;
+      }
+
       .nav{
-        align-items:center;
-        flex-wrap:wrap;
-      }
-
-      .nav-shell{
-        width:100%;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-      }
-
-      .menu{
-        display:none;
-        width:100%;
-        padding-top:10px;
         flex-direction:column;
-        align-items:stretch;
+        align-items:flex-start;
+        padding:12px 0;
       }
 
-      .menu a{width:100%}
-      .menu.open{display:flex}
-      .mobile-toggle{display:inline-flex}
-      .right{display:none}
+      .nav-links{
+        justify-content:flex-start;
+      }
 
-      .page{padding-top:20px}
-      .article-shell{padding:20px}
-      .article-body{font-size:17px}
-      .article-body h1{font-size:32px}
-      .article-body h2{font-size:28px}
-      .article-body h3{font-size:22px}
-      .footer-grid{grid-template-columns:1fr}
+      .hero-card{
+        padding:22px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <a class="skip-link" href="#mainContent">Bỏ qua menu</a>
 
-  <header class="topbar">
-    <div class="wrap">
-      <div class="nav">
-        <a class="brand" href="/" aria-label="Đường Sao Tỏa Sáng">
-          <div class="brand-mark" aria-hidden="true"></div>
-          <div>
-            <div class="brand-title">Đường Sao Tỏa Sáng</div>
-            <div class="brand-sub">Star Path Light Up</div>
-          </div>
-        </a>
+<header class="topbar">
+  <div class="wrap nav">
 
-        <div class="nav-shell">
-          <button
-            class="mobile-toggle"
-            id="mobileToggle"
-            aria-label="Mở menu"
-            aria-expanded="false"
-            aria-controls="mainMenu"
-            type="button">☰</button>
+    <a href="/" class="brand">
+      <div class="brand-mark"></div>
+      <div>Đường Sao Tỏa Sáng</div>
+    </a>
 
-          <div class="right">
-            <div class="lang-links" aria-label="Language switch">
-              <a id="langViLink" class="lang-link" href="/">VI</a>
-              <a id="langEnLink" class="lang-link" href="/?lang=en">EN</a>
-            </div>
-          </div>
-        </div>
+    <nav class="nav-links">
+      <a href="/">Trang chủ</a>
+      <a href="/about">Giới thiệu</a>
+      <a href="/program">Chương trình</a>
+      <a href="/posts">Bài viết</a>
+      <a href="/contact">Liên hệ</a>
+    </nav>
 
-        <nav class="menu" id="mainMenu" aria-label="Main navigation">
-          <a href="/">Trang chủ</a>
-          <a href="/about">Giới thiệu</a>
-          <a href="/program">Chương trình</a>
-          <a href="/events">Sự kiện</a>
-          <a href="/scripts">Kịch bản</a>
-          <a href="/donate">Gây quỹ</a>
-          <a href="/transparency">Minh bạch</a>
-          <a href="/legal">Pháp lý</a>
-          <a href="/contact">Liên hệ</a>
-          <a href="/posts">Bài viết</a>
-        </nav>
-      </div>
-    </div>
-  </header>
+  </div>
+</header>
 
-  <main class="wrap page" id="mainContent">
-    <div class="content-wrap">
-      <section class="article-shell reveal">
-        <div class="breadcrumb" id="breadcrumb">
-          <a id="crumbHome" href="/">Trang chủ</a>
-          <span class="sep">/</span>
-          <a id="crumbSection" href="/posts">Bài viết</a>
-          <span class="sep">/</span>
-          <span id="crumbCurrent">Đang tải...</span>
-        </div>
+<main class="wrap">
 
-        <div id="loadingState" class="loading-shell" aria-hidden="true">
-          <div class="skeleton sk-title"></div>
-          <div class="skeleton sk-text"></div>
-          <div class="skeleton sk-text"></div>
-          <div class="skeleton sk-cover"></div>
-          <div class="skeleton sk-body"></div>
-        </div>
+  <article class="post">
 
-        <article id="articleView" hidden>
-          <header class="article-head">
-            <div class="eyebrow" id="articleType">NỘI DUNG</div>
-            <h1 class="article-title" id="title">Đang tải...</h1>
-            <p class="article-excerpt" id="excerpt"></p>
+    <h1 id="title" class="post-title"></h1>
 
-            <div class="article-meta">
-              <span id="metaLabel">Đường Sao Tỏa Sáng</span>
-              <span class="meta-dot"></span>
-              <time id="date" hidden></time>
-            </div>
-          </header>
+    <div class="post-meta" id="meta"></div>
 
-          <figure class="cover" id="cover" hidden></figure>
+    <div class="post-body" id="content"></div>
 
-          <div class="article-body" id="content">
-            <p>Đang tải nội dung...</p>
-          </div>
+  </article>
 
-          <div class="back-row">
-            <a class="back-link" id="backToPosts" href="/posts">Xem tất cả bài viết</a>
-            <a class="back-link" id="backHome" href="/">Về trang chủ</a>
-          </div>
-        </article>
-      </section>
+</main>
 
-      <section class="aside-grid reveal">
-        <aside class="card" id="relatedSection" hidden>
-          <div class="eyebrow" id="relatedEyebrow">LIÊN QUAN</div>
-          <h2 id="relatedTitle">Bài viết liên quan</h2>
-          <p class="muted" id="relatedDesc">
-            Một vài nội dung khác để tiếp tục hành trình đọc và mở rộng bối cảnh.
-          </p>
-          <div class="related-list" id="relatedPosts"></div>
-        </aside>
+<footer class="footer">
+  <div class="wrap">
+    Đường Sao Tỏa Sáng · Publishing platform for deep knowledge, awareness, creativity and community.
+  </div>
+</footer>
 
-        <aside class="card reveal">
-          <div class="eyebrow" id="contactEyebrow">KẾT NỐI</div>
-          <h2 id="contactTitle">Cần trao đổi thêm?</h2>
-          <p class="muted" id="contactDesc">
-            Nếu anh chị muốn hợp tác, tài trợ, trao đổi chương trình hoặc cần một kênh làm việc chính thức, hãy đi đến trang liên hệ.
-          </p>
-          <div class="back-row">
-            <a class="btn primary" id="contactBtn" href="/contact">Liên hệ</a>
-            <a class="btn" id="legalBtn" href="/legal">Pháp lý</a>
-          </div>
-        </aside>
-      </section>
-    </div>
+<script src="/assets/app.js"></script>
 
-    <footer class="footer">
-      <div class="footer-grid">
-        <div>
-          <div><b>Contact:</b> <a href="mailto:contact@duongsaotoasang.com">contact@duongsaotoasang.com</a></div>
-          <div><b>Admin:</b> <a href="mailto:duongsaotoasang@gmail.com">duongsaotoasang@gmail.com</a></div>
-          <div><b>Reply:</b> <a href="mailto:reply@duongsaotoasang.com">reply@duongsaotoasang.com</a></div>
-          <div class="small" id="footerNote" style="margin-top:10px">
-            Powered by Cloudflare Pages + Functions + D1 + R2. Cấu trúc nội dung được giữ ổn định theo slug để toàn bộ hệ thống kết nối liền mạch.
-          </div>
-        </div>
-        <div class="small muted" id="footerRight">
-          Hybrid model: nonprofit + transparent business.<br/>
-          Phase 1 priority: Scripts + Donate.
-        </div>
-      </div>
-    </footer>
-  </main>
+<script>
 
-  <script type="module">
-    import {
-      getLang,
-      mountLangLinks,
-      getPathInfo,
-      setSeo,
-      renderContentPage,
-      applyActiveNav,
-      initMobileMenu,
-      initReveal,
-      withLang
-    } from "/app.js";
+(function(){
 
-    const lang = getLang();
-    const isEn = lang === "en";
-    document.documentElement.lang = lang;
+  const params = new URL(window.location.href).searchParams
 
-    mountLangLinks("langViLink", "langEnLink");
-    applyActiveNav(".menu", window.location.pathname);
-    initMobileMenu();
-    initReveal(".reveal", "in");
+  const slug = params.get("slug")
 
-    const copy = {
-      crumbHome: { vi: "Trang chủ", en: "Home" },
-      metaLabel: { vi: "Đường Sao Tỏa Sáng", en: "Star Path Light Up" },
-      backToPosts: { vi: "Xem tất cả bài viết", en: "View all posts" },
-      backHome: { vi: "Về trang chủ", en: "Back to home" },
+  if(!slug){
+    document.getElementById("content").innerHTML =
+      `<div class="status-box">Missing slug</div>`
+    return
+  }
 
-      relatedEyebrow: { vi: "LIÊN QUAN", en: "RELATED" },
-      relatedTitle: { vi: "Bài viết liên quan", en: "Related posts" },
-      relatedDesc: {
-        vi: "Một vài nội dung khác để tiếp tục hành trình đọc và mở rộng bối cảnh.",
-        en: "A few more pieces to continue the reading journey and widen the context."
-      },
+  const lang = params.get("lang")==="en" ? "en" : "vi"
 
-      contactEyebrow: { vi: "KẾT NỐI", en: "CONNECT" },
-      contactTitle: { vi: "Cần trao đổi thêm?", en: "Need to discuss further?" },
-      contactDesc: {
-        vi: "Nếu anh chị muốn hợp tác, tài trợ, trao đổi chương trình hoặc cần một kênh làm việc chính thức, hãy đi đến trang liên hệ.",
-        en: "If you want to collaborate, sponsor, discuss a program, or need an official working channel, go to the contact page."
-      },
-      contactBtn: { vi: "Liên hệ", en: "Contact" },
-      legalBtn: { vi: "Pháp lý", en: "Legal" },
+  async function load(){
 
-      footerNote: {
-        vi: "Powered by Cloudflare Pages + Functions + D1 + R2. Cấu trúc nội dung được giữ ổn định theo slug để toàn bộ hệ thống kết nối liền mạch.",
-        en: "Powered by Cloudflare Pages + Functions + D1 + R2. The content structure stays stable by slug so the whole system remains seamless."
-      },
-      footerRight: {
-        vi: "Hybrid model: phi lợi nhuận + kinh doanh minh bạch.<br/>Giai đoạn 1 ưu tiên: Kịch bản + Donate.",
-        en: "Hybrid model: nonprofit + transparent business.<br/>Phase 1 priority: Scripts + Donate."
-      }
-    };
+    try{
 
-    function setText(id, value, html = false){
-      const el = document.getElementById(id);
-      if (!el) return;
-      if (html) el.innerHTML = value;
-      else el.textContent = value;
+      const res = await fetch(`/api/content?slug=${slug}&lang=${lang}`)
+
+      if(!res.ok) throw new Error()
+
+      const data = await res.json()
+
+      document.title = data.title + " | Đường Sao Tỏa Sáng"
+
+      document.getElementById("title").innerText = data.title
+
+      document.getElementById("meta").innerText =
+        new Date(data.created_at).toLocaleDateString()
+
+      document.getElementById("content").innerHTML = data.content
+
+    }catch(e){
+
+      document.getElementById("content").innerHTML =
+        `<div class="status-box">Content not found</div>`
+
     }
 
-    Object.entries(copy).forEach(([id, value]) => {
-      const content = value?.[lang] || value?.vi || "";
-      const isHtml = id === "footerRight";
-      setText(id, content, isHtml);
-    });
+  }
 
-    document.getElementById("backToPosts").href = withLang("/posts", lang);
-    document.getElementById("backHome").href = withLang("/", lang);
-    document.getElementById("contactBtn").href = withLang("/contact", lang);
-    document.getElementById("legalBtn").href = withLang("/legal", lang);
+  load()
 
-    const pathInfo = getPathInfo(window.location.pathname);
-    const isPost = pathInfo.type === "post";
+})()
 
-    const sectionLabel = isPost
-      ? (isEn ? "Posts" : "Bài viết")
-      : (isEn ? "Pages" : "Trang nội dung");
+</script>
 
-    const sectionHref = isPost
-      ? withLang("/posts", lang)
-      : withLang(`/${pathInfo.slug || ""}`, lang);
-
-    setText("crumbSection", sectionLabel);
-    document.getElementById("crumbSection").href = sectionHref;
-    setText("crumbCurrent", isEn ? "Loading..." : "Đang tải...");
-
-    setSeo({
-      title: isEn ? "Loading content..." : "Đang tải nội dung...",
-      description: isEn ? "Loading content from Star Path Light Up." : "Đang tải nội dung từ Đường Sao Tỏa Sáng.",
-      canonical: `${window.location.origin}${withLang(window.location.pathname, lang)}`,
-      type: isPost ? "article" : "website"
-    });
-
-    await renderContentPage({
-      titleId: "title",
-      excerptId: "excerpt",
-      contentId: "content",
-      coverId: "cover",
-      dateId: "date",
-      relatedId: "relatedPosts",
-      notFoundTitle: {
-        vi: "Nội dung không tồn tại",
-        en: "Content not found"
-      },
-      notFoundDesc: {
-        vi: "Liên kết này chưa có nội dung hoặc đã được thay đổi.",
-        en: "This link has no content yet or has been changed."
-      }
-    });
-
-    document.getElementById("loadingState").hidden = true;
-    document.getElementById("articleView").hidden = false;
-
-    const currentTitle = document.getElementById("title")?.textContent?.trim() || (isEn ? "Content" : "Nội dung");
-    setText("crumbCurrent", currentTitle);
-
-    const typeEl = document.getElementById("articleType");
-    if (typeEl) {
-      typeEl.textContent = isPost
-        ? (isEn ? "ARTICLE" : "BÀI VIẾT")
-        : (isEn ? "PAGE" : "TRANG");
-    }
-
-    const relatedPosts = document.getElementById("relatedPosts");
-    const relatedSection = document.getElementById("relatedSection");
-    if (relatedPosts && relatedSection) {
-      relatedSection.hidden = !relatedPosts.innerHTML.trim();
-    }
-  </script>
 </body>
 </html>
