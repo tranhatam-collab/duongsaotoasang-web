@@ -1,163 +1,194 @@
-const API_BASE = "/api"
+const API_BASE = "/api";
 
 function getLang() {
-  const url = new URL(window.location.href)
-  const lang = url.searchParams.get("lang")
-  if (lang === "en") return "en"
-  return "vi"
+  const url = new URL(window.location.href);
+  return url.searchParams.get("lang") === "en" ? "en" : "vi";
 }
 
-async function apiFetch(path) {
-  const res = await fetch(API_BASE + path)
-  if (!res.ok) throw new Error("API error")
-  return res.json()
-}
-
-function qs(name) {
-  const url = new URL(window.location.href)
-  return url.searchParams.get(name)
-}
-
-function formatDate(dateStr) {
-  if (!dateStr) return ""
-  const d = new Date(dateStr)
-  return d.toLocaleDateString()
+function withLang(path) {
+  const lang = getLang();
+  if (lang !== "en") return path;
+  return path.includes("?") ? `${path}&lang=en` : `${path}?lang=en`;
 }
 
 function escapeHTML(str) {
-  if (!str) return ""
-  return str
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
+  return String(str || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
-function renderPostCard(item) {
+function formatDate(dateStr) {
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  return d.toLocaleDateString(getLang() === "en" ? "en-US" : "vi-VN");
+}
 
-  const cover = item.cover_url || ""
-  const date = formatDate(item.created_at)
+async function apiFetch(path) {
+  const res = await fetch(`${API_BASE}${path}`);
+  if (!res.ok) throw new Error(`API request failed: ${res.status}`);
+  return res.json();
+}
+
+function getPathSlug() {
+  const url = new URL(window.location.href);
+  const querySlug = url.searchParams.get("slug");
+  if (querySlug) return querySlug;
+
+  const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
+  if (!path) return "";
+
+  if (path.startsWith("posts/")) {
+    return decodeURIComponent(path.slice(6));
+  }
+
+  if (["about", "program", "contact", "events", "scripts", "donate", "transparency", "legal"].includes(path)) {
+    return path;
+  }
+
+  return "";
+}
+
+function getContentUrl(slug, type = "post") {
+  if (type === "page") return withLang(`/${slug}`);
+  return withLang(`/content.html?slug=${encodeURIComponent(slug)}`);
+}
+
+function renderPostCard(item, labels = {}) {
+  const cover = item.cover_url || "";
+  const date = formatDate(item.created_at);
+  const typeText = item.type === "page"
+    ? (labels.page || "Page")
+    : (labels.post || "Post");
 
   return `
-  <article class="post-card">
-
-    ${cover ? `<img src="${cover}" class="post-cover">` : ""}
-
-    <h2 class="post-title">
-      <a href="/content.html?slug=${item.slug}">
-        ${escapeHTML(item.title)}
-      </a>
-    </h2>
-
-    <div class="post-meta">
-      ${date}
-    </div>
-
-    <p class="post-excerpt">
-      ${escapeHTML(item.excerpt)}
-    </p>
-
-  </article>
-  `
-}
-
-async function loadPosts() {
-
-  const container = document.getElementById("posts")
-
-  if (!container) return
-
-  const lang = getLang()
-
-  try {
-
-    const data = await apiFetch(`/contents?type=post&lang=${lang}`)
-
-    container.innerHTML = data.map(renderPostCard).join("")
-
-  } catch(e) {
-
-    container.innerHTML = "Failed to load posts"
-
-  }
-
-}
-
-async function loadPage() {
-
-  const slug = qs("slug")
-
-  if (!slug) return
-
-  const container = document.getElementById("content")
-
-  if (!container) return
-
-  const lang = getLang()
-
-  try {
-
-    const data = await apiFetch(`/content?slug=${slug}&lang=${lang}`)
-
-    container.innerHTML = `
-      <article class="post">
-
-        <h1>${data.title}</h1>
-
+    <article class="post-card">
+      ${cover ? `<img src="${escapeHTML(cover)}" alt="${escapeHTML(item.title)}" class="post-cover">` : ""}
+      <div class="post-body">
+        <div class="post-type">${escapeHTML(typeText)}</div>
+        <h3 class="post-title">
+          <a href="${getContentUrl(item.slug, item.type)}">${escapeHTML(item.title)}</a>
+        </h3>
+        <p class="post-excerpt">${escapeHTML(item.excerpt || "")}</p>
         <div class="post-meta">
-          ${formatDate(data.created_at)}
+          <span>${escapeHTML(date)}</span>
+          <span>${escapeHTML((item.tags || "").split(",")[0] || "")}</span>
         </div>
-
-        <div class="post-body">
-          ${data.content}
-        </div>
-
-      </article>
-    `
-
-  } catch(e) {
-
-    container.innerHTML = "Content not found"
-
-  }
-
+      </div>
+    </article>
+  `;
 }
 
-async function loadSearch() {
-
-  const q = qs("q")
-
-  if (!q) return
-
-  const container = document.getElementById("posts")
-
-  if (!container) return
-
-  const lang = getLang()
-
-  const data = await apiFetch(`/search?q=${encodeURIComponent(q)}&lang=${lang}`)
-
-  container.innerHTML = data.map(renderPostCard).join("")
-
+function langSwitchUrl(targetLang) {
+  const url = new URL(window.location.href);
+  if (targetLang === "en") url.searchParams.set("lang", "en");
+  else url.searchParams.delete("lang");
+  return `${url.pathname}${url.search}${url.hash}`;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function mountSiteChrome(options = {}) {
+  const active = options.active || "";
+  const lang = getLang();
 
-  if (document.getElementById("posts")) {
-
-    const q = qs("q")
-
-    if (q) {
-      loadSearch()
-    } else {
-      loadPosts()
+  const dict = {
+    vi: {
+      brand: "Đường Sao Tỏa Sáng",
+      sub: "Star Path Light Up",
+      home: "Trang chủ",
+      about: "Giới thiệu",
+      program: "Chương trình",
+      events: "Sự kiện",
+      scripts: "Kịch bản",
+      donate: "Gây quỹ",
+      transparency: "Minh bạch",
+      legal: "Pháp lý",
+      contact: "Liên hệ",
+      posts: "Bài viết",
+      footer: "Đường Sao Tỏa Sáng · Nền tảng xuất bản cho tri thức sâu, nhận thức, sáng tạo và cộng đồng."
+    },
+    en: {
+      brand: "Đường Sao Tỏa Sáng",
+      sub: "Star Path Light Up",
+      home: "Home",
+      about: "About",
+      program: "Program",
+      events: "Events",
+      scripts: "Scripts",
+      donate: "Donate",
+      transparency: "Transparency",
+      legal: "Legal",
+      contact: "Contact",
+      posts: "Posts",
+      footer: "Đường Sao Tỏa Sáng · Publishing platform for deep knowledge, awareness, creativity, and community."
     }
+  }[lang];
 
+  const navItems = [
+    { key: "home", href: withLang("/"), label: dict.home },
+    { key: "about", href: withLang("/about"), label: dict.about },
+    { key: "program", href: withLang("/program"), label: dict.program },
+    { key: "events", href: withLang("/events"), label: dict.events },
+    { key: "scripts", href: withLang("/scripts"), label: dict.scripts },
+    { key: "donate", href: withLang("/donate"), label: dict.donate },
+    { key: "transparency", href: withLang("/transparency"), label: dict.transparency },
+    { key: "legal", href: withLang("/legal"), label: dict.legal },
+    { key: "contact", href: withLang("/contact"), label: dict.contact },
+    { key: "posts", href: withLang("/posts"), label: dict.posts }
+  ];
+
+  const header = document.getElementById("siteHeader");
+  if (header) {
+    header.innerHTML = `
+      <div class="site-topbar">
+        <div class="wrap site-nav">
+          <a href="${withLang("/")}" class="site-brand">
+            <div class="site-brand-mark"></div>
+            <div>
+              <div class="site-brand-title">${escapeHTML(dict.brand)}</div>
+              <div class="site-brand-sub">${escapeHTML(dict.sub)}</div>
+            </div>
+          </a>
+
+          <div class="site-right">
+            <nav class="site-menu">
+              ${navItems.map(item => `
+                <a href="${item.href}" class="${active === item.key ? "active" : ""}">
+                  ${escapeHTML(item.label)}
+                </a>
+              `).join("")}
+            </nav>
+
+            <div class="site-lang">
+              <a href="${langSwitchUrl("vi")}" class="${lang === "vi" ? "active" : ""}">VI</a>
+              <a href="${langSwitchUrl("en")}" class="${lang === "en" ? "active" : ""}">EN</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
   }
 
-  if (document.getElementById("content")) {
-
-    loadPage()
-
+  const footer = document.getElementById("siteFooter");
+  if (footer) {
+    footer.innerHTML = `
+      <div class="site-footer">
+        <div class="wrap site-footer-inner">
+          <div>${escapeHTML(dict.footer)}</div>
+        </div>
+      </div>
+    `;
   }
+}
 
-})
+window.DSTS = {
+  getLang,
+  withLang,
+  escapeHTML,
+  formatDate,
+  apiFetch,
+  getPathSlug,
+  getContentUrl,
+  renderPostCard,
+  mountSiteChrome
+};

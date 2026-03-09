@@ -1,533 +1,197 @@
-/* =========================================================
-   DUONG SAO TOA SANG
-   GLOBAL STYLES
-========================================================= */
-
 :root{
-
---bg:#0b0f14;
---card:#121821;
-
---gold:#d8bc77;
-
---text:#e6edf3;
---muted:#9aa7b4;
-
---line:rgba(255,255,255,.08);
-
---radius:20px;
-
---wrap:1200px;
-
+  --bg:#0b0f14;
+  --bg-soft:#10161e;
+  --card:#121821;
+  --card-soft:rgba(255,255,255,.04);
+  --gold:#d8bc77;
+  --gold-soft:rgba(216,188,119,.18);
+  --text:#e6edf3;
+  --muted:#9aa7b4;
+  --line:rgba(255,255,255,.08);
+  --line-strong:rgba(255,255,255,.14);
+  --shadow:0 18px 60px rgba(0,0,0,.34);
+  --radius:20px;
+  --radius-sm:14px;
+  --radius-lg:28px;
+  --wrap:1240px;
 }
 
-/* =========================================================
-RESET
-========================================================= */
-
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(900px 520px at 0% 0%, rgba(216,188,119,.10), transparent 60%),
+    radial-gradient(760px 480px at 100% 10%, rgba(132,176,255,.10), transparent 58%),
+    linear-gradient(180deg,#080b0f 0%, #0c1117 100%);
+  overflow-x:hidden;
 }
 
-html,body{
-background:var(--bg);
-color:var(--text);
-font-family:
--apple-system,
-BlinkMacSystemFont,
-"Segoe UI",
-Roboto,
-Helvetica,
-Arial,
-sans-serif;
-line-height:1.6;
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 18px}
+
+.site-topbar{
+  position:sticky;
+  top:0;
+  z-index:80;
+  backdrop-filter:blur(16px);
+  background:rgba(10,12,16,.72);
+  border-bottom:1px solid var(--line);
 }
 
-a{
-color:inherit;
-text-decoration:none;
+.site-nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  min-height:72px;
 }
 
-img{
-max-width:100%;
-display:block;
+.site-brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+  flex:0 0 auto;
 }
 
-/* =========================================================
-LAYOUT
-========================================================= */
-
-.wrap{
-max-width:var(--wrap);
-margin:auto;
-padding:0 22px;
+.site-brand-mark{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.16), transparent 35%),
+    linear-gradient(135deg, rgba(216,188,119,.28), rgba(255,255,255,.05));
+  box-shadow:var(--shadow);
+  flex:0 0 auto;
 }
 
-main{
-padding-top:90px;
-padding-bottom:60px;
+.site-brand-title{
+  font-weight:800;
+  font-size:17px;
+  letter-spacing:.2px;
+  line-height:1.05;
+  white-space:nowrap;
 }
 
-/* =========================================================
-HEADER
-========================================================= */
-
-.topbar{
-
-position:fixed;
-top:0;
-left:0;
-right:0;
-
-z-index:100;
-
-background:rgba(10,15,20,.9);
-backdrop-filter:blur(10px);
-
-border-bottom:1px solid var(--line);
-
+.site-brand-sub{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:4px;
+  white-space:nowrap;
 }
 
-.nav{
-
-display:flex;
-align-items:center;
-justify-content:space-between;
-
-height:70px;
-
+.site-right{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  min-width:0;
+  flex:1 1 auto;
+  justify-content:flex-end;
 }
 
-/* =========================================================
-BRAND
-========================================================= */
-
-.brand{
-
-display:flex;
-align-items:center;
-gap:12px;
-
+.site-menu{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:nowrap;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+  min-width:0;
+  max-width:100%;
+  white-space:nowrap;
 }
 
-.brand-mark{
-
-width:36px;
-height:36px;
-
-border-radius:50%;
-
-background:
-radial-gradient(circle at center,
-var(--gold),
-transparent 70%);
-
+.site-menu::-webkit-scrollbar{
+  display:none;
 }
 
-.brand-title{
-font-weight:700;
-font-size:16px;
+.site-menu a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:42px;
+  padding:0 14px;
+  border-radius:12px;
+  color:var(--muted);
+  border:1px solid transparent;
+  transition:.2s ease;
+  white-space:nowrap;
+  flex:0 0 auto;
 }
 
-.brand-sub{
-font-size:12px;
-color:var(--muted);
+.site-menu a:hover,
+.site-menu a.active{
+  color:var(--text);
+  background:rgba(255,255,255,.05);
+  border-color:var(--line);
 }
 
-/* =========================================================
-MENU
-========================================================= */
-
-.menu{
-
-display:flex;
-gap:20px;
-align-items:center;
-
+.site-lang{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex:0 0 auto;
 }
 
-.menu a{
-
-font-size:14px;
-color:var(--muted);
-
-transition:.25s;
-
+.site-lang a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:46px;
+  height:40px;
+  padding:0 12px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  color:var(--muted);
+  font-size:13px;
+  font-weight:700;
+  transition:.2s ease;
 }
 
-.menu a:hover{
-
-color:var(--gold);
-
+.site-lang a.active{
+  color:#fff;
+  background:rgba(216,188,119,.14);
+  border-color:rgba(216,188,119,.32);
 }
 
-.menu a.active{
-
-color:var(--gold);
-
+.site-footer{
+  margin-top:12px;
+  padding:24px 0 54px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  line-height:1.85;
+  font-size:14px;
 }
 
-/* =========================================================
-RIGHT MENU
-========================================================= */
-
-.right{
-
-display:flex;
-align-items:center;
-gap:10px;
-
+.site-footer-inner{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
 }
 
-/* =========================================================
-BUTTONS
-========================================================= */
-
-.btn{
-
-border:1px solid var(--line);
-padding:8px 14px;
-
-border-radius:999px;
-
-font-size:13px;
-
-cursor:pointer;
-
-background:transparent;
-
-transition:.2s;
-
-}
-
-.btn:hover{
-
-border-color:var(--gold);
-color:var(--gold);
-
-}
-
-.btn.primary{
-
-background:var(--gold);
-color:#000;
-border:none;
-
-}
-
-.btn.primary:hover{
-
-opacity:.9;
-
-}
-
-/* =========================================================
-PILL
-========================================================= */
-
-.pill{
-
-font-size:12px;
-padding:4px 10px;
-
-border-radius:999px;
-
-border:1px solid var(--line);
-
-color:var(--muted);
-
-}
-
-/* =========================================================
-POST GRID
-========================================================= */
-
-.posts-grid{
-
-display:grid;
-
-grid-template-columns:repeat(12,1fr);
-
-gap:18px;
-
-margin-top:20px;
-
-}
-
-/* =========================================================
-POST CARD
-========================================================= */
-
-.post-card{
-
-grid-column:span 6;
-
-border:1px solid var(--line);
-
-background:var(--card);
-
-border-radius:var(--radius);
-
-padding:22px;
-
-transition:.25s;
-
-display:block;
-
-}
-
-.post-card:hover{
-
-border-color:var(--gold);
-transform:translateY(-2px);
-
-}
-
-/* =========================================================
-POST TYPE
-========================================================= */
-
-.post-type{
-
-font-size:11px;
-
-letter-spacing:.12em;
-
-text-transform:uppercase;
-
-color:var(--gold);
-
-margin-bottom:10px;
-
-}
-
-/* =========================================================
-POST TITLE
-========================================================= */
-
-.post-title{
-
-font-size:20px;
-
-font-weight:700;
-
-margin-bottom:8px;
-
-line-height:1.3;
-
-}
-
-/* =========================================================
-POST EXCERPT
-========================================================= */
-
-.post-excerpt{
-
-font-size:14px;
-
-color:var(--muted);
-
-line-height:1.7;
-
-}
-
-/* =========================================================
-POST META
-========================================================= */
-
-.post-meta{
-
-font-size:12px;
-
-color:var(--muted);
-
-margin-top:12px;
-
-}
-
-/* =========================================================
-CONTENT PAGE
-========================================================= */
-
-.article{
-
-max-width:760px;
-
-margin:auto;
-
-}
-
-.article h1{
-
-font-size:42px;
-
-line-height:1.2;
-
-margin-bottom:20px;
-
-}
-
-.article h2{
-
-font-size:28px;
-
-margin-top:34px;
-
-margin-bottom:10px;
-
-}
-
-.article p{
-
-margin-bottom:16px;
-
-line-height:1.8;
-
-color:#dbe4ee;
-
-}
-
-.article ul{
-
-margin-left:20px;
-margin-bottom:16px;
-
-}
-
-.article li{
-
-margin-bottom:8px;
-
-}
-
-/* =========================================================
-EMPTY
-========================================================= */
-
-.posts-empty{
-
-border:1px solid var(--line);
-
-padding:20px;
-
-border-radius:var(--radius);
-
-color:var(--muted);
-
-}
-
-/* =========================================================
-FOOTER
-========================================================= */
-
-footer{
-
-border-top:1px solid var(--line);
-
-margin-top:40px;
-
-padding:30px 0;
-
-color:var(--muted);
-
-font-size:13px;
-
-}
-
-/* =========================================================
-MOBILE
-========================================================= */
-
-.mobile-toggle{
-
-display:none;
-
-background:none;
-border:none;
-
-font-size:24px;
-
-cursor:pointer;
-
-}
-
-@media (max-width:900px){
-
-.menu{
-
-position:fixed;
-
-top:70px;
-left:0;
-right:0;
-
-background:var(--bg);
-
-flex-direction:column;
-
-padding:20px;
-
-gap:14px;
-
-display:none;
-
-border-bottom:1px solid var(--line);
-
-}
-
-.menu.open{
-
-display:flex;
-
-}
-
-.mobile-toggle{
-
-display:block;
-
-}
-
-.posts-grid{
-
-grid-template-columns:1fr;
-
-}
-
-.post-card{
-
-grid-column:span 1;
-
-}
-
-.article h1{
-
-font-size:34px;
-
-}
-
-}
-
-/* =========================================================
-SCROLLBAR
-========================================================= */
-
-::-webkit-scrollbar{
-
-width:8px;
-
-}
-
-::-webkit-scrollbar-thumb{
-
-background:rgba(255,255,255,.2);
-border-radius:20px;
-
-}
-
-::-webkit-scrollbar-thumb:hover{
-
-background:var(--gold);
-
+@media (max-width:980px){
+  .site-nav{
+    flex-direction:column;
+    align-items:flex-start;
+    padding:12px 0;
+  }
+
+  .site-right{
+    width:100%;
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .site-menu{
+    width:100%;
+  }
 }
