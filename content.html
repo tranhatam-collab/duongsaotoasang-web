@@ -5,237 +5,497 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Nội dung | Đường Sao Tỏa Sáng</title>
   <meta name="description" content="Nội dung chi tiết của Đường Sao Tỏa Sáng.">
-  <meta name="theme-color" content="#0b0f14">
+  <meta name="theme-color" content="#0b111d">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://duongsaotoasang.com/content.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Đường Sao Tỏa Sáng">
+  <meta property="og:title" content="Nội dung | Đường Sao Tỏa Sáng">
+  <meta property="og:description" content="Nội dung chi tiết của Đường Sao Tỏa Sáng.">
+  <meta property="og:url" content="https://duongsaotoasang.com/content.html">
+  <meta property="og:image" content="https://duongsaotoasang.com/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nội dung | Đường Sao Tỏa Sáng">
+  <meta name="twitter:description" content="Nội dung chi tiết của Đường Sao Tỏa Sáng.">
+  <meta name="twitter:image" content="https://duongsaotoasang.com/og.png">
+  <link rel="stylesheet" href="/app.css">
+
   <style>
-    :root{
-      --bg:#0b0f14;
-      --panel:#121821;
-      --card:#151d28;
-      --text:#e9eef5;
-      --muted:#98a6b7;
-      --line:rgba(255,255,255,.09);
-      --gold:#d8bc77;
-      --shadow:0 18px 50px rgba(0,0,0,.28);
-      --radius:22px;
-      --wrap:980px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-      color:var(--text);
+    body.article-page{
       background:
-        radial-gradient(900px 500px at 0% 0%, rgba(216,188,119,.08), transparent 60%),
-        radial-gradient(900px 500px at 100% 0%, rgba(90,130,180,.08), transparent 60%),
-        linear-gradient(180deg,#0a0d12 0%, #0f141b 100%);
+        radial-gradient(1000px 680px at 12% 0%, rgba(224,200,150,.14), transparent 60%),
+        radial-gradient(860px 540px at 88% 8%, rgba(96,165,250,.12), transparent 58%),
+        linear-gradient(180deg,#0b111d 0%, #101827 48%, #0b111d 100%);
     }
-    a{color:inherit;text-decoration:none}
-    img{display:block;max-width:100%}
-    .wrap{width:min(var(--wrap), calc(100% - 32px));margin:0 auto}
-    .topbar{
-      position:sticky;top:0;z-index:20;
-      backdrop-filter:blur(14px);
-      background:rgba(10,13,18,.76);
-      border-bottom:1px solid var(--line);
+
+    #siteHeader .site-topbar{
+      background:rgba(8,12,19,.72);
+      border-bottom:1px solid rgba(224,200,150,.10);
+      box-shadow:0 18px 60px rgba(0,0,0,.24);
     }
-    .nav{
-      min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+
+    #siteHeader .site-menu{
+      gap:10px;
+      padding:8px;
+      border:1px solid rgba(224,200,150,.10);
+      background:rgba(255,255,255,.025);
+      border-radius:18px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
     }
-    .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.2px}
-    .brand-mark{
-      width:40px;height:40px;border-radius:14px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.14), transparent 35%),
-        linear-gradient(135deg, rgba(216,188,119,.32), rgba(255,255,255,.04));
-      border:1px solid var(--line);box-shadow:var(--shadow);
+
+    #siteHeader .site-menu a{
+      height:44px;
+      padding:0 16px;
+      color:#bfc9d7;
+      border-radius:14px;
+      font-weight:600;
     }
-    .nav-links{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
-    .nav-links a{padding:10px 12px;border-radius:12px;color:var(--muted);transition:.2s ease}
-    .nav-links a:hover,.nav-links a.active{color:var(--text);background:rgba(255,255,255,.05)}
-    .hero{padding:40px 0 20px}
-    .hero-card{
-      border:1px solid var(--line);border-radius:30px;
-      background:
-        radial-gradient(700px 240px at 10% 0%, rgba(216,188,119,.10), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      box-shadow:var(--shadow);padding:30px;
+
+    #siteHeader .site-menu a:hover{
+      color:#fff6df;
+      background:rgba(224,200,150,.10);
+      border-color:rgba(224,200,150,.18);
     }
-    .eyebrow{color:var(--gold);font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
-    .page-title{margin:0;font-size:50px;line-height:1.04;letter-spacing:-.03em}
-    .page-excerpt{margin:16px 0 0;max-width:760px;color:var(--muted);font-size:17px;line-height:1.85}
-    .meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;color:var(--muted);font-size:13px}
-    .meta-pill{
-      display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid var(--line);
+
+    #siteHeader .site-menu a.active{
+      color:#fff3d1;
+      background:linear-gradient(180deg, rgba(224,200,150,.22), rgba(224,200,150,.10));
+      border-color:rgba(224,200,150,.30);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 8px 24px rgba(224,200,150,.10);
+    }
+
+    #siteHeader .site-lang a{
       background:rgba(255,255,255,.03);
+      border-color:rgba(224,200,150,.10);
+      color:#bfc9d7;
     }
-    .cover-wrap{margin-top:20px;overflow:hidden;border-radius:24px;border:1px solid var(--line)}
+
+    #siteHeader .site-lang a.active{
+      color:#fff6df;
+      background:linear-gradient(180deg, rgba(224,200,150,.20), rgba(224,200,150,.10));
+      border-color:rgba(224,200,150,.30);
+      box-shadow:0 8px 20px rgba(224,200,150,.10);
+    }
+
+    .article-hero{
+      padding:38px 0 20px;
+    }
+
+    .article-hero-card{
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(224,200,150,.12);
+      border-radius:32px;
+      background:
+        radial-gradient(900px 360px at 10% 0%, rgba(224,200,150,.14), transparent 62%),
+        radial-gradient(760px 280px at 100% 6%, rgba(96,165,250,.12), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow:0 26px 70px rgba(0,0,0,.34);
+      padding:30px;
+    }
+
+    .article-hero-card::before{
+      content:"";
+      position:absolute;
+      inset:auto -100px -100px auto;
+      width:300px;
+      height:300px;
+      background:radial-gradient(circle, rgba(224,200,150,.16), transparent 64%);
+      filter:blur(18px);
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      font-size:12px;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      color:#e6c989;
+      margin-bottom:10px;
+    }
+
+    .article-title{
+      margin:0;
+      font-size:54px;
+      line-height:1.04;
+      letter-spacing:-.038em;
+      color:#f5e7c7;
+      max-width:980px;
+      text-shadow:0 6px 28px rgba(224,200,150,.14);
+    }
+
+    .article-excerpt{
+      margin:18px 0 0;
+      color:#aeb8c8;
+      line-height:1.92;
+      font-size:17px;
+      max-width:900px;
+    }
+
+    .article-meta{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:22px;
+    }
+
+    .meta-pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:40px;
+      padding:0 14px;
+      border-radius:999px;
+      border:1px solid rgba(224,200,150,.12);
+      background:rgba(255,255,255,.03);
+      color:#cfd7e3;
+      font-size:13px;
+    }
+
+    .cover-wrap{
+      margin-top:22px;
+      border:1px solid rgba(224,200,150,.10);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 16px 40px rgba(0,0,0,.22);
+    }
+
     .cover-wrap img{
-      width:100%;aspect-ratio:16/8;object-fit:cover;
-      background:linear-gradient(135deg, rgba(216,188,119,.18), rgba(255,255,255,.03));
+      width:100%;
+      aspect-ratio:16/8;
+      object-fit:cover;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(224,200,150,.18), transparent 30%),
+        linear-gradient(135deg, rgba(96,165,250,.22), rgba(167,139,250,.18));
     }
-    .article-shell{padding:10px 0 70px}
+
+    .article-shell{
+      padding:10px 0 70px;
+    }
+
     .article-card{
-      border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.02));
-      border-radius:30px;box-shadow:var(--shadow);padding:34px;
+      border:1px solid rgba(224,200,150,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border-radius:30px;
+      box-shadow:0 24px 64px rgba(0,0,0,.28);
+      padding:34px;
     }
-    .article-body{font-size:18px;line-height:1.95;color:var(--text)}
-    .article-body p{margin:0 0 1.25em}
-    .article-body h2,.article-body h3,.article-body h4{margin:1.8em 0 .7em;line-height:1.3;letter-spacing:-.02em}
-    .article-body a{color:var(--gold);text-decoration:underline}
-    .article-body ul,.article-body ol{padding-left:1.25em;margin:0 0 1.2em}
+
+    .article-body{
+      color:#e6edf6;
+      font-size:18px;
+      line-height:1.95;
+    }
+
+    .article-body p{
+      margin:0 0 1.2em;
+    }
+
+    .article-body h2,
+    .article-body h3,
+    .article-body h4{
+      margin:1.7em 0 .7em;
+      line-height:1.28;
+      letter-spacing:-.02em;
+      color:#f5e7c7;
+    }
+
+    .article-body a{
+      color:#f6d894;
+      text-decoration:underline;
+    }
+
+    .article-body ul,
+    .article-body ol{
+      padding-left:1.2em;
+      margin:0 0 1.2em;
+    }
+
     .article-body blockquote{
-      margin:1.5em 0;padding:14px 18px;border-left:3px solid var(--gold);
-      background:rgba(255,255,255,.03);color:var(--muted);border-radius:12px;
+      margin:1.6em 0;
+      padding:16px 18px;
+      border-left:3px solid rgba(224,200,150,.48);
+      background:rgba(255,255,255,.03);
+      color:#c6d0dd;
+      border-radius:14px;
     }
-    .bottom-nav{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+
+    .status-box{
+      border:1px dashed rgba(224,200,150,.14);
+      border-radius:22px;
+      padding:22px;
+      color:#aeb8c8;
+      background:rgba(255,255,255,.02);
+      line-height:1.82;
+    }
+
+    .bottom-nav{
+      margin-top:28px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
     .btn-link{
-      display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 16px;
-      border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--text);font-weight:600;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:50px;
+      padding:0 16px;
+      border-radius:16px;
+      border:1px solid rgba(224,200,150,.12);
+      background:rgba(255,255,255,.035);
+      color:#f5f7fb;
+      text-decoration:none;
+      font-weight:600;
+      transition:.24s ease;
     }
-    .btn-link:hover{background:rgba(255,255,255,.08)}
-    .status-box{border:1px dashed var(--line);border-radius:20px;padding:22px;color:var(--muted);background:rgba(255,255,255,.02)}
-    .footer{border-top:1px solid var(--line);padding:28px 0 48px;color:var(--muted);font-size:14px;line-height:1.8}
+
+    .btn-link:hover{
+      background:rgba(255,255,255,.08);
+      transform:translateY(-2px);
+      border-color:rgba(224,200,150,.22);
+    }
+
+    .btn-link.primary{
+      color:#fff5de;
+      border-color:rgba(224,200,150,.30);
+      background:linear-gradient(180deg, rgba(224,200,150,.24), rgba(224,200,150,.10));
+      box-shadow:0 14px 34px rgba(224,200,150,.14);
+    }
+
+    .footer{
+      border-top:1px solid rgba(224,200,150,.10);
+      padding:30px 0 44px;
+      color:#9fb0c6;
+      font-size:14px;
+      line-height:1.8;
+      background:rgba(10,15,24,.42);
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.in{
+      opacity:1;
+      transform:none;
+    }
+
+    @media (max-width:860px){
+      #siteHeader .site-menu{
+        padding:0;
+        border:none;
+        background:transparent;
+        box-shadow:none;
+      }
+    }
+
     @media (max-width:780px){
-      .nav{align-items:flex-start;padding:12px 0;flex-direction:column}
-      .nav-links{justify-content:flex-start}
-      .page-title{font-size:36px}
-      .hero-card,.article-card{padding:22px}
+      .article-title{font-size:36px}
+      .article-hero-card,
+      .article-card{padding:22px}
       .article-body{font-size:17px}
+      .bottom-nav{flex-direction:column}
+      .btn-link{width:100%}
     }
   </style>
 </head>
-<body>
-  <header class="topbar">
-    <div class="wrap nav">
-      <a href="/" class="brand">
-        <div class="brand-mark"></div>
-        <div>Đường Sao Tỏa Sáng</div>
-      </a>
-      <nav class="nav-links">
-        <a href="/" id="navHome">Trang chủ</a>
-        <a href="/about" id="navAbout">Giới thiệu</a>
-        <a href="/program" id="navProgram">Chương trình</a>
-        <a href="/posts" id="navPosts">Bài viết</a>
-        <a href="/contact" id="navContact">Liên hệ</a>
-      </nav>
-    </div>
-  </header>
+<body class="article-page">
+  <div id="siteHeader"></div>
 
   <main class="wrap">
-    <section class="hero">
-      <div class="hero-card">
+    <section class="article-hero reveal">
+      <div class="article-hero-card">
         <div class="eyebrow" id="heroEyebrow">NỘI DUNG CHI TIẾT</div>
-        <h1 class="page-title" id="pageTitle">Đang tải nội dung...</h1>
-        <p class="page-excerpt" id="pageExcerpt">Xin chờ trong giây lát.</p>
-        <div class="meta" id="metaRow"></div>
+        <h1 class="article-title" id="pageTitle">Đang tải nội dung...</h1>
+        <p class="article-excerpt" id="pageExcerpt">Xin chờ trong giây lát.</p>
+
+        <div class="article-meta" id="metaRow"></div>
+
         <div class="cover-wrap" id="coverWrap" style="display:none;">
           <img id="coverImage" alt="">
         </div>
       </div>
     </section>
 
-    <section class="article-shell">
+    <section class="article-shell reveal">
       <div class="article-card">
         <div class="article-body" id="content">
           <div class="status-box" id="loadingText">Đang tải nội dung...</div>
         </div>
+
         <div class="bottom-nav">
-          <a class="btn-link" href="/posts" id="backPosts">← Quay lại thư viện bài viết</a>
+          <a class="btn-link primary" href="/posts" id="backPosts">← Quay lại thư viện bài viết</a>
           <a class="btn-link" href="/" id="backHome">Về trang chủ</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="wrap" id="footerText">
-      Đường Sao Tỏa Sáng · Nền tảng xuất bản cho tri thức sâu, nhận thức, sáng tạo và cộng đồng.
-    </div>
-  </footer>
+  <div id="siteFooter"></div>
 
   <script src="/assets/app.js"></script>
   <script>
     (async function () {
       const lang = DSTS.getLang();
       document.documentElement.lang = lang;
+      DSTS.mountSiteChrome({ active: "posts" });
 
       const slug = DSTS.getPathSlug();
 
       const T = {
         vi: {
-          navHome: "Trang chủ",
-          navAbout: "Giới thiệu",
-          navProgram: "Chương trình",
-          navPosts: "Bài viết",
-          navContact: "Liên hệ",
+          titleFallback: "Nội dung | Đường Sao Tỏa Sáng",
+          descriptionFallback: "Nội dung chi tiết của Đường Sao Tỏa Sáng.",
           eyebrow: "NỘI DUNG CHI TIẾT",
           loadingTitle: "Đang tải nội dung...",
           loadingDesc: "Xin chờ trong giây lát.",
           loadingBody: "Đang tải nội dung...",
-          failed: "Không thể tải nội dung hoặc không tìm thấy bài viết phù hợp.",
+          failed: "Không thể tải nội dung hoặc không tìm thấy bài viết phù hợp. Hệ thống sẽ hiển thị nội dung mẫu nếu có.",
           backPosts: "← Quay lại thư viện bài viết",
           backHome: "Về trang chủ",
           typePost: "Bài viết",
           typePage: "Trang",
-          footer: "Đường Sao Tỏa Sáng · Nền tảng xuất bản cho tri thức sâu, nhận thức, sáng tạo và cộng đồng.",
           metaPublished: "Xuất bản",
-          metaTags: "Chủ đề"
+          metaTags: "Chủ đề",
+          footer: "Đường Sao Tỏa Sáng · Nền tảng nội dung cho nhận thức, sáng tạo, cộng đồng và hành trình tỏa sáng của người Việt toàn cầu."
         },
         en: {
-          navHome: "Home",
-          navAbout: "About",
-          navProgram: "Program",
-          navPosts: "Posts",
-          navContact: "Contact",
+          titleFallback: "Content | Đường Sao Tỏa Sáng",
+          descriptionFallback: "Detailed content of Đường Sao Tỏa Sáng.",
           eyebrow: "FULL CONTENT",
           loadingTitle: "Loading content...",
           loadingDesc: "Please wait a moment.",
           loadingBody: "Loading content...",
-          failed: "Unable to load content or the requested item was not found.",
-          backPosts: "← Back to post library",
+          failed: "Unable to load content or the requested item was not found. The system will show built-in sample content if available.",
+          backPosts: "← Back to article library",
           backHome: "Back to home",
-          typePost: "Post",
+          typePost: "Article",
           typePage: "Page",
-          footer: "Đường Sao Tỏa Sáng · Publishing platform for deep knowledge, awareness, creativity, and community.",
           metaPublished: "Published",
-          metaTags: "Topics"
+          metaTags: "Topics",
+          footer: "Đường Sao Tỏa Sáng · A content platform for awareness, creativity, community, and the shining journey of Vietnamese people worldwide."
         }
       }[lang];
 
-      document.getElementById("navHome").textContent = T.navHome;
-      document.getElementById("navAbout").textContent = T.navAbout;
-      document.getElementById("navProgram").textContent = T.navProgram;
-      document.getElementById("navPosts").textContent = T.navPosts;
-      document.getElementById("navContact").textContent = T.navContact;
-      document.getElementById("heroEyebrow").textContent = T.eyebrow;
-      document.getElementById("pageTitle").textContent = T.loadingTitle;
-      document.getElementById("pageExcerpt").textContent = T.loadingDesc;
-      document.getElementById("loadingText").textContent = T.loadingBody;
-      document.getElementById("backPosts").textContent = T.backPosts;
-      document.getElementById("backPosts").href = DSTS.withLang("/posts");
-      document.getElementById("backHome").textContent = T.backHome;
-      document.getElementById("footerText").textContent = T.footer;
+      const fallbackContents = {
+        "hanh-trinh-nhin-lai-chinh-minh": {
+          title_vi: "Hành trình nhìn lại chính mình trong một thế giới quá ồn",
+          title_en: "Looking back at yourself in an overly noisy world",
+          excerpt_vi: "Có những giai đoạn con người không thiếu thông tin, mà thiếu sự lắng lại đủ sâu để nhận ra mình đang đi về đâu.",
+          excerpt_en: "There are times when people do not lack information, but lack enough stillness to see where they are heading.",
+          content_vi: `
+            <p>Có những thời điểm con người sống giữa quá nhiều tín hiệu, quá nhiều lời mời gọi và quá nhiều tiếng ồn đến từ bên ngoài. Họ tưởng rằng mình đang tiến lên rất nhanh, nhưng sâu hơn, họ chỉ đang bị kéo đi bởi những thứ chưa từng được chọn một cách tỉnh táo.</p>
+            <p>Khi nhịp sống trở nên quá dày đặc, con người rất dễ nhầm cảm giác bận rộn với cảm giác sống có ý nghĩa. Họ làm nhiều việc, theo dõi nhiều thứ, xuất hiện ở nhiều nơi, nhưng lại hiếm khi dừng lại đủ lâu để hỏi mình đang đi về đâu.</p>
+            <p>Nhìn lại chính mình không phải là quay lưng với cuộc sống. Đó là hành động cần thiết để không đánh mất trục sống trong một thế giới luôn tìm cách phân tán sự chú ý của ta.</p>
+            <p>Mỗi hành trình trưởng thành thật sự đều bắt đầu từ khả năng dừng lại, nhìn sâu hơn, phân biệt điều gì là giá trị thật và điều gì chỉ là một loại tiếng ồn đẹp đẽ nhưng rỗng.</p>
+          `,
+          content_en: `
+            <p>There are moments when people live among too many signals, too many invitations, and too much noise coming from the outside world. They think they are moving forward quickly, but more deeply, they are simply being pulled by things they never consciously chose.</p>
+            <p>When life becomes too dense, people easily confuse busyness with meaning. They do many things, follow many things, appear in many places, yet rarely stop long enough to ask where they are actually heading.</p>
+            <p>Looking back at yourself is not turning away from life. It is a necessary act if you do not want to lose your axis in a world constantly trying to fragment your attention.</p>
+            <p>Every real journey of maturity begins with the ability to pause, look deeper, distinguish real value from beautiful but empty noise, and choose more consciously.</p>
+          `,
+          tags: "nhận thức,hành trình",
+          created_at: "2026-03-01T08:00:00.000Z",
+          type: "post",
+          cover_url: ""
+        },
+        "sang-tao-khong-bat-dau-tu-tham-vong": {
+          title_vi: "Sáng tạo không bắt đầu từ tham vọng mà từ sự thấy rõ",
+          title_en: "Creativity does not begin with ambition but with clarity",
+          excerpt_vi: "Điều tạo nên giá trị bền vững không phải là làm cho thật nhiều, mà là tạo ra đúng thứ cần được sinh ra.",
+          excerpt_en: "What creates lasting value is not doing more, but bringing forth what truly needs to exist.",
+          content_vi: `
+            <p>Nhiều người nghĩ sáng tạo là phải mới, phải khác, phải gây ấn tượng thật mạnh. Nhưng nếu gốc của hành động sáng tạo chỉ là khao khát được nhìn thấy, thì sản phẩm ấy rất nhanh sẽ trở thành một màn trình diễn mệt mỏi.</p>
+            <p>Sáng tạo bền vững bắt đầu khi con người thấy rõ một nhu cầu thật, một khoảng trống thật, một vấn đề thật mà cuộc sống đang cần được lấp đầy.</p>
+            <p>Khi sáng tạo đi ra từ sự thấy rõ, nó không còn chỉ là công cụ để chứng minh bản thân. Nó trở thành một hình thức phục vụ, một cách đưa điều có ích vào cuộc sống thật.</p>
+            <p>Bởi vậy, trước khi hỏi làm sao để tạo ra thứ gây ấn tượng, hãy hỏi điều gì thật sự cần được sinh ra. Từ đó, sáng tạo mới có gốc và có đường đi lâu dài.</p>
+          `,
+          content_en: `
+            <p>Many people think creativity must be new, different, and highly impressive. But if the root of creative action is merely the desire to be seen, what is created quickly becomes an exhausting performance.</p>
+            <p>Sustainable creativity begins when a person clearly sees a real need, a real gap, a real problem that life is asking to be addressed.</p>
+            <p>When creativity comes from clear seeing, it is no longer merely a tool for self-proof. It becomes a form of service, a way of bringing something genuinely useful into real life.</p>
+            <p>So before asking how to create something impressive, ask what truly needs to be born. From there, creativity gains roots and a path that can endure.</p>
+          `,
+          tags: "sáng tạo,nhận thức",
+          created_at: "2026-02-26T08:00:00.000Z",
+          type: "post",
+          cover_url: ""
+        },
+        "cong-dong-khong-phai-dam-dong": {
+          title_vi: "Cộng đồng không phải đám đông, mà là những người cùng giữ một hướng đi",
+          title_en: "Community is not a crowd, but people holding the same direction",
+          excerpt_vi: "Một cộng đồng đúng không được xây bằng tiếng ồn, mà bằng sự tin cậy, trách nhiệm và khả năng cùng đi xa.",
+          excerpt_en: "A true community is not built by noise, but by trust, responsibility, and the capacity to travel far together.",
+          content_vi: `
+            <p>Nhiều nơi tự gọi mình là cộng đồng chỉ vì có nhiều người xuất hiện cùng lúc. Nhưng số đông không đủ để tạo nên cộng đồng. Đám đông có thể tạo năng lượng nhất thời, còn cộng đồng thật cần nền tảng bền lâu hơn nhiều.</p>
+            <p>Cộng đồng chỉ bắt đầu khi có giá trị chung. Những người đi cùng nhau phải biết điều gì là quan trọng, điều gì không thể đánh đổi, điều gì đáng giữ ngay cả khi hoàn cảnh thay đổi.</p>
+            <p>Tầng tiếp theo là trách nhiệm chung. Một cộng đồng không thể sống lâu nếu ai cũng chỉ muốn nhận mà không muốn giữ. Phải có sự đóng góp, sự hiện diện và sự nghiêm túc trong cách mỗi người đứng trong cấu trúc chung.</p>
+            <p>Khi hiểu điều đó, ta sẽ thấy cộng đồng không phải là nơi tụ lại cho đông. Đó là nơi cùng giữ một giá trị sống đủ thật để đi lâu dài với nhau.</p>
+          `,
+          content_en: `
+            <p>Many places call themselves a community simply because many people appear at once. But numbers alone do not create community. A crowd may generate temporary energy, while real community requires a far more durable foundation.</p>
+            <p>Community begins only when shared values exist. Those walking together must know what matters, what cannot be traded away, and what remains worth holding even as circumstances change.</p>
+            <p>The next layer is shared responsibility. A community cannot endure if everyone only wants to receive and no one wants to hold. Contribution, presence, and seriousness are all required in the way each person stands within the common structure.</p>
+            <p>Once this is understood, we see that community is not a place to gather in large numbers. It is a place where people hold a value real enough to walk together for a long time.</p>
+          `,
+          tags: "cộng đồng",
+          created_at: "2026-02-20T08:00:00.000Z",
+          type: "post",
+          cover_url: ""
+        }
+      };
 
-      if (!slug) {
-        document.getElementById("content").innerHTML = `<div class="status-box">${DSTS.escapeHTML(T.failed)}</div>`;
-        return;
+      function resolveTitle(item) {
+        return lang === "en"
+          ? (item.title_en || item.title || item.title_vi || "")
+          : (item.title_vi || item.title || item.title_en || "");
       }
 
-      try {
-        const item = await DSTS.apiFetch(`/content?slug=${encodeURIComponent(slug)}&lang=${lang}`);
+      function resolveExcerpt(item) {
+        return lang === "en"
+          ? (item.excerpt_en || item.excerpt || item.excerpt_vi || "")
+          : (item.excerpt_vi || item.excerpt || item.excerpt_en || "");
+      }
 
-        document.title = `${item.title} | Đường Sao Tỏa Sáng`;
+      function resolveContent(item) {
+        return lang === "en"
+          ? (item.content_en || item.content || item.content_vi || "")
+          : (item.content_vi || item.content || item.content_en || "");
+      }
 
-        const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) metaDesc.setAttribute("content", item.excerpt || item.title);
-
-        document.getElementById("pageTitle").textContent = item.title || "";
-        document.getElementById("pageExcerpt").textContent = item.excerpt || "";
-
+      function renderItem(item) {
+        const title = resolveTitle(item);
+        const excerpt = resolveExcerpt(item);
+        const content = resolveContent(item);
         const tags = String(item.tags || "").split(",").map(s => s.trim()).filter(Boolean);
         const typeText = item.type === "page" ? T.typePage : T.typePost;
+
+        document.title = `${title} | Đường Sao Tỏa Sáng`;
+
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) metaDesc.setAttribute("content", excerpt || title);
+
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.setAttribute("content", `${title} | Đường Sao Tỏa Sáng`);
+
+        const ogDesc = document.querySelector('meta[property="og:description"]');
+        if (ogDesc) ogDesc.setAttribute("content", excerpt || title);
+
+        const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+        if (twitterTitle) twitterTitle.setAttribute("content", `${title} | Đường Sao Tỏa Sáng`);
+
+        const twitterDesc = document.querySelector('meta[name="twitter:description"]');
+        if (twitterDesc) twitterDesc.setAttribute("content", excerpt || title);
+
+        document.getElementById("heroEyebrow").textContent = T.eyebrow;
+        document.getElementById("pageTitle").textContent = title || "";
+        document.getElementById("pageExcerpt").textContent = excerpt || "";
 
         document.getElementById("metaRow").innerHTML = `
           <span class="meta-pill">${DSTS.escapeHTML(typeText)}</span>
@@ -247,19 +507,60 @@
           const coverWrap = document.getElementById("coverWrap");
           const coverImage = document.getElementById("coverImage");
           coverImage.src = item.cover_url;
-          coverImage.alt = item.title || "";
+          coverImage.alt = title || "";
           coverWrap.style.display = "";
         }
 
-        document.getElementById("content").innerHTML = item.content || "";
+        document.getElementById("content").innerHTML = content || `<div class="status-box">${DSTS.escapeHTML(T.failed)}</div>`;
+      }
 
-        if (slug === "about") document.getElementById("navAbout").classList.add("active");
-        else if (slug === "program") document.getElementById("navProgram").classList.add("active");
-        else if (slug === "contact") document.getElementById("navContact").classList.add("active");
-        else document.getElementById("navPosts").classList.add("active");
+      document.title = T.titleFallback;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute("content", T.descriptionFallback);
 
-      } catch (_err) {
+      document.getElementById("heroEyebrow").textContent = T.eyebrow;
+      document.getElementById("pageTitle").textContent = T.loadingTitle;
+      document.getElementById("pageExcerpt").textContent = T.loadingDesc;
+      document.getElementById("loadingText").textContent = T.loadingBody;
+      document.getElementById("backPosts").textContent = T.backPosts;
+      document.getElementById("backPosts").href = DSTS.withLang("/posts");
+      document.getElementById("backHome").textContent = T.backHome;
+      document.getElementById("backHome").href = DSTS.withLang("/");
+      document.getElementById("siteFooter").innerHTML = `
+        <div class="footer">
+          <div class="wrap">${DSTS.escapeHTML(T.footer)}</div>
+        </div>
+      `;
+
+      if (!slug) {
         document.getElementById("content").innerHTML = `<div class="status-box">${DSTS.escapeHTML(T.failed)}</div>`;
+        return;
+      }
+
+      try {
+        const item = await DSTS.apiFetch(`/content?slug=${encodeURIComponent(slug)}&lang=${lang}`);
+        renderItem(item);
+      } catch (_err) {
+        if (fallbackContents[slug]) {
+          renderItem(fallbackContents[slug]);
+        } else {
+          document.getElementById("content").innerHTML = `<div class="status-box">${DSTS.escapeHTML(T.failed)}</div>`;
+        }
+      }
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+      } else {
+        document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
       }
     })();
   </script>
