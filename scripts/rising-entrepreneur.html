@@ -1,272 +1,1068 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
-
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>The Rising Entrepreneur – Đường Sao Tỏa Sáng</title>
+  <meta name="description" content="The Rising Entrepreneur là hành trình kịch bản cao cấp dành cho doanh nhân có khả năng trở thành biểu tượng ảnh hưởng bằng trí tuệ, câu chuyện, sáng tạo và giá trị thật.">
+  <meta name="theme-color" content="#060b14">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://duongsaotoasang.com/scripts/rising-entrepreneur.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Đường Sao Tỏa Sáng">
+  <meta property="og:title" content="The Rising Entrepreneur – Đường Sao Tỏa Sáng">
+  <meta property="og:description" content="Một hành trình kịch bản 1:1 dành cho doanh nhân có thể tạo ảnh hưởng thật sự bằng trí tuệ, câu chuyện và di sản sống động.">
+  <meta property="og:url" content="https://duongsaotoasang.com/scripts/rising-entrepreneur.html">
+  <meta property="og:image" content="https://duongsaotoasang.com/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Rising Entrepreneur – Đường Sao Tỏa Sáng">
+  <meta name="twitter:description" content="Một hành trình kịch bản 1:1 dành cho doanh nhân có thể tạo ảnh hưởng thật sự bằng trí tuệ, câu chuyện và di sản sống động.">
+  <meta name="twitter:image" content="https://duongsaotoasang.com/og.png">
 
-<meta charset="utf-8">
+  <link rel="stylesheet" href="/app.css">
 
-<meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    :root{
+      --text:#f5f7fb;
+      --muted:#aab4c3;
+      --gold:#e6c989;
+      --gold-soft:rgba(224,200,150,.18);
+      --line:rgba(224,200,150,.14);
+      --panel:rgba(255,255,255,.04);
+      --panel-2:rgba(255,255,255,.03);
+      --shadow:0 24px 80px rgba(0,0,0,.45);
+    }
 
-<title>The Rising Entrepreneur | Đường Sao Tỏa Sáng</title>
+    body.cinematic-page{
+      background:
+        radial-gradient(920px 420px at 10% 0%, rgba(224,200,150,.18), transparent 62%),
+        radial-gradient(840px 360px at 88% 8%, rgba(96,165,250,.16), transparent 62%),
+        radial-gradient(760px 320px at 54% 100%, rgba(167,139,250,.18), transparent 62%),
+        radial-gradient(680px 300px at 0% 100%, rgba(34,211,238,.12), transparent 62%),
+        linear-gradient(180deg,#05070c 0%,#060b14 38%,#05070c 100%);
+      background-attachment:fixed;
+      color:var(--text);
+    }
 
-<meta name="description"
-content="Kịch bản The Rising Entrepreneur là blueprint dành cho doanh nhân muốn trở thành biểu tượng ảnh hưởng và truyền cảm hứng toàn cầu.">
+    #siteHeader .site-topbar{
+      background:rgba(8,12,19,.72);
+      border-bottom:1px solid rgba(224,200,150,.10);
+      box-shadow:0 18px 60px rgba(0,0,0,.26);
+    }
 
-<link rel="stylesheet" href="/assets/site.css">
+    #siteHeader .site-menu{
+      gap:10px;
+      padding:8px;
+      border:1px solid rgba(224,200,150,.10);
+      background:rgba(255,255,255,.025);
+      border-radius:18px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+    }
 
+    #siteHeader .site-menu a{
+      height:44px;
+      padding:0 16px;
+      color:#bfc9d7;
+      border-radius:14px;
+      font-weight:600;
+    }
+
+    #siteHeader .site-menu a:hover{
+      color:#fff6df;
+      background:rgba(224,200,150,.10);
+      border-color:rgba(224,200,150,.18);
+    }
+
+    #siteHeader .site-menu a.active{
+      color:#fff3d1;
+      background:linear-gradient(180deg, rgba(224,200,150,.22), rgba(224,200,150,.10));
+      border-color:rgba(224,200,150,.30);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 8px 24px rgba(224,200,150,.10);
+    }
+
+    #siteHeader .site-lang a{
+      background:rgba(255,255,255,.03);
+      border-color:rgba(224,200,150,.10);
+      color:#bfc9d7;
+    }
+
+    #siteHeader .site-lang a.active{
+      color:#fff6df;
+      background:linear-gradient(180deg, rgba(224,200,150,.20), rgba(224,200,150,.10));
+      border-color:rgba(224,200,150,.30);
+      box-shadow:0 8px 20px rgba(224,200,150,.10);
+    }
+
+    .cinema-wrap{
+      max-width:1280px;
+      margin:0 auto;
+      padding:34px 22px 84px;
+    }
+
+    .hero-film{
+      position:relative;
+      min-height:560px;
+      border-radius:30px;
+      overflow:hidden;
+      display:flex;
+      align-items:flex-end;
+      padding:56px;
+      border:1px solid rgba(224,200,150,.18);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.70)),
+        radial-gradient(circle at 18% 18%, rgba(224,200,150,.16), transparent 24%),
+        linear-gradient(135deg, rgba(96,165,250,.22), rgba(167,139,250,.16));
+      box-shadow:0 40px 120px rgba(0,0,0,.6);
+    }
+
+    .hero-film::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.68) 0%, rgba(0,0,0,.42) 42%, rgba(0,0,0,.12) 100%);
+      pointer-events:none;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:1;
+      max-width:760px;
+    }
+
+    .eyebrow{
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:12px;
+    }
+
+    .hero-title{
+      margin:0;
+      font-size:56px;
+      line-height:1.04;
+      letter-spacing:-.03em;
+      color:#fff;
+      text-shadow:0 8px 30px rgba(0,0,0,.35);
+    }
+
+    .hero-lead{
+      margin:18px 0 0;
+      max-width:700px;
+      font-size:18px;
+      line-height:1.82;
+      color:rgba(255,255,255,.86);
+    }
+
+    .film-meta{
+      margin-top:24px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      min-height:38px;
+      padding:0 12px;
+      border-radius:999px;
+      border:1px solid rgba(224,200,150,.20);
+      background:rgba(255,255,255,.05);
+      color:#f4e5bc;
+      font-size:13px;
+      font-weight:600;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:28px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:0 18px;
+      border-radius:16px;
+      border:1px solid rgba(224,200,150,.18);
+      background:rgba(255,255,255,.05);
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      transition:.24s ease;
+      box-shadow:0 12px 30px rgba(0,0,0,.18);
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.08);
+      border-color:rgba(224,200,150,.30);
+    }
+
+    .btn.primary{
+      color:#fff5de;
+      background:linear-gradient(180deg, rgba(224,200,150,.24), rgba(224,200,150,.10));
+      border-color:rgba(224,200,150,.34);
+      box-shadow:0 14px 34px rgba(224,200,150,.16);
+    }
+
+    .section{
+      margin-top:72px;
+    }
+
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .section-head h2{
+      margin:0;
+      font-size:34px;
+      line-height:1.08;
+      letter-spacing:-.028em;
+      color:#f5e7c7;
+    }
+
+    .section-head p{
+      margin:0;
+      max-width:780px;
+      font-size:16px;
+      line-height:1.9;
+      color:var(--muted);
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      border-radius:26px;
+      background:var(--panel);
+      box-shadow:var(--shadow);
+      padding:24px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .panel::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(circle at top right, rgba(224,200,150,.12), transparent 24%),
+        radial-gradient(circle at left bottom, rgba(167,139,250,.10), transparent 26%);
+      pointer-events:none;
+    }
+
+    .panel h3{
+      position:relative;
+      margin:0 0 12px;
+      font-size:24px;
+      color:#f8fafc;
+    }
+
+    .panel p,
+    .panel li{
+      position:relative;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.86;
+    }
+
+    .panel ul{
+      position:relative;
+      margin:0;
+      padding-left:18px;
+    }
+
+    .timeline{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .timeline-card{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:var(--panel-2);
+      padding:22px;
+      transition:.26s ease;
+    }
+
+    .timeline-card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(224,200,150,.26);
+      background:rgba(255,255,255,.05);
+      box-shadow:0 18px 48px rgba(0,0,0,.22);
+    }
+
+    .timeline-year{
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:10px;
+    }
+
+    .timeline-card h3{
+      margin:0 0 10px;
+      font-size:22px;
+      color:#fff;
+    }
+
+    .timeline-card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:15px;
+    }
+
+    .kpi-row{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .kpi-card{
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:rgba(255,255,255,.03);
+      padding:18px;
+      text-align:left;
+    }
+
+    .kpi-card b{
+      display:block;
+      font-size:24px;
+      color:#f4e2b1;
+      margin-bottom:6px;
+    }
+
+    .kpi-card span{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.65;
+    }
+
+    .purchase-box{
+      display:grid;
+      grid-template-columns:1fr 320px;
+      gap:28px;
+      align-items:center;
+      border:1px solid rgba(224,200,150,.22);
+      border-radius:28px;
+      padding:32px;
+      background:
+        radial-gradient(720px 260px at 14% 0%, rgba(224,200,150,.12), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow:0 24px 68px rgba(0,0,0,.26);
+    }
+
+    .purchase-box h3{
+      margin:0 0 10px;
+      font-size:30px;
+      color:#fff;
+    }
+
+    .purchase-box p{
+      margin:0 0 14px;
+      color:var(--muted);
+      line-height:1.9;
+      font-size:16px;
+    }
+
+    .price-tag{
+      display:inline-flex;
+      align-items:center;
+      min-height:48px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(224,200,150,.28);
+      background:rgba(224,200,150,.08);
+      color:#f4e2b1;
+      font-size:20px;
+      font-weight:700;
+      margin:8px 0 18px;
+    }
+
+    .qr-box{
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid rgba(224,200,150,.20);
+      background:#fff;
+      padding:12px;
+      box-shadow:0 16px 42px rgba(0,0,0,.22);
+    }
+
+    .qr-box img{
+      display:block;
+      width:100%;
+      border-radius:12px;
+    }
+
+    .purchase-note{
+      margin-top:12px;
+      font-size:12px;
+      color:rgba(255,255,255,.56);
+      line-height:1.65;
+      text-align:center;
+    }
+
+    .comments{
+      margin-top:18px;
+    }
+
+    .comment-form{
+      display:grid;
+      gap:12px;
+      max-width:640px;
+      margin-top:18px;
+    }
+
+    .comment-form input,
+    .comment-form textarea,
+    .comment-form select{
+      width:100%;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      padding:14px 16px;
+      font-size:14px;
+      outline:none;
+    }
+
+    .comment-form textarea{
+      min-height:140px;
+      resize:vertical;
+    }
+
+    .comment-list{
+      margin-top:24px;
+      display:grid;
+      gap:14px;
+    }
+
+    .comment-item{
+      border:1px solid rgba(224,200,150,.12);
+      border-radius:18px;
+      padding:18px;
+      background:rgba(255,255,255,.03);
+    }
+
+    .comment-item b{
+      color:#fff;
+      display:block;
+      margin-bottom:6px;
+    }
+
+    .comment-item .rating{
+      color:#f3d99e;
+      font-size:13px;
+      margin-bottom:8px;
+    }
+
+    .comment-item p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:15px;
+    }
+
+    .footer{
+      padding:52px 0 34px;
+      margin-top:84px;
+      border-top:1px solid rgba(224,200,150,.10);
+      background:rgba(10,15,24,.46);
+      text-align:center;
+      font-size:14px;
+      color:rgba(255,255,255,.58);
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity .72s ease, transform .72s ease;
+    }
+
+    .reveal.in{
+      opacity:1;
+      transform:none;
+    }
+
+    @media (max-width:1080px){
+      .grid-2,
+      .purchase-box{
+        grid-template-columns:1fr;
+      }
+
+      .kpi-row{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      .hero-title{
+        font-size:44px;
+      }
+    }
+
+    @media (max-width:760px){
+      .cinema-wrap{
+        padding:22px 16px 62px;
+      }
+
+      .hero-film{
+        min-height:460px;
+        padding:28px;
+      }
+
+      .hero-title{
+        font-size:34px;
+      }
+
+      .hero-lead{
+        font-size:16px;
+      }
+
+      .section-head h2{
+        font-size:28px;
+      }
+
+      .hero-actions{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .kpi-row{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
 </head>
-
-<body>
-
-<div id="siteHeader"></div>
-
-<main class="wrap script-detail">
-
-<section class="script-hero">
-
-<h1>
-The Rising Entrepreneur
-</h1>
-
-<p class="lead">
-
-Không phải mọi doanh nhân đều trở thành biểu tượng.
-
-Nhưng có những người, khi câu chuyện của họ được kể đúng cách,
-họ trở thành nguồn cảm hứng cho cả một thế hệ.
-
-The Rising Entrepreneur là kịch bản được thiết kế để xây dựng
-một hành trình như vậy.
-
-</p>
-
-<div class="script-price">
-
-Entry contribution
-
-<strong>
-25,000 USD
-</strong>
-
-</div>
-
-</section>
-
-<section class="script-section">
-
-<h2>
-Kịch bản này dành cho ai
-</h2>
-
-<p>
-
-Dành cho những doanh nhân có:
-
-</p>
-
-<ul>
-
-<li>
-Một câu chuyện thật sự
-</li>
-
-<li>
-Một hành trình vượt qua thử thách
-</li>
-
-<li>
-Một tầm nhìn muốn lan tỏa
-</li>
-
-<li>
-Khát vọng tạo ảnh hưởng tích cực
-</li>
-
-</ul>
-
-</section>
-
-<section class="script-section">
-
-<h2>
-Nội dung kịch bản
-</h2>
-
-<ul>
-
-<li>
-Kiến trúc câu chuyện cá nhân
-</li>
-
-<li>
-Format documentary
-</li>
-
-<li>
-Format talkshow
-</li>
-
-<li>
-Chiến lược truyền thông
-</li>
-
-<li>
-Lộ trình xây dựng hình ảnh 5 năm
-</li>
-
-</ul>
-
-</section>
-
-<section class="script-section">
-
-<h2>
-Lộ trình hành trình
-</h2>
-
-<h3>
-Năm 1
-</h3>
-
-<p>
-
-Xây dựng câu chuyện cá nhân và định vị hình ảnh.
-
-</p>
-
-<h3>
-Năm 2
-</h3>
-
-<p>
-
-Xuất hiện truyền thông và các chương trình đối thoại.
-
-</p>
-
-<h3>
-Năm 3
-</h3>
-
-<p>
-
-Sản xuất documentary và các nội dung truyền cảm hứng.
-
-</p>
-
-<h3>
-Năm 4
-</h3>
-
-<p>
-
-Lan tỏa ảnh hưởng ra cộng đồng và quốc tế.
-
-</p>
-
-<h3>
-Năm 5
-</h3>
-
-<p>
-
-Trở thành một trong những câu chuyện doanh nhân tiêu biểu.
-
-</p>
-
-</section>
-
-<section class="script-section payment">
-
-<h2>
-Thanh toán
-</h2>
-
-<p>
-
-Sau khi thanh toán, khách hàng sẽ nhận được
-file kịch bản và hướng dẫn triển khai.
-
-</p>
-
-<img src="/assets/qr-payment.png"
-alt="QR Payment"
-class="qr">
-
-<p>
-
-Nội dung chuyển khoản:
-
-</p>
-
-<strong>
-
-DSTS Rising Entrepreneur
-
-</strong>
-
-</section>
-
-<section class="script-section comments">
-
-<h2>
-Ý kiến cộng đồng
-</h2>
-
-<form class="comment-form">
-
-<input
-type="text"
-placeholder="Tên của bạn"
-/>
-
-<textarea
-placeholder="Ý kiến của bạn về kịch bản"
-/>
-
-<button>
-
-Gửi đánh giá
-
-</button>
-
-</form>
-
-<div class="comment">
-
-<strong>
-Nguyễn Anh
-</strong>
-
-<p>
-
-Một cấu trúc rất sâu. Nếu triển khai đúng,
-nó có thể tạo ra một hành trình thật sự.
-
-</p>
-
-</div>
-
-</section>
-
-</main>
-
-<footer class="site-footer">
-
-<div class="wrap">
-
-<p>
-
-© Đường Sao Tỏa Sáng
-
-</p>
-
-</div>
-
-</footer>
-
-<script src="/assets/site.js"></script>
-
+<body class="cinematic-page">
+  <div id="siteHeader"></div>
+
+  <main class="cinema-wrap" id="mainContent">
+    <section class="hero-film reveal">
+      <div class="hero-content">
+        <div class="eyebrow" id="heroEyebrow">SCRIPT JOURNEY · 1:1</div>
+        <h1 class="hero-title" id="heroTitle">The Rising Entrepreneur</h1>
+        <p class="hero-lead" id="heroLead">
+          Không phải mọi doanh nhân đều trở thành biểu tượng. Nhưng có những người, khi câu chuyện của họ được xây dựng đúng cách, họ trở thành nguồn cảm hứng cho cả một thế hệ. The Rising Entrepreneur được tạo ra cho hành trình đó.
+        </p>
+
+        <div class="film-meta">
+          <span class="badge" id="heroMeta1">High-end blueprint</span>
+          <span class="badge" id="heroMeta2">Selected 1:1 journey</span>
+          <span class="badge" id="heroMeta3">25,000 USD</span>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#purchase" id="heroBtn1">Thanh toán hành trình</a>
+          <a class="btn" href="#roadmap" id="heroBtn2">Xem lộ trình 5 năm</a>
+          <a class="btn" href="#comments" id="heroBtn3">Ý kiến công khai</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" id="introEyebrow">GIỚI THIỆU</div>
+          <h2 id="introTitle">Một kịch bản dành cho doanh nhân muốn trở thành nhân vật có ảnh hưởng thật</h2>
+        </div>
+        <p id="introDesc">
+          Đây không phải tài liệu truyền thông thông thường. Đây là blueprint dành cho doanh nhân có tiềm năng chuyển hóa hành trình sống, trí tuệ, giá trị và khả năng lãnh đạo thành một câu chuyện có sức lan tỏa dài hạn.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <article class="panel">
+          <h3 id="forWhoTitle">Kịch bản này dành cho ai</h3>
+          <p id="forWhoText">
+            Dành cho những doanh nhân không chỉ muốn được biết đến, mà muốn được nhìn thấy đúng giá trị thật của mình. Những người này thường đã trải qua khó khăn, đã có nội lực, đã có thành tựu nhất định, nhưng chưa có một narrative đủ mạnh để nâng họ lên thành biểu tượng.
+          </p>
+          <ul>
+            <li id="forWho1">Doanh nhân có hành trình thật, không phải hình ảnh bề mặt.</li>
+            <li id="forWho2">Người có khả năng lãnh đạo bằng trí tuệ và trách nhiệm.</li>
+            <li id="forWho3">Người muốn xây dựng ảnh hưởng tích cực dài hạn.</li>
+            <li id="forWho4">Người sẵn sàng bước vào hành trình 1:1 được chọn lọc nghiêm ngặt.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h3 id="whyTitle">Tại sao họ sẽ muốn chọn hành trình này</h3>
+          <p id="whyText">
+            Vì nổi tiếng ngắn hạn không tạo ra di sản. Một doanh nhân thật sự cần nhiều hơn truyền thông tức thời. Họ cần câu chuyện, cấu trúc xuất hiện, chiến lược hình ảnh, chiều sâu tư tưởng và khả năng tạo niềm tin công khai. The Rising Entrepreneur được thiết kế để lấp đúng khoảng trống đó.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" id="valueEyebrow">GIÁ TRỊ GÓI</div>
+          <h2 id="valueTitle">Những gì hành trình này thực sự mở ra</h2>
+        </div>
+        <p id="valueDesc">
+          Giá trị không nằm ở số trang tài liệu. Giá trị nằm ở việc giúp một con người được nhìn thấy đúng, kể đúng, xuất hiện đúng và đi đủ dài để tạo ảnh hưởng thật.
+        </p>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <b id="kpi1">01</b>
+          <span id="kpi1d">Kiến trúc câu chuyện cá nhân có thể đi cùng doanh nhân trong nhiều năm.</span>
+        </div>
+        <div class="kpi-card">
+          <b id="kpi2">02</b>
+          <span id="kpi2d">Khung documentary, đối thoại công khai và định vị truyền thông cao cấp.</span>
+        </div>
+        <div class="kpi-card">
+          <b id="kpi3">03</b>
+          <span id="kpi3d">Lộ trình 1–2 năm để bắt đầu được nhận diện đúng, và 3–5 năm để tạo ảnh hưởng rõ nét.</span>
+        </div>
+        <div class="kpi-card">
+          <b id="kpi4">04</b>
+          <span id="kpi4d">Một blueprint 1:1 được chọn lọc, không đại trà, không bán rẻ giá trị con người.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="roadmap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" id="roadEyebrow">LỘ TRÌNH</div>
+          <h2 id="roadTitle">Từ 1 năm đầu đến 5 năm sau, hành trình này có thể đi tới đâu</h2>
+        </div>
+        <p id="roadDesc">
+          Một người thật sự xuất sắc không bùng nổ chỉ trong vài tuần. Họ được xây dựng bằng chiều sâu, kỷ luật, sự xuất hiện đúng thời điểm và cách kể đúng bản chất.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-card">
+          <div class="timeline-year" id="year1">Giai đoạn 1</div>
+          <h3 id="year1Title">0–6 tháng</h3>
+          <p id="year1Text">Định vị lại chân dung doanh nhân, bóc tách câu chuyện thật, xác định trục ảnh hưởng, trục nội dung và ngôn ngữ xuất hiện đầu tiên.</p>
+        </article>
+
+        <article class="timeline-card">
+          <div class="timeline-year" id="year2">Giai đoạn 2</div>
+          <h3 id="year2Title">6–12 tháng</h3>
+          <p id="year2Text">Bắt đầu các xuất hiện chiến lược, định hình narrative công khai, xây dựng format đối thoại, profile nội dung và nền móng truyền cảm hứng.</p>
+        </article>
+
+        <article class="timeline-card">
+          <div class="timeline-year" id="year3">Giai đoạn 3</div>
+          <h3 id="year3Title">1–2 năm</h3>
+          <p id="year3Text">Hình thành nhận diện rõ ràng trong cộng đồng mục tiêu. Câu chuyện doanh nhân không còn rời rạc mà trở thành một hành trình có cấu trúc, có chiều sâu và có khả năng lan tỏa.</p>
+        </article>
+
+        <article class="timeline-card">
+          <div class="timeline-year" id="year4">Giai đoạn 4</div>
+          <h3 id="year4Title">3–5 năm</h3>
+          <p id="year4Text">Nếu đi đúng, doanh nhân có thể trở thành nhân vật có ảnh hưởng, được mời xuất hiện, được nhắc đến như một biểu tượng của trí tuệ, sự kiến tạo và hành trình sống đáng tin cậy.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" id="contentEyebrow">CẤU TRÚC GÓI</div>
+          <h2 id="contentTitle">Bên trong The Rising Entrepreneur có những gì</h2>
+        </div>
+        <p id="contentDesc">
+          Đây là một script journey có thể phát triển thành documentary, profile public, chuỗi xuất hiện chiến lược, cấu trúc đối thoại và các phiên bản nội dung truyền cảm hứng.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <article class="panel">
+          <h3 id="leftPackTitle">Khối narrative cốt lõi</h3>
+          <ul>
+            <li id="pack1">Narrative architecture cho hành trình đời sống và kinh doanh.</li>
+            <li id="pack2">Story spine giúp giữ mạch kể nhất quán trong nhiều năm.</li>
+            <li id="pack3">Thông điệp trung tâm có thể dùng cho truyền thông, đối thoại, documentary.</li>
+            <li id="pack4">Chân dung ảnh hưởng và chiều sâu nhân vật.</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h3 id="rightPackTitle">Khối triển khai ứng dụng</h3>
+          <ul>
+            <li id="pack5">Format documentary / mini documentary.</li>
+            <li id="pack6">Khung talk / đối thoại công khai / chương trình xuất hiện.</li>
+            <li id="pack7">Lộ trình 1–2 năm đầu và định hướng 3–5 năm.</li>
+            <li id="pack8">Khuyến nghị phát triển hình ảnh, cộng đồng và di sản nội dung.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="purchase">
+      <div class="purchase-box">
+        <div>
+          <div class="eyebrow" id="purchaseEyebrow">THANH TOÁN HÀNH TRÌNH</div>
+          <h3 id="purchaseTitle">Tham gia The Rising Entrepreneur</h3>
+          <p id="purchaseText1">
+            Đây là một hành trình cao cấp, không đại trà, dành cho người thực sự muốn được chọn và đi xa bằng giá trị thật. Sau khi thanh toán, khách hàng gửi xác nhận để bắt đầu bước tiếp theo.
+          </p>
+          <div class="price-tag" id="purchasePrice">25,000 USD</div>
+          <p id="purchaseText2">
+            Nội dung chuyển khoản nên ghi rõ: <strong>DSTS RISING ENTREPRENEUR</strong>. Sau đó gửi xác nhận qua trang liên hệ để đội ngũ kiểm tra và phản hồi.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="/contact" id="purchaseBtn1">Gửi xác nhận thanh toán</a>
+            <a class="btn" href="/scripts.html" id="purchaseBtn2">Quay lại thư viện Scripts</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="qr-box">
+            <img src="/assets/qr-payment.png" alt="QR Payment">
+          </div>
+          <div class="purchase-note" id="purchaseNote">
+            QR hiện tại là phương thức thanh toán trực tiếp. Về sau có thể mở thêm xác nhận tự động, đơn hàng và gửi file riêng theo từng hành trình.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal comments" id="comments">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" id="commentEyebrow">Ý KIẾN CÔNG KHAI</div>
+          <h2 id="commentTitle">Phản hồi và đánh giá từ cộng đồng</h2>
+        </div>
+        <p id="commentDesc">
+          Đây là nơi khách hàng và người quan tâm có thể để lại tên, nhận xét và đánh giá công khai về hành trình này. Giai đoạn đầu có thể dùng hiển thị tĩnh, sau đó sẽ nối D1 để lưu thật.
+        </p>
+      </div>
+
+      <form class="comment-form">
+        <input type="text" id="formName" placeholder="Tên của bạn">
+        <select id="formRating">
+          <option>5 sao – Rất mạnh</option>
+          <option>4 sao – Rất tốt</option>
+          <option>3 sao – Tốt</option>
+          <option>2 sao – Cần thêm thông tin</option>
+          <option>1 sao – Chưa phù hợp</option>
+        </select>
+        <textarea id="formComment" placeholder="Chia sẻ cảm nhận của bạn về The Rising Entrepreneur"></textarea>
+        <button type="button" class="btn primary" id="formSubmit">Gửi đánh giá</button>
+      </form>
+
+      <div class="comment-list">
+        <article class="comment-item">
+          <b id="sampleName1">Nguyễn Anh</b>
+          <div class="rating" id="sampleRate1">5 sao – Rất mạnh</div>
+          <p id="sampleText1">Đây không phải kiểu tài liệu ngắn hạn. Nó cho thấy cách một doanh nhân có thể đi từ thành công cá nhân đến ảnh hưởng thật sự nếu có chiến lược câu chuyện và chiều sâu đúng.</p>
+        </article>
+
+        <article class="comment-item">
+          <b id="sampleName2">Lê Minh</b>
+          <div class="rating" id="sampleRate2">5 sao – Rất tốt</div>
+          <p id="sampleText2">Điều tôi thích là gói này không bán sự nổi tiếng rỗng. Nó nhắm vào việc xây dựng con người, giá trị và đường đi dài hạn. Đó mới là thứ đáng đầu tư.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>© Đường Sao Tỏa Sáng · DSTS</div>
+    <div id="footerLine">Một hành trình dành cho những doanh nhân có thể trở thành biểu tượng ảnh hưởng bằng giá trị thật.</div>
+  </footer>
+
+  <script src="/assets/app.js"></script>
+  <script>
+    (function () {
+      const lang = window.DSTS && typeof DSTS.getLang === "function" ? DSTS.getLang() : "vi";
+      document.documentElement.lang = lang;
+
+      if (window.DSTS && typeof DSTS.mountSiteChrome === "function") {
+        DSTS.mountSiteChrome({ active: "scripts" });
+      }
+
+      const dict = {
+        vi: {
+          title: "The Rising Entrepreneur – Đường Sao Tỏa Sáng",
+          description: "The Rising Entrepreneur là hành trình kịch bản cao cấp dành cho doanh nhân có khả năng trở thành biểu tượng ảnh hưởng bằng trí tuệ, câu chuyện, sáng tạo và giá trị thật.",
+          heroEyebrow: "SCRIPT JOURNEY · 1:1",
+          heroTitle: "The Rising Entrepreneur",
+          heroLead: "Không phải mọi doanh nhân đều trở thành biểu tượng. Nhưng có những người, khi câu chuyện của họ được xây dựng đúng cách, họ trở thành nguồn cảm hứng cho cả một thế hệ. The Rising Entrepreneur được tạo ra cho hành trình đó.",
+          heroMeta1: "High-end blueprint",
+          heroMeta2: "Selected 1:1 journey",
+          heroMeta3: "25,000 USD",
+          heroBtn1: "Thanh toán hành trình",
+          heroBtn2: "Xem lộ trình 5 năm",
+          heroBtn3: "Ý kiến công khai",
+
+          introEyebrow: "GIỚI THIỆU",
+          introTitle: "Một kịch bản dành cho doanh nhân muốn trở thành nhân vật có ảnh hưởng thật",
+          introDesc: "Đây không phải tài liệu truyền thông thông thường. Đây là blueprint dành cho doanh nhân có tiềm năng chuyển hóa hành trình sống, trí tuệ, giá trị và khả năng lãnh đạo thành một câu chuyện có sức lan tỏa dài hạn.",
+
+          forWhoTitle: "Kịch bản này dành cho ai",
+          forWhoText: "Dành cho những doanh nhân không chỉ muốn được biết đến, mà muốn được nhìn thấy đúng giá trị thật của mình. Những người này thường đã trải qua khó khăn, đã có nội lực, đã có thành tựu nhất định, nhưng chưa có một narrative đủ mạnh để nâng họ lên thành biểu tượng.",
+          forWho1: "Doanh nhân có hành trình thật, không phải hình ảnh bề mặt.",
+          forWho2: "Người có khả năng lãnh đạo bằng trí tuệ và trách nhiệm.",
+          forWho3: "Người muốn xây dựng ảnh hưởng tích cực dài hạn.",
+          forWho4: "Người sẵn sàng bước vào hành trình 1:1 được chọn lọc nghiêm ngặt.",
+
+          whyTitle: "Tại sao họ sẽ muốn chọn hành trình này",
+          whyText: "Vì nổi tiếng ngắn hạn không tạo ra di sản. Một doanh nhân thật sự cần nhiều hơn truyền thông tức thời. Họ cần câu chuyện, cấu trúc xuất hiện, chiến lược hình ảnh, chiều sâu tư tưởng và khả năng tạo niềm tin công khai. The Rising Entrepreneur được thiết kế để lấp đúng khoảng trống đó.",
+
+          valueEyebrow: "GIÁ TRỊ GÓI",
+          valueTitle: "Những gì hành trình này thực sự mở ra",
+          valueDesc: "Giá trị không nằm ở số trang tài liệu. Giá trị nằm ở việc giúp một con người được nhìn thấy đúng, kể đúng, xuất hiện đúng và đi đủ dài để tạo ảnh hưởng thật.",
+          kpi1: "01",
+          kpi1d: "Kiến trúc câu chuyện cá nhân có thể đi cùng doanh nhân trong nhiều năm.",
+          kpi2: "02",
+          kpi2d: "Khung documentary, đối thoại công khai và định vị truyền thông cao cấp.",
+          kpi3: "03",
+          kpi3d: "Lộ trình 1–2 năm để bắt đầu được nhận diện đúng, và 3–5 năm để tạo ảnh hưởng rõ nét.",
+          kpi4: "04",
+          kpi4d: "Một blueprint 1:1 được chọn lọc, không đại trà, không bán rẻ giá trị con người.",
+
+          roadEyebrow: "LỘ TRÌNH",
+          roadTitle: "Từ 1 năm đầu đến 5 năm sau, hành trình này có thể đi tới đâu",
+          roadDesc: "Một người thật sự xuất sắc không bùng nổ chỉ trong vài tuần. Họ được xây dựng bằng chiều sâu, kỷ luật, sự xuất hiện đúng thời điểm và cách kể đúng bản chất.",
+          year1: "Giai đoạn 1",
+          year1Title: "0–6 tháng",
+          year1Text: "Định vị lại chân dung doanh nhân, bóc tách câu chuyện thật, xác định trục ảnh hưởng, trục nội dung và ngôn ngữ xuất hiện đầu tiên.",
+          year2: "Giai đoạn 2",
+          year2Title: "6–12 tháng",
+          year2Text: "Bắt đầu các xuất hiện chiến lược, định hình narrative công khai, xây dựng format đối thoại, profile nội dung và nền móng truyền cảm hứng.",
+          year3: "Giai đoạn 3",
+          year3Title: "1–2 năm",
+          year3Text: "Hình thành nhận diện rõ ràng trong cộng đồng mục tiêu. Câu chuyện doanh nhân không còn rời rạc mà trở thành một hành trình có cấu trúc, có chiều sâu và có khả năng lan tỏa.",
+          year4: "Giai đoạn 4",
+          year4Title: "3–5 năm",
+          year4Text: "Nếu đi đúng, doanh nhân có thể trở thành nhân vật có ảnh hưởng, được mời xuất hiện, được nhắc đến như một biểu tượng của trí tuệ, sự kiến tạo và hành trình sống đáng tin cậy.",
+
+          contentEyebrow: "CẤU TRÚC GÓI",
+          contentTitle: "Bên trong The Rising Entrepreneur có những gì",
+          contentDesc: "Đây là một script journey có thể phát triển thành documentary, profile public, chuỗi xuất hiện chiến lược, cấu trúc đối thoại và các phiên bản nội dung truyền cảm hứng.",
+          leftPackTitle: "Khối narrative cốt lõi",
+          pack1: "Narrative architecture cho hành trình đời sống và kinh doanh.",
+          pack2: "Story spine giúp giữ mạch kể nhất quán trong nhiều năm.",
+          pack3: "Thông điệp trung tâm có thể dùng cho truyền thông, đối thoại, documentary.",
+          pack4: "Chân dung ảnh hưởng và chiều sâu nhân vật.",
+          rightPackTitle: "Khối triển khai ứng dụng",
+          pack5: "Format documentary / mini documentary.",
+          pack6: "Khung talk / đối thoại công khai / chương trình xuất hiện.",
+          pack7: "Lộ trình 1–2 năm đầu và định hướng 3–5 năm.",
+          pack8: "Khuyến nghị phát triển hình ảnh, cộng đồng và di sản nội dung.",
+
+          purchaseEyebrow: "THANH TOÁN HÀNH TRÌNH",
+          purchaseTitle: "Tham gia The Rising Entrepreneur",
+          purchaseText1: "Đây là một hành trình cao cấp, không đại trà, dành cho người thực sự muốn được chọn và đi xa bằng giá trị thật. Sau khi thanh toán, khách hàng gửi xác nhận để bắt đầu bước tiếp theo.",
+          purchasePrice: "25,000 USD",
+          purchaseText2: "Nội dung chuyển khoản nên ghi rõ: DSTS RISING ENTREPRENEUR. Sau đó gửi xác nhận qua trang liên hệ để đội ngũ kiểm tra và phản hồi.",
+          purchaseBtn1: "Gửi xác nhận thanh toán",
+          purchaseBtn2: "Quay lại thư viện Scripts",
+          purchaseNote: "QR hiện tại là phương thức thanh toán trực tiếp. Về sau có thể mở thêm xác nhận tự động, đơn hàng và gửi file riêng theo từng hành trình.",
+
+          commentEyebrow: "Ý KIẾN CÔNG KHAI",
+          commentTitle: "Phản hồi và đánh giá từ cộng đồng",
+          commentDesc: "Đây là nơi khách hàng và người quan tâm có thể để lại tên, nhận xét và đánh giá công khai về hành trình này. Giai đoạn đầu có thể dùng hiển thị tĩnh, sau đó sẽ nối D1 để lưu thật.",
+          formName: "Tên của bạn",
+          formComment: "Chia sẻ cảm nhận của bạn về The Rising Entrepreneur",
+          formSubmit: "Gửi đánh giá",
+          rate5: "5 sao – Rất mạnh",
+          rate4: "4 sao – Rất tốt",
+          rate3: "3 sao – Tốt",
+          rate2: "2 sao – Cần thêm thông tin",
+          rate1: "1 sao – Chưa phù hợp",
+          sampleName1: "Nguyễn Anh",
+          sampleRate1: "5 sao – Rất mạnh",
+          sampleText1: "Đây không phải kiểu tài liệu ngắn hạn. Nó cho thấy cách một doanh nhân có thể đi từ thành công cá nhân đến ảnh hưởng thật sự nếu có chiến lược câu chuyện và chiều sâu đúng.",
+          sampleName2: "Lê Minh",
+          sampleRate2: "5 sao – Rất tốt",
+          sampleText2: "Điều tôi thích là gói này không bán sự nổi tiếng rỗng. Nó nhắm vào việc xây dựng con người, giá trị và đường đi dài hạn. Đó mới là thứ đáng đầu tư.",
+          footerLine: "Một hành trình dành cho những doanh nhân có thể trở thành biểu tượng ảnh hưởng bằng giá trị thật."
+        },
+        en: {
+          title: "The Rising Entrepreneur – Đường Sao Tỏa Sáng",
+          description: "The Rising Entrepreneur is a premium script journey for entrepreneurs who can become real symbols of influence through intelligence, story, creativity, and grounded value.",
+          heroEyebrow: "SCRIPT JOURNEY · 1:1",
+          heroTitle: "The Rising Entrepreneur",
+          heroLead: "Not every entrepreneur becomes a symbol. But some, when their story is shaped the right way, become a source of inspiration for an entire generation. The Rising Entrepreneur is built for that path.",
+          heroMeta1: "High-end blueprint",
+          heroMeta2: "Selected 1:1 journey",
+          heroMeta3: "25,000 USD",
+          heroBtn1: "Pay for the journey",
+          heroBtn2: "View the 5-year roadmap",
+          heroBtn3: "Public reflections",
+
+          introEyebrow: "INTRODUCTION",
+          introTitle: "A script for entrepreneurs who want to become figures of real influence",
+          introDesc: "This is not a standard PR document. It is a blueprint for entrepreneurs capable of turning life journey, intelligence, values, and leadership into a story with long-term resonance.",
+
+          forWhoTitle: "Who this journey is for",
+          forWhoText: "It is for entrepreneurs who do not merely want visibility, but want to be seen in the truth of their value. They may already have gone through hardship, built inner strength, and achieved meaningful results, but still lack a narrative strong enough to raise them into symbolic presence.",
+          forWho1: "Entrepreneurs with a real journey, not surface branding.",
+          forWho2: "People capable of leading with intelligence and responsibility.",
+          forWho3: "Those seeking to build long-term positive influence.",
+          forWho4: "Those ready to enter a rigorously selected 1:1 path.",
+
+          whyTitle: "Why they will want this journey",
+          whyText: "Because short-term fame does not create legacy. A real entrepreneur needs more than instant publicity. They need story, structure, appearance strategy, depth of thought, and the ability to generate public trust. The Rising Entrepreneur is designed to fill exactly that gap.",
+
+          valueEyebrow: "PACKAGE VALUE",
+          valueTitle: "What this journey truly opens",
+          valueDesc: "The value does not lie in the number of pages. The value lies in helping a person be seen correctly, told correctly, appear correctly, and move far enough to create real influence.",
+          kpi1: "01",
+          kpi1d: "A personal story architecture that can travel with the entrepreneur for years.",
+          kpi2: "02",
+          kpi2d: "A framework for documentary, public dialogue, and premium media positioning.",
+          kpi3: "03",
+          kpi3d: "A 1–2 year path to begin being recognized correctly, and a 3–5 year path to build clear influence.",
+          kpi4: "04",
+          kpi4d: "A selected 1:1 blueprint, not mass-market, not reducing human value.",
+
+          roadEyebrow: "ROADMAP",
+          roadTitle: "From the first year to five years later, where this journey can go",
+          roadDesc: "A truly exceptional person does not explode in a few weeks. They are built through depth, discipline, correct timing, and the right way of being told.",
+          year1: "Phase 1",
+          year1Title: "0–6 months",
+          year1Text: "Reposition the entrepreneur’s identity, extract the true story, define the influence axis, content axis, and the first language of public presence.",
+          year2: "Phase 2",
+          year2Title: "6–12 months",
+          year2Text: "Begin strategic appearances, shape the public narrative, develop dialogue formats, content profiles, and the foundation of inspirational presence.",
+          year3: "Phase 3",
+          year3Title: "1–2 years",
+          year3Text: "A clear identity begins to form within the target community. The entrepreneur’s story is no longer fragmented; it becomes a structured, deep, and shareable journey.",
+          year4: "Phase 4",
+          year4Title: "3–5 years",
+          year4Text: "If executed correctly, the entrepreneur can become a figure of influence, invited into public spaces, referenced as a symbol of intelligence, creation, and trustworthy life journey.",
+
+          contentEyebrow: "PACKAGE STRUCTURE",
+          contentTitle: "What exists inside The Rising Entrepreneur",
+          contentDesc: "This script journey can develop into documentary, public profile, strategic appearance sequences, dialogue structures, and inspirational content forms.",
+          leftPackTitle: "Core narrative block",
+          pack1: "Narrative architecture for life and business journey.",
+          pack2: "A story spine that keeps the message consistent over years.",
+          pack3: "A central message usable for media, dialogue, and documentary.",
+          pack4: "An influence profile and depth of character.",
+          rightPackTitle: "Applied development block",
+          pack5: "Documentary / mini documentary format.",
+          pack6: "Public talk / appearance / dialogue framework.",
+          pack7: "1–2 year launch path and 3–5 year direction.",
+          pack8: "Recommendations for image, community, and content legacy growth.",
+
+          purchaseEyebrow: "JOURNEY PAYMENT",
+          purchaseTitle: "Enter The Rising Entrepreneur",
+          purchaseText1: "This is a premium, non-mass journey for people who truly want to be selected and go far through real value. After payment, the client sends confirmation to begin the next step.",
+          purchasePrice: "25,000 USD",
+          purchaseText2: "Your transfer note should clearly state: DSTS RISING ENTREPRENEUR. Then send confirmation through the contact page so the team can verify and respond.",
+          purchaseBtn1: "Send payment confirmation",
+          purchaseBtn2: "Back to Scripts library",
+          purchaseNote: "The current QR is a direct payment method. Later, this can be expanded into automated confirmation, order management, and private delivery for each journey.",
+
+          commentEyebrow: "PUBLIC REFLECTIONS",
+          commentTitle: "Public feedback and evaluations",
+          commentDesc: "This is where clients and interested visitors can leave their name, reflection, and public rating for this journey. In the early phase it can stay static, then later connect to D1 for real storage.",
+          formName: "Your name",
+          formComment: "Share your thoughts about The Rising Entrepreneur",
+          formSubmit: "Submit review",
+          rate5: "5 stars – Very strong",
+          rate4: "4 stars – Very good",
+          rate3: "3 stars – Good",
+          rate2: "2 stars – Need more detail",
+          rate1: "1 star – Not yet aligned",
+          sampleName1: "Nguyen Anh",
+          sampleRate1: "5 stars – Very strong",
+          sampleText1: "This is not a short-term document. It shows how an entrepreneur can move from private success to real influence when the story strategy and depth are handled correctly.",
+          sampleName2: "Le Minh",
+          sampleRate2: "5 stars – Very good",
+          sampleText2: "What I appreciate is that this package does not sell empty fame. It focuses on building the human being, the value, and the long path. That is what is worth investing in.",
+          footerLine: "A journey for entrepreneurs capable of becoming symbols of influence through real value."
+        }
+      };
+
+      const t = dict[lang] || dict.vi;
+
+      document.title = t.title;
+      const setMeta = (selector, value) => {
+        const el = document.querySelector(selector);
+        if (el) el.setAttribute("content", value);
+      };
+      setMeta('meta[name="description"]', t.description);
+      setMeta('meta[property="og:title"]', t.title);
+      setMeta('meta[property="og:description"]', t.description);
+      setMeta('meta[name="twitter:title"]', t.title);
+      setMeta('meta[name="twitter:description"]', t.description);
+
+      const set = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value;
+      };
+
+      [
+        "heroEyebrow","heroTitle","heroLead","heroMeta1","heroMeta2","heroMeta3","heroBtn1","heroBtn2","heroBtn3",
+        "introEyebrow","introTitle","introDesc",
+        "forWhoTitle","forWhoText","forWho1","forWho2","forWho3","forWho4",
+        "whyTitle","whyText",
+        "valueEyebrow","valueTitle","valueDesc","kpi1","kpi1d","kpi2","kpi2d","kpi3","kpi3d","kpi4","kpi4d",
+        "roadEyebrow","roadTitle","roadDesc","year1","year1Title","year1Text","year2","year2Title","year2Text","year3","year3Title","year3Text","year4","year4Title","year4Text",
+        "contentEyebrow","contentTitle","contentDesc","leftPackTitle","pack1","pack2","pack3","pack4","rightPackTitle","pack5","pack6","pack7","pack8",
+        "purchaseEyebrow","purchaseTitle","purchaseText1","purchasePrice","purchaseText2","purchaseBtn1","purchaseBtn2","purchaseNote",
+        "commentEyebrow","commentTitle","commentDesc","sampleName1","sampleRate1","sampleText1","sampleName2","sampleRate2","sampleText2","footerLine"
+      ].forEach((id) => set(id, t[id]));
+
+      const formName = document.getElementById("formName");
+      if (formName) formName.placeholder = t.formName;
+      const formComment = document.getElementById("formComment");
+      if (formComment) formComment.placeholder = t.formComment;
+      const formSubmit = document.getElementById("formSubmit");
+      if (formSubmit) formSubmit.textContent = t.formSubmit;
+
+      const formRating = document.getElementById("formRating");
+      if (formRating) {
+        formRating.innerHTML = `
+          <option>${t.rate5}</option>
+          <option>${t.rate4}</option>
+          <option>${t.rate3}</option>
+          <option>${t.rate2}</option>
+          <option>${t.rate1}</option>
+        `;
+      }
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+      } else {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+      }
+    })();
+  </script>
 </body>
-
 </html>
