@@ -6,7 +6,6 @@
   <title>Nội dung | Đường Sao Tỏa Sáng</title>
   <meta name="description" content="Nội dung chi tiết của Đường Sao Tỏa Sáng.">
   <meta name="theme-color" content="#0b0f14">
-
   <style>
     :root{
       --bg:#0b0f14;
@@ -20,7 +19,6 @@
       --radius:22px;
       --wrap:980px;
     }
-
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
@@ -32,351 +30,238 @@
         radial-gradient(900px 500px at 100% 0%, rgba(90,130,180,.08), transparent 60%),
         linear-gradient(180deg,#0a0d12 0%, #0f141b 100%);
     }
-
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
-
-    .wrap{
-      width:min(var(--wrap), calc(100% - 32px));
-      margin:0 auto;
-    }
-
+    .wrap{width:min(var(--wrap), calc(100% - 32px));margin:0 auto}
     .topbar{
-      position:sticky;
-      top:0;
-      z-index:20;
+      position:sticky;top:0;z-index:20;
       backdrop-filter:blur(14px);
       background:rgba(10,13,18,.76);
       border-bottom:1px solid var(--line);
     }
-
     .nav{
-      min-height:72px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
+      min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px;
     }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight:700;
-      letter-spacing:.2px;
-    }
-
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.2px}
     .brand-mark{
-      width:40px;
-      height:40px;
-      border-radius:14px;
+      width:40px;height:40px;border-radius:14px;
       background:
         radial-gradient(circle at 30% 30%, rgba(255,255,255,.14), transparent 35%),
         linear-gradient(135deg, rgba(216,188,119,.32), rgba(255,255,255,.04));
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
+      border:1px solid var(--line);box-shadow:var(--shadow);
     }
-
-    .nav-links{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:flex-end;
-    }
-
-    .nav-links a{
-      padding:10px 12px;
-      border-radius:12px;
-      color:var(--muted);
-      transition:.2s ease;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active{
-      color:var(--text);
-      background:rgba(255,255,255,.05);
-    }
-
-    .hero{
-      padding:40px 0 20px;
-    }
-
+    .nav-links{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+    .nav-links a{padding:10px 12px;border-radius:12px;color:var(--muted);transition:.2s ease}
+    .nav-links a:hover,.nav-links a.active{color:var(--text);background:rgba(255,255,255,.05)}
+    .hero{padding:40px 0 20px}
     .hero-card{
-      border:1px solid var(--line);
-      border-radius:30px;
+      border:1px solid var(--line);border-radius:30px;
       background:
         radial-gradient(700px 240px at 10% 0%, rgba(216,188,119,.10), transparent 60%),
         linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      box-shadow:var(--shadow);
-      padding:30px;
+      box-shadow:var(--shadow);padding:30px;
     }
-
-    .eyebrow{
-      color:var(--gold);
-      font-size:12px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      margin-bottom:12px;
-    }
-
-    .page-title{
-      margin:0;
-      font-size:50px;
-      line-height:1.04;
-      letter-spacing:-.03em;
-    }
-
-    .page-excerpt{
-      margin:16px 0 0;
-      max-width:760px;
-      color:var(--muted);
-      font-size:17px;
-      line-height:1.85;
-    }
-
-    .meta{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-      margin-top:20px;
-      color:var(--muted);
-      font-size:13px;
-    }
-
+    .eyebrow{color:var(--gold);font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
+    .page-title{margin:0;font-size:50px;line-height:1.04;letter-spacing:-.03em}
+    .page-excerpt{margin:16px 0 0;max-width:760px;color:var(--muted);font-size:17px;line-height:1.85}
+    .meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;color:var(--muted);font-size:13px}
     .meta-pill{
-      display:inline-flex;
-      align-items:center;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
+      display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;border:1px solid var(--line);
       background:rgba(255,255,255,.03);
     }
-
-    .cover-wrap{
-      margin-top:20px;
-      overflow:hidden;
-      border-radius:24px;
-      border:1px solid var(--line);
-    }
-
+    .cover-wrap{margin-top:20px;overflow:hidden;border-radius:24px;border:1px solid var(--line)}
     .cover-wrap img{
-      width:100%;
-      aspect-ratio:16/8;
-      object-fit:cover;
+      width:100%;aspect-ratio:16/8;object-fit:cover;
       background:linear-gradient(135deg, rgba(216,188,119,.18), rgba(255,255,255,.03));
     }
-
-    .article-shell{
-      padding:10px 0 70px;
-    }
-
+    .article-shell{padding:10px 0 70px}
     .article-card{
       border:1px solid var(--line);
       background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.02));
-      border-radius:30px;
-      box-shadow:var(--shadow);
-      padding:34px;
+      border-radius:30px;box-shadow:var(--shadow);padding:34px;
     }
-
-    .article-body{
-      font-size:18px;
-      line-height:1.95;
-      color:var(--text);
-    }
-
-    .article-body p{
-      margin:0 0 1.25em;
-    }
-
-    .article-body h2,
-    .article-body h3,
-    .article-body h4{
-      margin:1.8em 0 .7em;
-      line-height:1.3;
-      letter-spacing:-.02em;
-    }
-
-    .article-body a{
-      color:var(--gold);
-      text-decoration:underline;
-    }
-
-    .article-body ul,
-    .article-body ol{
-      padding-left:1.25em;
-      margin:0 0 1.2em;
-    }
-
+    .article-body{font-size:18px;line-height:1.95;color:var(--text)}
+    .article-body p{margin:0 0 1.25em}
+    .article-body h2,.article-body h3,.article-body h4{margin:1.8em 0 .7em;line-height:1.3;letter-spacing:-.02em}
+    .article-body a{color:var(--gold);text-decoration:underline}
+    .article-body ul,.article-body ol{padding-left:1.25em;margin:0 0 1.2em}
     .article-body blockquote{
-      margin:1.5em 0;
-      padding:14px 18px;
-      border-left:3px solid var(--gold);
-      background:rgba(255,255,255,.03);
-      color:var(--muted);
-      border-radius:12px;
+      margin:1.5em 0;padding:14px 18px;border-left:3px solid var(--gold);
+      background:rgba(255,255,255,.03);color:var(--muted);border-radius:12px;
     }
-
-    .bottom-nav{
-      margin-top:26px;
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
+    .bottom-nav{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
     .btn-link{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:50px;
-      padding:0 16px;
-      border-radius:16px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.04);
-      color:var(--text);
-      font-weight:600;
+      display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 16px;
+      border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--text);font-weight:600;
     }
-
-    .btn-link:hover{
-      background:rgba(255,255,255,.08);
-    }
-
-        .status-box{
-      border:1px dashed var(--line);
-      border-radius:20px;
-      padding:20px;
-      color:var(--muted);
-      background:rgba(255,255,255,.02);
-    }
-
-    .footer{
-      border-top:1px solid var(--line);
-      padding:28px 0 48px;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.8;
-    }
-
-    @media (max-width: 900px){
-      .post-title{
-        font-size:36px;
-      }
-    }
-
-    @media (max-width: 640px){
-      .post-title{
-        font-size:30px;
-      }
-
-      .nav{
-        flex-direction:column;
-        align-items:flex-start;
-        padding:12px 0;
-      }
-
-      .nav-links{
-        justify-content:flex-start;
-      }
-
-      .hero-card{
-        padding:22px;
-      }
+    .btn-link:hover{background:rgba(255,255,255,.08)}
+    .status-box{border:1px dashed var(--line);border-radius:20px;padding:22px;color:var(--muted);background:rgba(255,255,255,.02)}
+    .footer{border-top:1px solid var(--line);padding:28px 0 48px;color:var(--muted);font-size:14px;line-height:1.8}
+    @media (max-width:780px){
+      .nav{align-items:flex-start;padding:12px 0;flex-direction:column}
+      .nav-links{justify-content:flex-start}
+      .page-title{font-size:36px}
+      .hero-card,.article-card{padding:22px}
+      .article-body{font-size:17px}
     }
   </style>
 </head>
-
 <body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a href="/" class="brand">
+        <div class="brand-mark"></div>
+        <div>Đường Sao Tỏa Sáng</div>
+      </a>
+      <nav class="nav-links">
+        <a href="/" id="navHome">Trang chủ</a>
+        <a href="/about" id="navAbout">Giới thiệu</a>
+        <a href="/program" id="navProgram">Chương trình</a>
+        <a href="/posts" id="navPosts">Bài viết</a>
+        <a href="/contact" id="navContact">Liên hệ</a>
+      </nav>
+    </div>
+  </header>
 
-<header class="topbar">
-  <div class="wrap nav">
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-card">
+        <div class="eyebrow" id="heroEyebrow">NỘI DUNG CHI TIẾT</div>
+        <h1 class="page-title" id="pageTitle">Đang tải nội dung...</h1>
+        <p class="page-excerpt" id="pageExcerpt">Xin chờ trong giây lát.</p>
+        <div class="meta" id="metaRow"></div>
+        <div class="cover-wrap" id="coverWrap" style="display:none;">
+          <img id="coverImage" alt="">
+        </div>
+      </div>
+    </section>
 
-    <a href="/" class="brand">
-      <div class="brand-mark"></div>
-      <div>Đường Sao Tỏa Sáng</div>
-    </a>
+    <section class="article-shell">
+      <div class="article-card">
+        <div class="article-body" id="content">
+          <div class="status-box" id="loadingText">Đang tải nội dung...</div>
+        </div>
+        <div class="bottom-nav">
+          <a class="btn-link" href="/posts" id="backPosts">← Quay lại thư viện bài viết</a>
+          <a class="btn-link" href="/" id="backHome">Về trang chủ</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <nav class="nav-links">
-      <a href="/">Trang chủ</a>
-      <a href="/about">Giới thiệu</a>
-      <a href="/program">Chương trình</a>
-      <a href="/posts">Bài viết</a>
-      <a href="/contact">Liên hệ</a>
-    </nav>
+  <footer class="footer">
+    <div class="wrap" id="footerText">
+      Đường Sao Tỏa Sáng · Nền tảng xuất bản cho tri thức sâu, nhận thức, sáng tạo và cộng đồng.
+    </div>
+  </footer>
 
-  </div>
-</header>
+  <script src="/assets/app.js"></script>
+  <script>
+    (async function () {
+      const lang = DSTS.getLang();
+      document.documentElement.lang = lang;
 
-<main class="wrap">
+      const slug = DSTS.getPathSlug();
 
-  <article class="post">
+      const T = {
+        vi: {
+          navHome: "Trang chủ",
+          navAbout: "Giới thiệu",
+          navProgram: "Chương trình",
+          navPosts: "Bài viết",
+          navContact: "Liên hệ",
+          eyebrow: "NỘI DUNG CHI TIẾT",
+          loadingTitle: "Đang tải nội dung...",
+          loadingDesc: "Xin chờ trong giây lát.",
+          loadingBody: "Đang tải nội dung...",
+          failed: "Không thể tải nội dung hoặc không tìm thấy bài viết phù hợp.",
+          backPosts: "← Quay lại thư viện bài viết",
+          backHome: "Về trang chủ",
+          typePost: "Bài viết",
+          typePage: "Trang",
+          footer: "Đường Sao Tỏa Sáng · Nền tảng xuất bản cho tri thức sâu, nhận thức, sáng tạo và cộng đồng.",
+          metaPublished: "Xuất bản",
+          metaTags: "Chủ đề"
+        },
+        en: {
+          navHome: "Home",
+          navAbout: "About",
+          navProgram: "Program",
+          navPosts: "Posts",
+          navContact: "Contact",
+          eyebrow: "FULL CONTENT",
+          loadingTitle: "Loading content...",
+          loadingDesc: "Please wait a moment.",
+          loadingBody: "Loading content...",
+          failed: "Unable to load content or the requested item was not found.",
+          backPosts: "← Back to post library",
+          backHome: "Back to home",
+          typePost: "Post",
+          typePage: "Page",
+          footer: "Đường Sao Tỏa Sáng · Publishing platform for deep knowledge, awareness, creativity, and community.",
+          metaPublished: "Published",
+          metaTags: "Topics"
+        }
+      }[lang];
 
-    <h1 id="title" class="post-title"></h1>
+      document.getElementById("navHome").textContent = T.navHome;
+      document.getElementById("navAbout").textContent = T.navAbout;
+      document.getElementById("navProgram").textContent = T.navProgram;
+      document.getElementById("navPosts").textContent = T.navPosts;
+      document.getElementById("navContact").textContent = T.navContact;
+      document.getElementById("heroEyebrow").textContent = T.eyebrow;
+      document.getElementById("pageTitle").textContent = T.loadingTitle;
+      document.getElementById("pageExcerpt").textContent = T.loadingDesc;
+      document.getElementById("loadingText").textContent = T.loadingBody;
+      document.getElementById("backPosts").textContent = T.backPosts;
+      document.getElementById("backPosts").href = DSTS.withLang("/posts");
+      document.getElementById("backHome").textContent = T.backHome;
+      document.getElementById("footerText").textContent = T.footer;
 
-    <div class="post-meta" id="meta"></div>
+      if (!slug) {
+        document.getElementById("content").innerHTML = `<div class="status-box">${DSTS.escapeHTML(T.failed)}</div>`;
+        return;
+      }
 
-    <div class="post-body" id="content"></div>
+      try {
+        const item = await DSTS.apiFetch(`/content?slug=${encodeURIComponent(slug)}&lang=${lang}`);
 
-  </article>
+        document.title = `${item.title} | Đường Sao Tỏa Sáng`;
 
-</main>
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) metaDesc.setAttribute("content", item.excerpt || item.title);
 
-<footer class="footer">
-  <div class="wrap">
-    Đường Sao Tỏa Sáng · Publishing platform for deep knowledge, awareness, creativity and community.
-  </div>
-</footer>
+        document.getElementById("pageTitle").textContent = item.title || "";
+        document.getElementById("pageExcerpt").textContent = item.excerpt || "";
 
-<script src="/assets/app.js"></script>
+        const tags = String(item.tags || "").split(",").map(s => s.trim()).filter(Boolean);
+        const typeText = item.type === "page" ? T.typePage : T.typePost;
 
-<script>
+        document.getElementById("metaRow").innerHTML = `
+          <span class="meta-pill">${DSTS.escapeHTML(typeText)}</span>
+          <span class="meta-pill">${DSTS.escapeHTML(T.metaPublished)}: ${DSTS.escapeHTML(DSTS.formatDate(item.created_at))}</span>
+          ${tags.length ? `<span class="meta-pill">${DSTS.escapeHTML(T.metaTags)}: ${DSTS.escapeHTML(tags.join(", "))}</span>` : ""}
+        `;
 
-(function(){
+        if (item.cover_url) {
+          const coverWrap = document.getElementById("coverWrap");
+          const coverImage = document.getElementById("coverImage");
+          coverImage.src = item.cover_url;
+          coverImage.alt = item.title || "";
+          coverWrap.style.display = "";
+        }
 
-  const params = new URL(window.location.href).searchParams
+        document.getElementById("content").innerHTML = item.content || "";
 
-  const slug = params.get("slug")
+        if (slug === "about") document.getElementById("navAbout").classList.add("active");
+        else if (slug === "program") document.getElementById("navProgram").classList.add("active");
+        else if (slug === "contact") document.getElementById("navContact").classList.add("active");
+        else document.getElementById("navPosts").classList.add("active");
 
-  if(!slug){
-    document.getElementById("content").innerHTML =
-      `<div class="status-box">Missing slug</div>`
-    return
-  }
-
-  const lang = params.get("lang")==="en" ? "en" : "vi"
-
-  async function load(){
-
-    try{
-
-      const res = await fetch(`/api/content?slug=${slug}&lang=${lang}`)
-
-      if(!res.ok) throw new Error()
-
-      const data = await res.json()
-
-      document.title = data.title + " | Đường Sao Tỏa Sáng"
-
-      document.getElementById("title").innerText = data.title
-
-      document.getElementById("meta").innerText =
-        new Date(data.created_at).toLocaleDateString()
-
-      document.getElementById("content").innerHTML = data.content
-
-    }catch(e){
-
-      document.getElementById("content").innerHTML =
-        `<div class="status-box">Content not found</div>`
-
-    }
-
-  }
-
-  load()
-
-})()
-
-</script>
-
+      } catch (_err) {
+        document.getElementById("content").innerHTML = `<div class="status-box">${DSTS.escapeHTML(T.failed)}</div>`;
+      }
+    })();
+  </script>
 </body>
 </html>
