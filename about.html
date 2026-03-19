@@ -9,42 +9,44 @@
 
 <meta name="description" content="Đường Sao Tỏa Sáng là nền tảng tri thức và cộng đồng tôn vinh hành trình tỏa sáng của người Việt Nam trên toàn cầu.">
 
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/app.css">
+
+<style>
+  body{
+    background:
+      radial-gradient(900px 520px at 0% 0%, rgba(224,200,150,.10), transparent 60%),
+      radial-gradient(760px 480px at 100% 10%, rgba(132,176,255,.10), transparent 58%),
+      linear-gradient(180deg,#080b0f 0%, #0c1117 100%);
+  }
+  #siteHeader .site-topbar{
+    background:rgba(8,12,19,.80);
+    border-bottom:1px solid rgba(224,200,150,.10);
+  }
+  .hero{padding:60px 0 40px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .hero-inner{max-width:760px}
+  .hero-inner h1{margin:0 0 16px;font-size:48px;line-height:1.1;letter-spacing:-.03em;color:#f5e7c7}
+  .lead{margin:0;font-size:18px;color:#aeb8c8;line-height:1.9}
+  .section{padding:48px 0}
+  .section.soft{background:rgba(255,255,255,.025);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)}
+  .section h2{margin:0 0 20px;font-size:32px;color:#f5e7c7;letter-spacing:-.02em}
+  .section p{color:#9eb0c8;line-height:1.85;font-size:16px;margin:0 0 14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:24px}
+  .card{border:1px solid rgba(224,200,150,.12);border-radius:20px;background:rgba(255,255,255,.032);padding:24px;transition:all .26s ease}
+  .card:hover{transform:translateY(-4px);border-color:rgba(224,200,150,.22);background:rgba(255,255,255,.046)}
+  .card h3{margin:0 0 12px;font-size:20px;color:#f0e4c8}
+  .card p{margin:0;color:#9eb0c8;line-height:1.75;font-size:15px}
+  .mission-list{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px}
+  .mission-list li{padding:14px 18px;border:1px solid rgba(224,200,150,.12);border-radius:14px;background:rgba(255,255,255,.028);color:#cfd9e8;line-height:1.6}
+  .mission-list li::before{content:"★ ";color:#e0c896;font-size:12px}
+  .roadmap{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px}
+  .roadmap li{padding:16px 20px;border:1px solid rgba(224,200,150,.10);border-left:3px solid rgba(224,200,150,.4);border-radius:14px;background:rgba(255,255,255,.025);color:#cfd9e8;line-height:1.65}
+</style>
 
 </head>
 
 <body>
 
-<header class="site-header">
-
-  <div class="wrap nav">
-
-    <a class="logo" href="/">
-      DSTS
-    </a>
-
-    <nav class="menu">
-
-      <a href="/">Trang chủ</a>
-      <a href="/about">Giới thiệu</a>
-      <a href="/program">Chương trình</a>
-      <a href="/posts">Bài viết</a>
-      <a href="/events">Sự kiện</a>
-      <a href="/scripts">Kịch bản</a>
-      <a href="/donate">Đóng góp</a>
-
-    </nav>
-
-    <div class="lang">
-
-      <button data-lang="vi">VI</button>
-      <button data-lang="en">EN</button>
-
-    </div>
-
-  </div>
-
-</header>
+<div id="siteHeader"></div>
 
 
 
@@ -300,7 +302,7 @@ Phát triển nền tảng văn hóa và sáng tạo quy mô quốc tế.
 
 <footer class="site-footer">
 
-<div class="wrap footer-inner">
+<div class="wrap site-footer-inner">
 
 <p>
 
@@ -320,7 +322,12 @@ Kết nối cộng đồng người Việt muôn nơi.
 
 
 
-<script src="/assets/site.js"></script>
+<script src="/assets/app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    DSTS.mountSiteChrome({ active: 'about' });
+  });
+</script>
 
 </body>
 </html>
