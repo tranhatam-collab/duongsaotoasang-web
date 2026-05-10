@@ -1,65 +1,1068 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
-
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>The DSTS Legacy – Đường Sao Tỏa Sáng</title>
+  <meta name="description" content="The DSTS Legacy là hành trình kịch bản cao cấp dành cho những con người có ảnh hưởng muốn hành trình sống của họ trở thành di sản Người Việt Nam.">
+  <meta name="theme-color" content="#060b14">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://duongsaotoasang.com/scripts/dsts-legacy.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Đường Sao Tỏa Sáng">
+  <meta property="og:title" content="The DSTS Legacy – Đường Sao Tỏa Sáng">
+  <meta property="og:description" content="Một hành trình kịch bản 1:1 dành cho những con người có thể trở thành di sản Người Việt Nam bằng ảnh hưởng thật.">
+  <meta property="og:url" content="https://duongsaotoasang.com/scripts/dsts-legacy.html">
+  <meta property="og:image" content="https://duongsaotoasang.com/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The DSTS Legacy – Đường Sao Tỏa Sáng">
+  <meta name="twitter:description" content="Một hành trình kịch bản 1:1 dành cho những con người có thể trở thành di sản Người Việt Nam bằng ảnh hưởng thật.">
+  <meta name="twitter:image" content="https://duongsaotoasang.com/og.png">
 
-<meta charset="utf-8">
+  <link rel="stylesheet" href="/app.css">
 
-<title>The DSTS Legacy</title>
+  <style>
+    :root{
+      --text:#f5f7fb;
+      --muted:#aab4c3;
+      --gold:#e6c989;
+      --gold-soft:rgba(224,200,150,.18);
+      --line:rgba(224,200,150,.14);
+      --panel:rgba(255,255,255,.04);
+      --panel-2:rgba(255,255,255,.03);
+      --shadow:0 24px 80px rgba(0,0,0,.45);
+    }
 
-<link rel="stylesheet" href="/assets/site.css">
+    body.cinematic-page{
+      background:
+        radial-gradient(920px 420px at 10% 0%, rgba(224,200,150,.18), transparent 62%),
+        radial-gradient(840px 360px at 88% 8%, rgba(96,165,250,.16), transparent 62%),
+        radial-gradient(760px 320px at 54% 100%, rgba(167,139,250,.18), transparent 62%),
+        radial-gradient(680px 300px at 0% 100%, rgba(34,211,238,.12), transparent 62%),
+        linear-gradient(180deg,#05070c 0%,#060b14 38%,#05070c 100%);
+      background-attachment:fixed;
+      color:var(--text);
+    }
 
+    #siteHeader .site-topbar{
+      background:rgba(8,12,19,.72);
+      border-bottom:1px solid rgba(224,200,150,.10);
+      box-shadow:0 18px 60px rgba(0,0,0,.26);
+    }
+
+    #siteHeader .site-menu{
+      gap:10px;
+      padding:8px;
+      border:1px solid rgba(224,200,150,.10);
+      background:rgba(255,255,255,.025);
+      border-radius:18px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+    }
+
+    #siteHeader .site-menu a{
+      height:44px;
+      padding:0 16px;
+      color:#bfc9d7;
+      border-radius:14px;
+      font-weight:600;
+    }
+
+    #siteHeader .site-menu a:hover{
+      color:#fff6df;
+      background:rgba(224,200,150,.10);
+      border-color:rgba(224,200,150,.18);
+    }
+
+    #siteHeader .site-menu a.active{
+      color:#fff3d1;
+      background:linear-gradient(180deg, rgba(224,200,150,.22), rgba(224,200,150,.10));
+      border-color:rgba(224,200,150,.30);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 8px 24px rgba(224,200,150,.10);
+    }
+
+    #siteHeader .site-lang a{
+      background:rgba(255,255,255,.03);
+      border-color:rgba(224,200,150,.10);
+      color:#bfc9d7;
+    }
+
+    #siteHeader .site-lang a.active{
+      color:#fff6df;
+      background:linear-gradient(180deg, rgba(224,200,150,.20), rgba(224,200,150,.10));
+      border-color:rgba(224,200,150,.30);
+      box-shadow:0 8px 20px rgba(224,200,150,.10);
+    }
+
+    .cinema-wrap{
+      max-width:1280px;
+      margin:0 auto;
+      padding:34px 22px 84px;
+    }
+
+    .hero-film{
+      position:relative;
+      min-height:560px;
+      border-radius:30px;
+      overflow:hidden;
+      display:flex;
+      align-items:flex-end;
+      padding:56px;
+      border:1px solid rgba(224,200,150,.18);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.70)),
+        radial-gradient(circle at 18% 18%, rgba(224,200,150,.16), transparent 24%),
+        linear-gradient(135deg, rgba(96,165,250,.22), rgba(167,139,250,.16));
+      box-shadow:0 40px 120px rgba(0,0,0,.6);
+    }
+
+    .hero-film::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.68) 0%, rgba(0,0,0,.42) 42%, rgba(0,0,0,.12) 100%);
+      pointer-events:none;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:1;
+      max-width:760px;
+    }
+
+    .eyebrow{
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:12px;
+    }
+
+    .hero-title{
+      margin:0;
+      font-size:56px;
+      line-height:1.04;
+      letter-spacing:-.03em;
+      color:#fff;
+      text-shadow:0 8px 30px rgba(0,0,0,.35);
+    }
+
+    .hero-lead{
+      margin:18px 0 0;
+      max-width:700px;
+      font-size:18px;
+      line-height:1.82;
+      color:rgba(255,255,255,.86);
+    }
+
+    .film-meta{
+      margin-top:24px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      min-height:38px;
+      padding:0 12px;
+      border-radius:999px;
+      border:1px solid rgba(224,200,150,.20);
+      background:rgba(255,255,255,.05);
+      color:#f4e5bc;
+      font-size:13px;
+      font-weight:600;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:28px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:0 18px;
+      border-radius:16px;
+      border:1px solid rgba(224,200,150,.18);
+      background:rgba(255,255,255,.05);
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      transition:.24s ease;
+      box-shadow:0 12px 30px rgba(0,0,0,.18);
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.08);
+      border-color:rgba(224,200,150,.30);
+    }
+
+    .btn.primary{
+      color:#fff5de;
+      background:linear-gradient(180deg, rgba(224,200,150,.24), rgba(224,200,150,.10));
+      border-color:rgba(224,200,150,.34);
+      box-shadow:0 14px 34px rgba(224,200,150,.16);
+    }
+
+    .section{
+      margin-top:72px;
+    }
+
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .section-head h2{
+      margin:0;
+      font-size:34px;
+      line-height:1.08;
+      letter-spacing:-.028em;
+      color:#f5e7c7;
+    }
+
+    .section-head p{
+      margin:0;
+      max-width:780px;
+      font-size:16px;
+      line-height:1.9;
+      color:var(--muted);
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      border-radius:26px;
+      background:var(--panel);
+      box-shadow:var(--shadow);
+      padding:24px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .panel::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(circle at top right, rgba(224,200,150,.12), transparent 24%),
+        radial-gradient(circle at left bottom, rgba(167,139,250,.10), transparent 26%);
+      pointer-events:none;
+    }
+
+    .panel h3{
+      position:relative;
+      margin:0 0 12px;
+      font-size:24px;
+      color:#f8fafc;
+    }
+
+    .panel p,
+    .panel li{
+      position:relative;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.86;
+    }
+
+    .panel ul{
+      position:relative;
+      margin:0;
+      padding-left:18px;
+    }
+
+    .timeline{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .timeline-card{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:var(--panel-2);
+      padding:22px;
+      transition:.26s ease;
+    }
+
+    .timeline-card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(224,200,150,.26);
+      background:rgba(255,255,255,.05);
+      box-shadow:0 18px 48px rgba(0,0,0,.22);
+    }
+
+    .timeline-year{
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:10px;
+    }
+
+    .timeline-card h3{
+      margin:0 0 10px;
+      font-size:22px;
+      color:#fff;
+    }
+
+    .timeline-card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:15px;
+    }
+
+    .kpi-row{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .kpi-card{
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:rgba(255,255,255,.03);
+      padding:18px;
+      text-align:left;
+    }
+
+    .kpi-card b{
+      display:block;
+      font-size:24px;
+      color:#f4e2b1;
+      margin-bottom:6px;
+    }
+
+    .kpi-card span{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.65;
+    }
+
+    .purchase-box{
+      display:grid;
+      grid-template-columns:1fr 320px;
+      gap:28px;
+      align-items:center;
+      border:1px solid rgba(224,200,150,.22);
+      border-radius:28px;
+      padding:32px;
+      background:
+        radial-gradient(720px 260px at 14% 0%, rgba(224,200,150,.12), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow:0 24px 68px rgba(0,0,0,.26);
+    }
+
+    .purchase-box h3{
+      margin:0 0 10px;
+      font-size:30px;
+      color:#fff;
+    }
+
+    .purchase-box p{
+      margin:0 0 14px;
+      color:var(--muted);
+      line-height:1.9;
+      font-size:16px;
+    }
+
+    .price-tag{
+      display:inline-flex;
+      align-items:center;
+      min-height:48px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(224,200,150,.28);
+      background:rgba(224,200,150,.08);
+      color:#f4e2b1;
+      font-size:20px;
+      font-weight:700;
+      margin:8px 0 18px;
+    }
+
+    .qr-box{
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid rgba(224,200,150,.20);
+      background:#fff;
+      padding:12px;
+      box-shadow:0 16px 42px rgba(0,0,0,.22);
+    }
+
+    .qr-box img{
+      display:block;
+      width:100%;
+      border-radius:12px;
+    }
+
+    .purchase-note{
+      margin-top:12px;
+      font-size:12px;
+      color:rgba(255,255,255,.56);
+      line-height:1.65;
+      text-align:center;
+    }
+
+    .comments{
+      margin-top:18px;
+    }
+
+    .comment-form{
+      display:grid;
+      gap:12px;
+      max-width:640px;
+      margin-top:18px;
+    }
+
+    .comment-form input,
+    .comment-form textarea,
+    .comment-form select{
+      width:100%;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      padding:14px 16px;
+      font-size:14px;
+      outline:none;
+    }
+
+    .comment-form textarea{
+      min-height:140px;
+      resize:vertical;
+    }
+
+    .comment-list{
+      margin-top:24px;
+      display:grid;
+      gap:14px;
+    }
+
+    .comment-item{
+      border:1px solid rgba(224,200,150,.12);
+      border-radius:18px;
+      padding:18px;
+      background:rgba(255,255,255,.03);
+    }
+
+    .comment-item b{
+      color:#fff;
+      display:block;
+      margin-bottom:6px;
+    }
+
+    .comment-item .rating{
+      color:#f3d99e;
+      font-size:13px;
+      margin-bottom:8px;
+    }
+
+    .comment-item p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:15px;
+    }
+
+    .footer{
+      padding:52px 0 34px;
+      margin-top:84px;
+      border-top:1px solid rgba(224,200,150,.10);
+      background:rgba(10,15,24,.46);
+      text-align:center;
+      font-size:14px;
+      color:rgba(255,255,255,.58);
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity .72s ease, transform .72s ease;
+    }
+
+    .reveal.in{
+      opacity:1;
+      transform:none;
+    }
+
+    @media (max-width:1080px){
+      .grid-2,
+      .purchase-box{
+        grid-template-columns:1fr;
+      }
+
+      .kpi-row{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      .hero-title{
+        font-size:44px;
+      }
+    }
+
+    @media (max-width:760px){
+      .cinema-wrap{
+        padding:22px 16px 62px;
+      }
+
+      .hero-film{
+        min-height:460px;
+        padding:28px;
+      }
+
+      .hero-title{
+        font-size:34px;
+      }
+
+      .hero-lead{
+        font-size:16px;
+      }
+
+      .section-head h2{
+        font-size:28px;
+      }
+
+      .hero-actions{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .kpi-row{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
 </head>
+<body class="cinematic-page">
+  <div id="siteHeader"></div>
 
-<body>
+  <main class="cinema-wrap" id="mainContent">
+    <section class="hero-film reveal">
+      <div class="hero-content">
+        <div class="eyebrow" id="heroEyebrow">SCRIPT JOURNEY · DI SẢN DSTS</div>
+        <h1 class="hero-title" id="heroTitle">The DSTS Legacy</h1>
+        <p class="hero-lead" id="heroLead">
+          Không phải mọi hành trình đều để lại di sản. Nhưng có những con người, khi cuộc đời của họ được kết nối với Đường Sao Tỏa Sáng, trở thành một phần của di sản Người Việt Nam trên toàn cầu. The DSTS Legacy được tạo ra cho những hành trình mở rộng đó.
+        </p>
 
-<div id="siteHeader"></div>
+        <div class="film-meta">
+          <span class="badge" id="heroMeta1">High-end blueprint</span>
+          <span class="badge" id="heroMeta2">Legacy journey 1:1</span>
+          <span class="badge" id="heroMeta3">50,000 USD</span>
+        </div>
 
-<main class="wrap script-detail">
+        <div class="hero-actions">
+          <a class="btn primary" href="#purchase" id="heroBtn1">Thanh toán hành trình</a>
+          <a class="btn" href="#roadmap" id="heroBtn2">Xem lộ trình 3–5 năm</a>
+          <a class="btn" href="#comments" id="heroBtn3">Ý kiến công khai</a>
+        </div>
+      </div>
+    </section>
 
-<section class="script-hero">
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" id="introEyebrow">GIỚI THIỆU</div>
+          <h2 id="introTitle">Một kịch bản dành cho những con người muốn hành trình sống của mình trở thành di sản Người Việt</h2>
+        </div>
+        <p id="introDesc">
+          Đây không phải tài liệu tiểu sử thông thường. Đây là blueprint dành cho những nhân vật có tiềm năng trở thành biểu tượng di sản, có tác động vượt qua thời gian và tạo ra ảnh hưởng cho nhiều thế hệ.
+        </p>
+      </div>
 
-<h1>The DSTS Legacy</h1>
+      <div class="grid-2">
+        <article class="panel">
+          <h3 id="forWhoTitle">Kịch bản này dành cho ai</h3>
+          <p id="forWhoText">
+            Dành cho những người có ảnh hưởng rõ rệt, muốn hành trình sống của họ được ghi chép lại với tầm vóc đúng. Những người này thường đã có tác động thực tế trên cộng đồng Người Việt, nhưng chưa có một câu chuyện toàn diện về cuộc đời và di sản đủ mạnh để ảnh hưởng các thế hệ mai.
+          </p>
+          <ul>
+            <li id="forWho1">Nhân vật có ảnh hưởng thực tế trên cộng đồng Người Việt toàn cầu.</li>
+            <li id="forWho2">Người có câu chuyện sống đáng được kế thừa bởi các thế hệ tới.</li>
+            <li id="forWho3">Người sẵn sàng để hành trình sống trở thành bài học và nguồn cảm hứng.</li>
+            <li id="forWho4">Người muốn di sản của mình sống lâu hơn bản thân và ảnh hưởng các thế hệ mai.</li>
+          </ul>
+        </article>
 
-<p class="lead">
+        <article class="panel">
+          <h3 id="whyTitle">Tại sao họ sẽ muốn chọn hành trình này</h3>
+          <p id="whyText">
+            Vì di sản thực sự không bao giờ bị tình cờ. Một người có ảnh hưởng cần câu chuyện toàn diện về cuộc đời, chiến lược ghi chép lịch sử, và tư duy lâu dài để những gì họ xây dựng trở thành bài học sống cho các thế hệ tới. The DSTS Legacy được thiết kế để xây dựng di sản đó bằng tính toàn diện, tôn trọng và tầm vóc.
+          </p>
+        </article>
+      </div>
+    </section>
 
-Hành trình dành cho
-những con người
-có khả năng tạo di sản.
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" id="valueEyebrow">GIÁ TRỊ GÓI</div>
+          <h2 id="valueTitle">Những gì hành trình này thực sự mở ra</h2>
+        </div>
+        <p id="valueDesc">
+          Giá trị không nằm ở số trang tài liệu. Giá trị nằm ở việc giúp một cuộc đời được ghi chép lại đầy đủ, được tôn trọng, được hiểu sâu, và trở thành di sản cho các thế hệ tới bằng ảnh hưởng thật.
+        </p>
+      </div>
 
-</p>
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <b id="kpi1">01</b>
+          <span id="kpi1d">Kiến trúc câu chuyện sống toàn diện, từ gốc rễ đến ảnh hưởng và di sản.</span>
+        </div>
+        <div class="kpi-card">
+          <b id="kpi2">02</b>
+          <span id="kpi2d">Khung tường thuật di sản, tài liệu lịch sử sống và chiến lược ghi chép.</span>
+        </div>
+        <div class="kpi-card">
+          <b id="kpi3">03</b>
+          <span id="kpi3d">Lộ trình 1–2 năm hoàn thiện hành trình và 3–5 năm xây dựng di sản dài hạn.</span>
+        </div>
+        <div class="kpi-card">
+          <b id="kpi4">04</b>
+          <span id="kpi4d">Một blueprint 1:1 được chọn lọc, tôn trọng toàn bộ tác động và di sản thực.</span>
+        </div>
+      </div>
+    </section>
 
-<div class="script-price">
+    <section class="section reveal" id="roadmap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" id="roadEyebrow">LỘ TRÌNH</div>
+          <h2 id="roadTitle">Từ 1 năm đầu đến 5 năm sau, hành trình ghi chép di sản này có thể đi tới đâu</h2>
+        </div>
+        <p id="roadDesc">
+          Một hành trình sống thật sự không bùng nổ chỉ trong vài tuần. Nó được ghi chép bằng chiều sâu, tôn trọng, phỏng vấn lịch sử sống, và cách kết nối từng giai đoạn thành một câu chuyện toàn cảnh.
+        </p>
+      </div>
 
-<strong>50,000 USD</strong>
+      <div class="timeline">
+        <article class="timeline-card">
+          <div class="timeline-year" id="year1">Giai đoạn 1</div>
+          <h3 id="year1Title">0–6 tháng</h3>
+          <p id="year1Text">Xác định hành trình sống đầy đủ, bóc tách giá trị cốt lõi, xác định các giai đoạn ảnh hưởng và cách thức lưu giữ lịch sử.</p>
+        </article>
 
-</div>
+        <article class="timeline-card">
+          <div class="timeline-year" id="year2">Giai đoạn 2</div>
+          <h3 id="year2Title">6–12 tháng</h3>
+          <p id="year2Text">Bắt đầu các phỏng vấn lịch sử sống, ghi chép hành trình chi tiết, xây dựng tài liệu di sản sơ bộ.</p>
+        </article>
 
-</section>
+        <article class="timeline-card">
+          <div class="timeline-year" id="year3">Giai đoạn 3</div>
+          <h3 id="year3Title">1–2 năm</h3>
+          <p id="year3Text">Hoàn thành câu chuyện sống toàn diện, phát hành di sản công khai, kết nối với các thế hệ tới.</p>
+        </article>
 
-<section class="script-section">
+        <article class="timeline-card">
+          <div class="timeline-year" id="year4">Giai đoạn 4</div>
+          <h3 id="year4Title">3–5 năm</h3>
+          <p id="year4Text">Nếu đi đúng, hành trình sống trở thành di sản văn hóa, được tham khảo như bài học sống và nguồn cảm hứng cho nhiều thế hệ Người Việt Nam.</p>
+        </article>
+      </div>
+    </section>
 
-<ul>
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" id="contentEyebrow">CẤU TRÚC GÓI</div>
+          <h2 id="contentTitle">Bên trong The DSTS Legacy có những gì</h2>
+        </div>
+        <p id="contentDesc">
+          Đây là một script journey có thể phát triển thành lịch sử sống lâu dài, tài liệu di sản, các phiên bản công khai và ảnh hưởng truyền thừa cho các thế hệ tới.
+        </p>
+      </div>
 
-<li>Documentary di sản</li>
-<li>Sách và phim</li>
-<li>Lan tỏa toàn cầu</li>
+      <div class="grid-2">
+        <article class="panel">
+          <h3 id="leftPackTitle">Khối tường thuật lịch sử</h3>
+          <ul>
+            <li id="pack1">Full narrative architecture, từ gốc rễ đến hiện tại và di sản.</li>
+            <li id="pack2">Story of life impact, các giai đoạn ảnh hưởng và di sản.</li>
+            <li id="pack3">Historical archive, tài liệu lịch sử sống chi tiết.</li>
+            <li id="pack4">Legacy documentation, ghi chép toàn diện về di sản.</li>
+          </ul>
+        </article>
 
-</ul>
+        <article class="panel">
+          <h3 id="rightPackTitle">Khối bảo tồn di sản</h3>
+          <ul>
+            <li id="pack5">Framework xuất bản di sản, chiến lược phát hành công khai.</li>
+            <li id="pack6">Chiến lược truyền thừa, kết nối với thế hệ tới.</li>
+            <li id="pack7">Lộ trình 1–2 năm hoàn thiện và 3–5 năm xây dựng ảnh hưởng.</li>
+            <li id="pack8">Khuyến nghị tạo di sản bền vững, ảnh hưởng lâu dài.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-</section>
+    <section class="section reveal" id="purchase">
+      <div class="purchase-box">
+        <div>
+          <div class="eyebrow" id="purchaseEyebrow">THANH TOÁN HÀNH TRÌNH</div>
+          <h3 id="purchaseTitle">Tham gia The DSTS Legacy</h3>
+          <p id="purchaseText1">
+            Đây là một hành trình cao cấp, không đại trà, dành cho người thực sự muốn được chọn và xây dựng di sản bằng giá trị thật. Sau khi thanh toán, khách hàng gửi xác nhận để bắt đầu bước tiếp theo.
+          </p>
+          <div class="price-tag" id="purchasePrice">50,000 USD</div>
+          <p id="purchaseText2">
+            Nội dung chuyển khoản nên ghi rõ: <strong>DSTS LEGACY</strong>. Sau đó gửi xác nhận qua trang liên hệ để đội ngũ kiểm tra và phản hồi.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="/contact" id="purchaseBtn1">Gửi xác nhận thanh toán</a>
+            <a class="btn" href="/scripts.html" id="purchaseBtn2">Quay lại thư viện Scripts</a>
+          </div>
+        </div>
 
-<section class="script-section payment">
+        <div>
+          <div class="qr-box">
+            <img src="/assets/qr-payment.png" alt="QR Payment">
+          </div>
+          <div class="purchase-note" id="purchaseNote">
+            QR hiện tại là phương thức thanh toán trực tiếp. Về sau có thể mở thêm xác nhận tự động, đơn hàng và gửi file riêng theo từng hành trình.
+          </div>
+        </div>
+      </div>
+    </section>
 
-<img src="/assets/qr-payment.png">
+    <section class="section reveal comments" id="comments">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" id="commentEyebrow">Ý KIẾN CÔNG KHAI</div>
+          <h2 id="commentTitle">Phản hồi và đánh giá từ cộng đồng</h2>
+        </div>
+        <p id="commentDesc">
+          Đây là nơi khách hàng và người quan tâm có thể để lại tên, nhận xét và đánh giá công khai về hành trình này. Giai đoạn đầu có thể dùng hiển thị tĩnh, sau đó sẽ nối D1 để lưu thật.
+        </p>
+      </div>
 
-</section>
+      <form class="comment-form">
+        <input type="text" id="formName" placeholder="Tên của bạn">
+        <select id="formRating">
+          <option>5 sao – Rất mạnh</option>
+          <option>4 sao – Rất tốt</option>
+          <option>3 sao – Tốt</option>
+          <option>2 sao – Cần thêm thông tin</option>
+          <option>1 sao – Chưa phù hợp</option>
+        </select>
+        <textarea id="formComment" placeholder="Chia sẻ cảm nhận của bạn về The DSTS Legacy"></textarea>
+        <button type="button" class="btn primary" id="formSubmit">Gửi đánh giá</button>
+      </form>
 
-</main>
+      <div class="comment-list">
+        <article class="comment-item">
+          <b id="sampleName1">Đặng Văn Hùng</b>
+          <div class="rating" id="sampleRate1">5 sao – Rất mạnh</div>
+          <p id="sampleText1">Đây là cách để một hành trình sống không bị lãng quên mà trở thành di sản cho các thế hệ tới. Ý nghĩa thật sự.</p>
+        </article>
 
-<footer class="site-footer">
-<div class="wrap">© Đường Sao Tỏa Sáng</div>
-</footer>
+        <article class="comment-item">
+          <b id="sampleName2">Trịnh Thị Yên</b>
+          <div class="rating" id="sampleRate2">5 sao – Rất tốt</div>
+          <p id="sampleText2">Tôi ấn tượng nhất ở cách gói này tôn trọng toàn bộ hành trình sống, không chỉ những điểm nổi bật.</p>
+        </article>
+      </div>
+    </section>
+  </main>
 
+  <footer class="footer">
+    <div>© Đường Sao Tỏa Sáng · DSTS</div>
+    <div id="footerLine">Một hành trình dành cho những con người có thể trở thành di sản Người Việt Nam bằng ảnh hưởng thật.</div>
+  </footer>
+
+  <script src="/assets/app.js"></script>
+  <script>
+    (function () {
+      const lang = window.DSTS && typeof DSTS.getLang === "function" ? DSTS.getLang() : "vi";
+      document.documentElement.lang = lang;
+
+      if (window.DSTS && typeof DSTS.mountSiteChrome === "function") {
+        DSTS.mountSiteChrome({ active: "scripts" });
+      }
+
+      const dict = {
+        vi: {
+          title: "The DSTS Legacy – Đường Sao Tỏa Sáng",
+          description: "The DSTS Legacy là hành trình kịch bản cao cấp dành cho những con người có ảnh hưởng muốn hành trình sống của họ trở thành di sản Người Việt Nam.",
+          heroEyebrow: "SCRIPT JOURNEY · DI SẢN DSTS",
+          heroTitle: "The DSTS Legacy",
+          heroLead: "Không phải mọi hành trình đều để lại di sản. Nhưng có những con người, khi cuộc đời của họ được kết nối với Đường Sao Tỏa Sáng, trở thành một phần của di sản Người Việt Nam trên toàn cầu. The DSTS Legacy được tạo ra cho những hành trình mở rộng đó.",
+          heroMeta1: "High-end blueprint",
+          heroMeta2: "Legacy journey 1:1",
+          heroMeta3: "50,000 USD",
+          heroBtn1: "Thanh toán hành trình",
+          heroBtn2: "Xem lộ trình 3–5 năm",
+          heroBtn3: "Ý kiến công khai",
+
+          introEyebrow: "GIỚI THIỆU",
+          introTitle: "Một kịch bản dành cho những con người muốn hành trình sống của mình trở thành di sản Người Việt",
+          introDesc: "Đây không phải tài liệu tiểu sử thông thường. Đây là blueprint dành cho những nhân vật có tiềm năng trở thành biểu tượng di sản, có tác động vượt qua thời gian và tạo ra ảnh hưởng cho nhiều thế hệ.",
+
+          forWhoTitle: "Kịch bản này dành cho ai",
+          forWhoText: "Dành cho những người có ảnh hưởng rõ rệt, muốn hành trình sống của họ được ghi chép lại với tầm vóc đúng. Những người này thường đã có tác động thực tế trên cộng đồng Người Việt, nhưng chưa có một câu chuyện toàn diện về cuộc đời và di sản đủ mạnh để ảnh hưởng các thế hệ mai.",
+          forWho1: "Nhân vật có ảnh hưởng thực tế trên cộng đồng Người Việt toàn cầu.",
+          forWho2: "Người có câu chuyện sống đáng được kế thừa bởi các thế hệ tới.",
+          forWho3: "Người sẵn sàng để hành trình sống trở thành bài học và nguồn cảm hứng.",
+          forWho4: "Người muốn di sản của mình sống lâu hơn bản thân và ảnh hưởng các thế hệ mai.",
+
+          whyTitle: "Tại sao họ sẽ muốn chọn hành trình này",
+          whyText: "Vì di sản thực sự không bao giờ bị tình cờ. Một người có ảnh hưởng cần câu chuyện toàn diện về cuộc đời, chiến lược ghi chép lịch sử, và tư duy lâu dài để những gì họ xây dựng trở thành bài học sống cho các thế hệ tới. The DSTS Legacy được thiết kế để xây dựng di sản đó bằng tính toàn diện, tôn trọng và tầm vóc.",
+
+          valueEyebrow: "GIÁ TRỊ GÓI",
+          valueTitle: "Những gì hành trình này thực sự mở ra",
+          valueDesc: "Giá trị không nằm ở số trang tài liệu. Giá trị nằm ở việc giúp một cuộc đời được ghi chép lại đầy đủ, được tôn trọng, được hiểu sâu, và trở thành di sản cho các thế hệ tới bằng ảnh hưởng thật.",
+          kpi1: "01",
+          kpi1d: "Kiến trúc câu chuyện sống toàn diện, từ gốc rễ đến ảnh hưởng và di sản.",
+          kpi2: "02",
+          kpi2d: "Khung tường thuật di sản, tài liệu lịch sử sống và chiến lược ghi chép.",
+          kpi3: "03",
+          kpi3d: "Lộ trình 1–2 năm hoàn thiện hành trình và 3–5 năm xây dựng di sản dài hạn.",
+          kpi4: "04",
+          kpi4d: "Một blueprint 1:1 được chọn lọc, tôn trọng toàn bộ tác động và di sản thực.",
+
+          roadEyebrow: "LỘ TRÌNH",
+          roadTitle: "Từ 1 năm đầu đến 5 năm sau, hành trình ghi chép di sản này có thể đi tới đâu",
+          roadDesc: "Một hành trình sống thật sự không bùng nổ chỉ trong vài tuần. Nó được ghi chép bằng chiều sâu, tôn trọng, phỏng vấn lịch sử sống, và cách kết nối từng giai đoạn thành một câu chuyện toàn cảnh.",
+          year1: "Giai đoạn 1",
+          year1Title: "0–6 tháng",
+          year1Text: "Xác định hành trình sống đầy đủ, bóc tách giá trị cốt lõi, xác định các giai đoạn ảnh hưởng và cách thức lưu giữ lịch sử.",
+          year2: "Giai đoạn 2",
+          year2Title: "6–12 tháng",
+          year2Text: "Bắt đầu các phỏng vấn lịch sử sống, ghi chép hành trình chi tiết, xây dựng tài liệu di sản sơ bộ.",
+          year3: "Giai đoạn 3",
+          year3Title: "1–2 năm",
+          year3Text: "Hoàn thành câu chuyện sống toàn diện, phát hành di sản công khai, kết nối với các thế hệ tới.",
+          year4: "Giai đoạn 4",
+          year4Title: "3–5 năm",
+          year4Text: "Nếu đi đúng, hành trình sống trở thành di sản văn hóa, được tham khảo như bài học sống và nguồn cảm hứng cho nhiều thế hệ Người Việt Nam.",
+
+          contentEyebrow: "CẤU TRÚC GÓI",
+          contentTitle: "Bên trong The DSTS Legacy có những gì",
+          contentDesc: "Đây là một script journey có thể phát triển thành lịch sử sống lâu dài, tài liệu di sản, các phiên bản công khai và ảnh hưởng truyền thừa cho các thế hệ tới.",
+          leftPackTitle: "Khối tường thuật lịch sử",
+          pack1: "Full narrative architecture, từ gốc rễ đến hiện tại và di sản.",
+          pack2: "Story of life impact, các giai đoạn ảnh hưởng và di sản.",
+          pack3: "Historical archive, tài liệu lịch sử sống chi tiết.",
+          pack4: "Legacy documentation, ghi chép toàn diện về di sản.",
+          rightPackTitle: "Khối bảo tồn di sản",
+          pack5: "Framework xuất bản di sản, chiến lược phát hành công khai.",
+          pack6: "Chiến lược truyền thừa, kết nối với thế hệ tới.",
+          pack7: "Lộ trình 1–2 năm hoàn thiện và 3–5 năm xây dựng ảnh hưởng.",
+          pack8: "Khuyến nghị tạo di sản bền vững, ảnh hưởng lâu dài.",
+
+          purchaseEyebrow: "THANH TOÁN HÀNH TRÌNH",
+          purchaseTitle: "Tham gia The DSTS Legacy",
+          purchaseText1: "Đây là một hành trình cao cấp, không đại trà, dành cho người thực sự muốn được chọn và xây dựng di sản bằng giá trị thật. Sau khi thanh toán, khách hàng gửi xác nhận để bắt đầu bước tiếp theo.",
+          purchasePrice: "50,000 USD",
+          purchaseText2: "Nội dung chuyển khoản nên ghi rõ: DSTS LEGACY. Sau đó gửi xác nhận qua trang liên hệ để đội ngũ kiểm tra và phản hồi.",
+          purchaseBtn1: "Gửi xác nhận thanh toán",
+          purchaseBtn2: "Quay lại thư viện Scripts",
+          purchaseNote: "QR hiện tại là phương thức thanh toán trực tiếp. Về sau có thể mở thêm xác nhận tự động, đơn hàng và gửi file riêng theo từng hành trình.",
+
+          commentEyebrow: "Ý KIẾN CÔNG KHAI",
+          commentTitle: "Phản hồi và đánh giá từ cộng đồng",
+          commentDesc: "Đây là nơi khách hàng và người quan tâm có thể để lại tên, nhận xét và đánh giá công khai về hành trình này. Giai đoạn đầu có thể dùng hiển thị tĩnh, sau đó sẽ nối D1 để lưu thật.",
+          formName: "Tên của bạn",
+          formComment: "Chia sẻ cảm nhận của bạn về The DSTS Legacy",
+          formSubmit: "Gửi đánh giá",
+          rate5: "5 sao – Rất mạnh",
+          rate4: "4 sao – Rất tốt",
+          rate3: "3 sao – Tốt",
+          rate2: "2 sao – Cần thêm thông tin",
+          rate1: "1 sao – Chưa phù hợp",
+          sampleName1: "Đặng Văn Hùng",
+          sampleRate1: "5 sao – Rất mạnh",
+          sampleText1: "Đây là cách để một hành trình sống không bị lãng quên mà trở thành di sản cho các thế hệ tới. Ý nghĩa thật sự.",
+          sampleName2: "Trịnh Thị Yên",
+          sampleRate2: "5 sao – Rất tốt",
+          sampleText2: "Tôi ấn tượng nhất ở cách gói này tôn trọng toàn bộ hành trình sống, không chỉ những điểm nổi bật.",
+          footerLine: "Một hành trình dành cho những con người có thể trở thành di sản Người Việt Nam bằng ảnh hưởng thật."
+        },
+        en: {
+          title: "The DSTS Legacy – Đường Sao Tỏa Sáng",
+          description: "The DSTS Legacy is a premium script journey for influential people who want their life journey to become a legacy of the Vietnamese diaspora worldwide.",
+          heroEyebrow: "SCRIPT JOURNEY · DSTS LEGACY",
+          heroTitle: "The DSTS Legacy",
+          heroLead: "Not every journey leaves a legacy. But some, when their life becomes part of the DSTS story, become part of the Vietnamese diaspora legacy worldwide. The DSTS Legacy is built for those expanded journeys.",
+          heroMeta1: "High-end blueprint",
+          heroMeta2: "Legacy journey 1:1",
+          heroMeta3: "50,000 USD",
+          heroBtn1: "Pay for the journey",
+          heroBtn2: "View the 3–5 year roadmap",
+          heroBtn3: "Public reflections",
+
+          introEyebrow: "INTRODUCTION",
+          introTitle: "A script for people who want their life journey to become a Vietnamese diaspora legacy",
+          introDesc: "This is not a standard biography document. It is a blueprint for people capable of becoming legacy symbols, with impact that transcends time and creates influence for generations to come.",
+
+          forWhoTitle: "Who this journey is for",
+          forWhoText: "It is for those with clear influence who want their life journey documented with the right scope. They often already have real impact on Vietnamese communities globally, but lack a comprehensive life story and legacy narrative strong enough to influence future generations.",
+          forWho1: "Figures with real influence on Vietnamese communities worldwide.",
+          forWho2: "Those whose life story deserves to be inherited by future generations.",
+          forWho3: "Those ready to let their life journey become a lesson and source of inspiration.",
+          forWho4: "Those who want their legacy to outlive them and influence generations to come.",
+
+          whyTitle: "Why they will want this journey",
+          whyText: "Because real legacy is never accidental. An influential person needs a comprehensive life story, a strategy for historical documentation, and long-term thinking so that what they have built becomes a living lesson for future generations. The DSTS Legacy is designed to build that legacy with completeness, respect, and proper scope.",
+
+          valueEyebrow: "PACKAGE VALUE",
+          valueTitle: "What this journey truly opens",
+          valueDesc: "The value does not lie in the number of pages. The value lies in helping a life be documented fully, respected deeply, understood comprehensively, and become a legacy for future generations through real influence.",
+          kpi1: "01",
+          kpi1d: "A comprehensive life story architecture, from roots to influence to legacy.",
+          kpi2: "02",
+          kpi2d: "A legacy narrative framework, living history documentation, and recording strategy.",
+          kpi3: "03",
+          kpi3d: "A 1–2 year path to perfect the journey and a 3–5 year path to build long-term legacy.",
+          kpi4: "04",
+          kpi4d: "A selected 1:1 blueprint, respecting the full impact and real legacy.",
+
+          roadEyebrow: "ROADMAP",
+          roadTitle: "From the first year to five years later, where this legacy documentation journey can go",
+          roadDesc: "A truly lived journey does not explode in a few weeks. It is documented with depth, respect, oral history interviews, and the way each period connects into a full story.",
+          year1: "Phase 1",
+          year1Title: "0–6 months",
+          year1Text: "Define the full life journey, extract core values, identify influence stages, and establish how history will be preserved.",
+          year2: "Phase 2",
+          year2Title: "6–12 months",
+          year2Text: "Begin oral history interviews, document the journey in detail, build preliminary legacy documentation.",
+          year3: "Phase 3",
+          year3Title: "1–2 years",
+          year3Text: "Complete the comprehensive life story, release the legacy publicly, connect with future generations.",
+          year4: "Phase 4",
+          year4Title: "3–5 years",
+          year4Text: "If executed correctly, the life journey becomes a cultural legacy, referenced as a living lesson and source of inspiration for many generations of Vietnamese people.",
+
+          contentEyebrow: "PACKAGE STRUCTURE",
+          contentTitle: "What exists inside The DSTS Legacy",
+          contentDesc: "This script journey can develop into a full life history, legacy documentation, public versions, and legacy influence for future generations.",
+          leftPackTitle: "Historical narrative block",
+          pack1: "Full narrative architecture, from roots through present to legacy.",
+          pack2: "Story of life impact, influence stages and legacy.",
+          pack3: "Historical archive, detailed living history documentation.",
+          pack4: "Legacy documentation, comprehensive legacy recording.",
+          rightPackTitle: "Legacy preservation block",
+          pack5: "Framework for publishing legacy, strategy for public release.",
+          pack6: "Strategy for legacy transfer and connection with future generations.",
+          pack7: "1–2 year completion path and 3–5 year influence building.",
+          pack8: "Recommendations for sustainable legacy, long-term influence.",
+
+          purchaseEyebrow: "JOURNEY PAYMENT",
+          purchaseTitle: "Enter The DSTS Legacy",
+          purchaseText1: "This is a premium, non-mass journey for those who truly want to be selected and build a legacy through real value. After payment, the client sends confirmation to begin the next step.",
+          purchasePrice: "50,000 USD",
+          purchaseText2: "Your transfer note should clearly state: DSTS LEGACY. Then send confirmation through the contact page so the team can verify and respond.",
+          purchaseBtn1: "Send payment confirmation",
+          purchaseBtn2: "Back to Scripts library",
+          purchaseNote: "The current QR is a direct payment method. Later, this can be expanded into automated confirmation, order management, and private delivery for each journey.",
+
+          commentEyebrow: "PUBLIC REFLECTIONS",
+          commentTitle: "Public feedback and evaluations",
+          commentDesc: "This is where clients and interested visitors can leave their name, reflection, and public rating for this journey. In the early phase it can stay static, then later connect to D1 for real storage.",
+          formName: "Your name",
+          formComment: "Share your thoughts about The DSTS Legacy",
+          formSubmit: "Submit review",
+          rate5: "5 stars – Very strong",
+          rate4: "4 stars – Very good",
+          rate3: "3 stars – Good",
+          rate2: "2 stars – Need more detail",
+          rate1: "1 star – Not yet aligned",
+          sampleName1: "Dang Van Hung",
+          sampleRate1: "5 stars – Very strong",
+          sampleText1: "This is how a life journey never gets forgotten but becomes a legacy for future generations. Real meaning.",
+          sampleName2: "Trinh Thi Yen",
+          sampleRate2: "5 stars – Very good",
+          sampleText2: "I am most impressed by how this package respects the entire life journey, not just the highlights.",
+          footerLine: "A journey for people who can become a Vietnamese legacy through real influence."
+        }
+      };
+
+      const t = dict[lang] || dict.vi;
+
+      document.title = t.title;
+      const setMeta = (selector, value) => {
+        const el = document.querySelector(selector);
+        if (el) el.setAttribute("content", value);
+      };
+      setMeta('meta[name="description"]', t.description);
+      setMeta('meta[property="og:title"]', t.title);
+      setMeta('meta[property="og:description"]', t.description);
+      setMeta('meta[name="twitter:title"]', t.title);
+      setMeta('meta[name="twitter:description"]', t.description);
+
+      const set = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value;
+      };
+
+      [
+        "heroEyebrow","heroTitle","heroLead","heroMeta1","heroMeta2","heroMeta3","heroBtn1","heroBtn2","heroBtn3",
+        "introEyebrow","introTitle","introDesc",
+        "forWhoTitle","forWhoText","forWho1","forWho2","forWho3","forWho4",
+        "whyTitle","whyText",
+        "valueEyebrow","valueTitle","valueDesc","kpi1","kpi1d","kpi2","kpi2d","kpi3","kpi3d","kpi4","kpi4d",
+        "roadEyebrow","roadTitle","roadDesc","year1","year1Title","year1Text","year2","year2Title","year2Text","year3","year3Title","year3Text","year4","year4Title","year4Text",
+        "contentEyebrow","contentTitle","contentDesc","leftPackTitle","pack1","pack2","pack3","pack4","rightPackTitle","pack5","pack6","pack7","pack8",
+        "purchaseEyebrow","purchaseTitle","purchaseText1","purchasePrice","purchaseText2","purchaseBtn1","purchaseBtn2","purchaseNote",
+        "commentEyebrow","commentTitle","commentDesc","sampleName1","sampleRate1","sampleText1","sampleName2","sampleRate2","sampleText2","footerLine"
+      ].forEach((id) => set(id, t[id]));
+
+      const formName = document.getElementById("formName");
+      if (formName) formName.placeholder = t.formName;
+      const formComment = document.getElementById("formComment");
+      if (formComment) formComment.placeholder = t.formComment;
+      const formSubmit = document.getElementById("formSubmit");
+      if (formSubmit) formSubmit.textContent = t.formSubmit;
+
+      const formRating = document.getElementById("formRating");
+      if (formRating) {
+        formRating.innerHTML = `
+          <option>${t.rate5}</option>
+          <option>${t.rate4}</option>
+          <option>${t.rate3}</option>
+          <option>${t.rate2}</option>
+          <option>${t.rate1}</option>
+        `;
+      }
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+      } else {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+      }
+    })();
+  </script>
 </body>
 </html>

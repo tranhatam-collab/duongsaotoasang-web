@@ -1,87 +1,1068 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
-
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>The Singing Icon – Đường Sao Tỏa Sáng</title>
+  <meta name="description" content="The Singing Icon là hành trình kịch bản cao cấp dành cho ca sĩ có khả năng trở thành biểu tượng âm nhạc vượt ngôn ngữ và văn hóa bằng chiều sâu cảm xúc thật.">
+  <meta name="theme-color" content="#060b14">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://duongsaotoasang.com/scripts/singing-icon.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Đường Sao Tỏa Sáng">
+  <meta property="og:title" content="The Singing Icon – Đường Sao Tỏa Sáng">
+  <meta property="og:description" content="Một hành trình kịch bản 1:1 dành cho ca sĩ có thể trở thành biểu tượng âm nhạc bằng chiều sâu cảm xúc thật.">
+  <meta property="og:url" content="https://duongsaotoasang.com/scripts/singing-icon.html">
+  <meta property="og:image" content="https://duongsaotoasang.com/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Singing Icon – Đường Sao Tỏa Sáng">
+  <meta name="twitter:description" content="Một hành trình kịch bản 1:1 dành cho ca sĩ có thể trở thành biểu tượng âm nhạc bằng chiều sâu cảm xúc thật.">
+  <meta name="twitter:image" content="https://duongsaotoasang.com/og.png">
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/app.css">
 
-<title>The Singing Icon | Đường Sao Tỏa Sáng</title>
+  <style>
+    :root{
+      --text:#f5f7fb;
+      --muted:#aab4c3;
+      --gold:#e6c989;
+      --gold-soft:rgba(224,200,150,.18);
+      --line:rgba(224,200,150,.14);
+      --panel:rgba(255,255,255,.04);
+      --panel-2:rgba(255,255,255,.03);
+      --shadow:0 24px 80px rgba(0,0,0,.45);
+    }
 
-<meta name="description"
-content="Blueprint dành cho ca sĩ muốn trở thành biểu tượng âm nhạc và lan tỏa ảnh hưởng toàn cầu.">
+    body.cinematic-page{
+      background:
+        radial-gradient(920px 420px at 10% 0%, rgba(224,200,150,.18), transparent 62%),
+        radial-gradient(840px 360px at 88% 8%, rgba(96,165,250,.16), transparent 62%),
+        radial-gradient(760px 320px at 54% 100%, rgba(167,139,250,.18), transparent 62%),
+        radial-gradient(680px 300px at 0% 100%, rgba(34,211,238,.12), transparent 62%),
+        linear-gradient(180deg,#05070c 0%,#060b14 38%,#05070c 100%);
+      background-attachment:fixed;
+      color:var(--text);
+    }
 
-<link rel="stylesheet" href="/assets/site.css">
+    #siteHeader .site-topbar{
+      background:rgba(8,12,19,.72);
+      border-bottom:1px solid rgba(224,200,150,.10);
+      box-shadow:0 18px 60px rgba(0,0,0,.26);
+    }
 
+    #siteHeader .site-menu{
+      gap:10px;
+      padding:8px;
+      border:1px solid rgba(224,200,150,.10);
+      background:rgba(255,255,255,.025);
+      border-radius:18px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+    }
+
+    #siteHeader .site-menu a{
+      height:44px;
+      padding:0 16px;
+      color:#bfc9d7;
+      border-radius:14px;
+      font-weight:600;
+    }
+
+    #siteHeader .site-menu a:hover{
+      color:#fff6df;
+      background:rgba(224,200,150,.10);
+      border-color:rgba(224,200,150,.18);
+    }
+
+    #siteHeader .site-menu a.active{
+      color:#fff3d1;
+      background:linear-gradient(180deg, rgba(224,200,150,.22), rgba(224,200,150,.10));
+      border-color:rgba(224,200,150,.30);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 8px 24px rgba(224,200,150,.10);
+    }
+
+    #siteHeader .site-lang a{
+      background:rgba(255,255,255,.03);
+      border-color:rgba(224,200,150,.10);
+      color:#bfc9d7;
+    }
+
+    #siteHeader .site-lang a.active{
+      color:#fff6df;
+      background:linear-gradient(180deg, rgba(224,200,150,.20), rgba(224,200,150,.10));
+      border-color:rgba(224,200,150,.30);
+      box-shadow:0 8px 20px rgba(224,200,150,.10);
+    }
+
+    .cinema-wrap{
+      max-width:1280px;
+      margin:0 auto;
+      padding:34px 22px 84px;
+    }
+
+    .hero-film{
+      position:relative;
+      min-height:560px;
+      border-radius:30px;
+      overflow:hidden;
+      display:flex;
+      align-items:flex-end;
+      padding:56px;
+      border:1px solid rgba(224,200,150,.18);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.70)),
+        radial-gradient(circle at 18% 18%, rgba(224,200,150,.16), transparent 24%),
+        linear-gradient(135deg, rgba(96,165,250,.22), rgba(167,139,250,.16));
+      box-shadow:0 40px 120px rgba(0,0,0,.6);
+    }
+
+    .hero-film::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.68) 0%, rgba(0,0,0,.42) 42%, rgba(0,0,0,.12) 100%);
+      pointer-events:none;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:1;
+      max-width:760px;
+    }
+
+    .eyebrow{
+      font-size:12px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:12px;
+    }
+
+    .hero-title{
+      margin:0;
+      font-size:56px;
+      line-height:1.04;
+      letter-spacing:-.03em;
+      color:#fff;
+      text-shadow:0 8px 30px rgba(0,0,0,.35);
+    }
+
+    .hero-lead{
+      margin:18px 0 0;
+      max-width:700px;
+      font-size:18px;
+      line-height:1.82;
+      color:rgba(255,255,255,.86);
+    }
+
+    .film-meta{
+      margin-top:24px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      min-height:38px;
+      padding:0 12px;
+      border-radius:999px;
+      border:1px solid rgba(224,200,150,.20);
+      background:rgba(255,255,255,.05);
+      color:#f4e5bc;
+      font-size:13px;
+      font-weight:600;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:28px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:0 18px;
+      border-radius:16px;
+      border:1px solid rgba(224,200,150,.18);
+      background:rgba(255,255,255,.05);
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      transition:.24s ease;
+      box-shadow:0 12px 30px rgba(0,0,0,.18);
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.08);
+      border-color:rgba(224,200,150,.30);
+    }
+
+    .btn.primary{
+      color:#fff5de;
+      background:linear-gradient(180deg, rgba(224,200,150,.24), rgba(224,200,150,.10));
+      border-color:rgba(224,200,150,.34);
+      box-shadow:0 14px 34px rgba(224,200,150,.16);
+    }
+
+    .section{
+      margin-top:72px;
+    }
+
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .section-head h2{
+      margin:0;
+      font-size:34px;
+      line-height:1.08;
+      letter-spacing:-.028em;
+      color:#f5e7c7;
+    }
+
+    .section-head p{
+      margin:0;
+      max-width:780px;
+      font-size:16px;
+      line-height:1.9;
+      color:var(--muted);
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:22px;
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      border-radius:26px;
+      background:var(--panel);
+      box-shadow:var(--shadow);
+      padding:24px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .panel::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(circle at top right, rgba(224,200,150,.12), transparent 24%),
+        radial-gradient(circle at left bottom, rgba(167,139,250,.10), transparent 26%);
+      pointer-events:none;
+    }
+
+    .panel h3{
+      position:relative;
+      margin:0 0 12px;
+      font-size:24px;
+      color:#f8fafc;
+    }
+
+    .panel p,
+    .panel li{
+      position:relative;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.86;
+    }
+
+    .panel ul{
+      position:relative;
+      margin:0;
+      padding-left:18px;
+    }
+
+    .timeline{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .timeline-card{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:var(--panel-2);
+      padding:22px;
+      transition:.26s ease;
+    }
+
+    .timeline-card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(224,200,150,.26);
+      background:rgba(255,255,255,.05);
+      box-shadow:0 18px 48px rgba(0,0,0,.22);
+    }
+
+    .timeline-year{
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:10px;
+    }
+
+    .timeline-card h3{
+      margin:0 0 10px;
+      font-size:22px;
+      color:#fff;
+    }
+
+    .timeline-card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:15px;
+    }
+
+    .kpi-row{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .kpi-card{
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:rgba(255,255,255,.03);
+      padding:18px;
+      text-align:left;
+    }
+
+    .kpi-card b{
+      display:block;
+      font-size:24px;
+      color:#f4e2b1;
+      margin-bottom:6px;
+    }
+
+    .kpi-card span{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.65;
+    }
+
+    .purchase-box{
+      display:grid;
+      grid-template-columns:1fr 320px;
+      gap:28px;
+      align-items:center;
+      border:1px solid rgba(224,200,150,.22);
+      border-radius:28px;
+      padding:32px;
+      background:
+        radial-gradient(720px 260px at 14% 0%, rgba(224,200,150,.12), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      box-shadow:0 24px 68px rgba(0,0,0,.26);
+    }
+
+    .purchase-box h3{
+      margin:0 0 10px;
+      font-size:30px;
+      color:#fff;
+    }
+
+    .purchase-box p{
+      margin:0 0 14px;
+      color:var(--muted);
+      line-height:1.9;
+      font-size:16px;
+    }
+
+    .price-tag{
+      display:inline-flex;
+      align-items:center;
+      min-height:48px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(224,200,150,.28);
+      background:rgba(224,200,150,.08);
+      color:#f4e2b1;
+      font-size:20px;
+      font-weight:700;
+      margin:8px 0 18px;
+    }
+
+    .qr-box{
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid rgba(224,200,150,.20);
+      background:#fff;
+      padding:12px;
+      box-shadow:0 16px 42px rgba(0,0,0,.22);
+    }
+
+    .qr-box img{
+      display:block;
+      width:100%;
+      border-radius:12px;
+    }
+
+    .purchase-note{
+      margin-top:12px;
+      font-size:12px;
+      color:rgba(255,255,255,.56);
+      line-height:1.65;
+      text-align:center;
+    }
+
+    .comments{
+      margin-top:18px;
+    }
+
+    .comment-form{
+      display:grid;
+      gap:12px;
+      max-width:640px;
+      margin-top:18px;
+    }
+
+    .comment-form input,
+    .comment-form textarea,
+    .comment-form select{
+      width:100%;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      padding:14px 16px;
+      font-size:14px;
+      outline:none;
+    }
+
+    .comment-form textarea{
+      min-height:140px;
+      resize:vertical;
+    }
+
+    .comment-list{
+      margin-top:24px;
+      display:grid;
+      gap:14px;
+    }
+
+    .comment-item{
+      border:1px solid rgba(224,200,150,.12);
+      border-radius:18px;
+      padding:18px;
+      background:rgba(255,255,255,.03);
+    }
+
+    .comment-item b{
+      color:#fff;
+      display:block;
+      margin-bottom:6px;
+    }
+
+    .comment-item .rating{
+      color:#f3d99e;
+      font-size:13px;
+      margin-bottom:8px;
+    }
+
+    .comment-item p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:15px;
+    }
+
+    .footer{
+      padding:52px 0 34px;
+      margin-top:84px;
+      border-top:1px solid rgba(224,200,150,.10);
+      background:rgba(10,15,24,.46);
+      text-align:center;
+      font-size:14px;
+      color:rgba(255,255,255,.58);
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity .72s ease, transform .72s ease;
+    }
+
+    .reveal.in{
+      opacity:1;
+      transform:none;
+    }
+
+    @media (max-width:1080px){
+      .grid-2,
+      .purchase-box{
+        grid-template-columns:1fr;
+      }
+
+      .kpi-row{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      .hero-title{
+        font-size:44px;
+      }
+    }
+
+    @media (max-width:760px){
+      .cinema-wrap{
+        padding:22px 16px 62px;
+      }
+
+      .hero-film{
+        min-height:460px;
+        padding:28px;
+      }
+
+      .hero-title{
+        font-size:34px;
+      }
+
+      .hero-lead{
+        font-size:16px;
+      }
+
+      .section-head h2{
+        font-size:28px;
+      }
+
+      .hero-actions{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .kpi-row{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
 </head>
+<body class="cinematic-page">
+  <div id="siteHeader"></div>
 
-<body>
+  <main class="cinema-wrap" id="mainContent">
+    <section class="hero-film reveal">
+      <div class="hero-content">
+        <div class="eyebrow" id="heroEyebrow">SCRIPT JOURNEY · BIỂU TƯỢNG ÂM NHẠC</div>
+        <h1 class="hero-title" id="heroTitle">The Singing Icon</h1>
+        <p class="hero-lead" id="heroLead">
+          Không phải giọng hát nào cũng trở thành biểu tượng. Nhưng có những giọng ca, khi được định vị đúng và kể câu chuyện đúng, trở thành ký ức âm nhạc không thể phai. The Singing Icon được tạo ra cho hành trình đó.
+        </p>
 
-<div id="siteHeader"></div>
+        <div class="film-meta">
+          <span class="badge" id="heroMeta1">High-end blueprint</span>
+          <span class="badge" id="heroMeta2">Musical journey 1:1</span>
+          <span class="badge" id="heroMeta3">18,000 USD</span>
+        </div>
 
-<main class="wrap script-detail">
+        <div class="hero-actions">
+          <a class="btn primary" href="#purchase" id="heroBtn1">Thanh toán hành trình</a>
+          <a class="btn" href="#roadmap" id="heroBtn2">Xem lộ trình 5 năm</a>
+          <a class="btn" href="#comments" id="heroBtn3">Ý kiến công khai</a>
+        </div>
+      </div>
+    </section>
 
-<section class="script-hero">
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" id="introEyebrow">GIỚI THIỆU</div>
+          <h2 id="introTitle">Một kịch bản dành cho ca sĩ muốn tiếng hát của mình vượt qua biên giới</h2>
+        </div>
+        <p id="introDesc">
+          Đây không phải chiến lược marketing âm nhạc thông thường. Đây là blueprint dành cho ca sĩ có tiềm năng chuyển hóa giọng hát thành câu chuyện âm nhạc có sức lan tỏa dài hạn vượt ngôn ngữ và văn hóa.
+        </p>
+      </div>
 
-<h1>The Singing Icon</h1>
+      <div class="grid-2">
+        <article class="panel">
+          <h3 id="forWhoTitle">Kịch bản này dành cho ai</h3>
+          <p id="forWhoText">
+            Dành cho những ca sĩ không chỉ muốn nổi tiếng trong nước, mà muốn tiếng hát mình trở thành một phần di sản âm nhạc toàn cầu.
+          </p>
+          <ul>
+            <li id="forWho1">Ca sĩ có giọng hát thật và chiều sâu cảm xúc, không chỉ kỹ thuật.</li>
+            <li id="forWho2">Người muốn mang âm nhạc Việt đến với khán giả quốc tế.</li>
+            <li id="forWho3">Người sẵn sàng xây dựng thương hiệu âm nhạc bền vững dài hạn.</li>
+            <li id="forWho4">Người muốn tiếng hát mình sống lâu hơn một mùa hit.</li>
+          </ul>
+        </article>
 
-<p class="lead">
+        <article class="panel">
+          <h3 id="whyTitle">Tại sao họ sẽ muốn chọn hành trình này</h3>
+          <p id="whyText">
+            Vì viral không tạo ra biểu tượng. Một ca sĩ thật sự cần nhiều hơn số view. Họ cần câu chuyện âm nhạc, chiến lược xuất hiện đúng sân khấu, chiều sâu nghệ thuật và khả năng kết nối cảm xúc vượt ngôn ngữ.
+          </p>
+        </article>
+      </div>
+    </section>
 
-Âm nhạc có thể trở thành
-ngôn ngữ của một thế hệ.
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" id="valueEyebrow">GIÁ TRỊ GÓI</div>
+          <h2 id="valueTitle">Những gì hành trình này thực sự mở ra</h2>
+        </div>
+        <p id="valueDesc">
+          Giá trị không nằm ở số trang tài liệu. Giá trị nằm ở việc giúp một giọng ca được định vị đúng, xuất hiện đúng sân khấu, và xây dựng di sản âm nhạc có sức sống dài lâu.
+        </p>
+      </div>
 
-Kịch bản này giúp ca sĩ
-xây dựng hành trình đó.
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <b id="kpi1">01</b>
+          <span id="kpi1d">Kiến trúc câu chuyện âm nhạc có thể đi cùng ca sĩ trong suốt sự nghiệp.</span>
+        </div>
+        <div class="kpi-card">
+          <b id="kpi2">02</b>
+          <span id="kpi2d">Khung xuất hiện sân khấu quốc tế và định vị thương hiệu âm nhạc cao cấp.</span>
+        </div>
+        <div class="kpi-card">
+          <b id="kpi3">03</b>
+          <span id="kpi3d">Lộ trình 1–2 năm xây dựng nền tảng và 3–5 năm tạo di sản âm nhạc.</span>
+        </div>
+        <div class="kpi-card">
+          <b id="kpi4">04</b>
+          <span id="kpi4d">Một blueprint 1:1 được chọn lọc, tôn trọng cá tính và giọng hát riêng.</span>
+        </div>
+      </div>
+    </section>
 
-</p>
+    <section class="section reveal" id="roadmap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" id="roadEyebrow">LỘ TRÌNH</div>
+          <h2 id="roadTitle">Từ 1 năm đầu đến 5 năm sau, hành trình này có thể đi tới đâu</h2>
+        </div>
+        <p id="roadDesc">
+          Một giọng ca trở thành biểu tượng không phải trong một đêm. Họ được xây dựng bằng chiều sâu cảm xúc, kỷ luật âm nhạc, sự xuất hiện đúng sân khấu và câu chuyện được kể đúng bản chất.
+        </p>
+      </div>
 
-<div class="script-price">
+      <div class="timeline">
+        <article class="timeline-card">
+          <div class="timeline-year" id="year1">Giai đoạn 1</div>
+          <h3 id="year1Title">0–6 tháng</h3>
+          <p id="year1Text">Định vị lại thương hiệu âm nhạc, xác định giọng điệu nghệ thuật cốt lõi, phong cách biểu diễn và hướng tiếp cận khán giả quốc tế đầu tiên.</p>
+        </article>
 
-Entry contribution
+        <article class="timeline-card">
+          <div class="timeline-year" id="year2">Giai đoạn 2</div>
+          <h3 id="year2Title">6–12 tháng</h3>
+          <p id="year2Text">Xây dựng narrative âm nhạc, bắt đầu xuất hiện tại các sân khấu và nền tảng phù hợp, phát triển fanbase có chiều sâu thay vì số lượng.</p>
+        </article>
 
-<strong>18,000 USD</strong>
+        <article class="timeline-card">
+          <div class="timeline-year" id="year3">Giai đoạn 3</div>
+          <h3 id="year3Title">1–2 năm</h3>
+          <p id="year3Text">Hình thành nhận diện rõ ràng trong cộng đồng âm nhạc khu vực. Không chỉ là giọng hát mà là một câu chuyện âm nhạc có cấu trúc và chiều sâu.</p>
+        </article>
 
-</div>
+        <article class="timeline-card">
+          <div class="timeline-year" id="year4">Giai đoạn 4</div>
+          <h3 id="year4Title">3–5 năm</h3>
+          <p id="year4Text">Nếu đi đúng, ca sĩ có thể trở thành biểu tượng âm nhạc, được mời biểu diễn tại các sự kiện quốc tế và được nhắc đến như đại diện tiếng nhạc Việt Nam.</p>
+        </article>
+      </div>
+    </section>
 
-</section>
+    <section class="section reveal">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" id="contentEyebrow">CẤU TRÚC GÓI</div>
+          <h2 id="contentTitle">Bên trong The Singing Icon có những gì</h2>
+        </div>
+        <p id="contentDesc">
+          Đây là một script journey có thể phát triển thành narrative âm nhạc, chuỗi xuất hiện sân khấu chiến lược, chân dung ca sĩ và các phiên bản nội dung cảm xúc có chiều sâu.
+        </p>
+      </div>
 
-<section class="script-section">
+      <div class="grid-2">
+        <article class="panel">
+          <h3 id="leftPackTitle">Khối narrative âm nhạc</h3>
+          <ul>
+            <li id="pack1">Narrative architecture cho hành trình âm nhạc và câu chuyện nghệ sĩ.</li>
+            <li id="pack2">Story spine giúp giữ thông điệp âm nhạc nhất quán qua nhiều năm và nhiều album.</li>
+            <li id="pack3">Thông điệp nghệ thuật trung tâm có thể dùng cho phỏng vấn, MV, live show.</li>
+            <li id="pack4">Chân dung ca sĩ với chiều sâu cảm xúc và bản sắc cá nhân.</li>
+          </ul>
+        </article>
 
-<h2>Nội dung kịch bản</h2>
+        <article class="panel">
+          <h3 id="rightPackTitle">Khối triển khai sân khấu</h3>
+          <ul>
+            <li id="pack5">Format xuất hiện tại các concert, festival và sự kiện âm nhạc quốc tế.</li>
+            <li id="pack6">Khung phát triển fanbase, engagement chiến lược và truyền thông âm nhạc.</li>
+            <li id="pack7">Lộ trình 1–2 năm đầu và định hướng phát triển 3–5 năm.</li>
+            <li id="pack8">Khuyến nghị xây dựng di sản âm nhạc và kết nối cộng đồng người nghe.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-<ul>
+    <section class="section reveal" id="purchase">
+      <div class="purchase-box">
+        <div>
+          <div class="eyebrow" id="purchaseEyebrow">THANH TOÁN HÀNH TRÌNH</div>
+          <h3 id="purchaseTitle">Tham gia The Singing Icon</h3>
+          <p id="purchaseText1">
+            Đây là một hành trình cao cấp, không đại trà, dành cho ca sĩ thực sự muốn được chọn và đi xa bằng chiều sâu cảm xúc thật. Sau khi thanh toán, khách hàng gửi xác nhận để bắt đầu bước tiếp theo.
+          </p>
+          <div class="price-tag" id="purchasePrice">18,000 USD</div>
+          <p id="purchaseText2">
+            Nội dung chuyển khoản nên ghi rõ: <strong>DSTS SINGING ICON</strong>. Sau đó gửi xác nhận qua trang liên hệ để đội ngũ kiểm tra và phản hồi.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="/contact" id="purchaseBtn1">Gửi xác nhận thanh toán</a>
+            <a class="btn" href="/scripts.html" id="purchaseBtn2">Quay lại thư viện Scripts</a>
+          </div>
+        </div>
 
-<li>Concept album</li>
-<li>Kịch bản concert</li>
-<li>Documentary âm nhạc</li>
-<li>Chiến lược fanbase</li>
-<li>Lan tỏa quốc tế</li>
+        <div>
+          <div class="qr-box">
+            <img src="/assets/qr-payment.png" alt="QR Payment">
+          </div>
+          <div class="purchase-note" id="purchaseNote">
+            QR hiện tại là phương thức thanh toán trực tiếp. Về sau có thể mở thêm xác nhận tự động, đơn hàng và gửi file riêng theo từng hành trình.
+          </div>
+        </div>
+      </div>
+    </section>
 
-</ul>
+    <section class="section reveal comments" id="comments">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" id="commentEyebrow">Ý KIẾN CÔNG KHAI</div>
+          <h2 id="commentTitle">Phản hồi và đánh giá từ cộng đồng</h2>
+        </div>
+        <p id="commentDesc">
+          Đây là nơi khách hàng và người quan tâm có thể để lại tên, nhận xét và đánh giá công khai về hành trình này. Giai đoạn đầu có thể dùng hiển thị tĩnh, sau đó sẽ nối D1 để lưu thật.
+        </p>
+      </div>
 
-</section>
+      <form class="comment-form">
+        <input type="text" id="formName" placeholder="Tên của bạn">
+        <select id="formRating">
+          <option>5 sao – Rất mạnh</option>
+          <option>4 sao – Rất tốt</option>
+          <option>3 sao – Tốt</option>
+          <option>2 sao – Cần thêm thông tin</option>
+          <option>1 sao – Chưa phù hợp</option>
+        </select>
+        <textarea id="formComment" placeholder="Chia sẻ cảm nhận của bạn về The Singing Icon"></textarea>
+        <button type="button" class="btn primary" id="formSubmit">Gửi đánh giá</button>
+      </form>
 
-<section class="script-section payment">
+      <div class="comment-list">
+        <article class="comment-item">
+          <b id="sampleName1">Nguyễn Thu Hương</b>
+          <div class="rating" id="sampleRate1">5 sao – Rất mạnh</div>
+          <p id="sampleText1">Đây là lần đầu tiên tôi thấy một blueprint âm nhạc không chỉ nói về số liệu mà nói về chiều sâu nghệ thuật và hành trình dài hạn.</p>
+        </article>
 
-<h2>Thanh toán</h2>
+        <article class="comment-item">
+          <b id="sampleName2">Lê Văn Bình</b>
+          <div class="rating" id="sampleRate2">5 sao – Rất tốt</div>
+          <p id="sampleText2">Tôi thích nhất là cách gói này nhìn ca sĩ như một nghệ sĩ toàn diện, không chỉ là giọng hát.</p>
+        </article>
+      </div>
+    </section>
+  </main>
 
-<img src="/assets/qr-payment.png" class="qr">
+  <footer class="footer">
+    <div>© Đường Sao Tỏa Sáng · DSTS</div>
+    <div id="footerLine">Một hành trình dành cho những giọng ca có thể trở thành biểu tượng âm nhạc bằng chiều sâu cảm xúc thật.</div>
+  </footer>
 
-<p>Nội dung chuyển khoản:</p>
+  <script src="/assets/app.js"></script>
+  <script>
+    (function () {
+      const lang = window.DSTS && typeof DSTS.getLang === "function" ? DSTS.getLang() : "vi";
+      document.documentElement.lang = lang;
 
-<strong>DSTS Singing Icon</strong>
+      if (window.DSTS && typeof DSTS.mountSiteChrome === "function") {
+        DSTS.mountSiteChrome({ active: "scripts" });
+      }
 
-</section>
+      const dict = {
+        vi: {
+          title: "The Singing Icon – Đường Sao Tỏa Sáng",
+          description: "The Singing Icon là hành trình kịch bản cao cấp dành cho ca sĩ có khả năng trở thành biểu tượng âm nhạc vượt ngôn ngữ và văn hóa bằng chiều sâu cảm xúc thật.",
+          heroEyebrow: "SCRIPT JOURNEY · BIỂU TƯỢNG ÂM NHẠC",
+          heroTitle: "The Singing Icon",
+          heroLead: "Không phải giọng hát nào cũng trở thành biểu tượng. Nhưng có những giọng ca, khi được định vị đúng và kể câu chuyện đúng, trở thành ký ức âm nhạc không thể phai. The Singing Icon được tạo ra cho hành trình đó.",
+          heroMeta1: "High-end blueprint",
+          heroMeta2: "Musical journey 1:1",
+          heroMeta3: "18,000 USD",
+          heroBtn1: "Thanh toán hành trình",
+          heroBtn2: "Xem lộ trình 5 năm",
+          heroBtn3: "Ý kiến công khai",
 
-</main>
+          introEyebrow: "GIỚI THIỆU",
+          introTitle: "Một kịch bản dành cho ca sĩ muốn tiếng hát của mình vượt qua biên giới",
+          introDesc: "Đây không phải chiến lược marketing âm nhạc thông thường. Đây là blueprint dành cho ca sĩ có tiềm năng chuyển hóa giọng hát thành câu chuyện âm nhạc có sức lan tỏa dài hạn vượt ngôn ngữ và văn hóa.",
 
-<footer class="site-footer">
-<div class="wrap">
-© Đường Sao Tỏa Sáng
-</div>
-</footer>
+          forWhoTitle: "Kịch bản này dành cho ai",
+          forWhoText: "Dành cho những ca sĩ không chỉ muốn nổi tiếng trong nước, mà muốn tiếng hát mình trở thành một phần di sản âm nhạc toàn cầu.",
+          forWho1: "Ca sĩ có giọng hát thật và chiều sâu cảm xúc, không chỉ kỹ thuật.",
+          forWho2: "Người muốn mang âm nhạc Việt đến với khán giả quốc tế.",
+          forWho3: "Người sẵn sàng xây dựng thương hiệu âm nhạc bền vững dài hạn.",
+          forWho4: "Người muốn tiếng hát mình sống lâu hơn một mùa hit.",
 
-<script src="/assets/site.js"></script>
+          whyTitle: "Tại sao họ sẽ muốn chọn hành trình này",
+          whyText: "Vì viral không tạo ra biểu tượng. Một ca sĩ thật sự cần nhiều hơn số view. Họ cần câu chuyện âm nhạc, chiến lược xuất hiện đúng sân khấu, chiều sâu nghệ thuật và khả năng kết nối cảm xúc vượt ngôn ngữ.",
 
+          valueEyebrow: "GIÁ TRỊ GÓI",
+          valueTitle: "Những gì hành trình này thực sự mở ra",
+          valueDesc: "Giá trị không nằm ở số trang tài liệu. Giá trị nằm ở việc giúp một giọng ca được định vị đúng, xuất hiện đúng sân khấu, và xây dựng di sản âm nhạc có sức sống dài lâu.",
+          kpi1: "01",
+          kpi1d: "Kiến trúc câu chuyện âm nhạc có thể đi cùng ca sĩ trong suốt sự nghiệp.",
+          kpi2: "02",
+          kpi2d: "Khung xuất hiện sân khấu quốc tế và định vị thương hiệu âm nhạc cao cấp.",
+          kpi3: "03",
+          kpi3d: "Lộ trình 1–2 năm xây dựng nền tảng và 3–5 năm tạo di sản âm nhạc.",
+          kpi4: "04",
+          kpi4d: "Một blueprint 1:1 được chọn lọc, tôn trọng cá tính và giọng hát riêng.",
+
+          roadEyebrow: "LỘ TRÌNH",
+          roadTitle: "Từ 1 năm đầu đến 5 năm sau, hành trình này có thể đi tới đâu",
+          roadDesc: "Một giọng ca trở thành biểu tượng không phải trong một đêm. Họ được xây dựng bằng chiều sâu cảm xúc, kỷ luật âm nhạc, sự xuất hiện đúng sân khấu và câu chuyện được kể đúng bản chất.",
+          year1: "Giai đoạn 1",
+          year1Title: "0–6 tháng",
+          year1Text: "Định vị lại thương hiệu âm nhạc, xác định giọng điệu nghệ thuật cốt lõi, phong cách biểu diễn và hướng tiếp cận khán giả quốc tế đầu tiên.",
+          year2: "Giai đoạn 2",
+          year2Title: "6–12 tháng",
+          year2Text: "Xây dựng narrative âm nhạc, bắt đầu xuất hiện tại các sân khấu và nền tảng phù hợp, phát triển fanbase có chiều sâu thay vì số lượng.",
+          year3: "Giai đoạn 3",
+          year3Title: "1–2 năm",
+          year3Text: "Hình thành nhận diện rõ ràng trong cộng đồng âm nhạc khu vực. Không chỉ là giọng hát mà là một câu chuyện âm nhạc có cấu trúc và chiều sâu.",
+          year4: "Giai đoạn 4",
+          year4Title: "3–5 năm",
+          year4Text: "Nếu đi đúng, ca sĩ có thể trở thành biểu tượng âm nhạc, được mời biểu diễn tại các sự kiện quốc tế và được nhắc đến như đại diện tiếng nhạc Việt Nam.",
+
+          contentEyebrow: "CẤU TRÚC GÓI",
+          contentTitle: "Bên trong The Singing Icon có những gì",
+          contentDesc: "Đây là một script journey có thể phát triển thành narrative âm nhạc, chuỗi xuất hiện sân khấu chiến lược, chân dung ca sĩ và các phiên bản nội dung cảm xúc có chiều sâu.",
+          leftPackTitle: "Khối narrative âm nhạc",
+          pack1: "Narrative architecture cho hành trình âm nhạc và câu chuyện nghệ sĩ.",
+          pack2: "Story spine giúp giữ thông điệp âm nhạc nhất quán qua nhiều năm và nhiều album.",
+          pack3: "Thông điệp nghệ thuật trung tâm có thể dùng cho phỏng vấn, MV, live show.",
+          pack4: "Chân dung ca sĩ với chiều sâu cảm xúc và bản sắc cá nhân.",
+          rightPackTitle: "Khối triển khai sân khấu",
+          pack5: "Format xuất hiện tại các concert, festival và sự kiện âm nhạc quốc tế.",
+          pack6: "Khung phát triển fanbase, engagement chiến lược và truyền thông âm nhạc.",
+          pack7: "Lộ trình 1–2 năm đầu và định hướng phát triển 3–5 năm.",
+          pack8: "Khuyến nghị xây dựng di sản âm nhạc và kết nối cộng đồng người nghe.",
+
+          purchaseEyebrow: "THANH TOÁN HÀNH TRÌNH",
+          purchaseTitle: "Tham gia The Singing Icon",
+          purchaseText1: "Đây là một hành trình cao cấp, không đại trà, dành cho ca sĩ thực sự muốn được chọn và đi xa bằng chiều sâu cảm xúc thật. Sau khi thanh toán, khách hàng gửi xác nhận để bắt đầu bước tiếp theo.",
+          purchasePrice: "18,000 USD",
+          purchaseText2: "Nội dung chuyển khoản nên ghi rõ: DSTS SINGING ICON. Sau đó gửi xác nhận qua trang liên hệ để đội ngũ kiểm tra và phản hồi.",
+          purchaseBtn1: "Gửi xác nhận thanh toán",
+          purchaseBtn2: "Quay lại thư viện Scripts",
+          purchaseNote: "QR hiện tại là phương thức thanh toán trực tiếp. Về sau có thể mở thêm xác nhận tự động, đơn hàng và gửi file riêng theo từng hành trình.",
+
+          commentEyebrow: "Ý KIẾN CÔNG KHAI",
+          commentTitle: "Phản hồi và đánh giá từ cộng đồng",
+          commentDesc: "Đây là nơi khách hàng và người quan tâm có thể để lại tên, nhận xét và đánh giá công khai về hành trình này. Giai đoạn đầu có thể dùng hiển thị tĩnh, sau đó sẽ nối D1 để lưu thật.",
+          formName: "Tên của bạn",
+          formComment: "Chia sẻ cảm nhận của bạn về The Singing Icon",
+          formSubmit: "Gửi đánh giá",
+          rate5: "5 sao – Rất mạnh",
+          rate4: "4 sao – Rất tốt",
+          rate3: "3 sao – Tốt",
+          rate2: "2 sao – Cần thêm thông tin",
+          rate1: "1 sao – Chưa phù hợp",
+          sampleName1: "Nguyễn Thu Hương",
+          sampleRate1: "5 sao – Rất mạnh",
+          sampleText1: "Đây là lần đầu tiên tôi thấy một blueprint âm nhạc không chỉ nói về số liệu mà nói về chiều sâu nghệ thuật và hành trình dài hạn.",
+          sampleName2: "Lê Văn Bình",
+          sampleRate2: "5 sao – Rất tốt",
+          sampleText2: "Tôi thích nhất là cách gói này nhìn ca sĩ như một nghệ sĩ toàn diện, không chỉ là giọng hát.",
+          footerLine: "Một hành trình dành cho những giọng ca có thể trở thành biểu tượng âm nhạc bằng chiều sâu cảm xúc thật."
+        },
+        en: {
+          title: "The Singing Icon – Đường Sao Tỏa Sáng",
+          description: "The Singing Icon is a premium script journey for singers who can become musical icons that transcend language and culture through genuine emotional depth.",
+          heroEyebrow: "SCRIPT JOURNEY · MUSICAL ICON",
+          heroTitle: "The Singing Icon",
+          heroLead: "Not every voice becomes an icon. But some, when positioned correctly and told with depth, become unforgettable musical memories. The Singing Icon is built for that path.",
+          heroMeta1: "High-end blueprint",
+          heroMeta2: "Musical journey 1:1",
+          heroMeta3: "18,000 USD",
+          heroBtn1: "Pay for the journey",
+          heroBtn2: "View the 5-year roadmap",
+          heroBtn3: "Public reflections",
+
+          introEyebrow: "INTRODUCTION",
+          introTitle: "A script for singers who want their voice to cross borders",
+          introDesc: "This is not a standard music marketing strategy. It is a blueprint for singers capable of transforming a voice into a musical story with long-term resonance that crosses language and culture.",
+
+          forWhoTitle: "Who this journey is for",
+          forWhoText: "It is for singers who do not just want domestic fame, but want their voice to become part of a global musical legacy.",
+          forWho1: "Singers with a genuine voice and emotional depth, not just technique.",
+          forWho2: "Those who want to bring Vietnamese music to international audiences.",
+          forWho3: "Those prepared to build a sustainable, long-term musical brand.",
+          forWho4: "Those who want their voice to outlive a single hit season.",
+
+          whyTitle: "Why they will want this journey",
+          whyText: "Because going viral does not create icons. A true singer needs more than view counts. They need a musical story, a strategy for appearing on the right stages, artistic depth, and the ability to connect emotionally beyond language.",
+
+          valueEyebrow: "PACKAGE VALUE",
+          valueTitle: "What this journey truly opens",
+          valueDesc: "The value does not lie in the number of pages. The value lies in helping a voice be positioned correctly, appear on the right stage, and build a musical legacy with lasting vitality.",
+          kpi1: "01",
+          kpi1d: "A musical story architecture that can travel with the singer throughout their entire career.",
+          kpi2: "02",
+          kpi2d: "An international stage presence framework and premium musical brand positioning.",
+          kpi3: "03",
+          kpi3d: "A 1–2 year foundation-building path and a 3–5 year musical legacy development trajectory.",
+          kpi4: "04",
+          kpi4d: "A selected 1:1 blueprint that respects each singer's individual personality and voice.",
+
+          roadEyebrow: "ROADMAP",
+          roadTitle: "From the first year to five years later, where this journey can go",
+          roadDesc: "A voice becoming an icon does not happen overnight. It is built through emotional depth, musical discipline, appearing on the right stage at the right time, and being told in the right way.",
+          year1: "Phase 1",
+          year1Title: "0–6 months",
+          year1Text: "Reposition the musical brand, define the core artistic voice, performance style, and the first approach to international audiences.",
+          year2: "Phase 2",
+          year2Title: "6–12 months",
+          year2Text: "Build the musical narrative, begin appearing on aligned stages and platforms, develop a fanbase with depth rather than volume.",
+          year3: "Phase 3",
+          year3Title: "1–2 years",
+          year3Text: "A clear identity begins to form within the regional music community. No longer just a voice but a musical story with structure and depth.",
+          year4: "Phase 4",
+          year4Title: "3–5 years",
+          year4Text: "If executed correctly, the singer can become a musical icon, invited to perform at international events and referenced as a representative of Vietnamese music.",
+
+          contentEyebrow: "PACKAGE STRUCTURE",
+          contentTitle: "What exists inside The Singing Icon",
+          contentDesc: "This script journey can develop into a musical narrative, strategic stage appearance sequences, a singer's portrait, and emotionally rich content in multiple formats.",
+          leftPackTitle: "Musical narrative block",
+          pack1: "Narrative architecture for the musical journey and artist story.",
+          pack2: "A story spine that keeps the musical message consistent across years and albums.",
+          pack3: "A central artistic message usable for interviews, music videos, and live shows.",
+          pack4: "A singer's portrait with emotional depth and personal identity.",
+          rightPackTitle: "Stage development block",
+          pack5: "A presence format for concerts, festivals, and international music events.",
+          pack6: "A fanbase development framework, strategic engagement, and music communications.",
+          pack7: "A 1–2 year launch path and a 3–5 year development direction.",
+          pack8: "Recommendations for building a musical legacy and connecting the listener community.",
+
+          purchaseEyebrow: "JOURNEY PAYMENT",
+          purchaseTitle: "Enter The Singing Icon",
+          purchaseText1: "This is a premium, non-mass journey for singers who truly want to be selected and go far through genuine emotional depth. After payment, the client sends confirmation to begin the next step.",
+          purchasePrice: "18,000 USD",
+          purchaseText2: "Your transfer note should clearly state: DSTS SINGING ICON. Then send confirmation through the contact page so the team can verify and respond.",
+          purchaseBtn1: "Send payment confirmation",
+          purchaseBtn2: "Back to Scripts library",
+          purchaseNote: "The current QR is a direct payment method. Later, this can be expanded into automated confirmation, order management, and private delivery for each journey.",
+
+          commentEyebrow: "PUBLIC REFLECTIONS",
+          commentTitle: "Public feedback and evaluations",
+          commentDesc: "This is where clients and interested visitors can leave their name, reflection, and public rating for this journey. In the early phase it can stay static, then later connect to D1 for real storage.",
+          formName: "Your name",
+          formComment: "Share your thoughts about The Singing Icon",
+          formSubmit: "Submit review",
+          rate5: "5 stars – Very strong",
+          rate4: "4 stars – Very good",
+          rate3: "3 stars – Good",
+          rate2: "2 stars – Need more detail",
+          rate1: "1 star – Not yet aligned",
+          sampleName1: "Nguyen Thu Huong",
+          sampleRate1: "5 stars – Very strong",
+          sampleText1: "This is the first time I have seen a music blueprint that talks not about numbers but about artistic depth and long-term journey.",
+          sampleName2: "Le Van Binh",
+          sampleRate2: "5 stars – Very good",
+          sampleText2: "What I love most is how this package sees the singer as a complete artist, not just a voice.",
+          footerLine: "A journey for voices capable of becoming musical icons through genuine emotional depth."
+        }
+      };
+
+      const t = dict[lang] || dict.vi;
+
+      document.title = t.title;
+      const setMeta = (selector, value) => {
+        const el = document.querySelector(selector);
+        if (el) el.setAttribute("content", value);
+      };
+      setMeta('meta[name="description"]', t.description);
+      setMeta('meta[property="og:title"]', t.title);
+      setMeta('meta[property="og:description"]', t.description);
+      setMeta('meta[name="twitter:title"]', t.title);
+      setMeta('meta[name="twitter:description"]', t.description);
+
+      const set = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value;
+      };
+
+      [
+        "heroEyebrow","heroTitle","heroLead","heroMeta1","heroMeta2","heroMeta3","heroBtn1","heroBtn2","heroBtn3",
+        "introEyebrow","introTitle","introDesc",
+        "forWhoTitle","forWhoText","forWho1","forWho2","forWho3","forWho4",
+        "whyTitle","whyText",
+        "valueEyebrow","valueTitle","valueDesc","kpi1","kpi1d","kpi2","kpi2d","kpi3","kpi3d","kpi4","kpi4d",
+        "roadEyebrow","roadTitle","roadDesc","year1","year1Title","year1Text","year2","year2Title","year2Text","year3","year3Title","year3Text","year4","year4Title","year4Text",
+        "contentEyebrow","contentTitle","contentDesc","leftPackTitle","pack1","pack2","pack3","pack4","rightPackTitle","pack5","pack6","pack7","pack8",
+        "purchaseEyebrow","purchaseTitle","purchaseText1","purchasePrice","purchaseText2","purchaseBtn1","purchaseBtn2","purchaseNote",
+        "commentEyebrow","commentTitle","commentDesc","sampleName1","sampleRate1","sampleText1","sampleName2","sampleRate2","sampleText2","footerLine"
+      ].forEach((id) => set(id, t[id]));
+
+      const formName = document.getElementById("formName");
+      if (formName) formName.placeholder = t.formName;
+      const formComment = document.getElementById("formComment");
+      if (formComment) formComment.placeholder = t.formComment;
+      const formSubmit = document.getElementById("formSubmit");
+      if (formSubmit) formSubmit.textContent = t.formSubmit;
+
+      const formRating = document.getElementById("formRating");
+      if (formRating) {
+        formRating.innerHTML = `
+          <option>${t.rate5}</option>
+          <option>${t.rate4}</option>
+          <option>${t.rate3}</option>
+          <option>${t.rate2}</option>
+          <option>${t.rate1}</option>
+        `;
+      }
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+      } else {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+      }
+    })();
+  </script>
 </body>
 </html>
