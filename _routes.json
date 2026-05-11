@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "include": [
+    "/*"
+  ],
+  "exclude": [
+    "/app.css",
+    "/assets/*",
+    "/*.js",
+    "/*.png",
+    "/*.json",
+    "/*.xml",
+    "/_headers",
+    "/_redirects",
+    "/_routes.json",
+    "/.wrangler/*"
+  ]
+}
