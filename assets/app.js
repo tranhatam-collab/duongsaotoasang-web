@@ -1,4 +1,6 @@
+/* DSTS App v2.1 - 2026-05-11 */
 (function () {
+  "use strict";
   const DSTS = {};
 
   DSTS.getLang = function () {
