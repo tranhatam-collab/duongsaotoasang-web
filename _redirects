@@ -1,3 +1,34 @@
-/about                /content.html?slug=about        200
-/program              /content.html?slug=program      200
-/contact              /content.html?slug=contact      200
+/about                /about.html                     200
+/program              /program.html                   200
+/programs             /program                        301
+/contact              /contact.html                   200
+/donate               /donate.html                    200
+/transparency         /transparency.html              200
+/legal                /legal.html                     200
+/posts                /posts.html                     200
+/events               /events.html                    200
+/scripts              /scripts.html                   200
+/nguoiviet-muonnoi-bridge /nguoiviet-muonnoi-bridge.html 200
+
+/scripts/rising-entrepreneur.html     /scripts/rising-entrepreneur     301
+/scripts/global-artist.html           /scripts/global-artist           301
+/scripts/singing-icon.html            /scripts/singing-icon            301
+/scripts/cinematic-actor.html         /scripts/cinematic-actor         301
+/scripts/the-thinker.html             /scripts/the-thinker             301
+/scripts/creative-leader.html         /scripts/creative-leader         301
+/scripts/cultural-ambassador.html     /scripts/cultural-ambassador     301
+/scripts/dsts-legacy.html             /scripts/dsts-legacy             301
+/scripts/global-story.html            /scripts/global-story            301
+
+/scripts/rising-entrepreneur          /scripts/rising-entrepreneur.html 200
+/scripts/global-artist                /scripts/global-artist.html       200
+/scripts/singing-icon                 /scripts/singing-icon.html        200
+/scripts/cinematic-actor              /scripts/cinematic-actor.html     200
+/scripts/the-thinker                  /scripts/the-thinker.html         200
+/scripts/creative-leader              /scripts/creative-leader.html     200
+/scripts/cultural-ambassador          /scripts/cultural-ambassador.html 200
+/scripts/dsts-legacy                  /scripts/dsts-legacy.html         200
+/scripts/global-story                 /scripts/global-story.html        200
+
+/content.html                         /content                         301
+/content                              /content.html                    200

@@ -1,4 +1,4 @@
-/* DSTS App v4.0 - 2026-05-12 */
+/* DSTS App v5.0 - 2026-05-12 */
 (function () {
   "use strict";
   const DSTS = {};
@@ -57,7 +57,7 @@
   DSTS.getContentUrl = function (slug, type) {
     const cleanSlug = encodeURIComponent(slug || "");
     if (type === "page") return DSTS.withLang(`/${cleanSlug}`);
-    return DSTS.withLang(`/content.html?slug=${cleanSlug}`);
+    return DSTS.withLang(`/content?slug=${cleanSlug}`);
   };
 
   DSTS.getPathSlug = function () {
@@ -366,11 +366,11 @@
                   </button>
                   <div class="site-scripts-panel">
                     <a href="${DSTS.withLang("/scripts")}">${DSTS.escapeHTML(t.scriptsLibrary)}</a>
-                    <a href="${DSTS.withLang("/scripts/rising-entrepreneur.html")}">${DSTS.escapeHTML(t.script1)}</a>
-                    <a href="${DSTS.withLang("/scripts/global-artist.html")}">${DSTS.escapeHTML(t.script2)}</a>
-                    <a href="${DSTS.withLang("/scripts/singing-icon.html")}">${DSTS.escapeHTML(t.script3)}</a>
-                    <a href="${DSTS.withLang("/scripts/cinematic-actor.html")}">${DSTS.escapeHTML(t.script4)}</a>
-                    <a href="${DSTS.withLang("/scripts/the-thinker.html")}">${DSTS.escapeHTML(t.script5)}</a>
+                    <a href="${DSTS.withLang("/scripts/rising-entrepreneur")}">${DSTS.escapeHTML(t.script1)}</a>
+                    <a href="${DSTS.withLang("/scripts/global-artist")}">${DSTS.escapeHTML(t.script2)}</a>
+                    <a href="${DSTS.withLang("/scripts/singing-icon")}">${DSTS.escapeHTML(t.script3)}</a>
+                    <a href="${DSTS.withLang("/scripts/cinematic-actor")}">${DSTS.escapeHTML(t.script4)}</a>
+                    <a href="${DSTS.withLang("/scripts/the-thinker")}">${DSTS.escapeHTML(t.script5)}</a>
                   </div>
                 </div>
 

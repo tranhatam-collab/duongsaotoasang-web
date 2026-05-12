@@ -1,49 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-<url>
-<loc>https://duongsaotoasang.com/</loc>
-<priority>1.0</priority>
-</url>
+<url><loc>https://duongsaotoasang.com/</loc><priority>1.0</priority></url>
+<url><loc>https://duongsaotoasang.com/about</loc><priority>0.8</priority></url>
+<url><loc>https://duongsaotoasang.com/program</loc><priority>0.8</priority></url>
+<url><loc>https://duongsaotoasang.com/posts</loc><priority>0.8</priority></url>
+<url><loc>https://duongsaotoasang.com/events</loc><priority>0.8</priority></url>
+<url><loc>https://duongsaotoasang.com/scripts</loc><priority>0.8</priority></url>
+<url><loc>https://duongsaotoasang.com/donate</loc><priority>0.7</priority></url>
+<url><loc>https://duongsaotoasang.com/transparency</loc><priority>0.7</priority></url>
+<url><loc>https://duongsaotoasang.com/legal</loc><priority>0.7</priority></url>
+<url><loc>https://duongsaotoasang.com/contact</loc><priority>0.7</priority></url>
 
-<url>
-<loc>https://duongsaotoasang.com/about</loc>
-<priority>0.8</priority>
-</url>
+<url><loc>https://duongsaotoasang.com/scripts/rising-entrepreneur</loc><priority>0.7</priority></url>
+<url><loc>https://duongsaotoasang.com/scripts/global-artist</loc><priority>0.7</priority></url>
+<url><loc>https://duongsaotoasang.com/scripts/singing-icon</loc><priority>0.7</priority></url>
+<url><loc>https://duongsaotoasang.com/scripts/cinematic-actor</loc><priority>0.7</priority></url>
+<url><loc>https://duongsaotoasang.com/scripts/the-thinker</loc><priority>0.7</priority></url>
+<url><loc>https://duongsaotoasang.com/scripts/creative-leader</loc><priority>0.7</priority></url>
+<url><loc>https://duongsaotoasang.com/scripts/cultural-ambassador</loc><priority>0.7</priority></url>
+<url><loc>https://duongsaotoasang.com/scripts/dsts-legacy</loc><priority>0.7</priority></url>
+<url><loc>https://duongsaotoasang.com/scripts/global-story</loc><priority>0.7</priority></url>
 
-<url>
-<loc>https://duongsaotoasang.com/program</loc>
-<priority>0.8</priority>
-</url>
-
-<url>
-<loc>https://duongsaotoasang.com/posts</loc>
-<priority>0.8</priority>
-</url>
-
-<url>
-<loc>https://duongsaotoasang.com/events</loc>
-<priority>0.8</priority>
-</url>
-
-<url>
-<loc>https://duongsaotoasang.com/scripts</loc>
-<priority>0.8</priority>
-</url>
-
-<url>
-<loc>https://duongsaotoasang.com/donate</loc>
-<priority>0.7</priority>
-</url>
-
-<url>
-<loc>https://duongsaotoasang.com/transparency</loc>
-<priority>0.7</priority>
-</url>
-
-<url>
-<loc>https://duongsaotoasang.com/contact</loc>
-<priority>0.7</priority>
-</url>
+<url><loc>https://duongsaotoasang.com/content?slug=sang-tao-khong-bat-dau-tu-tham-vong</loc><priority>0.6</priority></url>
+<url><loc>https://duongsaotoasang.com/content?slug=hanh-trinh-nhin-lai-chinh-minh</loc><priority>0.6</priority></url>
+<url><loc>https://duongsaotoasang.com/content?slug=cong-dong-khong-phai-dam-dong</loc><priority>0.6</priority></url>
 
 </urlset>
