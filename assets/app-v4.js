@@ -1,4 +1,4 @@
-/* DSTS App v3.0 - 2026-05-12 */
+/* DSTS App v4.0 - 2026-05-12 */
 (function () {
   "use strict";
   const DSTS = {};
@@ -58,6 +58,34 @@
     const cleanSlug = encodeURIComponent(slug || "");
     if (type === "page") return DSTS.withLang(`/${cleanSlug}`);
     return DSTS.withLang(`/content.html?slug=${cleanSlug}`);
+  };
+
+  DSTS.getPathSlug = function () {
+    try {
+      const url = new URL(window.location.href);
+      const querySlug = url.searchParams.get("slug");
+      if (querySlug) return querySlug;
+
+      const parts = url.pathname
+        .replace(/\.html$/i, "")
+        .split("/")
+        .filter(Boolean);
+      const last = parts[parts.length - 1] || "";
+      if (last && last !== "content") return decodeURIComponent(last);
+    } catch (_err) {
+      return "";
+    }
+    return "";
+  };
+
+  DSTS.apiFetch = async function (path) {
+    const cleanPath = String(path || "");
+    const apiPath = cleanPath.startsWith("/api/")
+      ? cleanPath
+      : `/api${cleanPath.startsWith("/") ? cleanPath : `/${cleanPath}`}`;
+    const res = await fetch(apiPath);
+    if (!res.ok) throw new Error(`API request failed: ${res.status}`);
+    return res.json();
   };
 
   DSTS.mountSiteChrome = function (options) {
@@ -195,6 +223,7 @@
         #siteHeader .site-menu button{
           text-decoration:none;
           background:none;
+          color:#bfc9d7;
           font:inherit;
           cursor:pointer;
           display:inline-flex;
