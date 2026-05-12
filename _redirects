@@ -1,30 +1,36 @@
-# Cloudflare Pages tự động strip .html → serve clean URL
-# Chỉ cần redirect rules cho legacy URLs + special cases
+# DSTS Routing v1.1 - Cloudflare Pages
+# Cloudflare Pages automatically serves clean URLs from matching HTML files:
+# /about -> about.html, /program -> program.html, etc.
+# It also automatically renders /404.html for missing assets.
+# Do not add /* /404.html 404 here: Pages _redirects does not support 404 rewrites
+# and redirects are applied even when a matching asset exists.
 
-# Legacy plural redirect
-/programs             /program                         301
+# Special route normalization
+/programs                         /program                              301
+/terms                            /legal#terms                          302
+/refund                           /legal#refund                         302
+/privacy                          /legal#privacy                        302
+/payment-confirmation             /contact?type=payment-confirmation    302
 
-# Force clean URL cho old .html links từ bên ngoài
-/about.html           /about                           301
-/program.html         /program                         301
-/contact.html         /contact                         301
-/donate.html          /donate                          301
-/transparency.html    /transparency                    301
-/legal.html           /legal                           301
-/posts.html           /posts                           301
-/events.html          /events                          301
-/scripts.html         /scripts                         301
-/404.html             /404                             301
+# Legacy clean URL redirects
+/about.html                       /about                                301
+/program.html                     /program                              301
+/contact.html                     /contact                              301
+/donate.html                      /donate                               301
+/transparency.html                /transparency                         301
+/legal.html                       /legal                                301
+/posts.html                       /posts                                301
+/events.html                      /events                               301
+/scripts.html                     /scripts                              301
+/content.html                     /content                              301
 
-/scripts/rising-entrepreneur.html     /scripts/rising-entrepreneur     301
-/scripts/global-artist.html           /scripts/global-artist           301
-/scripts/singing-icon.html            /scripts/singing-icon            301
-/scripts/cinematic-actor.html         /scripts/cinematic-actor         301
-/scripts/the-thinker.html             /scripts/the-thinker             301
-/scripts/creative-leader.html         /scripts/creative-leader         301
-/scripts/cultural-ambassador.html     /scripts/cultural-ambassador     301
-/scripts/dsts-legacy.html             /scripts/dsts-legacy             301
-/scripts/global-story.html            /scripts/global-story            301
-
-# Content detail: clean URL với query string
-/content.html         /content                         301
+# Legacy script detail URLs
+/scripts/rising-entrepreneur.html /scripts/rising-entrepreneur          301
+/scripts/global-artist.html       /scripts/global-artist                301
+/scripts/singing-icon.html        /scripts/singing-icon                 301
+/scripts/cinematic-actor.html     /scripts/cinematic-actor              301
+/scripts/the-thinker.html         /scripts/the-thinker                  301
+/scripts/creative-leader.html     /scripts/creative-leader              301
+/scripts/cultural-ambassador.html /scripts/cultural-ambassador          301
+/scripts/dsts-legacy.html         /scripts/dsts-legacy                  301
+/scripts/global-story.html        /scripts/global-story                 301

@@ -560,6 +560,19 @@
         window.location.href = nextUrl.toString();
       });
 
+      async function fetchJsonWithTimeout(url, ms = 5000) {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), ms);
+
+        try {
+          const res = await fetch(url, { signal: controller.signal });
+          if (!res.ok) throw new Error(`Failed to load post list: ${res.status}`);
+          return res.json();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      }
+
       try {
         postsStatus.textContent = T.loading;
 
@@ -567,10 +580,7 @@
           ? `/search?q=${encodeURIComponent(q)}&lang=${lang}`
           : `/contents?type=post&limit=24&lang=${lang}`;
 
-        const res = await fetch(`/api${endpoint}`);
-        if (!res.ok) throw new Error("Failed to load post list");
-
-        const data = await res.json();
+        const data = await fetchJsonWithTimeout(`/api${endpoint}`);
         if (Array.isArray(data) && data.length) {
           renderList(data);
         } else {

@@ -83,9 +83,16 @@
     const apiPath = cleanPath.startsWith("/api/")
       ? cleanPath
       : `/api${cleanPath.startsWith("/") ? cleanPath : `/${cleanPath}`}`;
-    const res = await fetch(apiPath);
-    if (!res.ok) throw new Error(`API request failed: ${res.status}`);
-    return res.json();
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 5000);
+
+    try {
+      const res = await fetch(apiPath, { signal: controller.signal });
+      if (!res.ok) throw new Error(`API request failed: ${res.status}`);
+      return res.json();
+    } finally {
+      window.clearTimeout(timeout);
+    }
   };
 
   DSTS.mountSiteChrome = function (options) {
