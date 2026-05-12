@@ -1,14 +1,20 @@
-/about                /about.html                     200
-/program              /program.html                   200
-/programs             /program                        301
-/contact              /contact.html                   200
-/donate               /donate.html                    200
-/transparency         /transparency.html              200
-/legal                /legal.html                     200
-/posts                /posts.html                     200
-/events               /events.html                    200
-/scripts              /scripts.html                   200
-/nguoiviet-muonnoi-bridge /nguoiviet-muonnoi-bridge.html 200
+# Cloudflare Pages tự động strip .html → serve clean URL
+# Chỉ cần redirect rules cho legacy URLs + special cases
+
+# Legacy plural redirect
+/programs             /program                         301
+
+# Force clean URL cho old .html links từ bên ngoài
+/about.html           /about                           301
+/program.html         /program                         301
+/contact.html         /contact                         301
+/donate.html          /donate                          301
+/transparency.html    /transparency                    301
+/legal.html           /legal                           301
+/posts.html           /posts                           301
+/events.html          /events                          301
+/scripts.html         /scripts                         301
+/404.html             /404                             301
 
 /scripts/rising-entrepreneur.html     /scripts/rising-entrepreneur     301
 /scripts/global-artist.html           /scripts/global-artist           301
@@ -20,15 +26,5 @@
 /scripts/dsts-legacy.html             /scripts/dsts-legacy             301
 /scripts/global-story.html            /scripts/global-story            301
 
-/scripts/rising-entrepreneur          /scripts/rising-entrepreneur.html 200
-/scripts/global-artist                /scripts/global-artist.html       200
-/scripts/singing-icon                 /scripts/singing-icon.html        200
-/scripts/cinematic-actor              /scripts/cinematic-actor.html     200
-/scripts/the-thinker                  /scripts/the-thinker.html         200
-/scripts/creative-leader              /scripts/creative-leader.html     200
-/scripts/cultural-ambassador          /scripts/cultural-ambassador.html 200
-/scripts/dsts-legacy                  /scripts/dsts-legacy.html         200
-/scripts/global-story                 /scripts/global-story.html        200
-
-/content.html                         /content                         301
-/content                              /content.html                    200
+# Content detail: clean URL với query string
+/content.html         /content                         301
