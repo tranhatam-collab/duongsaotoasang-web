@@ -5,5 +5,5 @@ pages_build_output_dir = "."
 [[d1_databases]]
 binding = "DB"
 database_name = "cf-d1-dsts-content-prod"
-database_id = "33743f0a-0fc4-407e-86af-e309d1200778"
+database_id = "de526895-6824-469b-809c-abcd052d9312"
 migrations_dir = "migrations"
