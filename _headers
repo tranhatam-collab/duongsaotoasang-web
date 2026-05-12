@@ -8,11 +8,11 @@
 /assets/app.js
   Cache-Control: public, max-age=300, must-revalidate
 
-/assets/app.css
+/app.css
   Cache-Control: public, max-age=300, must-revalidate
 
 /assets/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=300, must-revalidate
 
 /functions/*
   Cache-Control: no-store
