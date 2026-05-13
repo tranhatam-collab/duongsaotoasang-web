@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b111d">
+  <meta name="robots" content="index,follow">
+  <title>Partners | DSTS Movement Portal | Đường Sao Tỏa Sáng</title>
+  <meta name="description" content="Trang Partners của DSTS Movement Portal giải thích nguyên tắc đối tác hệ sinh thái, các nhóm hợp tác và trạng thái công bố partner an toàn, không phải trang tài trợ hay sponsor inquiry.">
+  <link rel="canonical" href="https://duongsaotoasang.com/movement/partners">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Đường Sao Tỏa Sáng">
+  <meta property="og:title" content="Partners | DSTS Movement Portal">
+  <meta property="og:description" content="Nguyên tắc đối tác hệ sinh thái của DSTS: strategic, operational, media, academic, mở read-only và không có sponsor inquiry form.">
+  <meta property="og:url" content="https://duongsaotoasang.com/movement/partners">
+  <meta property="og:image" content="https://duongsaotoasang.com/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Partners | DSTS Movement Portal">
+  <meta name="twitter:description" content="DSTS Partners là trang giải thích đối tác hệ sinh thái, không phải sponsor sales page, không form, không payment, không auth.">
+  <meta name="twitter:image" content="https://duongsaotoasang.com/og.png">
+  <link rel="stylesheet" href="/app.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "DSTS Partners",
+    "url": "https://duongsaotoasang.com/movement/partners",
+    "description": "Read-only ecosystem partners explainer for the DSTS Movement Portal.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Đường Sao Tỏa Sáng",
+      "url": "https://duongsaotoasang.com"
+    },
+    "about": {
+      "@type": "Organization",
+      "name": "Đường Sao Tỏa Sáng",
+      "alternateName": "DSTS"
+    }
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b111d;
+      --text:#e2e8f0;
+      --muted:#9eb0c8;
+      --line:rgba(224,200,150,.14);
+      --gold:#e0c896;
+      --gold-dark:#c9a66b;
+      --panel:rgba(255,255,255,.035);
+      --amber:rgba(251,191,36,.14);
+      --green:rgba(74,222,128,.10);
+      --blue:rgba(96,165,250,.14);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(980px 620px at 8% 0%, rgba(224,200,150,.15), transparent 60%),
+        radial-gradient(860px 520px at 92% 8%, rgba(96,165,250,.15), transparent 58%),
+        radial-gradient(760px 460px at 50% 100%, rgba(74,222,128,.08), transparent 60%),
+        linear-gradient(180deg,#0b111d 0%,#101827 52%,#0b111d 100%);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+    a{color:inherit}
+    .wrap{width:min(1180px,calc(100% - 32px));margin:0 auto}
+    .skip-link{
+      position:absolute;
+      left:16px;
+      top:-44px;
+      z-index:999;
+      background:#fff;
+      color:#111;
+      padding:10px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      transition:top .2s ease;
+    }
+    .skip-link:focus{top:16px}
+    #siteHeader .site-topbar{background:rgba(8,12,19,.82);border-bottom:1px solid rgba(224,200,150,.12)}
+
+    .hero{padding:72px 0 42px;border-bottom:1px solid rgba(224,200,150,.10)}
+    .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:28px;align-items:stretch}
+    .eyebrow{color:var(--gold);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:900;margin-bottom:12px}
+    h1{margin:0;color:#f7ead0;font-size:54px;line-height:1.04;letter-spacing:-.03em}
+    .lead{margin:20px 0 0;color:#cbd5e1;font-size:19px;line-height:1.9;max-width:780px}
+    .panel{
+      border:1px solid var(--line);
+      border-radius:28px;
+      background:linear-gradient(145deg,rgba(224,200,150,.08),rgba(255,255,255,.03));
+      padding:26px;
+      box-shadow:0 20px 60px rgba(0,0,0,.24);
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      min-height:34px;
+      padding:0 12px;
+      border:1px solid rgba(224,200,150,.24);
+      border-radius:999px;
+      color:#f5dfb1;
+      background:rgba(224,200,150,.08);
+      font-size:13px;
+      font-weight:800;
+    }
+    .panel-list{display:grid;gap:12px;margin-top:22px}
+    .panel-item{border:1px solid rgba(224,200,150,.11);border-radius:18px;background:rgba(255,255,255,.03);padding:16px}
+    .panel-item b{display:block;color:#f8fafc;margin-bottom:5px}
+    .panel-item span{display:block;color:var(--muted);line-height:1.7;font-size:14px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      padding:0 18px;
+      border-radius:14px;
+      border:1px solid rgba(224,200,150,.18);
+      color:#e2e8f0;
+      background:rgba(255,255,255,.035);
+      text-decoration:none;
+      font-weight:800;
+      transition:transform .18s ease,border-color .18s ease,background .18s ease;
+    }
+    .btn.primary{background:var(--gold-dark);border-color:var(--gold-dark);color:#0b111d}
+    .btn:hover{transform:translateY(-2px);border-color:var(--gold);background:rgba(255,255,255,.06)}
+    .btn.primary:hover{background:var(--gold)}
+    .btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+    .section{padding:56px 0;border-bottom:1px solid rgba(224,200,150,.08)}
+    .section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,430px);gap:24px;align-items:end;margin-bottom:28px}
+    h2{margin:0;color:#f7ead0;font-size:34px;line-height:1.16;letter-spacing:-.02em}
+    .section-head p{margin:0;color:var(--muted);line-height:1.85;font-size:16px}
+    .grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px}
+    .span-4{grid-column:span 4}
+    .span-6{grid-column:span 6}
+    .span-12{grid-column:span 12}
+    .card{border:1px solid var(--line);border-radius:22px;background:var(--panel);padding:22px;box-shadow:0 18px 48px rgba(0,0,0,.18)}
+    .card h3{margin:0 0 10px;color:#f8fafc;font-size:21px;line-height:1.28}
+    .card p,.card li{color:var(--muted);line-height:1.78;font-size:15px}
+    .card p{margin:0}
+    .card ul{margin:12px 0 0;padding-left:20px}
+    .meta{margin-top:14px;color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:900}
+    .notice{border:1px solid rgba(251,191,36,.28);background:linear-gradient(145deg,var(--amber),rgba(255,255,255,.035));border-radius:24px;padding:22px;color:#f6e6bd}
+    .notice b{display:block;margin-bottom:8px;color:#f9e5ad;font-size:18px}
+    .notice p{margin:0;color:#d8caa8;line-height:1.82}
+    .partner-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .partner-slot{
+      min-height:150px;
+      border:1px solid rgba(224,200,150,.12);
+      border-radius:18px;
+      background:rgba(255,255,255,.03);
+      padding:16px;
+    }
+    .partner-slot b{display:block;color:#f8fafc;margin-bottom:8px}
+    .partner-slot span{display:block;color:var(--muted);line-height:1.65;font-size:14px}
+    .safe-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+    .safe-list li{border:1px solid rgba(74,222,128,.16);background:rgba(74,222,128,.045);border-radius:14px;padding:12px 14px;color:#dbeafe}
+    .ban-list li{border-color:rgba(248,113,113,.16);background:rgba(248,113,113,.045)}
+    footer{padding:42px 0;text-align:center;color:var(--muted)}
+    footer a{color:#f6e6bd;text-decoration:none}
+    footer a:hover{text-decoration:underline}
+
+    @media (max-width:980px){
+      .hero-grid,.section-head{grid-template-columns:1fr}
+      h1{font-size:42px}
+      .span-4,.span-6{grid-column:span 12}
+      .partner-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media (max-width:640px){
+      .hero{padding:42px 0 28px}
+      h1{font-size:31px}
+      h2{font-size:25px}
+      .lead{font-size:16px}
+      .actions{flex-direction:column}
+      .btn{width:100%}
+      .partner-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Bỏ qua nội dung điều hướng</a>
+  <div id="siteHeader"></div>
+
+  <main id="mainContent" data-dsts-surface="movement-partners">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Movement Portal · Partners</div>
+          <h1>DSTS Partners là lớp đối tác hệ sinh thái, không phải trang bán tài trợ.</h1>
+          <p class="lead">
+            Trang này giải thích cách Đường Sao Tỏa Sáng phân loại và công bố đối tác cộng đồng, truyền thông, học thuật và vận hành. DSTS chưa công bố logo đối tác thật nếu chưa có thỏa thuận và quyền dùng thương hiệu. Trang không có form, không thu email, không mở sponsor inquiry, không xử lý payment và không tạo tài khoản.
+          </p>
+          <div class="actions" aria-label="Lối đi partners an toàn">
+            <a class="btn primary" href="/movement">Về Movement Portal</a>
+            <a class="btn" href="/movement/press">Xem press kit</a>
+            <a class="btn" href="/contact">Liên hệ thủ công</a>
+          </div>
+        </div>
+        <aside class="panel" aria-label="Trạng thái partners">
+          <span class="badge">Read-only · Không có logo giả</span>
+          <div class="panel-list">
+            <div class="panel-item">
+              <b>Không dùng logo khi chưa được phép</b>
+              <span>Mọi logo hoặc tên tổ chức chỉ được hiển thị sau khi có quyền sử dụng và scope hợp tác rõ ràng.</span>
+            </div>
+            <div class="panel-item">
+              <b>Không phải sponsor page</b>
+              <span>Partners là hệ sinh thái đồng hành; sponsorship và các gói tài trợ thuộc lane riêng, chưa mở inquiry ở đây.</span>
+            </div>
+            <div class="panel-item">
+              <b>Không thu dữ liệu qua form</b>
+              <span>Trao đổi đối tác hiện đi qua trang liên hệ thủ công, không qua automation hoặc signup flow.</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="notice">
+          <b>Trạng thái công bố đối tác</b>
+          <p>
+            DSTS đang chuẩn hóa tiêu chí đối tác trước khi công bố bất kỳ danh sách chính thức nào. Trang này là tài liệu public giải thích nguyên tắc, không phải danh sách đã ký kết. Khi có đối tác thật, mỗi mục sẽ ghi rõ loại quan hệ, phạm vi hợp tác, ngày cập nhật và quyền dùng thương hiệu.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Nhóm đối tác</div>
+            <h2>Bốn nhóm partner được phân biệt rõ để tránh nhầm với tài trợ.</h2>
+          </div>
+          <p>
+            Một đối tác ecosystem có thể hỗ trợ địa điểm, chuyên môn, truyền thông, giáo dục hoặc vận hành. Điều này khác với sponsor package hoặc payment relationship.
+          </p>
+        </div>
+        <div class="partner-grid">
+          <div class="partner-slot">
+            <b>Strategic Partner</b>
+            <span>Tổ chức cùng hướng phát triển văn hóa, giáo dục, sáng tạo hoặc cộng đồng người Việt toàn cầu.</span>
+          </div>
+          <div class="partner-slot">
+            <b>Operational Partner</b>
+            <span>Đơn vị hỗ trợ vận hành sự kiện, địa điểm, logistics, quản trị chương trình hoặc điều phối cộng đồng.</span>
+          </div>
+          <div class="partner-slot">
+            <b>Media Partner</b>
+            <span>Kênh truyền thông, nhà xuất bản hoặc cộng đồng nội dung hỗ trợ đưa thông tin đã xác minh đến đúng người đọc.</span>
+          </div>
+          <div class="partner-slot">
+            <b>Academic Partner</b>
+            <span>Trường, viện, nhóm nghiên cứu hoặc cố vấn học thuật hỗ trợ tri thức, đo lường tác động hoặc chương trình giáo dục.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Tiêu chuẩn hiển thị</div>
+            <h2>Không hiển thị đối tác nếu chỉ mới trao đổi miệng.</h2>
+          </div>
+          <p>
+            Trang partners chỉ đáng tin khi mỗi mục công bố có đủ quyền dùng tên/logo, scope hợp tác và trạng thái cập nhật. DSTS không dùng tên tổ chức khác để tạo tín hiệu uy tín giả.
+          </p>
+        </div>
+        <div class="grid">
+          <article class="card span-4">
+            <h3>1. Quyền thương hiệu</h3>
+            <p>Có xác nhận được phép dùng tên, logo hoặc mô tả quan hệ. Nếu chưa có, không công bố logo.</p>
+            <div class="meta">Brand permission</div>
+          </article>
+          <article class="card span-4">
+            <h3>2. Scope rõ ràng</h3>
+            <p>Biết đối tác hỗ trợ nội dung gì: địa điểm, truyền thông, cố vấn, vận hành hay học thuật.</p>
+            <div class="meta">Clear scope</div>
+          </article>
+          <article class="card span-4">
+            <h3>3. Không gây hiểu nhầm</h3>
+            <p>Không biến partner thành sponsor, investor, endorsement hoặc guarantee nếu không có văn bản tương ứng.</p>
+            <div class="meta">No misrepresentation</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Được phép / không được phép</div>
+            <h2>Ranh giới partners public</h2>
+          </div>
+          <p>
+            Ranh giới này giúp team dev mở trang public hữu ích mà không chạm vào các lane email automation, payment/pay hoặc đăng ký/đăng nhập/auth.
+          </p>
+        </div>
+        <div class="grid">
+          <article class="card span-6">
+            <h3>Được phép</h3>
+            <ul class="safe-list">
+              <li>Giải thích tiêu chí đối tác ecosystem.</li>
+              <li>Liệt kê nhóm partner ở mức category khi chưa có danh sách ký kết.</li>
+              <li>Dẫn người đọc sang Movement, Press Kit, Transparency và Contact thủ công.</li>
+              <li>Công bố đối tác thật sau khi có quyền dùng thương hiệu và scope hợp tác rõ.</li>
+            </ul>
+          </article>
+          <article class="card span-6">
+            <h3>Không được phép</h3>
+            <ul class="safe-list ban-list">
+              <li>Không dựng logo hoặc tên tổ chức khi chưa có quyền dùng.</li>
+              <li>Không có sponsor inquiry form.</li>
+              <li>Không thu email, không mở signup, không tạo tài khoản.</li>
+              <li>Không xử lý payment, membership checkout hoặc điều khoản tài trợ trên trang này.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>Đường Sao Tỏa Sáng · Partners</strong></p>
+      <p>
+        <a href="/">Trang chủ</a> ·
+        <a href="/movement">Movement</a> ·
+        <a href="/movement/press">Press Kit</a> ·
+        <a href="/transparency">Minh bạch</a> ·
+        <a href="/contact">Liên hệ</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="/assets/app-v5.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      DSTS.mountSiteChrome({ active: 'program' });
+    });
+  </script>
+</body>
+</html>
