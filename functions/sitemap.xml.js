@@ -25,6 +25,7 @@ export async function onRequestGet(context) {
     "/movement/press",
     "/movement/partners",
     "/movement/tour-2026-2027",
+    "/movement/diaspora-map",
     "/scripts/rising-entrepreneur",
     "/scripts/global-artist",
     "/scripts/singing-icon",
