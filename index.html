@@ -818,7 +818,7 @@
       <div class="hero-shell">
         <div class="hero-grid">
           <div class="hero-copy">
-            <div class="eyebrow" id="heroEyebrow">FOUNDER LOCK v1.1 · ĐƯỜNG SAO TỎA SÁNG</div>
+            <div class="eyebrow" id="heroEyebrow">FOUNDER LOCK v1.2 · ĐƯỜNG SAO TỎA SÁNG</div>
             <h1 id="hTitle">DSTS là nền tảng tỏa sáng của người Việt toàn cầu, đang được xây dựng từng lớp rõ ràng.</h1>
             <p class="lead" id="hDesc">
               Trang này là bản đồ chính thức để người mới hiểu ngay DSTS đang làm gì: ổn định nền tảng web, mở thư viện tri thức, phát triển 9 kịch bản hành trình, chuẩn bị sự kiện, gây quỹ minh bạch và kết nối với hệ sinh thái Người Việt Muôn Nơi.
@@ -1228,7 +1228,7 @@
         vi: {
           title: "Đường Sao Tỏa Sáng | Kế hoạch phát triển nền tảng tỏa sáng của người Việt toàn cầu",
           description: "DSTS là nền tảng nội dung, chương trình và cộng đồng đang được xây dựng theo lộ trình rõ ràng: foundation, movement portal và Star Journey OS.",
-          heroEyebrow: "FOUNDER LOCK v1.1 · ĐƯỜNG SAO TỎA SÁNG",
+          heroEyebrow: "FOUNDER LOCK v1.2 · ĐƯỜNG SAO TỎA SÁNG",
           hTitle: "DSTS là nền tảng tỏa sáng của người Việt toàn cầu, đang được xây dựng từng lớp rõ ràng.",
           hDesc: "Trang này là bản đồ chính thức để người mới hiểu ngay DSTS đang làm gì: ổn định nền tảng web, mở thư viện tri thức, phát triển 9 kịch bản hành trình, chuẩn bị sự kiện, gây quỹ minh bạch và kết nối với hệ sinh thái Người Việt Muôn Nơi.",
           ctaMain1: "Hiểu kế hoạch phát triển",
@@ -1356,7 +1356,7 @@
         en: {
           title: "DSTS | Development plan for the global Vietnamese shining platform",
           description: "DSTS is being built as a clear roadmap: foundation, movement portal, and Star Journey OS for Vietnamese stories, programs, community, transparency, and long-term journeys.",
-          heroEyebrow: "FOUNDER LOCK v1.1 · DUONG SAO TOA SANG",
+          heroEyebrow: "FOUNDER LOCK v1.2 · DUONG SAO TOA SANG",
           hTitle: "DSTS is a global Vietnamese shining platform being built layer by layer.",
           hDesc: "This homepage is the official map for first-time visitors: stabilize the website foundation, open the knowledge library, develop 9 script journeys, prepare events, publish transparent fundraising rules, and connect with the Vietnamese Everywhere ecosystem.",
           ctaMain1: "Understand the roadmap",
@@ -1585,6 +1585,16 @@
         }).join("");
       }
 
+      async function loadStaticPosts() {
+        try {
+          const data = await fetchJsonWithTimeout("/data/posts.json", 3000);
+          if (!Array.isArray(data) || !data.length) return null;
+          return data;
+        } catch (_err) {
+          return null;
+        }
+      }
+
       async function fetchJsonWithTimeout(url, ms = 5000) {
         const controller = new AbortController();
         const timeout = window.setTimeout(() => controller.abort(), ms);
@@ -1601,9 +1611,15 @@
       try {
         const data = await fetchJsonWithTimeout(`/api/contents?type=post&limit=3&lang=${lang}`);
         if (Array.isArray(data) && data.length) renderApiPosts(data);
-        else renderFallback();
+        else {
+          const staticPosts = await loadStaticPosts();
+          if (staticPosts && staticPosts.length) renderApiPosts(staticPosts);
+          else renderFallback();
+        }
       } catch (_err) {
-        renderFallback();
+        const staticPosts = await loadStaticPosts();
+        if (staticPosts && staticPosts.length) renderApiPosts(staticPosts);
+        else renderFallback();
       }
 
       if ("IntersectionObserver" in window) {
