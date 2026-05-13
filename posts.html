@@ -179,6 +179,46 @@
       line-height:1.8;
     }
 
+    .skeleton-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .skeleton-card{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:16px;
+      background:rgba(255,255,255,.03);
+      box-shadow:var(--shadow);
+    }
+
+    .skeleton-line,
+    .skeleton-thumb{
+      border-radius:14px;
+      background:linear-gradient(90deg, rgba(255,255,255,.05), rgba(216,188,119,.13), rgba(255,255,255,.05));
+      background-size:220% 100%;
+      animation:shimmer 1.2s ease-in-out infinite;
+    }
+
+    .skeleton-thumb{
+      aspect-ratio:16/9;
+      margin-bottom:14px;
+    }
+
+    .skeleton-line{
+      height:14px;
+      margin-top:10px;
+    }
+
+    .skeleton-line.title{height:22px;width:82%}
+    .skeleton-line.short{width:52%}
+
+    @keyframes shimmer{
+      0%{background-position:100% 0}
+      100%{background-position:-100% 0}
+    }
+
     .post-list{
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
@@ -257,7 +297,8 @@
 
     @media (max-width:1080px){
       .hero-title{font-size:40px}
-      .post-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .post-list,
+      .skeleton-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
 
     @media (max-width:860px){
@@ -271,7 +312,8 @@
       .section-title{font-size:26px}
       .search-form{flex-direction:column}
       .btn{width:100%}
-      .post-list{grid-template-columns:1fr}
+      .post-list,
+      .skeleton-grid{grid-template-columns:1fr}
     }
 
     @media (max-width:480px){
@@ -321,7 +363,27 @@
         </p>
       </div>
 
-      <div id="postsStatus" class="status-box">Đang tải bài viết...</div>
+      <div id="postsStatus" class="status-box" hidden></div>
+      <div id="postsSkeleton" class="skeleton-grid" aria-hidden="true">
+        <div class="skeleton-card">
+          <div class="skeleton-thumb"></div>
+          <div class="skeleton-line title"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line short"></div>
+        </div>
+        <div class="skeleton-card">
+          <div class="skeleton-thumb"></div>
+          <div class="skeleton-line title"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line short"></div>
+        </div>
+        <div class="skeleton-card">
+          <div class="skeleton-thumb"></div>
+          <div class="skeleton-line title"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line short"></div>
+        </div>
+      </div>
       <div id="postsGrid" class="post-list" hidden></div>
     </section>
   </main>
@@ -394,6 +456,7 @@
       const url = new URL(window.location.href);
       const q = (url.searchParams.get("q") || "").trim();
       const postsStatus = document.getElementById("postsStatus");
+      const postsSkeleton = document.getElementById("postsSkeleton");
       const postsGrid = document.getElementById("postsGrid");
       const searchInput = document.getElementById("searchInput");
       const searchForm = document.getElementById("searchForm");
@@ -528,6 +591,8 @@
       }
 
       function renderList(list, noteText = "") {
+        postsSkeleton.hidden = true;
+
         if (!Array.isArray(list) || !list.length) {
           postsStatus.hidden = false;
           postsGrid.hidden = true;
@@ -583,7 +648,8 @@
       }
 
       try {
-        postsStatus.textContent = T.loading;
+        postsStatus.hidden = true;
+        postsSkeleton.hidden = false;
 
         const endpoint = q
           ? `/search?q=${encodeURIComponent(q)}&lang=${lang}`

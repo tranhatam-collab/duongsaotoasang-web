@@ -254,6 +254,21 @@
       line-height:1.82;
     }
 
+    .not-found-box h2{
+      margin:0 0 10px;
+      color:#f5e7c7;
+      line-height:1.25;
+    }
+
+    .not-found-box p{
+      margin:0 0 16px;
+    }
+
+    .not-found-box code{
+      color:#f6d894;
+      overflow-wrap:anywhere;
+    }
+
     .bottom-nav{
       margin-top:28px;
       display:flex;
@@ -387,6 +402,9 @@
           loadingDesc: "Xin chờ trong giây lát.",
           loadingBody: "Đang tải nội dung...",
           failed: "Không thể tải nội dung hoặc không tìm thấy bài viết phù hợp. Hệ thống sẽ hiển thị nội dung mẫu nếu có.",
+          notFoundTitle: "Không tìm thấy bài viết",
+          notFoundDesc: "Slug này chưa có trong thư viện nội dung công khai hoặc đã được đổi đường dẫn.",
+          notFoundCta: "Mở thư viện bài viết",
           backPosts: "← Quay lại thư viện bài viết",
           backHome: "Về trang chủ",
           typePost: "Bài viết",
@@ -403,6 +421,9 @@
           loadingDesc: "Please wait a moment.",
           loadingBody: "Loading content...",
           failed: "Unable to load content or the requested item was not found. The system will show built-in sample content if available.",
+          notFoundTitle: "Article not found",
+          notFoundDesc: "This slug is not available in the public content library or its URL has changed.",
+          notFoundCta: "Open article library",
           backPosts: "← Back to article library",
           backHome: "Back to home",
           typePost: "Article",
@@ -575,6 +596,29 @@
         document.getElementById("content").innerHTML = content || `<div class="status-box">${DSTS.escapeHTML(T.failed)}</div>`;
       }
 
+      function renderNotFound(missingSlug) {
+        document.title = `${T.notFoundTitle} | Đường Sao Tỏa Sáng`;
+
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) metaDesc.setAttribute("content", T.notFoundDesc);
+
+        document.getElementById("heroEyebrow").textContent = T.eyebrow;
+        document.getElementById("pageTitle").textContent = T.notFoundTitle;
+        document.getElementById("pageExcerpt").textContent = T.notFoundDesc;
+        document.getElementById("metaRow").innerHTML = `
+          <span class="meta-pill">${DSTS.escapeHTML(T.typePost)}</span>
+          <span class="meta-pill">404</span>
+        `;
+        document.getElementById("content").innerHTML = `
+          <div class="status-box not-found-box">
+            <h2>${DSTS.escapeHTML(T.notFoundTitle)}</h2>
+            <p>${DSTS.escapeHTML(T.notFoundDesc)}</p>
+            <p>Slug: <code>${DSTS.escapeHTML(missingSlug)}</code></p>
+            <a class="btn-link primary" href="${DSTS.withLang("/posts")}">${DSTS.escapeHTML(T.notFoundCta)}</a>
+          </div>
+        `;
+      }
+
       document.title = T.titleFallback;
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) metaDesc.setAttribute("content", T.descriptionFallback);
@@ -608,7 +652,7 @@
         } else if (fallbackContents[slug]) {
           renderItem(fallbackContents[slug]);
         } else {
-          document.getElementById("content").innerHTML = `<div class="status-box">${DSTS.escapeHTML(T.failed)}</div>`;
+          renderNotFound(slug);
         }
       }
 

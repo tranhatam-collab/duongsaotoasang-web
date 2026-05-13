@@ -46,7 +46,7 @@ export const onRequestGet = async ({ request, env }) => {
 
     return fallback ? json(fallback) : json({ error: "not found" }, 404)
   } catch (_err) {
-    return fallback ? json(fallback) : json({ error: "server_error" }, 500)
+    return fallback ? json(fallback) : json({ error: "not found" }, 404)
   }
 }
 
