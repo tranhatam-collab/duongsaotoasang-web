@@ -1,0 +1,46 @@
+=== DSTS Sprint 0 Smoke Test ===
+Base: http://127.0.0.1:8796
+Timestamp: 2026-05-13T17:20:15Z
+
+PASS 200  /
+PASS 200  /about
+PASS 200  /program
+PASS 200  /posts
+PASS 200  /content?slug=sang-tao-khong-bat-dau-tu-tham-vong
+PASS 200  /events
+PASS 200  /scripts
+PASS 200  /donate
+PASS 200  /transparency
+PASS 200  /legal
+PASS 200  /terms
+PASS 200  /refund
+PASS 200  /privacy
+PASS 200  /contact
+PASS 200  /payment-confirmation
+PASS 200  /scripts/rising-entrepreneur
+PASS 200  /scripts/global-artist
+PASS 200  /scripts/singing-icon
+PASS 200  /scripts/cinematic-actor
+PASS 200  /scripts/the-thinker
+PASS 200  /scripts/creative-leader
+PASS 200  /scripts/cultural-ambassador
+PASS 200  /scripts/dsts-legacy
+PASS 200  /scripts/global-story
+PASS 200  /sitemap.xml
+PASS 200  /rss.xml
+PASS 200  /robots.txt
+
+=== Content checks ===
+PASS content  /posts  contains [THƯ VIỆN TRI THỨC]
+PASS content  /content?slug=sang-tao-khong-bat-dau-tu-tham-vong  contains [Sáng tạo không bắt đầu từ tham vọng]
+PASS content  /donate  contains [Trạng thái: TẠM ĐÓNG]
+PASS content  /transparency  contains [Báo cáo khởi tạo Q2/2026]
+PASS content  /legal  contains [id="refund"]
+PASS content  /scripts/rising-entrepreneur  contains [id="purchaseSafety"]
+PASS content  /scripts/rising-entrepreneur  contains [Đánh giá minh họa]
+PASS content  /assets/app-v5.js  contains [dsts-entity-disclosure]
+
+=== 404 check ===
+PASS 404  /random-unknown-url-xyz-12345
+
+PASSED: all smoke checks passed
