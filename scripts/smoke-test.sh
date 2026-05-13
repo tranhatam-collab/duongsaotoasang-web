@@ -4,6 +4,7 @@ set -euo pipefail
 BASE="${BASE_URL:-https://duongsaotoasang.com}"
 BASE="${BASE%/}"
 UNKNOWN_PATH="/random-unknown-url-xyz-12345"
+MISSING_CONTENT_PATH="/content?slug=missing-smoke-slug-404"
 
 urls=(
   "/"
@@ -38,6 +39,8 @@ urls=(
 content_checks=(
   "/posts|THƯ VIỆN TRI THỨC"
   "/content?slug=sang-tao-khong-bat-dau-tu-tham-vong|Sáng tạo không bắt đầu từ tham vọng"
+  "/content?slug=sang-tao-khong-bat-dau-tu-tham-vong|data-dsts-ssr=\"content\""
+  "/content?slug=sang-tao-khong-bat-dau-tu-tham-vong|\"@type\":\"BlogPosting\""
   "/events|DSTS Foundation Briefing"
   "/events|Thứ Bảy 20/06/2026"
   "/events|TP. Hồ Chí Minh + online hybrid"
@@ -87,6 +90,14 @@ if [[ "$status_404" == "404" ]]; then
   printf "PASS 404  %s\n" "$UNKNOWN_PATH"
 else
   printf "FAIL expected 404 for %s, got %s\n" "$UNKNOWN_PATH" "$status_404"
+  failed=$((failed + 1))
+fi
+
+content_404="$(curl -o /dev/null -sS --connect-timeout 8 --max-time 20 -w "%{http_code}" "${BASE}${MISSING_CONTENT_PATH}")"
+if [[ "$content_404" == "404" ]]; then
+  printf "PASS content-404  %s\n" "$MISSING_CONTENT_PATH"
+else
+  printf "FAIL expected 404 for %s, got %s\n" "$MISSING_CONTENT_PATH" "$content_404"
   failed=$((failed + 1))
 fi
 

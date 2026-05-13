@@ -1,6 +1,6 @@
 === DSTS Sprint 0 Smoke Test ===
 Base: http://127.0.0.1:8796
-Timestamp: 2026-05-13T17:29:27Z
+Timestamp: 2026-05-13T17:48:22Z
 
 PASS 200  /
 PASS 200  /about
@@ -33,6 +33,8 @@ PASS 200  /robots.txt
 === Content checks ===
 PASS content  /posts  contains [THƯ VIỆN TRI THỨC]
 PASS content  /content?slug=sang-tao-khong-bat-dau-tu-tham-vong  contains [Sáng tạo không bắt đầu từ tham vọng]
+PASS content  /content?slug=sang-tao-khong-bat-dau-tu-tham-vong  contains [data-dsts-ssr="content"]
+PASS content  /content?slug=sang-tao-khong-bat-dau-tu-tham-vong  contains ["@type":"BlogPosting"]
 PASS content  /events  contains [DSTS Foundation Briefing]
 PASS content  /events  contains [Thứ Bảy 20/06/2026]
 PASS content  /events  contains [TP. Hồ Chí Minh + online hybrid]
@@ -45,5 +47,6 @@ PASS content  /assets/app-v5.js  contains [dsts-entity-disclosure]
 
 === 404 check ===
 PASS 404  /random-unknown-url-xyz-12345
+PASS content-404  /content?slug=missing-smoke-slug-404
 
 PASSED: all smoke checks passed
