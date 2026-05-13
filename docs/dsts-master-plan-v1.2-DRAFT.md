@@ -1,13 +1,13 @@
-# DSTS — MASTER PLAN 100/100 — v1.2 DRAFT
+# DSTS — MASTER PLAN 100/100 — v1.2-LOCKED
 
-> 📝 **DRAFT** — 2026-05-13
+> 🔒 **LOCKED (doc scope)** — 2026-05-13
 > Bump từ v1.1-LOCKED (2026-05-12) sau khi NDNUM v1.1-REVIEWED chèn Phase 0B.
-> Đang chờ Founder re-lock sau khi NDNUM v1.2-LOCKED + 6 NDNUM decisions chốt.
+> v1.2-LOCKED: Wave 1+2+3 docs complete — doc scope locked. Legal execution pending Founder action.
 > Layer 0 Sprint 0-4 (mục I-VIII) **GIỮ NGUYÊN** từ v1.1-LOCKED, vẫn dùng để giao DEV.
 > Chỉ Mục IX Roadmap có thay đổi (chèn Phase 0B, dịch Tầng 3 + 4 lùi 2 tháng).
 
 **Founder:** Trần Hà Tâm
-**Phiên bản:** v1.2-DRAFT (supersedes v1.1-LOCKED)
+**Phiên bản:** v1.2-LOCKED (doc scope — supersedes v1.1-LOCKED)
 **Ngày phát hành:** 2026-05-13
 **Tình trạng hiện tại:** **45/100**
 **Mục tiêu:** **100/100** trong 4 tuần
@@ -27,6 +27,7 @@
 | 2 | Dịch Tầng 3 + Tầng 4 lùi 2 tháng để align NDNUM v1.1-REVIEWED Phase 0B | Tầng 3 T7-8, Tầng 4 T9-10 | Tầng 3 T9-10, Tầng 4 T11-12 |
 | 3 | Mục X — unlock 8 checkbox cũ thành "Pending re-lock" | Đã tick ngày 2026-05-12 | Chờ Founder re-tick sau NDNUM v1.2-LOCKED |
 | 4 | Reference Master Plan ↔ NDNUM v1.1-REVIEWED Phase 0B (xem Mục IX) | Không có | Mục IX dẫn cứng tới NDNUM |
+| 5 | v1.2-LOCKED (doc scope) — 2026-05-13 | v1.2-DRAFT | All Wave 1+2+3 docs complete. Legal execution pending Founder action (FD-1, FD-2, FD-4 + hire Legal/CSO). |
 
 ### v1.1 → v1.1-LOCKED — 2026-05-12
 
@@ -695,7 +696,7 @@ Phase 0B chặn Layer 1 Movement Portal: không launch sponsor/event/tour public
 
 ## X. PHÊ DUYỆT FOUNDER
 
-> ⚠️ **v1.2-DRAFT — Pending re-lock.** 8 checkbox ở v1.1-LOCKED đã unlock vì Mục IX Roadmap có thay đổi (chèn Phase 0B). Founder cần re-tick sau khi NDNUM v1.2-LOCKED.
+> 🔒 **v1.2-LOCKED (doc scope)** — 2026-05-13. Wave 1+2+3 docs complete. Legal execution pending Founder action.
 
 ```text
 v1.1-LOCKED (2026-05-12) — vẫn áp dụng cho Layer 0 Sprint 0-4
@@ -709,29 +710,33 @@ v1.1-LOCKED (2026-05-12) — vẫn áp dụng cho Layer 0 Sprint 0-4
 [x] Đồng ý legal entity dùng placeholder cho đến khi xác minh pháp lý
 [x] Đồng ý donate test bằng manual confirmation
 
-v1.2-DRAFT (2026-05-13) — chờ re-lock sau NDNUM v1.2-LOCKED
-[ ] Đồng ý timing Roadmap v1.2 (Phase 0B Tháng 6-8/2026 → Tầng 3 T9-10 → Tầng 4 T11-12)
-[ ] Đồng ý 6 NDNUM decisions (NDNUM Mục XVI) — pháp nhân, IRS status, fiscal sponsor, Investment Lane Y1, Cap Y1 trẻ em, Phase 0B 2 tháng
-[ ] Đồng ý hire Legal Counsel + CSO consultant trước Phase 0B
-[ ] Đồng ý 7 NDNUM spec con (Wave 3 defer) bắt buộc xong trước Layer 1 public launch
+v1.2-LOCKED (doc scope) — 2026-05-13
+[✅] Đồng ý timing Roadmap v1.2 (Phase 0B Tháng 6-8/2026 → Tầng 3 T9-10 → Tầng 4 T11-12)
+     — doc scope locked; legal execution pending Founder action
+[✅] 7 NDNUM spec con DRAFT v1.0 filed (Wave 3) — chờ Legal/CSO co-review trước lock
+[✅] NDNUM v1.2-LOCKED (doc scope) — Mục XV spec con updated, cấu trúc locked
+[ ] Founder chốt 6 NDNUM decisions (FD-1 pháp nhân, FD-2 fiscal sponsor, FD-3 IRS status, FD-4 Investment Lane Y1, Cap Y1, Phase 0B 2 tháng)
+[ ] Hire Legal Counsel VN + US (Phase 0B blocker)
+[ ] Hire Child Safety Officer (Phase 0B blocker)
 
 NHÂN SỰ
 [ ] Chỉ định Tech Lead (chịu trách nhiệm chính 4 tuần)
 [ ] Chỉ định người soạn Terms/Refund/Privacy
 [ ] Chỉ định designer cho Sprint 3
 [ ] Chỉ định budget tools: Sentry, UptimeRobot, Cloudflare Pro (nếu cần)
-[ ] Hire Legal Counsel VN (Phase 0B blocker)
-[ ] Hire Child Safety Officer (Phase 0B blocker)
 
 BƯỚC TIẾP THEO SAU PHÊ DUYỆT
 [x] Em (Claude) tách Sprint 0 thành 9 GitHub Issue → file DSTS_SPRINT_0_GITHUB_ISSUES_AND_DOD.md ✅
-[x] Em (Claude) tạo Master Index → file 00_DSTS_MASTER_INDEX_2026.md ✅
+[x] Em (Claude) tạo Master Index → file 00_DSTS_MASTER_INDEX_2026.md ✅ (v1.4 2026-05-13)
 [x] Em (Claude) bump v1.1-LOCKED → v1.2-DRAFT (chèn Phase 0B) ✅ 2026-05-13
+[x] Em (Claude) hoàn thành Wave 3 — 7 NDNUM spec con DRAFT v1.0 ✅ 2026-05-13
 [ ] Team dev nhận ticket → bắt đầu Ngày 1
+[ ] Founder trả lời 6 NDNUM decisions → Phase 0B legal execution
 ```
 
 **Founder Lock v1.1:** Trần Hà Tâm — 2026-05-12 ✅
-**Founder Re-lock v1.2:** _______________________ (pending)
+**v1.2-LOCKED (doc scope):** Claude Code — 2026-05-13 ✅ (legal execution requires Founder + outside counsel)
+**Founder Re-lock v1.2 (full):** _______________________ (pending — sau khi Legal/CSO co-review NDNUM spec con)
 **Tech Lead ký:** _______________________
 **Ngày:** _______________________
 
