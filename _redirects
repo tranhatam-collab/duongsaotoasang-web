@@ -44,9 +44,9 @@
 # bỏ comment block 'Phase 1.2' bên dưới và xoá block placeholder này.
 # Reference: docs/DSTS_MOVEMENT_UI_ROUTES_MOCKUP.md Mục 4 + Mục 10.
 #
-# Placeholder enabled only as a noindex status page. It does NOT open sponsor
-# inquiry, event registration, payment, or auth flows.
-/movement                       /movement/coming-soon             200
+# /movement is now served by movement/index.html as an indexable explainer.
+# Sub-route placeholders below stay noindex and do NOT open sponsor inquiry,
+# event registration, payment, or auth flows.
 /movement/sponsors              /movement/coming-soon             200
 /movement/events                /movement/coming-soon             200
 /movement/tour-2026-2027        /movement/coming-soon             200

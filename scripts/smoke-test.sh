@@ -54,6 +54,8 @@ content_checks=(
   "/events|Thứ Bảy 20/06/2026"
   "/events|TP. Hồ Chí Minh + online hybrid"
   "/movement|Movement Portal"
+  "/movement|data-dsts-surface=\"movement-home\""
+  "/movement|Không mở sponsor inquiry"
   "/movement|Không thu email"
   "/movement/sponsors|Đang xây dựng"
   "/movement/events|Không thu email"
