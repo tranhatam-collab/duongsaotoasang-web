@@ -1,6 +1,6 @@
 === DSTS Sprint 0 Smoke Test ===
 Base: http://127.0.0.1:8796
-Timestamp: 2026-05-13T18:18:17Z
+Timestamp: 2026-05-13T18:39:20Z
 
 PASS 200  /
 PASS 200  /about
@@ -17,6 +17,8 @@ PASS 200  /refund
 PASS 200  /privacy
 PASS 200  /contact
 PASS 200  /payment-confirmation
+PASS 200  /dream-nurture
+PASS 200  /ndnum
 PASS 200  /movement
 PASS 200  /movement/sponsors
 PASS 200  /movement/events
@@ -49,6 +51,10 @@ PASS content  /movement  contains [Movement Portal]
 PASS content  /movement  contains [Không thu email]
 PASS content  /movement/sponsors  contains [Đang xây dựng]
 PASS content  /movement/events  contains [Không thu email]
+PASS content  /dream-nurture  contains [Nuôi Dưỡng Những Ước Mơ]
+PASS content  /dream-nurture  contains [Guardian-first]
+PASS content  /dream-nurture  contains [Không xử lý payment]
+PASS content  /ndnum  contains [Phase 0B]
 PASS content  /donate  contains [Trạng thái: TẠM ĐÓNG]
 PASS content  /transparency  contains [Báo cáo khởi tạo Q2/2026]
 PASS content  /legal  contains [id="refund"]
