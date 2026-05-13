@@ -118,6 +118,7 @@
         legal: "Pháp lý",
         support: "Hỗ trợ",
         contact: "Liên hệ",
+        entityDisclosure: "Đơn vị vận hành sẽ được công bố sau khi hoàn tất xác minh pháp lý.",
         scriptsLibrary: "Thư viện kịch bản",
         script1: "The Rising Entrepreneur",
         script2: "The Global Artist",
@@ -142,6 +143,7 @@
         legal: "Legal",
         support: "Support",
         contact: "Contact",
+        entityDisclosure: "The operating entity will be published after legal verification is complete.",
         scriptsLibrary: "Script library",
         script1: "The Rising Entrepreneur",
         script2: "The Global Artist",
@@ -458,6 +460,15 @@
         el.classList.add("active");
       }
     });
+
+    const footer = document.querySelector(".site-footer-inner, .footer");
+    if (footer && !footer.querySelector(".dsts-entity-disclosure")) {
+      const disclosure = document.createElement("p");
+      disclosure.className = "dsts-entity-disclosure";
+      disclosure.textContent = t.entityDisclosure;
+      disclosure.style.cssText = "margin:10px 0 0;color:#8f9bad;font-size:13px;line-height:1.65;";
+      footer.appendChild(disclosure);
+    }
   };
 
   window.DSTS = DSTS;
