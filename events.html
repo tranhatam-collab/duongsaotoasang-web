@@ -30,15 +30,82 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "EventSeries",
-  "name": "Sự kiện - Đường Sao Tỏa Sáng",
+  "@type": "ItemList",
+  "name": "Lịch sự kiện Đường Sao Tỏa Sáng 2026",
   "url": "https://duongsaotoasang.com/events",
-  "description": "Các sự kiện, workshop, hội thảo, biểu diễn nghệ thuật và trải nghiệm cộng đồng của DSTS.",
-  "organizer": {
-    "@type": "Organization",
-    "name": "Đường Sao Tỏa Sáng",
-    "url": "https://duongsaotoasang.com"
-  }
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Event",
+        "name": "DSTS Foundation Briefing: nền móng trước khi mở rộng",
+        "description": "Buổi briefing công khai về lộ trình Sprint 0, thư viện tri thức, Movement Portal và nguyên tắc minh bạch trước khi mở hoạt động cộng đồng.",
+        "startDate": "2026-06-20T20:00:00+07:00",
+        "endDate": "2026-06-20T21:30:00+07:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+        "location": {
+          "@type": "VirtualLocation",
+          "url": "https://duongsaotoasang.com/events"
+        },
+        "organizer": {
+          "@type": "Organization",
+          "name": "Đường Sao Tỏa Sáng",
+          "url": "https://duongsaotoasang.com"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Event",
+        "name": "Vietnamese Creative Circle: đọc sâu, kể chuyện, xây cộng đồng",
+        "description": "Buổi gặp mặt nhỏ dành cho người sáng tạo, doanh nhân, nghệ sĩ và người quan tâm tới hành trình phát triển có trách nhiệm.",
+        "startDate": "2026-07-18T19:30:00+07:00",
+        "endDate": "2026-07-18T21:30:00+07:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+        "location": {
+          "@type": "Place",
+          "name": "Không gian cộng đồng DSTS - TP. Hồ Chí Minh và trực tuyến",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "TP. Hồ Chí Minh",
+            "addressCountry": "VN"
+          }
+        },
+        "organizer": {
+          "@type": "Organization",
+          "name": "Đường Sao Tỏa Sáng",
+          "url": "https://duongsaotoasang.com"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Event",
+        "name": "DSTS Community Showcase: hành trình tỏa sáng của người Việt",
+        "description": "Showcase thử nghiệm để giới thiệu bài viết, script journey, câu chuyện cộng đồng và cách DSTS chuẩn bị Movement Portal.",
+        "startDate": "2026-08-22T19:00:00+07:00",
+        "endDate": "2026-08-22T21:00:00+07:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+        "location": {
+          "@type": "VirtualLocation",
+          "url": "https://duongsaotoasang.com/events"
+        },
+        "organizer": {
+          "@type": "Organization",
+          "name": "Đường Sao Tỏa Sáng",
+          "url": "https://duongsaotoasang.com"
+        }
+      }
+    }
+  ]
 }
 </script>
 
@@ -66,6 +133,19 @@
   .card:hover{transform:translateY(-4px);border-color:rgba(224,200,150,.22);background:rgba(255,255,255,.046)}
   .card h3{margin:0 0 12px;font-size:20px;color:#f0e4c8}
   .card p{margin:0;color:#9eb0c8;line-height:1.75;font-size:15px}
+  .schedule-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}
+  .event-card{border:1px solid rgba(224,200,150,.16);border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.052),rgba(255,255,255,.026));padding:24px;box-shadow:0 18px 52px rgba(0,0,0,.20)}
+  .event-status{display:inline-flex;align-items:center;min-height:30px;padding:0 10px;border-radius:999px;background:rgba(224,200,150,.12);border:1px solid rgba(224,200,150,.20);color:#f5e7c7;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+  .event-card h3{margin:0 0 14px;color:#f8eed4;font-size:21px;line-height:1.28}
+  .event-meta{display:grid;gap:8px;margin:16px 0;padding:14px;border-radius:16px;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06)}
+  .event-meta p{margin:0;color:#c5cedb;font-size:14px;line-height:1.55}
+  .event-meta strong{color:#f5e7c7}
+  .event-note{margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);font-size:14px;color:#9eb0c8;line-height:1.7}
+  .event-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 14px;border-radius:14px;border:1px solid rgba(224,200,150,.18);color:#f5e7c7;text-decoration:none;background:rgba(255,255,255,.04);font-weight:800;font-size:14px}
+  .btn.primary{background:linear-gradient(180deg,rgba(224,200,150,.20),rgba(224,200,150,.08));border-color:rgba(224,200,150,.32)}
+  .notice{margin-top:18px;border:1px solid rgba(224,200,150,.14);border-radius:18px;background:rgba(224,200,150,.06);padding:18px;color:#b9c4d3;line-height:1.75}
+  @media (max-width:900px){.schedule-grid{grid-template-columns:1fr}.hero-inner h1{font-size:38px}}
 </style>
 
 </head>
@@ -100,56 +180,76 @@ Những trải nghiệm nghệ thuật, văn hóa và sáng tạo giúp con ngư
 
 <div class="wrap">
 
-<h2>Sự kiện nghệ thuật</h2>
+<h2>Lịch sự kiện công khai 2026</h2>
 
 <p>
-
-Các chương trình nghệ thuật là nơi những câu chuyện, cảm xúc và sáng tạo được thể hiện để truyền cảm hứng cho cộng đồng.
+Lịch dưới đây là các mốc public đang được chuẩn bị cho giai đoạn nền móng. Mỗi sự kiện có ngày, giờ, hình thức, địa điểm và trạng thái rõ ràng để người đọc không phải đoán.
 
 </p>
 
-<div class="grid">
+<div class="schedule-grid">
 
-<div class="card">
-
-<h3>Đêm nghệ thuật Đường Sao Tỏa Sáng</h3>
-
+<article class="event-card">
+<div class="event-status">Planned</div>
+<h3>DSTS Foundation Briefing: nền móng trước khi mở rộng</h3>
 <p>
-
-Một chương trình biểu diễn nghệ thuật kết hợp âm nhạc, sân khấu và kể chuyện về hành trình sáng tạo của những con người Việt Nam trên toàn cầu.
-
+Buổi briefing công khai để giải thích vì sao DSTS ưu tiên sửa routing, nội dung fallback, legal trust, minh bạch và smoke test trước khi mở thêm Movement Portal hay Star Journey OS.
 </p>
+<div class="event-meta">
+<p><strong>Thời gian:</strong> 20:00-21:30 ICT, Thứ Bảy 20/06/2026</p>
+<p><strong>Địa điểm:</strong> Online tại trang sự kiện DSTS</p>
+<p><strong>Đối tượng:</strong> Founder circle, dev team, cộng tác viên nội dung và người quan tâm dự án</p>
+<p><strong>Trạng thái:</strong> Đang chuẩn bị agenda, chưa mở form tham gia công khai</p>
+</div>
+<div class="event-actions">
+<a class="btn primary" href="/contact">Liên hệ nhận thông tin</a>
+<a class="btn" href="/posts">Đọc bài nền</a>
+</div>
+<div class="event-note">Không có thanh toán, không thu dữ liệu đăng ký trên trang này. Kênh đăng ký chính thức sẽ được team phụ trách công bố riêng khi sẵn sàng.</div>
+</article>
+
+<article class="event-card">
+<div class="event-status">Preparing</div>
+<h3>Vietnamese Creative Circle: đọc sâu, kể chuyện, xây cộng đồng</h3>
+<p>
+Buổi gặp mặt nhỏ cho người sáng tạo, doanh nhân, nghệ sĩ, mentor và người Việt quan tâm tới hành trình phát triển có chiều sâu thay vì chạy theo tiếng ồn ngắn hạn.
+</p>
+<div class="event-meta">
+<p><strong>Thời gian:</strong> 19:30-21:30 ICT, Thứ Bảy 18/07/2026</p>
+<p><strong>Địa điểm:</strong> TP. Hồ Chí Minh + online hybrid</p>
+<p><strong>Đối tượng:</strong> Người sáng tạo, doanh nhân, nghệ sĩ, nhà giáo dục, cộng tác viên cộng đồng</p>
+<p><strong>Trạng thái:</strong> Đang chốt không gian offline và danh sách host</p>
+</div>
+<div class="event-actions">
+<a class="btn primary" href="/contact">Đề xuất tham gia</a>
+<a class="btn" href="/scripts">Xem Script Journeys</a>
+</div>
+<div class="event-note">Sự kiện ưu tiên chất lượng đối thoại, không bán vé trên website và không dùng review chưa xác minh làm bằng chứng tham gia.</div>
+</article>
+
+<article class="event-card">
+<div class="event-status">Planned</div>
+<h3>DSTS Community Showcase: hành trình tỏa sáng của người Việt</h3>
+<p>
+Showcase thử nghiệm giới thiệu thư viện bài viết, các script journey, câu chuyện cộng đồng và cách Movement Portal sẽ vận hành khi nền móng đã đủ chắc.
+</p>
+<div class="event-meta">
+<p><strong>Thời gian:</strong> 19:00-21:00 ICT, Thứ Bảy 22/08/2026</p>
+<p><strong>Địa điểm:</strong> Online tại trang sự kiện DSTS</p>
+<p><strong>Đối tượng:</strong> Cộng đồng người Việt toàn cầu, đối tác nội dung, sponsor quan sát, đội vận hành</p>
+<p><strong>Trạng thái:</strong> Đang xây nội dung showcase và tiêu chuẩn công bố minh bạch</p>
+</div>
+<div class="event-actions">
+<a class="btn primary" href="/transparency">Xem nguyên tắc minh bạch</a>
+<a class="btn" href="/program">Xem chương trình</a>
+</div>
+<div class="event-note">Mọi sponsor, gây quỹ hoặc hợp tác liên quan sự kiện phải tuân thủ trang Minh bạch và các điều khoản pháp lý công khai.</div>
+</article>
 
 </div>
 
-
-
-<div class="card">
-
-<h3>Không gian nghệ thuật cộng đồng</h3>
-
-<p>
-
-Một không gian mở nơi các nghệ sĩ và khán giả cùng chia sẻ những trải nghiệm sáng tạo thông qua nghệ thuật biểu diễn và trưng bày.
-
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Hành trình nghệ thuật Việt</h3>
-
-<p>
-
-Chuỗi chương trình giới thiệu các tác phẩm nghệ thuật và câu chuyện sáng tạo của người Việt tại nhiều quốc gia.
-
-</p>
-
-</div>
-
+<div class="notice">
+Lưu ý: lịch này là lịch kế hoạch public. Nếu ngày, địa điểm hoặc hình thức thay đổi, DSTS sẽ cập nhật ngay trên trang này trước khi công bố rộng hơn. Không có form đăng ký, thanh toán hoặc đăng nhập trong phạm vi trang hiện tại.
 </div>
 
 </div>
@@ -162,11 +262,11 @@ Chuỗi chương trình giới thiệu các tác phẩm nghệ thuật và câu 
 
 <div class="wrap">
 
-<h2>Sự kiện giáo dục sáng tạo</h2>
+<h2>Các nhóm sự kiện sẽ phát triển sau Sprint 0</h2>
 
 <p>
 
-Những chương trình trải nghiệm giúp người tham gia hiểu sâu hơn về sáng tạo, tư duy và hành trình phát triển cá nhân.
+Sau khi nền móng website pass smoke test và các trang public ổn định, DSTS sẽ mở rộng thành các nhóm sự kiện có quy chuẩn vận hành rõ hơn.
 
 </p>
 
@@ -174,11 +274,11 @@ Những chương trình trải nghiệm giúp người tham gia hiểu sâu hơn
 
 <div class="card">
 
-<h3>Hành trình sáng tạo</h3>
+<h3>Nghệ thuật và kể chuyện</h3>
 
 <p>
 
-Một chuỗi trải nghiệm giúp người tham gia khám phá khả năng sáng tạo và định hướng con đường phát triển của mình.
+Các đêm nghệ thuật, showcase, sân khấu kể chuyện và không gian trình diễn dành cho hành trình sáng tạo của người Việt.
 
 </p>
 
@@ -188,11 +288,11 @@ Một chuỗi trải nghiệm giúp người tham gia khám phá khả năng sá
 
 <div class="card">
 
-<h3>Không gian học tập mở</h3>
+<h3>Giáo dục sáng tạo</h3>
 
 <p>
 
-Những buổi chia sẻ tri thức và trải nghiệm thực tế từ các nghệ sĩ, doanh nhân và nhà sáng tạo.
+Workshop, briefing và các buổi đọc sâu giúp người tham gia hiểu rõ hơn về nhận thức, sáng tạo, cộng đồng và hành trình phát triển cá nhân.
 
 </p>
 
@@ -202,11 +302,11 @@ Những buổi chia sẻ tri thức và trải nghiệm thực tế từ các ng
 
 <div class="card">
 
-<h3>Trải nghiệm sáng tạo cho cộng đồng</h3>
+<h3>Kết nối cộng đồng toàn cầu</h3>
 
 <p>
 
-Các hoạt động giúp cộng đồng khám phá nghệ thuật, tư duy sáng tạo và giá trị của việc học tập suốt đời.
+Các chương trình online và hybrid để người Việt nhiều quốc gia có thể gặp nhau quanh giá trị chung, không chỉ quanh số lượng người tham gia.
 
 </p>
 

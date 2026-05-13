@@ -38,6 +38,9 @@ urls=(
 content_checks=(
   "/posts|THƯ VIỆN TRI THỨC"
   "/content?slug=sang-tao-khong-bat-dau-tu-tham-vong|Sáng tạo không bắt đầu từ tham vọng"
+  "/events|DSTS Foundation Briefing"
+  "/events|Thứ Bảy 20/06/2026"
+  "/events|TP. Hồ Chí Minh + online hybrid"
   "/donate|Trạng thái: TẠM ĐÓNG"
   "/transparency|Báo cáo khởi tạo Q2/2026"
   "/legal|id=\"refund\""
