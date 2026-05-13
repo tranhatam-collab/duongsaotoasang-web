@@ -22,6 +22,7 @@ export async function onRequestGet(context) {
     "/posts",
     "/dream-nurture",
     "/movement",
+    "/movement/press",
     "/scripts/rising-entrepreneur",
     "/scripts/global-artist",
     "/scripts/singing-icon",
