@@ -5,7 +5,7 @@
 > **Đối tượng dùng:** dev, content, legal, product, founder — cùng một bản truth.
 
 **Founder:** Trần Hà Tâm
-**Phiên bản:** v1.0 (master index)
+**Phiên bản:** v1.1 (master index)
 **Ngày phát hành:** 2026-05-12
 **Nguyên tắc:** Mọi tài liệu mới về DSTS phải được index ở đây. Không có file ngoài index.
 
@@ -142,10 +142,10 @@ Thanh Tam Foundation Việt Nam        ← Legal entity (chờ xác minh)
 
 | # | File | Purpose | Status | Owner |
 |---|---|---|---|---|
-| 5.2.1 | `DSTS_LAYER_1_MOVEMENT_PORTAL_SPEC.md` | Spec chi tiết Movement Portal | 🟡 TBD (viết trong Sprint 0-4) | Founder + Claude |
-| 5.2.2 | `DSTS_SPONSORSHIP_FULFILLMENT_TRACKER.md` | Tracker 13 gói tài trợ + flow xác nhận | 🟡 TBD | Founder + Claude |
-| 5.2.3 | `DSTS_EVENT_SHOWCASE_OPERATIONS_RUNBOOK.md` | Runbook tổ chức event | 🟡 TBD | Founder + Operations |
-| 5.2.4 | `DSTS_TOUR_CALENDAR_2026_2027.md` | Tour 33+ quốc gia, lịch chi tiết | 🟡 TBD | Founder + Operations |
+| 5.2.1 | `DSTS_LAYER_1_MOVEMENT_PORTAL_SPEC.md` | Spec chi tiết Movement Portal | 🟡 DRAFT v1.0 (Batch 1) | Founder + Claude |
+| 5.2.2 | `DSTS_SPONSORSHIP_FULFILLMENT_TRACKER.md` | Tracker 13 gói tài trợ + flow xác nhận | 🟡 DRAFT v1.0 (Batch 1) | Founder + Claude |
+| 5.2.3 | `DSTS_EVENT_SHOWCASE_OPERATIONS_RUNBOOK.md` | Runbook tổ chức event | 🟡 DRAFT v1.0 (Batch 2) | Founder + Operations |
+| 5.2.4 | `DSTS_TOUR_CALENDAR_2026_2027.md` | Tour 33+ quốc gia, lịch chi tiết | 🟡 DRAFT v1.0 (Batch 2) | Founder + Operations |
 
 ### 5.3 Layer 2 — Star Journey OS (Spec đang viết song song)
 
@@ -164,9 +164,9 @@ Thanh Tam Foundation Việt Nam        ← Legal entity (chờ xác minh)
 
 | # | File | Purpose | Status | Owner |
 |---|---|---|---|---|
-| 5.4.1 | `DSTS_PRIVACY_TRUST_TRANSPARENCY_RULES.md` | Quy tắc privacy + trust + minh bạch | 🟡 TBD | Legal + Founder |
-| 5.4.2 | `DSTS_PAYMENT_MEMBERSHIP_SPONSOR_FLOW.md` | Flow thanh toán + membership + sponsor | 🟡 TBD | Tech Lead + Legal |
-| 5.4.3 | `DSTS_RELEASE_QA_100_SCORE_CHECKLIST.md` | Checklist QA tổng cho mọi release | 🟡 TBD | Tech Lead + QA |
+| 5.4.1 | `DSTS_PRIVACY_TRUST_TRANSPARENCY_RULES.md` | Quy tắc privacy + trust + minh bạch | 🟡 DRAFT v1.0 (Batch 1) | Legal + Founder |
+| 5.4.2 | `DSTS_PAYMENT_MEMBERSHIP_SPONSOR_FLOW.md` | Flow thanh toán + membership + sponsor | 🟡 DRAFT v1.0 (Batch 1) | Tech Lead + Legal |
+| 5.4.3 | `DSTS_RELEASE_QA_100_SCORE_CHECKLIST.md` | Checklist QA tổng cho mọi release | 🟡 DRAFT v1.0 (Batch 1) | Tech Lead + QA |
 
 ---
 
@@ -332,6 +332,7 @@ Nếu có conflict giữa Drive cũ (Layer A) và Plan mới (Layer 0-2):
 | Phiên bản | Ngày | Thay đổi | Approver |
 |---|---|---|---|
 | v1.0 | 2026-05-12 | Tạo Master Index ban đầu, gom Drive + Plan mới | Trần Hà Tâm |
+| v1.1 | 2026-05-13 | Cập nhật trạng thái Batch 1 + Batch 2: 7/15 spec đã có DRAFT v1.0 | Trần Hà Tâm |
 
 ---
 
