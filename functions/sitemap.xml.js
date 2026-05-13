@@ -10,18 +10,40 @@ export async function onRequestGet(context) {
     "/donate",
     "/transparency",
     "/legal",
+    "/privacy",
+    "/terms",
+    "/support",
     "/contact",
-    "/posts"
+    "/posts",
+    "/scripts/rising-entrepreneur",
+    "/scripts/global-artist",
+    "/scripts/singing-icon",
+    "/scripts/cinematic-actor",
+    "/scripts/the-thinker",
+    "/scripts/creative-leader",
+    "/scripts/cultural-ambassador",
+    "/scripts/dsts-legacy",
+    "/scripts/global-story",
+    "/content?slug=sang-tao-khong-bat-dau-tu-tham-vong",
+    "/content?slug=hanh-trinh-nhin-lai-chinh-minh",
+    "/content?slug=cong-dong-khong-phai-dam-dong"
   ];
 
-  const stmt = env.DB.prepare(`
-    SELECT slug, type, updated_at
-    FROM contents
-    WHERE visibility = 'public'
-      AND status = 'published'
-  `);
-
-  const { results = [] } = await stmt.all();
+  let results = [];
+  try {
+    if (env.DB) {
+      const stmt = env.DB.prepare(`
+        SELECT slug, type, created_at
+        FROM contents
+        WHERE type IN ('post', 'page')
+        LIMIT 100
+      `);
+      const data = await stmt.all();
+      results = Array.isArray(data.results) ? data.results : [];
+    }
+  } catch (_err) {
+    results = [];
+  }
 
   const staticXml = staticUrls.map(url => `
     <url>
@@ -31,13 +53,14 @@ export async function onRequestGet(context) {
 
   const dynamicXml = results.map(row => {
     const loc = row.type === "post"
-      ? `https://duongsaotoasang.com/posts/${row.slug}`
+      ? `https://duongsaotoasang.com/content?slug=${row.slug}`
       : `https://duongsaotoasang.com/${row.slug}`;
+    const lastmod = toIsoDate(row.created_at);
 
     return `
       <url>
         <loc>${loc}</loc>
-        <lastmod>${new Date(row.updated_at).toISOString()}</lastmod>
+        ${lastmod ? `<lastmod>${lastmod}</lastmod>` : ""}
       </url>
     `;
   }).join("");
@@ -53,4 +76,11 @@ export async function onRequestGet(context) {
       "content-type": "application/xml; charset=utf-8"
     }
   });
+}
+
+function toIsoDate(value) {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toISOString();
 }
