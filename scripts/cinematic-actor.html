@@ -441,6 +441,62 @@
       text-align:center;
     }
 
+    .script-safety-note{
+      border:1px solid rgba(239,68,68,.22);
+      border-radius:18px;
+      background:rgba(239,68,68,.07);
+      padding:14px 16px;
+      color:#fecaca !important;
+      font-size:14px !important;
+      line-height:1.75 !important;
+    }
+
+    .manual-confirmation-card{
+      border:1px solid rgba(224,200,150,.20);
+      border-radius:22px;
+      background:rgba(255,255,255,.035);
+      padding:20px;
+      box-shadow:0 16px 42px rgba(0,0,0,.18);
+    }
+
+    .manual-confirmation-card h4{
+      margin:0 0 12px;
+      color:#f4e2b1;
+      font-size:18px;
+    }
+
+    .manual-confirmation-card ul{
+      margin:0;
+      padding-left:18px;
+      color:var(--muted);
+      line-height:1.75;
+      font-size:14px;
+    }
+
+    .sample-review-disclosure{
+      margin:18px 0 0;
+      border:1px solid rgba(224,200,150,.22);
+      border-radius:18px;
+      background:rgba(224,200,150,.08);
+      color:#f6e6bd;
+      padding:14px 16px;
+      line-height:1.7;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .sample-label{
+      display:inline-flex;
+      margin-bottom:10px;
+      border:1px solid rgba(224,200,150,.24);
+      border-radius:999px;
+      padding:6px 10px;
+      color:#f6e6bd;
+      background:rgba(224,200,150,.08);
+      font-size:12px;
+      font-weight:700;
+    }
+
     .comments{
       margin-top:18px;
     }
@@ -594,7 +650,7 @@
         </div>
 
         <div class="hero-actions">
-          <a class="btn primary" href="#purchase" id="heroBtn1">Thanh toán hành trình</a>
+          <a class="btn primary" href="#purchase" id="heroBtn1">Yêu cầu xác nhận thủ công</a>
           <a class="btn" href="#roadmap" id="heroBtn2">Xem lộ trình 5 năm</a>
           <a class="btn" href="#comments" id="heroBtn3">Ý kiến công khai</a>
         </div>
@@ -741,27 +797,35 @@
     <section class="section reveal" id="purchase">
       <div class="purchase-box">
         <div>
-          <div class="eyebrow" id="purchaseEyebrow">THANH TOÁN HÀNH TRÌNH</div>
+          <div class="eyebrow" id="purchaseEyebrow">XÁC NHẬN THỦ CÔNG</div>
           <h3 id="purchaseTitle">Tham gia The Cinematic Actor</h3>
           <p id="purchaseText1">
-            Đây là một hành trình cao cấp, không đại trà, dành cho diễn viên thực sự muốn được chọn và xây dựng biểu tượng điện ảnh bằng tài năng thật. Sau khi thanh toán, diễn viên gửi xác nhận để bắt đầu bước tiếp theo.
+            Đây là hành trình cao cấp, không đại trà. Trước khi có bất kỳ khoản phí nào, DSTS sẽ trao đổi phạm vi, điều kiện phù hợp và xác nhận thủ công qua kênh chính thức.
           </p>
           <div class="price-tag" id="purchasePrice">22,000 USD</div>
           <p id="purchaseText2">
-            Nội dung chuyển khoản nên ghi rõ: <strong>DSTS CINEMATIC ACTOR</strong>. Sau đó gửi xác nhận qua trang liên hệ để đội ngũ kiểm tra và phản hồi.
+            Nếu sau bước tư vấn hai bên thống nhất tiếp tục, nội dung xác nhận sẽ ghi rõ mã hành trình riêng. Không làm theo hướng dẫn tài chính từ kênh cá nhân hoặc nguồn chưa được công bố.
+          </p>
+          <p class="script-safety-note" id="purchaseSafety">
+            Đây là quy trình xác nhận thủ công. Trang này không xử lý thanh toán trực tuyến, không cam kết kết quả nổi tiếng, doanh thu hay truyền thông.
           </p>
           <div class="hero-actions">
-            <a class="btn primary" href="/contact" id="purchaseBtn1">Gửi xác nhận thanh toán</a>
+            <a class="btn primary" href="/contact" id="purchaseBtn1">Liên hệ xác nhận thủ công</a>
             <a class="btn" href="/scripts" id="purchaseBtn2">Quay lại thư viện Scripts</a>
           </div>
         </div>
 
         <div>
-          <div class="qr-box">
-            <img src="/assets/qr-payment.png" alt="QR Payment">
+          <div class="manual-confirmation-card">
+            <h4 id="manualCardTitle">Chỉ xác nhận thủ công</h4>
+            <ul>
+              <li id="manualStep1">Bước 1: gửi yêu cầu qua trang liên hệ.</li>
+              <li id="manualStep2">Bước 2: DSTS phản hồi phạm vi, điều kiện phù hợp và mã hành trình nếu đủ điều kiện.</li>
+              <li id="manualStep3">Bước 3: mọi hướng dẫn tài chính chỉ hợp lệ khi trùng với chính sách pháp lý, hoàn tiền và minh bạch đã công bố.</li>
+            </ul>
           </div>
           <div class="purchase-note" id="purchaseNote">
-            QR hiện tại là phương thức thanh toán trực tiếp. Về sau có thể mở thêm xác nhận tự động, đơn hàng và gửi file riêng theo từng hành trình.
+            Không có QR hoặc cổng thanh toán trực tiếp trên trang public này. Đọc kỹ điều khoản, hoàn tiền và minh bạch trước khi tiếp tục.
           </div>
         </div>
       </div>
@@ -774,9 +838,11 @@
           <h2 id="commentTitle">Phản hồi và đánh giá từ cộng đồng</h2>
         </div>
         <p id="commentDesc">
-          Đây là nơi khách hàng và người quan tâm có thể để lại tên, nhận xét và đánh giá công khai về hành trình này. Giai đoạn đầu có thể dùng hiển thị tĩnh, sau đó sẽ nối D1 để lưu thật.
+          Các phản hồi bên dưới là nội dung minh họa để mô phỏng bố cục đánh giá. DSTS chưa công bố phản hồi khách hàng thật cho hành trình này trong giai đoạn hiện tại.
         </p>
       </div>
+
+      <div class="sample-review-disclosure" id="sampleDisclosure">Đánh giá minh họa - chưa phải phản hồi khách hàng thật. DSTS chỉ công bố review thật sau khi có xác minh và quyền công bố.</div>
 
       <form class="comment-form">
         <input type="text" id="formName" placeholder="Tên của bạn">
@@ -793,12 +859,14 @@
 
       <div class="comment-list">
         <article class="comment-item">
+          <span class="sample-label" id="sampleLabel1">Đánh giá minh họa</span>
           <b id="sampleName1">Đỗ Thanh Hải</b>
           <div class="rating" id="sampleRate1">5 sao – Rất mạnh</div>
           <p id="sampleText1">Hành trình này không chỉ nói về diễn mà nói về cách xây dựng biểu tượng. Đó chính xác là thứ một diễn viên có tham vọng cần.</p>
         </article>
 
         <article class="comment-item">
+          <span class="sample-label" id="sampleLabel2">Đánh giá minh họa</span>
           <b id="sampleName2">Vũ Ngọc Linh</b>
           <div class="rating" id="sampleRate2">5 sao – Rất tốt</div>
           <p id="sampleText2">Tôi ấn tượng nhất ở cách gói này hiểu sâu về yêu cầu thực tế của phim quốc tế và làm sao một diễn viên Việt có thể vào cuộc chơi đó.</p>
@@ -832,7 +900,7 @@
           heroMeta1: "High-end blueprint",
           heroMeta2: "Acting journey 1:1",
           heroMeta3: "22,000 USD",
-          heroBtn1: "Thanh toán hành trình",
+          heroBtn1: "Yêu cầu xác nhận thủ công",
           heroBtn2: "Xem lộ trình 5 năm",
           heroBtn3: "Ý kiến công khai",
 
@@ -892,18 +960,26 @@
           pack7: "Lộ trình 1–2 năm và định hướng 3–5 năm phát triển sự nghiệp.",
           pack8: "Khuyến nghị phát triển hình ảnh, portfolio và di sản vai diễn.",
 
-          purchaseEyebrow: "THANH TOÁN HÀNH TRÌNH",
+          purchaseEyebrow: "XÁC NHẬN THỦ CÔNG",
           purchaseTitle: "Tham gia The Cinematic Actor",
-          purchaseText1: "Đây là một hành trình cao cấp, không đại trà, dành cho diễn viên thực sự muốn được chọn và xây dựng biểu tượng điện ảnh bằng tài năng thật. Sau khi thanh toán, diễn viên gửi xác nhận để bắt đầu bước tiếp theo.",
+          purchaseText1: "Đây là hành trình cao cấp, không đại trà. Trước khi có bất kỳ khoản phí nào, DSTS sẽ trao đổi phạm vi, điều kiện phù hợp và xác nhận thủ công qua kênh chính thức.",
           purchasePrice: "22,000 USD",
-          purchaseText2: "Nội dung chuyển khoản nên ghi rõ: DSTS CINEMATIC ACTOR. Sau đó gửi xác nhận qua trang liên hệ để đội ngũ kiểm tra và phản hồi.",
-          purchaseBtn1: "Gửi xác nhận thanh toán",
+          purchaseText2: "Nếu sau bước tư vấn hai bên thống nhất tiếp tục, nội dung xác nhận sẽ ghi rõ mã hành trình riêng. Không làm theo hướng dẫn tài chính từ kênh cá nhân hoặc nguồn chưa được công bố.",
+          purchaseBtn1: "Liên hệ xác nhận thủ công",
           purchaseBtn2: "Quay lại thư viện Scripts",
-          purchaseNote: "QR hiện tại là phương thức thanh toán trực tiếp. Về sau có thể mở thêm xác nhận tự động, đơn hàng và gửi file riêng theo từng hành trình.",
+          purchaseNote: "Không có QR hoặc cổng thanh toán trực tiếp trên trang public này. Đọc kỹ điều khoản, hoàn tiền và minh bạch trước khi tiếp tục.",
+          purchaseSafety: "Đây là quy trình xác nhận thủ công. Trang này không xử lý thanh toán trực tuyến, không cam kết kết quả nổi tiếng/doanh thu/truyền thông, và chỉ bắt đầu khi hai bên đã thống nhất phạm vi bằng kênh chính thức.",
+          manualCardTitle: "Chỉ xác nhận thủ công",
+          manualStep1: "Bước 1: gửi yêu cầu qua trang liên hệ.",
+          manualStep2: "Bước 2: DSTS phản hồi phạm vi, điều kiện phù hợp và mã hành trình nếu đủ điều kiện.",
+          manualStep3: "Bước 3: mọi hướng dẫn tài chính chỉ hợp lệ khi trùng với chính sách pháp lý, hoàn tiền và minh bạch đã công bố.",
+          sampleDisclosure: "Đánh giá minh họa - chưa phải phản hồi khách hàng thật. DSTS chỉ công bố review thật sau khi có xác minh và quyền công bố.",
+          sampleLabel1: "Đánh giá minh họa",
+          sampleLabel2: "Đánh giá minh họa",
 
           commentEyebrow: "Ý KIẾN CÔNG KHAI",
           commentTitle: "Phản hồi và đánh giá từ cộng đồng",
-          commentDesc: "Đây là nơi khách hàng và người quan tâm có thể để lại tên, nhận xét và đánh giá công khai về hành trình này. Giai đoạn đầu có thể dùng hiển thị tĩnh, sau đó sẽ nối D1 để lưu thật.",
+          commentDesc: "Các phản hồi bên dưới là nội dung minh họa để mô phỏng bố cục đánh giá. DSTS chưa công bố phản hồi khách hàng thật cho hành trình này trong giai đoạn hiện tại.",
           formName: "Tên của bạn",
           formComment: "Chia sẻ cảm nhận của bạn về The Cinematic Actor",
           formSubmit: "Gửi đánh giá",
@@ -929,7 +1005,7 @@
           heroMeta1: "High-end blueprint",
           heroMeta2: "Acting journey 1:1",
           heroMeta3: "22,000 USD",
-          heroBtn1: "Pay for the journey",
+          heroBtn1: "Request manual review",
           heroBtn2: "View the 5-year roadmap",
           heroBtn3: "Public reflections",
 
@@ -988,19 +1064,26 @@
           pack6: "International film project approach / film networking roadmap.",
           pack7: "1–2 year launch path and 3–5 year career direction.",
           pack8: "Recommendations for image, portfolio, and role legacy growth.",
-
-          purchaseEyebrow: "JOURNEY PAYMENT",
+          purchaseEyebrow: "MANUAL CONFIRMATION",
           purchaseTitle: "Enter The Cinematic Actor",
-          purchaseText1: "This is a premium, non-mass journey for actors who truly want to be selected and build cinematic icon status through real talent. After payment, the actor sends confirmation to begin the next step.",
+          purchaseText1: "This is a premium, non-mass journey. Before any fee is requested, DSTS confirms scope, suitability, and next steps manually through official channels.",
           purchasePrice: "22,000 USD",
-          purchaseText2: "Your transfer note should clearly state: DSTS CINEMATIC ACTOR. Then send confirmation through the contact page so the team can verify and respond.",
-          purchaseBtn1: "Send payment confirmation",
+          purchaseText2: "If both sides agree to continue after consultation, the confirmation will include a dedicated journey code. Do not follow financial instructions from personal channels or unpublished sources.",
+          purchaseBtn1: "Contact for manual confirmation",
           purchaseBtn2: "Back to Scripts library",
-          purchaseNote: "The current QR is a direct payment method. Later, this can be expanded into automated confirmation, order management, and private delivery for each journey.",
+          purchaseNote: "There is no QR code or direct checkout on this public page. Read the terms, refund policy, and transparency page before continuing.",
+          purchaseSafety: "This is a manual confirmation flow. This page does not process online payments, does not guarantee fame, revenue, or media outcomes, and only begins after both sides confirm scope through official channels.",
+          manualCardTitle: "Manual confirmation only",
+          manualStep1: "Step 1: send a request through the contact page.",
+          manualStep2: "Step 2: DSTS responds with scope, suitability conditions, and a journey code if eligible.",
+          manualStep3: "Step 3: any financial instruction is valid only when it matches the published legal, refund, and transparency policies.",
+          sampleDisclosure: "Sample review - not verified customer feedback. DSTS publishes real reviews only after verification and publication permission.",
+          sampleLabel1: "Sample review",
+          sampleLabel2: "Sample review",
 
           commentEyebrow: "PUBLIC REFLECTIONS",
           commentTitle: "Public feedback and evaluations",
-          commentDesc: "This is where clients and interested visitors can leave their name, reflection, and public rating for this journey. In the early phase it can stay static, then later connect to D1 for real storage.",
+          commentDesc: "The reflections below are sample content used to demonstrate the review layout. DSTS is not publishing verified customer feedback for this journey at this stage.",
           formName: "Your name",
           formComment: "Share your thoughts about The Cinematic Actor",
           formSubmit: "Submit review",
@@ -1045,8 +1128,8 @@
         "valueEyebrow","valueTitle","valueDesc","kpi1","kpi1d","kpi2","kpi2d","kpi3","kpi3d","kpi4","kpi4d",
         "roadEyebrow","roadTitle","roadDesc","year1","year1Title","year1Text","year2","year2Title","year2Text","year3","year3Title","year3Text","year4","year4Title","year4Text",
         "contentEyebrow","contentTitle","contentDesc","leftPackTitle","pack1","pack2","pack3","pack4","rightPackTitle","pack5","pack6","pack7","pack8",
-        "purchaseEyebrow","purchaseTitle","purchaseText1","purchasePrice","purchaseText2","purchaseBtn1","purchaseBtn2","purchaseNote",
-        "commentEyebrow","commentTitle","commentDesc","sampleName1","sampleRate1","sampleText1","sampleName2","sampleRate2","sampleText2","footerLine"
+        "purchaseEyebrow","purchaseTitle","purchaseText1","purchasePrice","purchaseText2","purchaseSafety","purchaseBtn1","purchaseBtn2","manualCardTitle","manualStep1","manualStep2","manualStep3","purchaseNote",
+        "commentEyebrow","commentTitle","commentDesc","sampleDisclosure","sampleLabel1","sampleName1","sampleRate1","sampleText1","sampleLabel2","sampleName2","sampleRate2","sampleText2","footerLine"
       ].forEach((id) => set(id, t[id]));
 
       const formName = document.getElementById("formName");
