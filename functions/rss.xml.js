@@ -1,26 +1,9 @@
+import { selectFallback } from "./_lib/content-data.js";
+
 export async function onRequestGet(context) {
   const { env } = context;
 
-  const fallbackPosts = [
-    {
-      slug: "hanh-trinh-nhin-lai-chinh-minh",
-      title_vi: "Hành trình nhìn lại chính mình trong một thế giới quá ồn",
-      excerpt_vi: "Có những giai đoạn con người không thiếu thông tin, mà thiếu sự lắng lại đủ sâu để nhận ra mình đang đi về đâu.",
-      created_at: "2026-03-01T08:00:00.000Z"
-    },
-    {
-      slug: "sang-tao-khong-bat-dau-tu-tham-vong",
-      title_vi: "Sáng tạo không bắt đầu từ tham vọng mà từ sự thấy rõ",
-      excerpt_vi: "Điều tạo nên giá trị bền vững không phải là làm cho thật nhiều, mà là tạo ra đúng thứ cần được sinh ra.",
-      created_at: "2026-02-26T08:00:00.000Z"
-    },
-    {
-      slug: "cong-dong-khong-phai-dam-dong",
-      title_vi: "Cộng đồng không phải đám đông, mà là những người cùng giữ một hướng đi",
-      excerpt_vi: "Một cộng đồng đúng không được xây bằng tiếng ồn, mà bằng sự tin cậy, trách nhiệm và khả năng cùng đi xa.",
-      created_at: "2026-02-20T08:00:00.000Z"
-    }
-  ];
+  const fallbackPosts = selectFallback({ type: "post", limit: 50, lang: "vi" });
 
   let results = [];
   try {

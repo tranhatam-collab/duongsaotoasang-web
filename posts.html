@@ -573,6 +573,15 @@
         }
       }
 
+      async function loadStaticPosts() {
+        try {
+          const data = await fetchJsonWithTimeout("/data/posts.json", 3000);
+          return Array.isArray(data) && data.length ? data : fallbackPosts;
+        } catch (_err) {
+          return fallbackPosts;
+        }
+      }
+
       try {
         postsStatus.textContent = T.loading;
 
@@ -584,10 +593,12 @@
         if (Array.isArray(data) && data.length) {
           renderList(data);
         } else {
-          renderList(filterFallback(fallbackPosts, q), T.fallbackNote);
+          const staticPosts = await loadStaticPosts();
+          renderList(filterFallback(staticPosts, q), T.fallbackNote);
         }
       } catch (_err) {
-        renderList(filterFallback(fallbackPosts, q), T.fallbackNote);
+        const staticPosts = await loadStaticPosts();
+        renderList(filterFallback(staticPosts, q), T.fallbackNote);
       }
 
       if ("IntersectionObserver" in window) {

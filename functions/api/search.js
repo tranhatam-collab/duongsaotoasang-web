@@ -1,3 +1,5 @@
+import { selectFallback } from "../_lib/content-data.js"
+
 export async function onRequest(context) {
 
   const { request, env } = context
@@ -18,6 +20,9 @@ export async function onRequest(context) {
   }
 
   try {
+    if (!env.DB) {
+      return json(selectFallback({ type: "post", q, limit, lang }))
+    }
 
     const like = `%${q}%`
 
@@ -96,24 +101,24 @@ export async function onRequest(context) {
       }
     })
 
-    return new Response(JSON.stringify(data), {
-      headers: {
-        "Content-Type": "application/json",
-        "Cache-Control": "public, max-age=120"
-      }
-    })
+    if (!data.length) {
+      return json(selectFallback({ type: "post", q, limit, lang }))
+    }
+
+    return json(data)
 
   } catch (error) {
-
-    return new Response(JSON.stringify({
-      error: "Search query failed"
-    }), {
-      status: 500,
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
+    return json(selectFallback({ type: "post", q, limit, lang }))
 
   }
 
+}
+
+function json(data) {
+  return new Response(JSON.stringify(data), {
+    headers: {
+      "Content-Type": "application/json",
+      "Cache-Control": "public, max-age=120"
+    }
+  })
 }

@@ -1,7 +1,12 @@
+import { selectFallback } from "./_lib/content-data.js";
+
 export async function onRequestGet(context) {
   const { env } = context;
 
-  const staticUrls = [
+  const fallbackPostUrls = selectFallback({ type: "post", limit: 100, lang: "vi" })
+    .map((row) => `/content?slug=${row.slug}`);
+
+  const staticUrls = Array.from(new Set([
     "/",
     "/about",
     "/program",
@@ -24,10 +29,8 @@ export async function onRequestGet(context) {
     "/scripts/cultural-ambassador",
     "/scripts/dsts-legacy",
     "/scripts/global-story",
-    "/content?slug=sang-tao-khong-bat-dau-tu-tham-vong",
-    "/content?slug=hanh-trinh-nhin-lai-chinh-minh",
-    "/content?slug=cong-dong-khong-phai-dam-dong"
-  ];
+    ...fallbackPostUrls
+  ]));
 
   let results = [];
   try {

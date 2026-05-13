@@ -10,13 +10,13 @@
   <meta name="description" content="Đọc bài viết sâu sắc về nhận thức, sáng tạo, cộng đồng, hành trình sống và tri thức có ý nghĩa từ Đường Sao Tỏa Sáng.">
   <meta name="keywords" content="bài viết, blog, nhận thức, sáng tạo, cộng đồng, hành trình, tri thức, giáo dục">
 
-  <link rel="canonical" href="https://duongsaotoasang.com/content.html">
+  <link rel="canonical" href="https://duongsaotoasang.com/content">
 
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Đường Sao Tỏa Sáng">
   <meta property="og:title" content="Bài viết | Tri thức sâu sắc - Đường Sao Tỏa Sáng">
   <meta property="og:description" content="Đọc bài viết sâu sắc về nhận thức, sáng tạo, cộng đồng, hành trình sống và tri thức có ý nghĩa.">
-  <meta property="og:url" content="https://duongsaotoasang.com/content.html">
+  <meta property="og:url" content="https://duongsaotoasang.com/content">
   <meta property="og:image" content="https://duongsaotoasang.com/og.png">
 
   <meta name="twitter:card" content="summary_large_image">
@@ -500,6 +500,29 @@
           : (item.content_vi || item.content || item.content_en || "");
       }
 
+      async function fetchJsonWithTimeout(url, ms = 5000) {
+        const controller = new AbortController();
+        const timeout = window.setTimeout(() => controller.abort(), ms);
+
+        try {
+          const res = await fetch(url, { signal: controller.signal });
+          if (!res.ok) throw new Error(`Failed to load static content: ${res.status}`);
+          return res.json();
+        } finally {
+          window.clearTimeout(timeout);
+        }
+      }
+
+      async function loadStaticContent(targetSlug) {
+        try {
+          const data = await fetchJsonWithTimeout("/data/content.json", 3000);
+          if (!Array.isArray(data)) return null;
+          return data.find((item) => item.slug === targetSlug) || null;
+        } catch (_err) {
+          return null;
+        }
+      }
+
       function renderItem(item) {
         const title = resolveTitle(item);
         const excerpt = resolveExcerpt(item);
@@ -523,6 +546,13 @@
 
         const twitterDesc = document.querySelector('meta[name="twitter:description"]');
         if (twitterDesc) twitterDesc.setAttribute("content", excerpt || title);
+
+        const articleUrl = `https://duongsaotoasang.com/content?slug=${encodeURIComponent(item.slug || slug)}`;
+        const canonical = document.querySelector('link[rel="canonical"]');
+        if (canonical) canonical.setAttribute("href", articleUrl);
+
+        const ogUrl = document.querySelector('meta[property="og:url"]');
+        if (ogUrl) ogUrl.setAttribute("content", articleUrl);
 
         document.getElementById("heroEyebrow").textContent = T.eyebrow;
         document.getElementById("pageTitle").textContent = title || "";
@@ -564,7 +594,7 @@
       `;
 
       if (!slug) {
-        document.getElementById("content").innerHTML = `<div class="status-box">${DSTS.escapeHTML(T.failed)}</div>`;
+        window.location.replace(DSTS.withLang("/posts"));
         return;
       }
 
@@ -572,7 +602,10 @@
         const item = await DSTS.apiFetch(`/content?slug=${encodeURIComponent(slug)}&lang=${lang}`);
         renderItem(item);
       } catch (_err) {
-        if (fallbackContents[slug]) {
+        const staticItem = await loadStaticContent(slug);
+        if (staticItem) {
+          renderItem(staticItem);
+        } else if (fallbackContents[slug]) {
           renderItem(fallbackContents[slug]);
         } else {
           document.getElementById("content").innerHTML = `<div class="status-box">${DSTS.escapeHTML(T.failed)}</div>`;
