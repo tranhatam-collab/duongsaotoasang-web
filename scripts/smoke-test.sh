@@ -38,6 +38,9 @@ urls=(
 
 content_checks=(
   "/posts|THƯ VIỆN TRI THỨC"
+  "/posts|data-dsts-ssr=\"posts\""
+  "/posts|Khởi nghiệp từ nơi sống thật"
+  "/posts|\"@type\":\"ItemList\""
   "/content?slug=sang-tao-khong-bat-dau-tu-tham-vong|Sáng tạo không bắt đầu từ tham vọng"
   "/content?slug=sang-tao-khong-bat-dau-tu-tham-vong|data-dsts-ssr=\"content\""
   "/content?slug=sang-tao-khong-bat-dau-tu-tham-vong|\"@type\":\"BlogPosting\""

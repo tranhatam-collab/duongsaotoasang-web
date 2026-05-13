@@ -3,6 +3,7 @@
   "include": [
     "/api/*",
     "/content",
+    "/posts",
     "/rss.xml",
     "/sitemap.xml"
   ],
