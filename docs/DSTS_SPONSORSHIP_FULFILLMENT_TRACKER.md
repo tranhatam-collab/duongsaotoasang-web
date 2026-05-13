@@ -526,3 +526,64 @@ Sponsor có quyền:
 ---
 
 *File này là source of truth cho mọi sponsorship transaction. Mỗi inquiry mới phải log vào D1 `sponsors` table + tracker. Mọi deliverable phải có evidence URL. NĐ 03/2026 compliance kiểm tra hàng quý.*
+
+---
+
+## DEV-READY — Implementation hooks (Wave 2, 2026-05-13)
+
+### API contract reference
+
+**`DSTS_MOVEMENT_SPONSORS_API_CONTRACT.md`** — 6 endpoint dev-ready:
+- `GET /api/movement/sponsors/tiers` (public list 13 tier)
+- `GET /api/movement/sponsors/tiers/:slug` (tier detail)
+- `POST /api/movement/sponsors/inquiry` (public form submit, rate-limited)
+- `GET /api/movement/sponsors/donor-wall` (public donor wall)
+- `GET /api/admin/sponsors` (admin kanban list, JWT required)
+- `PATCH /api/admin/sponsors/:id` (admin stage transition)
+
+### D1 schema
+
+Migration: `migrations/0006_sponsors.sql` — 5 table:
+- `sponsor_tiers` (13 row master data)
+- `sponsor_inquiries` (public form submission)
+- `sponsors` (confirmed sponsor relationship)
+- `sponsor_communications` (interaction log)
+- `sponsor_deliverables` (fulfillment tracking)
+
+### Sample inquiry payload
+
+```json
+POST /api/movement/sponsors/inquiry
+Idempotency-Key: <uuid>
+Content-Type: application/json
+
+{
+  "company": "Acme Corp Ltd.",
+  "contact_name": "Nguyen Van A",
+  "contact_email": "contact@acme.vn",
+  "tier_slug": "cohort-sponsor-50k",
+  "intended_amount_usd": 50000,
+  "budget_range": "30k-100k",
+  "intent_notes": "Quan tâm tài trợ NDNUM cohort 2027",
+  "lang": "vi"
+}
+```
+
+Response: `{ ok: true, inquiry_id: "inq_xxx", status: "received", sla_hours: 72 }`
+
+### Sponsor Agreement template
+
+**`DSTS_SPONSOR_AGREEMENT_LEGAL_TEMPLATE.md`** — 14 sections boilerplate + 13 tier addendum. Tier #11/12 (NDNUM) có addendum bắt buộc "No direct child contact" clause. Tier #13 (Legacy Anchor) cần outside law firm sign-off.
+
+### Founder action items trước Phase 1.2 kickoff
+
+- [ ] Lock 13 tier pricing trong Mục 1 (hiện DRAFT, cần `🔒 LOCKED` trước Layer 1)
+- [ ] Engage Legal Counsel adapt `DSTS_SPONSOR_AGREEMENT_LEGAL_TEMPLATE.md`
+- [ ] Hire outside Law Firm cho Tier #13 review (~$5-10K)
+
+### CHANGELOG entry
+
+| Version | Date | Author | Changes |
+|---|---|---|---|
+| v1.0 (DRAFT) | 2026-05-13 | Codex + Founder | 13 gói + 8 stage + KYC checklist |
+| v1.0-DEV-READY | 2026-05-13 | Claude + Founder | Wave 2 W2.T6: append API contract + agreement template references |

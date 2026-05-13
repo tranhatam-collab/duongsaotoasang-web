@@ -570,3 +570,56 @@ Before any Layer 1 event page goes public:
 ---
 
 *File này là runbook vận hành Layer 1 event/showcase. Không dùng để mở bán hoặc nhận sponsor trước khi legal/payment gate trong `DSTS_PAYMENT_MEMBERSHIP_SPONSOR_FLOW.md` được xác nhận.*
+
+---
+
+## DEV-READY — Implementation hooks (Wave 2, 2026-05-13)
+
+### API contract reference
+
+**`DSTS_MOVEMENT_EVENTS_API_CONTRACT.md`** — 6 endpoint event:
+- `GET /api/movement/events` (list)
+- `GET /api/movement/events/:slug` (detail)
+- `POST /api/movement/events/:slug/register` (registration + payment)
+- `POST /api/movement/events/:slug/check-in/:registration_id` (staff JWT)
+- `GET /api/movement/tour-stops` (tour calendar)
+- `GET /api/movement/tour-stops/:country` (per country)
+
+### D1 migration
+
+`migrations/0007_events.sql` — 5 table:
+- `events` (master)
+- `event_registrations` (public registration)
+- `event_child_registrations` (encrypted child data, Phase 0B gated)
+- `tour_stops` (tour calendar 33+ country)
+- `event_payment_webhook_log` (pay.iai.one callback)
+
+### Child safety enforcement in code
+
+Khi `event.children_participation = true`:
+- Registration form bắt buộc guardian fields
+- Server validate `guardian_consent_signed === true`
+- Reject self-register-as-minor
+- Phase 0B blocker: env var `NDNUM_CHILD_REGISTRATION_ENABLED=false` → return 503 cho đến khi Wave 3 + CSO assigned
+
+### CSO review workflow integration
+
+- Khi child registration insert → trigger email tới CSO
+- CSO set `cso_review_status = approved` trước event date
+- Check-in screen block nếu `cso_review_status != approved`
+
+### Pay.iai.one integration cho Lane A event ticket
+
+Reuse pattern từ `functions/api/donate/create.js`:
+- order_id prefix: `evt_<registration_id>`
+- Convert USD → VND theo `events.exchange_rate_usd_vnd`
+- Webhook callback to `/api/movement/events/webhook` (mới Wave 2)
+- Refund: manual via admin endpoint
+
+### CHANGELOG entry
+
+| Version | Date | Author | Changes |
+|---|---|---|---|
+| v1.0 (DRAFT) | 2026-05-13 | Codex + Founder | Event lifecycle 10 stage + RACI + checklist |
+| v1.0.1 | 2026-05-13 | Claude + Founder | Wave 1 patch: NDNUM Mục XIII reference + CSO sign-off + children_participation field |
+| v1.0-DEV-READY | 2026-05-13 | Claude + Founder | Wave 2 W2.T6: append API contract + migration 0007 + child safety enforcement + pay.iai.one Lane A integration |

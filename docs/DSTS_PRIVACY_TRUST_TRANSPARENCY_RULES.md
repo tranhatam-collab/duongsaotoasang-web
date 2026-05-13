@@ -426,3 +426,58 @@ chương trình bất cứ lúc nào.
 ---
 
 *File này là source of truth cho mọi quyết định liên quan privacy + trust + transparency. Mọi PR thay đổi UX có animation thu PII phải ref file này. Mọi nội dung public phải pass Manifesto Compliance Linter (đề xuất build trong DSTS_RELEASE_QA_100_SCORE_CHECKLIST.md).*
+
+---
+
+## DEV-READY — Implementation hooks (Wave 2, 2026-05-13)
+
+### Component cần build
+
+- **Cookie banner component** (`<CookieConsent>`) — hiển thị khi user load lần đầu, lưu choice vào localStorage + cookie (`dsts_consent`). 3 cấp: analytics, marketing, essential (essential always on).
+- **Privacy preference center** (`/account/privacy`) — Wave 3 NDNUM Consent Flow sẽ build full; Wave 2 stub: page render consent status + opt-out
+
+### Audit log table schema (preliminary)
+
+Wave 2 set up minimal table; Wave 3 NDNUM Consent Flow sẽ expand:
+
+```sql
+-- migrations/00XX_audit_log.sql (Wave 2 hoặc Phase 1.2)
+CREATE TABLE IF NOT EXISTS audit_log (
+  id              TEXT PRIMARY KEY,
+  user_id         TEXT,
+  ip_hash         TEXT NOT NULL,
+  event_type      TEXT NOT NULL,
+  resource_type   TEXT,
+  resource_id     TEXT,
+  before_state    TEXT,
+  after_state     TEXT,
+  metadata        TEXT,
+  user_agent      TEXT,
+  created_at      TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_audit_user ON audit_log(user_id);
+CREATE INDEX IF NOT EXISTS idx_audit_event ON audit_log(event_type);
+CREATE INDEX IF NOT EXISTS idx_audit_created ON audit_log(created_at);
+```
+
+### Endpoint stub (Wave 2 stub, Wave 3 full)
+
+- `GET /api/account/privacy/status` — return current consent state
+- `POST /api/account/privacy/update` — update consent
+- `POST /api/account/privacy/export` — GDPR Article 15 data export
+- `POST /api/account/privacy/delete` — GDPR Article 17 data deletion
+
+Full implementation: Wave 3 `NDNUM_PARENT_GUARDIAN_CONSENT_FLOW.md`.
+
+### Cross-reference
+
+- `dsts-nuoi-duong-nhung-uoc-mo-v1.1-REVIEWED.md` Mục IV (guardian-first cho trẻ em < 18)
+- Wave 3 `NDNUM_PARENT_GUARDIAN_CONSENT_FLOW.md` sẽ định nghĩa chi tiết consent flow cho child profile
+
+### CHANGELOG entry
+
+| Version | Date | Author | Changes |
+|---|---|---|---|
+| v1.0 (DRAFT) | 2026-05-13 | Codex + Founder | Privacy + trust + transparency rules |
+| v1.0-DEV-READY | 2026-05-13 | Claude + Founder | Wave 2 W2.T6: append component + audit log schema + endpoint stub |

@@ -1,12 +1,13 @@
 # 00_DSTS_MASTER_INDEX_2026
 
-> 📝 **DRAFT v1.2** — 2026-05-13 (supersedes v1.1-LOCKED 2026-05-12)
+> 📝 **DRAFT v1.3** — 2026-05-13 (supersedes v1.2 same-day, v1.1-LOCKED 2026-05-12)
 > Bản đồ master cho cả ecosystem DSTS. Gom toàn bộ Drive cũ + kế hoạch mới thành 1 chỉ mục chính thức.
 > **Đối tượng dùng:** dev, content, legal, product, founder — cùng một bản truth.
-> **v1.2 changes:** Wave 1 sync timeline (chèn Phase 0B), fix A7 status, thêm 7 NDNUM spec con + Sponsor Agreement entry.
+> **v1.3 changes:** Wave 2 — thêm 4 spec mới (UI Mockup, Sponsors API, Events API, Sponsor Agreement) + upgrade 7 Layer 1 spec lên v1.0-DEV-READY + reserve `_redirects` Movement portal.
+> **v1.2 changes:** Wave 1 sync timeline (chèn Phase 0B), fix A7 status, thêm 7 NDNUM spec con TBD.
 
 **Founder:** Trần Hà Tâm
-**Phiên bản:** v1.2 (master index — pending re-lock)
+**Phiên bản:** v1.3 (master index — pending re-lock)
 **Ngày phát hành:** 2026-05-13
 **Nguyên tắc:** Mọi tài liệu mới về DSTS phải được index ở đây. Không có file ngoài index.
 
@@ -151,10 +152,13 @@ Thanh Tam Foundation Việt Nam        ← Legal entity (chờ xác minh)
 
 | # | File | Purpose | Status | Owner |
 |---|---|---|---|---|
-| 5.2.1 | `DSTS_LAYER_1_MOVEMENT_PORTAL_SPEC.md` | Spec chi tiết Movement Portal | 🟡 DRAFT v1.0 (Batch 1) | Founder + Claude |
-| 5.2.2 | `DSTS_SPONSORSHIP_FULFILLMENT_TRACKER.md` | Tracker 13 gói tài trợ + flow xác nhận | 🟡 DRAFT v1.0 (Batch 1) | Founder + Claude |
-| 5.2.3 | `DSTS_EVENT_SHOWCASE_OPERATIONS_RUNBOOK.md` | Runbook tổ chức event | 🟡 DRAFT v1.0 (Batch 2) | Founder + Operations |
-| 5.2.4 | `DSTS_TOUR_CALENDAR_2026_2027.md` | Tour 33+ quốc gia, lịch chi tiết | 🟡 DRAFT v1.0 (Batch 2) | Founder + Operations |
+| 5.2.1 | `DSTS_LAYER_1_MOVEMENT_PORTAL_SPEC.md` | Spec chi tiết Movement Portal | 🟢 DEV-READY v1.0 (Wave 2) | Founder + Claude |
+| 5.2.2 | `DSTS_SPONSORSHIP_FULFILLMENT_TRACKER.md` | Tracker 13 gói tài trợ + flow xác nhận | 🟢 DEV-READY v1.0 (Wave 2) | Founder + Claude |
+| 5.2.3 | `DSTS_EVENT_SHOWCASE_OPERATIONS_RUNBOOK.md` | Runbook tổ chức event | 🟢 DEV-READY v1.0.1 (Wave 2) | Founder + Operations |
+| 5.2.4 | `DSTS_TOUR_CALENDAR_2026_2027.md` | Tour 33+ quốc gia, lịch chi tiết | 🟢 DEV-READY v1.0.1 (Wave 2) | Founder + Operations |
+| 5.2.5 | `DSTS_MOVEMENT_UI_ROUTES_MOCKUP.md` | 10 route wireframe + 8 component + responsive + a11y + i18n | 🟢 DEV-READY v1.0 (Wave 2) | Frontend Lead + Founder |
+| 5.2.6 | `DSTS_MOVEMENT_SPONSORS_API_CONTRACT.md` | 6 endpoint sponsor + D1 schema + migration `0006_sponsors.sql` | 🟢 DEV-READY v1.0 (Wave 2) | Tech Lead + Founder |
+| 5.2.7 | `DSTS_MOVEMENT_EVENTS_API_CONTRACT.md` | 6 endpoint event + D1 schema + migration `0007_events.sql` + child safety enforcement | 🟢 DEV-READY v1.0 (Wave 2) | Tech Lead + Operations |
 
 ### 5.3 Layer 2 — Star Journey OS (Spec đang viết song song)
 
@@ -173,10 +177,10 @@ Thanh Tam Foundation Việt Nam        ← Legal entity (chờ xác minh)
 
 | # | File | Purpose | Status | Owner |
 |---|---|---|---|---|
-| 5.4.1 | `DSTS_PRIVACY_TRUST_TRANSPARENCY_RULES.md` | Quy tắc privacy + trust + minh bạch | 🟡 DRAFT v1.0 (Batch 1) | Legal + Founder |
-| 5.4.2 | `DSTS_PAYMENT_MEMBERSHIP_SPONSOR_FLOW.md` | Flow thanh toán + membership + sponsor | 🟡 DRAFT v1.0 (Batch 1) | Tech Lead + Legal |
-| 5.4.3 | `DSTS_RELEASE_QA_100_SCORE_CHECKLIST.md` | Checklist QA tổng cho mọi release | 🟡 DRAFT v1.0 (Batch 1) | Tech Lead + QA |
-| 5.4.4 | `DSTS_SPONSOR_AGREEMENT_LEGAL_TEMPLATE.md` | Boilerplate hợp đồng tài trợ 13 tier — chờ Legal Counsel adapt | 🔵 TBD (Wave 2) | Legal + Founder |
+| 5.4.1 | `DSTS_PRIVACY_TRUST_TRANSPARENCY_RULES.md` | Quy tắc privacy + trust + minh bạch | 🟢 DEV-READY v1.0 (Wave 2) | Legal + Founder |
+| 5.4.2 | `DSTS_PAYMENT_MEMBERSHIP_SPONSOR_FLOW.md` | Flow thanh toán + membership + sponsor | 🟢 DEV-READY v1.0 (Wave 2) | Tech Lead + Legal |
+| 5.4.3 | `DSTS_RELEASE_QA_100_SCORE_CHECKLIST.md` | Checklist QA tổng cho mọi release | 🟢 DEV-READY v1.0 (Wave 2) | Tech Lead + QA |
+| 5.4.4 | `DSTS_SPONSOR_AGREEMENT_LEGAL_TEMPLATE.md` | Boilerplate hợp đồng tài trợ 13 tier — chờ Legal Counsel adapt | 🟡 DRAFT v1.0-LEGAL-PENDING (Wave 2) | Legal + Founder |
 
 ### 5.5 NDNUM — Nuôi Dưỡng Những Ước Mơ (Phase 0B)
 
@@ -370,6 +374,7 @@ Nếu có conflict giữa Drive cũ (Layer A) và Plan mới (Layer 0-2):
 | v1.0 | 2026-05-12 | Tạo Master Index ban đầu, gom Drive + Plan mới | Trần Hà Tâm |
 | v1.1 | 2026-05-13 | Cập nhật trạng thái Batch 1 + Batch 2: 7/15 spec đã có DRAFT v1.0 | Trần Hà Tâm |
 | v1.2 | 2026-05-13 | Wave 1 patch: sync timeline (chèn Phase 0B, dịch Layer 1 → Tháng 9-12/2026), fix A7 status (Founder TBD), thêm 7 NDNUM spec con TBD Mục 5.5 + Sponsor Agreement Mục 5.4.4. Counts: 7 Layer 1 DRAFT + 4 cross-cutting (3 DRAFT + 1 TBD) + 7 NDNUM TBD + 1 NDNUM v1.1 DRAFT + 4 Layer 2 TBD = 12 DRAFT + 12 TBD (24 total) | Trần Hà Tâm |
+| v1.3 | 2026-05-13 | Wave 2 done — UNBLOCK DEV LAYER 1: thêm 3 spec mới (5.2.5 UI Mockup, 5.2.6 Sponsors API, 5.2.7 Events API) + upgrade 5.2.1-5.2.4 + 5.4.1-5.4.3 lên DEV-READY v1.0 + 5.4.4 Sponsor Agreement Template DRAFT-LEGAL-PENDING + reserve `_redirects` Movement portal routes. Counts: 11 DEV-READY + 1 LEGAL-PENDING + 8 TBD (7 NDNUM + 1 NDNUM v1.1 + 4 Layer 2 - tổng 20 entry trong Master Index). Dev có thể bắt tay code Layer 1 ngay khi Layer 0 Sprint 0 done | Trần Hà Tâm |
 
 ---
 

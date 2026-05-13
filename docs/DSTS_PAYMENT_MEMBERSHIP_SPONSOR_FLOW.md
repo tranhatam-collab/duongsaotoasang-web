@@ -576,3 +576,60 @@ Lane B (nonprofit) cuối mỗi quý:
 ---
 
 *File này là source of truth cho mọi flow tiền vào/ra DSTS. Bất kỳ thay đổi tier/giá/policy phải PR + Legal review. Mọi PR liên quan checkout/donate phải ref file này.*
+
+---
+
+## DEV-READY — Implementation hooks (Wave 2, 2026-05-13)
+
+### pay.iai.one integration status hiện tại
+
+**Lane B (Donation) — đã 80% sẵn:**
+- `functions/api/donate/create.js` (122 lines) — create donation intent + return checkout_url
+- `functions/api/donate/webhook.js` (82 lines) — HMAC verify + status update
+- `functions/api/donate/[id].js` — donation lookup
+- `migrations/0005_donations.sql` — `donations` + `donation_webhook_log` tables
+- Env vars cần set: `PAY_IAI_ONE_API_KEY`, `PAY_IAI_ONE_BASE_URL`, `PAY_IAI_ONE_TENANT_CODE`, `PAY_IAI_ONE_SITE_CODE`, `PAY_IAI_ONE_PROVIDER`, `PAY_IAI_ONE_WEBHOOK_SECRET`, `PAY_IAI_ONE_CALLBACK_BASE`
+
+**Lane A (Commercial — Script Journey checkout + Event ticket) — chưa có:**
+- Extend pattern Lane B sang Lane A: order_id prefix `sj_` (script journey), `evt_` (event ticket)
+- Reference: `DSTS_MOVEMENT_EVENTS_API_CONTRACT.md` Mục 8 (Lane A cho ticket)
+
+### File cần touch khi build Layer 1
+
+| File | Purpose | Wave |
+|---|---|---|
+| `functions/_lib/api-helpers.js` (mới) | Extract helpers (json, errorJson, randomId, sha256Hex, checkIdempotency) | Wave 2 / Phase 1.1 |
+| `functions/_lib/email.js` (mới) | Resend/Mailgun wrapper | Wave 2 / Phase 1.1 |
+| `functions/_lib/auth.js` (mới) | Cloudflare Access JWT validate | Wave 2 / Phase 1.1 |
+| `functions/api/movement/sponsors/*` (mới) | 6 endpoint sponsor (Sponsors API Contract) | Phase 1.2 |
+| `functions/api/movement/events/*` (mới) | 6 endpoint event (Events API Contract) | Phase 1.3 |
+| `functions/api/donate/create.js` | Refactor sang dùng helpers (no-functional-change) | Wave 2 / Phase 1.2 |
+
+### Stripe migration plan (Year 2+)
+
+pay.iai.one phù hợp cho VN-domestic payment + cross-border thấp volume. Khi DSTS scale sang Mỹ + EU (Year 2 target Tier #6+ international sponsor), migrate sang Stripe:
+
+- Y1 (2026): pay.iai.one cho cả Lane A + Lane B
+- Y2 (2027): tách Stripe cho Lane A US/EU + giữ pay.iai.one cho Lane B VN
+- Y3 (2028): full Stripe + pay.iai.one parallel
+
+Migration cost estimate: $5-10K dev + 1-2 month integration test.
+
+### Smoke test pattern (đã work production)
+
+```bash
+curl -X POST https://duongsaotoasang.com/api/donate/create \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: $(uuidgen)" \
+  -d '{"amount_vnd":50000,"donor_email":"test@test.com","donor_name":"Test","message":"smoke"}'
+
+# Expected: { ok:true, id:"don_xxx", checkout_url:"https://pay.iai.one/...", status:"pending" }
+# Hoặc: { ok:false, error:"PAYMENT_NOT_CONFIGURED" } nếu env var chưa set
+```
+
+### CHANGELOG entry
+
+| Version | Date | Author | Changes |
+|---|---|---|---|
+| v1.0 (DRAFT) | 2026-05-13 | Claude + Founder | Payment + Membership + Sponsor flow design |
+| v1.0-DEV-READY | 2026-05-13 | Claude + Founder | Wave 2 W2.T6: append pay.iai.one integration status + file roadmap + Stripe Y2 migration plan |

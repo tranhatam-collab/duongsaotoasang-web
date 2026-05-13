@@ -500,3 +500,47 @@ press@duongsaotoasang.com
 - *`DSTS_TOUR_CALENDAR_2026_2027.md` (tour schedule)*
 
 *Mọi PR Layer 1 phải ref file này. Sprint 1+ enable Layer 1 routes trong `_redirects`.*
+
+---
+
+## DEV-READY — Implementation hooks (Wave 2, 2026-05-13)
+
+File này chỉ là **spec foundation**. Để dev bắt tay code Layer 1 (Tháng 9-12/2026), đọc thêm:
+
+### UI implementation
+- **`DSTS_MOVEMENT_UI_ROUTES_MOCKUP.md`** — 10 route wireframe + 8 component library + responsive 6 breakpoint + WCAG 2.1 AA + i18n VI/EN
+- ASCII wireframe trong file này (Mục 4.2) chỉ là sketch; mockup chi tiết per route nằm trong UI file
+
+### API contract
+- **`DSTS_MOVEMENT_SPONSORS_API_CONTRACT.md`** — 6 endpoint sponsor (tiers list, tier detail, inquiry submit, donor wall, admin list, admin update) + D1 schema + migration `migrations/0006_sponsors.sql`
+- **`DSTS_MOVEMENT_EVENTS_API_CONTRACT.md`** — 6 endpoint event (list, detail, register, check-in, tour-stops list, tour-stops country) + D1 schema + migration `migrations/0007_events.sql` + Phase 0B gating cho event có trẻ em
+
+### Legal template
+- **`DSTS_SPONSOR_AGREEMENT_LEGAL_TEMPLATE.md`** — 14 sections boilerplate cho Legal Counsel adapt + 4 critical tier addendum (NDNUM Cohort, NDNUM Annual, Tour Title, Legacy Anchor)
+
+### Dev kickoff checklist (10 bullets)
+
+- [ ] Đọc full `DSTS_MOVEMENT_UI_ROUTES_MOCKUP.md` (10 route + 8 component)
+- [ ] Đọc full `DSTS_MOVEMENT_SPONSORS_API_CONTRACT.md` (6 endpoint + schema)
+- [ ] Đọc full `DSTS_MOVEMENT_EVENTS_API_CONTRACT.md` (6 endpoint + child safety rule)
+- [ ] Apply migration `migrations/0006_sponsors.sql` + `0007_events.sql` local
+- [ ] Setup Cloudflare KV namespace `RATE_LIMIT_KV`
+- [ ] Setup Cloudflare Access policy cho `/api/admin/*`
+- [ ] Setup Cloudflare Turnstile site key + secret
+- [ ] Build `/movement/coming-soon.html` Phase 1.1
+- [ ] Uncomment `_redirects` Movement portal block (placeholder Phase 1.1)
+- [ ] Smoke test: deploy preview branch, verify 11 route → coming-soon.html, no broken link
+
+### Code patterns to reuse
+
+- `functions/api/donate/create.js` — pattern auth + idempotency + pay.iai.one integration
+- `functions/api/donate/webhook.js` — pattern HMAC verify + idempotent webhook log
+- `migrations/0005_donations.sql` — schema convention (`idempotency_key`, `status` enum CHECK, timestamps)
+
+### CHANGELOG entry
+
+| Version | Date | Author | Changes |
+|---|---|---|---|
+| v1.0 (DRAFT) | 2026-05-13 | Codex + Founder | Spec foundation Layer 1 |
+| v1.0.1 | 2026-05-13 | Claude + Founder | Wave 1 patch: sync timeline T9-12/2026, child safety reference |
+| v1.0-DEV-READY | 2026-05-13 | Claude + Founder | Wave 2 W2.T6: append DEV-READY hooks (UI Mockup + 2 API Contract + Legal Template references) |

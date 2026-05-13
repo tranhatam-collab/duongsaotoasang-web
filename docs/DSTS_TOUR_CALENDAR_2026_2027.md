@@ -586,3 +586,43 @@ Before publishing this tour calendar publicly:
 ---
 
 *File này là lịch chiến lược nội bộ cho Layer 1. Không dùng như public ticket calendar trước khi từng city đạt readiness gate.*
+
+---
+
+## DEV-READY — Implementation hooks (Wave 2, 2026-05-13)
+
+### API contract reference
+
+**`DSTS_MOVEMENT_EVENTS_API_CONTRACT.md`** Mục 3.5-3.6:
+- `GET /api/movement/tour-stops?phase=1&region=sea` — list tour stop
+- `GET /api/movement/tour-stops/:country` — country detail
+
+### D1 schema
+
+Migration `migrations/0007_events.sql` Mục 7.4 — table `tour_stops` với 22 column gồm `phase`, `country`, `city`, `status_level` (L0-L7), `target_month`, `confirmed_date`, `event_id`, `local_host_status`, `venue_status`, `readiness_score`, `public_page_url`, `sponsor_target`.
+
+### Seed data plan (Phase 1.1, Tháng 9/2026)
+
+- Seed 33+ row tour_stops dựa trên Mục 4 Country Cluster Map + Mục 6-10 Phase 1-5
+- Mỗi country bắt đầu status_level `L1 (target_country)` hoặc cao hơn nếu đã có local host confirmed
+- Founder review readiness_score thresholds (≥ 80 for confirmed_date public)
+
+### UI consumer
+
+**`DSTS_MOVEMENT_UI_ROUTES_MOCKUP.md`** Mục 4.6-4.7:
+- `/movement/tour-2026-2027` — world map interactive (Mapbox/Leaflet) + phase timeline + readiness table
+- `/movement/tour-2026-2027/:country` — per-country detail
+
+### Cross-reference với event
+
+Tour stop có thể link sang event_id khi event confirmed. Khi event được tạo cho 1 tour stop:
+- Set `tour_stops.event_id = events.id`
+- Update `tour_stops.status_level` based on `events.status` (e.g. event `open` → `L5 confirmed`)
+
+### CHANGELOG entry
+
+| Version | Date | Author | Changes |
+|---|---|---|---|
+| v1.0 (DRAFT) | 2026-05-13 | Codex + Founder | Tour architecture 33+ country, 5 phase |
+| v1.0.1 | 2026-05-13 | Claude + Founder | Wave 1 patch: chèn Phase 0B + dịch Phase 1-5 +2 tháng, NDNUM Mục XIII reference |
+| v1.0-DEV-READY | 2026-05-13 | Claude + Founder | Wave 2 W2.T6: append tour_stops API + migration 0007 + UI mockup + cross-reference event |

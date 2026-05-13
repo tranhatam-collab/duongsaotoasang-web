@@ -598,3 +598,95 @@ wrangler pages deployment retry <previous-deployment-id>
 ---
 
 *File này là master QA checklist. Mỗi PR/Sprint/Release phải pass checklist tương ứng. Failed checklist = không merge / không launch. Tích lũy artifacts vào `_artifacts/`.*
+
+---
+
+## DEV-READY — Implementation hooks (Wave 2, 2026-05-13)
+
+### GitHub PR template
+
+Tạo file `.github/PULL_REQUEST_TEMPLATE.md` (dev cần tạo) với content:
+
+```markdown
+## Mục đích
+<!-- 1-2 câu mô tả mục đích PR này -->
+
+## Liên quan
+- Issue: #
+- Spec reference: docs/...
+- Sprint: 0 | 1 | 2 | 3 | 4 | Layer 1.x | Layer 2.x
+
+## Checklist (per `DSTS_RELEASE_QA_100_SCORE_CHECKLIST.md`)
+
+### Code
+- [ ] Lint pass (no error)
+- [ ] Type check pass (nếu TypeScript)
+- [ ] Unit test pass
+- [ ] No console.log production code
+- [ ] No hardcoded secret (API key, password)
+
+### Routing & Content
+- [ ] Không trang public hiển thị "Đang tải..." mãi mãi
+- [ ] Mọi route mới có fallback + 404-safe
+- [ ] `_redirects` rule sync với file mới/đổi tên
+
+### Privacy & Compliance
+- [ ] Không thu PII không cần
+- [ ] Nếu thu PII → có Privacy Notice + audit log
+- [ ] Nếu liên quan trẻ em (children_participation): CSO sign-off
+- [ ] Nếu liên quan payment: Legal sign-off
+
+### Performance
+- [ ] Lighthouse Performance ≥ 90
+- [ ] Bundle size diff < 50KB hoặc justified
+- [ ] Image optimized (< 200KB cover, WebP preferred)
+
+### Accessibility (WCAG 2.1 AA)
+- [ ] axe DevTools: 0 critical issue
+- [ ] Keyboard navigation pass
+- [ ] Color contrast ≥ 4.5:1
+
+### SEO
+- [ ] Meta title + description
+- [ ] OG image dimension đúng (1200x630)
+- [ ] H1 unique per page
+
+### Documentation
+- [ ] Spec file (nếu có) đã update với section liên quan
+- [ ] CHANGELOG entry trong file đã update
+
+## Screenshots (nếu UI change)
+<!-- Paste screenshot mobile S, tablet, desktop -->
+
+## Smoke test
+<!-- Bash command hoặc step để verify PR -->
+```
+
+### Lighthouse target metrics
+
+| Metric | Target | Block merge if |
+|---|---|---|
+| Performance | ≥ 90 | < 80 |
+| Accessibility | ≥ 95 | < 90 |
+| Best Practices | ≥ 95 | < 90 |
+| SEO | ≥ 95 | < 90 |
+| LCP (Largest Contentful Paint) | < 2.5s | > 4s |
+| CLS (Cumulative Layout Shift) | < 0.1 | > 0.25 |
+| FID (First Input Delay) | < 100ms | > 300ms |
+
+### Performance budget per route
+
+| Route | JS bundle | CSS | Image total |
+|---|---|---|---|
+| `/` | < 100KB | < 50KB | < 500KB |
+| `/movement` | < 150KB | < 60KB | < 800KB |
+| `/movement/sponsors` | < 200KB | < 60KB | < 1MB |
+| `/movement/events/:slug` | < 200KB | < 60KB | < 1MB |
+| `/movement/diaspora-map` | < 400KB (mapbox heavy) | < 80KB | < 2MB |
+
+### CHANGELOG entry
+
+| Version | Date | Author | Changes |
+|---|---|---|---|
+| v1.0 (ACTIVE) | 2026-05-13 | Codex + Founder | Master QA checklist |
+| v1.0-DEV-READY | 2026-05-13 | Claude + Founder | Wave 2 W2.T6: append GitHub PR template + Lighthouse target + performance budget per route |
