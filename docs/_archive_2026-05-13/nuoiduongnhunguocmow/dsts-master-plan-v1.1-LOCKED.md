@@ -181,7 +181,7 @@ Review mẫu phải gắn nhãn rõ. Comment thật phải có moderation flow +
 
 ```text
 1. legal.html                 ← gộp Terms + Refund + Privacy (Issue 08)
-2. /contact?type=payment-confirmation ← flow xác nhận sau chuyển khoản
+2. payment-confirmation.html  ← flow xác nhận sau chuyển khoản
 3. refund section
 4. privacy section
 5. review sample label        ← "Đánh giá minh họa" (Issue 08)
@@ -310,11 +310,11 @@ Review mẫu phải gắn nhãn rõ. Comment thật phải có moderation flow +
 /donate              /donate.html             200
 /transparency        /transparency.html       200
 /legal               /legal.html              200
-/terms               /legal#terms             302
-/refund              /legal#refund            302
-/privacy             /legal#privacy           302
+/terms               /legal.html#terms        200
+/refund              /legal.html#refund       200
+/privacy             /legal.html#privacy      200
 /contact             /contact.html            200
-/payment-confirmation  /contact?type=payment-confirmation  302
+/payment-confirmation  /payment-confirmation.html  200
 
 # Script detail
 /scripts/rising-entrepreneur     /scripts/rising-entrepreneur.html     200
@@ -330,9 +330,9 @@ Review mẫu phải gắn nhãn rõ. Comment thật phải có moderation flow +
 # Legacy → clean
 /scripts/:slug.html              /scripts/:slug                        301
 
-# Layer 1/2 routes intentionally NOT enabled in Sprint 0.
-# Add /journey and /movement only after coming-soon.html exists
-# and Founder approves opening post-Sprint-0 roadmap routes.
+# Reserve cho Layer 1/2 (placeholder)
+/journey                         /coming-soon.html                     200
+/movement                        /coming-soon.html                     200
 
 # Catch-all → 404
 /*                               /404.html                             404
@@ -657,7 +657,7 @@ Layer 0 hoàn thành (4 tuần): ~2026-06-09
 **Áp dụng:**
 - Sprint 0-4 chỉ làm Layer 0 (foundation).
 - Các sản phẩm/kịch bản mở rộng (Movement Portal, Star Journey OS, 9 Script Journey hiện có, các Assessment, Sponsorship 13-gói, v.v.) được **note vào Master Index** (`00_DSTS_MASTER_INDEX_2026.md`), tag là "Phase 2+", và **công bố đầy đủ trên trang chủ** dưới dạng "Lộ trình 2026-2027" để cộng đồng biết DSTS đang đi đâu.
-- URL `/journey/*` và `/movement/*` chỉ được reserve sau khi có `coming-soon.html` thật và Founder approve. Sprint 0 không bật route này để tránh tạo thêm public surface chưa kiểm chứng.
+- URL `/journey/*` và `/movement/*` reserve sẵn trong `_redirects`, trỏ về `/coming-soon.html` cho đến khi build thật.
 
 ---
 

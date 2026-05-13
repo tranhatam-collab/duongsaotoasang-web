@@ -2,11 +2,12 @@
 
 > **Mã tài liệu:** `DSTS_LAYER_1_MOVEMENT_PORTAL_SPEC_2026-05-13`
 > **Trạng thái:** 🟡 DRAFT — spec đang viết song song với Layer 0 Sprint 0
-> **Owner R:** Founder + Operations · **Approver A:** Founder · **Timeline:** Tháng 7-10/2026 (sau Layer 0)
+> **Owner R:** Founder + Operations · **Approver A:** Founder · **Timeline:** Tháng 9-12/2026 (sau Layer 0 + Phase 0B legal lock) — dịch +2 tháng vs v1.1 timeline gốc
 > **Tham chiếu:**
 > - `00_DSTS_MASTER_INDEX_2026.md` Mục 5.2
 > - Drive cũ (Layer A): lưu diễn toàn cầu + sponsor + gala + truyền thông
-> - `dsts-master-plan-v1.1-LOCKED.md`
+> - `dsts-master-plan-v1.2-DRAFT.md` (supersedes v1.1-LOCKED Mục IX Phase 0B)
+> - `dsts-nuoi-duong-nhung-uoc-mo-v1.1-REVIEWED.md` Mục XI (Phase 0B chặn Layer 1 public surface)
 > - `DSTS_PAYMENT_MEMBERSHIP_SPONSOR_FLOW.md`
 
 ---
@@ -51,7 +52,7 @@
 
 ### Tại sao tách Layer 1 và Layer 2
 
-1. **Layer 1 launch sớm** (Tháng 7-10/2026), bắt đầu kêu gọi sponsor + tour 22/01/2026 trước khi Layer 2 dashboard hoàn thiện
+1. **Layer 1 launch Tháng 9-12/2026** (sau Layer 0 done + Phase 0B legal lock done — xem `dsts-master-plan-v1.2-DRAFT.md` Mục IX Phase 0B + NDNUM Mục XI), bắt đầu kêu gọi sponsor + tour. **Gala 2026-01-22 đã qua** — Founder cần xác nhận trạng thái trước Wave 2 lock (xem `DSTS_EVENT_SHOWCASE_OPERATIONS_RUNBOOK.md` Mục 2.1 + Master Index A7).
 2. **Layer 1 không phụ thuộc database** — chủ yếu static HTML + Notion CMS
 3. **Layer 1 SEO mạnh** — meta đầy đủ, indexable, share được trên mạng xã hội
 4. **Layer 2 cần tech sâu** — D1, SSO, AI, dashboard — build trong Layer 2 sprint sau
@@ -69,7 +70,8 @@ LAYER 0 — FOUNDATION (Sprint 0-4, đang chạy)
 ├── /events placeholder
 └── SEO + ops baseline
 
-      ↓ extend (Tháng 7-10/2026)
+      ↓ Phase 0B (Tháng 6-8/2026): legal + child safety lock (NDNUM blocker)
+      ↓ extend (Tháng 9-12/2026)
 
 LAYER 1 — MOVEMENT PORTAL (public-facing, no login)
 ├── /movement                       ← landing portal phong trào
@@ -83,7 +85,7 @@ LAYER 1 — MOVEMENT PORTAL (public-facing, no login)
 ├── /movement/partners              ← brand partner showcase
 └── /movement/coming-soon           ← placeholder cho features đang chờ
 
-      ↓ extend (Tháng 11+/2026)
+      ↓ extend (Tháng 1+/2027)
 
 LAYER 2 — STAR JOURNEY OS (member-only, login required)
 ├── /journey/assessment             ← Star Map Quiz
@@ -401,31 +403,33 @@ press@duongsaotoasang.com
 
 ---
 
-## 10. ROADMAP TRIỂN KHAI 4 THÁNG
+## 10. ROADMAP TRIỂN KHAI 4 THÁNG (v1.2-DRAFT — dịch +2 tháng vs v1.1)
 
-### Tháng 7/2026 — Setup (Phase 1.1)
+> **Phase 0B (Tháng 6-8/2026)** chạy song song giữa Layer 0 done và Layer 1 start. Phase 0B mở các blocker pháp lý + child safety (xem NDNUM Mục XI + Master Plan v1.2-DRAFT Mục IX).
 
-- [ ] Lock pháp nhân Lane B (cho donate + sponsor)
+### Tháng 9/2026 — Setup (Phase 1.1)
+
+- [ ] Lock pháp nhân Lane B (cho donate + sponsor) — output từ Phase 0B
 - [ ] Thiết kế Layer 1 portal mockup
 - [ ] Build `/movement/coming-soon.html`
 - [ ] Brand visual cho event (per Brandpro 08)
 
-### Tháng 8/2026 — Build (Phase 1.2)
+### Tháng 10/2026 — Build (Phase 1.2)
 
 - [ ] Build `/movement` home
 - [ ] Build `/movement/sponsors` + 13 gói detail
 - [ ] Build sponsor inquiry form + workflow
 - [ ] Brand storytelling content cho 13 gói
 
-### Tháng 9/2026 — Events (Phase 1.3)
+### Tháng 11/2026 — Events (Phase 1.3)
 
 - [ ] Build `/movement/events` calendar
 - [ ] Build event detail template
 - [ ] Build event registration flow
-- [ ] Build `/movement/gala-2026` cho 22/01 event
+- [ ] Build `/movement/gala-2026` (sau khi Founder xác nhận trạng thái sự kiện 2026-01-22)
 - [ ] Build `/movement/tour-2026-2027`
 
-### Tháng 10/2026 — Press + Map (Phase 1.4)
+### Tháng 12/2026 — Press + Map (Phase 1.4)
 
 - [ ] Build `/movement/press` kit
 - [ ] Build `/movement/partners` showcase
@@ -433,7 +437,7 @@ press@duongsaotoasang.com
 - [ ] Launch Layer 1 public
 - [ ] Press release "Layer 1 Live"
 
-### Tháng 11/2026 onwards — Optimize + Layer 2 kick
+### Tháng 1/2027 onwards — Optimize + Layer 2 kick
 
 - Monitor sponsor inquiry rate
 - A/B test sponsor copy

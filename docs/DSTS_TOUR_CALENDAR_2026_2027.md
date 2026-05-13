@@ -46,6 +46,9 @@ Tour này không chỉ là "show"; nó là chuỗi hoạt động cộng đồng
 - Vietnamese diaspora meetup
 - Press/media story
 - Youth/guardian-first inspiration event
+  - **Áp Guardian-first flow** theo `dsts-nuoi-duong-nhung-uoc-mo-v1.1-REVIEWED.md` Mục IV + 12 quy tắc cứng Mục XIII
+  - **Không tour stop nào có trẻ em participation** trước khi Phase 0B legal lock done + CSO assigned + `NDNUM_CHILD_SAFETY_POLICY.md` (Wave 3) LOCKED
+  - Sponsor báo cáo qua Coordinator, không gặp trẻ trực tiếp
 - Founder/community dialogue
 
 ---
@@ -86,23 +89,28 @@ Mốc `2026-01-22` trong Drive cũ phải được xử lý như một item `sta
 ### 3.1 Strategic sequence
 
 ```text
-Phase 0 — 2026-05 to 2026-06
-  Foundation + status review + partner map
+Phase 0A — 2026-05 to 2026-06
+  Foundation + status review + partner map (Layer 0 Sprint 0-4)
 
-Phase 1 — 2026-07 to 2026-09
-  Southeast Asia pilot
+Phase 0B — 2026-06 to 2026-08
+  Legal + Child Safety Lock (NDNUM Phase 0B — blocker cho Phase 1+)
+  Output: pháp nhân Lane B, Legal Counsel + CSO assigned,
+  7 NDNUM spec con LOCKED, NDNUM v1.2-LOCKED
 
-Phase 2 — 2026-10 to 2026-12
-  East Asia + Australia expansion
+Phase 1 — 2026-09 to 2026-11
+  Southeast Asia pilot (dịch +2 tháng vs v1.0)
 
-Phase 3 — 2027-01 to 2027-04
-  North America
+Phase 2 — 2026-12 to 2027-02
+  East Asia + Australia expansion (dịch +2 tháng vs v1.0)
 
-Phase 4 — 2027-05 to 2027-08
-  Europe
+Phase 3 — 2027-03 to 2027-06
+  North America (dịch +2 tháng vs v1.0)
 
-Phase 5 — 2027-09 to 2027-12
-  Global consolidation + annual gala/report
+Phase 4 — 2027-07 to 2027-10
+  Europe (dịch +2 tháng vs v1.0)
+
+Phase 5 — 2027-11 to 2028-02
+  Global consolidation + annual gala/report (dịch +2 tháng vs v1.0)
 ```
 
 ### 3.2 Event formats per city
@@ -185,46 +193,58 @@ This is a target list, not a public confirmed schedule.
 
 ---
 
-## 5. PHASE 0 — STATUS REVIEW
+## 5. PHASE 0 — STATUS REVIEW (0A) + LEGAL/CHILD SAFETY LOCK (0B)
 
-**Timeline:** 2026-05 to 2026-06
+**Timeline:** 2026-05 to 2026-08 (Phase 0A: T5-6, Phase 0B: T6-8 — chèn theo Master Plan v1.2-DRAFT Mục IX)
 
 Purpose:
-- Finish Layer 0 Foundation.
+- Finish Layer 0 Foundation (Phase 0A).
 - Verify Drive event history.
 - Confirm what happened with `Phía Sau Màn Nhung 2026`.
 - Build local host database.
 - Lock tour readiness criteria.
+- **Phase 0B (chặn Phase 1+ launch):** lock pháp nhân Lane B + Legal Counsel + CSO assigned + 7 NDNUM spec con + NDNUM v1.2-LOCKED (xem `dsts-nuoi-duong-nhung-uoc-mo-v1.1-REVIEWED.md` Mục XI).
 
-Deliverables:
-- [ ] Founder confirms status of `2026-01-22`
+Deliverables Phase 0A:
+- [ ] Founder confirms status of `2026-01-22` (completed | postponed | cancelled | merged)
 - [ ] Operations creates `local_hosts.csv`
 - [ ] Sponsor Manager creates top 100 sponsor prospect list
 - [ ] Press Liaison drafts tour boilerplate
 - [ ] Finance confirms which payment lanes are unavailable/available
 - [ ] Tech Lead keeps Layer 1 routes closed until coming-soon approved
 
+Deliverables Phase 0B (NDNUM):
+- [ ] Founder answers 6 NDNUM decisions (Mục XVI)
+- [ ] Legal Counsel VN hired
+- [ ] Child Safety Officer consultant hired
+- [ ] 7 NDNUM spec con drafted + LOCKED
+- [ ] NDNUM v1.2-LOCKED published
+- [ ] Pháp nhân Lane B (Nonprofit) registered + bank account active
+- [ ] D&O + General Liability + Event Liability insurance bound
+
 Exit criteria:
 - Layer 0 smoke test green
 - `DSTS_EVENT_SHOWCASE_OPERATIONS_RUNBOOK.md` locked to v1.0
 - Country readiness score template approved
+- NDNUM v1.2-LOCKED published (chặn Phase 1 Tour launch)
+- CSO signed off on tour stops liên quan trẻ em (Young Star Showcase)
 
 ---
 
 ## 6. PHASE 1 — SOUTHEAST ASIA PILOT
 
-**Timeline:** 2026-07 to 2026-09
+**Timeline:** 2026-09 to 2026-11 (dịch +2 tháng vs v1.0 để chờ Phase 0B legal lock)
 
 ### 6.1 Target cities
 
 | Month | Country | City | Status | Format |
 |---|---|---|---|---|
-| 2026-07 | Vietnam | Ho Chi Minh City | target_country | Community Briefing + Story Showcase |
-| 2026-07 | Vietnam | Hanoi | target_country | Press Roundtable + Showcase |
-| 2026-08 | Singapore | Singapore | target_country | Sponsor Dinner + Showcase |
-| 2026-08 | Malaysia | Kuala Lumpur | target_country | Community Briefing |
-| 2026-09 | Thailand | Bangkok | target_country | Online Bridge or Showcase |
-| 2026-09 | Cambodia | Phnom Penh | target_country | Community Briefing |
+| 2026-09 | Vietnam | Ho Chi Minh City | target_country | Community Briefing + Story Showcase |
+| 2026-09 | Vietnam | Hanoi | target_country | Press Roundtable + Showcase |
+| 2026-10 | Singapore | Singapore | target_country | Sponsor Dinner + Showcase |
+| 2026-10 | Malaysia | Kuala Lumpur | target_country | Community Briefing |
+| 2026-11 | Thailand | Bangkok | target_country | Online Bridge or Showcase |
+| 2026-11 | Cambodia | Phnom Penh | target_country | Community Briefing |
 
 ### 6.2 Pilot goals
 
@@ -248,18 +268,18 @@ Exit criteria:
 
 ## 7. PHASE 2 — EAST ASIA + AUSTRALIA
 
-**Timeline:** 2026-10 to 2026-12
+**Timeline:** 2026-12 to 2027-02 (dịch +2 tháng vs v1.0)
 
 ### 7.1 Target cities
 
 | Month | Country | City | Status | Format |
 |---|---|---|---|---|
-| 2026-10 | Japan | Tokyo | target_country | Story Showcase + Press |
-| 2026-10 | South Korea | Seoul | target_country | Community Briefing |
-| 2026-11 | Taiwan | Taipei | target_country | Showcase |
-| 2026-11 | Hong Kong | Hong Kong | target_country | Sponsor Dinner |
-| 2026-12 | Australia | Sydney | target_country | Story Showcase |
-| 2026-12 | Australia | Melbourne | target_country | Community Briefing |
+| 2026-12 | Japan | Tokyo | target_country | Story Showcase + Press |
+| 2026-12 | South Korea | Seoul | target_country | Community Briefing |
+| 2027-01 | Taiwan | Taipei | target_country | Showcase |
+| 2027-01 | Hong Kong | Hong Kong | target_country | Sponsor Dinner |
+| 2027-02 | Australia | Sydney | target_country | Story Showcase |
+| 2027-02 | Australia | Melbourne | target_country | Community Briefing |
 
 ### 7.2 Expansion goals
 
@@ -283,18 +303,18 @@ New Zealand can be added as an online bridge or local event if Australia operati
 
 ## 8. PHASE 3 — NORTH AMERICA
 
-**Timeline:** 2027-01 to 2027-04
+**Timeline:** 2027-03 to 2027-06 (dịch +2 tháng vs v1.0)
 
 ### 8.1 Target cities
 
 | Month | Country | City | Status | Format |
 |---|---|---|---|---|
-| 2027-01 | United States | California / Orange County | target_country | Flagship diaspora event |
-| 2027-02 | United States | San Jose | target_country | Story Showcase |
-| 2027-02 | United States | Houston | target_country | Community Briefing |
-| 2027-03 | United States | New York | target_country | Press Roundtable |
-| 2027-03 | Canada | Toronto | target_country | Showcase |
-| 2027-04 | Canada | Vancouver | target_country | Community Briefing |
+| 2027-03 | United States | California / Orange County | target_country | Flagship diaspora event |
+| 2027-04 | United States | San Jose | target_country | Story Showcase |
+| 2027-04 | United States | Houston | target_country | Community Briefing |
+| 2027-05 | United States | New York | target_country | Press Roundtable |
+| 2027-05 | Canada | Toronto | target_country | Showcase |
+| 2027-06 | Canada | Vancouver | target_country | Community Briefing |
 
 ### 8.2 North America gates
 
@@ -319,19 +339,19 @@ Before publishing confirmed dates:
 
 ## 9. PHASE 4 — EUROPE
 
-**Timeline:** 2027-05 to 2027-08
+**Timeline:** 2027-07 to 2027-10 (dịch +2 tháng vs v1.0)
 
 ### 9.1 Target cities
 
 | Month | Country | City | Status | Format |
 |---|---|---|---|---|
-| 2027-05 | France | Paris | target_country | Showcase + Press |
-| 2027-05 | Germany | Berlin | target_country | Community Briefing |
-| 2027-06 | Czech Republic | Prague | target_country | Diaspora Story Night |
-| 2027-06 | Poland | Warsaw | target_country | Online Bridge / Briefing |
-| 2027-07 | Netherlands | Amsterdam | target_country | Sponsor Dinner |
-| 2027-07 | Belgium | Brussels | target_country | Institutional briefing |
-| 2027-08 | United Kingdom | London | target_country | Showcase + Press |
+| 2027-07 | France | Paris | target_country | Showcase + Press |
+| 2027-07 | Germany | Berlin | target_country | Community Briefing |
+| 2027-08 | Czech Republic | Prague | target_country | Diaspora Story Night |
+| 2027-08 | Poland | Warsaw | target_country | Online Bridge / Briefing |
+| 2027-09 | Netherlands | Amsterdam | target_country | Sponsor Dinner |
+| 2027-09 | Belgium | Brussels | target_country | Institutional briefing |
+| 2027-10 | United Kingdom | London | target_country | Showcase + Press |
 
 ### 9.2 Europe gates
 
@@ -355,7 +375,7 @@ Before publishing confirmed dates:
 
 ## 10. PHASE 5 — GLOBAL CONSOLIDATION
 
-**Timeline:** 2027-09 to 2027-12
+**Timeline:** 2027-11 to 2028-02 (dịch +2 tháng vs v1.0)
 
 Purpose:
 - Publish annual impact report.
@@ -523,7 +543,9 @@ Homepage/public route must not show:
 - Unconfirmed venue
 - Private local host contact
 - Sponsor prospect names
-- Child/youth identity details
+- **Child/youth identity details** (tên đầy đủ, hình ảnh nhận diện, năm sinh chính xác) — full compliance `dsts-nuoi-duong-nhung-uoc-mo-v1.1-REVIEWED.md` Mục XIII
+- **School name + exact home city** của trẻ em
+- Sponsor-child direct interaction (mọi liên hệ qua Coordinator có lương)
 - Revenue targets as guaranteed outcome
 
 ---
@@ -547,6 +569,7 @@ Before publishing this tour calendar publicly:
 | Version | Date | Author | Changes |
 |---|---|---|---|
 | v1.0 | 2026-05-13 | Codex + Founder | Tạo lần đầu — tour architecture 2026-2027, 33+ countries, phase gates, city readiness score |
+| v1.0.1 | 2026-05-13 | Claude + Founder | Wave 1 patch: chèn Phase 0B (2026-06 → 2026-08), dịch Phase 1-5 lùi +2 tháng, thêm reference NDNUM Mục XIII guardian-first + 12 quy tắc cứng |
 
 ---
 

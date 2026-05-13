@@ -62,7 +62,13 @@ NO POST-EVENT REPORT = NO NEXT SPONSOR CYCLE
 | Online Showcase | `/movement/events/online-{slug}` | Talent/story showcase | Free hoặc Lane A | Content Lead approve |
 | Sponsor Dinner | Private link | Sponsor relationship | No public payment | Sponsor Manager approve |
 | Press Briefing | `/movement/press/{slug}` | Media update | No payment | Press Liaison approve |
-| Young Star Showcase | `/movement/events/young-star-{year}` | Guardian-first showcase | Lane B only | Guardian Safety approve |
+| Young Star Showcase | `/movement/events/young-star-{year}` | Guardian-first showcase | Lane B only | Guardian Safety approve + CSO sign-off |
+
+> ⚠️ **Young Star Showcase — Phase 0B gating rule (chèn 2026-05-13):**
+> - Phải tuân thủ **12 quy tắc cứng NDNUM** (`dsts-nuoi-duong-nhung-uoc-mo-v1.1-REVIEWED.md` Mục XIII) + spec con `NDNUM_CHILD_SAFETY_POLICY.md` (Wave 3 sẽ viết).
+> - **Không launch** Young Star Showcase trước khi Phase 0B legal lock hoàn tất (CSO + Legal Counsel + pháp nhân Lane B + NDNUM v1.2-LOCKED).
+> - Không 1:1 adult-child dưới mọi hình thức. Sponsor nhận báo cáo qua Coordinator có lương, không tiếp xúc trẻ trực tiếp.
+> - Không public child identity (tên đầy đủ, trường học, địa chỉ chính xác).
 
 ### 2.2 Trạng thái event
 
@@ -338,7 +344,8 @@ CREATE TABLE event_registrations (
 - [ ] Press/media requests logged
 - [ ] Incident log maintained
 - [ ] Livestream/recording monitored
-- [ ] Consent rules enforced for minors and sensitive stories
+- [ ] **Consent rules enforced for minors and sensitive stories** — Safety Lead có **quyền veto** mọi tương tác với trẻ em vi phạm 12 quy tắc NDNUM (Mục XIII). Không có phụ huynh hoặc Coordinator có lương = không cho trẻ em vào sân khấu. CSO approve trước khi publish bất kỳ media nào có trẻ em.
+- [ ] Sponsor photo requests đi qua Coordinator (không direct với child)
 - [ ] Founder/MC avoids unapproved financial/legal claims
 
 ### 7.3 Closing
@@ -419,6 +426,10 @@ Allowed language:
 
 ## 10. CHILD/GUARDIAN-FIRST SAFETY
 
+> **Source of truth:** `dsts-nuoi-duong-nhung-uoc-mo-v1.1-REVIEWED.md` Mục IV (Guardian-first Flow) + Mục XIII (12 quy tắc cứng). Runbook này chỉ là **operational layer** thực thi các quy tắc bất biến đã LOCKED ở NDNUM.
+>
+> **Phase 0B blocker:** Phải chờ Phase 0B legal lock + spec con `NDNUM_CHILD_SAFETY_POLICY.md` (Wave 3) LOCKED + CSO assigned + Legal Counsel sign-off **trước khi** launch event/showcase liên quan trẻ em.
+
 Any event involving children or youth:
 - Guardian consent required before registration confirmation.
 - No public full name + exact location.
@@ -427,12 +438,16 @@ Any event involving children or youth:
 - Interview questions reviewed by Safety Lead.
 - Gift/payment to child goes through guardian/coordinator, never direct sponsor request.
 - Any safety concern pauses content publication until reviewed.
+- **Không 1:1 adult-child** dưới mọi hình thức (NDNUM Mục XIII quy tắc 3).
+- **Sponsor báo cáo qua Coordinator có lương** — không tiếp xúc trẻ trực tiếp (NDNUM Mục XIII quy tắc 12).
+- CSO độc lập (báo cáo Board) có quyền veto mọi event activity liên quan trẻ em.
 
 Public event pages must not expose:
 - School name unless officially approved.
 - Home city below safe granularity.
 - Private health/family details.
 - Unmoderated comments for child profiles.
+- Child identity (tên đầy đủ, năm sinh, hình ảnh nhận diện được) — chỉ first name + age range nếu có guardian consent rõ ràng.
 
 ---
 
@@ -475,6 +490,14 @@ Payment lane:
 Sponsor involvement:
 Risk notes:
 Founder decision needed:
+
+Children participation:        [ ] None  [ ] Yes (age range: ____)
+If yes:
+  - Child Safety Officer assigned:        _______________
+  - CSO sign-off date:                    _______________
+  - NDNUM_CHILD_SAFETY_POLICY.md compliance verified: [ ]
+  - 12 quy tắc NDNUM Mục XIII applied:                [ ]
+  - Guardian consent flow tested:                     [ ]
 ```
 
 ### 12.2 Run-of-show template
@@ -519,6 +542,7 @@ Before any Layer 1 event page goes public:
 - [ ] Refund/support copy present if paid
 - [ ] Sponsor claims reviewed
 - [ ] Guardian-first rule checked if children/youth involved
+- [ ] **If `children_participation = yes`: CSO đã sign off + NDNUM_CHILD_SAFETY_POLICY.md (Phase 0B output) compliance verified + Phase 0B legal lock done**
 - [ ] Route smoke test returns 200
 - [ ] Founder or delegated Approver signs off
 
@@ -529,6 +553,7 @@ Before any Layer 1 event page goes public:
 | Version | Date | Author | Changes |
 |---|---|---|---|
 | v1.0 | 2026-05-13 | Codex + Founder | Tạo lần đầu — event/showcase lifecycle, RACI, checklist, safety, reporting |
+| v1.0.1 | 2026-05-13 | Claude + Founder | Wave 1 patch: thêm reference NDNUM Mục XIII + CSO sign-off, field `children_participation` trong event brief, sync timeline Phase 0B |
 
 ---
 
