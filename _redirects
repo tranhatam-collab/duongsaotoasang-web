@@ -42,20 +42,19 @@
 # bỏ comment block 'Phase 1.2' bên dưới và xoá block placeholder này.
 # Reference: docs/DSTS_MOVEMENT_UI_ROUTES_MOCKUP.md Mục 4 + Mục 10.
 #
-# ⚠️ KHÔNG enable cho Sprint 0 — chỉ enable sau Layer 0 100/100 + Phase 0B legal lock.
-# Block placeholder commented out — dev uncomment khi `/movement/coming-soon.html` đã build.
-#
-# /movement                       /movement/coming-soon.html        200
-# /movement/sponsors              /movement/coming-soon.html        200
-# /movement/sponsors/*            /movement/coming-soon.html        200
-# /movement/events                /movement/coming-soon.html        200
-# /movement/events/*              /movement/coming-soon.html        200
-# /movement/tour-2026-2027        /movement/coming-soon.html        200
-# /movement/tour-2026-2027/*      /movement/coming-soon.html        200
-# /movement/gala-2026             /movement/coming-soon.html        200
-# /movement/diaspora-map          /movement/coming-soon.html        200
-# /movement/press                 /movement/coming-soon.html        200
-# /movement/partners              /movement/coming-soon.html        200
+# Placeholder enabled only as a noindex status page. It does NOT open sponsor
+# inquiry, event registration, payment, or auth flows.
+/movement                       /movement/coming-soon             200
+/movement/sponsors              /movement/coming-soon             200
+/movement/events                /movement/coming-soon             200
+/movement/tour-2026-2027        /movement/coming-soon             200
+/movement/gala-2026             /movement/coming-soon             200
+/movement/diaspora-map          /movement/coming-soon             200
+/movement/press                 /movement/coming-soon             200
+/movement/partners              /movement/coming-soon             200
+/movement/sponsors/*            /movement/coming-soon             200
+/movement/events/*              /movement/coming-soon             200
+/movement/tour-2026-2027/*      /movement/coming-soon             200
 
 # === Layer 1 Movement Portal — Phase 1.2+ (real routes, từ Tháng 10/2026) ===
 # Khi Layer 1 launch, uncomment block dưới + xoá block placeholder trên.
