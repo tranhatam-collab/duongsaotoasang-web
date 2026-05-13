@@ -116,6 +116,7 @@
         donate: "Gây quỹ",
         transparency: "Minh bạch",
         legal: "Pháp lý",
+        support: "Hỗ trợ",
         contact: "Liên hệ",
         scriptsLibrary: "Thư viện kịch bản",
         script1: "The Rising Entrepreneur",
@@ -139,6 +140,7 @@
         donate: "Donate",
         transparency: "Transparency",
         legal: "Legal",
+        support: "Support",
         contact: "Contact",
         scriptsLibrary: "Script library",
         script1: "The Rising Entrepreneur",
@@ -384,6 +386,7 @@
                 <a href="${DSTS.withLang("/donate")}" data-key="donate">${DSTS.escapeHTML(t.donate)}</a>
                 <a href="${DSTS.withLang("/transparency")}" data-key="transparency">${DSTS.escapeHTML(t.transparency)}</a>
                 <a href="${DSTS.withLang("/legal")}" data-key="legal">${DSTS.escapeHTML(t.legal)}</a>
+                <a href="${DSTS.withLang("/support")}" data-key="support">${DSTS.escapeHTML(t.support)}</a>
                 <a href="${DSTS.withLang("/contact")}" data-key="contact">${DSTS.escapeHTML(t.contact)}</a>
               </nav>
 

@@ -7,9 +7,7 @@
 
 # Special route normalization
 /programs                         /program                              301
-/terms                            /legal#terms                          302
 /refund                           /legal#refund                         302
-/privacy                          /legal#privacy                        302
 /payment-confirmation             /contact?type=payment-confirmation    302
 
 # Legacy clean URL redirects
@@ -19,6 +17,9 @@
 /donate.html                      /donate                               301
 /transparency.html                /transparency                         301
 /legal.html                       /legal                                301
+/privacy.html                     /privacy                              301
+/terms.html                       /terms                                301
+/support.html                     /support                              301
 /posts.html                       /posts                                301
 /events.html                      /events                               301
 /scripts.html                     /scripts                              301
