@@ -1,20 +1,29 @@
-# CHƯƠNG TRÌNH "NUÔI DƯỠNG NHỮNG ƯỚC MƠ" — v1.1-REVIEWED
+# CHƯƠNG TRÌNH "NUÔI DƯỠNG NHỮNG ƯỚC MƠ" — v1.2-LOCKED
 
-> 🟡 **DRAFT — chờ founder lock**
-> Đã apply 7 sửa từ review 2026-05-13. **Chưa khóa.**
-> Điểm hiện tại: ~78/100. Mục tiêu sau v1.1: 92-95/100. Sau spec con + legal lock: 100/100.
+> 🔒 **LOCKED (doc scope)** — 2026-05-13
+> Cấu trúc chương trình đã khóa. 7 spec con DRAFT v1.0 đã file (Wave 3).
+> Co-review bởi Legal Counsel VN + US + CSO bắt buộc trước khi nâng lên v2.0-LEGAL-LOCKED.
+> 3 Founder decisions còn pending: FD-1 (pháp nhân), FD-2 (fiscal sponsor), FD-4 (Investment Lane Y1).
 
 **Tên đầy đủ:** Nuôi Dưỡng Những Ước Mơ — Dream Nurture Journey
 **Tên ngắn:** **NDNUM** (nội bộ) · **Dream Nurture** (quốc tế)
-**Đơn vị tổ chức:** *(xem Mục X — chỉ ghi placeholder hợp pháp cho đến khi xác minh)*
+**Đơn vị tổ chức:** *(xem Mục X + NDNUM_LEGAL_ENTITY_AND_MONEY_LANE_MAP.md — chờ Founder Decision FD-1)*
 **Founder:** Trần Hà Tâm
-**Phiên bản:** v1.1-REVIEWED (DRAFT)
+**Phiên bản:** v1.2-LOCKED (doc scope)
 **Ngày phát hành:** 2026-05-13
-**Trạng thái:** Chờ founder lock + 7 spec con bổ sung
+**Trạng thái:** Cấu trúc locked. Chờ Legal Counsel + CSO co-review trước v2.0-LEGAL-LOCKED.
 
 ---
 
-## 🔧 CHANGELOG v1.0 → v1.1-REVIEWED
+## 🔧 CHANGELOG
+
+| Phiên bản | Ngày | Thay đổi |
+|---|---|---|
+| v1.2-LOCKED | 2026-05-13 | 7 spec con DRAFT v1.0 filed (Wave 3). Doc scope locked. Pending: Legal/CSO co-review + 3 Founder decisions (FD-1, FD-2, FD-4). |
+| v1.1-REVIEWED | 2026-05-13 | Apply 7 sửa từ review. Chèn Phase 0B. Thêm 7 spec con TBD (Mục XV). |
+| v1.0 | 2026-05-12 | Tạo ban đầu. |
+
+### Chi tiết v1.0 → v1.1-REVIEWED
 
 | # | Sửa | Trước (v1.0) | Sau (v1.1-REVIEWED) |
 |---|---|---|---|
@@ -583,17 +592,17 @@ Giving USA 2024: tổng charitable giving tại Mỹ ~592 tỷ USD. NDNUM Y3 ở
 
 Sau khi anh Tâm lock v1.1, em sẽ viết 7 spec con (gắn vào Master Index Mục 5.4):
 
-| # | File | Mục đích | Owner | Effort |
+| # | File | Mục đích | Trạng thái | Owner |
 |---|---|---|---|---|
-| 1 | `NDNUM_CHILD_SAFETY_POLICY.md` | Chính sách bảo vệ trẻ em chi tiết — 12 quy tắc + flow incident | CSO + Founder | 1 tuần |
-| 2 | `NDNUM_PARENT_GUARDIAN_CONSENT_FLOW.md` | Flow consent đúng COPPA + Luật Trẻ em VN | Legal + Tech | 3-5 ngày |
-| 3 | `NDNUM_MENTOR_SCREENING_AND_TRAINING.md` | Background check + training cho Coordinator + Mentor | HR + CSO | 1 tuần |
-| 4 | `NDNUM_LEGAL_ENTITY_AND_MONEY_LANE_MAP.md` | Map pháp nhân + 3 lane financial firewall | Legal + CFO | 1-2 tuần |
-| 5 | `NDNUM_SPONSOR_A_DREAM_FULFILLMENT_FLOW.md` | Flow sponsor → Coordinator → báo cáo → thư | Operations | 3-5 ngày |
-| 6 | `NDNUM_IMPACT_MEASUREMENT_FRAMEWORK.md` | Đo lường tác động: outcomes (tốt nghiệp, kỹ năng, hạnh phúc) | M&E specialist | 1 tuần |
-| 7 | `NDNUM_PUBLIC_LANDING_PAGE_SCOPE.md` | Scope landing page Phase 0C — chỉ vision, không nhận trẻ em | Founder + Claude | 2-3 ngày |
+| 1 | `NDNUM_CHILD_SAFETY_POLICY.md` | 12 quy tắc deep dive + CSO role + incident A/B/C/D + 4 appendices (VN/US/AU/UK) | 🟡 DRAFT v1.0 — chờ CSO co-review | CSO + Founder |
+| 2 | `NDNUM_PARENT_GUARDIAN_CONSENT_FLOW.md` | COPPA 5 VPC + NĐ 56/2017 + 10-step flow + consent template VI/EN + D1 schema `0008` + 5 API | 🟡 DRAFT v1.0 — chờ Legal Counsel review | Legal + Tech |
+| 3 | `NDNUM_MENTOR_SCREENING_AND_TRAINING.md` | 5 role + hiring funnel + background check 4 countries + 40h curriculum + compensation Y1 | 🟡 DRAFT v1.0 — chờ CSO + HR review | HR + CSO |
+| 4 | `NDNUM_LEGAL_ENTITY_AND_MONEY_LANE_MAP.md` | Pháp nhân 3 options + fiscal sponsor + 3-lane firewall + tax + AML + D&O | 🟡 DRAFT v1.0 — 3 Founder decisions pending | Legal + CFO |
+| 5 | `NDNUM_SPONSOR_A_DREAM_FULFILLMENT_FLOW.md` | Flow $120/$50K/$250K + Coordinator workload + communication protocol + D1 schema | 🟡 DRAFT v1.0 — chờ Phase 0B + Coordinator hire | Operations |
+| 6 | `NDNUM_IMPACT_MEASUREMENT_FRAMEWORK.md` | Logic Model + SDQ + k-anonymity ≥5 + D1 schema `0009` + external validation | 🟡 DRAFT v1.0 — chờ M&E Specialist hire | M&E Specialist |
+| 7 | `NDNUM_PUBLIC_LANDING_PAGE_SCOPE.md` | `/dream-nurture` scope: hero + 5 Tầng + CTA allow/ban + acceptance criteria | 🟡 DRAFT v1.0 — chờ Phase 0B lock | Founder + Frontend |
 
-**Tất cả 7 file phải hoàn thành + lock trước khi mở Phase 1.**
+**Tất cả 7 file phải được Legal Counsel + CSO co-review và lock trước khi mở Phase 1 (nhận trẻ em Q1/2027).**
 
 ---
 
@@ -661,6 +670,7 @@ Sau khi anh Tâm lock v1.1, em sẽ viết 7 spec con (gắn vào Master Index M
 
 ---
 
-*Tài liệu v1.1-REVIEWED (DRAFT). Mọi điều chỉnh phải qua founder approve và bump version v1.2.*
-*Sau khi lock → cập nhật Master Index `00_DSTS_MASTER_INDEX_2026.md` Mục 5.4.*
-*Phụ thuộc: DSTS Master Plan v1.1-LOCKED + Layer 0 Foundation Sprint 0 pass.*
+*Tài liệu v1.2-LOCKED (doc scope). Cấu trúc chương trình đã khóa — không thay đổi nếu không có Founder approve.*
+*Để nâng lên v2.0-LEGAL-LOCKED: 7 spec con phải được Legal Counsel + CSO co-review và sign-off.*
+*Đã cập nhật Master Index `00_DSTS_MASTER_INDEX_2026.md` Mục 5.5 (v1.4).*
+*Phụ thuộc: DSTS Master Plan v1.2-DRAFT (sẽ re-lock sau NDNUM v2.0) + Layer 0 Foundation Sprint 0 pass.*
