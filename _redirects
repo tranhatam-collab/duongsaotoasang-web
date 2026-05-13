@@ -48,7 +48,6 @@
 # Sub-route placeholders below stay noindex and do NOT open sponsor inquiry,
 # event registration, payment, or auth flows.
 /movement/sponsors              /movement/coming-soon             200
-/movement/events                /movement/coming-soon             200
 /movement/gala-2026             /movement/coming-soon             200
 /movement/sponsors/*            /movement/coming-soon             200
 /movement/events/*              /movement/coming-soon             200
