@@ -1,13 +1,14 @@
 # 00_DSTS_MASTER_INDEX_2026
 
-> 📝 **DRAFT v1.3** — 2026-05-13 (supersedes v1.2 same-day, v1.1-LOCKED 2026-05-12)
+> 📝 **DRAFT v1.4** — 2026-05-13 (supersedes v1.3 same-day)
 > Bản đồ master cho cả ecosystem DSTS. Gom toàn bộ Drive cũ + kế hoạch mới thành 1 chỉ mục chính thức.
 > **Đối tượng dùng:** dev, content, legal, product, founder — cùng một bản truth.
+> **v1.4 changes:** Wave 3 done — 7 NDNUM spec con DRAFT v1.0 filed (W3.1-W3.7).
 > **v1.3 changes:** Wave 2 — thêm 4 spec mới (UI Mockup, Sponsors API, Events API, Sponsor Agreement) + upgrade 7 Layer 1 spec lên v1.0-DEV-READY + reserve `_redirects` Movement portal.
 > **v1.2 changes:** Wave 1 sync timeline (chèn Phase 0B), fix A7 status, thêm 7 NDNUM spec con TBD.
 
 **Founder:** Trần Hà Tâm
-**Phiên bản:** v1.3 (master index — pending re-lock)
+**Phiên bản:** v1.4 (master index — pending re-lock)
 **Ngày phát hành:** 2026-05-13
 **Nguyên tắc:** Mọi tài liệu mới về DSTS phải được index ở đây. Không có file ngoài index.
 
@@ -187,13 +188,13 @@ Thanh Tam Foundation Việt Nam        ← Legal entity (chờ xác minh)
 | # | File | Purpose | Status | Owner |
 |---|---|---|---|---|
 | 5.5.0 | `dsts-nuoi-duong-nhung-uoc-mo-v1.1-REVIEWED.md` | Vision tổng + 5 Tầng + 12 quy tắc Tầng 1 + 3-lane firewall | 🟡 DRAFT v1.1-REVIEWED (78→92/100) | Founder + Claude |
-| 5.5.1 | `NDNUM_CHILD_SAFETY_POLICY.md` | 12 quy tắc deep dive + forbidden/mandatory + background check + 8 module training | 🔴 TBD (Wave 3, chặn bởi CSO hire) | CSO + Founder |
-| 5.5.2 | `NDNUM_PARENT_GUARDIAN_CONSENT_FLOW.md` | COPPA + NĐ 56/2017 + 10-step flow + consent template VI/EN + D1 schema + API | 🔴 TBD (Wave 3, chặn bởi Legal Counsel) | Legal + Tech |
-| 5.5.3 | `NDNUM_MENTOR_SCREENING_AND_TRAINING.md` | 5 role + hiring funnel + background check + 40h training Coordinator | 🔴 TBD (Wave 3) | HR + CSO |
-| 5.5.4 | `NDNUM_LEGAL_ENTITY_AND_MONEY_LANE_MAP.md` | Pháp nhân final + 3 lane firewall + tax + audit + AML/KYC + insurance | 🔴 TBD (Wave 3, chặn bởi 6 Founder decisions) | Legal + CFO |
-| 5.5.5 | `NDNUM_SPONSOR_A_DREAM_FULFILLMENT_FLOW.md` | Flow $120 + cohort $50K + annual $250K + Coordinator workload + photo policy | 🔴 TBD (Wave 3) | Operations |
-| 5.5.6 | `NDNUM_IMPACT_MEASUREMENT_FRAMEWORK.md` | Logic Model + outcome indicator per Tầng + SDQ + k-anonymity + dashboard | 🔴 TBD (Wave 3) | M&E specialist |
-| 5.5.7 | `NDNUM_PUBLIC_LANDING_PAGE_SCOPE.md` | `/dream-nurture` scope: vision + 5 Tầng + roadmap. KHÔNG nhận đăng ký trẻ em trước Q1/2027 | 🔴 TBD (Wave 3) | Founder + Frontend |
+| 5.5.1 | `NDNUM_CHILD_SAFETY_POLICY.md` | 12 quy tắc deep dive + CSO role + incident A/B/C/D + 4 appendices (VN/US/AU/UK reporting) | 🟡 DRAFT v1.0 (Wave 3 — chờ CSO co-review) | CSO + Founder |
+| 5.5.2 | `NDNUM_PARENT_GUARDIAN_CONSENT_FLOW.md` | COPPA 5 VPC methods + NĐ 56/2017 + 10-step flow + consent template VI/EN + D1 schema `0008` + 5 API endpoints | 🟡 DRAFT v1.0 (Wave 3 — chờ Legal Counsel review) | Legal + Tech |
+| 5.5.3 | `NDNUM_MENTOR_SCREENING_AND_TRAINING.md` | 5 role + hiring funnel JD + background check 4 countries + 40h curriculum + compensation Y1 | 🟡 DRAFT v1.0 (Wave 3 — chờ CSO + HR review) | HR + CSO |
+| 5.5.4 | `NDNUM_LEGAL_ENTITY_AND_MONEY_LANE_MAP.md` | Pháp nhân 3 options + fiscal sponsor + 3-lane firewall + tax + AML/KYC + D&O insurance | 🟡 DRAFT v1.0 (Wave 3 — 3 Founder decisions pending: FD-1, FD-2, FD-4) | Legal + CFO |
+| 5.5.5 | `NDNUM_SPONSOR_A_DREAM_FULFILLMENT_FLOW.md` | Flow $120 + cohort $50K + annual $250K + Coordinator workload + communication protocol + D1 schema | 🟡 DRAFT v1.0 (Wave 3 — chờ Coordinator hire + Phase 0B) | Operations |
+| 5.5.6 | `NDNUM_IMPACT_MEASUREMENT_FRAMEWORK.md` | Logic Model + Theory of Change + SDQ tool + k-anonymity ≥5 + D1 schema `0009` + external validation | 🟡 DRAFT v1.0 (Wave 3 — chờ M&E Specialist hire) | M&E Specialist |
+| 5.5.7 | `NDNUM_PUBLIC_LANDING_PAGE_SCOPE.md` | `/dream-nurture` scope: hero + 5 Tầng + CTA allow/ban list + acceptance criteria. KHÔNG nhận đăng ký trẻ em trước Q1/2027 | 🟡 DRAFT v1.0 (Wave 3 — chờ Phase 0B lock) | Founder + Frontend |
 
 ---
 
@@ -375,6 +376,7 @@ Nếu có conflict giữa Drive cũ (Layer A) và Plan mới (Layer 0-2):
 | v1.1 | 2026-05-13 | Cập nhật trạng thái Batch 1 + Batch 2: 7/15 spec đã có DRAFT v1.0 | Trần Hà Tâm |
 | v1.2 | 2026-05-13 | Wave 1 patch: sync timeline (chèn Phase 0B, dịch Layer 1 → Tháng 9-12/2026), fix A7 status (Founder TBD), thêm 7 NDNUM spec con TBD Mục 5.5 + Sponsor Agreement Mục 5.4.4. Counts: 7 Layer 1 DRAFT + 4 cross-cutting (3 DRAFT + 1 TBD) + 7 NDNUM TBD + 1 NDNUM v1.1 DRAFT + 4 Layer 2 TBD = 12 DRAFT + 12 TBD (24 total) | Trần Hà Tâm |
 | v1.3 | 2026-05-13 | Wave 2 done — UNBLOCK DEV LAYER 1: thêm 3 spec mới (5.2.5 UI Mockup, 5.2.6 Sponsors API, 5.2.7 Events API) + upgrade 5.2.1-5.2.4 + 5.4.1-5.4.3 lên DEV-READY v1.0 + 5.4.4 Sponsor Agreement Template DRAFT-LEGAL-PENDING + reserve `_redirects` Movement portal routes. Counts: 11 DEV-READY + 1 LEGAL-PENDING + 8 TBD (7 NDNUM + 1 NDNUM v1.1 + 4 Layer 2 - tổng 20 entry trong Master Index). Dev có thể bắt tay code Layer 1 ngay khi Layer 0 Sprint 0 done | Trần Hà Tâm |
+| v1.4 | 2026-05-13 | Wave 3 done — 7 NDNUM spec con DRAFT v1.0 filed (5.5.1-5.5.7): Child Safety Policy, Parent/Guardian Consent Flow, Mentor Screening & Training, Legal Entity & Money Lane Map, Sponsor-a-Dream Fulfillment, Impact Measurement Framework, Public Landing Page Scope. Counts updated: 11 DEV-READY + 8 DRAFT (1 LEGAL-PENDING + 7 NDNUM con) + 1 NDNUM v1.1-REVIEWED + 4 Layer 2 TBD. NDNUM spec con chờ Legal/CSO co-review trước khi lock v1.0-LOCKED. 3 Founder decisions pending (FD-1 pháp nhân, FD-2 fiscal sponsor, FD-4 Investment Lane Y1) | Claude Code |
 
 ---
 
