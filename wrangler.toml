@@ -7,3 +7,14 @@ binding = "DB"
 database_name = "cf-d1-dsts-content-prod"
 database_id = "de526895-6824-469b-809c-abcd052d9312"
 migrations_dir = "migrations"
+
+[vars]
+# Payment routing — pay.iai.one canonical gateway
+PAY_IAI_ONE_BASE_URL        = "https://pay.iai.one"
+PAY_IAI_ONE_TENANT_CODE     = "dsts"
+PAY_IAI_ONE_SITE_CODE       = "duongsaotoasang"
+PAY_IAI_ONE_PROVIDER        = "payos"
+PAY_IAI_ONE_CALLBACK_BASE   = "https://duongsaotoasang.com"
+# Required secrets (wrangler pages secret put <NAME> --project-name duongsaotoasang-com-v2):
+#   PAY_IAI_ONE_API_KEY  — from Team Pay (tenant: dsts, site: duongsaotoasang)
+#   PAY_DSTS_HMAC        — openssl rand -hex 32
