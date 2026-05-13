@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b111d">
   <meta name="robots" content="index,follow">
   <title>Minh bạch | Đường Sao Tỏa Sáng</title>
-  <meta name="description" content="Báo cáo minh bạch của Đường Sao Tỏa Sáng: dòng tiền, hoạt động, dự án, nguyên tắc công bố và trạng thái dữ liệu.">
+  <meta name="description" content="Báo cáo minh bạch của Đường Sao Tỏa Sáng: báo cáo khởi tạo Q2/2026, nguyên tắc công bố, lịch cập nhật, xác minh dữ liệu và trạng thái nguồn lực.">
   <link rel="canonical" href="https://duongsaotoasang.com/transparency">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Đường Sao Tỏa Sáng">
@@ -30,6 +30,15 @@
     .card p,.card li{color:var(--muted)}
     .status{display:inline-flex;margin-top:20px;border:1px solid rgba(216,188,119,.26);border-radius:999px;padding:10px 14px;color:#f6d894;background:rgba(216,188,119,.08);font-weight:700}
     .list{margin:0;padding-left:18px}
+    .full{grid-column:1/-1}
+    .report-meta{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 18px}
+    .pill{display:inline-flex;border:1px solid rgba(216,188,119,.24);border-radius:999px;padding:8px 12px;color:#f6d894;background:rgba(216,188,119,.08);font-size:14px;font-weight:700}
+    .report-table{width:100%;border-collapse:collapse;margin-top:12px}
+    .report-table th,.report-table td{border-top:1px solid var(--line);padding:12px;text-align:left;vertical-align:top;color:var(--muted)}
+    .report-table th{width:32%;color:#f5e7c7}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 16px;border:1px solid var(--line);border-radius:14px;color:#f5e7c7;text-decoration:none;background:rgba(255,255,255,.04);font-weight:700}
+    .btn.primary{border-color:rgba(216,188,119,.32);background:rgba(216,188,119,.12)}
     @media (max-width:760px){.grid{grid-template-columns:1fr}.hero h1{font-size:34px}}
   </style>
 </head>
@@ -39,32 +48,92 @@
     <section class="hero">
       <div class="wrap">
         <h1>Minh bạch vận hành</h1>
-        <p class="lead">DSTS cần công bố rõ dữ liệu về nguồn lực, hoạt động và tiến độ dự án. Khi dữ liệu thật chưa mở, trang này ghi rõ trạng thái và nguyên tắc công bố để không tạo kỳ vọng sai.</p>
-        <div class="status">Trạng thái dữ liệu: khung báo cáo đã mở, số liệu thật đang chuẩn bị</div>
+        <p class="lead">DSTS công bố trạng thái nguồn lực, hoạt động, dự án, tài liệu liên quan và lịch cập nhật để người đọc biết phần nào đã có dữ liệu thật, phần nào còn đang chuẩn bị. Khi chưa mở nhận đóng góp công khai, báo cáo ghi rõ trạng thái để không tạo kỳ vọng sai.</p>
+        <div class="status">Trạng thái dữ liệu: báo cáo khởi tạo đã mở · nguồn lực công khai chưa kích hoạt</div>
       </div>
     </section>
 
     <section class="section">
       <div class="wrap grid">
-        <article class="card">
-          <h2>Báo cáo dòng tiền</h2>
-          <p>Sẽ công bố theo tháng hoặc quý khi cơ chế gây quỹ hoạt động: nguồn vào, mục đích sử dụng, biên nhận và phần còn lại.</p>
-        </article>
-        <article class="card">
-          <h2>Báo cáo hoạt động</h2>
-          <p>Ghi nhận nội dung đã xuất bản, chương trình đã triển khai, sự kiện đã mở và các đầu việc cộng đồng đã hoàn tất.</p>
-        </article>
-        <article class="card">
-          <h2>Báo cáo dự án</h2>
+        <article class="card full">
+          <h2>Nguyên tắc minh bạch</h2>
+          <p>DSTS chỉ công bố số liệu đã được đối chiếu với người phụ trách hoặc tài liệu gốc. Mỗi báo cáo phải ghi rõ kỳ báo cáo, ngày cập nhật cuối, trạng thái dữ liệu, phạm vi công bố, tài liệu liên quan và kênh xác minh.</p>
           <ul class="list">
-            <li>Tên dự án và người phụ trách.</li>
-            <li>Trạng thái: chuẩn bị, đang chạy, đã đóng.</li>
-            <li>Kết quả, bằng chứng và liên kết liên quan.</li>
+            <li>Không ghi số liệu dự kiến thành kết quả thật.</li>
+            <li>Không công bố dữ liệu cá nhân, thông tin trẻ em hoặc thông tin tài chính nhạy cảm nếu chưa có quyền công bố.</li>
+            <li>Không mở lời kêu gọi đóng góp khi chưa có cơ chế xác nhận, biên nhận và báo cáo.</li>
           </ul>
         </article>
+
+        <article class="card full">
+          <h2>Báo cáo khởi tạo Q2/2026</h2>
+          <div class="report-meta">
+            <span class="pill">Kỳ báo cáo: 2026-04-01 -> 2026-06-30</span>
+            <span class="pill">Trạng thái: Báo cáo khởi tạo</span>
+            <span class="pill">Cập nhật cuối: 2026-05-13</span>
+          </div>
+          <p>Báo cáo này dùng để mở khung theo dõi công khai cho DSTS trước khi cơ chế đóng góp đại chúng được kích hoạt. Các số liệu dưới đây chỉ phản ánh trạng thái public site và kế hoạch công bố tại thời điểm cập nhật.</p>
+          <table class="report-table">
+            <tbody>
+              <tr>
+                <th>Người tham gia</th>
+                <td>Đang cập nhật theo danh sách chương trình, sự kiện và cộng tác viên đã được phép công bố.</td>
+              </tr>
+              <tr>
+                <th>Quỹ đã tiếp nhận</th>
+                <td>Chưa kích hoạt nhận đóng góp công khai. Không có QR, tài khoản ngân hàng hoặc cổng thanh toán chính thức trên trang này.</td>
+              </tr>
+              <tr>
+                <th>Nội dung đã công bố</th>
+                <td>Thư viện public đã có dữ liệu fallback cho 6 bài nền tảng và các trang lõi đang được smoke test định kỳ.</td>
+              </tr>
+              <tr>
+                <th>Sự kiện đã tổ chức</th>
+                <td>Đang cập nhật. Các sự kiện chỉ được ghi vào báo cáo khi có ngày, người phụ trách và trạng thái xác minh.</td>
+              </tr>
+              <tr>
+                <th>Link xem chi tiết</th>
+                <td>Trang báo cáo chi tiết hoặc PDF sẽ được công bố sau khi dữ liệu Q2/2026 đủ điều kiện đối chiếu.</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
         <article class="card">
-          <h2>Nguyên tắc công bố</h2>
-          <p>Không công bố dữ liệu nhạy cảm, không đưa thông tin cá nhân khi chưa có đồng ý, không ghi số liệu chưa kiểm chứng thành kết quả thật.</p>
+          <h2>Nguyên tắc sử dụng quỹ</h2>
+          <p>Khi cơ chế đóng góp được mở, khung dự kiến phân bổ nguồn lực là:</p>
+          <ul class="list">
+            <li>70% cho dự án trực tiếp: trẻ em, học bổng, nghệ sĩ, cộng đồng và hoạt động tác động xã hội.</li>
+            <li>20% cho vận hành nền tảng: nội dung, công nghệ, kiểm duyệt, điều phối và hỗ trợ chương trình.</li>
+            <li>10% cho dự phòng: rủi ro vận hành, hoàn tiền hợp lệ, kiểm toán hoặc xác minh độc lập.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>Lịch cập nhật</h2>
+          <ul class="list">
+            <li>Cập nhật nhanh: khi có thay đổi trạng thái quan trọng của quỹ, dự án hoặc sự kiện.</li>
+            <li>Báo cáo tháng: tóm tắt nguồn lực, hoạt động và nội dung đã công bố.</li>
+            <li>Báo cáo quý: tổng hợp dữ liệu, tài liệu liên quan và điểm cần xác minh thêm.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h2>Tài liệu liên quan</h2>
+          <ul class="list">
+            <li><a href="/donate">Chính sách quỹ và trạng thái gây quỹ</a>.</li>
+            <li><a href="/legal#refund">Chính sách hoàn tiền</a>.</li>
+            <li>Đơn vị kiểm toán hoặc đối soát độc lập: sẽ công bố sau khi có hợp đồng phù hợp.</li>
+          </ul>
+        </article>
+
+        <article class="card full">
+          <h2>Liên hệ xác minh</h2>
+          <p>Nếu cần kiểm tra trạng thái đóng góp, biên nhận, báo cáo dự án hoặc nguồn dữ liệu, hãy gửi yêu cầu qua trang liên hệ. Mọi xác minh cần kèm tên người gửi, nội dung cần kiểm tra, mốc thời gian và mã xác nhận nếu có.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="/contact">Gửi yêu cầu xác minh</a>
+            <a class="btn" href="/donate">Xem trạng thái gây quỹ</a>
+          </div>
         </article>
       </div>
     </section>
