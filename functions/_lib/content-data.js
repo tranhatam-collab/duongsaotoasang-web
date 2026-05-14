@@ -1,5 +1,122 @@
 export const POST_CONTENTS = [
   {
+    slug: "ke-hoach-phat-trien-dsts-2026-2027",
+    type: "post",
+    title_vi: "Kế hoạch phát triển Đường Sao Tỏa Sáng 2026-2027",
+    title_en: "The 2026-2027 development plan for Đường Sao Tỏa Sáng",
+    excerpt_vi: "Một bản giải thích public về cách DSTS đi từ nền móng website, thư viện tri thức, Movement Portal đến các chương trình cộng đồng dài hạn.",
+    excerpt_en: "A public explanation of how DSTS moves from site foundations and the knowledge library toward Movement Portal and long-term community programs.",
+    content_vi: `
+      <p>Đường Sao Tỏa Sáng không nên được hiểu như một website đơn lẻ. Đây là một nền tảng phát triển theo nhiều lớp: nội dung nền tảng, chương trình public, thư viện bài viết, kịch bản hành trình, Movement Portal, Nuôi Dưỡng Những Ước Mơ và các hệ thống vận hành phía sau. Vì vậy, kế hoạch 2026-2027 phải bắt đầu bằng một điều tưởng nhỏ nhưng rất quan trọng: người dùng bước vào website phải hiểu ngay DSTS là gì, đang làm gì và phần nào đã sẵn sàng.</p>
+      <p>Giai đoạn đầu không chạy theo việc mở thật nhiều tính năng. Ưu tiên số một là độ tin cậy. Mọi route chính phải mở được, không có trang đen, không loading vô hạn, không CTA dẫn vào trang hỏng, không mô tả một chương trình như đã hoạt động khi pháp lý hoặc vận hành chưa đủ. Một nền tảng cộng đồng chỉ có thể mở rộng khi người đọc cảm thấy thông tin rõ ràng và nhất quán.</p>
+      <h2>Giai đoạn nền móng: nội dung, route và niềm tin</h2>
+      <p>Sprint 0 của DSTS tập trung vào những việc căn bản: trang chủ phải giải thích toàn bộ dự án; các trang giới thiệu, chương trình, liên hệ, gây quỹ, minh bạch và pháp lý phải có nội dung thật; thư viện bài viết phải có fallback đầy đủ; trang chi tiết nội dung phải trả về bài viết thật hoặc lỗi 404 rõ ràng; sitemap, RSS, canonical và smoke test phải chạy được trên production.</p>
+      <p>Điều này nghe giống kỹ thuật, nhưng thực chất là xây niềm tin. Khi một dự án nói về phát triển con người, cộng đồng, trẻ em, tài trợ hoặc chương trình quốc tế, sự mơ hồ sẽ tạo rủi ro. Người đọc cần biết phần nào là đang hoạt động, phần nào là kế hoạch, phần nào còn chờ Founder xác nhận và phần nào chưa được phép mở.</p>
+      <h2>Movement Portal: mở từng cổng, không mở ồ ạt</h2>
+      <p>Movement Portal là lớp cộng đồng của DSTS, bao gồm events, tour, diaspora map, press, partners, sponsors và gala status. Các cổng này được mở theo nguyên tắc read-only trước: người đọc có thể hiểu kế hoạch, trạng thái và điều kiện mở, nhưng không bị đưa vào form nhạy cảm. Các flow như đăng ký sự kiện, sponsor inquiry, thanh toán, email automation hoặc đăng nhập thuộc các lane khác và chỉ mở khi có owner chịu trách nhiệm.</p>
+      <p>Cách làm này giúp DSTS tránh hai lỗi thường gặp: một là để route public trống hoặc hỏng; hai là mở CTA quá sớm khi hậu trường chưa đủ. Thay vào đó, route nào đủ nội dung an toàn thì mở read-only; route nào chưa đủ gate thì giữ noindex hoặc trạng thái pending rõ ràng.</p>
+      <h2>Nuôi Dưỡng Những Ước Mơ và nguyên tắc Guardian-first</h2>
+      <p>NDNUM là lớp cần tiêu chuẩn cao hơn vì có thể liên quan trẻ em, gia đình, mentor và tài trợ. Bất kỳ bề mặt public nào liên quan trẻ em đều phải đi trước bằng child safety, guardian consent, legal review và người phụ trách độc lập. DSTS không được dùng cảm xúc tốt đẹp để bỏ qua trách nhiệm bảo vệ người yếu thế.</p>
+      <p>Trong giai đoạn public hiện tại, các trang NDNUM chỉ nên giải thích scope, nguyên tắc, trạng thái và ranh giới. Không mở contact trực tiếp với trẻ em, không public identity trẻ em, không tạo sponsor-child relationship trực tiếp và không dùng hình ảnh hoặc câu chuyện khi chưa có quyền rõ ràng.</p>
+      <h2>Đích đến 2027: hệ thống có thể được kiểm chứng</h2>
+      <p>Đến 2027, mục tiêu không chỉ là có nhiều trang hơn. Mục tiêu là có một hệ thống mà người dùng, cộng tác viên, đối tác và team dev có thể kiểm chứng: route nào live, chương trình nào đang chuẩn bị, event nào có owner, tài trợ nào đã đủ legal lane, nội dung nào có fallback, dữ liệu nào được bảo vệ và báo cáo nào đã được công bố.</p>
+      <p>Một nền tảng tỏa sáng đúng nghĩa không cần hứa quá lớn ở bước đầu. Nó cần nhất quán, minh bạch, có trách nhiệm và biết giữ lời. Khi nền móng đó đủ vững, các lớp sản phẩm và cộng đồng phía sau mới có thể mở rộng mà không đánh mất niềm tin.</p>
+    `,
+    content_en: `
+      <p>Đường Sao Tỏa Sáng should not be understood as a single website. It is a layered platform: foundational content, public programs, the article library, journey scripts, Movement Portal, Dream Nurture, and operational systems behind the scenes. For that reason, the 2026-2027 plan begins with something simple but crucial: when users enter the site, they should immediately understand what DSTS is, what it is building, and which parts are ready.</p>
+      <p>The first stage is not about opening as many features as possible. The first priority is trustworthiness. Key routes must open. There should be no black pages, no infinite loading, no CTAs leading into broken destinations, and no program described as live when legal or operational readiness is missing.</p>
+      <h2>Foundation stage: content, routes, and trust</h2>
+      <p>DSTS Sprint 0 focuses on basics: the homepage must explain the project; about, program, contact, donate, transparency, and legal pages must contain real content; the article library must have complete fallback; content detail pages must render a real article or a clear 404; sitemap, RSS, canonical tags, and production smoke tests must work.</p>
+      <p>This sounds technical, but it is really about trust. When a project speaks about human development, community, children, sponsorship, or international programs, ambiguity creates risk. Readers need to know what is active, what is planned, what is waiting for Founder confirmation, and what is not yet allowed to open.</p>
+      <h2>Movement Portal: open one gate at a time</h2>
+      <p>Movement Portal is the community layer of DSTS: events, tour, diaspora map, press, partners, sponsors, and gala status. These surfaces open read-only first. Readers can understand the plan, status, and opening conditions without being pushed into sensitive forms.</p>
+      <p>This helps DSTS avoid two common mistakes: leaving public routes empty or broken, and opening CTAs too early. Instead, safe routes open read-only, while routes that lack readiness remain noindex or clearly pending.</p>
+      <h2>Dream Nurture and the Guardian-first standard</h2>
+      <p>NDNUM requires a higher standard because it may involve children, families, mentors, and sponsorship. Any public surface involving children must begin with child safety, guardian consent, legal review, and independent ownership.</p>
+      <p>At the current public stage, NDNUM pages should explain scope, principles, status, and boundaries. They should not enable direct contact with children, public child identity, direct sponsor-child relationships, or use stories without clear rights.</p>
+      <h2>The 2027 destination: a system people can verify</h2>
+      <p>By 2027, the goal is not simply to have more pages. The goal is to have a system that users, collaborators, partners, and developers can verify: which routes are live, which programs are preparing, which events have owners, which sponsorships have legal lanes, which content has fallback, which data is protected, and which reports have been published.</p>
+      <p>A platform that truly shines does not need to overpromise at the beginning. It needs consistency, transparency, responsibility, and the ability to keep its word.</p>
+    `,
+    tags: "kế hoạch,roadmap,nền tảng",
+    reading_time: "9 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-14T00:00:00.000Z"
+  },
+  {
+    slug: "nguyen-tac-public-site-khong-trang-den",
+    type: "post",
+    title_vi: "Nguyên tắc public site không được có trang đen",
+    title_en: "The rule that a public site must never go dark",
+    excerpt_vi: "Một tiêu chuẩn vận hành cho DSTS: mọi trang public phải có nội dung, trạng thái, fallback hoặc lỗi rõ ràng, không để người đọc kẹt trong khoảng trống.",
+    excerpt_en: "An operating standard for DSTS: every public page must have content, state, fallback, or a clear error, never leaving readers in a blank space.",
+    content_vi: `
+      <p>Một trang public bị đen, trống hoặc loading vô hạn không chỉ là lỗi giao diện. Đó là lỗi niềm tin. Người đọc không quan tâm phía sau là lỗi API, cache, routing, D1, CDN hay deploy nhầm project. Với họ, website chỉ đơn giản là không giữ được lời hứa cơ bản: mở ra một trang có thể đọc được.</p>
+      <p>Vì vậy, DSTS cần một nguyên tắc cứng: không trang public nào được phép kẹt trong trạng thái “Đang tải...” mãi mãi. Mỗi bề mặt phải có ít nhất một trong bốn kết quả rõ ràng: render nội dung thật, render fallback tĩnh, render trạng thái pending có giải thích, hoặc trả 404 đúng nghĩa nếu nội dung không tồn tại.</p>
+      <h2>Fallback không phải nội dung phụ</h2>
+      <p>Trong một hệ thống public, fallback là một phần của sản phẩm. Nếu API lỗi, D1 chưa có dữ liệu hoặc dynamic content chưa sẵn, người dùng vẫn phải đọc được nội dung căn bản. Fallback không nên là vài dòng qua loa. Nó phải đủ hoàn chỉnh để bảo vệ trải nghiệm, SEO và niềm tin trong những lúc hệ thống động gặp sự cố.</p>
+      <p>Với DSTS, fallback còn có vai trò editorial: nó giữ những bài viết nền, nguyên tắc công bố, thông tin chương trình và trạng thái route ở một mức có thể kiểm chứng. Khi dữ liệu động hoạt động, hệ thống có thể mở rộng. Khi dữ liệu động lỗi, nền tảng vẫn không sụp đổ trước mắt người dùng.</p>
+      <h2>Route phải nói thật trạng thái của mình</h2>
+      <p>Không phải route nào cũng nên index. Một số route đã đủ nội dung thì có thể index, như Movement Events, Sponsors Readiness Hub, Diaspora Map hoặc Tour Roadmap. Một số route chưa đủ quyết định thì nên noindex, như Gala 2026 khi A7 còn Founder TBD. Điều quan trọng là route phải nói thật: đang live, đang read-only, đang pending hay không tồn tại.</p>
+      <p>Nếu một route chưa đủ điều kiện, cách đúng không phải là để 404 vô nghĩa hoặc chuyển người dùng vào trang loading. Cách đúng là đưa ra trạng thái rõ: vì sao chưa mở, cần điều kiện gì, người đọc nên đi đâu tiếp theo và phần nào không được hiểu là đã hoạt động.</p>
+      <h2>Smoke test là hợp đồng tối thiểu</h2>
+      <p>Smoke test không thay thế QA sâu, nhưng là hợp đồng tối thiểu trước khi gọi một bản deploy là an toàn. Test phải kiểm route chính trả 200, content marker xuất hiện, 404 thật trả 404, content missing trả 404, sitemap/RSS/robots hoạt động và các route noindex không bị đưa vào sitemap.</p>
+      <p>Quan trọng hơn, smoke test phải chạy trên production, không chỉ local. Một site có thể đúng ở local nhưng sai trên custom domain vì cache, redirect hoặc project Cloudflare nhầm. DSTS đã gặp những lỗi này, nên quy trình phải giữ bằng chứng kiểm tra sau mỗi lần deploy.</p>
+      <p>Không trang đen là tiêu chuẩn thấp nhất nhưng không thể thương lượng. Khi một dự án muốn nói về phát triển con người, sự tử tế và minh bạch, nó phải bắt đầu bằng việc không bỏ người đọc đứng trước một màn hình rỗng.</p>
+    `,
+    content_en: `
+      <p>A public page that is black, empty, or stuck loading forever is not just a UI bug. It is a trust bug. Readers do not care whether the cause is an API error, cache, routing, D1, CDN, or deployment to the wrong project. To them, the site failed its basic promise: opening a readable page.</p>
+      <p>DSTS therefore needs a strict rule: no public page may remain in a loading state forever. Every surface must produce one of four clear outcomes: render real content, render static fallback, render a clearly explained pending state, or return a proper 404 when content does not exist.</p>
+      <h2>Fallback is not secondary content</h2>
+      <p>In a public system, fallback is part of the product. If an API fails, D1 has no data, or dynamic content is not ready, users must still be able to read foundational content. Fallback should not be a few casual lines. It should be complete enough to protect user experience, SEO, and trust.</p>
+      <h2>Routes must tell the truth about their state</h2>
+      <p>Not every route should be indexed. Some routes have enough content and can be indexed. Others should remain noindex when decisions are pending. The important point is that the route tells the truth: live, read-only, pending, or not found.</p>
+      <h2>Smoke testing is the minimum contract</h2>
+      <p>Smoke testing does not replace deep QA, but it is the minimum contract before calling a deploy safe. It must check status codes, content markers, real 404s, sitemap/RSS/robots, and noindex routes staying out of sitemap.</p>
+      <p>No black pages is the lowest standard, but it cannot be negotiated. A project that speaks about human development, integrity, and transparency must begin by not leaving readers in front of an empty screen.</p>
+    `,
+    tags: "qa,seo,vận hành",
+    reading_time: "8 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-13T23:30:00.000Z"
+  },
+  {
+    slug: "movement-portal-mo-an-toan-theo-tung-cong",
+    type: "post",
+    title_vi: "Movement Portal mở an toàn theo từng cổng như thế nào",
+    title_en: "How Movement Portal opens safely one gate at a time",
+    excerpt_vi: "Movement Portal không mở cùng lúc mọi flow. Các cổng public được mở read-only trước để người đọc hiểu kế hoạch mà không bị đưa vào form nhạy cảm.",
+    excerpt_en: "Movement Portal does not open every flow at once. Public gates open read-only first so readers understand the plan without being pushed into sensitive forms.",
+    content_vi: `
+      <p>Movement Portal là lớp cộng đồng của Đường Sao Tỏa Sáng. Nó bao gồm các bề mặt như events, sponsors, partners, press kit, diaspora map, tour roadmap và gala status. Đây là lớp giúp cộng đồng hiểu DSTS đang chuẩn bị hoạt động gì, mở theo thứ tự nào và điều kiện nào phải đủ trước khi một chương trình thật sự vận hành.</p>
+      <p>Điểm quan trọng nhất là Movement Portal không nên được mở như một hệ thống giao dịch ngay từ đầu. Nếu chưa có owner, pháp lý, privacy, dữ liệu, reporting và đội phụ trách flow nhạy cảm, các trang chỉ nên mở ở mức read-only. Người đọc có thể hiểu kế hoạch, nhưng không bị yêu cầu nhập thông tin, thanh toán, đăng ký hoặc tạo tài khoản.</p>
+      <h2>Read-only trước, flow nhạy cảm sau</h2>
+      <p>Các route như /movement/events, /movement/sponsors, /movement/tour-2026-2027, /movement/diaspora-map, /movement/press và /movement/partners có thể mở an toàn nếu nội dung của chúng chỉ giải thích trạng thái, nguyên tắc và kế hoạch. Chúng không được chứa sponsor inquiry form, event registration form, email capture, payment checkout, login hoặc account creation.</p>
+      <p>Cách này giúp DSTS vừa tránh trang trống, vừa không hứa quá sớm. Một trang sponsor có thể giải thích 13-tier taxonomy, nhưng chưa nhận tiền. Một trang events có thể ghi lịch public nền và readiness gates, nhưng chưa mở đăng ký. Một trang diaspora map có thể mô tả region clusters, nhưng chưa hiển thị personal pins hoặc thu dữ liệu.</p>
+      <h2>Trang pending cũng là một phần của minh bạch</h2>
+      <p>Không phải route nào cũng đủ điều kiện để index. Gala 2026 là ví dụ rõ: vì A7 còn chờ Founder xác nhận, route này không nên giả vờ là event đã live. Cách đúng là tạo một trang status pending, noindex, giải thích cần quyết định gì và dẫn người đọc về các bề mặt đã sẵn sàng.</p>
+      <p>Một trang pending tốt không làm dự án yếu đi. Ngược lại, nó cho thấy hệ thống biết phân biệt giữa kế hoạch, trạng thái và hoạt động thật. Điều này đặc biệt quan trọng khi dự án liên quan cộng đồng, tài trợ, sự kiện hoặc trẻ em.</p>
+      <h2>Release gates bảo vệ người dùng và team</h2>
+      <p>Mỗi cổng Movement cần có release gates riêng. Events cần owner, status, venue hoặc hình thức rõ ràng, và post-event report. Sponsors cần pricing lock, legal agreement, money-lane firewall và fulfillment tracker. Diaspora Map cần privacy review, k-anonymity và không hiển thị trẻ em. Press và Partners cần quyền dùng tên, logo, boilerplate và thông tin public đã duyệt.</p>
+      <p>Khi các gate này được giữ nghiêm túc, team dev không phải đoán. Người đọc không bị dẫn nhầm. Founder có thể nhìn thấy phần nào đang live, phần nào còn blocked và phần nào cần quyết định tiếp theo. Movement Portal vì vậy không chỉ là trang cộng đồng, mà là một hệ thống công bố trạng thái có trách nhiệm.</p>
+    `,
+    content_en: `
+      <p>Movement Portal is the community layer of Đường Sao Tỏa Sáng. It includes events, sponsors, partners, press kit, diaspora map, tour roadmap, and gala status. It helps the community understand what DSTS is preparing, the order of opening, and the conditions required before a program truly operates.</p>
+      <p>The most important point is that Movement Portal should not open as a transaction system from the start. If owner, legal, privacy, data, reporting, and sensitive-flow teams are not ready, pages should open read-only first.</p>
+      <h2>Read-only first, sensitive flows later</h2>
+      <p>Routes like events, sponsors, tour roadmap, diaspora map, press, and partners can open safely when they only explain status, principles, and plans. They should not contain sponsor inquiry forms, event registration forms, email capture, payment checkout, login, or account creation.</p>
+      <h2>Pending pages are part of transparency</h2>
+      <p>Not every route is ready to be indexed. Gala 2026 is a clear example: because A7 still waits for Founder confirmation, the route should not pretend to be a live event. A noindex pending-status page is the honest approach.</p>
+      <h2>Release gates protect users and the team</h2>
+      <p>Every Movement gate needs its own release criteria. Events need owner and status. Sponsors need legal and fulfillment gates. Diaspora Map needs privacy review and k-anonymity. Press and Partners need rights to names, logos, and public claims.</p>
+      <p>When these gates are respected, developers do not have to guess, readers are not misled, and the Founder can see what is live, what is blocked, and what needs the next decision.</p>
+    `,
+    tags: "movement,route,minh bạch",
+    reading_time: "7 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-13T23:00:00.000Z"
+  },
+  {
     slug: "hanh-trinh-nhin-lai-chinh-minh",
     type: "post",
     title_vi: "Hành trình nhìn lại chính mình trong một thế giới quá ồn",

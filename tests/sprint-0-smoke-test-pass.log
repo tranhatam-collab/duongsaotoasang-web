@@ -1,11 +1,14 @@
 === DSTS Sprint 0 Smoke Test ===
 Base: http://127.0.0.1:8796
-Timestamp: 2026-05-14T00:26:47Z
+Timestamp: 2026-05-14T00:44:06Z
 
 PASS 200  /
 PASS 200  /about
 PASS 200  /program
 PASS 200  /posts
+PASS 200  /content?slug=ke-hoach-phat-trien-dsts-2026-2027
+PASS 200  /content?slug=nguyen-tac-public-site-khong-trang-den
+PASS 200  /content?slug=movement-portal-mo-an-toan-theo-tung-cong
 PASS 200  /content?slug=sang-tao-khong-bat-dau-tu-tham-vong
 PASS 200  /events
 PASS 200  /scripts
@@ -43,8 +46,16 @@ PASS 200  /robots.txt
 === Content checks ===
 PASS content  /posts  contains [THƯ VIỆN TRI THỨC]
 PASS content  /posts  contains [data-dsts-ssr="posts"]
+PASS content  /posts  contains [Kế hoạch phát triển Đường Sao Tỏa Sáng 2026-2027]
 PASS content  /posts  contains [Khởi nghiệp từ nơi sống thật]
 PASS content  /posts  contains ["@type":"ItemList"]
+PASS content  /content?slug=ke-hoach-phat-trien-dsts-2026-2027  contains [Kế hoạch phát triển Đường Sao Tỏa Sáng 2026-2027]
+PASS content  /content?slug=ke-hoach-phat-trien-dsts-2026-2027  contains [Movement Portal: mở từng cổng, không mở ồ ạt]
+PASS content  /content?slug=ke-hoach-phat-trien-dsts-2026-2027  contains [data-dsts-ssr="content"]
+PASS content  /content?slug=nguyen-tac-public-site-khong-trang-den  contains [Nguyên tắc public site không được có trang đen]
+PASS content  /content?slug=nguyen-tac-public-site-khong-trang-den  contains [Smoke test là hợp đồng tối thiểu]
+PASS content  /content?slug=movement-portal-mo-an-toan-theo-tung-cong  contains [Movement Portal mở an toàn theo từng cổng như thế nào]
+PASS content  /content?slug=movement-portal-mo-an-toan-theo-tung-cong  contains [Release gates bảo vệ người dùng và team]
 PASS content  /content?slug=sang-tao-khong-bat-dau-tu-tham-vong  contains [Sáng tạo không bắt đầu từ tham vọng]
 PASS content  /content?slug=sang-tao-khong-bat-dau-tu-tham-vong  contains [data-dsts-ssr="content"]
 PASS content  /content?slug=sang-tao-khong-bat-dau-tu-tham-vong  contains ["@type":"BlogPosting"]
