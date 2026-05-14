@@ -3,7 +3,7 @@
 > **Scope:** Sprint 0 execution status after continuous public-site hardening.
 > **Repo:** `tranhatam-collab/duongsaotoasang-web`
 > **Branch:** `main`
-> **Latest verified baseline before legacy asset retirement:** `c691270`
+> **Latest verified baseline:** `a81a4ab`
 > **Cloudflare Pages project:** `duongsaotoasang-com-v2`
 > **Do not confuse with:** `duongsaotoasang-web`
 
@@ -19,10 +19,11 @@ The remaining known blocker is outside the repo:
 Custom domain production header/cache override
 ```
 
-Preview deploys apply repo `_headers` correctly. The custom domain `duongsaotoasang.com` is still overriding:
+Preview deploys apply repo `_headers` correctly and no longer serve retired `/assets/app.js`. The custom domain `duongsaotoasang.com` is still overriding:
 
 - `referrer-policy` to `same-origin`
 - static asset `cache-control` to `max-age=14400`
+- retired `/assets/app.js` from old Cloudflare cache (`cf-cache-status: HIT`, immutable one-year TTL)
 
 Repo `_headers` expects:
 
@@ -37,7 +38,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Area | Status | Evidence |
 |---|---:|---|
-| Public routes | PASS | Preview full smoke passed on `71da6cda.duongsaotoasang-com-v2.pages.dev` |
+| Public routes | PASS | Preview full smoke passed on `41f5e516.duongsaotoasang-com-v2.pages.dev` |
 | `/posts` fallback | PASS | 24 posts, `data-dsts-ssr="posts"`, no legacy loading placeholder |
 | `/content?slug=...` detail | PASS | Valid slug renders SSR content; missing slug returns content 404 |
 | `/content` without slug | PASS | Server-side middleware redirects to `/posts` |
@@ -51,7 +52,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 | Robots policy | PASS | `robots.txt` allows crawl, points to production sitemap, and is now covered by content + SEO QA |
 | Repo header policy | PASS | `_headers` is now covered by content QA for referrer policy, cache TTL, HSTS, no-store function paths, and no immutable cache |
 | Routing config policy | PASS | `_redirects` + `_routes.json` are now covered by content QA for clean redirects, Movement placeholders, no wrong-project targets, and no catch-all `/content` regression |
-| Legacy app asset | PASS | Retired `assets/app.js` removed from deploy source; `content-qa` + clean deploy script now fail if it reappears |
+| Legacy app asset | PASS | Retired `assets/app.js` removed from deploy source; `content-qa` + clean deploy script now fail if it reappears; preview `/assets/app.js` returns 404 |
 | 404 route | PASS | Unknown routes return 404 and current app shell |
 | 404 contact boundary | PASS | 404 routes to `/contact` + `/support`, no raw email exposed |
 | Movement read-only surfaces | PASS | No sponsor inquiry, event registration, payment, or auth flow opened |
@@ -66,6 +67,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Commit | Purpose |
 |---|---|
+| `a81a4ab` | Retire legacy `assets/app.js` and block it from QA/deploy bundle |
 | `c691270` | Harden routing config QA |
 | `b602d84` | Harden origin header policy QA |
 | `cadc40f` | Harden robots SEO QA |
@@ -97,7 +99,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 Use preview for full smoke while production custom-domain header/cache override is unresolved:
 
 ```bash
-BASE_URL=https://d1db9982.duongsaotoasang-com-v2.pages.dev ./scripts/smoke-test.sh
+BASE_URL=https://41f5e516.duongsaotoasang-com-v2.pages.dev ./scripts/smoke-test.sh
 ```
 
 Expected:
@@ -110,7 +112,7 @@ PASS content-index-redirect  /content -> /posts
 SEO QA:
 
 ```bash
-BASE_URL=https://d1db9982.duongsaotoasang-com-v2.pages.dev node scripts/seo-route-qa.mjs
+BASE_URL=https://41f5e516.duongsaotoasang-com-v2.pages.dev node scripts/seo-route-qa.mjs
 BASE_URL=https://duongsaotoasang.com node scripts/seo-route-qa.mjs
 ```
 
@@ -148,6 +150,10 @@ HEADERS_QA_FAIL
 - tokens-css /tokens.css max-age must be <= 300, got 14400
 - asset-js /assets/app-v5.js max-age must be <= 300, got 14400
 - og-image /og.png max-age must be <= 300, got 14400
+
+Legacy cache check:
+- preview `/assets/app.js` returns 404
+- production `/assets/app.js` still returns 200 from old Cloudflare cache with `cf-cache-status: HIT`, `cache-control: public, max-age=31536000, immutable`
 ```
 
 Repo evidence:
@@ -167,7 +173,8 @@ Preview applies repo _headers correctly.
 Production custom-domain evidence:
 
 ```text
-duongsaotoasang.com applies same-origin and max-age=14400 even on cache MISS.
+duongsaotoasang.com applies same-origin and max-age=14400 on current assets.
+duongsaotoasang.com still serves retired /assets/app.js from old immutable cache.
 ```
 
 Required owner action:
@@ -176,7 +183,8 @@ Required owner action:
 2. Find Browser Cache TTL, Cache Rules, Transform Rules, Managed Rules, or Page Rules overriding origin headers.
 3. Set `duongsaotoasang.com/app.css`, `/tokens.css`, `/assets/*`, `/og.png` to respect origin headers or max-age <= 300.
 4. Set Referrer Policy to `strict-origin-when-cross-origin`.
-5. Re-run:
+5. Purge `/assets/app.js` or purge the custom-domain cache.
+6. Re-run:
 
 ```bash
 BASE_URL=https://duongsaotoasang.com ./scripts/smoke-test.sh
@@ -203,6 +211,7 @@ Sprint 0 should be treated as:
 ```text
 ROUTE/API/CONTENT/SEO: DONE
 CONTENT INDEX REDIRECT: DONE
+LEGACY APP SOURCE RETIRED: DONE
 PRODUCTION HEADER/CACHE: BLOCKED_EXTERNAL
 FULL PRODUCTION SMOKE: BLOCKED_EXTERNAL until Cloudflare zone rule is corrected
 ```
