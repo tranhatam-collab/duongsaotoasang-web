@@ -1,8 +1,9 @@
 # 00_DSTS_MASTER_INDEX_2026
 
-> 📝 **DRAFT v1.5.21** — 2026-05-14 (supersedes v1.5.20)
+> 📝 **DRAFT v1.5.22** — 2026-05-14 (supersedes v1.5.21)
 > Bản đồ master cho cả ecosystem DSTS. Gom toàn bộ Drive cũ + kế hoạch mới thành 1 chỉ mục chính thức.
 > **Đối tượng dùng:** dev, content, legal, product, founder — cùng một bản truth.
+> **v1.5.22 changes:** Expand thin trust pages (`support`, `nguoiviet-muonnoi-bridge`) and add static page depth QA for tracked public HTML pages.
 > **v1.5.21 changes:** Expand fallback page content for `about` and `program`, and add content depth QA to block thin or placeholder public content.
 > **v1.5.20 changes:** Add retry to API surface release-gate checks so fresh Cloudflare Pages previews do not fail during short Functions propagation windows.
 > **v1.5.19 changes:** Wire API surface QA into the release gate for preview and production so list/search cannot expose full content bodies.
@@ -29,7 +30,7 @@
 > **v1.2 changes:** Wave 1 sync timeline (chèn Phase 0B), fix A7 status, thêm 7 NDNUM spec con TBD.
 
 **Founder:** Trần Hà Tâm
-**Phiên bản:** v1.5.21 (master index — pending re-lock)
+**Phiên bản:** v1.5.22 (master index — pending re-lock)
 **Ngày phát hành:** 2026-05-14
 **Nguyên tắc:** Mọi tài liệu mới về DSTS phải được index ở đây. Không có file ngoài index.
 
@@ -263,6 +264,7 @@ Theo thứ tự ưu tiên:
   27. scripts/api-surface-qa.mjs ✅ preview/production API surface gate wired into release gate 2026-05-14
   28. scripts/sprint-0-release-gate.mjs ✅ API surface retry window covers short Pages Functions propagation after preview deploy 2026-05-14
   29. scripts/content-depth-qa.mjs ✅ fallback posts/pages require real depth, sections, excerpts, tags, reading time, and no placeholder markers 2026-05-14
+  30. scripts/static-page-depth-qa.mjs ✅ tracked public static HTML pages require real body depth and section structure 2026-05-14
 
 🔴 Phase 0B (Tháng 6-8/2026):
   20a. 7 NDNUM spec con (Child Safety, Consent, Mentor Screening, Legal Entity, Sponsor Fulfillment, Impact, Landing Page)
@@ -439,6 +441,7 @@ Nếu có conflict giữa Drive cũ (Layer A) và Plan mới (Layer 0-2):
 | v1.5.19 | 2026-05-14 | Wire `scripts/api-surface-qa.mjs` into the release gate for preview and production so API list/search stay metadata-only while detail and 404 contracts remain verified. | Codex |
 | v1.5.20 | 2026-05-14 | Add retry handling around preview/production API surface release-gate checks after a fresh Pages deploy, because preview static routes can be available a few seconds before Functions API routes. | Codex |
 | v1.5.21 | 2026-05-14 | Expand `about` and `program` fallback page bodies and add `scripts/content-depth-qa.mjs` to the release gate so public fallback content cannot regress to thin placeholders. | Codex |
+| v1.5.22 | 2026-05-14 | Expand thin trust pages (`support`, `nguoiviet-muonnoi-bridge`) and add `scripts/static-page-depth-qa.mjs` to the release gate so tracked static HTML public pages keep meaningful depth and section structure. | Codex |
 
 ---
 

@@ -21,10 +21,13 @@
     .hero{padding:64px 0 40px}
     .panel{border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.035);padding:28px;max-width:880px}
     h1{margin:0 0 14px;font-size:42px;line-height:1.1;color:#f5e7c7;letter-spacing:-.03em}
+    h2{margin:26px 0 10px;font-size:22px;color:#f5e7c7}
     p{color:var(--muted);line-height:1.85;font-size:17px}
+    ul{margin:12px 0 0;padding-left:20px;color:var(--muted);line-height:1.8}
     .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
     .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 16px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.04);font-weight:700}
     .btn.primary{border-color:rgba(216,188,119,.34);background:rgba(216,188,119,.12);color:#f6d894}
+    .status{display:inline-flex;margin:12px 0 6px;border:1px solid rgba(216,188,119,.28);border-radius:999px;padding:8px 12px;color:#f6d894;background:rgba(216,188,119,.08);font-weight:800;font-size:14px}
   </style>
 </head>
 <body>
@@ -33,7 +36,23 @@
     <section class="panel">
       <h1>Người Việt Muôn Nơi đang được xác minh</h1>
       <p>Liên kết ngoài <strong>www.nguoiviet.muonnoi.org</strong> đang có dấu hiệu lỗi SSL/origin. DSTS tạm đưa người dùng về trang bridge nội bộ này để không dẫn vào lỗi 502 hoặc lỗi kết nối.</p>
-      <p>Khi domain hệ sinh thái ổn định, trang này sẽ mở lại liên kết trực tiếp hoặc chuyển hướng có kiểm soát.</p>
+      <div class="status">Trạng thái: bridge nội bộ · không chuyển hướng ra domain lỗi</div>
+      <p>Bridge này giúp người đọc hiểu quan hệ giữa Đường Sao Tỏa Sáng và hệ sinh thái Người Việt Muôn Nơi trong lúc domain ngoài chưa được xác minh ổn định. Đây không phải trang thay thế toàn bộ hệ sinh thái, cũng không phải nơi thu thông tin cá nhân, đăng ký thành viên, thanh toán hoặc gửi hồ sơ.</p>
+
+      <h2>Vì sao DSTS dùng bridge thay vì link trực tiếp</h2>
+      <p>Một liên kết hệ sinh thái chỉ nên xuất hiện trên trang chủ khi người dùng bấm vào và nhận được trải nghiệm ổn định. Nếu domain ngoài trả lỗi 502, lỗi origin hoặc lỗi chứng chỉ, việc tiếp tục dẫn người dùng ra ngoài sẽ làm giảm niềm tin vào toàn bộ hệ thống. Trang bridge giữ người đọc ở trong DSTS, giải thích trạng thái thật và tránh cảm giác dự án đang dẫn vào một bề mặt hỏng.</p>
+      <p>Khi domain Người Việt Muôn Nơi được xác minh lại, DSTS có thể mở liên kết trực tiếp hoặc chuyển hướng có kiểm soát. Trước thời điểm đó, các CTA public nên dẫn về nội dung nội bộ có thể kiểm chứng.</p>
+
+      <h2>Nguyên tắc mở lại liên kết hệ sinh thái</h2>
+      <ul>
+        <li>Domain ngoài phải trả `200` ổn định trên HTTPS.</li>
+        <li>Không còn lỗi 502, SSL, DNS hoặc origin trong kiểm tra thủ công.</li>
+        <li>Trang đích phải có nội dung thật, không rơi vào loading vĩnh viễn.</li>
+        <li>Không mở form thu dữ liệu nếu chưa có owner, privacy boundary và support flow.</li>
+      </ul>
+
+      <h2>Trong lúc chờ xác minh</h2>
+      <p>Người đọc có thể quay về trang chủ DSTS để xem roadmap 2026-2027, đọc thư viện tri thức, hoặc dùng trang liên hệ thủ công nếu cần hỏi về quan hệ giữa DSTS và Người Việt Muôn Nơi. DSTS sẽ chỉ cập nhật bridge này khi có bằng chứng vận hành mới, không dựa trên kỳ vọng hoặc lời hứa chưa kiểm chứng.</p>
       <div class="actions">
         <a class="btn primary" href="/">Về trang chủ DSTS</a>
         <a class="btn" href="/contact">Liên hệ để nhận cập nhật</a>
