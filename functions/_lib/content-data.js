@@ -153,7 +153,7 @@ export const POST_CONTENTS = [
       <p>Nếu chưa có Press Liaison hoặc người chịu trách nhiệm xử lý media inquiry, route <code>/movement/press</code> không nên mở form liên hệ trực tiếp. Trang có thể cung cấp boilerplate, nguyên tắc trích dẫn, hình ảnh đã được phép dùng nếu có, và hướng dẫn dùng contact thủ công.</p>
       <p>Điều quan trọng là không tạo kênh thu dữ liệu hoặc lời hứa phản hồi nếu team chưa sở hữu quy trình. Press route read-only vẫn có giá trị: nó giúp người đọc hiểu câu chuyện và biết giới hạn công bố.</p>
       <h2>Trích dẫn đúng cũng là một phần của minh bạch</h2>
-      <p>DSTS nên khuyến khích media trích dẫn đúng trạng thái: donate tạm đóng, NDNUM chưa nhận đăng ký trẻ em, Movement route đang read-only, Gala 2026 pending A7 và các flow payment/email/auth thuộc lane riêng. Những ranh giới này giúp báo chí không vô tình tạo kỳ vọng sai cho cộng đồng.</p>
+      <p>DSTS nên khuyến khích media trích dẫn đúng trạng thái: donate tạm đóng, NDNUM chưa nhận đăng ký trẻ em, Movement route đang read-only, Gala 2026 đang chờ xác nhận A7 và các flow payment/email/auth thuộc lane riêng. Những ranh giới này giúp báo chí không vô tình tạo kỳ vọng sai cho cộng đồng.</p>
       <p>Press Kit vì vậy không chỉ là bộ tài sản thương hiệu. Nó là một công cụ bảo vệ sự thật public của DSTS.</p>
     `,
     content_en: `
@@ -163,7 +163,7 @@ export const POST_CONTENTS = [
       <h2>No media contact form without an owner</h2>
       <p>If there is no Press Liaison or owner for media inquiries, <code>/movement/press</code> should not open a direct inquiry form. It can provide boilerplate, citation guidance, approved assets if available, and manual contact direction.</p>
       <h2>Correct citation is part of transparency</h2>
-      <p>DSTS should encourage media to cite status accurately: donation closed, NDNUM not accepting child registration, Movement read-only, Gala 2026 pending A7, and payment/email/auth lanes owned separately.</p>
+      <p>DSTS should encourage media to cite status accurately: donation closed, NDNUM not accepting child registration, Movement read-only, Gala 2026 waiting for A7 confirmation, and payment/email/auth lanes owned separately.</p>
     `,
     tags: "press,media,minh bạch",
     reading_time: "7 phút đọc",
@@ -360,7 +360,7 @@ export const POST_CONTENTS = [
       <p>Nhiều hệ thống chỉ quan tâm đến việc mời người đến. DSTS cần quan tâm cả việc đóng vòng sau sự kiện. Một event đúng nên có post-event report: đã diễn ra khi nào, mục tiêu gì, kết quả gì, học được gì, có hình ảnh hoặc dữ liệu nào được phép công bố, và phần nào không công bố vì privacy.</p>
       <p>Báo cáo sau sự kiện giúp cộng đồng thấy DSTS không chỉ tạo hoạt động để truyền thông. Nó giúp team học, giúp sponsor hiểu tác động nếu có, giúp người tham gia thấy sự tôn trọng và giúp website không biến thành nơi treo các kế hoạch cũ không ai cập nhật.</p>
       <h2>Gala 2026 là ví dụ cần giữ pending</h2>
-      <p>Khi một mốc như A7 chưa được Founder xác nhận, route liên quan không nên index như một sự kiện live. Cách đúng là tạo trang status pending, ghi rõ Founder TBD, không có registration form, không có payment flow và không đưa vào sitemap nếu chưa đủ điều kiện public.</p>
+      <p>Khi một mốc như A7 chưa được Founder xác nhận, route liên quan không nên index như một sự kiện live. Cách đúng là tạo trang trạng thái pending, ghi rõ đang chờ xác nhận A7, không có registration form, không có payment flow và không đưa vào sitemap nếu chưa đủ điều kiện public.</p>
       <p>Một sự kiện được mở chậm nhưng rõ ràng sẽ tốt hơn một sự kiện mở sớm nhưng mơ hồ. Với DSTS, event readiness không phải rào cản sáng tạo. Nó là cách bảo vệ người tham gia, bảo vệ team và giữ lời hứa minh bạch với cộng đồng.</p>
     `,
     content_en: `
@@ -582,7 +582,7 @@ export const POST_CONTENTS = [
       <p>Trong một hệ thống public, fallback là một phần của sản phẩm. Nếu API lỗi, D1 chưa có dữ liệu hoặc dynamic content chưa sẵn, người dùng vẫn phải đọc được nội dung căn bản. Fallback không nên là vài dòng qua loa. Nó phải đủ hoàn chỉnh để bảo vệ trải nghiệm, SEO và niềm tin trong những lúc hệ thống động gặp sự cố.</p>
       <p>Với DSTS, fallback còn có vai trò editorial: nó giữ những bài viết nền, nguyên tắc công bố, thông tin chương trình và trạng thái route ở một mức có thể kiểm chứng. Khi dữ liệu động hoạt động, hệ thống có thể mở rộng. Khi dữ liệu động lỗi, nền tảng vẫn không sụp đổ trước mắt người dùng.</p>
       <h2>Route phải nói thật trạng thái của mình</h2>
-      <p>Không phải route nào cũng nên index. Một số route đã đủ nội dung thì có thể index, như Movement Events, Sponsors Readiness Hub, Diaspora Map hoặc Tour Roadmap. Một số route chưa đủ quyết định thì nên noindex, như Gala 2026 khi A7 còn Founder TBD. Điều quan trọng là route phải nói thật: đang live, đang read-only, đang pending hay không tồn tại.</p>
+      <p>Không phải route nào cũng nên index. Một số route đã đủ nội dung thì có thể index, như Movement Events, Sponsors Readiness Hub, Diaspora Map hoặc Tour Roadmap. Một số route chưa đủ quyết định thì nên noindex, như Gala 2026 khi A7 còn chờ Founder xác nhận. Điều quan trọng là route phải nói thật: đang live, đang read-only, đang pending hay không tồn tại.</p>
       <p>Nếu một route chưa đủ điều kiện, cách đúng không phải là để 404 vô nghĩa hoặc chuyển người dùng vào trang loading. Cách đúng là đưa ra trạng thái rõ: vì sao chưa mở, cần điều kiện gì, người đọc nên đi đâu tiếp theo và phần nào không được hiểu là đã hoạt động.</p>
       <h2>Smoke test là hợp đồng tối thiểu</h2>
       <p>Smoke test không thay thế QA sâu, nhưng là hợp đồng tối thiểu trước khi gọi một bản deploy là an toàn. Test phải kiểm route chính trả 200, content marker xuất hiện, 404 thật trả 404, content missing trả 404, sitemap/RSS/robots hoạt động và các route noindex không bị đưa vào sitemap.</p>

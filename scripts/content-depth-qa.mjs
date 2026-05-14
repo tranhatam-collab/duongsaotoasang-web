@@ -13,6 +13,8 @@ const BLOCKED_PATTERNS = [
   /Lorem ipsum/i,
   /coming soon/i,
   /placeholder/i,
+  /Founder TBD/i,
+  /pending Founder A7 confirm/i,
   /đang cập nhật/i,
   /dang cap nhat/i
 ]

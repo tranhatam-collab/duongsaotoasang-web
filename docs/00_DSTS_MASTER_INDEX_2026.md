@@ -1,8 +1,9 @@
 # 00_DSTS_MASTER_INDEX_2026
 
-> 📝 **DRAFT v1.5.23** — 2026-05-14 (supersedes v1.5.22)
+> 📝 **DRAFT v1.5.24** — 2026-05-14 (supersedes v1.5.23)
 > Bản đồ master cho cả ecosystem DSTS. Gom toàn bộ Drive cũ + kế hoạch mới thành 1 chỉ mục chính thức.
 > **Đối tượng dùng:** dev, content, legal, product, founder — cùng một bản truth.
+> **v1.5.24 changes:** Replace internal `Founder TBD` wording on public Gala/A7 surfaces with user-facing pending-status language, and block that phrase in depth QA.
 > **v1.5.23 changes:** Wire link QA into the release gate for preview and production so internal links are checked even without full smoke.
 > **v1.5.22 changes:** Expand thin trust pages (`support`, `nguoiviet-muonnoi-bridge`) and add static page depth QA for tracked public HTML pages.
 > **v1.5.21 changes:** Expand fallback page content for `about` and `program`, and add content depth QA to block thin or placeholder public content.
@@ -31,7 +32,7 @@
 > **v1.2 changes:** Wave 1 sync timeline (chèn Phase 0B), fix A7 status, thêm 7 NDNUM spec con TBD.
 
 **Founder:** Trần Hà Tâm
-**Phiên bản:** v1.5.23 (master index — pending re-lock)
+**Phiên bản:** v1.5.24 (master index — pending re-lock)
 **Ngày phát hành:** 2026-05-14
 **Nguyên tắc:** Mọi tài liệu mới về DSTS phải được index ở đây. Không có file ngoài index.
 
@@ -267,6 +268,7 @@ Theo thứ tự ưu tiên:
   29. scripts/content-depth-qa.mjs ✅ fallback posts/pages require real depth, sections, excerpts, tags, reading time, and no placeholder markers 2026-05-14
   30. scripts/static-page-depth-qa.mjs ✅ tracked public static HTML pages require real body depth and section structure 2026-05-14
   31. scripts/link-qa.mjs ✅ preview/production internal link graph wired into release gate 2026-05-14
+  32. public Gala/A7 wording ✅ user-facing pending language replaces internal `Founder TBD`; depth QA blocks the internal phrase 2026-05-14
 
 🔴 Phase 0B (Tháng 6-8/2026):
   20a. 7 NDNUM spec con (Child Safety, Consent, Mentor Screening, Legal Entity, Sponsor Fulfillment, Impact, Landing Page)
@@ -445,6 +447,7 @@ Nếu có conflict giữa Drive cũ (Layer A) và Plan mới (Layer 0-2):
 | v1.5.21 | 2026-05-14 | Expand `about` and `program` fallback page bodies and add `scripts/content-depth-qa.mjs` to the release gate so public fallback content cannot regress to thin placeholders. | Codex |
 | v1.5.22 | 2026-05-14 | Expand thin trust pages (`support`, `nguoiviet-muonnoi-bridge`) and add `scripts/static-page-depth-qa.mjs` to the release gate so tracked static HTML public pages keep meaningful depth and section structure. | Codex |
 | v1.5.23 | 2026-05-14 | Wire `scripts/link-qa.mjs` into the release gate for preview and production so internal link regressions are caught even when full smoke is not requested. | Codex |
+| v1.5.24 | 2026-05-14 | Replace internal `Founder TBD` wording on public Gala/A7 surfaces with user-facing pending-status language, update smoke markers, and block the internal phrase in static/content depth QA. | Codex |
 
 ---
 
