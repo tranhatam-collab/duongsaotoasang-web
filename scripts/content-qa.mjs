@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs"
+import { readdirSync, readFileSync } from "node:fs"
 import { fileURLToPath } from "node:url"
 import { dirname, join } from "node:path"
 import {
@@ -47,6 +47,7 @@ assert(FALLBACK_CONTENTS.length === POST_CONTENTS.length + PAGE_CONTENTS.length,
 validateStaticJson()
 validateInlineFallbacks()
 validateStaticLoadingPlaceholders()
+validateAppShellReferences()
 validatePublicLaneBoundaries()
 
 const allSlugs = new Set()
@@ -156,6 +157,16 @@ function validateStaticLoadingPlaceholders() {
   }
 }
 
+function validateAppShellReferences() {
+  const htmlFiles = listHtmlFiles(repoRoot)
+  for (const relativePath of htmlFiles) {
+    const source = readFileSync(join(repoRoot, relativePath), "utf8")
+    assert(!/from\s+["']\/app\.js["']/i.test(source), `${relativePath} must not import legacy /app.js`)
+    assert(!/<script[^>]+src=["']\/app\.js["']/i.test(source), `${relativePath} must not load legacy /app.js`)
+    assert(!/<script[^>]+src=["']\/assets\/app\.js["']/i.test(source), `${relativePath} must not load legacy /assets/app.js`)
+  }
+}
+
 function validatePublicLaneBoundaries() {
   const contact = readFileSync(join(repoRoot, "contact.html"), "utf8")
   assert(contact.includes('data-dsts-contact-mode="manual-only"'), "contact.html must disclose manual-only contact mode")
@@ -174,6 +185,23 @@ function validatePublicLaneBoundaries() {
     assert(!/<form\b/i.test(source), `${relativePath} must not ship public review forms`)
     assert(!/id="formSubmit"|id="formName"|id="formComment"|id="formRating"/i.test(source), `${relativePath} must not ship inactive review input controls`)
   }
+}
+
+function listHtmlFiles(dir, prefix = "") {
+  const entries = readdirSync(dir, { withFileTypes: true })
+  const files = []
+  for (const entry of entries) {
+    if (entry.name.startsWith(".")) continue
+    if (entry.name === "node_modules" || entry.name === "docs" || entry.name === "_site") continue
+    const relativePath = prefix ? `${prefix}/${entry.name}` : entry.name
+    const fullPath = join(dir, entry.name)
+    if (entry.isDirectory()) {
+      files.push(...listHtmlFiles(fullPath, relativePath))
+    } else if (entry.isFile() && entry.name.endsWith(".html")) {
+      files.push(relativePath)
+    }
+  }
+  return files
 }
 
 function validateBaseItem(item) {

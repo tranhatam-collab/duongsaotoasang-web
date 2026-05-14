@@ -554,14 +554,40 @@
     </footer>
   </main>
 
-  <script type="module">
-    import { getLang, mountLangLinks, setSeo } from "/app.js";
-
+  <script src="/assets/app-v5.js"></script>
+  <script>
+    const getLang = window.DSTS?.getLang || function () {
+      try {
+        const url = new URL(window.location.href);
+        return url.searchParams.get("lang") === "en" ? "en" : "vi";
+      } catch (_err) {
+        return "vi";
+      }
+    };
+    const setSeo = function (seo) {
+      document.title = seo.title;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      const ogUrl = document.querySelector('meta[property="og:url"]');
+      const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+      const twitterDesc = document.querySelector('meta[name="twitter:description"]');
+      const canonical = document.querySelector('link[rel="canonical"]');
+      if (metaDesc) metaDesc.setAttribute("content", seo.description);
+      if (ogTitle) ogTitle.setAttribute("content", seo.title);
+      if (ogDesc) ogDesc.setAttribute("content", seo.description);
+      if (ogUrl) ogUrl.setAttribute("content", seo.canonical);
+      if (twitterTitle) twitterTitle.setAttribute("content", seo.title);
+      if (twitterDesc) twitterDesc.setAttribute("content", seo.description);
+      if (canonical) canonical.setAttribute("href", seo.canonical);
+    };
     const lang = getLang();
     const T = (vi, en) => lang === "vi" ? vi : en;
 
     document.documentElement.lang = lang;
-    mountLangLinks("langViLink", "langEnLink");
+    document.getElementById("langViLink").href = "/404.html";
+    document.getElementById("langEnLink").href = "/404.html?lang=en";
+    document.getElementById(lang === "en" ? "langEnLink" : "langViLink").classList.add("active");
 
     document.getElementById("mobileToggle").onclick = () => {
       document.getElementById("mainMenu").classList.toggle("open");

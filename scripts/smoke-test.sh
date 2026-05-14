@@ -215,6 +215,14 @@ else
   failed=$((failed + 1))
 fi
 
+body_404="$(curl -sS --connect-timeout 8 --max-time 20 "${BASE}${UNKNOWN_PATH}")"
+if grep -Fq "/assets/app-v5.js" <<< "$body_404" && grep -Fq "Trang anh đang tìm" <<< "$body_404"; then
+  printf "PASS 404-content  %s uses current app shell\n" "$UNKNOWN_PATH"
+else
+  printf "FAIL 404-content  %s missing current app shell marker\n" "$UNKNOWN_PATH"
+  failed=$((failed + 1))
+fi
+
 content_404="$(curl -o /dev/null -sS --connect-timeout 8 --max-time 20 -w "%{http_code}" "${BASE}${MISSING_CONTENT_PATH}")"
 if [[ "$content_404" == "404" ]]; then
   printf "PASS content-404  %s\n" "$MISSING_CONTENT_PATH"
