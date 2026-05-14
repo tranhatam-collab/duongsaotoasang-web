@@ -3,7 +3,7 @@
 > **Scope:** Sprint 0 execution status after continuous public-site hardening.
 > **Repo:** `tranhatam-collab/duongsaotoasang-web`
 > **Branch:** `main`
-> **Latest verified commit:** `82b71bd`
+> **Latest verified commit:** `e2691fc`
 > **Cloudflare Pages project:** `duongsaotoasang-com-v2`
 > **Do not confuse with:** `duongsaotoasang-web`
 
@@ -40,6 +40,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 | Public routes | PASS | Preview full smoke passed on `d1db9982.duongsaotoasang-com-v2.pages.dev` |
 | `/posts` fallback | PASS | 24 posts, `data-dsts-ssr="posts"`, no legacy loading placeholder |
 | `/content?slug=...` detail | PASS | Valid slug renders SSR content; missing slug returns content 404 |
+| `/content` without slug | PASS | Server-side middleware redirects to `/posts` |
 | API list safety | PASS | `/api/contents` list responses do not expose full body |
 | API search safety | PASS | `/api/search?q=guardian&limit=3` returns metadata only |
 | API detail body | PASS | `/api/content?slug=guardian-first-nguyen-tac-bao-ve-tre-em-ndnum` returns full body |
@@ -57,6 +58,8 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Commit | Purpose |
 |---|---|
+| `e2691fc` | Fix `_routes.json` for Pages middleware without overlapping rules |
+| `fa72dc2` | Add Pages middleware so `/content` without slug redirects to `/posts` |
 | `82b71bd` | Avoid brittle API search smoke body check; rely on schema QA |
 | `72e1eca` | Use stable search smoke marker |
 | `063621a` | Strip fallback body from search APIs |
@@ -84,6 +87,7 @@ Expected:
 
 ```text
 PASSED: all smoke checks passed
+PASS content-index-redirect  /content -> /posts
 ```
 
 SEO QA:
@@ -180,6 +184,7 @@ Sprint 0 should be treated as:
 
 ```text
 ROUTE/API/CONTENT/SEO: DONE
+CONTENT INDEX REDIRECT: DONE
 PRODUCTION HEADER/CACHE: BLOCKED_EXTERNAL
 FULL PRODUCTION SMOKE: BLOCKED_EXTERNAL until Cloudflare zone rule is corrected
 ```
