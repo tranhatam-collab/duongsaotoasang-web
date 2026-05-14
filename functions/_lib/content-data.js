@@ -1,5 +1,109 @@
 export const POST_CONTENTS = [
   {
+    slug: "support-dsts-hoi-dung-noi-khong-gui-du-lieu-nhay-cam",
+    type: "post",
+    title_vi: "Support DSTS: hỏi đúng nơi, không gửi dữ liệu nhạy cảm",
+    title_en: "DSTS Support: ask in the right place and do not send sensitive data",
+    excerpt_vi: "Một hướng dẫn public để người dùng biết khi nào dùng support, khi nào dùng contact thủ công và dữ liệu nào không nên gửi qua form công khai.",
+    excerpt_en: "A public guide for when to use support, when to use manual contact, and what data should not be sent through public forms.",
+    content_vi: `
+      <p>Support là một phần của niềm tin. Khi người dùng có câu hỏi về nội dung, chương trình, pháp lý, quyền riêng tư, sự kiện hoặc một route chưa rõ trạng thái, họ cần một lối đi an toàn để hỏi. Nhưng support public không có nghĩa là người dùng nên gửi mọi dữ liệu qua form hoặc tin nhắn mở.</p>
+      <p>Trong giai đoạn hiện tại, DSTS cần giữ support ở mức thủ công, rõ ràng và an toàn. Người dùng có thể dùng trang <code>/support</code> để hiểu nhóm vấn đề thường gặp, rồi dùng <code>/contact</code> để gửi câu hỏi cần người phụ trách xem xét. Không nên gửi thông tin trẻ em, giấy tờ định danh, số tài khoản, dữ liệu sức khỏe hoặc nội dung nhạy cảm qua kênh public nếu chưa có hướng dẫn riêng.</p>
+      <h2>Support không thay thế legal hoặc child safety review</h2>
+      <p>Nếu câu hỏi liên quan trẻ em, guardian consent, mentor, sponsor-a-dream hoặc dữ liệu gia đình, support chỉ nên ghi nhận ở mức điều hướng. Câu trả lời có hiệu lực phải đi qua owner phù hợp, Legal Counsel hoặc Child Safety Officer khi các vai trò này được chỉ định. Không nhân viên hay cộng tác viên nào nên tự ý xử lý thông tin nhạy cảm ngoài quy trình.</p>
+      <p>Điều này bảo vệ cả người hỏi lẫn team. Một câu trả lời nhanh nhưng sai thẩm quyền có thể tạo kỳ vọng sai, làm lộ dữ liệu hoặc mở một cam kết mà hệ thống chưa đủ điều kiện thực hiện.</p>
+      <h2>Hỏi đúng nơi giúp xử lý nhanh hơn</h2>
+      <p>Câu hỏi về bài viết, route lỗi hoặc nội dung public có thể gửi qua contact thường. Câu hỏi về donate, refund hoặc xác nhận giao dịch chỉ nên gửi khi DSTS đã công bố mã xác nhận hoặc hướng dẫn chính thức. Câu hỏi về hợp tác, press hoặc partner nên ghi rõ tổ chức, mục đích và phạm vi public mong muốn.</p>
+      <p>Với các route Movement đang read-only, support không nên biến thành đường tắt để mở sponsor inquiry, event registration hoặc email capture. Các flow đó thuộc lane riêng và chỉ mở khi owner đã sẵn sàng.</p>
+      <h2>Trạng thái rõ ràng tốt hơn phản hồi vội</h2>
+      <p>Một hệ thống support tốt không cần hứa trả lời mọi thứ ngay lập tức. Nó cần nói rõ cái gì đang mở, cái gì chưa mở, dữ liệu nào không nên gửi và người dùng có thể đọc thêm ở đâu. Khi DSTS giữ được tiêu chuẩn này, support trở thành một lớp bảo vệ niềm tin, không phải một cửa sau cho các flow chưa đủ điều kiện.</p>
+    `,
+    content_en: `
+      <p>Support is part of trust. When users have questions about content, programs, legal status, privacy, events, or route readiness, they need a safe way to ask. But public support does not mean users should send every kind of data through public forms or open messages.</p>
+      <p>At the current stage, DSTS should keep support manual, clear, and safe. Users can use <code>/support</code> to understand common issue categories, then use <code>/contact</code> for questions that need review. They should not send children's data, identity documents, bank details, health data, or sensitive information through public channels unless a specific process exists.</p>
+      <h2>Support does not replace legal or child safety review</h2>
+      <p>If a question involves children, guardian consent, mentors, sponsor-a-dream, or family data, support should only route the issue. Authoritative answers must go through the right owner, Legal Counsel, or Child Safety Officer once assigned.</p>
+      <h2>Asking in the right place helps the team respond</h2>
+      <p>Questions about articles, broken routes, or public content can go through normal contact. Questions about donation, refund, or transaction confirmation should only be sent when DSTS has published official guidance. Partnership or press questions should state organization, purpose, and public scope.</p>
+      <h2>Clear status is better than rushed response</h2>
+      <p>A good support system does not need to promise instant answers to everything. It needs to state what is open, what is not open, what data should not be sent, and where readers can learn more.</p>
+    `,
+    tags: "support,liên hệ,an toàn dữ liệu",
+    reading_time: "7 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-14T01:12:00.000Z"
+  },
+  {
+    slug: "privacy-legal-disclosure-la-nen-mong-public-site",
+    type: "post",
+    title_vi: "Privacy và legal disclosure là nền móng của public site",
+    title_en: "Privacy and legal disclosure are foundations of a public site",
+    excerpt_vi: "Một public site có trách nhiệm phải nói rõ pháp nhân, giới hạn nội dung, quyền riêng tư, refund và trạng thái các flow chưa mở.",
+    excerpt_en: "A responsible public site must state legal entity status, content limits, privacy, refund, and the status of flows that are not open.",
+    content_vi: `
+      <p>Privacy và legal disclosure thường bị xem là phần phụ ở cuối website. Với DSTS, chúng phải được xem là nền móng. Một dự án nói về cộng đồng, trẻ em, tài trợ, phát triển cá nhân và hành trình quốc tế không thể chỉ dựa vào thiện chí. Người dùng cần biết hệ thống đang hoạt động trong giới hạn nào.</p>
+      <p>Public site phải nói rõ nội dung chỉ nhằm mục đích thông tin hay có tạo cam kết dịch vụ. Nếu có donate hoặc refund, trạng thái mở hay đóng phải rõ. Nếu có dữ liệu cá nhân, người dùng phải hiểu dữ liệu nào được thu, dùng vào mục đích gì, giữ bao lâu và liên hệ ai khi muốn chỉnh sửa hoặc xóa.</p>
+      <h2>Legal entity không được mơ hồ</h2>
+      <p>Khi pháp nhân chưa khóa, website không nên tự nhận một cấu trúc pháp lý chưa được xác minh. Cách đúng là ghi rõ trạng thái đang xác minh, công bố điều kiện mở và không nhận các flow tài chính hoặc dữ liệu nhạy cảm như thể mọi thứ đã hoàn tất.</p>
+      <p>Sự thận trọng này không làm dự án yếu hơn. Nó giúp DSTS tránh rủi ro, giúp đối tác hiểu trạng thái thật và giúp người dùng biết khi nào một flow chỉ là kế hoạch, khi nào là hoạt động có owner.</p>
+      <h2>Privacy là thiết kế, không chỉ là văn bản</h2>
+      <p>Privacy không chỉ nằm trong trang <code>/privacy</code>. Nó nằm trong cách route được mở. Một route không nên thu email nếu chưa cần. Một event không nên có registration nếu owner chưa sẵn sàng. Một bản đồ diaspora không nên hiển thị pin cá nhân nếu chưa có consent và k-anonymity. Một chương trình trẻ em không nên nhận thông tin trẻ qua form public.</p>
+      <p>Khi privacy được thiết kế vào từng route, người dùng ít bị đặt vào tình huống phải tự đoán điều gì an toàn. Họ nhìn thấy ranh giới ngay trong trải nghiệm.</p>
+      <h2>Disclosure giúp niềm tin có điểm tựa</h2>
+      <p>Legal, terms, refund, privacy, transparency và support nên liên kết với nhau. Người dùng đọc donate phải thấy transparency và refund. Người đọc NDNUM phải thấy child safety và legal boundary. Người đọc script phải thấy sample review label và purchase safety. Người đọc Movement phải thấy các route read-only không mở inquiry, registration hoặc payment.</p>
+      <p>Đây là cách public site tự bảo vệ mình trước sự mơ hồ. Một nền tảng càng muốn đi xa, càng phải có điểm tựa pháp lý và quyền riêng tư ngay từ đầu.</p>
+    `,
+    content_en: `
+      <p>Privacy and legal disclosure are often treated as footer material. For DSTS, they must be treated as foundation. A project involving community, children, sponsorship, personal development, and international journeys cannot rely only on good intention.</p>
+      <p>The public site must clarify whether content is informational or creates a service commitment. If donation or refund is involved, open or closed status must be clear. If personal data is involved, users must understand what is collected, why, how long it is kept, and who to contact for changes or deletion.</p>
+      <h2>Legal entity status must not be vague</h2>
+      <p>When legal entity status is not locked, the website should not claim an unverified structure. It should state that verification is in progress, publish opening conditions, and avoid sensitive money or data flows as if everything were complete.</p>
+      <h2>Privacy is design, not only text</h2>
+      <p>Privacy is not only on <code>/privacy</code>. It is in how routes open. A route should not collect email before needed. An event should not have registration before owner readiness. A diaspora map should not show personal pins before consent and k-anonymity.</p>
+      <h2>Disclosure gives trust a structure</h2>
+      <p>Legal, terms, refund, privacy, transparency, and support should connect. Donation readers should see transparency and refund. NDNUM readers should see child safety and legal boundaries. Script readers should see sample review labels and purchase safety.</p>
+    `,
+    tags: "privacy,legal,minh bạch",
+    reading_time: "8 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-14T01:08:00.000Z"
+  },
+  {
+    slug: "nguoi-viet-muon-noi-bridge-khong-dan-vao-link-hong",
+    type: "post",
+    title_vi: "Người Việt Muôn Nơi bridge: không dẫn người dùng vào link hỏng",
+    title_en: "Muon Noi bridge: do not send users into broken links",
+    excerpt_vi: "Khi domain hệ sinh thái ngoài chưa ổn định, DSTS dùng bridge nội bộ để giải thích trạng thái và giữ trải nghiệm không rơi vào lỗi 502.",
+    excerpt_en: "When an external ecosystem domain is not stable, DSTS uses an internal bridge to explain status and avoid sending users into 502 errors.",
+    content_vi: `
+      <p>DSTS có liên kết hệ sinh thái với Người Việt Muôn Nơi, nhưng một liên kết ngoài chỉ nên xuất hiện công khai khi người dùng không bị đưa vào lỗi kết nối, lỗi SSL, lỗi origin hoặc trang 502. Nếu domain đích chưa ổn định, cách có trách nhiệm là tạo một bridge nội bộ.</p>
+      <p>Bridge nội bộ không phải là trang che lỗi. Nó là một bề mặt minh bạch: nói rõ vì sao người dùng chưa được chuyển thẳng ra ngoài, trạng thái đang xác minh là gì và họ có thể quay về những phần DSTS đang hoạt động ổn định ở đâu.</p>
+      <h2>Không để homepage dẫn vào trải nghiệm hỏng</h2>
+      <p>Homepage là nơi người mới đặt niềm tin đầu tiên. Nếu một CTA trên homepage dẫn ra domain lỗi, người dùng sẽ không phân biệt đó là lỗi của hệ sinh thái ngoài hay của DSTS. Họ chỉ thấy toàn bộ trải nghiệm không đáng tin. Vì vậy, homepage chỉ nên dẫn đến route đang hoạt động hoặc bridge nội bộ có giải thích.</p>
+      <p>Điều này đặc biệt quan trọng với các dự án đa domain. DNS, Cloudflare proxy, SSL, origin, Worker binding hoặc custom domain mapping có thể lệch nhau. Khi chưa xác minh xong, bridge giúp giữ người dùng ở một bề mặt an toàn.</p>
+      <h2>Bridge phải có trạng thái và hướng đi tiếp</h2>
+      <p>Một bridge tốt cần nói rõ: domain ngoài đang được xác minh, DSTS không thu dữ liệu tại bridge, không yêu cầu đăng nhập, không mở thanh toán, và người đọc có thể quay về trang chủ, thư viện, Movement hoặc contact thủ công. Nếu có ngày cập nhật hoặc owner kỹ thuật, thông tin đó cũng nên được công bố khi phù hợp.</p>
+      <p>Bridge cũng không nên index nếu nó chỉ là trạng thái tạm thời. Mục tiêu của bridge là bảo vệ trải nghiệm, không phải tạo một trang SEO phụ làm người dùng nhầm với hệ sinh thái chính.</p>
+      <h2>Liên kết ngoài phải được kiểm như route nội bộ</h2>
+      <p>Một public site trưởng thành không chỉ smoke test route nội bộ. Nó cũng cần kiểm các liên kết ngoài quan trọng. Nếu một external bridge là một phần của lời hứa hệ sinh thái, trạng thái của nó phải được theo dõi, và homepage phải thay đổi khi domain đích ổn định hoặc lại hỏng.</p>
+      <p>Không dẫn người dùng vào link hỏng là nguyên tắc nhỏ nhưng quan trọng. Nó cho thấy DSTS coi trải nghiệm thật của người đọc quan trọng hơn việc giữ một liên kết đẹp trên giấy.</p>
+    `,
+    content_en: `
+      <p>DSTS connects with the Muon Noi ecosystem, but an external link should only be public when it does not send users into connection errors, SSL issues, origin failures, or 502 pages. If the destination domain is not stable, the responsible approach is an internal bridge.</p>
+      <p>An internal bridge is not a page that hides an error. It is a transparent surface that explains why users are not sent directly outside yet, what status is being verified, and where they can continue inside DSTS.</p>
+      <h2>Do not let the homepage lead to a broken experience</h2>
+      <p>The homepage is where newcomers place their first trust. If a CTA sends them to a broken external domain, they will not separate that domain's failure from DSTS. They will simply experience the system as unreliable.</p>
+      <h2>A bridge needs status and next steps</h2>
+      <p>A good bridge should state that the external domain is being verified, that DSTS does not collect data there, does not require login, does not open payment, and offers safe routes back to homepage, library, Movement, or manual contact.</p>
+      <h2>External links should be checked like internal routes</h2>
+      <p>A mature public site should not only smoke test internal routes. Important external links should also be monitored, especially when they are part of an ecosystem promise.</p>
+    `,
+    tags: "bridge,người việt muôn nơi,liên kết ngoài",
+    reading_time: "7 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-14T01:04:00.000Z"
+  },
+  {
     slug: "script-journey-khong-phai-goi-ban-hang",
     type: "post",
     title_vi: "Script Journey không phải gói bán hàng, mà là bản đồ phát triển cá nhân",

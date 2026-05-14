@@ -1,11 +1,14 @@
 === DSTS Sprint 0 Smoke Test ===
-Base: http://127.0.0.1:8798
-Timestamp: 2026-05-14T01:05:22Z
+Base: http://127.0.0.1:8799
+Timestamp: 2026-05-14T01:18:42Z
 
 PASS 200  /
 PASS 200  /about
 PASS 200  /program
 PASS 200  /posts
+PASS 200  /content?slug=support-dsts-hoi-dung-noi-khong-gui-du-lieu-nhay-cam
+PASS 200  /content?slug=privacy-legal-disclosure-la-nen-mong-public-site
+PASS 200  /content?slug=nguoi-viet-muon-noi-bridge-khong-dan-vao-link-hong
 PASS 200  /content?slug=script-journey-khong-phai-goi-ban-hang
 PASS 200  /content?slug=event-readiness-no-owner-no-event
 PASS 200  /content?slug=diaspora-map-can-bao-ve-quyen-rieng-tu
@@ -52,11 +55,18 @@ PASS 200  /robots.txt
 === Content checks ===
 PASS content  /posts  contains [THƯ VIỆN TRI THỨC]
 PASS content  /posts  contains [data-dsts-ssr="posts"]
+PASS content  /posts  contains [Support DSTS]
 PASS content  /posts  contains [Script Journey không phải gói bán hàng]
 PASS content  /posts  contains [Minh bạch trước khi gây quỹ]
 PASS content  /posts  contains [Kế hoạch phát triển Đường Sao Tỏa Sáng 2026-2027]
 PASS content  /posts  contains [Khởi nghiệp từ nơi sống thật]
 PASS content  /posts  contains ["@type":"ItemList"]
+PASS content  /content?slug=support-dsts-hoi-dung-noi-khong-gui-du-lieu-nhay-cam  contains [Support DSTS: hỏi đúng nơi, không gửi dữ liệu nhạy cảm]
+PASS content  /content?slug=support-dsts-hoi-dung-noi-khong-gui-du-lieu-nhay-cam  contains [Support không thay thế legal hoặc child safety review]
+PASS content  /content?slug=privacy-legal-disclosure-la-nen-mong-public-site  contains [Privacy và legal disclosure là nền móng của public site]
+PASS content  /content?slug=privacy-legal-disclosure-la-nen-mong-public-site  contains [Privacy là thiết kế, không chỉ là văn bản]
+PASS content  /content?slug=nguoi-viet-muon-noi-bridge-khong-dan-vao-link-hong  contains [Người Việt Muôn Nơi bridge: không dẫn người dùng vào link hỏng]
+PASS content  /content?slug=nguoi-viet-muon-noi-bridge-khong-dan-vao-link-hong  contains [Không để homepage dẫn vào trải nghiệm hỏng]
 PASS content  /content?slug=script-journey-khong-phai-goi-ban-hang  contains [Script Journey không phải gói bán hàng, mà là bản đồ phát triển cá nhân]
 PASS content  /content?slug=script-journey-khong-phai-goi-ban-hang  contains [Đọc script như một gương soi]
 PASS content  /content?slug=event-readiness-no-owner-no-event  contains [Event readiness: không có owner thì không có event]
