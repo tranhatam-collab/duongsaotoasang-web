@@ -47,6 +47,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 | API detail body | PASS | `/api/content?slug=guardian-first-nguyen-tac-bao-ve-tre-em-ndnum` returns full body |
 | Link QA | PASS | 32 pages scanned, 289 discovered links, 59 unique internal links |
 | SEO route QA | PASS | 32 indexable, 2 noindex, 2 redirects |
+| Local HTML structure QA | PASS | Tracked public HTML pages have exactly one `h1`, unique indexable title/description/canonical, clean production canonical, and no legacy loading placeholder |
 | Static sitemap | PASS | `sitemap.xml` generated from shared route manifest + 24 fallback posts; no noindex routes included |
 | Static RSS | PASS | `rss.xml` generated from shared feed helper + 24 fallback posts; no noindex or preview/wrong-project URLs included |
 | Robots policy | PASS | `robots.txt` allows crawl, points to production sitemap, and is now covered by content + SEO QA |

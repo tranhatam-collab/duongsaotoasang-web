@@ -24,7 +24,7 @@ Project hiện chia làm 3 nhóm:
   - Layer 1 DSTS spec DEV-READY v1.0 nhưng chưa mở public interactive flows
 
 - **TBD** (chưa start, đợi unblock):
-  - 4 Layer 2 spec (Star Journey OS, Product Catalog, Automation Engine, DB Schema)
+  - 8 Layer 2 spec (Star Journey OS, Product Catalog, Automation Engine, DB Schema, API Contract, Frontend Route Map, Muonnoi Integration, Admin CMS)
   - Phase 0B legal/CSO co-review và Founder decisions
 
 **Source of truth duy nhất** cho mỗi nhóm:
@@ -186,6 +186,7 @@ Mọi file trong `_archive_2026-05-13/` **KHÔNG dùng làm reference**.
 - Xem `STATE_REPORT_2026-05-14.md` để biết trạng thái.
 - Xem `CLOUDFLARE_CUSTOM_DOMAIN_FIX_PACKET_2026-05-14.md` để biết purge URLs, dashboard checks, API template, và post-fix verification.
 - Dùng `scripts/sprint-0-release-gate.mjs` cho automation: exit `0` ready, `1` repo regression, `2` known `BLOCKED_EXTERNAL`; thêm `RUN_DEPLOY_DRY_RUN=1` sau commit để kiểm deploy bundle.
+- Dùng `scripts/html-structure-qa.mjs` để khóa local HTML: đúng 1 `h1`, metadata/canonical/robots đầy đủ, clean canonical cho trang indexable, không lẫn preview/wrong-project/loading placeholder.
 
 ---
 
