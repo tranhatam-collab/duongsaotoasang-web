@@ -19,7 +19,7 @@ Project hiện chia làm 3 nhóm:
 
 - **DRAFT** (đang chỉnh, gần sẵn sàng):
   - Master Plan v1.2-DRAFT (pending re-lock sau NDNUM v1.2)
-  - Master Index v1.5.24 (pending re-lock)
+- Master Index v1.5.25 (pending re-lock)
   - NDNUM v1.1-REVIEWED + 7 NDNUM spec con DRAFT v1.0
   - Layer 1 DSTS spec DEV-READY v1.0 nhưng chưa mở public interactive flows
 

@@ -17,8 +17,10 @@ const EXCLUDED_SHELLS = new Set([
 const BLOCKED_PATTERNS = [
   /Lorem ipsum/i,
   /\bTODO\b/i,
+  /Founder Lock/i,
   /Founder TBD/i,
   /pending Founder A7 confirm/i,
+  /Sprint 0/i,
   /Đang tải nội dung|Đang tải bài viết|Xin chờ trong giây lát/i
 ]
 

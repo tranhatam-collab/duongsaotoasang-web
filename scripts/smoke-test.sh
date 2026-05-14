@@ -120,7 +120,7 @@ content_checks=(
   "/content?slug=nguyen-tac-public-site-khong-trang-den|Nguyên tắc public site không được có trang đen"
   "/content?slug=nguyen-tac-public-site-khong-trang-den|Smoke test là hợp đồng tối thiểu"
   "/content?slug=movement-portal-mo-an-toan-theo-tung-cong|Movement Portal mở an toàn theo từng cổng như thế nào"
-  "/content?slug=movement-portal-mo-an-toan-theo-tung-cong|Release gates bảo vệ người dùng và team"
+  "/content?slug=movement-portal-mo-an-toan-theo-tung-cong|Điều kiện mở bảo vệ người dùng và team"
   "/content?slug=sang-tao-khong-bat-dau-tu-tham-vong|Sáng tạo không bắt đầu từ tham vọng"
   "/content?slug=sang-tao-khong-bat-dau-tu-tham-vong|data-dsts-ssr=\"content\""
   "/content?slug=sang-tao-khong-bat-dau-tu-tham-vong|\"@type\":\"BlogPosting\""

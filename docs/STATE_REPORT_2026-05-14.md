@@ -69,6 +69,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 | Movement read-only surfaces | PASS | No sponsor inquiry, event registration, payment, or auth flow opened |
 | NDNUM public surface | PASS | Guardian-first language and no direct child contact flow |
 | Script reviews | PASS | Sample-only labels; no public review form remains |
+| Public wording QA | PASS | Public pages/articles no longer expose internal `Sprint 0`, `Founder Lock`, or `release gate` phrases; phrase blocklist is enforced in content/static depth QA |
 | Ops runbook | PASS | Root `RUNBOOK.md` documents deploy, rollback, owner matrix, incident response, and external Cloudflare blocker |
 | Design tokens | PASS | Root `tokens.css` exports color, spacing, typography, radius, shadow and is imported by `app.css` |
 
