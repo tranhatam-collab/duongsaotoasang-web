@@ -69,6 +69,7 @@ urls=(
   "/rss.xml"
   "/robots.txt"
   "/og.png"
+  "/tokens.css"
   "/api/search?q=guardian&limit=3"
 )
 
@@ -161,6 +162,9 @@ content_checks=(
   "/movement/sponsors/test-tier|không xử lý payment"
   "/movement/sponsors/test-tier|không tạo tài khoản"
   "/movement/sponsors/test-tier|/assets/app-v5.js"
+  "/tokens.css|--dsts-color-gold"
+  "/tokens.css|--dsts-font-sans"
+  "/tokens.css|--dsts-space-16"
   "/movement/events/test-event|Route này chưa mở nội dung riêng"
   "/movement/tour-2026-2027/test-country|Route này chưa mở nội dung riêng"
   "/dream-nurture|Nuôi Dưỡng Những Ước Mơ"

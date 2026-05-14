@@ -3,7 +3,7 @@
 > **Scope:** Sprint 0 execution status after continuous public-site hardening.
 > **Repo:** `tranhatam-collab/duongsaotoasang-web`
 > **Branch:** `main`
-> **Latest verified commit:** `e2691fc`
+> **Latest verified baseline commit:** `a5d0ee9`
 > **Cloudflare Pages project:** `duongsaotoasang-com-v2`
 > **Do not confuse with:** `duongsaotoasang-web`
 
@@ -27,7 +27,7 @@ Preview deploys apply repo `_headers` correctly. The custom domain `duongsaotoas
 Repo `_headers` expects:
 
 - `referrer-policy: strict-origin-when-cross-origin`
-- static assets `max-age=300, must-revalidate`
+- static assets including `/tokens.css` `max-age=300, must-revalidate`
 
 This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by changing static site code.
 
@@ -37,7 +37,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Area | Status | Evidence |
 |---|---:|---|
-| Public routes | PASS | Preview full smoke passed on `d1db9982.duongsaotoasang-com-v2.pages.dev` |
+| Public routes | PASS | Preview full smoke passed on `71da6cda.duongsaotoasang-com-v2.pages.dev` |
 | `/posts` fallback | PASS | 24 posts, `data-dsts-ssr="posts"`, no legacy loading placeholder |
 | `/content?slug=...` detail | PASS | Valid slug renders SSR content; missing slug returns content 404 |
 | `/content` without slug | PASS | Server-side middleware redirects to `/posts` |
@@ -52,6 +52,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 | NDNUM public surface | PASS | Guardian-first language and no direct child contact flow |
 | Script reviews | PASS | Sample-only labels; no public review form remains |
 | Ops runbook | PASS | Root `RUNBOOK.md` documents deploy, rollback, owner matrix, incident response, and external Cloudflare blocker |
+| Design tokens | PASS | Root `tokens.css` exports color, spacing, typography, radius, shadow and is imported by `app.css` |
 
 ---
 
@@ -59,6 +60,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Commit | Purpose |
 |---|---|
+| `a5d0ee9` | Add public-site operations runbook |
 | `c0da82b` | Update Sprint 0 status docs with content redirect evidence |
 | `e2691fc` | Fix `_routes.json` for Pages middleware without overlapping rules |
 | `fa72dc2` | Add Pages middleware so `/content` without slug redirects to `/posts` |
@@ -130,6 +132,7 @@ Full production smoke currently fails at `scripts/headers-qa.mjs` because custom
 HEADERS_QA_FAIL
 - root-html / header referrer-policy expected strict-origin-when-cross-origin, got same-origin
 - root-css /app.css max-age must be <= 300, got 14400
+- tokens-css /tokens.css max-age must be <= 300, got 14400
 - asset-js /assets/app-v5.js max-age must be <= 300, got 14400
 - og-image /og.png max-age must be <= 300, got 14400
 ```
@@ -158,7 +161,7 @@ Required owner action:
 
 1. Inspect Cloudflare zone rules for `duongsaotoasang.com`.
 2. Find Browser Cache TTL, Cache Rules, Transform Rules, Managed Rules, or Page Rules overriding origin headers.
-3. Set `duongsaotoasang.com/app.css`, `/assets/*`, `/og.png` to respect origin headers or max-age <= 300.
+3. Set `duongsaotoasang.com/app.css`, `/tokens.css`, `/assets/*`, `/og.png` to respect origin headers or max-age <= 300.
 4. Set Referrer Policy to `strict-origin-when-cross-origin`.
 5. Re-run:
 

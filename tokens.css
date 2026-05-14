@@ -1,0 +1,80 @@
+:root{
+  /* Brand colors */
+  --dsts-color-bg:#0b0f14;
+  --dsts-color-bg-deep:#080b0f;
+  --dsts-color-bg-soft:#10161e;
+  --dsts-color-panel:#121821;
+  --dsts-color-panel-soft:rgba(255,255,255,.04);
+  --dsts-color-text:#e6edf3;
+  --dsts-color-text-strong:#f7ead0;
+  --dsts-color-muted:#9aa7b4;
+  --dsts-color-muted-strong:#cbd5e1;
+  --dsts-color-gold:#d8bc77;
+  --dsts-color-gold-strong:#e0c896;
+  --dsts-color-gold-dark:#c9a66b;
+  --dsts-color-gold-soft:rgba(216,188,119,.18);
+  --dsts-color-line:rgba(255,255,255,.08);
+  --dsts-color-line-strong:rgba(255,255,255,.14);
+  --dsts-color-blue-soft:rgba(96,165,250,.15);
+  --dsts-color-purple-soft:rgba(167,139,250,.14);
+  --dsts-color-green-soft:rgba(74,222,128,.11);
+  --dsts-color-amber-soft:rgba(251,191,36,.15);
+  --dsts-color-red-soft:rgba(248,113,113,.12);
+
+  /* Typography */
+  --dsts-font-sans:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  --dsts-font-size-xs:12px;
+  --dsts-font-size-sm:14px;
+  --dsts-font-size-md:16px;
+  --dsts-font-size-lg:18px;
+  --dsts-font-size-xl:22px;
+  --dsts-line-height-tight:1.15;
+  --dsts-line-height-body:1.75;
+  --dsts-line-height-long:1.9;
+  --dsts-letter-spacing:0;
+  --dsts-letter-spacing-label:.08em;
+
+  /* Spacing */
+  --dsts-space-1:4px;
+  --dsts-space-2:8px;
+  --dsts-space-3:12px;
+  --dsts-space-4:16px;
+  --dsts-space-5:20px;
+  --dsts-space-6:24px;
+  --dsts-space-8:32px;
+  --dsts-space-10:40px;
+  --dsts-space-12:48px;
+  --dsts-space-16:64px;
+
+  /* Shape and layout */
+  --dsts-radius-xs:8px;
+  --dsts-radius-sm:14px;
+  --dsts-radius-md:18px;
+  --dsts-radius-lg:24px;
+  --dsts-radius-xl:28px;
+  --dsts-radius-pill:999px;
+  --dsts-wrap:1240px;
+  --dsts-wrap-readable:880px;
+
+  /* Shadows and focus */
+  --dsts-shadow:0 18px 60px rgba(0,0,0,.34);
+  --dsts-shadow-soft:0 12px 36px rgba(0,0,0,.24);
+  --dsts-focus-ring:0 0 0 3px rgba(216,188,119,.30);
+
+  /* Backward-compatible aliases used by existing pages */
+  --bg:var(--dsts-color-bg);
+  --bg-soft:var(--dsts-color-bg-soft);
+  --card:var(--dsts-color-panel);
+  --card-soft:var(--dsts-color-panel-soft);
+  --gold:var(--dsts-color-gold);
+  --gold-soft:var(--dsts-color-gold-soft);
+  --text:var(--dsts-color-text);
+  --muted:var(--dsts-color-muted);
+  --line:var(--dsts-color-line);
+  --line-strong:var(--dsts-color-line-strong);
+  --shadow:var(--dsts-shadow);
+  --radius:20px;
+  --radius-sm:var(--dsts-radius-sm);
+  --radius-lg:var(--dsts-radius-xl);
+  --wrap:var(--dsts-wrap);
+}

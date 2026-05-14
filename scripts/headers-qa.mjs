@@ -32,6 +32,17 @@ const checks = [
     ]
   },
   {
+    path: "/tokens.css",
+    label: "tokens-css",
+    expectedStatus: 200,
+    expectations: [
+      hasHeader("x-content-type-options", "nosniff"),
+      contentTypeIncludes("text/css"),
+      cacheMaxAgeAtMost(300),
+      cacheIncludes("must-revalidate")
+    ]
+  },
+  {
     path: "/assets/app-v5.js",
     label: "asset-js",
     expectedStatus: 200,

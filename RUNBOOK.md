@@ -331,7 +331,7 @@ Owner action in Cloudflare dashboard:
 2. Inspect Cache Rules, Page Rules, Transform Rules, Browser Cache TTL, and managed security headers.
 3. Remove or narrow any rule that overrides Pages `_headers`.
 4. Keep HTML `max-age=0, must-revalidate`.
-5. Keep `/assets/*`, `/app.css`, `/og.png` max-age <= 300 until launch lock.
+5. Keep `/assets/*`, `/app.css`, `/tokens.css`, `/og.png` max-age <= 300 until launch lock.
 6. Re-run:
 
 ```bash

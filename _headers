@@ -12,6 +12,9 @@
 /app.css
   Cache-Control: public, max-age=300, must-revalidate
 
+/tokens.css
+  Cache-Control: public, max-age=300, must-revalidate
+
 /assets/*
   Cache-Control: public, max-age=300, must-revalidate
 

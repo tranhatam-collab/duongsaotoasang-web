@@ -6,6 +6,7 @@
   "exclude": [
     "/assets/*",
     "/app.css",
+    "/tokens.css",
     "/og.png",
     "/robots.txt"
   ]
