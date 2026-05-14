@@ -86,6 +86,7 @@ node --check functions/_middleware.js
 node --check functions/api/content.js
 node --check functions/api/contents.js
 node --check functions/api/search.js
+node --check scripts/api-surface-qa.mjs
 node --check scripts/accessibility-qa.mjs
 node --check scripts/public-flow-safety-qa.mjs
 node --check scripts/social-metadata-qa.mjs
@@ -157,7 +158,7 @@ The release gate exits:
 - `1` for real repo/route/SEO/header regressions
 - `2` when the only remaining failure is the known Cloudflare custom-domain cache/header blocker
 
-The release gate always checks tracked source hygiene, `wrangler.toml` project identity, diff whitespace, syntax for critical Functions/API scripts, content QA, HTML structure QA, accessibility QA, public flow safety QA, social metadata QA, structured data QA, public asset budget QA, preview SEO/headers, production SEO, and production headers. Set `RUN_DEPLOY_DRY_RUN=1` after committing to verify the exact git archive deploy bundle without deploying.
+The release gate always checks tracked source hygiene, `wrangler.toml` project identity, diff whitespace, syntax for critical Functions/API scripts, content QA, HTML structure QA, accessibility QA, public flow safety QA, social metadata QA, structured data QA, public asset budget QA, preview API surface/SEO/headers, production API surface/SEO, and production headers. Set `RUN_DEPLOY_DRY_RUN=1` after committing to verify the exact git archive deploy bundle without deploying.
 
 Spot-check manually:
 
@@ -416,6 +417,7 @@ A public-site change is done only when:
 - `git diff --check` passes
 - relevant Node syntax checks pass
 - `node scripts/content-qa.mjs` passes
+- `node scripts/api-surface-qa.mjs` passes against preview or production when network is available
 - `node scripts/html-structure-qa.mjs` passes
 - `node scripts/accessibility-qa.mjs` passes
 - `node scripts/public-flow-safety-qa.mjs` passes

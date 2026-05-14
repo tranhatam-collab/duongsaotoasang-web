@@ -30,6 +30,7 @@ await requirePass("local-middleware-syntax", "node", ["--check", "functions/_mid
 await requirePass("local-api-content-syntax", "node", ["--check", "functions/api/content.js"])
 await requirePass("local-api-contents-syntax", "node", ["--check", "functions/api/contents.js"])
 await requirePass("local-api-search-syntax", "node", ["--check", "functions/api/search.js"])
+await requirePass("local-api-surface-qa-syntax", "node", ["--check", "scripts/api-surface-qa.mjs"])
 await requirePass("local-release-gate-syntax", "node", ["--check", "scripts/sprint-0-release-gate.mjs"])
 await requirePass("local-content-qa", "node", ["scripts/content-qa.mjs"])
 await requirePass("local-html-structure-qa", "node", ["scripts/html-structure-qa.mjs"])
@@ -46,6 +47,7 @@ if (RUN_DEPLOY_DRY_RUN) {
 }
 
 if (PREVIEW_URL) {
+  await requirePass("preview-api-surface", "node", ["scripts/api-surface-qa.mjs"], { BASE_URL: PREVIEW_URL })
   await requirePass("preview-seo", "node", ["scripts/seo-route-qa.mjs"], { BASE_URL: PREVIEW_URL })
   await requirePass("preview-headers", "node", ["scripts/headers-qa.mjs"], { BASE_URL: PREVIEW_URL })
   if (RUN_FULL_SMOKE) {
@@ -53,6 +55,7 @@ if (PREVIEW_URL) {
   }
 }
 
+await requirePass("production-api-surface", "node", ["scripts/api-surface-qa.mjs"], { BASE_URL: PRODUCTION_URL })
 await requirePass("production-seo", "node", ["scripts/seo-route-qa.mjs"], { BASE_URL: PRODUCTION_URL })
 
 const productionHeaders = await runStep("production-headers", "node", ["scripts/headers-qa.mjs"], {

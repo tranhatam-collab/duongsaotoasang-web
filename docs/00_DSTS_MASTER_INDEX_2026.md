@@ -1,8 +1,9 @@
 # 00_DSTS_MASTER_INDEX_2026
 
-> 📝 **DRAFT v1.5.18** — 2026-05-14 (supersedes v1.5.17)
+> 📝 **DRAFT v1.5.19** — 2026-05-14 (supersedes v1.5.18)
 > Bản đồ master cho cả ecosystem DSTS. Gom toàn bộ Drive cũ + kế hoạch mới thành 1 chỉ mục chính thức.
 > **Đối tượng dùng:** dev, content, legal, product, founder — cùng một bản truth.
+> **v1.5.19 changes:** Wire API surface QA into the release gate for preview and production so list/search cannot expose full content bodies.
 > **v1.5.18 changes:** Add public flow safety QA so public pages cannot reopen excluded email/payment/auth/register flows outside the whitelisted posts search.
 > **v1.5.17 changes:** Add social metadata QA for OG/Twitter share previews and complete missing Twitter images on trust/legal pages.
 > **v1.5.16 changes:** Add accessibility QA to prevent empty `href="#"`, broken in-page fragments, duplicate IDs, missing main landmarks, unlabeled buttons/links, and images without `alt`.
@@ -26,7 +27,7 @@
 > **v1.2 changes:** Wave 1 sync timeline (chèn Phase 0B), fix A7 status, thêm 7 NDNUM spec con TBD.
 
 **Founder:** Trần Hà Tâm
-**Phiên bản:** v1.5.18 (master index — pending re-lock)
+**Phiên bản:** v1.5.19 (master index — pending re-lock)
 **Ngày phát hành:** 2026-05-14
 **Nguyên tắc:** Mọi tài liệu mới về DSTS phải được index ở đây. Không có file ngoài index.
 
@@ -257,6 +258,7 @@ Theo thứ tự ưu tiên:
   24. scripts/accessibility-qa.mjs ✅ accessibility/semantic HTML gate added 2026-05-14
   25. scripts/social-metadata-qa.mjs ✅ OG/Twitter metadata gate added 2026-05-14
   26. scripts/public-flow-safety-qa.mjs ✅ excluded-lane public flow safety gate added 2026-05-14
+  27. scripts/api-surface-qa.mjs ✅ preview/production API surface gate wired into release gate 2026-05-14
 
 🔴 Phase 0B (Tháng 6-8/2026):
   20a. 7 NDNUM spec con (Child Safety, Consent, Mentor Screening, Legal Entity, Sponsor Fulfillment, Impact, Landing Page)
@@ -430,6 +432,7 @@ Nếu có conflict giữa Drive cũ (Layer A) và Plan mới (Layer 0-2):
 | v1.5.16 | 2026-05-14 | Add `scripts/accessibility-qa.mjs`, fix 404 language links away from `href="#"`, and wire accessibility/semantic checks into the release gate. | Codex |
 | v1.5.17 | 2026-05-14 | Add `scripts/social-metadata-qa.mjs`, complete missing Twitter image metadata on legal/trust pages, and wire OG/Twitter checks into the release gate. | Codex |
 | v1.5.18 | 2026-05-14 | Add `scripts/public-flow-safety-qa.mjs` and wire it into the release gate so public pages cannot reopen email/payment/auth/register flows outside the whitelisted posts search. | Codex |
+| v1.5.19 | 2026-05-14 | Wire `scripts/api-surface-qa.mjs` into the release gate for preview and production so API list/search stay metadata-only while detail and 404 contracts remain verified. | Codex |
 
 ---
 
