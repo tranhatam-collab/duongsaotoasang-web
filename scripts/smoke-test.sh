@@ -3,6 +3,8 @@ set -euo pipefail
 
 BASE="${BASE_URL:-https://duongsaotoasang.com}"
 BASE="${BASE%/}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 UNKNOWN_PATH="/random-unknown-url-xyz-12345"
 MISSING_CONTENT_PATH="/content?slug=missing-smoke-slug-404"
 
@@ -164,6 +166,9 @@ failed=0
 echo "=== DSTS Sprint 0 Smoke Test ==="
 echo "Base: ${BASE}"
 echo "Timestamp: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+echo ""
+
+node "${REPO_ROOT}/scripts/content-qa.mjs"
 echo ""
 
 for path in "${urls[@]}"; do

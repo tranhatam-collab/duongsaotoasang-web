@@ -1,6 +1,8 @@
 === DSTS Sprint 0 Smoke Test ===
-Base: http://127.0.0.1:8801
-Timestamp: 2026-05-14T01:41:10Z
+Base: https://duongsaotoasang.com
+Timestamp: 2026-05-14T01:51:18Z
+
+CONTENT_QA_PASS posts=24 pages=2 fallback=26
 
 PASS 200  /
 PASS 200  /about
