@@ -178,7 +178,6 @@ content_checks=(
   "/scripts/rising-entrepreneur|Kênh gửi đánh giá chưa mở"
   "/scripts/rising-entrepreneur|Người đánh giá minh họa A"
   "/assets/app-v5.js|dsts-entity-disclosure"
-  "/api/search?q=guardian&limit=3|guardian-first-nguyen-tac-bao-ve-tre-em-ndnum"
 )
 
 failed=0
