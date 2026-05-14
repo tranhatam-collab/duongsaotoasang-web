@@ -3,7 +3,7 @@
 > **Scope:** Sprint 0 execution status after continuous public-site hardening.
 > **Repo:** `tranhatam-collab/duongsaotoasang-web`
 > **Branch:** `main`
-> **Latest verified implementation baseline:** `e1a360d`
+> **Latest verified implementation baseline:** `257b007`
 > **Cloudflare Pages project:** `duongsaotoasang-com-v2`
 > **Do not confuse with:** `duongsaotoasang-web`
 
@@ -38,12 +38,13 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Area | Status | Evidence |
 |---|---:|---|
-| Public routes | PASS | Preview full smoke and release gate checks passed on `a61bef0b.duongsaotoasang-com-v2.pages.dev` through the known production header/cache external blocker |
+| Public routes | PASS | Preview release gate checks passed on `806a88f8.duongsaotoasang-com-v2.pages.dev` through the known production header/cache external blocker |
 | `/posts` fallback | PASS | 24 posts, `data-dsts-ssr="posts"`, no legacy loading placeholder |
 | `/content?slug=...` detail | PASS | Valid slug renders SSR content; missing slug returns content 404 |
 | `/content` without slug | PASS | Server-side middleware redirects to `/posts` |
-| Content depth QA | PASS | 24 posts and 2 page fallbacks pass minimum depth, heading, paragraph, excerpt, tag, reading time, and placeholder checks |
-| Static page depth QA | PASS | 32 tracked static HTML pages pass minimum body depth and section structure; app shells are excluded |
+| Content depth QA | PASS | 24 posts and 2 page fallbacks pass minimum depth, heading, paragraph, excerpt, tag, reading time, placeholder checks, and public wording checks |
+| Static page depth QA | PASS | 32 tracked static HTML pages pass minimum body depth, section structure, and public wording checks; app shells are excluded |
+| Gala/A7 public wording | PASS | Public Gala route and fallback articles now say "đang chờ xác nhận A7" instead of internal `Founder TBD` wording |
 | API list safety | PASS | `/api/contents` list responses do not expose full body |
 | API search safety | PASS | `/api/search?q=guardian&limit=3` returns metadata only |
 | API detail body | PASS | `/api/content?slug=guardian-first-nguyen-tac-bao-ve-tre-em-ndnum` returns full body |
@@ -77,6 +78,8 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Commit | Purpose |
 |---|---|
+| `257b007` | Replace internal Gala/A7 wording on public surfaces and block `Founder TBD` in depth QA |
+| `fb4b76b` | Update link QA verification snapshot |
 | `e1a360d` | Wire internal link QA into the Sprint 0 release gate for preview and production |
 | `0a418fd` | Update static page depth verification snapshot |
 | `52394b7` | Add static page depth QA gate and expand support / Người Việt Muôn Nơi bridge content |
@@ -123,7 +126,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 Use preview for full smoke while production custom-domain header/cache override is unresolved:
 
 ```bash
-BASE_URL=https://a61bef0b.duongsaotoasang-com-v2.pages.dev ./scripts/smoke-test.sh
+BASE_URL=https://806a88f8.duongsaotoasang-com-v2.pages.dev ./scripts/smoke-test.sh
 ```
 
 Expected:
@@ -136,7 +139,7 @@ PASS content-index-redirect  /content -> /posts
 SEO QA:
 
 ```bash
-BASE_URL=https://a61bef0b.duongsaotoasang-com-v2.pages.dev node scripts/seo-route-qa.mjs
+BASE_URL=https://806a88f8.duongsaotoasang-com-v2.pages.dev node scripts/seo-route-qa.mjs
 BASE_URL=https://duongsaotoasang.com node scripts/seo-route-qa.mjs
 ```
 
@@ -149,9 +152,9 @@ SEO_ROUTE_QA_PASS indexable=32 noindex=2 redirects=2
 Production API schema spot checks:
 
 ```bash
-BASE_URL=https://a61bef0b.duongsaotoasang-com-v2.pages.dev node scripts/api-surface-qa.mjs
+BASE_URL=https://806a88f8.duongsaotoasang-com-v2.pages.dev node scripts/api-surface-qa.mjs
 BASE_URL=https://duongsaotoasang.com node scripts/api-surface-qa.mjs
-BASE_URL=https://a61bef0b.duongsaotoasang-com-v2.pages.dev node scripts/link-qa.mjs
+BASE_URL=https://806a88f8.duongsaotoasang-com-v2.pages.dev node scripts/link-qa.mjs
 BASE_URL=https://duongsaotoasang.com node scripts/link-qa.mjs
 node scripts/content-depth-qa.mjs
 node scripts/static-page-depth-qa.mjs
@@ -169,7 +172,7 @@ Expected:
 Release gate:
 
 ```bash
-PREVIEW_URL=https://a61bef0b.duongsaotoasang-com-v2.pages.dev RUN_DEPLOY_DRY_RUN=1 node scripts/sprint-0-release-gate.mjs
+PREVIEW_URL=https://806a88f8.duongsaotoasang-com-v2.pages.dev RUN_DEPLOY_DRY_RUN=1 node scripts/sprint-0-release-gate.mjs
 ```
 
 Expected until Cloudflare custom-domain rules are fixed:
