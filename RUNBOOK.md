@@ -127,6 +127,7 @@ BASE_URL=<preview> ./scripts/smoke-test.sh
 BASE_URL=<preview> node scripts/seo-route-qa.mjs
 BASE_URL=<preview> node scripts/headers-qa.mjs
 PREVIEW_URL=<preview> node scripts/sprint-0-release-gate.mjs
+PREVIEW_URL=<preview> RUN_DEPLOY_DRY_RUN=1 node scripts/sprint-0-release-gate.mjs
 curl -sS -I -L <preview>/assets/app.js
 ```
 
@@ -146,6 +147,8 @@ The release gate exits:
 - `0` when preview + production are ready
 - `1` for real repo/route/SEO/header regressions
 - `2` when the only remaining failure is the known Cloudflare custom-domain cache/header blocker
+
+The release gate always checks tracked source hygiene, `wrangler.toml` project identity, diff whitespace, syntax for critical Functions/API scripts, content QA, preview SEO/headers, production SEO, and production headers. Set `RUN_DEPLOY_DRY_RUN=1` after committing to verify the exact git archive deploy bundle without deploying.
 
 Spot-check manually:
 
@@ -174,6 +177,7 @@ curl -sS -L 'https://duongsaotoasang.com/api/search?q=guardian&limit=3'
 BASE_URL=https://duongsaotoasang.com node scripts/seo-route-qa.mjs
 BASE_URL=https://duongsaotoasang.com node scripts/headers-qa.mjs
 node scripts/sprint-0-release-gate.mjs
+RUN_DEPLOY_DRY_RUN=1 node scripts/sprint-0-release-gate.mjs
 curl -sS -I -L https://duongsaotoasang.com/assets/app.js
 ```
 

@@ -1,8 +1,9 @@
 # 00_DSTS_MASTER_INDEX_2026
 
-> 📝 **DRAFT v1.5.11** — 2026-05-14 (supersedes v1.5.10)
+> 📝 **DRAFT v1.5.12** — 2026-05-14 (supersedes v1.5.11)
 > Bản đồ master cho cả ecosystem DSTS. Gom toàn bộ Drive cũ + kế hoạch mới thành 1 chỉ mục chính thức.
 > **Đối tượng dùng:** dev, content, legal, product, founder — cùng một bản truth.
+> **v1.5.12 changes:** Harden Sprint 0 release gate with tracked source hygiene, wrangler project identity, critical syntax checks, and optional deploy-bundle dry run.
 > **v1.5.11 changes:** Add Sprint 0 release gate script that returns PASS, FAIL, or BLOCKED_EXTERNAL for automation loops.
 > **v1.5.10 changes:** Add Cloudflare custom-domain fix packet with exact purge URLs, dashboard checks, API template, and post-fix verification commands.
 > **v1.5.9 changes:** Extend `headers-qa` and runbook to assert retired `/assets/app.js` returns 404/no-store, making custom-domain stale cache visible in one command.
@@ -19,7 +20,7 @@
 > **v1.2 changes:** Wave 1 sync timeline (chèn Phase 0B), fix A7 status, thêm 7 NDNUM spec con TBD.
 
 **Founder:** Trần Hà Tâm
-**Phiên bản:** v1.5.11 (master index — pending re-lock)
+**Phiên bản:** v1.5.12 (master index — pending re-lock)
 **Ngày phát hành:** 2026-05-14
 **Nguyên tắc:** Mọi tài liệu mới về DSTS phải được index ở đây. Không có file ngoài index.
 
@@ -243,7 +244,7 @@ Theo thứ tự ưu tiên:
   17. tokens.css ✅ design tokens added 2026-05-14
   18. assets/app.js retirement ✅ legacy asset removed + deploy guard 2026-05-14
   19. RUNBOOK.md ✅ repo runbook added 2026-05-14
-  20. scripts/sprint-0-release-gate.mjs ✅ PASS/FAIL/BLOCKED_EXTERNAL gate added 2026-05-14
+  20. scripts/sprint-0-release-gate.mjs ✅ PASS/FAIL/BLOCKED_EXTERNAL + source hygiene gate added 2026-05-14
 
 🔴 Phase 0B (Tháng 6-8/2026):
   20a. 7 NDNUM spec con (Child Safety, Consent, Mentor Screening, Legal Entity, Sponsor Fulfillment, Impact, Landing Page)
@@ -410,6 +411,7 @@ Nếu có conflict giữa Drive cũ (Layer A) và Plan mới (Layer 0-2):
 | v1.5.9 | 2026-05-14 | Extend `headers-qa` and `RUNBOOK.md` preview/production verification so retired `/assets/app.js` must return 404/no-store on preview and stale production cache is reported as an explicit custom-domain blocker. | Codex |
 | v1.5.10 | 2026-05-14 | Add Cloudflare custom-domain fix packet documenting correct Pages project, stale cache evidence, exact purge URLs, dashboard rule checks, API purge template, and post-fix verification commands. | Codex |
 | v1.5.11 | 2026-05-14 | Add `scripts/sprint-0-release-gate.mjs`, a compact automation gate that runs content QA, preview/prod SEO/header checks, and exits `0` ready, `1` hard fail, or `2` known Cloudflare `BLOCKED_EXTERNAL`. | Codex |
+| v1.5.12 | 2026-05-14 | Harden `scripts/sprint-0-release-gate.mjs` with tracked-source junk checks, `wrangler.toml` project identity, critical Function/API syntax checks, `git diff --check`, and optional `RUN_DEPLOY_DRY_RUN=1` deploy-bundle verification. | Codex |
 
 ---
 

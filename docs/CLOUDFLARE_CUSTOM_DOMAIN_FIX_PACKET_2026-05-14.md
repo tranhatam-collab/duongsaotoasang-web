@@ -190,6 +190,7 @@ BASE_URL=https://duongsaotoasang.com node scripts/headers-qa.mjs
 BASE_URL=https://duongsaotoasang.com node scripts/seo-route-qa.mjs
 BASE_URL=https://duongsaotoasang.com ./scripts/smoke-test.sh
 node scripts/sprint-0-release-gate.mjs
+RUN_DEPLOY_DRY_RUN=1 node scripts/sprint-0-release-gate.mjs
 curl -sS -I -L https://duongsaotoasang.com/assets/app.js
 ```
 
@@ -202,6 +203,8 @@ PASSED: all smoke checks passed
 SPRINT_0_RELEASE_GATE_PASS
 HTTP/2 404
 ```
+
+Use `RUN_DEPLOY_DRY_RUN=1` only after committing local changes. It verifies the exact git archive deploy bundle without deploying.
 
 After those pass, update `docs/STATE_REPORT_2026-05-14.md` from:
 

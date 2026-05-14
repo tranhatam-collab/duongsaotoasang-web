@@ -1,4 +1,5 @@
 import { execFile } from "node:child_process"
+import { readFileSync } from "node:fs"
 import { dirname, join } from "node:path"
 import { fileURLToPath } from "node:url"
 import { promisify } from "node:util"
@@ -11,6 +12,7 @@ const repoRoot = join(__dirname, "..")
 const PREVIEW_URL = normalizeBase(process.env.PREVIEW_URL || "")
 const PRODUCTION_URL = normalizeBase(process.env.PRODUCTION_URL || "https://duongsaotoasang.com")
 const RUN_FULL_SMOKE = process.env.RUN_FULL_SMOKE === "1"
+const RUN_DEPLOY_DRY_RUN = process.env.RUN_DEPLOY_DRY_RUN === "1"
 
 const hardFailures = []
 const externalBlockers = []
@@ -19,9 +21,23 @@ console.log("=== DSTS Sprint 0 Release Gate ===")
 console.log(`production=${PRODUCTION_URL}`)
 console.log(`preview=${PREVIEW_URL || "(skipped)"}`)
 console.log(`full_smoke=${RUN_FULL_SMOKE ? "yes" : "no"}`)
+console.log(`deploy_dry_run=${RUN_DEPLOY_DRY_RUN ? "yes" : "no"}`)
 console.log("")
 
+await requireTrackedSourceHygiene()
+await requirePass("local-diff-check", "git", ["diff", "--check"])
+await requirePass("local-middleware-syntax", "node", ["--check", "functions/_middleware.js"])
+await requirePass("local-api-content-syntax", "node", ["--check", "functions/api/content.js"])
+await requirePass("local-api-contents-syntax", "node", ["--check", "functions/api/contents.js"])
+await requirePass("local-api-search-syntax", "node", ["--check", "functions/api/search.js"])
+await requirePass("local-release-gate-syntax", "node", ["--check", "scripts/sprint-0-release-gate.mjs"])
 await requirePass("local-content-qa", "node", ["scripts/content-qa.mjs"])
+if (RUN_DEPLOY_DRY_RUN) {
+  await requirePass("local-deploy-dry-run", "bash", ["scripts/deploy-pages-clean.sh", "--dry-run"], {
+    PROJECT_NAME: "duongsaotoasang-com-v2",
+    BRANCH: "main"
+  })
+}
 
 if (PREVIEW_URL) {
   await requirePass("preview-seo", "node", ["scripts/seo-route-qa.mjs"], { BASE_URL: PREVIEW_URL })
@@ -68,6 +84,45 @@ async function requirePass(label, command, args, env = {}) {
   const result = await runStep(label, command, args, env)
   if (!result.ok) {
     hardFailures.push(`${label} failed:\n${result.output}`)
+  }
+}
+
+async function requireTrackedSourceHygiene() {
+  console.log("--- tracked-source-hygiene ---")
+  try {
+    const wranglerConfig = readFileSync(join(repoRoot, "wrangler.toml"), "utf8")
+    if (!/^name\s*=\s*"duongsaotoasang-com-v2"$/m.test(wranglerConfig)) {
+      hardFailures.push("wrangler.toml must target Pages project duongsaotoasang-com-v2")
+    }
+  } catch (error) {
+    hardFailures.push(`wrangler.toml could not be read: ${error.message}`)
+  }
+
+  try {
+    const result = await execFileAsync("git", ["ls-files"], {
+      cwd: repoRoot,
+      maxBuffer: 1024 * 1024 * 10
+    })
+    const tracked = result.stdout.split(/\r?\n/).filter(Boolean)
+    const blockedPatterns = [
+      /^assets\/app\.js$/,
+      /^legal 2\.html$/,
+      /^_redirects 2$/,
+      /^functions\/api\/content [23]\.js$/,
+      /^functions\/api\/contents 2\.js$/,
+      /(^|\/)\.DS_Store$/,
+      /^\.wrangler\//,
+      /^\.claude\//
+    ]
+    const blocked = tracked.filter((file) => blockedPatterns.some((pattern) => pattern.test(file)))
+    if (blocked.length) {
+      hardFailures.push(`tracked local junk must not be committed: ${blocked.join(", ")}`)
+    }
+    if (!blocked.length) {
+      console.log(`PASS tracked=${tracked.length} project=duongsaotoasang-com-v2`)
+    }
+  } catch (error) {
+    hardFailures.push(`git ls-files failed: ${error.message}`)
   }
 }
 

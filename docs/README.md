@@ -19,7 +19,7 @@ Project hiện chia làm 3 nhóm:
 
 - **DRAFT** (đang chỉnh, gần sẵn sàng):
   - Master Plan v1.2-DRAFT (pending re-lock sau NDNUM v1.2)
-  - Master Index v1.5.11 (pending re-lock)
+  - Master Index v1.5.12 (pending re-lock)
   - NDNUM v1.1-REVIEWED + 7 NDNUM spec con DRAFT v1.0
   - Layer 1 DSTS spec DEV-READY v1.0 nhưng chưa mở public interactive flows
 
@@ -97,7 +97,7 @@ Mọi file trong `_archive_2026-05-13/` **KHÔNG dùng làm reference**.
 | File | Mục đích | Status |
 |---|---|---|
 | `README.md` | Index file này | 📝 Wave 1 — 2026-05-13 |
-| `00_DSTS_MASTER_INDEX_2026.md` | Master index 3 Layer + Phase 0B + NDNUM | 📝 DRAFT v1.5.11 — pending re-lock |
+| `00_DSTS_MASTER_INDEX_2026.md` | Master index 3 Layer + Phase 0B + NDNUM | 📝 DRAFT v1.5.12 — pending re-lock |
 | `CLOUDFLARE_CUSTOM_DOMAIN_FIX_PACKET_2026-05-14.md` | Handoff packet sửa cache/header custom domain Cloudflare | 🟠 BLOCKED_EXTERNAL — Cloudflare admin |
 | `dsts-master-plan-v1.2-DRAFT.md` | Master plan v1.2 — chèn Phase 0B | 📝 DRAFT — pending re-lock |
 | `MASTER_PLAN_v1.1_FINAL.md` | Master plan v1.1 (legacy reference) | 🗄️ Archive ref |
@@ -185,7 +185,7 @@ Mọi file trong `_archive_2026-05-13/` **KHÔNG dùng làm reference**.
 - Repo `_headers` đúng và preview deploy áp dụng đúng.
 - Xem `STATE_REPORT_2026-05-14.md` để biết trạng thái.
 - Xem `CLOUDFLARE_CUSTOM_DOMAIN_FIX_PACKET_2026-05-14.md` để biết purge URLs, dashboard checks, API template, và post-fix verification.
-- Dùng `scripts/sprint-0-release-gate.mjs` cho automation: exit `0` ready, `1` repo regression, `2` known `BLOCKED_EXTERNAL`.
+- Dùng `scripts/sprint-0-release-gate.mjs` cho automation: exit `0` ready, `1` repo regression, `2` known `BLOCKED_EXTERNAL`; thêm `RUN_DEPLOY_DRY_RUN=1` sau commit để kiểm deploy bundle.
 
 ---
 

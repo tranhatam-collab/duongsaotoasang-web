@@ -225,6 +225,7 @@ Automation gate:
 
 ```text
 scripts/sprint-0-release-gate.mjs returns exit 2 while this known external blocker remains.
+Use RUN_DEPLOY_DRY_RUN=1 after commit to verify the exact deploy bundle before Cloudflare Pages deploy.
 ```
 
 The site is no longer in the old P0 state of black pages, broken primary routes, stuck content, missing public pages, or unsafe API list/search body exposure.
