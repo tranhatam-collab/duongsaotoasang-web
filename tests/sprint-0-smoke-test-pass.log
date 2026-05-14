@@ -1,6 +1,6 @@
 === DSTS Sprint 0 Smoke Test ===
 Base: http://127.0.0.1:8796
-Timestamp: 2026-05-14T00:11:48Z
+Timestamp: 2026-05-14T00:26:47Z
 
 PASS 200  /
 PASS 200  /about
@@ -22,6 +22,7 @@ PASS 200  /ndnum
 PASS 200  /movement
 PASS 200  /movement/sponsors
 PASS 200  /movement/events
+PASS 200  /movement/gala-2026
 PASS 200  /movement/diaspora-map
 PASS 200  /movement/press
 PASS 200  /movement/partners
@@ -62,6 +63,10 @@ PASS content  /movement/events  contains [data-dsts-surface="movement-events"]
 PASS content  /movement/events  contains [Movement Events]
 PASS content  /movement/events  contains [Không có event registration form]
 PASS content  /movement/events  contains [NO OWNER = NO EVENT]
+PASS content  /movement/gala-2026  contains [data-dsts-surface="movement-gala-status"]
+PASS content  /movement/gala-2026  contains [Gala status pending Founder A7 confirm]
+PASS content  /movement/gala-2026  contains [Không có gala registration form]
+PASS content  /movement/gala-2026  contains [Founder TBD]
 PASS content  /movement/press  contains [data-dsts-surface="movement-press"]
 PASS content  /movement/press  contains [Press Kit DSTS]
 PASS content  /movement/press  contains [Không có media contact form]

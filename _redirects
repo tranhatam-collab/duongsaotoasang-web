@@ -47,7 +47,6 @@
 # /movement is now served by movement/index.html as an indexable explainer.
 # Sub-route placeholders below stay noindex and do NOT open sponsor inquiry,
 # event registration, payment, or auth flows.
-/movement/gala-2026             /movement/coming-soon             200
 /movement/sponsors/*            /movement/coming-soon             200
 /movement/events/*              /movement/coming-soon             200
 /movement/tour-2026-2027/*      /movement/coming-soon             200
