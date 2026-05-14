@@ -1,5 +1,108 @@
 export const POST_CONTENTS = [
   {
+    slug: "tour-2026-2027-la-roadmap-khong-phai-lich-ban-ve",
+    type: "post",
+    title_vi: "Tour 2026-2027 là roadmap, không phải lịch bán vé",
+    title_en: "Tour 2026-2027 is a roadmap, not a ticket calendar",
+    excerpt_vi: "DSTS công bố tour roadmap để người đọc hiểu hướng phát triển toàn cầu, nhưng không mở đăng ký, bán vé hoặc xác nhận thành phố khi readiness gate chưa đủ.",
+    excerpt_en: "DSTS publishes the tour roadmap to explain global direction, not to open registration, ticketing, or confirmed city stops before readiness gates are met.",
+    content_vi: `
+      <p>Tour 2026-2027 là một phần của Movement Portal, nhưng không nên bị hiểu như lịch bán vé. Ở giai đoạn public hiện tại, tour roadmap dùng để giải thích hướng phát triển toàn cầu của DSTS: các vùng ưu tiên, logic mở từng chặng, điều kiện địa phương và những gate cần có trước khi một điểm dừng trở thành sự kiện thật.</p>
+      <p>Một tour stop chỉ nên được xem là confirmed khi có owner, local host, venue hoặc online format, pháp lý, privacy, truyền thông và reporting. Nếu thiếu các yếu tố này, trang public phải giữ trạng thái roadmap hoặc planned, không được tạo cảm giác người dùng có thể đăng ký hoặc mua vé.</p>
+      <h2>Roadmap giúp chuẩn bị, không thay thế vận hành</h2>
+      <p>Roadmap có giá trị vì nó cho cộng đồng thấy DSTS đang nghĩ dài hạn. Người Việt ở nhiều quốc gia có thể hiểu vì sao dự án muốn đi qua Việt Nam, Đông Nam Á, Bắc Mỹ, châu Âu, Úc hoặc các cụm diaspora khác. Nhưng roadmap không tự động tạo quyền tổ chức sự kiện ở từng nơi.</p>
+      <p>Muốn chuyển từ roadmap sang event, mỗi điểm dừng cần readiness score. Score này phải xét người phụ trách, đối tác địa phương, địa điểm, ngân sách, rủi ro, quyền sử dụng hình ảnh, an toàn trẻ em nếu có, và post-event report. Chỉ khi đủ điều kiện, route event cụ thể mới nên mở.</p>
+      <h2>Không đăng ký, không ticketing, không payment trong route tour hiện tại</h2>
+      <p>Route <code>/movement/tour-2026-2027</code> nên nói rõ nó không chứa event registration form, không ticketing, không checkout và không sponsor CTA nhạy cảm. Người đọc có thể xem timeline, vùng ưu tiên và nguyên tắc readiness, nhưng không bị đẩy vào flow mà team vận hành chưa sở hữu.</p>
+      <p>Cách này giữ DSTS tránh một lỗi phổ biến: công bố tour quá sớm rồi để cộng đồng chờ thông tin không chắc chắn. Thay vào đó, website công bố điều đã biết, nói rõ điều chưa xác nhận và giữ quyền cập nhật khi mỗi thành phố đủ điều kiện.</p>
+      <h2>Tour tốt là tour có báo cáo sau cùng</h2>
+      <p>Một tour không kết thúc khi sự kiện diễn ra. Mỗi điểm dừng cần có báo cáo: mục tiêu, số liệu được phép công bố, bài học, ảnh hoặc video đã có quyền, đối tác liên quan và bước tiếp theo. Nếu không có reporting, tour dễ biến thành hoạt động truyền thông ngắn hạn.</p>
+      <p>Với DSTS, tour roadmap là lời hứa về cách chuẩn bị có trách nhiệm. Nó không bán kỳ vọng. Nó giúp người đọc nhìn thấy hướng đi, đồng thời biết rằng mỗi bước public phải đi qua readiness gate trước khi mở thật.</p>
+    `,
+    content_en: `
+      <p>Tour 2026-2027 is part of Movement Portal, but it should not be understood as a ticket calendar. At the current public stage, the tour roadmap explains DSTS global direction: priority regions, phased opening logic, local conditions, and gates required before a stop becomes a real event.</p>
+      <p>A tour stop should only be considered confirmed when it has an owner, local host, venue or online format, legal review, privacy review, media readiness, and reporting. Without these, the public page must stay in roadmap or planned state.</p>
+      <h2>Roadmap prepares; it does not replace operations</h2>
+      <p>A roadmap helps the community understand long-term direction, but it does not automatically create the right to run an event in each city. Every stop needs readiness scoring before it becomes public as an event.</p>
+      <h2>No registration, ticketing, or payment in the current tour route</h2>
+      <p>The current <code>/movement/tour-2026-2027</code> route should not contain event registration, ticketing, checkout, or sensitive sponsor CTAs. Readers can see timeline and readiness principles without entering flows operations do not own yet.</p>
+      <h2>A good tour ends with reports</h2>
+      <p>Each stop needs reporting: goals, publishable metrics, lessons, permitted photos or video, partners, and next steps. DSTS uses the tour roadmap to show responsible preparation, not to sell expectations.</p>
+    `,
+    tags: "tour,roadmap,movement",
+    reading_time: "8 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-14T01:24:00.000Z"
+  },
+  {
+    slug: "press-kit-can-noi-ro-dieu-da-xac-minh",
+    type: "post",
+    title_vi: "Press Kit cần nói rõ điều đã xác minh và điều chưa công bố",
+    title_en: "A press kit must separate verified facts from unpublished plans",
+    excerpt_vi: "Press Kit DSTS phải giúp media hiểu đúng câu chuyện, không biến kế hoạch, lời hứa hoặc dữ liệu chưa xác minh thành tuyên bố public.",
+    excerpt_en: "The DSTS press kit should help media understand the story without turning plans, promises, or unverified data into public claims.",
+    content_vi: `
+      <p>Press Kit là cửa vào cho báo chí, đối tác truyền thông và người muốn hiểu nhanh DSTS. Vì vậy, nó phải gọn, chính xác và có ranh giới. Một press kit tốt không chỉ làm dự án trông chuyên nghiệp; nó bảo vệ dự án khỏi việc bị trích dẫn sai hoặc phóng đại những phần chưa xác minh.</p>
+      <p>DSTS có nhiều lớp: nội dung, Script Journey, Movement Portal, NDNUM, tour, sponsor, diaspora map và các hệ thống tương lai. Nếu press kit không phân biệt phần đã live với phần đang chuẩn bị, media có thể vô tình viết như thể toàn bộ hệ sinh thái đã hoạt động đầy đủ.</p>
+      <h2>Verified facts trước, vision sau</h2>
+      <p>Press Kit nên đặt phần đã xác minh lên trước: tên dự án, mô tả ngắn, website, các route public hiện có, trạng thái donate, trạng thái Movement read-only, trạng thái NDNUM Phase 0B và các nguyên tắc an toàn. Sau đó mới đến vision dài hạn, roadmap và các lớp đang chuẩn bị.</p>
+      <p>Cách này không làm câu chuyện kém hấp dẫn. Nó giúp câu chuyện đáng tin hơn. Một dự án biết nói rõ mình đang ở đâu thường có sức nặng hơn một dự án mô tả mọi thứ như đã hoàn tất.</p>
+      <h2>Không có media contact form nếu chưa có owner</h2>
+      <p>Nếu chưa có Press Liaison hoặc người chịu trách nhiệm xử lý media inquiry, route <code>/movement/press</code> không nên mở form liên hệ trực tiếp. Trang có thể cung cấp boilerplate, nguyên tắc trích dẫn, hình ảnh đã được phép dùng nếu có, và hướng dẫn dùng contact thủ công.</p>
+      <p>Điều quan trọng là không tạo kênh thu dữ liệu hoặc lời hứa phản hồi nếu team chưa sở hữu quy trình. Press route read-only vẫn có giá trị: nó giúp người đọc hiểu câu chuyện và biết giới hạn công bố.</p>
+      <h2>Trích dẫn đúng cũng là một phần của minh bạch</h2>
+      <p>DSTS nên khuyến khích media trích dẫn đúng trạng thái: donate tạm đóng, NDNUM chưa nhận đăng ký trẻ em, Movement route đang read-only, Gala 2026 pending A7 và các flow payment/email/auth thuộc lane riêng. Những ranh giới này giúp báo chí không vô tình tạo kỳ vọng sai cho cộng đồng.</p>
+      <p>Press Kit vì vậy không chỉ là bộ tài sản thương hiệu. Nó là một công cụ bảo vệ sự thật public của DSTS.</p>
+    `,
+    content_en: `
+      <p>A press kit is an entry point for media, partners, and people who want to understand DSTS quickly. It must be concise, accurate, and bounded. A good press kit protects the project from being misquoted or inflated.</p>
+      <h2>Verified facts first, vision later</h2>
+      <p>The press kit should begin with verified facts: project name, short description, website, live public routes, donation status, Movement read-only status, NDNUM Phase 0B status, and safety principles. Long-term vision and roadmap should come after that.</p>
+      <h2>No media contact form without an owner</h2>
+      <p>If there is no Press Liaison or owner for media inquiries, <code>/movement/press</code> should not open a direct inquiry form. It can provide boilerplate, citation guidance, approved assets if available, and manual contact direction.</p>
+      <h2>Correct citation is part of transparency</h2>
+      <p>DSTS should encourage media to cite status accurately: donation closed, NDNUM not accepting child registration, Movement read-only, Gala 2026 pending A7, and payment/email/auth lanes owned separately.</p>
+    `,
+    tags: "press,media,minh bạch",
+    reading_time: "7 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-14T01:20:00.000Z"
+  },
+  {
+    slug: "partners-khong-phai-logo-de-trang-tri",
+    type: "post",
+    title_vi: "Partners không phải logo để trang trí, mà là trách nhiệm công bố",
+    title_en: "Partners are not decorative logos, but a disclosure responsibility",
+    excerpt_vi: "Trang partners chỉ nên hiển thị tổ chức, vai trò và quyền dùng tên/logo khi đã có xác nhận, tránh biến quan hệ dự kiến thành cam kết public.",
+    excerpt_en: "The partners page should only show organizations, roles, and logo rights when confirmed, avoiding turning prospective relationships into public commitments.",
+    content_vi: `
+      <p>Trang partners rất dễ bị biến thành nơi đặt logo cho đẹp. Nhưng với DSTS, partner không phải logo trang trí. Mỗi tên tổ chức xuất hiện trên website đều là một tuyên bố public: rằng có một mối quan hệ, một phạm vi hợp tác hoặc ít nhất một quyền dùng tên/logo đã được xác nhận.</p>
+      <p>Nếu công bố quá sớm, DSTS có thể tạo hiểu lầm cho người đọc, media và chính đối tác. Một cuộc trò chuyện ban đầu không phải partnership. Một lời hứa miệng không phải quyền dùng logo. Một ý định hợp tác không phải endorsement.</p>
+      <h2>Partner page cần trạng thái rõ</h2>
+      <p>Mỗi partner nên có trạng thái: proposed, in discussion, confirmed, active, completed hoặc archived. Chỉ các partner confirmed hoặc active mới nên hiển thị như quan hệ public. Những đối tác đang thảo luận có thể nằm trong tracker nội bộ, không nhất thiết đưa lên website.</p>
+      <p>Trang <code>/movement/partners</code> ở giai đoạn hiện tại nên giữ read-only và nói rõ chưa có sponsor inquiry form. Nếu chưa có quyền dùng logo, nên dùng mô tả loại đối tác cần tìm thay vì hiển thị thương hiệu cụ thể.</p>
+      <h2>Role phải cụ thể hơn danh xưng</h2>
+      <p>Partner có thể là ecosystem ally, media partner, academic partner, local host, venue partner, operations partner hoặc institutional partner. Mỗi loại có trách nhiệm khác nhau. Nếu chỉ ghi một logo mà không nói vai trò, người đọc sẽ không biết partner đó thật sự hỗ trợ phần nào.</p>
+      <p>DSTS nên công bố role, phạm vi, thời hạn nếu có, quyền dùng tên/logo và liên kết đến transparency khi partnership liên quan tài trợ hoặc nguồn lực. Điều này giúp tránh lẫn lộn giữa partner, sponsor, donor và vendor.</p>
+      <h2>Ít logo nhưng đúng quyền tốt hơn nhiều logo mơ hồ</h2>
+      <p>Một trang partners đáng tin không cần thật nhiều logo. Nó cần sự chính xác. Khi mỗi logo đều có quyền rõ, vai trò rõ và trạng thái rõ, người đọc hiểu DSTS đang xây quan hệ thật, không phóng đại độ lớn của hệ sinh thái.</p>
+      <p>Với một dự án muốn đi đường dài, công bố partner là trách nhiệm, không phải trang trí. Làm đúng phần này giúp DSTS giữ niềm tin với cả cộng đồng lẫn đối tác.</p>
+    `,
+    content_en: `
+      <p>A partners page can easily become a decorative logo wall. For DSTS, partners are not decoration. Every organization name on the website is a public statement that a relationship, scope, or right to use name/logo has been confirmed.</p>
+      <h2>Partner pages need clear status</h2>
+      <p>Each partner should have status: proposed, in discussion, confirmed, active, completed, or archived. Only confirmed or active partners should appear as public relationships.</p>
+      <h2>Roles must be more specific than labels</h2>
+      <p>A partner may be an ecosystem ally, media partner, academic partner, local host, venue partner, operations partner, or institutional partner. Each role carries different responsibility. DSTS should publish role, scope, term if relevant, logo rights, and transparency links where resources are involved.</p>
+      <h2>Fewer logos with clear rights beat many vague logos</h2>
+      <p>A trustworthy partners page does not need many logos. It needs accuracy. Publishing partners is a responsibility, not decoration.</p>
+    `,
+    tags: "partners,movement,minh bạch",
+    reading_time: "7 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-14T01:16:00.000Z"
+  },
+  {
     slug: "support-dsts-hoi-dung-noi-khong-gui-du-lieu-nhay-cam",
     type: "post",
     title_vi: "Support DSTS: hỏi đúng nơi, không gửi dữ liệu nhạy cảm",
