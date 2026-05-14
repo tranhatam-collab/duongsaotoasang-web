@@ -1,6 +1,6 @@
 === DSTS Sprint 0 Smoke Test ===
 Base: http://127.0.0.1:8796
-Timestamp: 2026-05-13T20:04:34Z
+Timestamp: 2026-05-14T00:11:48Z
 
 PASS 200  /
 PASS 200  /about
@@ -54,7 +54,10 @@ PASS content  /movement  contains [Movement Portal]
 PASS content  /movement  contains [data-dsts-surface="movement-home"]
 PASS content  /movement  contains [Không mở sponsor inquiry]
 PASS content  /movement  contains [Không thu email]
-PASS content  /movement/sponsors  contains [Đang xây dựng]
+PASS content  /movement/sponsors  contains [data-dsts-surface="movement-sponsors"]
+PASS content  /movement/sponsors  contains [Sponsor Readiness Hub]
+PASS content  /movement/sponsors  contains [Không có sponsor inquiry form]
+PASS content  /movement/sponsors  contains [13 gói tài trợ ở mức taxonomy]
 PASS content  /movement/events  contains [data-dsts-surface="movement-events"]
 PASS content  /movement/events  contains [Movement Events]
 PASS content  /movement/events  contains [Không có event registration form]
