@@ -33,6 +33,7 @@ await requirePass("local-api-search-syntax", "node", ["--check", "functions/api/
 await requirePass("local-release-gate-syntax", "node", ["--check", "scripts/sprint-0-release-gate.mjs"])
 await requirePass("local-content-qa", "node", ["scripts/content-qa.mjs"])
 await requirePass("local-html-structure-qa", "node", ["scripts/html-structure-qa.mjs"])
+await requirePass("local-structured-data-qa", "node", ["scripts/structured-data-qa.mjs"])
 if (RUN_DEPLOY_DRY_RUN) {
   await requirePass("local-deploy-dry-run", "bash", ["scripts/deploy-pages-clean.sh", "--dry-run"], {
     PROJECT_NAME: "duongsaotoasang-com-v2",
