@@ -3,7 +3,7 @@
 > **Scope:** Sprint 0 execution status after continuous public-site hardening.
 > **Repo:** `tranhatam-collab/duongsaotoasang-web`
 > **Branch:** `main`
-> **Latest verified baseline before static RSS sync:** `8fbd28d`
+> **Latest verified baseline before robots QA hardening:** `7f6d6f3`
 > **Cloudflare Pages project:** `duongsaotoasang-com-v2`
 > **Do not confuse with:** `duongsaotoasang-web`
 
@@ -48,6 +48,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 | SEO route QA | PASS | 32 indexable, 2 noindex, 2 redirects |
 | Static sitemap | PASS | `sitemap.xml` generated from shared route manifest + 24 fallback posts; no noindex routes included |
 | Static RSS | PASS | `rss.xml` generated from shared feed helper + 24 fallback posts; no noindex or preview/wrong-project URLs included |
+| Robots policy | PASS | `robots.txt` allows crawl, points to production sitemap, and is now covered by content + SEO QA |
 | 404 route | PASS | Unknown routes return 404 and current app shell |
 | 404 contact boundary | PASS | 404 routes to `/contact` + `/support`, no raw email exposed |
 | Movement read-only surfaces | PASS | No sponsor inquiry, event registration, payment, or auth flow opened |
@@ -62,6 +63,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Commit | Purpose |
 |---|---|
+| `7f6d6f3` | Add static RSS feed sync and RSS drift QA |
 | `8fbd28d` | Sync static sitemap from shared public route manifest |
 | `0a9b9ac` | Fix smoke-test token checks for CSS custom properties |
 | `a7b2eb7` | Add public design tokens |

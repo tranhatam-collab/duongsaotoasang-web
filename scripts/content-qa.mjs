@@ -50,6 +50,7 @@ assert(Array.isArray(FALLBACK_CONTENTS), "FALLBACK_CONTENTS must be an array")
 assert(POST_CONTENTS.length >= MIN_PUBLIC_POSTS, `POST_CONTENTS must contain at least ${MIN_PUBLIC_POSTS} public posts`)
 assert(FALLBACK_CONTENTS.length === POST_CONTENTS.length + PAGE_CONTENTS.length, "FALLBACK_CONTENTS must combine posts and pages")
 validateStaticJson()
+validateStaticRobots()
 validateStaticSitemap()
 validateStaticRss()
 validateInlineFallbacks()
@@ -123,6 +124,18 @@ function validateStaticJson() {
     assert(!("content_vi" in item), `data/posts.json must not include content_vi for ${item.slug}`)
     assert(!("content_en" in item), `data/posts.json must not include content_en for ${item.slug}`)
   }
+}
+
+function validateStaticRobots() {
+  const source = readFileSync(join(repoRoot, "robots.txt"), "utf8")
+
+  assert(source.includes("User-agent: *"), "robots.txt must target all crawlers")
+  assert(source.includes("Allow: /"), "robots.txt must allow public crawling")
+  assert(source.includes(`Sitemap: ${canonicalFor("/sitemap.xml")}`), "robots.txt must point to production sitemap")
+  assert(!/Disallow:\s*\//i.test(source), "robots.txt must not disallow the public site")
+  assert(!source.includes(".html"), "robots.txt must not point to .html routes")
+  assert(!source.includes("pages.dev"), "robots.txt must not use preview domain")
+  assert(!source.includes("duongsaotoasang-web"), "robots.txt must not use wrong Pages project")
 }
 
 function validateStaticSitemap() {

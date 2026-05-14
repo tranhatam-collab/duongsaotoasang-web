@@ -291,9 +291,10 @@ posts.html
 content.html
 sitemap.xml
 rss.xml
+robots.txt
 ```
 
-After changing content, indexable public routes, sitemap, or RSS surfaces, run:
+After changing content, indexable public routes, sitemap, RSS, or robots surfaces, run:
 
 ```bash
 node scripts/sync-static-content-data.mjs

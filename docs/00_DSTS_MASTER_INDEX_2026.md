@@ -1,8 +1,9 @@
 # 00_DSTS_MASTER_INDEX_2026
 
-> 📝 **DRAFT v1.5.4** — 2026-05-14 (supersedes v1.5.3)
+> 📝 **DRAFT v1.5.5** — 2026-05-14 (supersedes v1.5.4)
 > Bản đồ master cho cả ecosystem DSTS. Gom toàn bộ Drive cũ + kế hoạch mới thành 1 chỉ mục chính thức.
 > **Đối tượng dùng:** dev, content, legal, product, founder — cùng một bản truth.
+> **v1.5.5 changes:** Add robots policy checks to content QA, SEO route QA, and smoke content checks.
 > **v1.5.4 changes:** Add shared RSS feed helper, generate static `rss.xml` from 24 fallback posts, and make RSS drift fail `content-qa`.
 > **v1.5.3 changes:** Add shared public route manifest, sync static `sitemap.xml` from 24 fallback posts, and make sitemap drift fail `content-qa`.
 > **v1.5.2 changes:** Add public design token file `tokens.css`, wire `app.css` to import it, and add token CSS to header/smoke QA.
@@ -12,7 +13,7 @@
 > **v1.2 changes:** Wave 1 sync timeline (chèn Phase 0B), fix A7 status, thêm 7 NDNUM spec con TBD.
 
 **Founder:** Trần Hà Tâm
-**Phiên bản:** v1.5.4 (master index — pending re-lock)
+**Phiên bản:** v1.5.5 (master index — pending re-lock)
 **Ngày phát hành:** 2026-05-14
 **Nguyên tắc:** Mọi tài liệu mới về DSTS phải được index ở đây. Không có file ngoài index.
 
@@ -228,7 +229,7 @@ Theo thứ tự ưu tiên:
 🟡 Sprint 1-4 — 3 tuần tiếp:
   13. sitemap.xml ✅ static + dynamic sitemap synced 2026-05-14
   14. rss.xml ✅ static + dynamic RSS synced 2026-05-14
-  15. robots.txt
+  15. robots.txt ✅ crawler policy QA added 2026-05-14
   16. _headers
   17. tokens.css ✅ design tokens added 2026-05-14
   18. RUNBOOK.md ✅ repo runbook added 2026-05-14
@@ -391,6 +392,7 @@ Nếu có conflict giữa Drive cũ (Layer A) và Plan mới (Layer 0-2):
 | v1.5.2 | 2026-05-14 | Add root `tokens.css`, import it from `app.css`, cache it through `_headers`, and include token CSS in smoke/header QA. | Codex |
 | v1.5.3 | 2026-05-14 | Add shared public route manifest `functions/_lib/public-routes.js`, generate static `sitemap.xml` from the same route list + 24 fallback posts, and make `content-qa` fail on sitemap drift/noindex leakage. | Codex |
 | v1.5.4 | 2026-05-14 | Add shared RSS feed helper `functions/_lib/feed-utils.js`, generate static `rss.xml` from 24 fallback posts, and make `content-qa` fail on RSS drift/noindex leakage. | Codex |
+| v1.5.5 | 2026-05-14 | Add `robots.txt` validation to `content-qa`, `seo-route-qa`, and smoke content checks so crawler policy cannot drift to preview/wrong-project URLs or block public routes. | Codex |
 
 ---
 
