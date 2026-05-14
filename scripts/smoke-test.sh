@@ -7,6 +7,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 UNKNOWN_PATH="/random-unknown-url-xyz-12345"
 MISSING_CONTENT_PATH="/content?slug=missing-smoke-slug-404"
+CONTENT_INDEX_PATH="/content"
 
 urls=(
   "/"
@@ -247,6 +248,14 @@ if [[ "$content_404" == "404" ]]; then
   printf "PASS content-404  %s\n" "$MISSING_CONTENT_PATH"
 else
   printf "FAIL expected 404 for %s, got %s\n" "$MISSING_CONTENT_PATH" "$content_404"
+  failed=$((failed + 1))
+fi
+
+content_index_status="$(curl -o /dev/null -sS -L --max-redirs 5 --connect-timeout 8 --max-time 20 -w "%{http_code} %{url_effective}" "${BASE}${CONTENT_INDEX_PATH}")"
+if [[ "$content_index_status" == "200 ${BASE}/posts" ]]; then
+  printf "PASS content-index-redirect  %s -> /posts\n" "$CONTENT_INDEX_PATH"
+else
+  printf "FAIL expected %s to redirect to /posts, got %s\n" "$CONTENT_INDEX_PATH" "$content_index_status"
   failed=$((failed + 1))
 fi
 
