@@ -169,6 +169,7 @@ echo "Timestamp: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
 echo ""
 
 node "${REPO_ROOT}/scripts/content-qa.mjs"
+node "${REPO_ROOT}/scripts/api-surface-qa.mjs"
 echo ""
 
 for path in "${urls[@]}"; do

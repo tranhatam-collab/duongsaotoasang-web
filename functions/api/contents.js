@@ -29,8 +29,6 @@ export const onRequestGet = async ({ request, env }) => {
         title_en,
         excerpt_vi,
         excerpt_en,
-        content_vi,
-        content_en,
         tags,
         cover_url,
         created_at
@@ -68,13 +66,27 @@ export const onRequestGet = async ({ request, env }) => {
     const rows = Array.isArray(result.results) ? result.results : []
 
     if (!rows.length) {
-      return json(selectFallback({ type, limit, q, lang }))
+      return json(toListItems(selectFallback({ type, limit, q, lang })))
     }
 
-    return json(rows.map((item) => localizeItem(item, lang)))
+    return json(rows.map((item) => toListItem(localizeItem(item, lang))))
   } catch (_error) {
-    return json(selectFallback({ type, limit, q, lang }))
+    return json(toListItems(selectFallback({ type, limit, q, lang })))
   }
+}
+
+function toListItems(items) {
+  return items.map((item) => toListItem(item))
+}
+
+function toListItem(item) {
+  const {
+    content,
+    content_vi,
+    content_en,
+    ...metadata
+  } = item
+  return metadata
 }
 
 function parseLimit(value, fallback = 24, max = 100) {
