@@ -3,7 +3,7 @@
 > **Scope:** Sprint 0 execution status after continuous public-site hardening.
 > **Repo:** `tranhatam-collab/duongsaotoasang-web`
 > **Branch:** `main`
-> **Latest verified baseline:** `ef6c82b`
+> **Latest verified baseline:** `411dca5`
 > **Cloudflare Pages project:** `duongsaotoasang-com-v2`
 > **Do not confuse with:** `duongsaotoasang-web`
 
@@ -38,7 +38,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Area | Status | Evidence |
 |---|---:|---|
-| Public routes | PASS | Preview full smoke passed on `617987fb.duongsaotoasang-com-v2.pages.dev` |
+| Public routes | PASS | Preview full smoke passed on `91060587.duongsaotoasang-com-v2.pages.dev` |
 | `/posts` fallback | PASS | 24 posts, `data-dsts-ssr="posts"`, no legacy loading placeholder |
 | `/content?slug=...` detail | PASS | Valid slug renders SSR content; missing slug returns content 404 |
 | `/content` without slug | PASS | Server-side middleware redirects to `/posts` |
@@ -49,8 +49,9 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 | SEO route QA | PASS | 32 indexable, 2 noindex, 2 redirects |
 | Local HTML structure QA | PASS | Tracked public HTML pages have exactly one `h1`, unique indexable title/description/canonical, clean production canonical, and no legacy loading placeholder |
 | Accessibility/semantic QA | PASS | 35 tracked HTML pages checked for one `main`, duplicate IDs, `href="#"`/`javascript:` links, broken in-page fragments, unlabeled buttons/links, and image `alt` attributes |
+| Social metadata QA | PASS | 35 tracked HTML pages checked for OG/Twitter title, description, URL, image, production origin, indexable `og:url` canonical match, and no preview/wrong-project/local URL leakage |
 | Structured data QA | PASS | 35 tracked HTML pages scanned; 34 JSON-LD blocks parse with schema.org context, `@type`, clean production URLs, and no preview/wrong-project leakage |
-| Public asset budget QA | PASS | 139 tracked files scanned; total public source 2.68MB; browser JS/CSS/HTML/PNG budgets and legacy asset bans pass |
+| Public asset budget QA | PASS | 140 tracked files scanned; total public source 2.68MB; browser JS/CSS/HTML/PNG budgets and legacy asset bans pass |
 | Static sitemap | PASS | `sitemap.xml` generated from shared route manifest + 24 fallback posts; no noindex routes included |
 | Static RSS | PASS | `rss.xml` generated from shared feed helper + 24 fallback posts; no noindex or preview/wrong-project URLs included |
 | Robots policy | PASS | `robots.txt` allows crawl, points to production sitemap, and is now covered by content + SEO QA |
@@ -71,6 +72,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Commit | Purpose |
 |---|---|
+| `411dca5` | Add social metadata QA gate |
 | `ef6c82b` | Add accessibility QA gate |
 | `fb477fe` | Add public asset budget QA gate |
 | `590541a` | Add structured data QA gate |
@@ -109,7 +111,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 Use preview for full smoke while production custom-domain header/cache override is unresolved:
 
 ```bash
-BASE_URL=https://617987fb.duongsaotoasang-com-v2.pages.dev ./scripts/smoke-test.sh
+BASE_URL=https://91060587.duongsaotoasang-com-v2.pages.dev ./scripts/smoke-test.sh
 ```
 
 Expected:
@@ -122,7 +124,7 @@ PASS content-index-redirect  /content -> /posts
 SEO QA:
 
 ```bash
-BASE_URL=https://617987fb.duongsaotoasang-com-v2.pages.dev node scripts/seo-route-qa.mjs
+BASE_URL=https://91060587.duongsaotoasang-com-v2.pages.dev node scripts/seo-route-qa.mjs
 BASE_URL=https://duongsaotoasang.com node scripts/seo-route-qa.mjs
 ```
 
