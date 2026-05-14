@@ -21,7 +21,7 @@ export async function onRequest(context) {
 
   try {
     if (!env.DB) {
-      return json(selectFallback({ type: "post", q, limit, lang }))
+      return json(toSearchItems(selectFallback({ type: "post", q, limit, lang })))
     }
 
     const like = `%${q}%`
@@ -102,16 +102,28 @@ export async function onRequest(context) {
     })
 
     if (!data.length) {
-      return json(selectFallback({ type: "post", q, limit, lang }))
+      return json(toSearchItems(selectFallback({ type: "post", q, limit, lang })))
     }
 
     return json(data)
 
   } catch (error) {
-    return json(selectFallback({ type: "post", q, limit, lang }))
+    return json(toSearchItems(selectFallback({ type: "post", q, limit, lang })))
 
   }
 
+}
+
+function toSearchItems(items) {
+  return items.map((item) => {
+    const {
+      content,
+      content_vi,
+      content_en,
+      ...metadata
+    } = item
+    return metadata
+  })
 }
 
 function json(data) {

@@ -20,6 +20,20 @@ if (Array.isArray(search.body)) {
   }
 }
 
+const legacySearch = await fetchJson("/api/search?q=guardian&limit=3")
+assert(legacySearch.status === 200, `/api/search expected 200, got ${legacySearch.status}`)
+assert(Array.isArray(legacySearch.body), "/api/search must return an array")
+if (Array.isArray(legacySearch.body)) {
+  assert(legacySearch.body.length >= 1, `/api/search?q=guardian expected at least 1 item, got ${legacySearch.body.length}`)
+  for (const [index, item] of legacySearch.body.entries()) {
+    validateListItem(item, `/api/search?q=guardian[${index}]`)
+  }
+}
+
+const emptySearch = await fetchJson("/api/search")
+assert(emptySearch.status === 200, `/api/search without query expected 200, got ${emptySearch.status}`)
+assert(Array.isArray(emptySearch.body) && emptySearch.body.length === 0, "/api/search without query must return an empty array")
+
 const detail = await fetchJson("/api/content?slug=guardian-first-nguyen-tac-bao-ve-tre-em-ndnum")
 assert(detail.status === 200, `/api/content valid slug expected 200, got ${detail.status}`)
 assert(typeof detail.body?.content === "string" && detail.body.content.length > 200, "/api/content valid slug must return localized content body")
@@ -37,7 +51,7 @@ if (failures.length) {
   process.exit(1)
 }
 
-console.log("API_SURFACE_QA_PASS list_no_body=true detail_body=true missing_404=true")
+console.log("API_SURFACE_QA_PASS list_no_body=true search_no_body=true detail_body=true missing_404=true")
 
 function validateListItem(item, label) {
   assert(item && typeof item === "object", `${label} must be an object`)

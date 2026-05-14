@@ -15,7 +15,7 @@ export const onRequestGet = async ({ request, env }) => {
 
   try {
     if (!env.DB) {
-      return json(selectFallback({ type, limit, q, lang }))
+      return json(toListItems(selectFallback({ type, limit, q, lang })))
     }
 
     const queryParts = []
