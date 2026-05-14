@@ -3,7 +3,7 @@
 > **Scope:** Sprint 0 execution status after continuous public-site hardening.
 > **Repo:** `tranhatam-collab/duongsaotoasang-web`
 > **Branch:** `main`
-> **Latest verified baseline:** `4958040`
+> **Latest verified baseline:** `cdbd7a4`
 > **Cloudflare Pages project:** `duongsaotoasang-com-v2`
 > **Do not confuse with:** `duongsaotoasang-web`
 
@@ -38,10 +38,11 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Area | Status | Evidence |
 |---|---:|---|
-| Public routes | PASS | Preview full smoke passed on `8991480e.duongsaotoasang-com-v2.pages.dev` |
+| Public routes | PASS | Preview full smoke passed on `449b0a14.duongsaotoasang-com-v2.pages.dev` |
 | `/posts` fallback | PASS | 24 posts, `data-dsts-ssr="posts"`, no legacy loading placeholder |
 | `/content?slug=...` detail | PASS | Valid slug renders SSR content; missing slug returns content 404 |
 | `/content` without slug | PASS | Server-side middleware redirects to `/posts` |
+| Content depth QA | PASS | 24 posts and 2 page fallbacks pass minimum depth, heading, paragraph, excerpt, tag, reading time, and placeholder checks |
 | API list safety | PASS | `/api/contents` list responses do not expose full body |
 | API search safety | PASS | `/api/search?q=guardian&limit=3` returns metadata only |
 | API detail body | PASS | `/api/content?slug=guardian-first-nguyen-tac-bao-ve-tre-em-ndnum` returns full body |
@@ -53,7 +54,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 | Public flow safety QA | PASS | 43 tracked public HTML/Functions files checked; only 2 whitelisted posts search forms are allowed; no public checkout/auth/register/login form or direct flow link opened |
 | Social metadata QA | PASS | 35 tracked HTML pages checked for OG/Twitter title, description, URL, image, production origin, indexable `og:url` canonical match, and no preview/wrong-project/local URL leakage |
 | Structured data QA | PASS | 35 tracked HTML pages scanned; 34 JSON-LD blocks parse with schema.org context, `@type`, clean production URLs, and no preview/wrong-project leakage |
-| Public asset budget QA | PASS | 141 tracked files scanned; total public source 2.69MB; browser JS/CSS/HTML/PNG budgets and legacy asset bans pass |
+| Public asset budget QA | PASS | 142 tracked files scanned; total public source 2.73MB; browser JS/CSS/HTML/PNG budgets and legacy asset bans pass |
 | Static sitemap | PASS | `sitemap.xml` generated from shared route manifest + 24 fallback posts; no noindex routes included |
 | Static RSS | PASS | `rss.xml` generated from shared feed helper + 24 fallback posts; no noindex or preview/wrong-project URLs included |
 | Robots policy | PASS | `robots.txt` allows crawl, points to production sitemap, and is now covered by content + SEO QA |
@@ -74,6 +75,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Commit | Purpose |
 |---|---|
+| `cdbd7a4` | Add content depth QA gate and expand `about`/`program` fallback page bodies |
 | `4958040` | Retry API surface checks in release gate for fresh Pages preview propagation |
 | `d972633` | Wire API surface QA into release gate for preview and production |
 | `61c1388` | Add public flow safety QA gate |
@@ -116,7 +118,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 Use preview for full smoke while production custom-domain header/cache override is unresolved:
 
 ```bash
-BASE_URL=https://8991480e.duongsaotoasang-com-v2.pages.dev ./scripts/smoke-test.sh
+BASE_URL=https://449b0a14.duongsaotoasang-com-v2.pages.dev ./scripts/smoke-test.sh
 ```
 
 Expected:
@@ -129,7 +131,7 @@ PASS content-index-redirect  /content -> /posts
 SEO QA:
 
 ```bash
-BASE_URL=https://8991480e.duongsaotoasang-com-v2.pages.dev node scripts/seo-route-qa.mjs
+BASE_URL=https://449b0a14.duongsaotoasang-com-v2.pages.dev node scripts/seo-route-qa.mjs
 BASE_URL=https://duongsaotoasang.com node scripts/seo-route-qa.mjs
 ```
 
@@ -142,8 +144,9 @@ SEO_ROUTE_QA_PASS indexable=32 noindex=2 redirects=2
 Production API schema spot checks:
 
 ```bash
-BASE_URL=https://8991480e.duongsaotoasang-com-v2.pages.dev node scripts/api-surface-qa.mjs
+BASE_URL=https://449b0a14.duongsaotoasang-com-v2.pages.dev node scripts/api-surface-qa.mjs
 BASE_URL=https://duongsaotoasang.com node scripts/api-surface-qa.mjs
+node scripts/content-depth-qa.mjs
 curl -sS -L 'https://duongsaotoasang.com/api/search?q=guardian&limit=3'
 curl -sS -L 'https://duongsaotoasang.com/api/contents?type=post&limit=3'
 curl -sS -L 'https://duongsaotoasang.com/api/content?slug=guardian-first-nguyen-tac-bao-ve-tre-em-ndnum'
