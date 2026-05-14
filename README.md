@@ -365,7 +365,14 @@ github.com/tranhatam-collab/duongsaotoasang-web
 
 Platform deploy:
 
-Cloudflare Pages
+Cloudflare Pages project thật:
+
+duongsaotoasang-com-v2
+
+Custom domains:
+
+duongsaotoasang.com
+www.duongsaotoasang.com
 
 Workflow:
 
@@ -374,6 +381,13 @@ git commit -m "update"
 git push origin main  
 
 Cloudflare sẽ deploy tự động.
+
+Manual deploy an toàn:
+
+bash scripts/deploy-pages-clean.sh --dry-run
+bash scripts/deploy-pages-clean.sh
+
+Script này deploy đúng project `duongsaotoasang-com-v2` từ `git archive HEAD`, không upload trực tiếp thư mục làm việc. Không dùng project `duongsaotoasang-web` cho custom domain.
 
 ------------------------------------------------------------
 
