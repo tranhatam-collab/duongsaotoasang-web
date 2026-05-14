@@ -3,7 +3,7 @@
 > **Scope:** Sprint 0 execution status after continuous public-site hardening.
 > **Repo:** `tranhatam-collab/duongsaotoasang-web`
 > **Branch:** `main`
-> **Latest verified baseline:** `a81a4ab`
+> **Latest verified baseline:** `55db00e`
 > **Cloudflare Pages project:** `duongsaotoasang-com-v2`
 > **Do not confuse with:** `duongsaotoasang-web`
 
@@ -67,6 +67,8 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Commit | Purpose |
 |---|---|
+| `55db00e` | Harden header QA for retired app asset |
+| `ea1c500` | Update state report after legacy asset deploy |
 | `a81a4ab` | Retire legacy `assets/app.js` and block it from QA/deploy bundle |
 | `c691270` | Harden routing config QA |
 | `b602d84` | Harden origin header policy QA |
@@ -185,7 +187,8 @@ Required owner action:
 3. Set `duongsaotoasang.com/app.css`, `/tokens.css`, `/assets/*`, `/og.png` to respect origin headers or max-age <= 300.
 4. Set Referrer Policy to `strict-origin-when-cross-origin`.
 5. Purge `/assets/app.js` or purge the custom-domain cache.
-6. Re-run:
+6. Follow the handoff packet: `docs/CLOUDFLARE_CUSTOM_DOMAIN_FIX_PACKET_2026-05-14.md`.
+7. Re-run:
 
 ```bash
 BASE_URL=https://duongsaotoasang.com ./scripts/smoke-test.sh
