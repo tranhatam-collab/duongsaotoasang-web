@@ -1,8 +1,9 @@
 # 00_DSTS_MASTER_INDEX_2026
 
-> 📝 **DRAFT v1.5.15** — 2026-05-14 (supersedes v1.5.14)
+> 📝 **DRAFT v1.5.16** — 2026-05-14 (supersedes v1.5.15)
 > Bản đồ master cho cả ecosystem DSTS. Gom toàn bộ Drive cũ + kế hoạch mới thành 1 chỉ mục chính thức.
 > **Đối tượng dùng:** dev, content, legal, product, founder — cùng một bản truth.
+> **v1.5.16 changes:** Add accessibility QA to prevent empty `href="#"`, broken in-page fragments, duplicate IDs, missing main landmarks, unlabeled buttons/links, and images without `alt`.
 > **v1.5.15 changes:** Add public asset budget QA to cap tracked HTML/CSS/JS/PNG size, block source maps/runtime junk, and keep retired app assets out of deploy source.
 > **v1.5.14 changes:** Add structured data QA and JSON-LD WebPage coverage for legal/trust pages so schema.org data cannot drift to `.html`, preview, or wrong-project URLs.
 > **v1.5.13 changes:** Add local HTML structure QA to lock one `h1`, metadata, clean canonical URLs, and no legacy loading placeholders across tracked public HTML.
@@ -23,7 +24,7 @@
 > **v1.2 changes:** Wave 1 sync timeline (chèn Phase 0B), fix A7 status, thêm 7 NDNUM spec con TBD.
 
 **Founder:** Trần Hà Tâm
-**Phiên bản:** v1.5.15 (master index — pending re-lock)
+**Phiên bản:** v1.5.16 (master index — pending re-lock)
 **Ngày phát hành:** 2026-05-14
 **Nguyên tắc:** Mọi tài liệu mới về DSTS phải được index ở đây. Không có file ngoài index.
 
@@ -251,6 +252,7 @@ Theo thứ tự ưu tiên:
   21. scripts/html-structure-qa.mjs ✅ local HTML structure gate added 2026-05-14
   22. scripts/structured-data-qa.mjs ✅ JSON-LD structured data gate added 2026-05-14
   23. scripts/public-asset-budget-qa.mjs ✅ public asset budget gate added 2026-05-14
+  24. scripts/accessibility-qa.mjs ✅ accessibility/semantic HTML gate added 2026-05-14
 
 🔴 Phase 0B (Tháng 6-8/2026):
   20a. 7 NDNUM spec con (Child Safety, Consent, Mentor Screening, Legal Entity, Sponsor Fulfillment, Impact, Landing Page)
@@ -421,6 +423,7 @@ Nếu có conflict giữa Drive cũ (Layer A) và Plan mới (Layer 0-2):
 | v1.5.13 | 2026-05-14 | Add `scripts/html-structure-qa.mjs` and wire it into the release gate so public HTML cannot regress on one `h1`, metadata, canonical cleanliness, or legacy loading placeholders. | Codex |
 | v1.5.14 | 2026-05-14 | Add `scripts/structured-data-qa.mjs`, fix `content.html` schema URL, and add WebPage JSON-LD to legal/trust pages so structured data is parseable, schema.org-based, and clean-URL safe. | Codex |
 | v1.5.15 | 2026-05-14 | Add `scripts/public-asset-budget-qa.mjs` and wire it into the release gate so HTML/CSS/JS/PNG size budgets, source-map bans, and retired app asset bans are enforced before deploy. | Codex |
+| v1.5.16 | 2026-05-14 | Add `scripts/accessibility-qa.mjs`, fix 404 language links away from `href="#"`, and wire accessibility/semantic checks into the release gate. | Codex |
 
 ---
 

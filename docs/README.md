@@ -19,7 +19,7 @@ Project hiện chia làm 3 nhóm:
 
 - **DRAFT** (đang chỉnh, gần sẵn sàng):
   - Master Plan v1.2-DRAFT (pending re-lock sau NDNUM v1.2)
-  - Master Index v1.5.14 (pending re-lock)
+  - Master Index v1.5.16 (pending re-lock)
   - NDNUM v1.1-REVIEWED + 7 NDNUM spec con DRAFT v1.0
   - Layer 1 DSTS spec DEV-READY v1.0 nhưng chưa mở public interactive flows
 
@@ -187,6 +187,7 @@ Mọi file trong `_archive_2026-05-13/` **KHÔNG dùng làm reference**.
 - Xem `CLOUDFLARE_CUSTOM_DOMAIN_FIX_PACKET_2026-05-14.md` để biết purge URLs, dashboard checks, API template, và post-fix verification.
 - Dùng `scripts/sprint-0-release-gate.mjs` cho automation: exit `0` ready, `1` repo regression, `2` known `BLOCKED_EXTERNAL`; thêm `RUN_DEPLOY_DRY_RUN=1` sau commit để kiểm deploy bundle.
 - Dùng `scripts/html-structure-qa.mjs` để khóa local HTML: đúng 1 `h1`, metadata/canonical/robots đầy đủ, clean canonical cho trang indexable, không lẫn preview/wrong-project/loading placeholder.
+- Dùng `scripts/accessibility-qa.mjs` để khóa accessibility/semantic cơ bản: đúng 1 `main`, không duplicate id, không có `href="#"`/`javascript:`, fragment nội bộ phải có target, button/link có nhãn truy cập, image có `alt`.
 - Dùng `scripts/structured-data-qa.mjs` để khóa JSON-LD: parse được, dùng schema.org, có `@type`, không lẫn `.html` schema URL trên trang indexable, preview domain hoặc wrong Pages project.
 - Dùng `scripts/public-asset-budget-qa.mjs` để khóa ngân sách public source: HTML/CSS/JS/PNG không vượt ngưỡng, không có source map, không có asset app cũ hoặc runtime rác bị track.
 
