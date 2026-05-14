@@ -34,6 +34,7 @@ assert(Array.isArray(FALLBACK_CONTENTS), "FALLBACK_CONTENTS must be an array")
 assert(POST_CONTENTS.length >= MIN_PUBLIC_POSTS, `POST_CONTENTS must contain at least ${MIN_PUBLIC_POSTS} public posts`)
 assert(FALLBACK_CONTENTS.length === POST_CONTENTS.length + PAGE_CONTENTS.length, "FALLBACK_CONTENTS must combine posts and pages")
 validateStaticJson()
+validateInlineFallbacks()
 
 const allSlugs = new Set()
 const postSlugs = new Set()
@@ -103,6 +104,25 @@ function validateStaticJson() {
   }
 }
 
+function validateInlineFallbacks() {
+  const inlinePosts = parseInlineJson("posts.html", /const fallbackPosts = (\[[\s\S]*?\]);/)
+  const inlineContents = parseInlineJson("content.html", /const fallbackContents = (\{[\s\S]*?\});\s+function resolveTitle/)
+
+  assert(Array.isArray(inlinePosts), "posts.html inline fallbackPosts must be an array")
+  assert(inlineContents && typeof inlineContents === "object" && !Array.isArray(inlineContents), "content.html inline fallbackContents must be an object")
+
+  if (Array.isArray(inlinePosts)) {
+    assert(inlinePosts.length === POST_CONTENTS.length, `posts.html inline fallbackPosts must contain ${POST_CONTENTS.length} posts, got ${inlinePosts.length}`)
+    assertSameSlugSet(inlinePosts, POST_CONTENTS, "posts.html inline fallbackPosts")
+  }
+
+  if (inlineContents && typeof inlineContents === "object" && !Array.isArray(inlineContents)) {
+    const inlineContentItems = Object.values(inlineContents)
+    assert(inlineContentItems.length === FALLBACK_CONTENTS.length, `content.html inline fallbackContents must contain ${FALLBACK_CONTENTS.length} items, got ${inlineContentItems.length}`)
+    assertSameSlugSet(inlineContentItems, FALLBACK_CONTENTS, "content.html inline fallbackContents")
+  }
+}
+
 function validateBaseItem(item) {
   assert(item && typeof item === "object", "Fallback item must be an object")
   assert(matches(item.slug, /^[a-z0-9]+(?:-[a-z0-9]+)*$/), `Invalid slug format: ${item.slug}`)
@@ -163,6 +183,22 @@ function readJson(relativePath) {
     return JSON.parse(readFileSync(join(repoRoot, relativePath), "utf8"))
   } catch (error) {
     failures.push(`${relativePath} must be valid JSON: ${error.message}`)
+    return null
+  }
+}
+
+function parseInlineJson(relativePath, pattern) {
+  const source = readFileSync(join(repoRoot, relativePath), "utf8")
+  const match = source.match(pattern)
+  if (!match) {
+    failures.push(`${relativePath} missing expected inline fallback block`)
+    return null
+  }
+
+  try {
+    return JSON.parse(match[1])
+  } catch (error) {
+    failures.push(`${relativePath} inline fallback block must be valid JSON: ${error.message}`)
     return null
   }
 }
