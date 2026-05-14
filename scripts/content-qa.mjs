@@ -23,6 +23,17 @@ const BLOCKED_INLINE_PATTERNS = [
   /javascript:/i,
   /data:text\/html/i
 ]
+const SCRIPT_DETAIL_FILES = [
+  "scripts/rising-entrepreneur.html",
+  "scripts/global-artist.html",
+  "scripts/singing-icon.html",
+  "scripts/cinematic-actor.html",
+  "scripts/the-thinker.html",
+  "scripts/creative-leader.html",
+  "scripts/cultural-ambassador.html",
+  "scripts/dsts-legacy.html",
+  "scripts/global-story.html"
+]
 
 const failures = []
 const staticContent = readJson("data/content.json")
@@ -151,6 +162,14 @@ function validatePublicLaneBoundaries() {
   assert(!/<form\b/i.test(contact), "contact.html must not ship a public form while email automation is owned by another lane")
   assert(!/tel:\+84123456789/i.test(contact), "contact.html must not ship placeholder phone number")
   assert(!/facebook\.com\/duongsaotoasang|twitter\.com\/duongsaotoasang|instagram\.com\/duongsaotoasang|youtube\.com\/@duongsaotoasang/i.test(contact), "contact.html must not ship unverified social links")
+
+  for (const relativePath of SCRIPT_DETAIL_FILES) {
+    const source = readFileSync(join(repoRoot, relativePath), "utf8")
+    assert(source.includes('data-dsts-review-mode="sample-only"'), `${relativePath} must disclose sample-only review mode`)
+    assert(source.includes("Kênh gửi đánh giá chưa mở"), `${relativePath} must explain review submission is closed`)
+    assert(!/<form\b/i.test(source), `${relativePath} must not ship public review forms`)
+    assert(!/id="formSubmit"|id="formName"|id="formComment"|id="formRating"/i.test(source), `${relativePath} must not ship inactive review input controls`)
+  }
 }
 
 function validateBaseItem(item) {

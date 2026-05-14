@@ -845,18 +845,9 @@
 
       <div class="sample-review-disclosure" id="sampleDisclosure">Đánh giá minh họa - chưa phải phản hồi khách hàng thật. DSTS chỉ công bố review thật sau khi có xác minh và quyền công bố.</div>
 
-      <form class="comment-form">
-        <input type="text" id="formName" placeholder="Tên của bạn">
-        <select id="formRating">
-          <option>5 sao – Rất mạnh</option>
-          <option>4 sao – Rất tốt</option>
-          <option>3 sao – Tốt</option>
-          <option>2 sao – Cần thêm thông tin</option>
-          <option>1 sao – Chưa phù hợp</option>
-        </select>
-        <textarea id="formComment" placeholder="Chia sẻ cảm nhận của bạn về The Global Story"></textarea>
-        <button type="button" class="btn primary" id="formSubmit">Gửi đánh giá</button>
-      </form>
+      <div class="comment-form review-intake-closed" data-dsts-review-mode="sample-only">
+        <div class="sample-review-disclosure" id="reviewIntakeClosed">Kênh gửi đánh giá chưa mở - phần này chỉ hiển thị review minh họa.</div>
+      </div>
 
       <div class="comment-list">
         <article class="comment-item">
@@ -977,6 +968,7 @@
           sampleDisclosure: "Đánh giá minh họa - chưa phải phản hồi khách hàng thật. DSTS chỉ công bố review thật sau khi có xác minh và quyền công bố.",
           sampleLabel1: "Đánh giá minh họa",
           sampleLabel2: "Đánh giá minh họa",
+          reviewIntakeClosed: "Kênh gửi đánh giá chưa mở - phần này chỉ hiển thị review minh họa.",
 
           commentEyebrow: "Ý KIẾN CÔNG KHAI",
           commentTitle: "Phản hồi và đánh giá từ cộng đồng",
@@ -1081,6 +1073,7 @@
           sampleDisclosure: "Sample review - not verified customer feedback. DSTS publishes real reviews only after verification and publication permission.",
           sampleLabel1: "Sample review",
           sampleLabel2: "Sample review",
+          reviewIntakeClosed: "Review submission is closed - this section shows sample reviews only.",
 
           commentEyebrow: "PUBLIC REFLECTIONS",
           commentTitle: "Public feedback and evaluations",
@@ -1130,7 +1123,7 @@
         "roadEyebrow","roadTitle","roadDesc","year1","year1Title","year1Text","year2","year2Title","year2Text","year3","year3Title","year3Text","year4","year4Title","year4Text",
         "contentEyebrow","contentTitle","contentDesc","leftPackTitle","pack1","pack2","pack3","pack4","rightPackTitle","pack5","pack6","pack7","pack8",
         "purchaseEyebrow","purchaseTitle","purchaseText1","purchasePrice","purchaseText2","purchaseSafety","purchaseBtn1","purchaseBtn2","manualCardTitle","manualStep1","manualStep2","manualStep3","purchaseNote",
-        "commentEyebrow","commentTitle","commentDesc","sampleDisclosure","sampleLabel1","sampleName1","sampleRate1","sampleText1","sampleLabel2","sampleName2","sampleRate2","sampleText2","footerLine"
+        "commentEyebrow","commentTitle","commentDesc","sampleDisclosure","reviewIntakeClosed","sampleLabel1","sampleName1","sampleRate1","sampleText1","sampleLabel2","sampleName2","sampleRate2","sampleText2","footerLine"
       ].forEach((id) => set(id, t[id]));
 
       const formName = document.getElementById("formName");

@@ -162,6 +162,8 @@ content_checks=(
   "/contact|Không gửi thông tin trẻ em"
   "/scripts/rising-entrepreneur|id=\"purchaseSafety\""
   "/scripts/rising-entrepreneur|Đánh giá minh họa"
+  "/scripts/rising-entrepreneur|data-dsts-review-mode=\"sample-only\""
+  "/scripts/rising-entrepreneur|Kênh gửi đánh giá chưa mở"
   "/assets/app-v5.js|dsts-entity-disclosure"
 )
 
