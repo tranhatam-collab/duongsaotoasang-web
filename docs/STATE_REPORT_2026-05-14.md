@@ -49,6 +49,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 | SEO route QA | PASS | 32 indexable, 2 noindex, 2 redirects |
 | Local HTML structure QA | PASS | Tracked public HTML pages have exactly one `h1`, unique indexable title/description/canonical, clean production canonical, and no legacy loading placeholder |
 | Structured data QA | PASS | 35 tracked HTML pages scanned; 34 JSON-LD blocks parse with schema.org context, `@type`, clean production URLs, and no preview/wrong-project leakage |
+| Public asset budget QA | PASS | 137 tracked files scanned; total public source 2.67MB; browser JS/CSS/HTML/PNG budgets and legacy asset bans pass |
 | Static sitemap | PASS | `sitemap.xml` generated from shared route manifest + 24 fallback posts; no noindex routes included |
 | Static RSS | PASS | `rss.xml` generated from shared feed helper + 24 fallback posts; no noindex or preview/wrong-project URLs included |
 | Robots policy | PASS | `robots.txt` allows crawl, points to production sitemap, and is now covered by content + SEO QA |

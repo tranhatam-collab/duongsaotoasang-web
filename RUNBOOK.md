@@ -89,6 +89,7 @@ node --check functions/api/search.js
 node scripts/content-qa.mjs
 node scripts/html-structure-qa.mjs
 node scripts/structured-data-qa.mjs
+node scripts/public-asset-budget-qa.mjs
 git diff --check
 ```
 
@@ -150,7 +151,7 @@ The release gate exits:
 - `1` for real repo/route/SEO/header regressions
 - `2` when the only remaining failure is the known Cloudflare custom-domain cache/header blocker
 
-The release gate always checks tracked source hygiene, `wrangler.toml` project identity, diff whitespace, syntax for critical Functions/API scripts, content QA, HTML structure QA, structured data QA, preview SEO/headers, production SEO, and production headers. Set `RUN_DEPLOY_DRY_RUN=1` after committing to verify the exact git archive deploy bundle without deploying.
+The release gate always checks tracked source hygiene, `wrangler.toml` project identity, diff whitespace, syntax for critical Functions/API scripts, content QA, HTML structure QA, structured data QA, public asset budget QA, preview SEO/headers, production SEO, and production headers. Set `RUN_DEPLOY_DRY_RUN=1` after committing to verify the exact git archive deploy bundle without deploying.
 
 Spot-check manually:
 
@@ -211,6 +212,7 @@ git pull --ff-only
 node scripts/content-qa.mjs
 node scripts/html-structure-qa.mjs
 node scripts/structured-data-qa.mjs
+node scripts/public-asset-budget-qa.mjs
 git diff --check
 git add <changed-files>
 git commit -m "Fix <short issue>"
@@ -407,6 +409,7 @@ A public-site change is done only when:
 - `node scripts/content-qa.mjs` passes
 - `node scripts/html-structure-qa.mjs` passes
 - `node scripts/structured-data-qa.mjs` passes
+- `node scripts/public-asset-budget-qa.mjs` passes
 - preview deploy is on `duongsaotoasang-com-v2`
 - preview smoke passes
 - SEO route QA passes
