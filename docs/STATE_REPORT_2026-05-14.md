@@ -3,7 +3,7 @@
 > **Scope:** Sprint 0 execution status after continuous public-site hardening.
 > **Repo:** `tranhatam-collab/duongsaotoasang-web`
 > **Branch:** `main`
-> **Latest verified baseline:** `590541a`
+> **Latest verified baseline:** `fb477fe`
 > **Cloudflare Pages project:** `duongsaotoasang-com-v2`
 > **Do not confuse with:** `duongsaotoasang-web`
 
@@ -38,7 +38,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Area | Status | Evidence |
 |---|---:|---|
-| Public routes | PASS | Preview full smoke passed on `40673db8.duongsaotoasang-com-v2.pages.dev` |
+| Public routes | PASS | Preview full smoke passed on `8fccd554.duongsaotoasang-com-v2.pages.dev` |
 | `/posts` fallback | PASS | 24 posts, `data-dsts-ssr="posts"`, no legacy loading placeholder |
 | `/content?slug=...` detail | PASS | Valid slug renders SSR content; missing slug returns content 404 |
 | `/content` without slug | PASS | Server-side middleware redirects to `/posts` |
@@ -70,6 +70,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Commit | Purpose |
 |---|---|
+| `fb477fe` | Add public asset budget QA gate |
 | `590541a` | Add structured data QA gate |
 | `bcea6ea` | Add public HTML structure release gate |
 | `55db00e` | Harden header QA for retired app asset |
@@ -106,7 +107,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 Use preview for full smoke while production custom-domain header/cache override is unresolved:
 
 ```bash
-BASE_URL=https://40673db8.duongsaotoasang-com-v2.pages.dev ./scripts/smoke-test.sh
+BASE_URL=https://8fccd554.duongsaotoasang-com-v2.pages.dev ./scripts/smoke-test.sh
 ```
 
 Expected:
@@ -119,7 +120,7 @@ PASS content-index-redirect  /content -> /posts
 SEO QA:
 
 ```bash
-BASE_URL=https://40673db8.duongsaotoasang-com-v2.pages.dev node scripts/seo-route-qa.mjs
+BASE_URL=https://8fccd554.duongsaotoasang-com-v2.pages.dev node scripts/seo-route-qa.mjs
 BASE_URL=https://duongsaotoasang.com node scripts/seo-route-qa.mjs
 ```
 
