@@ -25,12 +25,15 @@ const BLOCKED_INLINE_PATTERNS = [
 ]
 
 const failures = []
+const staticContent = readJson("data/content.json")
+const staticPosts = readJson("data/posts.json")
 
 assert(Array.isArray(POST_CONTENTS), "POST_CONTENTS must be an array")
 assert(Array.isArray(PAGE_CONTENTS), "PAGE_CONTENTS must be an array")
 assert(Array.isArray(FALLBACK_CONTENTS), "FALLBACK_CONTENTS must be an array")
 assert(POST_CONTENTS.length >= MIN_PUBLIC_POSTS, `POST_CONTENTS must contain at least ${MIN_PUBLIC_POSTS} public posts`)
 assert(FALLBACK_CONTENTS.length === POST_CONTENTS.length + PAGE_CONTENTS.length, "FALLBACK_CONTENTS must combine posts and pages")
+validateStaticJson()
 
 const allSlugs = new Set()
 const postSlugs = new Set()
@@ -83,6 +86,23 @@ if (failures.length) {
 
 console.log(`CONTENT_QA_PASS posts=${POST_CONTENTS.length} pages=${PAGE_CONTENTS.length} fallback=${FALLBACK_CONTENTS.length}`)
 
+function validateStaticJson() {
+  assert(Array.isArray(staticContent), "data/content.json must be an array")
+  assert(Array.isArray(staticPosts), "data/posts.json must be an array")
+  if (!Array.isArray(staticContent) || !Array.isArray(staticPosts)) return
+
+  assert(staticContent.length === FALLBACK_CONTENTS.length, `data/content.json must contain ${FALLBACK_CONTENTS.length} items, got ${staticContent.length}`)
+  assert(staticPosts.length === POST_CONTENTS.length, `data/posts.json must contain ${POST_CONTENTS.length} posts, got ${staticPosts.length}`)
+  assertSameSlugSet(staticContent, FALLBACK_CONTENTS, "data/content.json")
+  assertSameSlugSet(staticPosts, POST_CONTENTS, "data/posts.json")
+
+  for (const item of staticPosts) {
+    assert(!("content" in item), `data/posts.json must not include content for ${item.slug}`)
+    assert(!("content_vi" in item), `data/posts.json must not include content_vi for ${item.slug}`)
+    assert(!("content_en" in item), `data/posts.json must not include content_en for ${item.slug}`)
+  }
+}
+
 function validateBaseItem(item) {
   assert(item && typeof item === "object", "Fallback item must be an object")
   assert(matches(item.slug, /^[a-z0-9]+(?:-[a-z0-9]+)*$/), `Invalid slug format: ${item.slug}`)
@@ -126,6 +146,24 @@ function validateFeedFunction(relativePath, minimumLimit) {
   if (match) {
     const limit = Number.parseInt(match[1], 10)
     assert(limit >= Math.min(minimumLimit, POST_CONTENTS.length), `${relativePath} fallback limit ${limit} is too low for ${POST_CONTENTS.length} posts`)
+  }
+}
+
+function assertSameSlugSet(actualItems, expectedItems, label) {
+  const actual = actualItems.map((item) => item.slug).sort()
+  const expected = expectedItems.map((item) => item.slug).sort()
+  assert(actual.length === expected.length, `${label} slug count mismatch`)
+  for (let i = 0; i < expected.length; i += 1) {
+    assert(actual[i] === expected[i], `${label} slug mismatch at ${i}: expected ${expected[i]}, got ${actual[i]}`)
+  }
+}
+
+function readJson(relativePath) {
+  try {
+    return JSON.parse(readFileSync(join(repoRoot, relativePath), "utf8"))
+  } catch (error) {
+    failures.push(`${relativePath} must be valid JSON: ${error.message}`)
+    return null
   }
 }
 
