@@ -125,6 +125,8 @@ Replace `<preview>` with the URL returned by Wrangler:
 ```bash
 BASE_URL=<preview> ./scripts/smoke-test.sh
 BASE_URL=<preview> node scripts/seo-route-qa.mjs
+BASE_URL=<preview> node scripts/headers-qa.mjs
+curl -sS -I -L <preview>/assets/app.js
 ```
 
 Required output:
@@ -133,6 +135,8 @@ Required output:
 PASSED: all smoke checks passed
 PASS content-index-redirect  /content -> /posts
 SEO_ROUTE_QA_PASS indexable=32 noindex=2 redirects=2
+HEADERS_QA_PASS base=<preview> checks=8
+HTTP/2 404
 ```
 
 Spot-check manually:
@@ -160,6 +164,8 @@ curl -sS -I -L https://duongsaotoasang.com/content
 curl -sS -I 'https://duongsaotoasang.com/content?slug=sang-tao-khong-bat-dau-tu-tham-vong'
 curl -sS -L 'https://duongsaotoasang.com/api/search?q=guardian&limit=3'
 BASE_URL=https://duongsaotoasang.com node scripts/seo-route-qa.mjs
+BASE_URL=https://duongsaotoasang.com node scripts/headers-qa.mjs
+curl -sS -I -L https://duongsaotoasang.com/assets/app.js
 ```
 
 Expected:
@@ -168,8 +174,10 @@ Expected:
 - valid content slug returns `200`
 - API search returns metadata only, no full body fields
 - SEO route QA passes
+- production headers QA should pass only after Cloudflare custom-domain cache/header rules are fixed
+- retired `/assets/app.js` should return `404` after old immutable Cloudflare cache is purged
 
-Full production smoke currently remains blocked by external Cloudflare custom-domain header/cache override. Do not treat that as a repo regression if preview headers pass and `docs/STATE_REPORT_2026-05-14.md` still matches current evidence.
+Full production smoke currently remains blocked by external Cloudflare custom-domain header/cache override. Do not treat that as a repo regression if preview headers pass, preview `/assets/app.js` returns `404`, and `docs/STATE_REPORT_2026-05-14.md` still matches current evidence.
 
 ---
 

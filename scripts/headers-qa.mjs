@@ -54,6 +54,14 @@ const checks = [
     ]
   },
   {
+    path: "/assets/app.js",
+    label: "retired-app-js",
+    expectedStatus: 404,
+    expectations: [
+      cacheNoStore()
+    ]
+  },
+  {
     path: "/og.png",
     label: "og-image",
     expectedStatus: 200,
@@ -149,6 +157,14 @@ function contentTypeIncludes(expectedFragment) {
 
 function cacheIncludes(expectedFragment) {
   return includesHeader("cache-control", expectedFragment)
+}
+
+function cacheNoStore() {
+  return ({ headers, label, path }) => {
+    const cacheControl = headers.get("cache-control") || ""
+    assert(/(?:^|,\s*)no-store(?:\s*,|$)/i.test(cacheControl), `${label} ${path} cache-control expected no-store, got ${cacheControl || "(missing)"}`)
+    assert(!/immutable/i.test(cacheControl), `${label} ${path} cache-control must not be immutable; got ${cacheControl}`)
+  }
 }
 
 function cacheMaxAgeAtMost(limitSeconds) {

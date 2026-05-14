@@ -1,8 +1,9 @@
 # 00_DSTS_MASTER_INDEX_2026
 
-> 📝 **DRAFT v1.5.8** — 2026-05-14 (supersedes v1.5.7)
+> 📝 **DRAFT v1.5.9** — 2026-05-14 (supersedes v1.5.8)
 > Bản đồ master cho cả ecosystem DSTS. Gom toàn bộ Drive cũ + kế hoạch mới thành 1 chỉ mục chính thức.
 > **Đối tượng dùng:** dev, content, legal, product, founder — cùng một bản truth.
+> **v1.5.9 changes:** Extend `headers-qa` and runbook to assert retired `/assets/app.js` returns 404/no-store, making custom-domain stale cache visible in one command.
 > **v1.5.8 changes:** Retire legacy `assets/app.js` from deploy source and add QA/deploy guards so it cannot return.
 > **v1.5.7 changes:** Add `_redirects` and `_routes.json` validation to `content-qa` to prevent routing regressions and wrong-project/catch-all rules.
 > **v1.5.6 changes:** Add `_headers` origin-policy validation to `content-qa` to prevent referrer/cache regressions while custom-domain override remains external.
@@ -16,7 +17,7 @@
 > **v1.2 changes:** Wave 1 sync timeline (chèn Phase 0B), fix A7 status, thêm 7 NDNUM spec con TBD.
 
 **Founder:** Trần Hà Tâm
-**Phiên bản:** v1.5.8 (master index — pending re-lock)
+**Phiên bản:** v1.5.9 (master index — pending re-lock)
 **Ngày phát hành:** 2026-05-14
 **Nguyên tắc:** Mọi tài liệu mới về DSTS phải được index ở đây. Không có file ngoài index.
 
@@ -401,6 +402,7 @@ Nếu có conflict giữa Drive cũ (Layer A) và Plan mới (Layer 0-2):
 | v1.5.6 | 2026-05-14 | Add `_headers` origin-policy validation to `content-qa` so repo-side referrer/cache rules cannot drift to the current custom-domain override values. | Codex |
 | v1.5.7 | 2026-05-14 | Add `_redirects` and `_routes.json` validation to `content-qa` so public route normalization, Movement placeholders, and Pages Functions routing cannot drift back to broken catch-all behavior. | Codex |
 | v1.5.8 | 2026-05-14 | Remove retired `assets/app.js`, remove its special `_headers` block, and add `content-qa` + clean deploy guard so legacy app shell assets cannot re-enter the deploy bundle. | Codex |
+| v1.5.9 | 2026-05-14 | Extend `headers-qa` and `RUNBOOK.md` preview/production verification so retired `/assets/app.js` must return 404/no-store on preview and stale production cache is reported as an explicit custom-domain blocker. | Codex |
 
 ---
 
