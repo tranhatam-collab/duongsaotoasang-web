@@ -1,12 +1,12 @@
 {
   "version": 1,
   "include": [
-    "/api/*",
-    "/*",
-    "/content",
-    "/posts",
-    "/rss.xml",
-    "/sitemap.xml"
+    "/*"
   ],
-  "exclude": []
+  "exclude": [
+    "/assets/*",
+    "/app.css",
+    "/og.png",
+    "/robots.txt"
+  ]
 }
