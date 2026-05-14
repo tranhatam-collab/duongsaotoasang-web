@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync } from "node:fs"
 import { fileURLToPath } from "node:url"
 import { dirname, join } from "node:path"
 import { FALLBACK_CONTENTS, POST_CONTENTS } from "../functions/_lib/content-data.js"
+import { buildRss } from "../functions/_lib/feed-utils.js"
 import { INDEXABLE_STATIC_ROUTES, canonicalFor } from "../functions/_lib/public-routes.js"
 
 const __filename = fileURLToPath(import.meta.url)
@@ -16,6 +17,7 @@ const inlineContentBySlug = Object.fromEntries(
 writeJson("data/content.json", FALLBACK_CONTENTS)
 writeJson("data/posts.json", staticPosts)
 writeSitemap("sitemap.xml", buildStaticSitemap(staticPosts))
+writeRss("rss.xml", buildRss(POST_CONTENTS))
 replaceInlineJson(
   "posts.html",
   /const fallbackPosts = \[[\s\S]*?\n\];/,
@@ -27,7 +29,7 @@ replaceInlineJson(
   `const fallbackContents = ${toInlineJson(inlineContentBySlug)};`
 )
 
-console.log(`STATIC_CONTENT_DATA_SYNCED posts=${staticPosts.length} content=${FALLBACK_CONTENTS.length} sitemap=true inline=true`)
+console.log(`STATIC_CONTENT_DATA_SYNCED posts=${staticPosts.length} content=${FALLBACK_CONTENTS.length} sitemap=true rss=true inline=true`)
 
 function writeJson(relativePath, value) {
   writeFileSync(join(repoRoot, relativePath), `${JSON.stringify(value, null, 2)}\n`)
@@ -71,6 +73,10 @@ function buildStaticSitemap(posts) {
 }
 
 function writeSitemap(relativePath, value) {
+  writeFileSync(join(repoRoot, relativePath), value)
+}
+
+function writeRss(relativePath, value) {
   writeFileSync(join(repoRoot, relativePath), value)
 }
 

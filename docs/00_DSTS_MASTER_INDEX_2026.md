@@ -1,8 +1,9 @@
 # 00_DSTS_MASTER_INDEX_2026
 
-> 📝 **DRAFT v1.5.3** — 2026-05-14 (supersedes v1.5.2)
+> 📝 **DRAFT v1.5.4** — 2026-05-14 (supersedes v1.5.3)
 > Bản đồ master cho cả ecosystem DSTS. Gom toàn bộ Drive cũ + kế hoạch mới thành 1 chỉ mục chính thức.
 > **Đối tượng dùng:** dev, content, legal, product, founder — cùng một bản truth.
+> **v1.5.4 changes:** Add shared RSS feed helper, generate static `rss.xml` from 24 fallback posts, and make RSS drift fail `content-qa`.
 > **v1.5.3 changes:** Add shared public route manifest, sync static `sitemap.xml` from 24 fallback posts, and make sitemap drift fail `content-qa`.
 > **v1.5.2 changes:** Add public design token file `tokens.css`, wire `app.css` to import it, and add token CSS to header/smoke QA.
 > **v1.5 changes:** Sprint 0 execution status added — route/API/content/SEO production pass; `/content` without slug redirects to `/posts`; custom-domain header/cache remains BLOCKED_EXTERNAL in Cloudflare zone rules.
@@ -11,7 +12,7 @@
 > **v1.2 changes:** Wave 1 sync timeline (chèn Phase 0B), fix A7 status, thêm 7 NDNUM spec con TBD.
 
 **Founder:** Trần Hà Tâm
-**Phiên bản:** v1.5.3 (master index — pending re-lock)
+**Phiên bản:** v1.5.4 (master index — pending re-lock)
 **Ngày phát hành:** 2026-05-14
 **Nguyên tắc:** Mọi tài liệu mới về DSTS phải được index ở đây. Không có file ngoài index.
 
@@ -226,32 +227,33 @@ Theo thứ tự ưu tiên:
 
 🟡 Sprint 1-4 — 3 tuần tiếp:
   13. sitemap.xml ✅ static + dynamic sitemap synced 2026-05-14
-  14. robots.txt
-  15. _headers
-  16. tokens.css ✅ design tokens added 2026-05-14
-  17. RUNBOOK.md ✅ repo runbook added 2026-05-14
+  14. rss.xml ✅ static + dynamic RSS synced 2026-05-14
+  15. robots.txt
+  16. _headers
+  17. tokens.css ✅ design tokens added 2026-05-14
+  18. RUNBOOK.md ✅ repo runbook added 2026-05-14
 
 🔴 Phase 0B (Tháng 6-8/2026):
-  18a. 7 NDNUM spec con (Child Safety, Consent, Mentor Screening, Legal Entity, Sponsor Fulfillment, Impact, Landing Page)
-  18b. NDNUM v1.2-LOCKED bump
-  18c. Pháp nhân Lane B registered + bank account
-  18d. Legal Counsel + CSO hired
+  19a. 7 NDNUM spec con (Child Safety, Consent, Mentor Screening, Legal Entity, Sponsor Fulfillment, Impact, Landing Page)
+  19b. NDNUM v1.2-LOCKED bump
+  19c. Pháp nhân Lane B registered + bank account
+  19d. Legal Counsel + CSO hired
 
 🔵 Sau Phase 0B — Layer 1 (Tháng 9-12/2026):
-  19. /movement/sponsors landing page
-  20. /movement/events calendar
-  21. /movement/diaspora-map
-  22. Sponsorship form + manual confirmation flow
-  23. Pitch Deck PDF (song ngữ)
-  24. Press Kit
+  20. /movement/sponsors landing page
+  21. /movement/events calendar
+  22. /movement/diaspora-map
+  23. Sponsorship form + manual confirmation flow
+  24. Pitch Deck PDF (song ngữ)
+  25. Press Kit
 
 🔵 Sau Layer 1 — Layer 2 (Tháng 1/2027+):
-  24. /journey/assessment (12-24 câu hỏi)
-  25. /journey/dashboard
-  26. /journey/products
-  27. D1 schema + migration
-  28. API endpoints (18+)
-  29. SSO Muôn Nơi bridge
+  26. /journey/assessment (12-24 câu hỏi)
+  27. /journey/dashboard
+  28. /journey/products
+  29. D1 schema + migration
+  30. API endpoints (18+)
+  31. SSO Muôn Nơi bridge
 ```
 
 ---
@@ -388,6 +390,7 @@ Nếu có conflict giữa Drive cũ (Layer A) và Plan mới (Layer 0-2):
 | v1.5.1 | 2026-05-14 | Add root `RUNBOOK.md` for deploy, rollback, incident response, owner matrix, production verification, data safety, and Cloudflare custom-domain header/cache blocker. | Codex |
 | v1.5.2 | 2026-05-14 | Add root `tokens.css`, import it from `app.css`, cache it through `_headers`, and include token CSS in smoke/header QA. | Codex |
 | v1.5.3 | 2026-05-14 | Add shared public route manifest `functions/_lib/public-routes.js`, generate static `sitemap.xml` from the same route list + 24 fallback posts, and make `content-qa` fail on sitemap drift/noindex leakage. | Codex |
+| v1.5.4 | 2026-05-14 | Add shared RSS feed helper `functions/_lib/feed-utils.js`, generate static `rss.xml` from 24 fallback posts, and make `content-qa` fail on RSS drift/noindex leakage. | Codex |
 
 ---
 

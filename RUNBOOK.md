@@ -285,13 +285,15 @@ Content source files:
 data/posts.json
 data/content.json
 functions/_lib/content-data.js
+functions/_lib/feed-utils.js
 functions/_lib/public-routes.js
 posts.html
 content.html
 sitemap.xml
+rss.xml
 ```
 
-After changing content or indexable public routes, run:
+After changing content, indexable public routes, sitemap, or RSS surfaces, run:
 
 ```bash
 node scripts/sync-static-content-data.mjs

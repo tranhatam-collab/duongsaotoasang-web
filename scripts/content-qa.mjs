@@ -51,6 +51,7 @@ assert(POST_CONTENTS.length >= MIN_PUBLIC_POSTS, `POST_CONTENTS must contain at 
 assert(FALLBACK_CONTENTS.length === POST_CONTENTS.length + PAGE_CONTENTS.length, "FALLBACK_CONTENTS must combine posts and pages")
 validateStaticJson()
 validateStaticSitemap()
+validateStaticRss()
 validateInlineFallbacks()
 validateStaticLoadingPlaceholders()
 validateAppShellReferences()
@@ -145,6 +146,33 @@ function validateStaticSitemap() {
     assert(!loc.includes("pages.dev"), `sitemap.xml URL must not use preview domain: ${loc}`)
     assert(!loc.includes("duongsaotoasang-web"), `sitemap.xml URL must not use wrong Pages project: ${loc}`)
   }
+}
+
+function validateStaticRss() {
+  const source = readFileSync(join(repoRoot, "rss.xml"), "utf8")
+  const itemCount = (source.match(/<item>/g) || []).length
+  const expectedPosts = POST_CONTENTS.slice(0, Math.min(MAX_RSS_POSTS, POST_CONTENTS.length))
+
+  assert(source.startsWith('<?xml version="1.0" encoding="UTF-8"?>'), "rss.xml must start with XML declaration")
+  assert(source.includes('<rss version="2.0">'), "rss.xml must be RSS 2.0")
+  assert(itemCount === expectedPosts.length, `rss.xml must contain ${expectedPosts.length} items, got ${itemCount}`)
+  assert(source.includes("<title>Đường Sao Tỏa Sáng</title>"), "rss.xml must include channel title")
+  assert(source.includes("<link>https://duongsaotoasang.com/</link>"), "rss.xml must include production channel link")
+
+  for (const post of expectedPosts) {
+    const url = canonicalFor(`/content?slug=${post.slug}`)
+    assert(source.includes(`<link>${url}</link>`), `rss.xml missing link for post: ${post.slug}`)
+    assert(source.includes(`<guid>${url}</guid>`), `rss.xml missing guid for post: ${post.slug}`)
+    assert(source.includes(`<![CDATA[${post.title_vi}`), `rss.xml missing Vietnamese title for post: ${post.slug}`)
+  }
+
+  for (const path of NOINDEX_ROUTES) {
+    assert(!source.includes(canonicalFor(path)), `rss.xml must exclude noindex URL: ${canonicalFor(path)}`)
+  }
+
+  assert(!source.includes(".html"), "rss.xml must use clean URLs, not .html")
+  assert(!source.includes("pages.dev"), "rss.xml must not use preview domain")
+  assert(!source.includes("duongsaotoasang-web"), "rss.xml must not use wrong Pages project")
 }
 
 function validateInlineFallbacks() {
