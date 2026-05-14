@@ -36,6 +36,7 @@ assert(FALLBACK_CONTENTS.length === POST_CONTENTS.length + PAGE_CONTENTS.length,
 validateStaticJson()
 validateInlineFallbacks()
 validateStaticLoadingPlaceholders()
+validatePublicLaneBoundaries()
 
 const allSlugs = new Set()
 const postSlugs = new Set()
@@ -142,6 +143,14 @@ function validateStaticLoadingPlaceholders() {
     const source = readFileSync(join(repoRoot, relativePath), "utf8")
     assert(!pattern.test(source), `${relativePath} must not ship legacy loading placeholder: ${pattern}`)
   }
+}
+
+function validatePublicLaneBoundaries() {
+  const contact = readFileSync(join(repoRoot, "contact.html"), "utf8")
+  assert(contact.includes('data-dsts-contact-mode="manual-only"'), "contact.html must disclose manual-only contact mode")
+  assert(!/<form\b/i.test(contact), "contact.html must not ship a public form while email automation is owned by another lane")
+  assert(!/tel:\+84123456789/i.test(contact), "contact.html must not ship placeholder phone number")
+  assert(!/facebook\.com\/duongsaotoasang|twitter\.com\/duongsaotoasang|instagram\.com\/duongsaotoasang|youtube\.com\/@duongsaotoasang/i.test(contact), "contact.html must not ship unverified social links")
 }
 
 function validateBaseItem(item) {

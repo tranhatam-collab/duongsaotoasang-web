@@ -81,6 +81,41 @@
 
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:32px}
   .contact-form{display:flex;flex-direction:column;gap:18px}
+  .contact-panel{
+    border:1px solid rgba(224,200,150,.12);
+    border-radius:20px;
+    background:rgba(255,255,255,.032);
+    padding:24px;
+  }
+  .contact-panel h3{margin:0 0 12px;font-size:20px;color:#f0e4c8}
+  .contact-panel p{margin:0 0 14px;color:#9eb0c8;line-height:1.8}
+  .contact-panel ul{margin:14px 0 0;padding-left:20px;color:#9eb0c8;line-height:1.8}
+  .contact-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+  .contact-actions a{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:46px;
+    padding:0 14px;
+    border-radius:14px;
+    border:1px solid rgba(224,200,150,.18);
+    color:#f5e7c7;
+    background:rgba(255,255,255,.04);
+    text-decoration:none;
+    font-weight:700;
+  }
+  .contact-actions a.primary{
+    border-color:rgba(224,200,150,.34);
+    background:linear-gradient(180deg,rgba(224,200,150,.20),rgba(224,200,150,.08));
+  }
+  .status-note{
+    border:1px dashed rgba(224,200,150,.16);
+    border-radius:16px;
+    padding:14px;
+    background:rgba(255,255,255,.025);
+    color:#aeb8c8;
+    line-height:1.75;
+  }
   .form-group{display:flex;flex-direction:column;gap:8px}
   .form-group label{font-size:14px;font-weight:600;color:#e0c896;text-transform:uppercase;letter-spacing:0.5px}
   .form-group input,
@@ -214,33 +249,23 @@ Hãy để lại thông tin hoặc các câu hỏi của bạn. Chúng tôi sẽ
 
 <div class="contact-form">
 
-<h2 style="margin-top:0">Gửi tin nhắn cho chúng tôi</h2>
+<h2 style="margin-top:0">Kênh liên hệ thủ công</h2>
 
-<form style="display:contents">
-
-<div class="form-group">
-<label for="name">Họ và tên</label>
-<input type="text" id="name" name="name" placeholder="Nhập họ và tên của bạn" required>
+<div class="contact-panel" data-dsts-contact-mode="manual-only">
+<h3>Không có public contact form trong giai đoạn này</h3>
+<p>DSTS hiện không thu dữ liệu qua form trên trang public. Các yêu cầu hợp tác, báo lỗi nội dung, xác nhận thủ công hoặc câu hỏi chương trình nên gửi qua email chính thức để team phụ trách xử lý đúng lane.</p>
+<p class="status-note">Vui lòng không gửi dữ liệu nhạy cảm, thông tin trẻ em, giấy tờ định danh, thông tin thanh toán hoặc mật khẩu qua email công khai. Các flow email automation, payment và đăng ký/đăng nhập do team khác phụ trách và chưa được mở trên trang này.</p>
+<div class="contact-actions">
+<a class="primary" href="mailto:hello@duongsaotoasang.com?subject=DSTS%20-%20Yeu%20cau%20lien%20he%20thu%20cong">Gửi email thủ công</a>
+<a href="/support">Xem hướng dẫn hỗ trợ</a>
+<a href="/transparency">Xem minh bạch</a>
 </div>
-
-<div class="form-group">
-<label for="email">Email</label>
-<input type="email" id="email" name="email" placeholder="Nhập địa chỉ email của bạn" required>
+<ul>
+<li>Ghi rõ chủ đề: hợp tác, báo lỗi website, chương trình, press, Movement hoặc NDNUM.</li>
+<li>Không kỳ vọng phản hồi tự động; đây là kênh liên hệ thủ công.</li>
+<li>Nếu liên quan payment hoặc tài khoản, chỉ gửi yêu cầu trạng thái chung, không gửi thông tin nhạy cảm.</li>
+</ul>
 </div>
-
-<div class="form-group">
-<label for="subject">Chủ đề</label>
-<input type="text" id="subject" name="subject" placeholder="Chủ đề liên hệ" required>
-</div>
-
-<div class="form-group">
-<label for="message">Tin nhắn</label>
-<textarea id="message" name="message" placeholder="Nhập tin nhắn của bạn..." required></textarea>
-</div>
-
-<button type="submit" class="submit-btn">Gửi tin nhắn</button>
-
-</form>
 
 </div>
 
@@ -257,31 +282,26 @@ Hãy để lại thông tin hoặc các câu hỏi của bạn. Chúng tôi sẽ
 </div>
 
 <div class="info-item">
-<div class="info-icon">📱</div>
+<div class="info-icon">ⓘ</div>
 <div class="info-content">
-<h3>Điện thoại</h3>
-<p><a href="tel:+84123456789">+84 (123) 456-789</a></p>
+<h3>Trạng thái phản hồi</h3>
+<p>Liên hệ được xử lý thủ công theo mức độ ưu tiên. Chưa có cam kết SLA public.</p>
 </div>
 </div>
 
 <div class="info-item">
-<div class="info-icon">📍</div>
+<div class="info-icon">!</div>
 <div class="info-content">
-<h3>Địa chỉ</h3>
-<p>Đường Sao Tỏa Sáng<br>Hà Nội, Việt Nam</p>
+<h3>Ranh giới dữ liệu</h3>
+<p>Không gửi thông tin trẻ em, giấy tờ cá nhân, thông tin tài chính hoặc dữ liệu đăng nhập qua kênh public.</p>
 </div>
 </div>
 
 <div class="info-item">
-<div class="info-icon">🌐</div>
+<div class="info-icon">↗</div>
 <div class="info-content">
-<h3>Mạng xã hội</h3>
-<div class="social-links">
-<a href="https://facebook.com/duongsaotoasang" title="Facebook" target="_blank">f</a>
-<a href="https://twitter.com/duongsaotoasang" title="Twitter" target="_blank">𝕏</a>
-<a href="https://instagram.com/duongsaotoasang" title="Instagram" target="_blank">@</a>
-<a href="https://youtube.com/@duongsaotoasang" title="YouTube" target="_blank">▶</a>
-</div>
+<h3>Trang liên quan</h3>
+<p><a href="/support">Support</a> · <a href="/legal">Legal</a> · <a href="/privacy">Privacy</a> · <a href="/transparency">Transparency</a></p>
 </div>
 </div>
 
@@ -303,22 +323,22 @@ Hãy để lại thông tin hoặc các câu hỏi của bạn. Chúng tôi sẽ
 
 <div class="faq-item">
 <h3>Làm cách nào để tham gia cộng đồng Đường Sao Tỏa Sáng?</h3>
-<p>Bạn có thể tham gia bất cứ lúc nào bằng cách điền biểu mẫu liên hệ hoặc gửi email cho chúng tôi. Chúng tôi sẽ cung cấp cho bạn thông tin chi tiết về các chương trình, sự kiện và cách tham gia phù hợp nhất.</p>
+<p>Trong giai đoạn public hiện tại, bạn nên bắt đầu từ trang chủ, chương trình, thư viện bài viết và Movement Portal. Các flow đăng ký hoặc tài khoản chưa mở trên trang này.</p>
 </div>
 
 <div class="faq-item">
 <h3>Có phí tham gia các chương trình không?</h3>
-<p>Hầu hết các chương trình của Đường Sao Tỏa Sáng đều miễn phí hoặc có chi phí rất thấp để đảm bảo tính tiếp cận cho tất cả mọi người. Một số chương trình đặc biệt có thể có chi phí nho nhỏ để duy trì chất lượng.</p>
+<p>Trang public hiện không xử lý payment hoặc checkout. Nếu một chương trình có chi phí trong tương lai, DSTS phải công bố điều khoản, refund, pháp nhân, xác nhận thủ công và trạng thái minh bạch trước khi mở.</p>
 </div>
 
 <div class="faq-item">
 <h3>Tôi sống ở nước ngoài, tôi có thể tham gia không?</h3>
-<p>Hoàn toàn có thể! Đường Sao Tỏa Sáng là một nền tảng toàn cầu dành cho người Việt Nam ở bất cứ nơi nào trên thế giới. Chúng tôi có nhiều chương trình trực tuyến và các sự kiện toàn cầu.</p>
+<p>DSTS được thiết kế cho người Việt toàn cầu, nhưng các sự kiện, tour và community flow chỉ mở theo readiness gate. Xem Movement Portal để biết phần nào đang read-only và phần nào còn chờ owner.</p>
 </div>
 
 <div class="faq-item">
 <h3>Tôi muốn chia sẻ câu chuyện hoặc dự án của mình, tôi nên làm gì?</h3>
-<p>Hãy liên hệ với chúng tôi qua email hoặc biểu mẫu liên hệ này. Chúng tôi sẽ trao đổi chi tiết về câu chuyện hoặc dự án của bạn, và tìm cách tốt nhất để giúp bạn chia sẻ nó với cộng đồng.</p>
+<p>Hãy gửi email thủ công với phần mô tả ngắn, quyền công bố, phạm vi mong muốn và dữ liệu nào được phép chia sẻ. Không gửi nội dung riêng tư hoặc dữ liệu trẻ em qua kênh public.</p>
 </div>
 
 </div>
