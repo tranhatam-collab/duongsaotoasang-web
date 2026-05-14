@@ -19,7 +19,7 @@ Project hiện chia làm 3 nhóm:
 
 - **DRAFT** (đang chỉnh, gần sẵn sàng):
   - Master Plan v1.2-DRAFT (pending re-lock sau NDNUM v1.2)
-  - Master Index v1.5.19 (pending re-lock)
+  - Master Index v1.5.20 (pending re-lock)
   - NDNUM v1.1-REVIEWED + 7 NDNUM spec con DRAFT v1.0
   - Layer 1 DSTS spec DEV-READY v1.0 nhưng chưa mở public interactive flows
 
@@ -186,7 +186,7 @@ Mọi file trong `_archive_2026-05-13/` **KHÔNG dùng làm reference**.
 - Xem `STATE_REPORT_2026-05-14.md` để biết trạng thái.
 - Xem `CLOUDFLARE_CUSTOM_DOMAIN_FIX_PACKET_2026-05-14.md` để biết purge URLs, dashboard checks, API template, và post-fix verification.
 - Dùng `scripts/sprint-0-release-gate.mjs` cho automation: exit `0` ready, `1` repo regression, `2` known `BLOCKED_EXTERNAL`; thêm `RUN_DEPLOY_DRY_RUN=1` sau commit để kiểm deploy bundle.
-- Dùng `scripts/api-surface-qa.mjs` để khóa API public: list/search chỉ trả metadata, detail slug mới trả body, missing slug trả 404.
+- Dùng `scripts/api-surface-qa.mjs` để khóa API public: list/search chỉ trả metadata, detail slug mới trả body, missing slug trả 404. Release gate có retry ngắn cho API surface vì Pages preview mới deploy có thể cần vài giây để Functions propagate.
 - Dùng `scripts/html-structure-qa.mjs` để khóa local HTML: đúng 1 `h1`, metadata/canonical/robots đầy đủ, clean canonical cho trang indexable, không lẫn preview/wrong-project/loading placeholder.
 - Dùng `scripts/accessibility-qa.mjs` để khóa accessibility/semantic cơ bản: đúng 1 `main`, không duplicate id, không có `href="#"`/`javascript:`, fragment nội bộ phải có target, button/link có nhãn truy cập, image có `alt`.
 - Dùng `scripts/public-flow-safety-qa.mjs` để khóa public flows: chỉ cho phép search form `/posts`, không mở form email/payment/auth, không link trực tiếp checkout/auth/register/login.

@@ -1,6 +1,7 @@
 import { execFile } from "node:child_process"
 import { readFileSync } from "node:fs"
 import { dirname, join } from "node:path"
+import { setTimeout as sleep } from "node:timers/promises"
 import { fileURLToPath } from "node:url"
 import { promisify } from "node:util"
 
@@ -47,7 +48,7 @@ if (RUN_DEPLOY_DRY_RUN) {
 }
 
 if (PREVIEW_URL) {
-  await requirePass("preview-api-surface", "node", ["scripts/api-surface-qa.mjs"], { BASE_URL: PREVIEW_URL })
+  await requirePassWithRetry("preview-api-surface", "node", ["scripts/api-surface-qa.mjs"], { BASE_URL: PREVIEW_URL })
   await requirePass("preview-seo", "node", ["scripts/seo-route-qa.mjs"], { BASE_URL: PREVIEW_URL })
   await requirePass("preview-headers", "node", ["scripts/headers-qa.mjs"], { BASE_URL: PREVIEW_URL })
   if (RUN_FULL_SMOKE) {
@@ -55,7 +56,7 @@ if (PREVIEW_URL) {
   }
 }
 
-await requirePass("production-api-surface", "node", ["scripts/api-surface-qa.mjs"], { BASE_URL: PRODUCTION_URL })
+await requirePassWithRetry("production-api-surface", "node", ["scripts/api-surface-qa.mjs"], { BASE_URL: PRODUCTION_URL }, { attempts: 2 })
 await requirePass("production-seo", "node", ["scripts/seo-route-qa.mjs"], { BASE_URL: PRODUCTION_URL })
 
 const productionHeaders = await runStep("production-headers", "node", ["scripts/headers-qa.mjs"], {
@@ -94,6 +95,25 @@ async function requirePass(label, command, args, env = {}) {
   if (!result.ok) {
     hardFailures.push(`${label} failed:\n${result.output}`)
   }
+}
+
+async function requirePassWithRetry(label, command, args, env = {}, options = {}) {
+  const attempts = options.attempts || 4
+  const delayMs = options.delayMs || 5000
+  let lastResult = null
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const stepLabel = attempt === 1 ? label : `${label}-retry-${attempt}`
+    lastResult = await runStep(stepLabel, command, args, env)
+    if (lastResult.ok) return
+
+    if (attempt < attempts) {
+      console.log(`WAIT ${label} retrying in ${delayMs}ms`)
+      await sleep(delayMs)
+    }
+  }
+
+  hardFailures.push(`${label} failed after ${attempts} attempts:\n${lastResult?.output || ""}`)
 }
 
 async function requireTrackedSourceHygiene() {
