@@ -194,6 +194,7 @@ function validatePublicLaneBoundaries() {
     assert(source.includes("Sample reviewer B"), `${relativePath} must use generic English sample reviewer label B`)
     assert(!/<form\b/i.test(source), `${relativePath} must not ship public review forms`)
     assert(!/id="formSubmit"|id="formName"|id="formComment"|id="formRating"/i.test(source), `${relativePath} must not ship inactive review input controls`)
+    assert(!/class="comment-form"|\.comment-form|formName|formComment|formSubmit|formRating|Submit review/i.test(source), `${relativePath} must not keep dead review form code or labels`)
   }
 }
 

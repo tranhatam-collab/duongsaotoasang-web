@@ -501,29 +501,11 @@
       margin-top:18px;
     }
 
-    .comment-form{
+    .review-intake-closed{
       display:grid;
       gap:12px;
       max-width:640px;
       margin-top:18px;
-    }
-
-    .comment-form input,
-    .comment-form textarea,
-    .comment-form select{
-      width:100%;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:14px;
-      background:rgba(255,255,255,.04);
-      color:#fff;
-      padding:14px 16px;
-      font-size:14px;
-      outline:none;
-    }
-
-    .comment-form textarea{
-      min-height:140px;
-      resize:vertical;
     }
 
     .comment-list{
@@ -844,7 +826,7 @@
 
       <div class="sample-review-disclosure" id="sampleDisclosure">Đánh giá minh họa - chưa phải phản hồi khách hàng thật. DSTS chỉ công bố review thật sau khi có xác minh và quyền công bố.</div>
 
-      <div class="comment-form review-intake-closed" data-dsts-review-mode="sample-only">
+      <div class="review-intake-closed" data-dsts-review-mode="sample-only">
         <div class="sample-review-disclosure" id="reviewIntakeClosed">Kênh gửi đánh giá chưa mở - phần này chỉ hiển thị review minh họa.</div>
       </div>
 
@@ -972,14 +954,6 @@
           commentEyebrow: "Ý KIẾN CÔNG KHAI",
           commentTitle: "Phản hồi và đánh giá từ cộng đồng",
           commentDesc: "Các phản hồi bên dưới là nội dung minh họa để mô phỏng bố cục đánh giá. DSTS chưa công bố phản hồi khách hàng thật cho hành trình này trong giai đoạn hiện tại.",
-          formName: "Tên của bạn",
-          formComment: "Chia sẻ cảm nhận của bạn về The Creative Leader",
-          formSubmit: "Gửi đánh giá",
-          rate5: "5 sao – Rất mạnh",
-          rate4: "4 sao – Rất tốt",
-          rate3: "3 sao – Tốt",
-          rate2: "2 sao – Cần thêm thông tin",
-          rate1: "1 sao – Chưa phù hợp",
           sampleName1: "Người đánh giá minh họa A",
           sampleRate1: "5 sao – Rất mạnh",
           sampleText1: "Điều hiếm thấy là một blueprint lãnh đạo không chỉ nói về quản lý mà nói về cách để lại di sản tư tưởng. Đây chính xác là điều tôi cần.",
@@ -1077,14 +1051,6 @@
           commentEyebrow: "PUBLIC REFLECTIONS",
           commentTitle: "Public feedback and evaluations",
           commentDesc: "The reflections below are sample content used to demonstrate the review layout. DSTS is not publishing verified customer feedback for this journey at this stage.",
-          formName: "Your name",
-          formComment: "Share your thoughts about The Creative Leader",
-          formSubmit: "Submit review",
-          rate5: "5 stars – Very strong",
-          rate4: "4 stars – Very good",
-          rate3: "3 stars – Good",
-          rate2: "2 stars – Need more detail",
-          rate1: "1 star – Not yet aligned",
           sampleName1: "Sample reviewer A",
           sampleRate1: "5 stars – Very strong",
           sampleText1: "This blueprint helped me understand that creative leadership is not about power but about vision and a story strong enough to attract others.",
@@ -1124,25 +1090,6 @@
         "purchaseEyebrow","purchaseTitle","purchaseText1","purchasePrice","purchaseText2","purchaseSafety","purchaseBtn1","purchaseBtn2","manualCardTitle","manualStep1","manualStep2","manualStep3","purchaseNote",
         "commentEyebrow","commentTitle","commentDesc","sampleDisclosure","reviewIntakeClosed","sampleLabel1","sampleName1","sampleRate1","sampleText1","sampleLabel2","sampleName2","sampleRate2","sampleText2","footerLine"
       ].forEach((id) => set(id, t[id]));
-
-      const formName = document.getElementById("formName");
-      if (formName) formName.placeholder = t.formName;
-      const formComment = document.getElementById("formComment");
-      if (formComment) formComment.placeholder = t.formComment;
-      const formSubmit = document.getElementById("formSubmit");
-      if (formSubmit) formSubmit.textContent = t.formSubmit;
-
-      const formRating = document.getElementById("formRating");
-      if (formRating) {
-        formRating.innerHTML = `
-          <option>${t.rate5}</option>
-          <option>${t.rate4}</option>
-          <option>${t.rate3}</option>
-          <option>${t.rate2}</option>
-          <option>${t.rate1}</option>
-        `;
-      }
-
       if ("IntersectionObserver" in window) {
         const observer = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
