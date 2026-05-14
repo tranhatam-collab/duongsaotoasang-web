@@ -1,5 +1,116 @@
 export const POST_CONTENTS = [
   {
+    slug: "minh-bach-truoc-khi-gay-quy-dsts",
+    type: "post",
+    title_vi: "Minh bạch trước khi gây quỹ: vì sao DSTS tạm đóng donate",
+    title_en: "Transparency before fundraising: why DSTS keeps donation closed",
+    excerpt_vi: "DSTS chọn công bố nguyên tắc, trạng thái và điều kiện mở quỹ trước khi nhận đóng góp đại chúng, để niềm tin đi trước dòng tiền.",
+    excerpt_en: "DSTS publishes principles, status, and opening conditions before accepting public contributions, so trust comes before money flow.",
+    content_vi: `
+      <p>Một dự án cộng đồng rất dễ muốn mở gây quỹ sớm. Khi có tầm nhìn đẹp, nhu cầu thật và nhiều việc cần làm, việc kêu gọi đóng góp có vẻ là bước tự nhiên. Nhưng với DSTS, thứ tự đúng không phải là nhận tiền trước rồi giải thích sau. Thứ tự đúng là minh bạch trước, nhận đóng góp sau.</p>
+      <p>Đó là lý do trang <code>/donate</code> hiện giữ trạng thái tạm đóng. Trạng thái này không phải vì dự án không cần nguồn lực. Nó là một quyết định vận hành để bảo vệ người đóng góp, bảo vệ Founder, bảo vệ team và bảo vệ uy tín dài hạn của hệ sinh thái.</p>
+      <h2>Niềm tin phải đi trước dòng tiền</h2>
+      <p>Người đóng góp có quyền biết tiền được nhận qua pháp nhân nào, dùng vào mục đích gì, ai chịu trách nhiệm phê duyệt chi, báo cáo được công bố theo chu kỳ nào, hoàn tiền xử lý ra sao và có giới hạn gì giữa commercial lane, nonprofit lane và investment lane. Nếu những câu trả lời này chưa khóa, việc mở nhận tiền sẽ tạo rủi ro lớn hơn lợi ích ngắn hạn.</p>
+      <p>DSTS có thể công bố kế hoạch, nhu cầu nguồn lực và các loại chương trình đang chuẩn bị. Nhưng khi chưa đủ legal review, accounting process, reporting template và owner chịu trách nhiệm, website phải nói thật: chưa mở đóng góp đại chúng.</p>
+      <h2>Minh bạch không chỉ là một trang báo cáo</h2>
+      <p>Minh bạch không phải là viết vài con số cuối tháng. Minh bạch bắt đầu từ kiến trúc: route nào live, CTA nào được phép, dữ liệu nào được thu, dòng tiền nào được mở, chứng từ nào được lưu, ai có quyền duyệt và công chúng sẽ xem báo cáo ở đâu.</p>
+      <p>Trang <code>/transparency</code> vì vậy là một bề mặt nền. Nó cần công bố trạng thái khởi tạo, nguyên tắc báo cáo, hạng mục sẽ được cập nhật và những phần chưa có dữ liệu thật. Việc nói rõ “chưa có” cũng là minh bạch, miễn là người đọc hiểu vì sao chưa có và điều kiện nào sẽ làm phần đó được mở.</p>
+      <h2>Không dùng cảm xúc để vượt qua quy trình</h2>
+      <p>Các chương trình cộng đồng, trẻ em, mentoring, sự kiện và tài trợ đều có thể tạo cảm xúc mạnh. Nhưng cảm xúc không thể thay thế quy trình. Một câu chuyện đẹp không tự động làm cho việc nhận tài trợ trở nên an toàn. Một giấc mơ đáng ủng hộ không tự động tạo quyền thu tiền nếu pháp lý, guardian consent hoặc reporting chưa đủ.</p>
+      <p>DSTS chọn cách chậm hơn nhưng chắc hơn: công bố kế hoạch, giữ donate ở trạng thái tạm đóng, chuẩn hóa legal và transparency trước, sau đó mới mở các hình thức đóng góp phù hợp. Đây là cách để nguồn lực đến với dự án mà không làm tổn hại niềm tin của cộng đồng.</p>
+    `,
+    content_en: `
+      <p>A community project can easily feel pressure to open fundraising early. When the vision is meaningful and there is real work to do, asking for contributions may seem natural. But for DSTS, the right order is not to receive money first and explain later. The right order is transparency first, contributions later.</p>
+      <p>That is why <code>/donate</code> currently remains closed. This status does not mean the project does not need resources. It is an operating decision that protects contributors, the Founder, the team, and the long-term credibility of the ecosystem.</p>
+      <h2>Trust must come before money flow</h2>
+      <p>Contributors have the right to know which legal entity receives funds, what the money is used for, who approves spending, how reports are published, how refunds are handled, and how commercial, nonprofit, and investment lanes are separated.</p>
+      <p>DSTS can publish its plan and resource needs. But until legal review, accounting process, reporting templates, and ownership are clear, the website must tell the truth: public contributions are not yet open.</p>
+      <h2>Transparency is more than one report page</h2>
+      <p>Transparency is not just writing a few numbers at the end of a month. It begins with architecture: which routes are live, which CTAs are allowed, what data is collected, which money lanes are open, what receipts are stored, who approves decisions, and where the public can read reports.</p>
+      <h2>Emotion must not bypass process</h2>
+      <p>Community, children, mentoring, events, and sponsorship can all create strong emotion. But emotion cannot replace process. A beautiful story does not automatically make receiving sponsorship safe. A worthy dream does not automatically create permission to accept funds before legal, guardian consent, and reporting are ready.</p>
+      <p>DSTS chooses the slower but safer path: publish the plan, keep donation closed, standardize legal and transparency, and only then open appropriate contribution methods.</p>
+    `,
+    tags: "minh bạch,gây quỹ,niềm tin",
+    reading_time: "8 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-14T00:45:00.000Z"
+  },
+  {
+    slug: "guardian-first-nguyen-tac-bao-ve-tre-em-ndnum",
+    type: "post",
+    title_vi: "Guardian-first: nguyên tắc bảo vệ trẻ em của NDNUM",
+    title_en: "Guardian-first: the child protection principle behind NDNUM",
+    excerpt_vi: "NDNUM chỉ có thể mở đúng khi người giám hộ, an toàn trẻ em, pháp lý và quyền riêng tư đi trước mọi lời mời tham gia.",
+    excerpt_en: "NDNUM can only open responsibly when guardianship, child safety, legal review, and privacy come before every invitation to participate.",
+    content_vi: `
+      <p>Nuôi Dưỡng Những Ước Mơ là một trong những lớp quan trọng nhất của DSTS, nhưng cũng là lớp phải được mở thận trọng nhất. Khi một chương trình có khả năng liên quan trẻ em, mentor, tài trợ và câu chuyện cá nhân, tiêu chuẩn không thể chỉ là “ý định tốt”. Tiêu chuẩn phải là Guardian-first.</p>
+      <p>Guardian-first nghĩa là người giám hộ hợp pháp, quyền riêng tư, an toàn trẻ em và review pháp lý phải đứng trước mọi lời mời tham gia, mọi hình ảnh truyền thông, mọi câu chuyện truyền cảm hứng và mọi flow tài trợ. DSTS không được phép biến sự dễ thương, khó khăn hoặc ước mơ của trẻ em thành tài sản truyền thông thiếu kiểm soát.</p>
+      <h2>Không contact trực tiếp với trẻ em</h2>
+      <p>Nguyên tắc đầu tiên là không tạo đường liên hệ trực tiếp giữa người lạ và trẻ em. Mentor, sponsor, volunteer hoặc đối tác không được tự ý nhắn tin, gọi điện, gặp riêng hoặc yêu cầu dữ liệu cá nhân của trẻ. Mọi tương tác phải đi qua guardian-approved channel, coordinator được phân quyền và quy trình đã được Child Safety Officer duyệt.</p>
+      <p>Điều này có thể làm hệ thống chậm hơn, nhưng đó là cái chậm cần thiết. Một chương trình bảo vệ trẻ em không đo sự trưởng thành bằng tốc độ mở cohort, mà bằng khả năng ngăn rủi ro trước khi nó xảy ra.</p>
+      <h2>Câu chuyện chỉ được kể khi có quyền rõ ràng</h2>
+      <p>Nhiều chương trình cộng đồng có xu hướng dùng câu chuyện trẻ em để tạo cảm xúc. NDNUM cần làm ngược lại: chỉ kể câu chuyện khi có quyền rõ ràng, mục đích rõ ràng, giới hạn sử dụng rõ ràng và khả năng rút consent. Tên thật, hình ảnh nhận diện, địa chỉ, trường học, hoàn cảnh nhạy cảm hoặc thông tin sức khỏe không được public nếu chưa qua review nghiêm ngặt.</p>
+      <p>Nếu cần minh họa public, DSTS nên dùng câu chuyện tổng hợp, dữ liệu ẩn danh hoặc mô tả ở mức chương trình. Việc bảo vệ dignity của trẻ quan trọng hơn việc làm nội dung cảm động.</p>
+      <h2>Phase 0B là điều kiện mở, không phải thủ tục hình thức</h2>
+      <p>Phase 0B của NDNUM gồm legal entity, Child Safety Officer, Legal Counsel, parent/guardian consent flow, mentor screening, money lane map và impact measurement. Đây không phải checklist để trang trí tài liệu. Đây là điều kiện để bất kỳ cohort, sponsor-a-dream hoặc mentor program nào có thể mở một cách có trách nhiệm.</p>
+      <p>Trước khi Phase 0B pass, bề mặt public của NDNUM chỉ nên giải thích nguyên tắc, scope và trạng thái chuẩn bị. Không nhận đăng ký trẻ em, không nhận tài trợ gắn với trẻ cụ thể, không mở mentor matching và không hứa thời điểm cohort như một cam kết cứng.</p>
+      <p>Guardian-first là lời nhắc rằng DSTS không chỉ muốn làm điều tốt. DSTS phải làm điều tốt theo cách không tạo thêm rủi ro cho những người cần được bảo vệ nhất.</p>
+    `,
+    content_en: `
+      <p>Dream Nurture is one of the most important layers of DSTS, but it must also be opened with the greatest care. When a program may involve children, mentors, sponsorship, and personal stories, good intention is not enough. The standard must be Guardian-first.</p>
+      <p>Guardian-first means legal guardianship, privacy, child safety, and legal review come before every invitation to participate, every media story, every sponsorship flow, and every public claim.</p>
+      <h2>No direct contact with children</h2>
+      <p>The first rule is that no stranger should have a direct communication path to a child. Mentors, sponsors, volunteers, or partners must not message, call, meet privately, or request personal data from children. All interaction must go through guardian-approved channels, authorized coordinators, and Child Safety Officer-reviewed processes.</p>
+      <h2>Stories require clear rights</h2>
+      <p>Community programs often use children's stories to create emotion. NDNUM must do the opposite: stories may only be shared when rights, purpose, usage limits, and consent withdrawal are clear. Real names, identifiable images, addresses, schools, sensitive circumstances, and health information must not be public without strict review.</p>
+      <h2>Phase 0B is an opening condition</h2>
+      <p>NDNUM Phase 0B includes legal entity, Child Safety Officer, Legal Counsel, parent/guardian consent flow, mentor screening, money lane map, and impact measurement. This is not decorative documentation. It is the condition for opening cohorts, sponsor-a-dream, or mentor programs responsibly.</p>
+      <p>Guardian-first reminds DSTS that doing good is not enough. DSTS must do good in a way that does not create new risk for those most in need of protection.</p>
+    `,
+    tags: "NDNUM,guardian-first,an toàn trẻ em",
+    reading_time: "9 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-14T00:40:00.000Z"
+  },
+  {
+    slug: "nguoi-moi-nen-bat-dau-dsts-tu-dau",
+    type: "post",
+    title_vi: "Người mới nên bắt đầu với DSTS từ đâu",
+    title_en: "Where newcomers should begin with DSTS",
+    excerpt_vi: "Một bản chỉ đường cho người lần đầu vào website: đọc trang chủ, hiểu chương trình, xem thư viện, rồi đi vào Movement Portal và NDNUM theo đúng trạng thái.",
+    excerpt_en: "A guide for first-time visitors: start with the homepage, understand programs, read the library, then enter Movement Portal and NDNUM according to their real status.",
+    content_vi: `
+      <p>Khi một người lần đầu vào DSTS, họ không nên phải đoán đây là blog, chương trình giáo dục, cộng đồng, dự án nghệ thuật, nền tảng tài trợ hay một hệ sinh thái dài hạn. Câu trả lời đúng là DSTS có nhiều lớp, nhưng lộ trình đọc phải đủ rõ để người mới không bị lạc.</p>
+      <p>Cách bắt đầu tốt nhất là đi theo thứ tự: trang chủ, giới thiệu, chương trình, thư viện tri thức, kịch bản hành trình, Movement Portal, rồi NDNUM. Thứ tự này giúp người đọc hiểu từ nền tảng tư tưởng đến các bề mặt công khai đang mở, thay vì nhảy thẳng vào các phần còn chờ quyết định.</p>
+      <h2>Đọc trang chủ để nắm hệ thống</h2>
+      <p>Trang chủ là cửa vào chính. Nó phải trả lời nhanh ba câu hỏi: DSTS là gì, đang xây những lớp nào và phần nào đang sẵn sàng. Người mới nên bắt đầu ở đây để thấy bản đồ tổng quan: nền tảng nội dung, chương trình, kịch bản phát triển, Movement Portal và các lớp cộng đồng dài hạn.</p>
+      <p>Nếu trang chủ làm đúng việc của nó, người đọc sẽ không chỉ nhìn thấy vài câu slogan. Họ sẽ hiểu DSTS đang chọn phát triển bằng niềm tin, minh bạch, an toàn và tiến độ có kiểm soát.</p>
+      <h2>Đi vào thư viện để hiểu chiều sâu</h2>
+      <p>Sau trang chủ, thư viện bài viết là nơi người đọc cảm nhận chiều sâu của dự án. Các bài viết không chỉ dùng để SEO. Chúng giúp DSTS giải thích quan điểm về sáng tạo, cộng đồng, đời sống, minh bạch, bảo vệ trẻ em và cách mở chương trình có trách nhiệm.</p>
+      <p>Vì vậy, thư viện cần được duy trì như một lớp nền. Dù API lỗi hay dữ liệu động chưa sẵn, người đọc vẫn phải có bài thật để đọc, RSS để theo dõi và sitemap để công cụ tìm kiếm hiểu cấu trúc nội dung.</p>
+      <h2>Vào Movement và NDNUM theo trạng thái thật</h2>
+      <p>Movement Portal đã có các bề mặt read-only để người đọc hiểu kế hoạch events, sponsors, tour, partners, press và diaspora map. Nhưng read-only nghĩa là không có sponsor inquiry form, không event registration, không email capture và không payment flow trong lane này.</p>
+      <p>NDNUM cũng cần đọc theo trạng thái thật: đang chuẩn bị Phase 0B, chưa mở đăng ký trẻ em, chưa mở sponsor-child relationship và chưa mở mentor matching. Người mới nên hiểu đây là một chương trình có tiêu chuẩn bảo vệ cao, không phải một chiến dịch kêu gọi cảm xúc ngắn hạn.</p>
+      <p>Nếu một website làm người mới hiểu đúng ngay từ đầu, nó đã giảm được rất nhiều rủi ro. DSTS cần một lộ trình như vậy: rõ ràng, trung thực, có chiều sâu và không dẫn người đọc vào phần chưa sẵn sàng.</p>
+    `,
+    content_en: `
+      <p>When someone first enters DSTS, they should not have to guess whether this is a blog, education program, community project, artistic platform, sponsorship system, or long-term ecosystem. DSTS has many layers, but the reading path must be clear enough that newcomers do not get lost.</p>
+      <p>The best starting order is: homepage, about, program, knowledge library, journey scripts, Movement Portal, then NDNUM. This path helps readers move from the foundational idea to the public surfaces that are truly open.</p>
+      <h2>Start with the homepage</h2>
+      <p>The homepage is the main entry. It should quickly answer three questions: what DSTS is, what layers it is building, and which parts are ready. Newcomers should start there to see the overall map.</p>
+      <h2>Use the library to understand depth</h2>
+      <p>After the homepage, the article library is where readers feel the depth of the project. Articles are not only SEO content. They explain DSTS positions on creativity, community, living, transparency, child protection, and responsible program opening.</p>
+      <h2>Enter Movement and NDNUM according to real status</h2>
+      <p>Movement Portal now has read-only surfaces that explain events, sponsors, tour, partners, press, and diaspora map. Read-only means no sponsor inquiry form, event registration, email capture, or payment flow in this lane.</p>
+      <p>NDNUM should also be read according to its real status: preparing Phase 0B, not accepting child registration, not opening sponsor-child relationships, and not opening mentor matching. It is a program with a high protection standard, not a short-term emotional campaign.</p>
+    `,
+    tags: "hướng dẫn,DSTS,lộ trình",
+    reading_time: "7 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-14T00:35:00.000Z"
+  },
+  {
     slug: "ke-hoach-phat-trien-dsts-2026-2027",
     type: "post",
     title_vi: "Kế hoạch phát triển Đường Sao Tỏa Sáng 2026-2027",

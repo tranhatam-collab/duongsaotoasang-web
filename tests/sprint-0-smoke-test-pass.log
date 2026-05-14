@@ -1,11 +1,14 @@
 === DSTS Sprint 0 Smoke Test ===
-Base: http://127.0.0.1:8796
-Timestamp: 2026-05-14T00:44:06Z
+Base: http://127.0.0.1:8797
+Timestamp: 2026-05-14T00:56:27Z
 
 PASS 200  /
 PASS 200  /about
 PASS 200  /program
 PASS 200  /posts
+PASS 200  /content?slug=minh-bach-truoc-khi-gay-quy-dsts
+PASS 200  /content?slug=guardian-first-nguyen-tac-bao-ve-tre-em-ndnum
+PASS 200  /content?slug=nguoi-moi-nen-bat-dau-dsts-tu-dau
 PASS 200  /content?slug=ke-hoach-phat-trien-dsts-2026-2027
 PASS 200  /content?slug=nguyen-tac-public-site-khong-trang-den
 PASS 200  /content?slug=movement-portal-mo-an-toan-theo-tung-cong
@@ -46,9 +49,16 @@ PASS 200  /robots.txt
 === Content checks ===
 PASS content  /posts  contains [THƯ VIỆN TRI THỨC]
 PASS content  /posts  contains [data-dsts-ssr="posts"]
+PASS content  /posts  contains [Minh bạch trước khi gây quỹ]
 PASS content  /posts  contains [Kế hoạch phát triển Đường Sao Tỏa Sáng 2026-2027]
 PASS content  /posts  contains [Khởi nghiệp từ nơi sống thật]
 PASS content  /posts  contains ["@type":"ItemList"]
+PASS content  /content?slug=minh-bach-truoc-khi-gay-quy-dsts  contains [Minh bạch trước khi gây quỹ: vì sao DSTS tạm đóng donate]
+PASS content  /content?slug=minh-bach-truoc-khi-gay-quy-dsts  contains [Niềm tin phải đi trước dòng tiền]
+PASS content  /content?slug=guardian-first-nguyen-tac-bao-ve-tre-em-ndnum  contains [Guardian-first: nguyên tắc bảo vệ trẻ em của NDNUM]
+PASS content  /content?slug=guardian-first-nguyen-tac-bao-ve-tre-em-ndnum  contains [Không contact trực tiếp với trẻ em]
+PASS content  /content?slug=nguoi-moi-nen-bat-dau-dsts-tu-dau  contains [Người mới nên bắt đầu với DSTS từ đâu]
+PASS content  /content?slug=nguoi-moi-nen-bat-dau-dsts-tu-dau  contains [Đọc trang chủ để nắm hệ thống]
 PASS content  /content?slug=ke-hoach-phat-trien-dsts-2026-2027  contains [Kế hoạch phát triển Đường Sao Tỏa Sáng 2026-2027]
 PASS content  /content?slug=ke-hoach-phat-trien-dsts-2026-2027  contains [Movement Portal: mở từng cổng, không mở ồ ạt]
 PASS content  /content?slug=ke-hoach-phat-trien-dsts-2026-2027  contains [data-dsts-ssr="content"]
