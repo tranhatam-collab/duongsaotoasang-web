@@ -9,4 +9,5 @@
 # Finder duplicate copies observed in this workspace
 _redirects 2
 functions/api/content 2.js
+functions/api/contents 2.js
 dsts-bug-report.md

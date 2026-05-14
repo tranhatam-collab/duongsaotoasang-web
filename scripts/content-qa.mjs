@@ -35,6 +35,7 @@ assert(POST_CONTENTS.length >= MIN_PUBLIC_POSTS, `POST_CONTENTS must contain at 
 assert(FALLBACK_CONTENTS.length === POST_CONTENTS.length + PAGE_CONTENTS.length, "FALLBACK_CONTENTS must combine posts and pages")
 validateStaticJson()
 validateInlineFallbacks()
+validateStaticLoadingPlaceholders()
 
 const allSlugs = new Set()
 const postSlugs = new Set()
@@ -120,6 +121,26 @@ function validateInlineFallbacks() {
     const inlineContentItems = Object.values(inlineContents)
     assert(inlineContentItems.length === FALLBACK_CONTENTS.length, `content.html inline fallbackContents must contain ${FALLBACK_CONTENTS.length} items, got ${inlineContentItems.length}`)
     assertSameSlugSet(inlineContentItems, FALLBACK_CONTENTS, "content.html inline fallbackContents")
+  }
+}
+
+function validateStaticLoadingPlaceholders() {
+  const checks = [
+    ["content.html", /id="pageTitle">Đang tải nội dung\.\.\.</],
+    ["content.html", /id="pageExcerpt">Xin chờ trong giây lát\.</],
+    ["content.html", /id="loadingText">Đang tải nội dung\.\.\.</],
+    ["content.html", /loadingTitle:\s*"Đang tải nội dung\.\.\."/],
+    ["content.html", /loadingDesc:\s*"Xin chờ trong giây lát\."/],
+    ["content.html", /loadingBody:\s*"Đang tải nội dung\.\.\."/],
+    ["content.html", /loadingTitle:\s*"Loading content\.\.\."/],
+    ["content.html", /loadingBody:\s*"Loading content\.\.\."/],
+    ["posts.html", /loading:\s*"Đang tải bài viết\.\.\."/],
+    ["posts.html", /loading:\s*"Loading articles\.\.\."/]
+  ]
+
+  for (const [relativePath, pattern] of checks) {
+    const source = readFileSync(join(repoRoot, relativePath), "utf8")
+    assert(!pattern.test(source), `${relativePath} must not ship legacy loading placeholder: ${pattern}`)
   }
 }
 

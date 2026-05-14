@@ -37,6 +37,7 @@ junk_paths="$(find "$BUNDLE_DIR" \
   -o -path "*/.claude/*" \
   -o -path "$BUNDLE_DIR/_redirects 2" \
   -o -path "$BUNDLE_DIR/functions/api/content 2.js" \
+  -o -path "$BUNDLE_DIR/functions/api/contents 2.js" \
   -o -path "$BUNDLE_DIR/dsts-bug-report.md" \
   || true)"
 
