@@ -171,6 +171,7 @@ echo ""
 
 node "${REPO_ROOT}/scripts/content-qa.mjs"
 node "${REPO_ROOT}/scripts/api-surface-qa.mjs"
+node "${REPO_ROOT}/scripts/link-qa.mjs"
 echo ""
 
 for path in "${urls[@]}"; do
