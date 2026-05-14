@@ -1,8 +1,9 @@
 # 00_DSTS_MASTER_INDEX_2026
 
-> 📝 **DRAFT v1.5.7** — 2026-05-14 (supersedes v1.5.6)
+> 📝 **DRAFT v1.5.8** — 2026-05-14 (supersedes v1.5.7)
 > Bản đồ master cho cả ecosystem DSTS. Gom toàn bộ Drive cũ + kế hoạch mới thành 1 chỉ mục chính thức.
 > **Đối tượng dùng:** dev, content, legal, product, founder — cùng một bản truth.
+> **v1.5.8 changes:** Retire legacy `assets/app.js` from deploy source and add QA/deploy guards so it cannot return.
 > **v1.5.7 changes:** Add `_redirects` and `_routes.json` validation to `content-qa` to prevent routing regressions and wrong-project/catch-all rules.
 > **v1.5.6 changes:** Add `_headers` origin-policy validation to `content-qa` to prevent referrer/cache regressions while custom-domain override remains external.
 > **v1.5.5 changes:** Add robots policy checks to content QA, SEO route QA, and smoke content checks.
@@ -15,7 +16,7 @@
 > **v1.2 changes:** Wave 1 sync timeline (chèn Phase 0B), fix A7 status, thêm 7 NDNUM spec con TBD.
 
 **Founder:** Trần Hà Tâm
-**Phiên bản:** v1.5.7 (master index — pending re-lock)
+**Phiên bản:** v1.5.8 (master index — pending re-lock)
 **Ngày phát hành:** 2026-05-14
 **Nguyên tắc:** Mọi tài liệu mới về DSTS phải được index ở đây. Không có file ngoài index.
 
@@ -235,29 +236,30 @@ Theo thứ tự ưu tiên:
   16. _headers ✅ origin header policy QA added 2026-05-14
   16b. _redirects + _routes.json ✅ routing config QA added 2026-05-14
   17. tokens.css ✅ design tokens added 2026-05-14
-  18. RUNBOOK.md ✅ repo runbook added 2026-05-14
+  18. assets/app.js retirement ✅ legacy asset removed + deploy guard 2026-05-14
+  19. RUNBOOK.md ✅ repo runbook added 2026-05-14
 
 🔴 Phase 0B (Tháng 6-8/2026):
-  19a. 7 NDNUM spec con (Child Safety, Consent, Mentor Screening, Legal Entity, Sponsor Fulfillment, Impact, Landing Page)
-  19b. NDNUM v1.2-LOCKED bump
-  19c. Pháp nhân Lane B registered + bank account
-  19d. Legal Counsel + CSO hired
+  20a. 7 NDNUM spec con (Child Safety, Consent, Mentor Screening, Legal Entity, Sponsor Fulfillment, Impact, Landing Page)
+  20b. NDNUM v1.2-LOCKED bump
+  20c. Pháp nhân Lane B registered + bank account
+  20d. Legal Counsel + CSO hired
 
 🔵 Sau Phase 0B — Layer 1 (Tháng 9-12/2026):
-  20. /movement/sponsors landing page
-  21. /movement/events calendar
-  22. /movement/diaspora-map
-  23. Sponsorship form + manual confirmation flow
-  24. Pitch Deck PDF (song ngữ)
-  25. Press Kit
+  21. /movement/sponsors landing page
+  22. /movement/events calendar
+  23. /movement/diaspora-map
+  24. Sponsorship form + manual confirmation flow
+  25. Pitch Deck PDF (song ngữ)
+  26. Press Kit
 
 🔵 Sau Layer 1 — Layer 2 (Tháng 1/2027+):
-  26. /journey/assessment (12-24 câu hỏi)
-  27. /journey/dashboard
-  28. /journey/products
-  29. D1 schema + migration
-  30. API endpoints (18+)
-  31. SSO Muôn Nơi bridge
+  27. /journey/assessment (12-24 câu hỏi)
+  28. /journey/dashboard
+  29. /journey/products
+  30. D1 schema + migration
+  31. API endpoints (18+)
+  32. SSO Muôn Nơi bridge
 ```
 
 ---
@@ -398,6 +400,7 @@ Nếu có conflict giữa Drive cũ (Layer A) và Plan mới (Layer 0-2):
 | v1.5.5 | 2026-05-14 | Add `robots.txt` validation to `content-qa`, `seo-route-qa`, and smoke content checks so crawler policy cannot drift to preview/wrong-project URLs or block public routes. | Codex |
 | v1.5.6 | 2026-05-14 | Add `_headers` origin-policy validation to `content-qa` so repo-side referrer/cache rules cannot drift to the current custom-domain override values. | Codex |
 | v1.5.7 | 2026-05-14 | Add `_redirects` and `_routes.json` validation to `content-qa` so public route normalization, Movement placeholders, and Pages Functions routing cannot drift back to broken catch-all behavior. | Codex |
+| v1.5.8 | 2026-05-14 | Remove retired `assets/app.js`, remove its special `_headers` block, and add `content-qa` + clean deploy guard so legacy app shell assets cannot re-enter the deploy bundle. | Codex |
 
 ---
 

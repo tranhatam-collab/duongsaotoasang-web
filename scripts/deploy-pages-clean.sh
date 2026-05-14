@@ -40,6 +40,7 @@ junk_paths="$(find "$BUNDLE_DIR" \
   -o -path "$BUNDLE_DIR/functions/api/content 3.js" \
   -o -path "$BUNDLE_DIR/functions/api/contents 2.js" \
   -o -path "$BUNDLE_DIR/legal 2.html" \
+  -o -path "$BUNDLE_DIR/assets/app.js" \
   -o -path "$BUNDLE_DIR/dsts-bug-report.md" \
   || true)"
 

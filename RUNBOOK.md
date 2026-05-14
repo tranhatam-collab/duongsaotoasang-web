@@ -287,6 +287,7 @@ data/content.json
 _headers
 _redirects
 _routes.json
+assets/app-v5.js
 functions/_lib/content-data.js
 functions/_lib/feed-utils.js
 functions/_lib/public-routes.js
@@ -297,7 +298,7 @@ rss.xml
 robots.txt
 ```
 
-After changing content, indexable public routes, `_headers`, `_redirects`, `_routes.json`, sitemap, RSS, or robots surfaces, run:
+After changing content, app shell assets, indexable public routes, `_headers`, `_redirects`, `_routes.json`, sitemap, RSS, or robots surfaces, run:
 
 ```bash
 node scripts/sync-static-content-data.mjs

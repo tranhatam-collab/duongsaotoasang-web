@@ -3,7 +3,7 @@
 > **Scope:** Sprint 0 execution status after continuous public-site hardening.
 > **Repo:** `tranhatam-collab/duongsaotoasang-web`
 > **Branch:** `main`
-> **Latest verified baseline before routing config QA hardening:** `b602d84`
+> **Latest verified baseline before legacy asset retirement:** `c691270`
 > **Cloudflare Pages project:** `duongsaotoasang-com-v2`
 > **Do not confuse with:** `duongsaotoasang-web`
 
@@ -51,6 +51,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 | Robots policy | PASS | `robots.txt` allows crawl, points to production sitemap, and is now covered by content + SEO QA |
 | Repo header policy | PASS | `_headers` is now covered by content QA for referrer policy, cache TTL, HSTS, no-store function paths, and no immutable cache |
 | Routing config policy | PASS | `_redirects` + `_routes.json` are now covered by content QA for clean redirects, Movement placeholders, no wrong-project targets, and no catch-all `/content` regression |
+| Legacy app asset | PASS | Retired `assets/app.js` removed from deploy source; `content-qa` + clean deploy script now fail if it reappears |
 | 404 route | PASS | Unknown routes return 404 and current app shell |
 | 404 contact boundary | PASS | 404 routes to `/contact` + `/support`, no raw email exposed |
 | Movement read-only surfaces | PASS | No sponsor inquiry, event registration, payment, or auth flow opened |
@@ -65,6 +66,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Commit | Purpose |
 |---|---|
+| `c691270` | Harden routing config QA |
 | `b602d84` | Harden origin header policy QA |
 | `cadc40f` | Harden robots SEO QA |
 | `7f6d6f3` | Add static RSS feed sync and RSS drift QA |

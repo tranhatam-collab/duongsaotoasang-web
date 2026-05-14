@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from "node:fs"
+import { existsSync, readdirSync, readFileSync } from "node:fs"
 import { fileURLToPath } from "node:url"
 import { dirname, join } from "node:path"
 import {
@@ -60,6 +60,7 @@ validateStaticRss()
 validateInlineFallbacks()
 validateStaticLoadingPlaceholders()
 validateAppShellReferences()
+validateLegacyAssetsRetired()
 validatePublicLaneBoundaries()
 
 const allSlugs = new Set()
@@ -136,6 +137,7 @@ function validateStaticHeaders() {
   assert(!/Referrer-Policy:\s*same-origin/i.test(source), "_headers must not set referrer-policy to same-origin")
   assert(!/max-age=14400/i.test(source), "_headers must not ship the known production override max-age=14400")
   assert(!/immutable/i.test(source), "_headers must not use immutable cache while Sprint 0 remains active")
+  assert(!/^\/assets\/app\.js$/m.test(source), "_headers must not keep a special rule for retired /assets/app.js")
 
   const root = headerBlock(source, "/*")
   assert(root.includes("X-Content-Type-Options: nosniff"), "_headers /* must set nosniff")
@@ -352,6 +354,10 @@ function validateAppShellReferences() {
     assert(!/<script[^>]+src=["']\/app\.js["']/i.test(source), `${relativePath} must not load legacy /app.js`)
     assert(!/<script[^>]+src=["']\/assets\/app\.js["']/i.test(source), `${relativePath} must not load legacy /assets/app.js`)
   }
+}
+
+function validateLegacyAssetsRetired() {
+  assert(!existsSync(join(repoRoot, "assets/app.js")), "Retired legacy asset assets/app.js must not exist in deploy source")
 }
 
 function validatePublicLaneBoundaries() {
