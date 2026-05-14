@@ -167,6 +167,10 @@ function validatePublicLaneBoundaries() {
     const source = readFileSync(join(repoRoot, relativePath), "utf8")
     assert(source.includes('data-dsts-review-mode="sample-only"'), `${relativePath} must disclose sample-only review mode`)
     assert(source.includes("Kênh gửi đánh giá chưa mở"), `${relativePath} must explain review submission is closed`)
+    assert(source.includes("Người đánh giá minh họa A"), `${relativePath} must use generic Vietnamese sample reviewer label A`)
+    assert(source.includes("Người đánh giá minh họa B"), `${relativePath} must use generic Vietnamese sample reviewer label B`)
+    assert(source.includes("Sample reviewer A"), `${relativePath} must use generic English sample reviewer label A`)
+    assert(source.includes("Sample reviewer B"), `${relativePath} must use generic English sample reviewer label B`)
     assert(!/<form\b/i.test(source), `${relativePath} must not ship public review forms`)
     assert(!/id="formSubmit"|id="formName"|id="formComment"|id="formRating"/i.test(source), `${relativePath} must not ship inactive review input controls`)
   }
