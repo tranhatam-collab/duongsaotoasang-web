@@ -853,12 +853,34 @@ export const PAGE_CONTENTS = [
     type: "page",
     title_vi: "Giới thiệu Đường Sao Tỏa Sáng",
     title_en: "About Đường Sao Tỏa Sáng",
-    excerpt_vi: "Tầm nhìn, sứ mệnh và định hướng phát triển của nền tảng Đường Sao Tỏa Sáng.",
+    excerpt_vi: "Tầm nhìn, sứ mệnh, nguyên tắc public và định hướng phát triển theo từng lớp của nền tảng Đường Sao Tỏa Sáng.",
     excerpt_en: "Vision, mission, and development direction of Đường Sao Tỏa Sáng.",
-    content_vi: "<p>Đường Sao Tỏa Sáng là nền tảng tri thức, chương trình và cộng đồng dành cho hành trình tỏa sáng của người Việt trên toàn cầu.</p>",
-    content_en: "<p>Đường Sao Tỏa Sáng is a knowledge, program, and community platform for the shining journey of Vietnamese people worldwide.</p>",
-    tags: "giới thiệu,hệ thống",
-    reading_time: "3 phút đọc",
+    content_vi: `
+      <p>Đường Sao Tỏa Sáng là nền tảng tri thức, chương trình và cộng đồng dành cho hành trình tỏa sáng của người Việt trên toàn cầu. DSTS không chỉ là một website giới thiệu dự án. Đây là lớp public đầu tiên của một hệ sinh thái dài hạn: nơi người đọc hiểu tầm nhìn, đọc bài nền tảng, xem chương trình đang chuẩn bị, kiểm tra trạng thái các route và biết rõ phần nào đã mở, phần nào còn đang chờ điều kiện vận hành.</p>
+      <p>Ngay từ giai đoạn nền tảng, DSTS đặt ưu tiên vào sự rõ ràng. Không có trang public nào được phép đen, trống hoặc treo ở trạng thái tải mãi. Không có lời hứa nào nên vượt quá khả năng vận hành hiện tại. Không có flow nhạy cảm nào được mở nếu chưa có owner, pháp lý, privacy, support và quy trình xử lý dữ liệu phù hợp.</p>
+      <h2>Tầm nhìn</h2>
+      <p>DSTS hướng tới một không gian giúp người Việt phát triển năng lực, đời sống, sáng tạo và đóng góp xã hội bằng một hành trình có nền tảng. Tỏa sáng ở đây không được hiểu là phô diễn bản thân bằng mọi giá. Tỏa sáng là khả năng sống rõ hơn, học sâu hơn, sáng tạo có trách nhiệm hơn và đi cùng cộng đồng mà không đánh mất phẩm giá của con người.</p>
+      <p>Vì vậy, nội dung của DSTS phải đi trước quảng bá. Minh bạch phải đi trước gây quỹ. Guardian-first phải đi trước mọi hoạt động liên quan trẻ em. Read-only status phải đi trước form đăng ký, payment hoặc tài khoản. Mỗi lớp phát triển đều cần được mở đúng lúc, đúng trạng thái và đúng trách nhiệm.</p>
+      <h2>Hệ thống phát triển theo lớp</h2>
+      <p>Layer 0 là nền tảng public site: trang chủ, giới thiệu, chương trình, thư viện bài viết, script journey, legal, privacy, donate đóng, transparency, sitemap, RSS, fallback content và smoke test. Phase 0B là legal + child safety lock cho NDNUM. Layer 1 là Movement Portal với sponsors, events, tour, partners, press và diaspora map ở trạng thái được kiểm soát. Layer 2 là Star Journey OS, chỉ nên mở khi các lớp trước đã đủ dữ liệu, pháp lý, vận hành và trust foundation.</p>
+      <p>Cách đi theo lớp giúp Founder, team dev, legal, content và cộng đồng cùng nhìn thấy một bản đồ chung. Người mới có thể bắt đầu từ trang chủ và thư viện. Đối tác có thể đọc trạng thái Movement. Team vận hành có thể dùng các gate để biết khi nào được mở flow thật.</p>
+      <h2>Nguyên tắc công khai</h2>
+      <p>DSTS công khai theo nguyên tắc: nói thật trạng thái, không tạo cảm giác đã live khi còn pending, không thu dữ liệu nhạy cảm qua public form, không dùng câu chuyện trẻ em hoặc gia đình để quảng bá khi chưa có consent và governance, không hứa kết quả cá nhân như danh tiếng, doanh thu hay thành công chắc chắn.</p>
+      <p>Một nền tảng đáng tin không cần mở mọi thứ ngay. Nó cần giữ đúng lời hứa nhỏ nhất: người dùng vào website phải đọc được nội dung thật, hiểu được dự án đang ở đâu và biết đâu là ranh giới an toàn. Đó là nền để DSTS đi xa hơn một chiến dịch ra mắt ngắn hạn.</p>
+    `,
+    content_en: `
+      <p>Đường Sao Tỏa Sáng is a knowledge, program, and community platform for the shining journey of Vietnamese people worldwide. DSTS is not only a project website. It is the first public layer of a long-term ecosystem where readers can understand the vision, read foundational essays, see what programs are preparing, check route status, and know which surfaces are live versus still waiting for operational readiness.</p>
+      <p>From the foundation stage, DSTS prioritizes clarity. No public page should be black, empty, or stuck in loading. No promise should exceed current operating capacity. No sensitive flow should open before owner, legal, privacy, support, and data-handling processes are ready.</p>
+      <h2>Vision</h2>
+      <p>DSTS aims to help Vietnamese people develop capacity, life, creativity, and social contribution through a grounded journey. Shining here does not mean performing the self at all costs. It means living with more clarity, learning more deeply, creating more responsibly, and walking with community without losing human dignity.</p>
+      <h2>A layered system</h2>
+      <p>Layer 0 is the public-site foundation: homepage, about, program, articles, script journeys, legal, privacy, closed donation status, transparency, sitemap, RSS, fallback content, and smoke testing. Phase 0B is the legal and child-safety lock for NDNUM. Layer 1 is Movement Portal. Layer 2 is Star Journey OS, which should only open when data, legal, operations, and trust foundations are ready.</p>
+      <h2>Public principles</h2>
+      <p>DSTS publishes with a simple rule: state the real status, do not imply a surface is live when it is pending, do not collect sensitive data through public forms, do not use children or families for promotion without consent and governance, and do not promise personal outcomes such as fame, revenue, or guaranteed success.</p>
+      <p>A trustworthy platform does not need to open everything immediately. It needs to keep the smallest public promise: readers can access real content, understand where the project stands, and see the safety boundaries clearly.</p>
+    `,
+    tags: "giới thiệu,hệ thống,minh bạch",
+    reading_time: "7 phút đọc",
     cover_url: "",
     created_at: "2026-03-01T08:00:00.000Z"
   },
@@ -867,12 +889,39 @@ export const PAGE_CONTENTS = [
     type: "page",
     title_vi: "Chương trình Đường Sao Tỏa Sáng",
     title_en: "Programs of Đường Sao Tỏa Sáng",
-    excerpt_vi: "Tổng quan các chuỗi chương trình nghệ thuật, giáo dục, cộng đồng và tri thức.",
+    excerpt_vi: "Tổng quan các chuỗi chương trình nghệ thuật, giáo dục, cộng đồng, tri thức, Movement Portal và NDNUM theo trạng thái readiness.",
     excerpt_en: "Overview of artistic, educational, community, and knowledge program series.",
-    content_vi: "<p>DSTS phát triển các chương trình dành cho nghệ sĩ, doanh nhân, tài năng Việt toàn cầu và cộng đồng người Việt muôn nơi.</p>",
-    content_en: "<p>DSTS develops programs for artists, entrepreneurs, global Vietnamese talents, and the Vietnamese worldwide community.</p>",
-    tags: "chương trình,cộng đồng",
-    reading_time: "3 phút đọc",
+    content_vi: `
+      <p>Các chương trình của Đường Sao Tỏa Sáng được thiết kế như những cánh cửa đi vào hành trình phát triển con người: từ sáng tạo, nghệ thuật, doanh nhân, văn hóa, tri thức, cộng đồng người Việt toàn cầu đến các lớp bảo vệ trẻ em và nuôi dưỡng ước mơ trong tương lai. Mỗi chương trình phải có mục tiêu rõ, trạng thái public rõ và ranh giới vận hành rõ.</p>
+      <p>Ở giai đoạn Sprint 0, DSTS ưu tiên làm chắc nền tảng trước khi mở rộng. Điều đó có nghĩa là chương trình có thể được mô tả, nhưng không nên mở đăng ký, payment, email automation hoặc tài khoản khi các lane đó chưa thuộc trách nhiệm của public-site team. Trang chương trình phải giúp người đọc hiểu hệ thống, không đẩy họ vào flow chưa sẵn sàng.</p>
+      <h2>Script Journey</h2>
+      <p>Script Journey là lớp nội dung giúp người đọc nhìn thấy các archetype phát triển như doanh nhân, nghệ sĩ, ca sĩ, diễn viên, nhà tư tưởng, người dẫn dắt sáng tạo, đại sứ văn hóa, di sản DSTS và câu chuyện toàn cầu. Các trang này đang được giữ ở trạng thái public content, có nhãn review minh họa và ranh giới an toàn cho xác nhận thủ công.</p>
+      <p>Điểm quan trọng là Script Journey không được trình bày như lời hứa thành công. Nó là bản đồ suy ngẫm và phát triển cá nhân, không phải bảo đảm danh tiếng, doanh thu hoặc kết quả xã hội.</p>
+      <h2>Movement Portal</h2>
+      <p>Movement Portal là lớp cộng đồng gồm sponsors, events, tour, gala status, diaspora map, press và partners. Trong giai đoạn hiện tại, các route này được mở theo hướng read-only: công bố taxonomy, nguyên tắc readiness, trạng thái pending và điều kiện cần trước khi mở flow thật.</p>
+      <p>Điều này giúp cộng đồng thấy hướng phát triển mà không bị dẫn vào sponsor inquiry, event registration, ticketing, checkout hoặc account creation. Khi owner, legal, privacy và reporting chưa đủ, sự trung thực quan trọng hơn tốc độ mở rộng.</p>
+      <h2>NDNUM và Guardian-first</h2>
+      <p>Nuôi Dưỡng Những Ước Mơ là lớp có độ nhạy cao vì liên quan trẻ em, phụ huynh, mentor và nonprofit governance. Vì vậy, nguyên tắc Guardian-first là bắt buộc: không contact trực tiếp với trẻ em, không public dữ liệu định danh, không mở registration khi chưa có consent flow, CSO, legal review và incident protocol.</p>
+      <p>Trang chương trình phải phản ánh rõ điều này. NDNUM có thể công bố triết lý và trạng thái Phase 0B, nhưng không được tạo cảm giác đang tuyển trẻ em, nhận hồ sơ hoặc kết nối mentor khi hệ thống an toàn chưa khóa.</p>
+      <h2>Điều kiện mở chương trình thật</h2>
+      <p>Một chương trình chỉ nên chuyển từ mô tả sang vận hành khi có owner, mục tiêu, chính sách dữ liệu, hỗ trợ, pháp lý, nội dung public, report sau hoạt động và gate kiểm thử. Với DSTS, không có owner thì không có event. Không có legal lane thì không có sponsor flow. Không có Guardian-first lock thì không có chương trình trẻ em.</p>
+      <p>Cách đi này có vẻ chậm hơn, nhưng giúp DSTS giữ được niềm tin. Người đọc hiểu rằng mỗi chương trình không phải một lời quảng bá rời rạc, mà là một phần của hệ thống phát triển có trách nhiệm.</p>
+    `,
+    content_en: `
+      <p>The programs of Đường Sao Tỏa Sáng are designed as entry points into human development: creativity, arts, entrepreneurship, culture, knowledge, the global Vietnamese community, child safety, and dream nurturing. Each program needs a clear goal, clear public status, and clear operational boundaries.</p>
+      <p>During Sprint 0, DSTS prioritizes the foundation before expansion. Programs can be explained, but public pages should not open registration, payment, email automation, or account flows when those lanes are owned separately. The program page should help readers understand the system, not push them into flows that are not ready.</p>
+      <h2>Script Journey</h2>
+      <p>Script Journey helps readers explore development archetypes such as entrepreneur, artist, singer, actor, thinker, creative leader, cultural ambassador, DSTS legacy, and global story. These pages remain public content surfaces with sample-review labels and clear boundaries around manual confirmation.</p>
+      <h2>Movement Portal</h2>
+      <p>Movement Portal includes sponsors, events, tour roadmap, gala status, diaspora map, press, and partners. At the current stage, these routes are read-only: they publish taxonomy, readiness principles, pending status, and conditions required before real flows can open.</p>
+      <h2>NDNUM and Guardian-first</h2>
+      <p>Nuôi Dưỡng Những Ước Mơ is sensitive because it may involve children, guardians, mentors, and nonprofit governance. Guardian-first is mandatory: no direct child contact, no public identifying data, no registration before consent flow, CSO, legal review, and incident protocol are locked.</p>
+      <h2>Conditions for real program opening</h2>
+      <p>A program should move from description to operation only when it has an owner, goal, data policy, support boundary, legal review, public content, post-activity reporting, and test gate. No owner means no event. No legal lane means no sponsor flow. No Guardian-first lock means no child-facing program.</p>
+      <p>This path may be slower, but it protects trust. Readers can see that each program is not isolated promotion, but part of a responsible development system.</p>
+    `,
+    tags: "chương trình,cộng đồng,readiness",
+    reading_time: "8 phút đọc",
     cover_url: "",
     created_at: "2026-03-01T08:00:00.000Z"
   }

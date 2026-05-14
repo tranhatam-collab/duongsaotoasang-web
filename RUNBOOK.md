@@ -87,10 +87,12 @@ node --check functions/api/content.js
 node --check functions/api/contents.js
 node --check functions/api/search.js
 node --check scripts/api-surface-qa.mjs
+node --check scripts/content-depth-qa.mjs
 node --check scripts/accessibility-qa.mjs
 node --check scripts/public-flow-safety-qa.mjs
 node --check scripts/social-metadata-qa.mjs
 node scripts/content-qa.mjs
+node scripts/content-depth-qa.mjs
 node scripts/html-structure-qa.mjs
 node scripts/accessibility-qa.mjs
 node scripts/public-flow-safety-qa.mjs
@@ -158,7 +160,7 @@ The release gate exits:
 - `1` for real repo/route/SEO/header regressions
 - `2` when the only remaining failure is the known Cloudflare custom-domain cache/header blocker
 
-The release gate always checks tracked source hygiene, `wrangler.toml` project identity, diff whitespace, syntax for critical Functions/API scripts, content QA, HTML structure QA, accessibility QA, public flow safety QA, social metadata QA, structured data QA, public asset budget QA, preview API surface/SEO/headers, production API surface/SEO, and production headers. Preview and production API surface checks include a short retry window because a fresh Pages preview can serve static routes before Functions finish propagating. Set `RUN_DEPLOY_DRY_RUN=1` after committing to verify the exact git archive deploy bundle without deploying.
+The release gate always checks tracked source hygiene, `wrangler.toml` project identity, diff whitespace, syntax for critical Functions/API scripts, content QA, content depth QA, HTML structure QA, accessibility QA, public flow safety QA, social metadata QA, structured data QA, public asset budget QA, preview API surface/SEO/headers, production API surface/SEO, and production headers. Preview and production API surface checks include a short retry window because a fresh Pages preview can serve static routes before Functions finish propagating. Set `RUN_DEPLOY_DRY_RUN=1` after committing to verify the exact git archive deploy bundle without deploying.
 
 Spot-check manually:
 
@@ -217,6 +219,7 @@ git status --short
 git pull --ff-only
 # edit scoped files
 node scripts/content-qa.mjs
+node scripts/content-depth-qa.mjs
 node scripts/html-structure-qa.mjs
 node scripts/accessibility-qa.mjs
 node scripts/public-flow-safety-qa.mjs
@@ -417,6 +420,7 @@ A public-site change is done only when:
 - `git diff --check` passes
 - relevant Node syntax checks pass
 - `node scripts/content-qa.mjs` passes
+- `node scripts/content-depth-qa.mjs` passes
 - `node scripts/api-surface-qa.mjs` passes against preview or production when network is available
 - `node scripts/html-structure-qa.mjs` passes
 - `node scripts/accessibility-qa.mjs` passes
