@@ -1,15 +1,16 @@
 # 00_DSTS_MASTER_INDEX_2026
 
-> 📝 **DRAFT v1.4** — 2026-05-13 (supersedes v1.3 same-day)
+> 📝 **DRAFT v1.5** — 2026-05-14 (supersedes v1.4)
 > Bản đồ master cho cả ecosystem DSTS. Gom toàn bộ Drive cũ + kế hoạch mới thành 1 chỉ mục chính thức.
 > **Đối tượng dùng:** dev, content, legal, product, founder — cùng một bản truth.
+> **v1.5 changes:** Sprint 0 execution status added — route/API/content/SEO production pass; custom-domain header/cache remains BLOCKED_EXTERNAL in Cloudflare zone rules.
 > **v1.4 changes:** Wave 3 done — 7 NDNUM spec con DRAFT v1.0 filed (W3.1-W3.7).
 > **v1.3 changes:** Wave 2 — thêm 4 spec mới (UI Mockup, Sponsors API, Events API, Sponsor Agreement) + upgrade 7 Layer 1 spec lên v1.0-DEV-READY + reserve `_redirects` Movement portal.
 > **v1.2 changes:** Wave 1 sync timeline (chèn Phase 0B), fix A7 status, thêm 7 NDNUM spec con TBD.
 
 **Founder:** Trần Hà Tâm
-**Phiên bản:** v1.4 (master index — pending re-lock)
-**Ngày phát hành:** 2026-05-13
+**Phiên bản:** v1.5 (master index — pending re-lock)
+**Ngày phát hành:** 2026-05-14
 **Nguyên tắc:** Mọi tài liệu mới về DSTS phải được index ở đây. Không có file ngoài index.
 
 ---
@@ -86,7 +87,7 @@ Thanh Tam Foundation Việt Nam        ← Legal entity (chờ xác minh)
 
 | Layer | Trạng thái | Điểm | Owner | Deadline |
 |---|---|---|---|---|
-| **Layer 0 — Foundation** | 🟡 Đang Sprint 0 | 45/100 → mục tiêu 100 | Tech Lead | 2026-06-09 |
+| **Layer 0 — Foundation** | 🟢 Route/API/content/SEO pass; 🟠 header/cache blocked external | 45/100 → 90+/100 repo-side | Tech Lead | 2026-06-09 |
 | **Phase 0B — Legal + Child Safety Lock** | 🔴 Chưa start (chặn Layer 1) | n/a | Founder + Legal + CSO | 2026-08-31 |
 | **Layer 1 — Movement Portal** | 🔵 Spec đang viết | n/a | Founder + Claude | 2026-12-31 |
 | **Layer 2 — Star Journey OS** | 🔵 Spec đang viết | n/a | Founder + Claude | 2027-04-30 |
@@ -148,6 +149,7 @@ Thanh Tam Foundation Việt Nam        ← Legal entity (chờ xác minh)
 | 5.1.3 | `dsts-bug-report.md` | Audit ban đầu 2026-05-12 | ✅ Reference | AI Assistant |
 | 5.1.4 | `GAP_ANALYSIS_V2_vs_v1.md` | Gap analysis từ Drive/V2 so với plan v1 | ✅ Reference | AI Assistant |
 | 5.1.5 | `dsts-master-plan-v1.1-LOCKED.md` *(archived)* | Master plan v1.1 — superseded bởi v1.2-DRAFT | 🗄️ Archive (renamed → v1.2-DRAFT) | — |
+| 5.1.6 | `STATE_REPORT_2026-05-14.md` | Sprint 0 execution status: route/API/content/SEO pass; Cloudflare custom-domain header/cache blocked external | 🟢 Current status | Codex |
 
 ### 5.2 Layer 1 — Movement Portal (Spec đang viết song song)
 
@@ -203,19 +205,22 @@ Thanh Tam Foundation Việt Nam        ← Legal entity (chờ xác minh)
 Theo thứ tự ưu tiên:
 
 ```text
-🔥 Đang Sprint 0 — Tuần này:
+✅ Sprint 0 repo-side done:
   1. _redirects
   2. 404.html
   3. /data/posts.json
   4. /data/content.json
   5. posts.html (fallback)
   6. content.html (fallback 5 states)
-  7. contact.html
-  8. donate.html
+  7. contact.html manual-only
+  8. donate.html closed/pending
   9. transparency.html
-  10. legal.html
-  11. index.html (CTA cleanup)
-  12. scripts/smoke-test.sh
+  10. legal.html + /terms + /privacy + /support
+  11. index.html CTA cleanup + roadmap
+  12. scripts/smoke-test.sh + link/SEO/header/API QA
+
+🟠 Sprint 0 blocked external:
+  13. Cloudflare custom-domain header/cache override for duongsaotoasang.com
 
 🟡 Sprint 1-4 — 3 tuần tiếp:
   13. sitemap.xml
@@ -377,6 +382,7 @@ Nếu có conflict giữa Drive cũ (Layer A) và Plan mới (Layer 0-2):
 | v1.2 | 2026-05-13 | Wave 1 patch: sync timeline (chèn Phase 0B, dịch Layer 1 → Tháng 9-12/2026), fix A7 status (Founder TBD), thêm 7 NDNUM spec con TBD Mục 5.5 + Sponsor Agreement Mục 5.4.4. Counts: 7 Layer 1 DRAFT + 4 cross-cutting (3 DRAFT + 1 TBD) + 7 NDNUM TBD + 1 NDNUM v1.1 DRAFT + 4 Layer 2 TBD = 12 DRAFT + 12 TBD (24 total) | Trần Hà Tâm |
 | v1.3 | 2026-05-13 | Wave 2 done — UNBLOCK DEV LAYER 1: thêm 3 spec mới (5.2.5 UI Mockup, 5.2.6 Sponsors API, 5.2.7 Events API) + upgrade 5.2.1-5.2.4 + 5.4.1-5.4.3 lên DEV-READY v1.0 + 5.4.4 Sponsor Agreement Template DRAFT-LEGAL-PENDING + reserve `_redirects` Movement portal routes. Counts: 11 DEV-READY + 1 LEGAL-PENDING + 8 TBD (7 NDNUM + 1 NDNUM v1.1 + 4 Layer 2 - tổng 20 entry trong Master Index). Dev có thể bắt tay code Layer 1 ngay khi Layer 0 Sprint 0 done | Trần Hà Tâm |
 | v1.4 | 2026-05-13 | Wave 3 done — 7 NDNUM spec con DRAFT v1.0 filed (5.5.1-5.5.7): Child Safety Policy, Parent/Guardian Consent Flow, Mentor Screening & Training, Legal Entity & Money Lane Map, Sponsor-a-Dream Fulfillment, Impact Measurement Framework, Public Landing Page Scope. Counts updated: 11 DEV-READY + 8 DRAFT (1 LEGAL-PENDING + 7 NDNUM con) + 1 NDNUM v1.1-REVIEWED + 4 Layer 2 TBD. NDNUM spec con chờ Legal/CSO co-review trước khi lock v1.0-LOCKED. 3 Founder decisions pending (FD-1 pháp nhân, FD-2 fiscal sponsor, FD-4 Investment Lane Y1) | Claude Code |
+| v1.5 | 2026-05-14 | Add `STATE_REPORT_2026-05-14.md`. Sprint 0 route/API/content/SEO now pass on preview + production spot checks. Known remaining failure is production custom-domain header/cache override outside repo: `referrer-policy=same-origin` and static asset `max-age=14400` despite repo `_headers` and preview using stricter values. | Codex |
 
 ---
 

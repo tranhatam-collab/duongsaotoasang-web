@@ -8,24 +8,24 @@
 
 ---
 
-## 🧭 Bản đồ tài liệu sau Wave 1 (2026-05-13)
+## 🧭 Bản đồ tài liệu hiện tại (2026-05-14)
 
 Project hiện chia làm 3 nhóm:
 
-- **LOCKED** (LOCKED — source of truth, không sửa direct):
+- **LOCKED / CURRENT** (source of truth, không sửa direct nếu không bump version):
   - Sprint 0 + 9 GitHub Issues (`DSTS_SPRINT_0_GITHUB_ISSUES_AND_DOD.md`)
   - Master Plan v1.1 (rename → v1.2-DRAFT — Mục I-VIII vẫn LOCKED, Mục IX Roadmap đã update)
+  - Sprint 0 execution status (`STATE_REPORT_2026-05-14.md`)
 
 - **DRAFT** (đang chỉnh, gần sẵn sàng):
   - Master Plan v1.2-DRAFT (pending re-lock sau NDNUM v1.2)
-  - Master Index v1.2 (pending re-lock)
-  - NDNUM v1.1-REVIEWED (chờ Wave 3 lock thành v1.2)
-  - 7 Layer 1 DSTS spec DRAFT v1.0: Movement Portal, Sponsorship Tracker, Event Runbook, Tour Calendar, Privacy/Trust, Payment Flow, QA Checklist
+  - Master Index v1.5 (pending re-lock)
+  - NDNUM v1.1-REVIEWED + 7 NDNUM spec con DRAFT v1.0
+  - Layer 1 DSTS spec DEV-READY v1.0 nhưng chưa mở public interactive flows
 
 - **TBD** (chưa start, đợi unblock):
   - 4 Layer 2 spec (Star Journey OS, Product Catalog, Automation Engine, DB Schema)
-  - 7 NDNUM spec con (Child Safety, Consent, Mentor Screening, Legal Entity Map, Sponsor Fulfillment, Impact Framework, Landing Page)
-  - 1 cross-cutting: Sponsor Agreement Legal Template (Wave 2 sẽ viết)
+  - Phase 0B legal/CSO co-review và Founder decisions
 
 **Source of truth duy nhất** cho mỗi nhóm:
 - Master plan → `dsts-master-plan-v1.2-DRAFT.md`
@@ -91,13 +91,13 @@ Mọi file trong `_archive_2026-05-13/` **KHÔNG dùng làm reference**.
 
 ---
 
-## 📁 File trong thư mục này (sau Wave 1 cleanup)
+## 📁 File trong thư mục này (sau Wave 3 + Sprint 0 execution)
 
 ### Index + Master plan
 | File | Mục đích | Status |
 |---|---|---|
 | `README.md` | Index file này | 📝 Wave 1 — 2026-05-13 |
-| `00_DSTS_MASTER_INDEX_2026.md` | Master index 3 Layer + Phase 0B + NDNUM | 📝 DRAFT v1.2 — pending re-lock |
+| `00_DSTS_MASTER_INDEX_2026.md` | Master index 3 Layer + Phase 0B + NDNUM | 📝 DRAFT v1.5 — pending re-lock |
 | `dsts-master-plan-v1.2-DRAFT.md` | Master plan v1.2 — chèn Phase 0B | 📝 DRAFT — pending re-lock |
 | `MASTER_PLAN_v1.1_FINAL.md` | Master plan v1.1 (legacy reference) | 🗄️ Archive ref |
 | `MASTER_PLAN_v2.md` | Master plan v2 với Brandpro Phase 5 | ✅ Reference |
@@ -108,6 +108,7 @@ Mọi file trong `_archive_2026-05-13/` **KHÔNG dùng làm reference**.
 |---|---|---|
 | `DSTS_SPRINT_0_GITHUB_ISSUES_AND_DOD.md` | 9 GitHub Issue + DoD | 🔒 Locked 2026-05-12 |
 | `SPRINT_0_TICKETS.md` | 6 ticket chi tiết Sprint 0 | ✅ Reference |
+| `STATE_REPORT_2026-05-14.md` | Current Sprint 0 execution status + Cloudflare external blocker | 🟢 Current |
 | `STATE_REPORT_2026-05-12-EOD.md` | Baseline 45/100 | ✅ Reference |
 | `STATE_REPORT_2026-05-12.md` | Báo cáo trạng thái morning | ✅ Reference |
 | `dsts-bug-report.md` | Bug report audit ban đầu | ✅ Reference |
@@ -142,14 +143,14 @@ Mọi file trong `_archive_2026-05-13/` **KHÔNG dùng làm reference**.
 
 ---
 
-## 🚦 Trạng thái dự án (cập nhật 2026-05-13)
+## 🚦 Trạng thái dự án (cập nhật 2026-05-14)
 
 ### Layer 0 — Foundation (đang chạy, deadline 2026-06-09)
 
 | Sprint | Trạng thái | Điểm trước | Điểm sau | Gate |
 |---|---|---|---|---|
 | Baseline | ✅ | 0 | 45 | Audit `STATE_REPORT_2026-05-12.md` |
-| Sprint 0 | ⏳ Chờ founder ký | 45 | min 63 / target 70 | Pending |
+| Sprint 0 | 🟢 Repo-side route/API/content/SEO pass; 🟠 custom-domain header/cache blocked external | 45 | 90+ repo-side | Pending Cloudflare zone fix |
 | Sprint 1 | – | 70 | 85 | – |
 | Sprint 2 | – | 85 | 95 | – |
 | Sprint 3 | – | 95 | 98 | – |
@@ -162,8 +163,15 @@ Mọi file trong `_archive_2026-05-13/` **KHÔNG dùng làm reference**.
 
 ### Layer 1 — Movement Portal (kickoff Tháng 9/2026)
 
-- 7 spec DRAFT v1.0 — Wave 2 sẽ upgrade lên v1.0-DEV-READY
-- 4 spec mới cần thêm: UI Mockup, Sponsors API, Events API, Sponsor Agreement (Wave 2)
+- 7 spec DEV-READY v1.0/v1.0.1
+- UI Mockup, Sponsors API, Events API, Sponsor Agreement đã có
+- Public Movement surfaces hiện chỉ read-only/no sensitive flows
+
+### Current external blocker
+
+- Cloudflare custom domain `duongsaotoasang.com` đang override `referrer-policy` và static asset cache TTL.
+- Repo `_headers` đúng và preview deploy áp dụng đúng.
+- Xem `STATE_REPORT_2026-05-14.md` để biết lệnh verify và owner action.
 
 ---
 
