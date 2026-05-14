@@ -284,6 +284,7 @@ Content source files:
 ```text
 data/posts.json
 data/content.json
+_headers
 functions/_lib/content-data.js
 functions/_lib/feed-utils.js
 functions/_lib/public-routes.js
@@ -294,7 +295,7 @@ rss.xml
 robots.txt
 ```
 
-After changing content, indexable public routes, sitemap, RSS, or robots surfaces, run:
+After changing content, indexable public routes, `_headers`, sitemap, RSS, or robots surfaces, run:
 
 ```bash
 node scripts/sync-static-content-data.mjs

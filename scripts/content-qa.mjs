@@ -50,6 +50,7 @@ assert(Array.isArray(FALLBACK_CONTENTS), "FALLBACK_CONTENTS must be an array")
 assert(POST_CONTENTS.length >= MIN_PUBLIC_POSTS, `POST_CONTENTS must contain at least ${MIN_PUBLIC_POSTS} public posts`)
 assert(FALLBACK_CONTENTS.length === POST_CONTENTS.length + PAGE_CONTENTS.length, "FALLBACK_CONTENTS must combine posts and pages")
 validateStaticJson()
+validateStaticHeaders()
 validateStaticRobots()
 validateStaticSitemap()
 validateStaticRss()
@@ -126,6 +127,30 @@ function validateStaticJson() {
   }
 }
 
+function validateStaticHeaders() {
+  const source = readFileSync(join(repoRoot, "_headers"), "utf8")
+
+  assert(!/Referrer-Policy:\s*same-origin/i.test(source), "_headers must not set referrer-policy to same-origin")
+  assert(!/max-age=14400/i.test(source), "_headers must not ship the known production override max-age=14400")
+  assert(!/immutable/i.test(source), "_headers must not use immutable cache while Sprint 0 remains active")
+
+  const root = headerBlock(source, "/*")
+  assert(root.includes("X-Content-Type-Options: nosniff"), "_headers /* must set nosniff")
+  assert(root.includes("Referrer-Policy: strict-origin-when-cross-origin"), "_headers /* must set strict-origin-when-cross-origin")
+  assert(root.includes("X-Frame-Options: SAMEORIGIN"), "_headers /* must set SAMEORIGIN")
+  assert(root.includes("Permissions-Policy: camera=(), microphone=(), geolocation=()"), "_headers /* must lock camera/microphone/geolocation")
+  assert(root.includes("Strict-Transport-Security: max-age=31536000"), "_headers /* must set HSTS max-age=31536000")
+  assert(root.includes("Cache-Control: public, max-age=0, must-revalidate"), "_headers /* must keep HTML max-age=0")
+
+  for (const route of ["/app.css", "/tokens.css", "/assets/*", "/og.png"]) {
+    const block = headerBlock(source, route)
+    assert(block.includes("Cache-Control: public, max-age=300, must-revalidate"), `_headers ${route} must keep cache max-age=300`)
+  }
+
+  const functionsBlock = headerBlock(source, "/functions/*")
+  assert(functionsBlock.includes("Cache-Control: no-store"), "_headers /functions/* must remain no-store")
+}
+
 function validateStaticRobots() {
   const source = readFileSync(join(repoRoot, "robots.txt"), "utf8")
 
@@ -136,6 +161,21 @@ function validateStaticRobots() {
   assert(!source.includes(".html"), "robots.txt must not point to .html routes")
   assert(!source.includes("pages.dev"), "robots.txt must not use preview domain")
   assert(!source.includes("duongsaotoasang-web"), "robots.txt must not use wrong Pages project")
+}
+
+function headerBlock(source, route) {
+  const lines = source.split(/\r?\n/)
+  const start = lines.findIndex((line) => line.trim() === route)
+  if (start === -1) {
+    failures.push(`_headers missing block: ${route}`)
+    return ""
+  }
+  const block = []
+  for (let i = start + 1; i < lines.length; i += 1) {
+    if (lines[i].startsWith("/") && lines[i].trim() !== route) break
+    block.push(lines[i])
+  }
+  return block.join("\n")
 }
 
 function validateStaticSitemap() {
