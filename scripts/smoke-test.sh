@@ -214,7 +214,7 @@ for check in "${content_checks[@]}"; do
   path="${check%%|*}"
   needle="${check#*|}"
   body="$(curl -sS -L --max-redirs 5 --connect-timeout 8 --max-time 20 "${BASE}${path}")"
-  if grep -Fq "$needle" <<< "$body"; then
+  if grep -Fq -- "$needle" <<< "$body"; then
     printf "PASS content  %s  contains [%s]\n" "$path" "$needle"
   else
     printf "FAIL content  %s  missing [%s]\n" "$path" "$needle"
