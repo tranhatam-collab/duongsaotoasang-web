@@ -3,7 +3,7 @@
 > **Scope:** Sprint 0 execution status after continuous public-site hardening.
 > **Repo:** `tranhatam-collab/duongsaotoasang-web`
 > **Branch:** `main`
-> **Latest verified implementation baseline:** `257b007`
+> **Latest verified implementation baseline:** `ea6a3d0`
 > **Cloudflare Pages project:** `duongsaotoasang-com-v2`
 > **Do not confuse with:** `duongsaotoasang-web`
 
@@ -79,6 +79,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Commit | Purpose |
 |---|---|
+| `ea6a3d0` | Remove internal wording from public-facing pages/articles and block internal wording phrases in content/static depth QA |
 | `257b007` | Replace internal Gala/A7 wording on public surfaces and block `Founder TBD` in depth QA |
 | `fb4b76b` | Update link QA verification snapshot |
 | `e1a360d` | Wire internal link QA into the Sprint 0 release gate for preview and production |
