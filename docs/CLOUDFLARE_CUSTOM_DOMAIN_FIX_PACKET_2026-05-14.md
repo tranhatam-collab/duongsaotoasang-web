@@ -189,6 +189,7 @@ Run:
 BASE_URL=https://duongsaotoasang.com node scripts/headers-qa.mjs
 BASE_URL=https://duongsaotoasang.com node scripts/seo-route-qa.mjs
 BASE_URL=https://duongsaotoasang.com ./scripts/smoke-test.sh
+node scripts/sprint-0-release-gate.mjs
 curl -sS -I -L https://duongsaotoasang.com/assets/app.js
 ```
 
@@ -198,6 +199,7 @@ Required:
 HEADERS_QA_PASS base=https://duongsaotoasang.com checks=8
 SEO_ROUTE_QA_PASS indexable=32 noindex=2 redirects=2
 PASSED: all smoke checks passed
+SPRINT_0_RELEASE_GATE_PASS
 HTTP/2 404
 ```
 

@@ -126,6 +126,7 @@ Replace `<preview>` with the URL returned by Wrangler:
 BASE_URL=<preview> ./scripts/smoke-test.sh
 BASE_URL=<preview> node scripts/seo-route-qa.mjs
 BASE_URL=<preview> node scripts/headers-qa.mjs
+PREVIEW_URL=<preview> node scripts/sprint-0-release-gate.mjs
 curl -sS -I -L <preview>/assets/app.js
 ```
 
@@ -136,8 +137,15 @@ PASSED: all smoke checks passed
 PASS content-index-redirect  /content -> /posts
 SEO_ROUTE_QA_PASS indexable=32 noindex=2 redirects=2
 HEADERS_QA_PASS base=<preview> checks=8
+SPRINT_0_RELEASE_GATE_BLOCKED_EXTERNAL
 HTTP/2 404
 ```
+
+The release gate exits:
+
+- `0` when preview + production are ready
+- `1` for real repo/route/SEO/header regressions
+- `2` when the only remaining failure is the known Cloudflare custom-domain cache/header blocker
 
 Spot-check manually:
 
@@ -165,6 +173,7 @@ curl -sS -I 'https://duongsaotoasang.com/content?slug=sang-tao-khong-bat-dau-tu-
 curl -sS -L 'https://duongsaotoasang.com/api/search?q=guardian&limit=3'
 BASE_URL=https://duongsaotoasang.com node scripts/seo-route-qa.mjs
 BASE_URL=https://duongsaotoasang.com node scripts/headers-qa.mjs
+node scripts/sprint-0-release-gate.mjs
 curl -sS -I -L https://duongsaotoasang.com/assets/app.js
 ```
 

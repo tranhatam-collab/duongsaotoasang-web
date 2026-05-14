@@ -192,6 +192,7 @@ Required owner action:
 
 ```bash
 BASE_URL=https://duongsaotoasang.com ./scripts/smoke-test.sh
+node scripts/sprint-0-release-gate.mjs
 ```
 
 ---
@@ -218,6 +219,12 @@ CONTENT INDEX REDIRECT: DONE
 LEGACY APP SOURCE RETIRED: DONE
 PRODUCTION HEADER/CACHE: BLOCKED_EXTERNAL
 FULL PRODUCTION SMOKE: BLOCKED_EXTERNAL until Cloudflare zone rule is corrected
+```
+
+Automation gate:
+
+```text
+scripts/sprint-0-release-gate.mjs returns exit 2 while this known external blocker remains.
 ```
 
 The site is no longer in the old P0 state of black pages, broken primary routes, stuck content, missing public pages, or unsafe API list/search body exposure.
