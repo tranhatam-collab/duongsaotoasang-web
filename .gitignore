@@ -1,0 +1,12 @@
+# macOS local metadata
+.DS_Store
+**/.DS_Store
+
+# Local agent/runtime state
+.claude/
+.wrangler/
+
+# Finder duplicate copies observed in this workspace
+_redirects 2
+functions/api/content 2.js
+dsts-bug-report.md
