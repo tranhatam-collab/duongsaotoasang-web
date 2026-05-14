@@ -34,6 +34,7 @@ await requirePass("local-release-gate-syntax", "node", ["--check", "scripts/spri
 await requirePass("local-content-qa", "node", ["scripts/content-qa.mjs"])
 await requirePass("local-html-structure-qa", "node", ["scripts/html-structure-qa.mjs"])
 await requirePass("local-accessibility-qa", "node", ["scripts/accessibility-qa.mjs"])
+await requirePass("local-public-flow-safety-qa", "node", ["scripts/public-flow-safety-qa.mjs"])
 await requirePass("local-social-metadata-qa", "node", ["scripts/social-metadata-qa.mjs"])
 await requirePass("local-structured-data-qa", "node", ["scripts/structured-data-qa.mjs"])
 await requirePass("local-public-asset-budget-qa", "node", ["scripts/public-asset-budget-qa.mjs"])
