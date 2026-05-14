@@ -234,6 +234,13 @@ else
   failed=$((failed + 1))
 fi
 
+if grep -Fq 'href="/contact"' <<< "$body_404" && grep -Fq 'href="/support"' <<< "$body_404" && ! grep -Eq 'contact@duongsaotoasang\.com|duongsaotoasang@gmail\.com|mailto:' <<< "$body_404"; then
+  printf "PASS 404-contact-boundary  %s routes to contact/support without raw email\n" "$UNKNOWN_PATH"
+else
+  printf "FAIL 404-contact-boundary  %s exposes raw email or missing contact/support links\n" "$UNKNOWN_PATH"
+  failed=$((failed + 1))
+fi
+
 content_404="$(curl -o /dev/null -sS --connect-timeout 8 --max-time 20 -w "%{http_code}" "${BASE}${MISSING_CONTENT_PATH}")"
 if [[ "$content_404" == "404" ]]; then
   printf "PASS content-404  %s\n" "$MISSING_CONTENT_PATH"

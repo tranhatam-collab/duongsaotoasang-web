@@ -174,6 +174,11 @@ function validatePublicLaneBoundaries() {
   assert(!/tel:\+84123456789/i.test(contact), "contact.html must not ship placeholder phone number")
   assert(!/facebook\.com\/duongsaotoasang|twitter\.com\/duongsaotoasang|instagram\.com\/duongsaotoasang|youtube\.com\/@duongsaotoasang/i.test(contact), "contact.html must not ship unverified social links")
 
+  const notFound = readFileSync(join(repoRoot, "404.html"), "utf8")
+  assert(notFound.includes('href="/contact"'), "404.html must route users to manual contact page")
+  assert(notFound.includes('href="/support"'), "404.html must route users to support guidance")
+  assert(!/contact@duongsaotoasang\.com|duongsaotoasang@gmail\.com|mailto:/i.test(notFound), "404.html must not expose raw email/admin addresses")
+
   const movementFallback = readFileSync(join(repoRoot, "movement/coming-soon.html"), "utf8")
   assert(movementFallback.includes('meta name="robots" content="noindex,follow"'), "movement/coming-soon.html must stay noindex")
   assert(movementFallback.includes("/assets/app-v5.js"), "movement/coming-soon.html must load current app shell")

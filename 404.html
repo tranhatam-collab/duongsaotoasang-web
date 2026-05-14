@@ -541,8 +541,8 @@
     <footer class="footer">
       <div class="footer-grid">
         <div>
-          <div><b>Contact:</b> contact@duongsaotoasang.com</div>
-          <div><b>Admin:</b> duongsaotoasang@gmail.com</div>
+          <div><b id="footerContactLabel">Liên hệ:</b> <a id="footerContactLink" href="/contact">Trang liên hệ thủ công</a></div>
+          <div><b id="footerSupportLabel">Hỗ trợ:</b> <a id="footerSupportLink" href="/support">Hướng dẫn hỗ trợ</a></div>
           <div class="small" id="footerNote" style="margin-top:10px">
             Trang 404 được thiết kế để không tạo cảm giác đứt mạch. Dù người dùng đi nhầm đường, họ vẫn có lối quay về đúng hệ thống.
           </div>
@@ -657,6 +657,10 @@
     document.getElementById("r2d").textContent = T("Bài viết hoặc trang có thể đã được tạo trong hệ thống nhưng chưa được công khai.", "An article or page may already exist in the system but has not yet been made public.");
     document.getElementById("r3t").textContent = T("Link bên ngoài đã cũ", "External link is outdated");
     document.getElementById("r3d").textContent = T("Một link cũ được chia sẻ từ trước có thể không còn khớp với cấu trúc URL hiện tại của website.", "An older shared link may no longer match the website’s current URL structure.");
+    document.getElementById("footerContactLabel").textContent = T("Liên hệ:", "Contact:");
+    document.getElementById("footerContactLink").textContent = T("Trang liên hệ thủ công", "Manual contact page");
+    document.getElementById("footerSupportLabel").textContent = T("Hỗ trợ:", "Support:");
+    document.getElementById("footerSupportLink").textContent = T("Hướng dẫn hỗ trợ", "Support guidance");
 
     document.getElementById("footerNote").textContent = T(
       "Trang 404 được thiết kế để không tạo cảm giác đứt mạch. Dù người dùng đi nhầm đường, họ vẫn có lối quay về đúng hệ thống.",
