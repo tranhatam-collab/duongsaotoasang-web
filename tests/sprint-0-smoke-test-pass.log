@@ -1,11 +1,14 @@
 === DSTS Sprint 0 Smoke Test ===
-Base: http://127.0.0.1:8797
-Timestamp: 2026-05-14T00:56:27Z
+Base: http://127.0.0.1:8798
+Timestamp: 2026-05-14T01:05:22Z
 
 PASS 200  /
 PASS 200  /about
 PASS 200  /program
 PASS 200  /posts
+PASS 200  /content?slug=script-journey-khong-phai-goi-ban-hang
+PASS 200  /content?slug=event-readiness-no-owner-no-event
+PASS 200  /content?slug=diaspora-map-can-bao-ve-quyen-rieng-tu
 PASS 200  /content?slug=minh-bach-truoc-khi-gay-quy-dsts
 PASS 200  /content?slug=guardian-first-nguyen-tac-bao-ve-tre-em-ndnum
 PASS 200  /content?slug=nguoi-moi-nen-bat-dau-dsts-tu-dau
@@ -49,10 +52,17 @@ PASS 200  /robots.txt
 === Content checks ===
 PASS content  /posts  contains [THƯ VIỆN TRI THỨC]
 PASS content  /posts  contains [data-dsts-ssr="posts"]
+PASS content  /posts  contains [Script Journey không phải gói bán hàng]
 PASS content  /posts  contains [Minh bạch trước khi gây quỹ]
 PASS content  /posts  contains [Kế hoạch phát triển Đường Sao Tỏa Sáng 2026-2027]
 PASS content  /posts  contains [Khởi nghiệp từ nơi sống thật]
 PASS content  /posts  contains ["@type":"ItemList"]
+PASS content  /content?slug=script-journey-khong-phai-goi-ban-hang  contains [Script Journey không phải gói bán hàng, mà là bản đồ phát triển cá nhân]
+PASS content  /content?slug=script-journey-khong-phai-goi-ban-hang  contains [Đọc script như một gương soi]
+PASS content  /content?slug=event-readiness-no-owner-no-event  contains [Event readiness: không có owner thì không có event]
+PASS content  /content?slug=event-readiness-no-owner-no-event  contains [Báo cáo sau sự kiện là một phần của sự kiện]
+PASS content  /content?slug=diaspora-map-can-bao-ve-quyen-rieng-tu  contains [Diaspora Map cần bảo vệ quyền riêng tư trước khi kể câu chuyện toàn cầu]
+PASS content  /content?slug=diaspora-map-can-bao-ve-quyen-rieng-tu  contains [Bản đồ giai đoạn đầu nên là dữ liệu tổng hợp]
 PASS content  /content?slug=minh-bach-truoc-khi-gay-quy-dsts  contains [Minh bạch trước khi gây quỹ: vì sao DSTS tạm đóng donate]
 PASS content  /content?slug=minh-bach-truoc-khi-gay-quy-dsts  contains [Niềm tin phải đi trước dòng tiền]
 PASS content  /content?slug=guardian-first-nguyen-tac-bao-ve-tre-em-ndnum  contains [Guardian-first: nguyên tắc bảo vệ trẻ em của NDNUM]

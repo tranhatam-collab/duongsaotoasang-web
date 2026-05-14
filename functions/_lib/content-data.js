@@ -1,5 +1,110 @@
 export const POST_CONTENTS = [
   {
+    slug: "script-journey-khong-phai-goi-ban-hang",
+    type: "post",
+    title_vi: "Script Journey không phải gói bán hàng, mà là bản đồ phát triển cá nhân",
+    title_en: "Script Journey is not a sales package, but a personal development map",
+    excerpt_vi: "Các kịch bản DSTS cần được đọc như bản đồ hành trình, giúp người dùng hiểu vị trí, lựa chọn và điều kiện phát triển trước khi quyết định đi tiếp.",
+    excerpt_en: "DSTS scripts should be read as journey maps that help people understand their position, choices, and development conditions before moving forward.",
+    content_vi: `
+      <p>Trên DSTS, các Script Journey có thể bị hiểu nhầm là những gói bán hàng vì chúng có tên sản phẩm, lộ trình, giá trị và cấu trúc dịch vụ. Nhưng nếu chỉ nhìn như vậy, người đọc sẽ bỏ lỡ phần quan trọng hơn: mỗi script là một bản đồ phát triển cá nhân, được viết để người dùng nhìn lại mình trước khi chọn bất kỳ hành trình nào.</p>
+      <p>Một bản đồ tốt không ép người đọc mua, đăng ký hay cam kết ngay. Nó giúp họ thấy mình đang ở đâu, năng lực nào đang có, khoảng trống nào cần bồi đắp, rủi ro nào cần tránh và điều kiện nào phải đủ trước khi bước vào một hành trình lớn hơn. Script Journey vì vậy phải được trình bày với sự rõ ràng, không gây áp lực và không dùng cảm xúc để đẩy quyết định.</p>
+      <h2>Đọc script như một gương soi</h2>
+      <p>Khi một người đọc The Rising Entrepreneur, The Global Artist, The Singing Icon hoặc The Thinker, câu hỏi đầu tiên không nên là “tôi mua gói nào”. Câu hỏi đầu tiên nên là “hành trình này có thật sự phản ánh hướng phát triển của tôi không”. Một kịch bản đúng giúp người đọc tự nhận diện mình, không bị kéo vào hình ảnh thành công vay mượn.</p>
+      <p>DSTS cần giữ tiêu chuẩn này trên toàn bộ script library. Nội dung có thể mô tả giá trị, cấu trúc, giai đoạn và điều kiện tham gia, nhưng phải tránh làm người đọc tưởng rằng họ đang đứng trước một lời hứa chắc chắn. Phát triển con người luôn cần thời gian, bối cảnh, năng lực thật và trách nhiệm hai chiều.</p>
+      <h2>Minh bạch trước mọi lời mời</h2>
+      <p>Script Journey nên nói rõ phần nào là nội dung định hướng, phần nào là dịch vụ có điều kiện, phần nào cần tư vấn, phần nào chưa mở và phần nào phải đi qua legal hoặc operations review. Nếu có phần đánh giá minh họa, trang phải ghi rõ đó là dữ liệu mẫu, không phải phản hồi khách hàng thật.</p>
+      <p>Đây là lý do các trang script cần giữ safety copy, entity disclosure, refund reference, contact support và nhãn “Đánh giá minh họa”. Khi người dùng thấy thông tin này, họ hiểu DSTS không né tránh phần khó. DSTS đang đặt niềm tin và quyền hiểu đúng của người dùng lên trước chuyển đổi ngắn hạn.</p>
+      <h2>Bản đồ hành trình phải dẫn về đời sống thật</h2>
+      <p>Mục tiêu cuối cùng của Script Journey không phải làm một trang sản phẩm đẹp. Mục tiêu là giúp người đọc sống và phát triển có trục hơn. Một doanh nhân cần hiểu giá trị phục vụ. Một nghệ sĩ cần hiểu chiều sâu sáng tạo. Một người lãnh đạo cần hiểu trách nhiệm với cộng đồng. Một người trẻ cần hiểu rằng tỏa sáng không phải là biểu diễn liên tục.</p>
+      <p>Khi script được viết như bản đồ, người dùng có thể bắt đầu bằng việc đọc chậm, tự đánh giá và quay lại khi sẵn sàng. Điều đó tốt hơn nhiều so với một flow thúc ép họ ra quyết định trước khi hiểu mình đang bước vào đâu.</p>
+    `,
+    content_en: `
+      <p>On DSTS, Script Journey pages can be mistaken for sales packages because they contain product names, pathways, value descriptions, and service structure. But if readers see only that, they miss the deeper purpose: each script is a personal development map.</p>
+      <p>A good map does not pressure people to buy, register, or commit immediately. It helps them see where they are, what abilities they already have, what gaps need work, what risks should be avoided, and what conditions must be present before entering a larger journey.</p>
+      <h2>Read each script as a mirror</h2>
+      <p>When someone reads The Rising Entrepreneur, The Global Artist, The Singing Icon, or The Thinker, the first question should not be which package to buy. The first question should be whether this journey truly reflects their direction of growth.</p>
+      <h2>Transparency before every invitation</h2>
+      <p>Script Journey pages should clarify which parts are orientation, which parts are conditional services, which parts require consultation, which parts are not open yet, and which parts require legal or operations review. Sample reviews must be clearly labeled as illustrative.</p>
+      <h2>Journey maps must return to real life</h2>
+      <p>The final goal of Script Journey is not a beautiful product page. The goal is to help readers live and develop with a clearer axis. When scripts are written as maps, users can begin by reading slowly, assessing themselves, and returning when they are ready.</p>
+    `,
+    tags: "script journey,phát triển cá nhân,minh bạch",
+    reading_time: "8 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-14T01:00:00.000Z"
+  },
+  {
+    slug: "event-readiness-no-owner-no-event",
+    type: "post",
+    title_vi: "Event readiness: không có owner thì không có event",
+    title_en: "Event readiness: no owner means no event",
+    excerpt_vi: "DSTS chỉ nên công bố sự kiện public khi có owner, trạng thái, phạm vi, báo cáo sau sự kiện và ranh giới đăng ký rõ ràng.",
+    excerpt_en: "DSTS should only publish public events when ownership, status, scope, post-event reporting, and registration boundaries are clear.",
+    content_vi: `
+      <p>Một sự kiện public không bắt đầu từ banner đẹp. Nó bắt đầu từ owner. Nếu không có người chịu trách nhiệm end-to-end, sự kiện không nên được xem là live, dù ý tưởng có hấp dẫn đến đâu. Đây là nguyên tắc “NO OWNER = NO EVENT” trong Movement Portal.</p>
+      <p>Owner không chỉ là người đứng tên. Owner phải có quyền và trách nhiệm kiểm soát phạm vi, lịch, địa điểm hoặc hình thức online, người phối hợp, thông tin công bố, rủi ro, dữ liệu người tham gia và báo cáo sau sự kiện. Nếu một trong các phần này chưa rõ, trang public phải giữ trạng thái planned hoặc pending, không được giả vờ là sự kiện đã sẵn sàng.</p>
+      <h2>Trạng thái phải rõ hơn cảm hứng</h2>
+      <p>Mỗi event cần có trạng thái cụ thể: planned, preparing, open, closed, cancelled hoặc report published. Một trang chỉ ghi ý tưởng mà không có trạng thái sẽ khiến người đọc nhầm lẫn. Họ không biết có nên tham gia không, có cần đăng ký không, sự kiện đã qua hay chưa, ai chịu trách nhiệm và thông tin nào là chắc chắn.</p>
+      <p>DSTS đang mở <code>/movement/events</code> theo hướng read-only là một bước an toàn. Người đọc có thể hiểu loại sự kiện, nguyên tắc vận hành và readiness gates, nhưng chưa bị đưa vào event registration flow. Flow đăng ký là lane nhạy cảm, chỉ nên mở khi có owner, privacy review và vận hành hậu trường.</p>
+      <h2>Báo cáo sau sự kiện là một phần của sự kiện</h2>
+      <p>Nhiều hệ thống chỉ quan tâm đến việc mời người đến. DSTS cần quan tâm cả việc đóng vòng sau sự kiện. Một event đúng nên có post-event report: đã diễn ra khi nào, mục tiêu gì, kết quả gì, học được gì, có hình ảnh hoặc dữ liệu nào được phép công bố, và phần nào không công bố vì privacy.</p>
+      <p>Báo cáo sau sự kiện giúp cộng đồng thấy DSTS không chỉ tạo hoạt động để truyền thông. Nó giúp team học, giúp sponsor hiểu tác động nếu có, giúp người tham gia thấy sự tôn trọng và giúp website không biến thành nơi treo các kế hoạch cũ không ai cập nhật.</p>
+      <h2>Gala 2026 là ví dụ cần giữ pending</h2>
+      <p>Khi một mốc như A7 chưa được Founder xác nhận, route liên quan không nên index như một sự kiện live. Cách đúng là tạo trang status pending, ghi rõ Founder TBD, không có registration form, không có payment flow và không đưa vào sitemap nếu chưa đủ điều kiện public.</p>
+      <p>Một sự kiện được mở chậm nhưng rõ ràng sẽ tốt hơn một sự kiện mở sớm nhưng mơ hồ. Với DSTS, event readiness không phải rào cản sáng tạo. Nó là cách bảo vệ người tham gia, bảo vệ team và giữ lời hứa minh bạch với cộng đồng.</p>
+    `,
+    content_en: `
+      <p>A public event does not begin with a beautiful banner. It begins with an owner. If no one is responsible end-to-end, the event should not be treated as live, no matter how attractive the idea is.</p>
+      <p>An owner is not just a name. The owner must have responsibility over scope, timing, venue or online format, collaborators, public information, risk, participant data, and post-event reporting.</p>
+      <h2>Status must be clearer than inspiration</h2>
+      <p>Every event needs a clear state: planned, preparing, open, closed, cancelled, or report published. A page that only shares an idea without status creates confusion for readers.</p>
+      <h2>Post-event reporting is part of the event</h2>
+      <p>DSTS should care not only about inviting people, but also about closing the loop after an event. A proper event should produce a report about what happened, what was learned, what can be public, and what remains private.</p>
+      <h2>Gala 2026 should remain pending until confirmed</h2>
+      <p>When a milestone like A7 still needs Founder confirmation, the related route should not be indexed as a live event. A pending status page with no registration and no payment flow is the honest approach.</p>
+    `,
+    tags: "events,movement,readiness",
+    reading_time: "8 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-14T00:55:00.000Z"
+  },
+  {
+    slug: "diaspora-map-can-bao-ve-quyen-rieng-tu",
+    type: "post",
+    title_vi: "Diaspora Map cần bảo vệ quyền riêng tư trước khi kể câu chuyện toàn cầu",
+    title_en: "Diaspora Map must protect privacy before telling a global story",
+    excerpt_vi: "Bản đồ Người Việt tỏa sáng chỉ nên hiển thị dữ liệu tổng hợp, opt-in và không nhận diện cá nhân nếu privacy gate chưa khóa.",
+    excerpt_en: "The Vietnamese diaspora map should show aggregated, opt-in, non-identifying data unless privacy gates are locked.",
+    content_vi: `
+      <p>Diaspora Map là một ý tưởng mạnh: nhìn thấy người Việt đang sống, học, làm việc, sáng tạo và đóng góp ở nhiều nơi trên thế giới. Nhưng một bản đồ cộng đồng cũng có thể trở thành rủi ro nếu nó hiển thị quá nhiều dữ liệu cá nhân, quá sớm và không có consent rõ ràng.</p>
+      <p>Vì vậy, nguyên tắc đầu tiên của DSTS Diaspora Map là privacy before storytelling. Trước khi kể một câu chuyện toàn cầu, hệ thống phải bảo vệ người được nhắc đến. Không có lý do nào để public tên thật, vị trí chi tiết, trường học, nơi làm việc, hình ảnh trẻ em hoặc hoàn cảnh nhạy cảm nếu chưa có quyền rõ ràng và review phù hợp.</p>
+      <h2>Bản đồ giai đoạn đầu nên là dữ liệu tổng hợp</h2>
+      <p>Ở giai đoạn read-only, bản đồ nên chỉ mô tả region clusters, hướng phát triển cộng đồng và nguyên tắc dữ liệu. Ví dụ: Bắc Mỹ, châu Âu, Úc, Đông Nam Á hoặc Việt Nam có thể là nhóm vùng ở mức tổng quan. Không cần pin cá nhân. Không cần địa chỉ cụ thể. Không cần profile nhận diện.</p>
+      <p>Dữ liệu tổng hợp vẫn có giá trị. Nó giúp người đọc hiểu DSTS nhìn cộng đồng người Việt như một mạng lưới toàn cầu, nhưng không biến từng cá nhân thành điểm dữ liệu công khai. Đây là khác biệt lớn giữa bản đồ cộng đồng có trách nhiệm và một bản đồ marketing thuần túy.</p>
+      <h2>Opt-in phải đi cùng quyền rút lại</h2>
+      <p>Khi sau này cho phép cá nhân hoặc tổ chức xuất hiện trên bản đồ, DSTS cần opt-in rõ ràng, mô tả mục đích sử dụng, thời hạn lưu, phạm vi hiển thị, quyền chỉnh sửa và quyền rút lại. Người tham gia phải hiểu họ đang đồng ý điều gì, dữ liệu nào public, dữ liệu nào nội bộ và ai có quyền xử lý.</p>
+      <p>Đặc biệt, trẻ em không nên xuất hiện như một pin cá nhân trên bản đồ public. Nếu NDNUM hoặc các chương trình trẻ em cần báo cáo tác động theo địa lý, cách an toàn hơn là dùng dữ liệu tổng hợp, k-anonymity và không hiển thị thông tin nhận diện.</p>
+      <h2>Bản đồ tốt giúp kết nối mà không phơi bày</h2>
+      <p>Mục tiêu của Diaspora Map không phải là thu thật nhiều profile. Mục tiêu là giúp cộng đồng thấy mình thuộc về một câu chuyện lớn hơn, có thể kết nối theo vùng, theo lĩnh vực và theo giá trị chung. Sự kết nối đó phải được xây trên quyền riêng tư, không phải đánh đổi quyền riêng tư để lấy cảm giác đông vui.</p>
+      <p>Khi privacy gate được giữ nghiêm, DSTS có thể kể câu chuyện người Việt toàn cầu một cách đẹp hơn và bền hơn. Người tham gia không chỉ được nhìn thấy, mà còn được tôn trọng.</p>
+    `,
+    content_en: `
+      <p>Diaspora Map is a powerful idea: seeing Vietnamese people living, learning, working, creating, and contributing around the world. But a community map can become risky if it reveals too much personal data too early without clear consent.</p>
+      <p>The first principle of DSTS Diaspora Map is privacy before storytelling. Before telling a global story, the system must protect the people mentioned.</p>
+      <h2>The first stage should use aggregate data</h2>
+      <p>At the read-only stage, the map should describe regional clusters, community direction, and data principles. It does not need individual pins, exact addresses, or identifiable profiles.</p>
+      <h2>Opt-in must include withdrawal rights</h2>
+      <p>If individuals or organizations later appear on the map, DSTS needs clear opt-in, purpose, retention, visibility scope, edit rights, and withdrawal rights. Participants must know what they are agreeing to.</p>
+      <h2>A good map connects without exposing</h2>
+      <p>The goal of Diaspora Map is not to collect as many profiles as possible. The goal is to help the community recognize a larger shared story while respecting privacy.</p>
+    `,
+    tags: "diaspora,privacy,movement",
+    reading_time: "8 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-14T00:50:00.000Z"
+  },
+  {
     slug: "minh-bach-truoc-khi-gay-quy-dsts",
     type: "post",
     title_vi: "Minh bạch trước khi gây quỹ: vì sao DSTS tạm đóng donate",
