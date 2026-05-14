@@ -11,6 +11,7 @@ import {
 import {
   INDEXABLE_STATIC_ROUTES,
   NOINDEX_ROUTES,
+  SCRIPT_ROUTES,
   canonicalFor
 } from "../functions/_lib/public-routes.js"
 
@@ -52,6 +53,8 @@ assert(FALLBACK_CONTENTS.length === POST_CONTENTS.length + PAGE_CONTENTS.length,
 validateStaticJson()
 validateStaticHeaders()
 validateStaticRobots()
+validateRoutesConfig()
+validateRedirects()
 validateStaticSitemap()
 validateStaticRss()
 validateInlineFallbacks()
@@ -163,6 +166,61 @@ function validateStaticRobots() {
   assert(!source.includes("duongsaotoasang-web"), "robots.txt must not use wrong Pages project")
 }
 
+function validateRoutesConfig() {
+  let config = null
+  try {
+    config = JSON.parse(readFileSync(join(repoRoot, "_routes.json"), "utf8"))
+  } catch (error) {
+    failures.push(`_routes.json must be valid JSON: ${error.message}`)
+    return
+  }
+
+  assert(config.version === 1, "_routes.json version must be 1")
+  assert(Array.isArray(config.include), "_routes.json include must be an array")
+  assert(Array.isArray(config.exclude), "_routes.json exclude must be an array")
+  assert(config.include.length === 1 && config.include[0] === "/*", '_routes.json must include exactly "/*" for Pages Functions')
+
+  for (const route of ["/assets/*", "/app.css", "/tokens.css", "/og.png", "/robots.txt"]) {
+    assert(config.exclude.includes(route), `_routes.json must exclude static route: ${route}`)
+  }
+}
+
+function validateRedirects() {
+  const source = readFileSync(join(repoRoot, "_redirects"), "utf8")
+  const rules = parseRedirects(source)
+  const byFrom = new Map()
+
+  for (const rule of rules) {
+    assert(!byFrom.has(rule.from), `_redirects duplicate active source: ${rule.from}`)
+    byFrom.set(rule.from, rule)
+    assert(!rule.to.includes("pages.dev"), `_redirects must not target preview domain: ${rule.from}`)
+    assert(!rule.to.includes("duongsaotoasang-web"), `_redirects must not target wrong Pages project: ${rule.from}`)
+  }
+
+  assert(!byFrom.has("/*"), "_redirects must not define an active catch-all route")
+  for (const route of ["/about", "/program", "/contact", "/posts", "/donate", "/transparency"]) {
+    const rule = byFrom.get(route)
+    assert(!rule || !rule.to.startsWith("/content"), `_redirects must not send ${route} to /content`)
+  }
+
+  expectRedirect(byFrom, "/programs", "/program", "301")
+  expectRedirect(byFrom, "/refund", "/legal#refund", "302")
+  expectRedirect(byFrom, "/payment-confirmation", "/contact?type=payment-confirmation", "302")
+  expectRedirect(byFrom, "/ndnum", "/dream-nurture", "301")
+
+  for (const route of ["/about", "/program", "/contact", "/donate", "/transparency", "/legal", "/privacy", "/terms", "/support", "/posts", "/events", "/scripts", "/content", "/dream-nurture"]) {
+    expectRedirect(byFrom, `${route}.html`, route, "301")
+  }
+
+  for (const route of SCRIPT_ROUTES) {
+    expectRedirect(byFrom, `${route}.html`, route, "301")
+  }
+
+  expectRedirect(byFrom, "/movement/sponsors/*", "/movement/coming-soon", "200")
+  expectRedirect(byFrom, "/movement/events/*", "/movement/coming-soon", "200")
+  expectRedirect(byFrom, "/movement/tour-2026-2027/*", "/movement/coming-soon", "200")
+}
+
 function headerBlock(source, route) {
   const lines = source.split(/\r?\n/)
   const start = lines.findIndex((line) => line.trim() === route)
@@ -176,6 +234,25 @@ function headerBlock(source, route) {
     block.push(lines[i])
   }
   return block.join("\n")
+}
+
+function parseRedirects(source) {
+  return source
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith("#"))
+    .map((line) => {
+      const [from, to, status = ""] = line.split(/\s+/)
+      return { from, to, status }
+    })
+}
+
+function expectRedirect(byFrom, from, to, status) {
+  const rule = byFrom.get(from)
+  assert(Boolean(rule), `_redirects missing rule: ${from}`)
+  if (!rule) return
+  assert(rule.to === to, `_redirects ${from} target expected ${to}, got ${rule.to}`)
+  assert(rule.status === status, `_redirects ${from} status expected ${status}, got ${rule.status || "(missing)"}`)
 }
 
 function validateStaticSitemap() {
