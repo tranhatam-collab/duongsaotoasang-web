@@ -1,4 +1,5 @@
 import { selectFallback } from "./_lib/content-data.js";
+import { INDEXABLE_STATIC_ROUTES, canonicalFor } from "./_lib/public-routes.js";
 
 export async function onRequestGet(context) {
   const { env } = context;
@@ -7,36 +8,7 @@ export async function onRequestGet(context) {
     .map((row) => `/content?slug=${row.slug}`);
 
   const staticUrls = Array.from(new Set([
-    "/",
-    "/about",
-    "/program",
-    "/events",
-    "/scripts",
-    "/donate",
-    "/transparency",
-    "/legal",
-    "/privacy",
-    "/terms",
-    "/support",
-    "/contact",
-    "/posts",
-    "/dream-nurture",
-    "/movement",
-    "/movement/sponsors",
-    "/movement/events",
-    "/movement/press",
-    "/movement/partners",
-    "/movement/tour-2026-2027",
-    "/movement/diaspora-map",
-    "/scripts/rising-entrepreneur",
-    "/scripts/global-artist",
-    "/scripts/singing-icon",
-    "/scripts/cinematic-actor",
-    "/scripts/the-thinker",
-    "/scripts/creative-leader",
-    "/scripts/cultural-ambassador",
-    "/scripts/dsts-legacy",
-    "/scripts/global-story",
+    ...INDEXABLE_STATIC_ROUTES,
     ...fallbackPostUrls
   ]));
 
@@ -58,7 +30,7 @@ export async function onRequestGet(context) {
 
   const staticXml = staticUrls.map(url => `
     <url>
-      <loc>https://duongsaotoasang.com${url}</loc>
+      <loc>${canonicalFor(url)}</loc>
     </url>
   `).join("");
 

@@ -3,7 +3,7 @@
 > **Scope:** Sprint 0 execution status after continuous public-site hardening.
 > **Repo:** `tranhatam-collab/duongsaotoasang-web`
 > **Branch:** `main`
-> **Latest verified baseline commit:** `a5d0ee9`
+> **Latest verified baseline before sitemap sync:** `0a9b9ac`
 > **Cloudflare Pages project:** `duongsaotoasang-com-v2`
 > **Do not confuse with:** `duongsaotoasang-web`
 
@@ -46,6 +46,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 | API detail body | PASS | `/api/content?slug=guardian-first-nguyen-tac-bao-ve-tre-em-ndnum` returns full body |
 | Link QA | PASS | 32 pages scanned, 289 discovered links, 59 unique internal links |
 | SEO route QA | PASS | 32 indexable, 2 noindex, 2 redirects |
+| Static sitemap | PASS | `sitemap.xml` generated from shared route manifest + 24 fallback posts; no noindex routes included |
 | 404 route | PASS | Unknown routes return 404 and current app shell |
 | 404 contact boundary | PASS | 404 routes to `/contact` + `/support`, no raw email exposed |
 | Movement read-only surfaces | PASS | No sponsor inquiry, event registration, payment, or auth flow opened |
@@ -60,6 +61,8 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Commit | Purpose |
 |---|---|
+| `0a9b9ac` | Fix smoke-test token checks for CSS custom properties |
+| `a7b2eb7` | Add public design tokens |
 | `a5d0ee9` | Add public-site operations runbook |
 | `c0da82b` | Update Sprint 0 status docs with content redirect evidence |
 | `e2691fc` | Fix `_routes.json` for Pages middleware without overlapping rules |

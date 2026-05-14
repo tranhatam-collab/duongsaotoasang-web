@@ -8,6 +8,11 @@ import {
   findFallback,
   selectFallback
 } from "../functions/_lib/content-data.js"
+import {
+  INDEXABLE_STATIC_ROUTES,
+  NOINDEX_ROUTES,
+  canonicalFor
+} from "../functions/_lib/public-routes.js"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -45,6 +50,7 @@ assert(Array.isArray(FALLBACK_CONTENTS), "FALLBACK_CONTENTS must be an array")
 assert(POST_CONTENTS.length >= MIN_PUBLIC_POSTS, `POST_CONTENTS must contain at least ${MIN_PUBLIC_POSTS} public posts`)
 assert(FALLBACK_CONTENTS.length === POST_CONTENTS.length + PAGE_CONTENTS.length, "FALLBACK_CONTENTS must combine posts and pages")
 validateStaticJson()
+validateStaticSitemap()
 validateInlineFallbacks()
 validateStaticLoadingPlaceholders()
 validateAppShellReferences()
@@ -115,6 +121,29 @@ function validateStaticJson() {
     assert(!("content" in item), `data/posts.json must not include content for ${item.slug}`)
     assert(!("content_vi" in item), `data/posts.json must not include content_vi for ${item.slug}`)
     assert(!("content_en" in item), `data/posts.json must not include content_en for ${item.slug}`)
+  }
+}
+
+function validateStaticSitemap() {
+  const source = readFileSync(join(repoRoot, "sitemap.xml"), "utf8")
+  const locs = Array.from(source.matchAll(/<loc>([\s\S]*?)<\/loc>/g), (match) => decodeXml(match[1].trim()))
+  const locSet = new Set(locs)
+  const expectedStatic = INDEXABLE_STATIC_ROUTES.map(canonicalFor)
+  const expectedPosts = POST_CONTENTS.map((post) => canonicalFor(`/content?slug=${post.slug}`))
+  const expected = [...expectedStatic, ...expectedPosts]
+
+  assert(locs.length === expected.length, `sitemap.xml must contain ${expected.length} URLs, got ${locs.length}`)
+  for (const loc of expected) {
+    assert(locSet.has(loc), `sitemap.xml missing URL: ${loc}`)
+  }
+  for (const path of NOINDEX_ROUTES) {
+    assert(!locSet.has(canonicalFor(path)), `sitemap.xml must exclude noindex URL: ${canonicalFor(path)}`)
+  }
+  for (const loc of locs) {
+    assert(loc.startsWith("https://duongsaotoasang.com/"), `sitemap.xml URL must use production domain: ${loc}`)
+    assert(!loc.includes(".html"), `sitemap.xml URL must use clean route, not .html: ${loc}`)
+    assert(!loc.includes("pages.dev"), `sitemap.xml URL must not use preview domain: ${loc}`)
+    assert(!loc.includes("duongsaotoasang-web"), `sitemap.xml URL must not use wrong Pages project: ${loc}`)
   }
 }
 
@@ -282,6 +311,15 @@ function readJson(relativePath) {
     failures.push(`${relativePath} must be valid JSON: ${error.message}`)
     return null
   }
+}
+
+function decodeXml(value) {
+  return String(value || "")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
 }
 
 function parseInlineJson(relativePath, pattern) {

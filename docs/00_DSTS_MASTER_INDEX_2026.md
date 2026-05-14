@@ -1,8 +1,9 @@
 # 00_DSTS_MASTER_INDEX_2026
 
-> 📝 **DRAFT v1.5.2** — 2026-05-14 (supersedes v1.5.1)
+> 📝 **DRAFT v1.5.3** — 2026-05-14 (supersedes v1.5.2)
 > Bản đồ master cho cả ecosystem DSTS. Gom toàn bộ Drive cũ + kế hoạch mới thành 1 chỉ mục chính thức.
 > **Đối tượng dùng:** dev, content, legal, product, founder — cùng một bản truth.
+> **v1.5.3 changes:** Add shared public route manifest, sync static `sitemap.xml` from 24 fallback posts, and make sitemap drift fail `content-qa`.
 > **v1.5.2 changes:** Add public design token file `tokens.css`, wire `app.css` to import it, and add token CSS to header/smoke QA.
 > **v1.5 changes:** Sprint 0 execution status added — route/API/content/SEO production pass; `/content` without slug redirects to `/posts`; custom-domain header/cache remains BLOCKED_EXTERNAL in Cloudflare zone rules.
 > **v1.4 changes:** Wave 3 done — 7 NDNUM spec con DRAFT v1.0 filed (W3.1-W3.7).
@@ -10,7 +11,7 @@
 > **v1.2 changes:** Wave 1 sync timeline (chèn Phase 0B), fix A7 status, thêm 7 NDNUM spec con TBD.
 
 **Founder:** Trần Hà Tâm
-**Phiên bản:** v1.5.2 (master index — pending re-lock)
+**Phiên bản:** v1.5.3 (master index — pending re-lock)
 **Ngày phát hành:** 2026-05-14
 **Nguyên tắc:** Mọi tài liệu mới về DSTS phải được index ở đây. Không có file ngoài index.
 
@@ -224,7 +225,7 @@ Theo thứ tự ưu tiên:
   13. Cloudflare custom-domain header/cache override for duongsaotoasang.com
 
 🟡 Sprint 1-4 — 3 tuần tiếp:
-  13. sitemap.xml
+  13. sitemap.xml ✅ static + dynamic sitemap synced 2026-05-14
   14. robots.txt
   15. _headers
   16. tokens.css ✅ design tokens added 2026-05-14
@@ -386,6 +387,7 @@ Nếu có conflict giữa Drive cũ (Layer A) và Plan mới (Layer 0-2):
 | v1.5 | 2026-05-14 | Add `STATE_REPORT_2026-05-14.md`. Sprint 0 route/API/content/SEO now pass on preview + production spot checks. `/content` without slug redirects to `/posts` via Pages middleware. Known remaining failure is production custom-domain header/cache override outside repo: `referrer-policy=same-origin` and static asset `max-age=14400` despite repo `_headers` and preview using stricter values. | Codex |
 | v1.5.1 | 2026-05-14 | Add root `RUNBOOK.md` for deploy, rollback, incident response, owner matrix, production verification, data safety, and Cloudflare custom-domain header/cache blocker. | Codex |
 | v1.5.2 | 2026-05-14 | Add root `tokens.css`, import it from `app.css`, cache it through `_headers`, and include token CSS in smoke/header QA. | Codex |
+| v1.5.3 | 2026-05-14 | Add shared public route manifest `functions/_lib/public-routes.js`, generate static `sitemap.xml` from the same route list + 24 fallback posts, and make `content-qa` fail on sitemap drift/noindex leakage. | Codex |
 
 ---
 

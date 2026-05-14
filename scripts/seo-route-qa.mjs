@@ -1,49 +1,21 @@
+import {
+  INDEXABLE_STATIC_ROUTES,
+  NOINDEX_ROUTES,
+  REDIRECT_ROUTES,
+  canonicalFor
+} from "../functions/_lib/public-routes.js"
+
 const BASE_URL = normalizeBase(process.env.BASE_URL || "https://duongsaotoasang.com")
 
 const INDEXABLE_ROUTES = [
-  ["/", "https://duongsaotoasang.com/"],
-  ["/about", "https://duongsaotoasang.com/about"],
-  ["/program", "https://duongsaotoasang.com/program"],
-  ["/posts", "https://duongsaotoasang.com/posts"],
+  ...INDEXABLE_STATIC_ROUTES.map((path) => [path, canonicalFor(path)]),
   ["/content?slug=impact-khong-phai-cau-chuyen-cam-dong", "https://duongsaotoasang.com/content?slug=impact-khong-phai-cau-chuyen-cam-dong"],
-  ["/content?slug=sang-tao-khong-bat-dau-tu-tham-vong", "https://duongsaotoasang.com/content?slug=sang-tao-khong-bat-dau-tu-tham-vong"],
-  ["/events", "https://duongsaotoasang.com/events"],
-  ["/scripts", "https://duongsaotoasang.com/scripts"],
-  ["/donate", "https://duongsaotoasang.com/donate"],
-  ["/transparency", "https://duongsaotoasang.com/transparency"],
-  ["/legal", "https://duongsaotoasang.com/legal"],
-  ["/privacy", "https://duongsaotoasang.com/privacy"],
-  ["/terms", "https://duongsaotoasang.com/terms"],
-  ["/support", "https://duongsaotoasang.com/support"],
-  ["/contact", "https://duongsaotoasang.com/contact"],
-  ["/dream-nurture", "https://duongsaotoasang.com/dream-nurture"],
-  ["/movement", "https://duongsaotoasang.com/movement"],
-  ["/movement/sponsors", "https://duongsaotoasang.com/movement/sponsors"],
-  ["/movement/events", "https://duongsaotoasang.com/movement/events"],
-  ["/movement/diaspora-map", "https://duongsaotoasang.com/movement/diaspora-map"],
-  ["/movement/press", "https://duongsaotoasang.com/movement/press"],
-  ["/movement/partners", "https://duongsaotoasang.com/movement/partners"],
-  ["/movement/tour-2026-2027", "https://duongsaotoasang.com/movement/tour-2026-2027"],
-  ["/scripts/rising-entrepreneur", "https://duongsaotoasang.com/scripts/rising-entrepreneur"],
-  ["/scripts/global-artist", "https://duongsaotoasang.com/scripts/global-artist"],
-  ["/scripts/singing-icon", "https://duongsaotoasang.com/scripts/singing-icon"],
-  ["/scripts/cinematic-actor", "https://duongsaotoasang.com/scripts/cinematic-actor"],
-  ["/scripts/the-thinker", "https://duongsaotoasang.com/scripts/the-thinker"],
-  ["/scripts/creative-leader", "https://duongsaotoasang.com/scripts/creative-leader"],
-  ["/scripts/cultural-ambassador", "https://duongsaotoasang.com/scripts/cultural-ambassador"],
-  ["/scripts/dsts-legacy", "https://duongsaotoasang.com/scripts/dsts-legacy"],
-  ["/scripts/global-story", "https://duongsaotoasang.com/scripts/global-story"]
+  ["/content?slug=sang-tao-khong-bat-dau-tu-tham-vong", "https://duongsaotoasang.com/content?slug=sang-tao-khong-bat-dau-tu-tham-vong"]
 ]
 
-const NOINDEX_ROUTES = [
-  ["/movement/gala-2026", "https://duongsaotoasang.com/movement/gala-2026"],
-  ["/nguoiviet-muonnoi-bridge", "https://duongsaotoasang.com/nguoiviet-muonnoi-bridge"]
-]
+const NOINDEX_ROUTE_CHECKS = NOINDEX_ROUTES.map((path) => [path, canonicalFor(path)])
 
-const REDIRECT_ROUTES = [
-  ["/programs", "https://duongsaotoasang.com/program"],
-  ["/refund", "https://duongsaotoasang.com/legal"]
-]
+const REDIRECT_ROUTE_CHECKS = REDIRECT_ROUTES.map(([path, target]) => [path, canonicalFor(target)])
 
 const BLOCKED_PUBLIC_TEXT = [
   "Đang tải nội dung...",
@@ -60,13 +32,13 @@ for (const [path, canonical] of INDEXABLE_ROUTES) {
   validateHtmlRoute({ path, html: response.body, canonical, shouldIndex: true })
 }
 
-for (const [path, canonical] of NOINDEX_ROUTES) {
+for (const [path, canonical] of NOINDEX_ROUTE_CHECKS) {
   const response = await fetchRoute(path)
   assert(response.status === 200, `${path} expected 200, got ${response.status}`)
   validateHtmlRoute({ path, html: response.body, canonical, shouldIndex: false })
 }
 
-for (const [path, canonical] of REDIRECT_ROUTES) {
+for (const [path, canonical] of REDIRECT_ROUTE_CHECKS) {
   const response = await fetchRoute(path)
   assert(response.status === 200, `${path} expected final 200 after redirect, got ${response.status}`)
   validateCanonical({ path, html: response.body, canonical })
@@ -77,7 +49,7 @@ assert(sitemap.status === 200, `/sitemap.xml expected 200, got ${sitemap.status}
 for (const [, canonical] of INDEXABLE_ROUTES) {
   assert(sitemap.body.includes(`<loc>${canonical}</loc>`), `sitemap missing indexable URL: ${canonical}`)
 }
-for (const [, canonical] of NOINDEX_ROUTES) {
+for (const [, canonical] of NOINDEX_ROUTE_CHECKS) {
   assert(!sitemap.body.includes(`<loc>${canonical}</loc>`), `sitemap must exclude noindex URL: ${canonical}`)
 }
 
@@ -94,7 +66,7 @@ if (failures.length) {
   process.exit(1)
 }
 
-console.log(`SEO_ROUTE_QA_PASS indexable=${INDEXABLE_ROUTES.length} noindex=${NOINDEX_ROUTES.length} redirects=${REDIRECT_ROUTES.length}`)
+console.log(`SEO_ROUTE_QA_PASS indexable=${INDEXABLE_ROUTES.length} noindex=${NOINDEX_ROUTE_CHECKS.length} redirects=${REDIRECT_ROUTE_CHECKS.length}`)
 
 function validateHtmlRoute({ path, html, canonical, shouldIndex }) {
   const title = extractTagContent(html, "title")

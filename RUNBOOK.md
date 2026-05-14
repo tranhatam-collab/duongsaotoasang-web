@@ -285,11 +285,13 @@ Content source files:
 data/posts.json
 data/content.json
 functions/_lib/content-data.js
+functions/_lib/public-routes.js
 posts.html
 content.html
+sitemap.xml
 ```
 
-After changing content data, run:
+After changing content or indexable public routes, run:
 
 ```bash
 node scripts/sync-static-content-data.mjs
