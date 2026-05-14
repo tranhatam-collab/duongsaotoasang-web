@@ -109,6 +109,7 @@ Mọi file trong `_archive_2026-05-13/` **KHÔNG dùng làm reference**.
 | `DSTS_SPRINT_0_GITHUB_ISSUES_AND_DOD.md` | 9 GitHub Issue + DoD | 🔒 Locked 2026-05-12 |
 | `SPRINT_0_TICKETS.md` | 6 ticket chi tiết Sprint 0 | ✅ Reference |
 | `STATE_REPORT_2026-05-14.md` | Current Sprint 0 execution status + Cloudflare external blocker | 🟢 Current |
+| `../RUNBOOK.md` | Public-site deploy, rollback, verification, and incident response | 🟢 Current |
 | `STATE_REPORT_2026-05-12-EOD.md` | Baseline 45/100 | ✅ Reference |
 | `STATE_REPORT_2026-05-12.md` | Báo cáo trạng thái morning | ✅ Reference |
 | `dsts-bug-report.md` | Bug report audit ban đầu | ✅ Reference |

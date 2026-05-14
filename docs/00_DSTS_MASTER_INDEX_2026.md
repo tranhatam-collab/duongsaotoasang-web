@@ -227,7 +227,7 @@ Theo thứ tự ưu tiên:
   14. robots.txt
   15. _headers
   16. tokens.css
-  17. RUNBOOK.md
+  17. RUNBOOK.md ✅ repo runbook added 2026-05-14
 
 🔴 Phase 0B (Tháng 6-8/2026):
   18a. 7 NDNUM spec con (Child Safety, Consent, Mentor Screening, Legal Entity, Sponsor Fulfillment, Impact, Landing Page)
@@ -383,6 +383,7 @@ Nếu có conflict giữa Drive cũ (Layer A) và Plan mới (Layer 0-2):
 | v1.3 | 2026-05-13 | Wave 2 done — UNBLOCK DEV LAYER 1: thêm 3 spec mới (5.2.5 UI Mockup, 5.2.6 Sponsors API, 5.2.7 Events API) + upgrade 5.2.1-5.2.4 + 5.4.1-5.4.3 lên DEV-READY v1.0 + 5.4.4 Sponsor Agreement Template DRAFT-LEGAL-PENDING + reserve `_redirects` Movement portal routes. Counts: 11 DEV-READY + 1 LEGAL-PENDING + 8 TBD (7 NDNUM + 1 NDNUM v1.1 + 4 Layer 2 - tổng 20 entry trong Master Index). Dev có thể bắt tay code Layer 1 ngay khi Layer 0 Sprint 0 done | Trần Hà Tâm |
 | v1.4 | 2026-05-13 | Wave 3 done — 7 NDNUM spec con DRAFT v1.0 filed (5.5.1-5.5.7): Child Safety Policy, Parent/Guardian Consent Flow, Mentor Screening & Training, Legal Entity & Money Lane Map, Sponsor-a-Dream Fulfillment, Impact Measurement Framework, Public Landing Page Scope. Counts updated: 11 DEV-READY + 8 DRAFT (1 LEGAL-PENDING + 7 NDNUM con) + 1 NDNUM v1.1-REVIEWED + 4 Layer 2 TBD. NDNUM spec con chờ Legal/CSO co-review trước khi lock v1.0-LOCKED. 3 Founder decisions pending (FD-1 pháp nhân, FD-2 fiscal sponsor, FD-4 Investment Lane Y1) | Claude Code |
 | v1.5 | 2026-05-14 | Add `STATE_REPORT_2026-05-14.md`. Sprint 0 route/API/content/SEO now pass on preview + production spot checks. `/content` without slug redirects to `/posts` via Pages middleware. Known remaining failure is production custom-domain header/cache override outside repo: `referrer-policy=same-origin` and static asset `max-age=14400` despite repo `_headers` and preview using stricter values. | Codex |
+| v1.5.1 | 2026-05-14 | Add root `RUNBOOK.md` for deploy, rollback, incident response, owner matrix, production verification, data safety, and Cloudflare custom-domain header/cache blocker. | Codex |
 
 ---
 

@@ -51,6 +51,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 | Movement read-only surfaces | PASS | No sponsor inquiry, event registration, payment, or auth flow opened |
 | NDNUM public surface | PASS | Guardian-first language and no direct child contact flow |
 | Script reviews | PASS | Sample-only labels; no public review form remains |
+| Ops runbook | PASS | Root `RUNBOOK.md` documents deploy, rollback, owner matrix, incident response, and external Cloudflare blocker |
 
 ---
 
@@ -58,6 +59,7 @@ This must be fixed in Cloudflare zone/custom-domain cache/header rules, not by c
 
 | Commit | Purpose |
 |---|---|
+| `c0da82b` | Update Sprint 0 status docs with content redirect evidence |
 | `e2691fc` | Fix `_routes.json` for Pages middleware without overlapping rules |
 | `fa72dc2` | Add Pages middleware so `/content` without slug redirects to `/posts` |
 | `82b71bd` | Avoid brittle API search smoke body check; rely on schema QA |
