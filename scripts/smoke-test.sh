@@ -64,6 +64,7 @@ urls=(
   "/sitemap.xml"
   "/rss.xml"
   "/robots.txt"
+  "/og.png"
 )
 
 content_checks=(

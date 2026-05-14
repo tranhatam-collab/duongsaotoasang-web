@@ -1,6 +1,6 @@
 === DSTS Sprint 0 Smoke Test ===
-Base: http://127.0.0.1:8803
-Timestamp: 2026-05-14T02:17:13Z
+Base: http://127.0.0.1:8805
+Timestamp: 2026-05-14T02:31:05Z
 
 CONTENT_QA_PASS posts=24 pages=2 fallback=26
 API_SURFACE_QA_PASS list_no_body=true detail_body=true missing_404=true
@@ -60,6 +60,7 @@ PASS 200  /scripts/global-story
 PASS 200  /sitemap.xml
 PASS 200  /rss.xml
 PASS 200  /robots.txt
+PASS 200  /og.png
 
 === Content checks ===
 PASS content  /posts  contains [THƯ VIỆN TRI THỨC]

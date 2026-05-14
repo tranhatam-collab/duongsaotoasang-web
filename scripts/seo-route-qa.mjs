@@ -50,6 +50,7 @@ const BLOCKED_PUBLIC_TEXT = [
   "Xin chờ trong giây lát.",
   "Đang tải bài viết..."
 ]
+const EXPECTED_OG_IMAGE = "https://duongsaotoasang.com/og.png"
 
 const failures = []
 
@@ -80,6 +81,11 @@ for (const [, canonical] of NOINDEX_ROUTES) {
   assert(!sitemap.body.includes(`<loc>${canonical}</loc>`), `sitemap must exclude noindex URL: ${canonical}`)
 }
 
+const ogImage = await fetchBinary("/og.png")
+assert(ogImage.status === 200, `/og.png expected 200, got ${ogImage.status}`)
+assert(ogImage.contentType.includes("image/png"), `/og.png must return image/png, got ${ogImage.contentType || "(missing)"}`)
+assert(ogImage.bytes > 1000, `/og.png appears empty or too small: ${ogImage.bytes} bytes`)
+
 if (failures.length) {
   console.error("SEO_ROUTE_QA_FAIL")
   for (const failure of failures) {
@@ -95,6 +101,8 @@ function validateHtmlRoute({ path, html, canonical, shouldIndex }) {
   const description = extractMeta(html, "name", "description")
   const robots = extractMeta(html, "name", "robots")
   const ogUrl = extractMeta(html, "property", "og:url")
+  const ogImage = extractMeta(html, "property", "og:image")
+  const twitterImage = extractMeta(html, "name", "twitter:image")
 
   assert(title.length >= 12, `${path} missing or short <title>`)
   assert(description.length >= 40, `${path} missing or short meta description`)
@@ -102,6 +110,10 @@ function validateHtmlRoute({ path, html, canonical, shouldIndex }) {
   assert(!hasRobotDirective(robots, shouldIndex ? "noindex" : "index"), `${path} robots has conflicting directive: ${robots}`)
   validateCanonical({ path, html, canonical })
   assert(ogUrl === canonical, `${path} og:url mismatch: expected ${canonical}, got ${ogUrl || "(missing)"}`)
+  assert(ogImage === EXPECTED_OG_IMAGE, `${path} og:image mismatch: expected ${EXPECTED_OG_IMAGE}, got ${ogImage || "(missing)"}`)
+  if (twitterImage) {
+    assert(twitterImage === EXPECTED_OG_IMAGE, `${path} twitter:image mismatch: expected ${EXPECTED_OG_IMAGE}, got ${twitterImage}`)
+  }
 
   for (const text of BLOCKED_PUBLIC_TEXT) {
     assert(!html.includes(text), `${path} contains loading placeholder text: ${text}`)
@@ -132,6 +144,31 @@ async function fetchRoute(path) {
   } catch (error) {
     failures.push(`${path} fetch failed: ${error.message}`)
     return { status: 0, body: "" }
+  } finally {
+    clearTimeout(timeout)
+  }
+}
+
+async function fetchBinary(path) {
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), 20000)
+  try {
+    const response = await fetch(`${BASE_URL}${path}`, {
+      redirect: "follow",
+      signal: controller.signal,
+      headers: {
+        "user-agent": "DSTS-SEO-QA/1.0"
+      }
+    })
+    const body = await response.arrayBuffer()
+    return {
+      status: response.status,
+      contentType: response.headers.get("content-type") || "",
+      bytes: body.byteLength
+    }
+  } catch (error) {
+    failures.push(`${path} fetch failed: ${error.message}`)
+    return { status: 0, contentType: "", bytes: 0 }
   } finally {
     clearTimeout(timeout)
   }
