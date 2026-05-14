@@ -1,5 +1,107 @@
 export const POST_CONTENTS = [
   {
+    slug: "impact-khong-phai-cau-chuyen-cam-dong",
+    type: "post",
+    title_vi: "Impact không phải câu chuyện cảm động, mà là điều có thể kiểm chứng",
+    title_en: "Impact is not an emotional story, but something that can be verified",
+    excerpt_vi: "DSTS cần đo tác động bằng dữ liệu tổng hợp, báo cáo rõ ràng và dignity của người tham gia, không bằng những câu chuyện cảm xúc thiếu kiểm chứng.",
+    excerpt_en: "DSTS should measure impact through aggregate data, clear reporting, and participant dignity, not through unverifiable emotional stories.",
+    content_vi: `
+      <p>Trong các dự án cộng đồng, “impact” rất dễ bị hiểu thành vài câu chuyện cảm động. Một bức ảnh, một lời kể, một khoảnh khắc xúc động có thể làm người xem tin rằng chương trình đang tạo thay đổi lớn. Nhưng nếu không có phương pháp đo, dữ liệu tổng hợp và báo cáo rõ ràng, câu chuyện cảm động không đủ để chứng minh tác động.</p>
+      <p>DSTS cần một tiêu chuẩn khác: impact phải có thể kiểm chứng. Điều này không có nghĩa là biến con người thành số liệu lạnh lùng. Nó có nghĩa là tôn trọng người tham gia bằng cách không dùng câu chuyện của họ để phóng đại kết quả khi hệ thống chưa đo được.</p>
+      <h2>Đo tác động mà không phơi bày con người</h2>
+      <p>Với các chương trình có thể liên quan trẻ em, gia đình hoặc người yếu thế, báo cáo tác động phải ưu tiên dữ liệu tổng hợp. Không cần public tên thật, khuôn mặt, trường học, địa chỉ hoặc hoàn cảnh nhạy cảm để chứng minh một chương trình có ý nghĩa. Dữ liệu theo cohort, theo vùng, theo loại hoạt động và theo kết quả học tập hoặc phát triển là hướng an toàn hơn.</p>
+      <p>Nguyên tắc này giúp DSTS tránh một lỗi thường gặp: lấy dignity của người tham gia đổi lấy cảm xúc truyền thông. Một người được hỗ trợ không nên phải trả giá bằng việc câu chuyện riêng tư của họ bị biến thành bằng chứng quảng bá.</p>
+      <h2>Public dashboard phải bắt đầu bằng trạng thái thật</h2>
+      <p>Khi DSTS mở impact dashboard, trang đó nên nói rõ dữ liệu nào đã có, dữ liệu nào chưa có, kỳ báo cáo nào đang chuẩn bị, phương pháp đo ra sao và giới hạn diễn giải là gì. Nếu chưa có cohort thật, dashboard có thể công bố framework, không nên giả lập số liệu.</p>
+      <p>Điều này cũng áp dụng cho sponsor và partner. Nếu một đơn vị muốn hiểu tác động, DSTS nên đưa họ đến báo cáo có cấu trúc, không chỉ đến lời kể cảm động. Báo cáo tốt có thể vẫn có câu chuyện, nhưng câu chuyện phải được đặt trong bối cảnh dữ liệu, consent và quyền riêng tư.</p>
+      <h2>Impact tốt cần thời gian</h2>
+      <p>Không phải mọi tác động đều xuất hiện ngay. Một chương trình mentoring có thể cần nhiều tháng để thấy thay đổi. Một thư viện tri thức có thể cần nhiều năm để tích lũy ảnh hưởng. Một cộng đồng có thể cần nhiều lần gặp gỡ để tạo niềm tin. Vì vậy, DSTS không nên hứa impact tức thì.</p>
+      <p>Impact đúng là sự kết hợp giữa câu chuyện có quyền, dữ liệu có phương pháp và báo cáo có trách nhiệm. Khi giữ được ba điều đó, DSTS có thể nói về tác động mà không đánh đổi sự thật hoặc dignity của con người.</p>
+    `,
+    content_en: `
+      <p>In community projects, impact is often reduced to emotional stories. A photo, a quote, or a moving moment can make people believe a program is creating major change. But without measurement, aggregate data, and clear reporting, emotional stories are not enough.</p>
+      <h2>Measure impact without exposing people</h2>
+      <p>For programs involving children, families, or vulnerable participants, impact reporting should prioritize aggregate data. Real names, faces, schools, addresses, or sensitive circumstances are not required to prove that a program matters.</p>
+      <h2>Public dashboards must begin with real status</h2>
+      <p>When DSTS opens an impact dashboard, it should state what data exists, what does not exist yet, which reporting period is being prepared, what method is used, and what the limits of interpretation are. If no real cohort exists, publish the framework, not fake metrics.</p>
+      <h2>Good impact takes time</h2>
+      <p>Not all impact appears immediately. Mentoring may need months. A knowledge library may need years. A community may need repeated meetings to build trust. DSTS should not promise instant impact.</p>
+    `,
+    tags: "impact,minh bạch,NDNUM",
+    reading_time: "8 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-14T01:36:00.000Z"
+  },
+  {
+    slug: "star-journey-os-chi-mo-khi-nen-tang-du-san-sang",
+    type: "post",
+    title_vi: "Star Journey OS chỉ nên mở khi nền tảng đủ sẵn sàng",
+    title_en: "Star Journey OS should open only when the foundation is ready",
+    excerpt_vi: "Layer 2 của DSTS cần dữ liệu, pháp lý, vận hành, content và trust foundation đi trước, thay vì mở dashboard hoặc automation quá sớm.",
+    excerpt_en: "DSTS Layer 2 needs data, legal, operations, content, and trust foundations before dashboards or automation open.",
+    content_vi: `
+      <p>Star Journey OS là lớp tham vọng của DSTS: một hệ thống giúp mỗi người bước vào hành trình tỏa sáng theo archetype, bằng nội dung, đánh giá, dashboard, milestone và sự hỗ trợ phù hợp. Nhưng chính vì tham vọng lớn, lớp này không nên mở sớm.</p>
+      <p>Nếu Layer 2 mở khi Layer 0 và Layer 1 chưa đủ chắc, hệ thống sẽ rất dễ rơi vào tình trạng hứa nhiều hơn khả năng vận hành. Người dùng có thể thấy dashboard, profile, journey hoặc automation, nhưng phía sau chưa có dữ liệu, privacy, support, legal và owner rõ ràng. Đó là rủi ro niềm tin.</p>
+      <h2>Layer 2 cần nền trước khi cần giao diện</h2>
+      <p>Một dashboard đẹp không thay thế được dữ liệu đúng. Một automation nhanh không thay thế được quyền riêng tư. Một journey cá nhân hóa không thay thế được content foundation. Vì vậy, Star Journey OS chỉ nên mở khi các lớp nền đã pass: route public ổn định, content library đủ sâu, legal disclosure rõ, support boundary rõ, Movement status rõ và dữ liệu nhạy cảm có quy trình xử lý.</p>
+      <p>Điều này đặc biệt đúng nếu hệ thống liên quan archetype, đánh giá năng lực, hồ sơ tỏa sáng hoặc dữ liệu phát triển cá nhân. Người dùng cần biết dữ liệu của họ được dùng thế nào, kết quả đánh giá có giới hạn gì và không bị biến thành lời hứa thành công chắc chắn.</p>
+      <h2>Không nhầm personal journey với cam kết kết quả</h2>
+      <p>Star Journey OS có thể giúp người dùng nhìn rõ hướng đi, nhưng không nên cam kết kết quả như danh tiếng, doanh thu, thành công quốc tế hoặc sự công nhận xã hội. Một hành trình tốt tạo điều kiện phát triển, không bán sự bảo đảm.</p>
+      <p>Cách viết và thiết kế phải giữ ranh giới đó. Nội dung nên nói về năng lực, milestone, kỷ luật, feedback, community và evidence. Không nên biến dashboard thành sân khấu phóng đại cái tôi.</p>
+      <h2>Mở sau là để mở bền hơn</h2>
+      <p>Việc để Star Journey OS sau Layer 1 không phải trì hoãn vô nghĩa. Đó là cách để DSTS học từ public content, Movement Portal, sponsor readiness, impact framework và community response trước khi cá nhân hóa hành trình. Khi nền đã đủ, Layer 2 có thể mở với độ tin cậy cao hơn.</p>
+      <p>Một hệ thống tỏa sáng thật không cần mở mọi thứ ngay. Nó cần mở đúng thứ, đúng lúc, với trách nhiệm rõ ràng.</p>
+    `,
+    content_en: `
+      <p>Star Journey OS is the ambitious layer of DSTS: a system that helps each person enter a shining journey through archetype, content, assessment, dashboard, milestones, and support. But because it is ambitious, it should not open too early.</p>
+      <h2>Layer 2 needs foundation before interface</h2>
+      <p>A beautiful dashboard does not replace correct data. Fast automation does not replace privacy. A personalized journey does not replace content foundation. Star Journey OS should open only when public routes, content library, legal disclosure, support boundary, Movement status, and sensitive-data processes are stable.</p>
+      <h2>Personal journey is not a guaranteed outcome</h2>
+      <p>Star Journey OS can help people see direction, but it should not guarantee fame, revenue, international success, or social recognition. A good journey creates development conditions; it does not sell certainty.</p>
+      <h2>Opening later can mean opening stronger</h2>
+      <p>Keeping Star Journey OS after Layer 1 allows DSTS to learn from public content, Movement Portal, sponsor readiness, impact framework, and community response before personalizing journeys.</p>
+    `,
+    tags: "Star Journey OS,Layer 2,readiness",
+    reading_time: "8 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-14T01:32:00.000Z"
+  },
+  {
+    slug: "90-ngay-dau-cua-thu-vien-tri-thuc-dsts",
+    type: "post",
+    title_vi: "90 ngày đầu của thư viện tri thức DSTS cần giữ lời hứa gì",
+    title_en: "What promise should the first 90 days of the DSTS knowledge library keep",
+    excerpt_vi: "Thư viện tri thức không chỉ cần nhiều bài, mà cần nhịp xuất bản ổn định, chủ đề rõ, fallback tốt và mỗi bài đều giúp người đọc hiểu dự án sâu hơn.",
+    excerpt_en: "The knowledge library needs not only many articles, but steady cadence, clear pillars, reliable fallback, and articles that deepen understanding.",
+    content_vi: `
+      <p>Trong 90 ngày đầu, thư viện tri thức DSTS không nên chạy theo việc đăng thật nhiều bài rời rạc. Điều quan trọng hơn là giữ một lời hứa xuất bản: mỗi tuần có nhịp, mỗi chủ đề có vai trò, mỗi bài giúp người đọc hiểu DSTS sâu hơn và hệ thống không bao giờ rơi vào trang trống.</p>
+      <p>Cadence 2 bài mỗi tuần là một nhịp vừa đủ để xây nền mà không biến content thành cuộc đua số lượng. Sau 12 tuần, thư viện có thể có khoảng 24 bài nền tảng: đủ để người mới đọc theo nhiều cửa vào, đủ cho SEO hiểu cấu trúc nội dung và đủ cho team dùng làm nguồn tham chiếu public.</p>
+      <h2>Content pillar phải phục vụ bản đồ dự án</h2>
+      <p>Những pillar đầu tiên nên xoay quanh: DSTS là gì, public site không trang đen, thư viện tri thức, Script Journey, Movement Portal, NDNUM Guardian-first, minh bạch, quyền riêng tư, impact, tour, press, partners, diaspora và Layer 2 readiness. Mỗi pillar không chỉ là bài SEO, mà là một phần của bản đồ hệ thống.</p>
+      <p>Khi người đọc đi từ bài này sang bài khác, họ nên thấy cùng một logic: không hứa quá sớm, không mở flow nhạy cảm khi chưa có owner, không đánh đổi privacy, không dùng cảm xúc để vượt quy trình và luôn giữ trạng thái route thật.</p>
+      <h2>Fallback là lời hứa kỹ thuật của nội dung</h2>
+      <p>Nếu API hoặc D1 lỗi, thư viện vẫn phải có bài để đọc. Điều này biến fallback thành một phần của content strategy. Bài fallback không nên là dữ liệu giả qua loa; nó phải là nội dung công khai có thể đứng vững khi hệ thống động chưa sẵn sàng.</p>
+      <p>Vì vậy, mỗi bài fallback cần có slug rõ, tiêu đề VI/EN, excerpt, body đủ dài, tag, reading time và created_at. Sitemap và RSS phải tự động đưa bài vào để người đọc và công cụ tìm kiếm đều thấy được.</p>
+      <h2>Thư viện là nơi DSTS giữ giọng nói của mình</h2>
+      <p>Website có thể có nhiều route, nhưng thư viện là nơi giọng nói của DSTS được tích lũy. Nếu giọng nói đó rõ, người đọc sẽ hiểu vì sao dự án chọn chậm ở vài chỗ, chọn kỹ ở vài flow và chọn minh bạch trước khi mở rộng.</p>
+      <p>90 ngày đầu không cần hoàn hảo. Nhưng cần nhất quán. Một thư viện nhất quán sẽ giúp DSTS đi xa hơn một chiến dịch ra mắt ồn ào nhưng thiếu chiều sâu.</p>
+    `,
+    content_en: `
+      <p>In the first 90 days, the DSTS knowledge library should not chase random volume. The more important promise is publishing rhythm: each week has cadence, each topic has a role, each article deepens understanding, and the system never falls into empty pages.</p>
+      <h2>Content pillars must serve the project map</h2>
+      <p>The first pillars should cover what DSTS is, no black pages, knowledge library, Script Journey, Movement Portal, NDNUM Guardian-first, transparency, privacy, impact, tour, press, partners, diaspora, and Layer 2 readiness.</p>
+      <h2>Fallback is the technical promise of content</h2>
+      <p>If API or D1 fails, the library must still be readable. Fallback is part of content strategy. It should not be thin fake data; it should be public content strong enough to stand when dynamic systems are not ready.</p>
+      <h2>The library holds the DSTS voice</h2>
+      <p>A website can have many routes, but the library is where the DSTS voice accumulates. The first 90 days do not need to be perfect, but they must be consistent.</p>
+    `,
+    tags: "content calendar,thư viện tri thức,SEO",
+    reading_time: "8 phút đọc",
+    cover_url: "",
+    created_at: "2026-05-14T01:28:00.000Z"
+  },
+  {
     slug: "tour-2026-2027-la-roadmap-khong-phai-lich-ban-ve",
     type: "post",
     title_vi: "Tour 2026-2027 là roadmap, không phải lịch bán vé",

@@ -1,11 +1,14 @@
 === DSTS Sprint 0 Smoke Test ===
-Base: http://127.0.0.1:8800
-Timestamp: 2026-05-14T01:29:27Z
+Base: http://127.0.0.1:8801
+Timestamp: 2026-05-14T01:41:10Z
 
 PASS 200  /
 PASS 200  /about
 PASS 200  /program
 PASS 200  /posts
+PASS 200  /content?slug=impact-khong-phai-cau-chuyen-cam-dong
+PASS 200  /content?slug=star-journey-os-chi-mo-khi-nen-tang-du-san-sang
+PASS 200  /content?slug=90-ngay-dau-cua-thu-vien-tri-thuc-dsts
 PASS 200  /content?slug=tour-2026-2027-la-roadmap-khong-phai-lich-ban-ve
 PASS 200  /content?slug=press-kit-can-noi-ro-dieu-da-xac-minh
 PASS 200  /content?slug=partners-khong-phai-logo-de-trang-tri
@@ -58,6 +61,7 @@ PASS 200  /robots.txt
 === Content checks ===
 PASS content  /posts  contains [THƯ VIỆN TRI THỨC]
 PASS content  /posts  contains [data-dsts-ssr="posts"]
+PASS content  /posts  contains [Impact không phải câu chuyện cảm động]
 PASS content  /posts  contains [Tour 2026-2027 là roadmap]
 PASS content  /posts  contains [Support DSTS]
 PASS content  /posts  contains [Script Journey không phải gói bán hàng]
@@ -65,6 +69,12 @@ PASS content  /posts  contains [Minh bạch trước khi gây quỹ]
 PASS content  /posts  contains [Kế hoạch phát triển Đường Sao Tỏa Sáng 2026-2027]
 PASS content  /posts  contains [Khởi nghiệp từ nơi sống thật]
 PASS content  /posts  contains ["@type":"ItemList"]
+PASS content  /content?slug=impact-khong-phai-cau-chuyen-cam-dong  contains [Impact không phải câu chuyện cảm động, mà là điều có thể kiểm chứng]
+PASS content  /content?slug=impact-khong-phai-cau-chuyen-cam-dong  contains [Đo tác động mà không phơi bày con người]
+PASS content  /content?slug=star-journey-os-chi-mo-khi-nen-tang-du-san-sang  contains [Star Journey OS chỉ nên mở khi nền tảng đủ sẵn sàng]
+PASS content  /content?slug=star-journey-os-chi-mo-khi-nen-tang-du-san-sang  contains [Layer 2 cần nền trước khi cần giao diện]
+PASS content  /content?slug=90-ngay-dau-cua-thu-vien-tri-thuc-dsts  contains [90 ngày đầu của thư viện tri thức DSTS cần giữ lời hứa gì]
+PASS content  /content?slug=90-ngay-dau-cua-thu-vien-tri-thuc-dsts  contains [Fallback là lời hứa kỹ thuật của nội dung]
 PASS content  /content?slug=tour-2026-2027-la-roadmap-khong-phai-lich-ban-ve  contains [Tour 2026-2027 là roadmap, không phải lịch bán vé]
 PASS content  /content?slug=tour-2026-2027-la-roadmap-khong-phai-lich-ban-ve  contains [Roadmap giúp chuẩn bị, không thay thế vận hành]
 PASS content  /content?slug=press-kit-can-noi-ro-dieu-da-xac-minh  contains [Press Kit cần nói rõ điều đã xác minh và điều chưa công bố]
