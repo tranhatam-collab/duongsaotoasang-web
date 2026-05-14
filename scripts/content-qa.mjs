@@ -174,6 +174,16 @@ function validatePublicLaneBoundaries() {
   assert(!/tel:\+84123456789/i.test(contact), "contact.html must not ship placeholder phone number")
   assert(!/facebook\.com\/duongsaotoasang|twitter\.com\/duongsaotoasang|instagram\.com\/duongsaotoasang|youtube\.com\/@duongsaotoasang/i.test(contact), "contact.html must not ship unverified social links")
 
+  const movementFallback = readFileSync(join(repoRoot, "movement/coming-soon.html"), "utf8")
+  assert(movementFallback.includes('meta name="robots" content="noindex,follow"'), "movement/coming-soon.html must stay noindex")
+  assert(movementFallback.includes("/assets/app-v5.js"), "movement/coming-soon.html must load current app shell")
+  assert(movementFallback.includes("không thu email"), "movement/coming-soon.html must disclose no email collection")
+  assert(movementFallback.includes("không xử lý payment"), "movement/coming-soon.html must disclose no payment processing")
+  assert(movementFallback.includes("không tạo tài khoản"), "movement/coming-soon.html must disclose no account creation")
+  assert(!/<form\b/i.test(movementFallback), "movement/coming-soon.html must not ship public forms")
+  assert(!/mailto:/i.test(movementFallback), "movement/coming-soon.html must not bypass manual contact page with mailto links")
+  assert(!/href=["']\/donate["']/i.test(movementFallback), "movement/coming-soon.html must not route pending Movement users to donate")
+
   for (const relativePath of SCRIPT_DETAIL_FILES) {
     const source = readFileSync(join(repoRoot, relativePath), "utf8")
     assert(source.includes('data-dsts-review-mode="sample-only"'), `${relativePath} must disclose sample-only review mode`)
