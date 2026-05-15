@@ -3,7 +3,7 @@
 > **Scope:** Sprint 0 / public-site stability handoff snapshot
 > **Repo:** `/Users/tranhatam/Documents/Devnewproject/duongsaotoasang.com`
 > **Branch:** `main`
-> **Latest commit:** `66a5fc5` (`chore(docs): update state report latest commit note`)
+> **Latest commit:** `1113c75` (`chore(docs): log latest release gate cause`)
 > **Cloudflare Pages project:** `duongsaotoasang-com-v2`
 
 ## 1) Trạng thái tổng quan
@@ -24,12 +24,15 @@
 - `RUN_DEPLOY_DRY_RUN=1 node scripts/sprint-0-release-gate.mjs` → all local checks pass, **production surface checks BLOCKED** do fetch fail
 
 ### Production/proxy checks
-- `curl`/`curl -sS` tới `https://duongsaotoasang.com` và `https://806a88f8.duongsaotoasang-com-v2.pages.dev` không resolve / fetch thành công trong môi trường hiện tại (`Could not resolve host` / `fetch failed`), nên production smoke chưa chạy được.
+- `curl`/`curl -sS` tới `https://duongsaotoasang.com` và `https://duongsaotoasang-com-v2.pages.dev` không resolve / fetch thành công trong môi trường hiện tại (`Could not resolve host` / `fetch failed`), nên production smoke chưa chạy được.
+- `wrangler pages deploy . --project-name duongsaotoasang-com-v2` đã thử trong phiên hiện tại:
+  - OAuth wrangler có quyền `pages write`,
+  - nhưng vẫn fail: `Unable to resolve Cloudflare's API hostname (api.cloudflare.com or dash.cloudflare.com)` và `EPERM` khi ghi log ở `/Users/tranhatam/.wrangler/logs/...` (lỗi môi trường, không phải lỗi code/site files).
 
 ## 3) Tình trạng blocker
 
 - **BLOCKED_EXTERNAL_DNS_OR_CONNECTIVITY**: không thể xác nhận lại production 200/headers/API/sitemap/robots với môi trường agent hiện tại.
-- **BLOCKED_CLOUDFLARE_CLI_TOKEN**: không có `CLOUDFLARE_API_TOKEN` nên chưa thể deploy/verify bằng `wrangler pages deploy` từ môi trường hiện tại.
+- **BLOCKED_EXTERNAL_DNS_OR_CONNECTIVITY**: không thể xác nhận lại production 200/headers/API/sitemap/robots và deploy endpoint do DNS/network từ môi trường hiện tại.
 
 ## 4) Next
 
