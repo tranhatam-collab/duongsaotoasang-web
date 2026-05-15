@@ -7,7 +7,7 @@
  * Ref: docs/PAY_IAI_ONE_INTEGRATION_GROUND_TRUTH_2026-05-15.md §7
  */
 
-import { sendDonationReceipt } from "../../_lib/email.js";
+import { sendAndLogDonationReceipt } from "../../_lib/email.js";
 
 const json = (data, status = 200) =>
   new Response(JSON.stringify(data), {
@@ -73,12 +73,15 @@ export const onRequestGet = async ({ params, env }) => {
           WHERE id = ? AND status = 'pending'
         `).bind(donationId).run();
 
-        // Send donation receipt (best-effort)
-        await sendDonationReceipt(env, {
-          donorEmail: row.donor_email || null,
-          donorName: row.donor_name || null,
-          donationId,
-          amountVnd: row.amount_vnd || 0,
+        // Send + audit-log receipt via single canonical path
+        await sendAndLogDonationReceipt(env, {
+          donation: {
+            id: donationId,
+            donor_email: row.donor_email || null,
+            donor_name: row.donor_name || null,
+            amount_vnd: row.amount_vnd || 0,
+          },
+          source: "pull_through",
         }).catch(() => {});
       } else {
         await env.DB.prepare(`

@@ -228,6 +228,88 @@ export async function sendEventRecap(env, { name, email, eventTitle, recapUrl })
   });
 }
 
+/**
+ * sendAndLogDonationReceipt
+ *
+ * Single canonical path for: payment.completed/order.paid webhook,
+ * GET /api/donate/:id pull-through, POST /api/donate/poll sweep.
+ *
+ * Always writes a `donation_email_dispatches` row (audit invariant) with
+ * a precise status value so downstream QA can verify outcomes:
+ *
+ *   "sent"                  → mail provider returned ok with provider_message_id
+ *   "skipped_no_provider"   → MAIL_API_KEY/RESEND_API_KEY both missing
+ *   "skipped_no_recipient"  → donor_email null
+ *   "skipped"               → provider explicitly returned skipped
+ *   "failed"                → provider returned error
+ *
+ * The caller is responsible for ensuring `donation` is a real row from
+ * the donations table — passing a synthetic/unknown donation will be
+ * rejected with status "no_donation" and NO dispatch row is written.
+ */
+export async function sendAndLogDonationReceipt(env, { donation, eventId, source }) {
+  if (!donation || !donation.id) {
+    return { ok: false, status: "no_donation" };
+  }
+
+  const hasMailProvider = !!(env.MAIL_API_KEY || env.RESEND_API_KEY);
+  const hasRecipient = !!donation.donor_email;
+  const providerLabel = env.MAIL_API_KEY ? "mail_iai_one" : (env.RESEND_API_KEY ? "resend" : "none");
+
+  let mailResult;
+  let dispatchStatus;
+
+  if (!hasMailProvider) {
+    mailResult = { ok: false, skipped: true, reason: "no_provider" };
+    dispatchStatus = "skipped_no_provider";
+  } else if (!hasRecipient) {
+    mailResult = { ok: false, skipped: true, reason: "no_recipient" };
+    dispatchStatus = "skipped_no_recipient";
+  } else {
+    mailResult = await sendDonationReceipt(env, {
+      donorEmail: donation.donor_email,
+      donorName: donation.donor_name,
+      donationId: donation.id,
+      amountVnd: donation.amount_vnd || 0,
+    });
+    if (mailResult?.ok && mailResult?.skipped) {
+      dispatchStatus = "skipped";
+    } else if (mailResult?.ok) {
+      dispatchStatus = "sent";
+    } else {
+      dispatchStatus = "failed";
+    }
+  }
+
+  if (env.DB) {
+    const dispatchId =
+      (globalThis.crypto?.randomUUID && `ded_${globalThis.crypto.randomUUID().replace(/-/g, "")}`) ||
+      `ded_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
+    const synthEventId = eventId || `${source || "pull"}_${donation.id}_${Date.now()}`;
+
+    await env.DB.prepare(`
+      INSERT OR IGNORE INTO donation_email_dispatches
+        (id, donation_id, event_id, recipient_email, provider, provider_message_id, status, response_json)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `).bind(
+      dispatchId,
+      donation.id,
+      synthEventId,
+      donation.donor_email || null,
+      providerLabel,
+      mailResult?.id || null,
+      dispatchStatus,
+      JSON.stringify(mailResult || {})
+    ).run();
+  }
+
+  return {
+    ok: dispatchStatus === "sent",
+    status: dispatchStatus,
+    providerMessageId: mailResult?.id || null,
+  };
+}
+
 export async function sendDonationReceipt(env, { donorEmail, donorName, donationId, amountVnd }) {
   if (!donorEmail) return { ok: true, skipped: true };
 

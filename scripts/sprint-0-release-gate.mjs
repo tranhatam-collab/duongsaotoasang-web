@@ -46,6 +46,7 @@ await requirePass("local-html-structure-qa", "node", ["scripts/html-structure-qa
 await requirePass("local-accessibility-qa", "node", ["scripts/accessibility-qa.mjs"])
 await requirePass("local-public-flow-safety-qa", "node", ["scripts/public-flow-safety-qa.mjs"])
 await requirePass("local-payment-legal-alignment-qa", "node", ["scripts/payment-legal-alignment-qa.mjs"])
+await requirePass("local-donate-webhook-behavior-qa", "node", ["scripts/donate-webhook-behavior-qa.mjs"])
 await requirePass("local-social-metadata-qa", "node", ["scripts/social-metadata-qa.mjs"])
 await requirePass("local-structured-data-qa", "node", ["scripts/structured-data-qa.mjs"])
 await requirePass("local-public-asset-budget-qa", "node", ["scripts/public-asset-budget-qa.mjs"])

@@ -1,9 +1,19 @@
 /**
  * functions/api/donate/webhook.js
  * POST /api/donate/webhook — HMAC-verified payment webhook from pay.iai.one
+ *
+ * SECURITY INVARIANTS:
+ *   1. If env.PAY_DSTS_HMAC (or PAY_IAI_ONE_HMAC) is set in production,
+ *      ALL requests MUST present a valid signature header. Missing
+ *      header → 401 SIGNATURE_REQUIRED. Bad signature → 401 SIGNATURE_INVALID.
+ *      Fail-CLOSED, never fail-open.
+ *   2. Unknown donation_id (no matching row in donations table) → log webhook
+ *      with processed=1, return ok+ignored, but NEVER call sendDonationReceipt
+ *      and NEVER write donation_email_dispatches. Audit integrity.
+ *   3. Replay protection via donation_webhook_log.event_id unique guard.
  */
 
-import { sendDonationReceipt } from "../../_lib/email.js";
+import { sendAndLogDonationReceipt } from "../../_lib/email.js";
 
 const json = (data, status = 200) =>
   new Response(JSON.stringify(data), {
@@ -44,7 +54,11 @@ export const onRequestPost = async ({ request, env }) => {
     ""
   ).trim();
 
-  if (hmacSecret && signature) {
+  // FAIL-CLOSED: if HMAC secret configured, signature is mandatory + valid.
+  if (hmacSecret) {
+    if (!signature) {
+      return errorJson("SIGNATURE_REQUIRED", "Webhook signature header required.", 401);
+    }
     const valid = await verifyHmac(hmacSecret, rawBody, signature);
     if (!valid) return errorJson("SIGNATURE_INVALID", "Webhook signature mismatch.", 401);
   }
@@ -61,6 +75,7 @@ export const onRequestPost = async ({ request, env }) => {
   const donationId = payload.order_id || payload.donation_id || null;
 
   if (env.DB) {
+    // Replay protection
     const existing = await env.DB.prepare(
       "SELECT id FROM donation_webhook_log WHERE event_id = ?"
     ).bind(eventId).first();
@@ -72,45 +87,34 @@ export const onRequestPost = async ({ request, env }) => {
     `).bind(randomId("dwh"), eventId, eventType, donationId, rawBody).run();
 
     if (donationId && (eventType === "payment.completed" || eventType === "order.paid")) {
+      // Verify donation exists BEFORE any side-effects (mail, dispatch row, status update)
+      const donation = await env.DB.prepare(`
+        SELECT id, donor_email, donor_name, amount_vnd, status
+        FROM donations
+        WHERE id = ?
+      `).bind(donationId).first();
+
+      if (!donation) {
+        // Unknown donation — close out the webhook log but produce no audit pollution
+        await env.DB.prepare(`
+          UPDATE donation_webhook_log SET processed = 1 WHERE event_id = ?
+        `).bind(eventId).run();
+        return json({ ok: true, ignored: "unknown_donation_id", donation_id: donationId });
+      }
+
+      // Update donation status (idempotent, only if not already completed)
       await env.DB.prepare(`
         UPDATE donations
         SET status = 'completed', completed_at = datetime('now'), updated_at = datetime('now')
         WHERE id = ? AND status != 'completed'
       `).bind(donationId).run();
 
-      const donation = await env.DB.prepare(`
-        SELECT id, donor_email, donor_name, amount_vnd
-        FROM donations
-        WHERE id = ?
-      `).bind(donationId).first();
-
-      const mailResult = await sendDonationReceipt(env, {
-        donorEmail: donation?.donor_email || null,
-        donorName: donation?.donor_name || null,
-        donationId,
-        amountVnd: donation?.amount_vnd || 0,
-      });
+      // Single canonical send-and-log path (writes donation_email_dispatches row)
+      await sendAndLogDonationReceipt(env, { donation, eventId, source: "webhook" });
 
       await env.DB.prepare(`
-        UPDATE donation_webhook_log
-        SET processed = 1
-        WHERE event_id = ?
+        UPDATE donation_webhook_log SET processed = 1 WHERE event_id = ?
       `).bind(eventId).run();
-
-      await env.DB.prepare(`
-        INSERT OR IGNORE INTO donation_email_dispatches
-          (id, donation_id, event_id, recipient_email, provider, provider_message_id, status, response_json)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-      `).bind(
-        randomId("ded"),
-        donationId,
-        eventId,
-        donation?.donor_email || null,
-        mailResult?.provider || (env.MAIL_API_KEY ? "mail_iai_one" : "resend"),
-        mailResult?.id || null,
-        mailResult?.ok ? "sent" : "failed",
-        JSON.stringify(mailResult || {})
-      ).run();
     }
   }
 
