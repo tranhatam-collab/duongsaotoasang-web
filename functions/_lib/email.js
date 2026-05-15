@@ -1,7 +1,7 @@
 /**
  * functions/_lib/email.js
- * Email wrapper using Resend API.
- * Falls back gracefully (logs warning) if RESEND_API_KEY not set.
+ * Email wrapper using mail.iai.one API (preferred) or Resend (fallback).
+ * Falls back gracefully (logs warning) if no mail provider key is set.
  *
  * Templates needed:
  *   Sponsor: auto-reply to inquirer, Founder alert, Sponsor Manager alert
@@ -10,6 +10,7 @@
 
 const FROM_ADDRESS = "DSTS <hello@duongsaotoasang.com>";
 const RESEND_API = "https://api.resend.com/emails";
+const MAIL_IAI_ONE_SEND_API = "https://api.mail.iai.one/v1/send";
 
 // ── Core sender ───────────────────────────────────────────────────────────────
 
@@ -18,8 +19,12 @@ const RESEND_API = "https://api.resend.com/emails";
  * @returns {{ ok: boolean, id?: string, error?: string }}
  */
 export async function sendEmail(env, { to, subject, html, replyTo, tags = [] }) {
+  if (env.MAIL_API_KEY) {
+    return sendViaMailIaiOne(env, { to, subject, html, replyTo, tags });
+  }
+
   if (!env.RESEND_API_KEY) {
-    console.warn("[email] RESEND_API_KEY not set — skipping email to:", to);
+    console.warn("[email] MAIL_API_KEY/RESEND_API_KEY not set — skipping email to:", to);
     return { ok: true, skipped: true };
   }
 
@@ -48,6 +53,44 @@ export async function sendEmail(env, { to, subject, html, replyTo, tags = [] }) 
     return { ok: true, id: data.id };
   } catch (e) {
     console.error("[email] Network error", e?.message);
+    return { ok: false, error: e?.message || "network error" };
+  }
+}
+
+async function sendViaMailIaiOne(env, { to, subject, html, replyTo, tags = [] }) {
+  try {
+    const recipients = Array.isArray(to) ? to : [to];
+    const res = await fetch(MAIL_IAI_ONE_SEND_API, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${env.MAIL_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: FROM_ADDRESS,
+        to: recipients,
+        subject,
+        html,
+        ...(replyTo ? { reply_to: replyTo } : {}),
+        ...(env.MAIL_API_WORKSPACE_ID ? { workspace_id: env.MAIL_API_WORKSPACE_ID } : {}),
+        ...(tags.length ? { tags } : {}),
+      }),
+    });
+
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      console.error("[email] mail.iai.one error", res.status, data);
+      return { ok: false, error: data?.message || data?.error || `mail.iai.one ${res.status}` };
+    }
+
+    return {
+      ok: true,
+      id: data?.message_id || data?.id || null,
+      provider: "mail_iai_one",
+      raw: data,
+    };
+  } catch (e) {
+    console.error("[email] mail.iai.one network error", e?.message);
     return { ok: false, error: e?.message || "network error" };
   }
 }
@@ -181,6 +224,39 @@ export async function sendEventRecap(env, { name, email, eventTitle, recapUrl })
   </p>
   <hr style="border:none;border-top:1px solid rgba(216,188,119,.14);margin:24px 0">
   <p style="font-size:.8rem;color:#64748b">© 2026 Đường Sao Tỏa Sáng · <a href="https://duongsaotoasang.com/legal.html" style="color:#64748b">Huỷ đăng ký</a></p>
+</div>`,
+  });
+}
+
+export async function sendDonationReceipt(env, { donorEmail, donorName, donationId, amountVnd }) {
+  if (!donorEmail) return { ok: true, skipped: true };
+
+  const amount = Number(amountVnd || 0).toLocaleString("vi-VN");
+  return sendEmail(env, {
+    to: donorEmail,
+    subject: `Biên nhận đóng góp DSTS #${donationId}`,
+    replyTo: "hello@duongsaotoasang.com",
+    tags: [{ name: "type", value: "donation_receipt" }],
+    html: `
+<div style="font-family:Inter,Arial,sans-serif;max-width:620px;margin:0 auto;background:#0b111d;color:#e2e8f0;padding:36px 30px;border-radius:12px">
+  <h1 style="font-size:1.4rem;color:#e0c896;margin:0 0 14px">Cảm ơn bạn đã đóng góp cho DSTS</h1>
+  <p style="color:#94a3b8;line-height:1.7;margin:0 0 18px">
+    ${donorName ? `Xin chào <strong style="color:#e2e8f0">${donorName}</strong>,` : "Xin chào,"}
+    đóng góp của bạn đã được hệ thống ghi nhận thành công.
+  </p>
+  <div style="background:rgba(224,200,150,.08);border:1px solid rgba(224,200,150,.2);border-radius:8px;padding:16px 18px;margin:0 0 18px">
+    <p style="margin:0 0 8px;color:#94a3b8;font-size:.85rem">Mã giao dịch nội bộ</p>
+    <p style="margin:0 0 12px;color:#e2e8f0;font-weight:700;letter-spacing:.03em">${donationId}</p>
+    <p style="margin:0 0 8px;color:#94a3b8;font-size:.85rem">Số tiền</p>
+    <p style="margin:0;color:#e0c896;font-size:1.2rem;font-weight:700">${amount} VND</p>
+  </div>
+  <p style="color:#94a3b8;line-height:1.7;margin:0 0 12px">
+    Đây là email xác nhận tự động cho giao dịch đóng góp trên duongsaotoasang.com.
+  </p>
+  <p style="color:#94a3b8;line-height:1.7;margin:0 0 0">
+    Nếu cần đối soát thêm, vui lòng liên hệ
+    <a href="mailto:hello@duongsaotoasang.com" style="color:#e0c896">hello@duongsaotoasang.com</a>.
+  </p>
 </div>`,
   });
 }

@@ -3,6 +3,8 @@
  * POST /api/donate/webhook — HMAC-verified payment webhook from pay.iai.one
  */
 
+import { sendDonationReceipt } from "../../_lib/email.js";
+
 const json = (data, status = 200) =>
   new Response(JSON.stringify(data), {
     status,
@@ -75,6 +77,40 @@ export const onRequestPost = async ({ request, env }) => {
         SET status = 'completed', completed_at = datetime('now'), updated_at = datetime('now')
         WHERE id = ? AND status != 'completed'
       `).bind(donationId).run();
+
+      const donation = await env.DB.prepare(`
+        SELECT id, donor_email, donor_name, amount_vnd
+        FROM donations
+        WHERE id = ?
+      `).bind(donationId).first();
+
+      const mailResult = await sendDonationReceipt(env, {
+        donorEmail: donation?.donor_email || null,
+        donorName: donation?.donor_name || null,
+        donationId,
+        amountVnd: donation?.amount_vnd || 0,
+      });
+
+      await env.DB.prepare(`
+        UPDATE donation_webhook_log
+        SET processed = 1
+        WHERE event_id = ?
+      `).bind(eventId).run();
+
+      await env.DB.prepare(`
+        INSERT OR IGNORE INTO donation_email_dispatches
+          (id, donation_id, event_id, recipient_email, provider, provider_message_id, status, response_json)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      `).bind(
+        randomId("ded"),
+        donationId,
+        eventId,
+        donation?.donor_email || null,
+        mailResult?.provider || (env.MAIL_API_KEY ? "mail_iai_one" : "resend"),
+        mailResult?.id || null,
+        mailResult?.ok ? "sent" : "failed",
+        JSON.stringify(mailResult || {})
+      ).run();
     }
   }
 
