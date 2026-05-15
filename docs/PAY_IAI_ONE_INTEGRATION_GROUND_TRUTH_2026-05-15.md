@@ -103,7 +103,7 @@ GET https://pay.iai.one/docs (HTML)
 ```jsonc
 {
   // REQUIRED
-  "tenant_code":      "duongsaotoasang",   // string
+  "tenant_code":      "dsts",              // current shared tenant, before lane split
   "site_code":        "duongsaotoasang",   // string
   "internal_order_id":"don_abc123",        // string, MUST be unique per merchant
   "amount":           120000,              // integer, VND (no decimals)
@@ -285,9 +285,9 @@ PAY_IAI_ONE_HMAC=<same value>
 ## 10. Action items
 
 ### 10.1 Code fix (DSTS dev)
-- [ ] **HIGH:** Sửa 3 drift trong `functions/api/donate/create.js` (Mục 5)
+- [x] **HIGH:** Code drift trong `functions/api/donate/create.js` đã được sửa ở repo.
 - [ ] Add polling fallback cho `GET /v1/payments/:id` (vì webhook event names chưa final)
-- [ ] Update env vars trong Cloudflare Pages production
+- [ ] Push production secrets + redeploy/smoke trên Cloudflare Pages
 
 ### 10.2 Pay.iai.one operator (Founder)
 - [ ] Lock webhook event contract (publish standard names + payload schema)

@@ -83,7 +83,7 @@ echo "Step 4/4 — smoke donate/create endpoint"
 RESP="$(curl -sS -o - -w '\nHTTP_STATUS:%{http_code}' \
   -X POST "$LIVE_HOST/api/donate/create" \
   -H "content-type: application/json" \
-  -H "idempotency-key: smoke-$(date +%s)" \
+  -H "x-idempotency-key: smoke-$(date +%s)" \
   --data '{"amount_vnd":10000,"donor_name":"Smoke Test","message":"Test donation"}' || true)"
 echo "$RESP" | head -5
 STATUS="$(echo "$RESP" | grep HTTP_STATUS | cut -d: -f2)"

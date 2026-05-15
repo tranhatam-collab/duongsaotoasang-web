@@ -193,6 +193,8 @@ Mọi file trong `_archive_2026-05-13/` **KHÔNG dùng làm reference**.
 - Dùng `scripts/html-structure-qa.mjs` để khóa local HTML: đúng 1 `h1`, metadata/canonical/robots đầy đủ, clean canonical cho trang indexable, không lẫn preview/wrong-project/loading placeholder.
 - Dùng `scripts/accessibility-qa.mjs` để khóa accessibility/semantic cơ bản: đúng 1 `main`, không duplicate id, không có `href="#"`/`javascript:`, fragment nội bộ phải có target, button/link có nhãn truy cập, image có `alt`.
 - Dùng `scripts/public-flow-safety-qa.mjs` để khóa public flows: chỉ cho phép search form `/posts`, không mở form email/payment/auth, không link trực tiếp checkout/auth/register/login.
+- Dùng `scripts/claim-register-qa.mjs` để khóa blocked claims và các disclosure bắt buộc trên `donate`, `legal`, `transparency`, `dream-nurture`.
+- Dùng `scripts/payment-legal-alignment-qa.mjs` để khóa alignment giữa `wrangler.toml`, `functions/api/donate/*.js`, `scripts/pay-owner-go-live.sh` và `docs/PAY_IAI_ONE_INTEGRATION_GROUND_TRUTH_2026-05-15.md`.
 - Dùng `scripts/social-metadata-qa.mjs` để khóa OG/Twitter metadata: title/description/url/image dùng production origin, indexable `og:url` khớp canonical, không lẫn preview/wrong-project/local URL.
 - Dùng `scripts/structured-data-qa.mjs` để khóa JSON-LD: parse được, dùng schema.org, có `@type`, không lẫn `.html` schema URL trên trang indexable, preview domain hoặc wrong Pages project.
 - Dùng `scripts/public-asset-budget-qa.mjs` để khóa ngân sách public source: HTML/CSS/JS/PNG không vượt ngưỡng, không có source map, không có asset app cũ hoặc runtime rác bị track.

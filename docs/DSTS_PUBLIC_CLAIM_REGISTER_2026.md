@@ -222,11 +222,11 @@ notes: (anything else)
 ## 7.1 QA gate `public-flow-safety-qa.mjs`
 Đã có. Check forbidden phrases trong public HTML files.
 
-## 7.2 NEW: Claim register QA (TBD implement)
-- Parse this file → extract all C-XXX VI + EN strings
-- Crawl all public HTML/MD
-- Verify mọi public claim trên website xuất hiện trong registry
-- Alert nếu phát hiện text giống blocked claim B-XXX
+## 7.2 Claim register QA (implemented)
+- `scripts/claim-register-qa.mjs`
+- Parse blocked-claim table trong file này
+- Scan tracked public HTML surfaces
+- Fail nếu route bắt buộc thiếu disclosure payment/legal hoặc nếu xuất hiện blocked claim B-XXX
 
 ## 7.3 Pre-commit hook (optional)
 Git pre-commit hook scan staged files → reject commit nếu match blocked claim regex.

@@ -90,6 +90,8 @@ node --check scripts/api-surface-qa.mjs
 node --check scripts/content-depth-qa.mjs
 node --check scripts/static-page-depth-qa.mjs
 node --check scripts/link-qa.mjs
+node --check scripts/claim-register-qa.mjs
+node --check scripts/payment-legal-alignment-qa.mjs
 node --check scripts/accessibility-qa.mjs
 node --check scripts/public-flow-safety-qa.mjs
 node --check scripts/social-metadata-qa.mjs
@@ -100,6 +102,8 @@ BASE_URL=<preview-or-production> node scripts/link-qa.mjs
 node scripts/html-structure-qa.mjs
 node scripts/accessibility-qa.mjs
 node scripts/public-flow-safety-qa.mjs
+node scripts/claim-register-qa.mjs
+node scripts/payment-legal-alignment-qa.mjs
 node scripts/social-metadata-qa.mjs
 node scripts/structured-data-qa.mjs
 node scripts/public-asset-budget-qa.mjs
@@ -229,6 +233,8 @@ BASE_URL=https://duongsaotoasang.com node scripts/link-qa.mjs
 node scripts/html-structure-qa.mjs
 node scripts/accessibility-qa.mjs
 node scripts/public-flow-safety-qa.mjs
+node scripts/claim-register-qa.mjs
+node scripts/payment-legal-alignment-qa.mjs
 node scripts/social-metadata-qa.mjs
 node scripts/structured-data-qa.mjs
 node scripts/public-asset-budget-qa.mjs
@@ -433,6 +439,8 @@ A public-site change is done only when:
 - `node scripts/html-structure-qa.mjs` passes
 - `node scripts/accessibility-qa.mjs` passes
 - `node scripts/public-flow-safety-qa.mjs` passes
+- `node scripts/claim-register-qa.mjs` passes
+- `node scripts/payment-legal-alignment-qa.mjs` passes
 - `node scripts/social-metadata-qa.mjs` passes
 - `node scripts/structured-data-qa.mjs` passes
 - `node scripts/public-asset-budget-qa.mjs` passes
