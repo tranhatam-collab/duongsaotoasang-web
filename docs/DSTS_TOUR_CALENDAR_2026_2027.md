@@ -80,7 +80,7 @@ Không công bố ngày cụ thể nếu thiếu:
 
 ### 2.3 Mốc đã qua
 
-Mốc `2026-01-22` trong Drive cũ phải được xử lý như một item `status_review`, không ghi là "sắp diễn ra".
+Mốc `2026-01-22` (A7) — **SKIPPED 2026-05-15 theo quyết định Founder**: không track như event diễn ra, không xuất hiện trong Tour Calendar 2026-2027, không reference từ public surface. Drive doc cũ giữ nguyên làm reference lịch sử nội bộ.
 
 ---
 
@@ -206,7 +206,7 @@ Purpose:
 - **Phase 0B (chặn Phase 1+ launch):** lock pháp nhân Lane B + Legal Counsel + CSO assigned + 7 NDNUM spec con + NDNUM v1.2-LOCKED (xem `dsts-nuoi-duong-nhung-uoc-mo-v1.1-REVIEWED.md` Mục XI).
 
 Deliverables Phase 0A:
-- [ ] Founder confirms status of `2026-01-22` (completed | postponed | cancelled | merged)
+- [x] ~~Founder confirms status of `2026-01-22`~~ ✅ SKIPPED 2026-05-15 — Founder quyết định bỏ qua event này, không track
 - [ ] Operations creates `local_hosts.csv`
 - [ ] Sponsor Manager creates top 100 sponsor prospect list
 - [ ] Press Liaison drafts tour boilerplate

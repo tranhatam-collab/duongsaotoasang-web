@@ -111,11 +111,10 @@ git add "$LOG" && git commit -m "docs: production deploy log $(date -u +%Y-%m-%d
 
 Chi tiết tại `docs/dsts-nuoi-duong-nhung-uoc-mo-v1.2-LOCKED.md` Mục XVI và `docs/NDNUM_LEGAL_ENTITY_AND_MONEY_LANE_MAP.md`.
 
-- [ ] **D1 — Pháp nhân (Option A/B/C):**
-  - A: Lập NGO Vietnam riêng (Bộ Nội vụ NĐ 03/2026)
-  - B: Lập US 501(c)(3) qua "Angel Edu Tam Foundation"
-  - C: Fiscal sponsor (e.g., GiveDirectly Foundation, Global Giving)
-  - **Recommendation từ docs:** Start with Option C Y1, transition to A+B Y2-3.
+- [x] **D1 — Pháp nhân: ✅ LOCKED 2026-05-15 → Option C (Fiscal Sponsor)**
+  - Y1: Fiscal sponsor (cần chọn cụ thể: GiveDirectly Foundation / Global Giving / Players Philanthropy Fund — D3 follow-up)
+  - Y2-3: Transition sang Option A (NGO VN) + Option B (US 501(c)(3))
+  - **Impact:** Em sẽ update `NDNUM_LEGAL_ENTITY_AND_MONEY_LANE_MAP.md` Mục 1 mark D1 = LOCKED, để D3 (fiscal sponsor cụ thể) làm next-step.
 
 - [ ] **D2 — Angel Edu Tam Foundation IRS status:**
   - Đăng ký 501(c)(3) Y1? Hay defer Y2?
@@ -134,31 +133,43 @@ Chi tiết tại `docs/dsts-nuoi-duong-nhung-uoc-mo-v1.2-LOCKED.md` Mục XVI v�
 
 ---
 
-## 3) Hire — Critical Roles Pre-Phase 0B
+## 3) Hire — Critical Roles Pre-Phase 0B (✅ Founder confirmed order 2026-05-15)
 
+### 🚀 PRIORITY 1 — CSO (start T6/2026 ngay)
 - [ ] **CSO (Child Safety Officer)** — Part-time consultant ~$2-3K/tháng
+  - **STATUS: ACTIVE RECRUIT — T6/2026**
+  - **Why first:** Blocker bắt buộc cho Phase 0B vì NDNUM có tầng trẻ em
   - **Requirements:** IICRC cert hoặc tương đương, 5+ năm kinh nghiệm child protection
   - **Reporting line:** Board-independent (KHÔNG report Founder direct)
   - **Contract minimum:** 2 năm
-  - **Sourcing:** UNICEF VN alumni, Save the Children VN, Plan International VN
+  - **Sourcing:** UNICEF VN alumni, Save the Children VN, Plan International VN, ChildSafe Movement
 
+### 🚀 PRIORITY 2 — Legal Counsel VN (parallel with CSO, retainer-based)
 - [ ] **Legal Counsel VN** — Retainer $3-5K/tháng HOẶC $10K/3 tháng project
+  - **STATUS: ACTIVE RECRUIT — T6/2026 (song song với CSO)**
+  - **Engagement model:** Retainer theo deliverable, không full-time
   - **Specialty:** Luật trẻ em VN 2016, NĐ 56/2017, NĐ 13/2023, nonprofit registration
   - **First deliverable:** Lock `NDNUM_CHILD_SAFETY_POLICY.md` + `NDNUM_PARENT_GUARDIAN_CONSENT_FLOW.md` → v1.0-LOCKED
   - **Second deliverable:** Sign-off `DSTS_SPONSOR_AGREEMENT_LEGAL_TEMPLATE.md` → v1.0
+  - **Third deliverable:** Vet fiscal sponsor contract (D3 follow-up)
 
-- [ ] **M&E Specialist** (có thể defer 1 tháng)
+### ⏳ PRIORITY 3 — M&E Specialist (defer 1 tháng → T7/2026)
+- [ ] **M&E Specialist** — $2-4K/tháng
+  - **STATUS: DEFERRED → start T7/2026 (sau khi CSO + Legal đã onboarded)**
   - **Specialty:** SDQ Vietnamese validation, k-anonymity, child outcome measurement
   - **First deliverable:** Validate `NDNUM_IMPACT_MEASUREMENT_FRAMEWORK.md` Logic Model
 
 ---
 
-## 4) Confirm — A7 Event Status
+## 4) ✅ A7 Event Status — LOCKED 2026-05-15
 
-- [ ] **Sự kiện 2026-01-22:** completed | postponed | cancelled | merged?
-  - **Hiện tại:** ⚠️ Founder TBD (block Wave 2 Tour Calendar lock)
-  - **Impact:** Block mở `/movement/gala-2026` route (đã code sẵn, chỉ chờ confirm)
-  - **Action:** Anh báo lại status để update `docs/00_DSTS_MASTER_INDEX_2026.md` Mục 4.2 row A7
+- [x] **Sự kiện 2026-01-22 (A7): ✅ SKIPPED — không track như event diễn ra**
+  - **Decision:** Bỏ qua sự kiện, không xử lý completed/postponed/cancelled — treat as never-happened
+  - **Em sẽ thực thi:**
+    1. Update `docs/00_DSTS_MASTER_INDEX_2026.md` Mục 4.2 → remove A7 row
+    2. Remove A7 reference khỏi `docs/DSTS_TOUR_CALENDAR_2026_2027.md`
+    3. Keep `/movement/gala-2026` HTML page nhưng đổi wording thành "Gala 2026 — TBD"
+    4. Remove `/movement/gala-2026` khỏi `functions/sitemap.xml.js` để không index
 
 ---
 
@@ -202,13 +213,16 @@ Nếu anh muốn em deploy tự động trong tương lai, anh tạo Cloudflare 
 ║  FOUNDER ACTION ITEMS — Track here         ║
 ╠════════════════════════════════════════════╣
 ║ 1. Production deploy           [✅] DONE    ║
-║ 1.5. CDN cache purge/re-verify  [ ]          ║
-║ 2. NDNUM 6 decisions           [ ][ ][ ][ ][ ][ ] ║
-║ 3. Hire CSO + Legal + M&E      [ ][ ][ ]    ║
-║ 4. A7 event status confirm     [ ]          ║
+║ 1.5. CDN cache purge            [⏳] CF token pending ║
+║ 2. NDNUM D1 Pháp nhân          [✅] Option C locked  ║
+║ 2. NDNUM D2-D6 còn lại         [ ][ ][ ][ ][ ]        ║
+║ 3. CSO recruit (P1)            [⏳] T6/2026 active   ║
+║ 3. Legal Counsel VN (P2)       [⏳] T6/2026 parallel ║
+║ 3. M&E (P3)                    [⏳] T7/2026 defer    ║
+║ 4. A7 event status              [✅] SKIPPED         ║
 ║ 5. Sponsor tier pricing lock   [ ]          ║
 ║ 6. Legal opinion (external)    [ ]          ║
-║ 7. CF API token (optional)     [ ]          ║
+║ 7. CF API token                 [⏳] pending paste   ║
 ╚════════════════════════════════════════════╝
 ```
 

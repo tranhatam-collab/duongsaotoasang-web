@@ -13,3 +13,10 @@ functions/api/content 3.js
 functions/api/contents 2.js
 legal 2.html
 dsts-bug-report.md
+
+# Secrets — NEVER commit
+.env.cf
+.env.local
+.env.secrets
+scripts/.cf-token-cache
+~/.dsts-secrets

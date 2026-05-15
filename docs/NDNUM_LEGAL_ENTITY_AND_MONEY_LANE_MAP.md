@@ -1,40 +1,48 @@
 ---
 title: NDNUM — Legal Entity and Money Lane Map
-version: v1.0-DRAFT
-status: DRAFT — 3 sections pending Founder decisions
-date: 2026-05-13
+version: v1.1-DRAFT
+status: DRAFT — D1 locked (Option C fiscal sponsor Y1), D2-D3 pending
+date: 2026-05-15
 authors: [Claude Code — structural draft; Legal Counsel VN + US required before v1.0-LOCKED]
 references:
-  - dsts-nuoi-duong-nhung-uoc-mo-v1.1-REVIEWED.md (Mục VII, X, XI, XVI)
+  - dsts-nuoi-duong-nhung-uoc-mo-v1.2-LOCKED.md (Mục VII, X, XI, XVI)
   - DSTS_PAYMENT_MEMBERSHIP_SPONSOR_FLOW.md (Mục 8 Lane B)
   - NDNUM_CHILD_SAFETY_POLICY.md (CSO independence requirement)
   - NDNUM_SPONSOR_A_DREAM_FULFILLMENT_FLOW.md (Lane B sponsor flows)
+founder_decisions_locked:
+  - "Decision #1 (FD-1): Pháp nhân — ✅ LOCKED 2026-05-15 → Option C (Fiscal Sponsor Y1, transition A+B Y2-3)"
 founder_decisions_pending:
-  - "Decision #1: Pháp nhân — Option A, B, or C (Mục 1)"
-  - "Decision #2: Fiscal sponsor Y1 — yes or no (Mục 2)"
-  - "Decision #3: Investment Lane Y1 — confirm closed (Mục 3.3)"
+  - "Decision #2 (FD-2): Fiscal sponsor specific org Y1 — GiveDirectly Foundation | Global Giving | Players Philanthropy Fund | other?"
+  - "Decision #3 (FD-3): Angel Edu Tam Foundation IRS status — Active | Pending | Inactive?"
+  - "Decision #4 (FD-4): Investment Lane Y1 — confirm closed?"
 ---
 
 # NDNUM — Legal Entity and Money Lane Map
 
-> **STATUS: DRAFT v1.0 — 3 sections marked ⚠️ FOUNDER DECISION REQUIRED are placeholders.**  
+> **STATUS: DRAFT v1.1 — D1 (Pháp nhân) locked 2026-05-15 = Option C (Fiscal Sponsor Y1). D2-D4 pending Legal Counsel onboarding.**  
 > This document requires co-review from Legal Counsel (VN + US) and CFO before v1.0-LOCKED.  
-> No nonprofit donations may be solicited and no Lane B bank account may be opened without this document locked and pháp nhân confirmed.
+> Lane B bank account opening blocked until fiscal sponsor agreement signed AND Legal Counsel reviews.
 
 ---
 
-## ⚠️ FOUNDER DECISION TRACKER
+## ✅ FOUNDER DECISION TRACKER (updated 2026-05-15)
 
-Before this document can be locked, Founder must answer the following (from NDNUM Mục XVI):
+| # | Decision | Status | Locked Choice / Pending Options |
+|---|----------|--------|---------------------------------|
+| FD-1 | Pháp nhân primary | ✅ **LOCKED 2026-05-15** | **Option C — Fiscal Sponsor Y1, transition Option A+B Y2-3** |
+| FD-2 | Fiscal sponsor specific org Y1 | ⏳ Pending Legal | GiveDirectly Foundation / Global Giving / Players Philanthropy Fund / TBD |
+| FD-3 | Angel Edu Tam Foundation Inc IRS status | ⏳ Pending verify | Active / Pending / Inactive (verify with IRS EIN lookup before Y2 transition) |
+| FD-4 | Investment Lane Y1 | ⏳ Pending Founder | Confirm closed (recommended) / Open with conditions |
 
-| # | Decision | Options | Deadline |
-|---|----------|---------|----------|
-| FD-1 | Pháp nhân primary | A: VN Quỹ only / B: US 501c3 only / C: Both (recommended) | Before Phase 0B T6/2026 |
-| FD-2 | Fiscal sponsor Y1 | Yes (which org?) / No (wait for IRS/Bộ NV approval) | Same as FD-1 |
-| FD-3 | Angel Edu Tam Foundation Inc IRS status | Active / Pending / Inactive (verify with IRS EIN lookup) | Urgent — before any US fundraising |
-| FD-4 | Investment Lane Y1 | Confirm closed / Open with conditions | Before Phase 0B |
+**Effect of FD-1 lock:**
+- Y1 (2026-2027): NDNUM operates under fiscal sponsor — all donations flow through sponsor's 501(c)(3), DSTS receives net of 5-8% admin fee. NO independent bank account in DSTS name for Lane B.
+- Y2 (2028): Start parallel Option A (NGO VN) + Option B (US 501c3) entity registration. Continue fiscal sponsor until both entities have bank + tax-exempt status confirmed.
+- Y3 (2029): Transition off fiscal sponsor when both A+B entities operational. Audit cross-check.
 
-To answer: contact Legal Counsel or update this file with decisions noted, then trigger v1.1-DRAFT review.
+**Next steps (Legal Counsel deliverable T6-T7/2026):**
+1. Shortlist 3 fiscal sponsor orgs, request term sheets
+2. Compare admin fees, restrictions on child program grants, exit clause terms
+3. Sign fiscal sponsorship agreement before any donation solicitation
 
 ---
 

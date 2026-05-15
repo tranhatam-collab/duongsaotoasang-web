@@ -146,7 +146,7 @@ Thanh Tam Foundation Việt Nam        ← Legal entity (chờ xác minh)
 | # | Tài liệu | Drive | Status | Nội dung |
 |---|---|---|---|---|
 | A6 | **TỔNG THỂ TẦM NHÌN CHIẾN LƯỢC NỘI BỘ** | [link](https://docs.google.com/document/d/15r2CesJlC6SGPynAG1ENwizKnkHN2ZRTIlpvLKmxI8U/edit) | ✅ Done 2025-08 | **Mục tiêu 100M USD/năm**, lộ trình 2025-2030 |
-| A7 | KẾ HOẠCH DỰ KIẾN VÀ TÊN CHƯƠNG TRÌNH ĐẦU TIÊN | [link](https://docs.google.com/document/d/1yrKhNeDdUCW6cLpjPoeYJwJikMquqoWFRlh0N7kK1xQ/edit) | ⚠️ **Founder TBD** | Sự kiện dự kiến 2026-01-22 — **đã qua**, cần Founder xác nhận: (a) completed (b) postponed (c) cancelled (d) merged. **Chặn Wave 2 Tour Calendar lock + chặn Layer 1 Gala route public.** |
+| A7 | KẾ HOẠCH DỰ KIẾN VÀ TÊN CHƯƠNG TRÌNH ĐẦU TIÊN | [link](https://docs.google.com/document/d/1yrKhNeDdUCW6cLpjPoeYJwJikMquqoWFRlh0N7kK1xQ/edit) | ⛔ **SKIPPED 2026-05-15** | Founder quyết định bỏ qua sự kiện 2026-01-22, không track như event diễn ra. Tour Calendar + Layer 1 Gala route không reference A7. Doc Drive giữ nguyên làm reference lịch sử. |
 | A8 | SPONSORSHIP "PHÍA SAU MÀN NHUNG 2026" | [link](https://docs.google.com/document/d/1jdLyFk54tK6SzZjuVoMAExK76oyliOTfGqBvo42Xo-U/edit) | ✅ Done 2025-10 | 13 gói tài trợ 1k-100k USD chi tiết |
 | A9 | CÁC GÓI TÀI TRỢ DỰ KIẾN | [link](https://docs.google.com/document/d/1bFCrsGIpJWvPeVORQHM3TPDTiwHvisx7weHU34d--24/edit) | ✅ Done 2025-10 | Sponsorship deck 39KB đầy đủ |
 | A10 | DANH SÁCH BTC VÀ KHÁCH MỜI | [sheet](https://docs.google.com/spreadsheets/d/12smOrZDphwooxsWTn-ApCnDWRJalPzmtuOfB4zR1fl4/edit) | ⚠️ Cần update | Roster team + khách mời |
@@ -485,7 +485,7 @@ Nếu có conflict giữa Drive cũ (Layer A) và Plan mới (Layer 0-2):
 2. Chỉ định Tech Lead + Content Writer
 3. Trả lời 6 câu trong `GAP_ANALYSIS_V2_vs_v1.md` Mục VI để AI Assistant finalize Layer 1/2 spec
 4. Trả lời **6 NDNUM decisions** trong `dsts-nuoi-duong-nhung-uoc-mo-v1.1-REVIEWED.md` Mục XVI (chặn Phase 0B + Wave 3)
-5. Xác nhận trạng thái A7 sự kiện 2026-01-22 (chặn Wave 2 Tour Calendar lock)
+5. ~~Xác nhận trạng thái A7 sự kiện 2026-01-22~~ ✅ DONE 2026-05-15 — Founder skip A7, không track như event diễn ra
 6. Review + ký Gate 3 sau khi Sprint 0 hoàn thành
 
 ---
