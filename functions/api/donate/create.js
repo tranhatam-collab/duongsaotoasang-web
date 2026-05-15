@@ -60,33 +60,38 @@ export const onRequestPost = async ({ request, env }) => {
   const provider = String(env.PAY_IAI_ONE_PROVIDER || "payos").trim();
   const callbackBase = String(env.PAY_IAI_ONE_CALLBACK_BASE || "https://duongsaotoasang.com").replace(/\/+$/, "");
 
+  // Payload schema per pay.iai.one Internal Contract v2026-04-15
+  // Reference: docs/PAY_IAI_ONE_INTEGRATION_GROUND_TRUTH_2026-05-15.md
   const callPayload = {
     tenant_code: tenantCode,
     site_code: siteCode,
     provider,
+    internal_order_id: donationId,   // pay.iai.one field name (was order_id)
     amount: amountVnd,
     currency: "VND",
-    order_id: donationId,
+    billing_cycle: "one_time",       // required by pay.iai.one contract
     description: body.message
       ? `Ủng hộ DSTS: ${String(body.message).slice(0, 100)}`
       : "Ủng hộ Đường Sao Tỏa Sáng",
-    buyer_email: body.donor_email || body.email || null,
-    buyer_name: body.donor_name || body.name || null,
+    email: body.donor_email || body.email || null,    // was buyer_email
+    full_name: body.donor_name || body.name || null,  // was buyer_name
     callback_url: `${callbackBase}/api/donate/webhook`,
     success_url: `${callbackBase}/donate?status=success`,
     cancel_url: `${callbackBase}/donate?status=cancel`,
+    metadata: { lane: "b", source: "dsts-donate" },
   };
 
   let providerRef = null;
   let checkoutUrl = null;
 
   try {
-    const resp = await fetch(`${baseUrl}/checkout-session`, {
+    // Endpoint: public merchant API per pay.iai.one OpenAPI v2026-04-15
+    const resp = await fetch(`${baseUrl}/api/v1/checkout/session`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
         "x-api-key": String(env.PAY_IAI_ONE_API_KEY),
-        "idempotency-key": idempotencyKey,
+        "x-idempotency-key": idempotencyKey,  // was: idempotency-key
       },
       body: JSON.stringify(callPayload),
     });

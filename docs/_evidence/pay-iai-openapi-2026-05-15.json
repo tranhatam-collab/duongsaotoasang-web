@@ -1,0 +1,289 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "pay.iai.one Internal Contract",
+    "version": "2026-04-15",
+    "description": "Live internal contract for trusted ecosystem consumers. Current live mode is payOS-first, VND, one_time checkout."
+  },
+  "servers": [
+    {
+      "url": "https://pay.iai.one"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health check",
+        "responses": {
+          "200": {
+            "description": "Worker health response"
+          }
+        }
+      }
+    },
+    "/v1/providers": {
+      "get": {
+        "summary": "List provider registry",
+        "responses": {
+          "200": {
+            "description": "Registered providers"
+          }
+        }
+      }
+    },
+    "/internal/checkout-session": {
+      "post": {
+        "summary": "Create one internal checkout session",
+        "description": "Live today for payOS, VND, one_time only.",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-idempotency-key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "x-site-key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenant_code",
+                  "site_code",
+                  "internal_order_id",
+                  "amount",
+                  "currency",
+                  "billing_cycle",
+                  "success_url",
+                  "cancel_url"
+                ],
+                "properties": {
+                  "tenant_code": {
+                    "type": "string"
+                  },
+                  "site_code": {
+                    "type": "string"
+                  },
+                  "internal_order_id": {
+                    "type": "string"
+                  },
+                  "provider": {
+                    "type": "string",
+                    "default": "payos"
+                  },
+                  "plan_code": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "integer"
+                  },
+                  "currency": {
+                    "type": "string",
+                    "enum": [
+                      "VND"
+                    ]
+                  },
+                  "billing_cycle": {
+                    "type": "string",
+                    "enum": [
+                      "one_time"
+                    ]
+                  },
+                  "success_url": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "cancel_url": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "callback_url": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "user_id": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "full_name": {
+                    "type": "string"
+                  },
+                  "locale": {
+                    "type": "string"
+                  },
+                  "ref_code": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Existing checkout session reused"
+          },
+          "201": {
+            "description": "Checkout session created"
+          },
+          "409": {
+            "description": "Idempotency mismatch or order conflict"
+          },
+          "422": {
+            "description": "Contract validation error"
+          },
+          "503": {
+            "description": "Provider credentials missing"
+          }
+        }
+      }
+    },
+    "/v1/payments/{internal_order_id}": {
+      "get": {
+        "summary": "Read payment record by internal order id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "internal_order_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payment intent with attempts and provider events"
+          },
+          "404": {
+            "description": "Payment not found"
+          }
+        }
+      }
+    },
+    "/api/v1/checkout/session": {
+      "post": {
+        "summary": "Create checkout session for Về Tương Lai",
+        "description": "VN-first checkout contract. PayPal is deferred and not a gate in this phase.",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-api-key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "x-idempotency-key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "intent",
+                  "candidate_email",
+                  "return_url",
+                  "cancel_url"
+                ],
+                "properties": {
+                  "intent": {
+                    "type": "string",
+                    "enum": [
+                      "annual-access",
+                      "specialist-pack"
+                    ]
+                  },
+                  "pack": {
+                    "type": "string",
+                    "enum": [
+                      "g1",
+                      "g2",
+                      "g3",
+                      "g4",
+                      "g5",
+                      "g6",
+                      "g7",
+                      "g8",
+                      "g9"
+                    ]
+                  },
+                  "candidate_email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "entry": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  },
+                  "lang": {
+                    "type": "string"
+                  },
+                  "return_url": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "cancel_url": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "metadata": {
+                    "type": "object",
+                    "additionalProperties": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Existing checkout session reused"
+          },
+          "201": {
+            "description": "Checkout session created"
+          },
+          "422": {
+            "description": "Validation error"
+          },
+          "503": {
+            "description": "Catalog or provider runtime not ready"
+          }
+        }
+      }
+    }
+  }
+}
