@@ -20,3 +20,4 @@ PAY_IAI_ONE_CALLBACK_BASE   = "https://duongsaotoasang.com"
 #   PAY_DSTS_HMAC        — openssl rand -hex 32
 #   MAIL_API_KEY         — from mail.iai.one (for donation receipt automation)
 #   MAIL_API_WORKSPACE_ID — paired workspace id for MAIL_API_KEY
+#   POLL_TOKEN           — openssl rand -hex 32 (auth for POST /api/donate/poll)

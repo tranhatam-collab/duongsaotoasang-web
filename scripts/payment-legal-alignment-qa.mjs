@@ -36,6 +36,14 @@ requireIncludes(payOwnerScript, "PAY_DSTS_HMAC", "scripts/pay-owner-go-live.sh m
 requireIncludes(payGroundTruth, "Hiện tại DSTS dùng `tenant_code: \"dsts\"` + `site_code: \"duongsaotoasang\"`.", "Ground-truth doc must match current runtime tenant/site")
 requireIncludes(payGroundTruth, "- [x] **HIGH:** Code drift trong `functions/api/donate/create.js` đã được sửa ở repo.", "Ground-truth doc must reflect repo-side donate/create fix")
 
+// Polling fallback for pay.iai.one webhook gap (§7 of ground truth)
+const donatePoll = read(join(repoRoot, "functions", "api", "donate", "poll.js"))
+const donateStatus = read(join(repoRoot, "functions", "api", "donate", "[id].js"))
+requireIncludes(donatePoll, "/v1/payments/", "functions/api/donate/poll.js must poll pay.iai.one /v1/payments/:id")
+requireIncludes(donatePoll, "POLL_TOKEN", "functions/api/donate/poll.js must require POLL_TOKEN auth")
+requireIncludes(donateStatus, "/v1/payments/", "functions/api/donate/[id].js must pull-through poll pay.iai.one on pending status")
+requireIncludes(wranglerToml, "POLL_TOKEN", "wrangler.toml must document POLL_TOKEN secret")
+
 if (failures.length) {
   console.error("PAYMENT_LEGAL_ALIGNMENT_QA_FAIL")
   for (const failure of failures) {
