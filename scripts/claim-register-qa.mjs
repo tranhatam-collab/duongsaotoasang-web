@@ -34,8 +34,10 @@ validateRequiredSurface(
 validateRequiredSurface(
   "legal.html",
   [
-    "Đơn vị vận hành sẽ được công bố sau khi hoàn tất xác minh pháp lý.",
-    "xác nhận thủ công"
+    // C-002 entity disclosure (updated from placeholder 2026-05-15)
+    "Công ty Cổ phần Giải trí Ngôi Sao Việt Can",
+    "Viet Can New Corp",
+    "Angel Edu Tam Foundation"
   ],
   [
     "501(c)(3)",
