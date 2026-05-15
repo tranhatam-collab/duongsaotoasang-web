@@ -3,71 +3,97 @@
 > **Scope:** Sprint 0 / public-site stability handoff snapshot
 > **Repo:** `/Users/tranhatam/Documents/Devnewproject/duongsaotoasang.com`
 > **Branch:** `main`
-> **Latest commit:** `30894ad` (`docs: refresh release gate blocker details`)
+> **Latest commit:** `c5651bf` (`docs: production re-verify 2026-05-15`)
 > **Cloudflare Pages project:** `duongsaotoasang-com-v2`
 > **Repo-side completion:** ✅ 100%
 > **Production deploy:** ✅ DONE 2026-05-15 — `https://41cfb754.duongsaotoasang-com-v2.pages.dev`
-> **Production headers:** ⚠️ 6 CDN cache mismatches (sẽ tự fix sau 4h hoặc purge manual)
+> **Production verification:** ✅ API + Link + SEO + Smoke ALL PASS; ⚠️ Headers blocked by CDN cache only
 
-## 1) Trạng thái tổng quan
+---
 
-- ✅ **Route/API/Content/SEO/SEO metadata/Structured data/asset budget/QA gates** đều pass ở mức local checks (script-based, không phụ thuộc DNS).
-- ❌ **Full production verification vẫn chưa thể hoàn tất** vì môi trường hiện tại không resolve DNS của `duongsaotoasang.com` và không reach được Cloudflare Pages endpoint để chạy link/SEO/API/header smoke.
-- ✅ **Deploy dry-run đã xác nhận bundle sạch** cho project đúng: `duongsaotoasang-com-v2`.
-- ✅ **Function API logic được kiểm trực tiếp**: gọi trực tiếp `functions/api/contents.js`, `functions/api/content.js`, `functions/api/search.js` (không cần DNS) đều trả về fallback/local JSON đúng trạng thái và `404` khi thiếu slug.
+## 1) Trạng thái tổng quan (after re-verify)
 
-## 2) Bằng chứng QA đã chạy lại
+- ✅ **Local QA (9 loại) ALL PASS** — content, depth, static, HTML structure, a11y, flow safety, social meta, structured data, asset budget.
+- ✅ **Production deploy SUCCESS** — `wrangler pages deploy . --project-name duongsaotoasang-com-v2 --branch main` → preview URL `https://41cfb754.duongsaotoasang-com-v2.pages.dev`, auto-promote to custom domain.
+- ✅ **Production checks 4/5 PASS** — API surface, link QA, SEO routes, smoke test pages.dev đều PASS.
+- ⚠️ **Production headers FAIL** — duy nhất một check fail, nguyên nhân là **Cloudflare CDN custom-domain edge cache cũ**, KHÔNG phải bug code. `_headers` file trong repo đã correct.
 
-### Local QA
+---
+
+## 2) Bằng chứng QA đã chạy lại (2026-05-15)
+
+### Local QA (9/9 PASS)
 - `node scripts/content-qa.mjs` → `CONTENT_QA_PASS posts=24 pages=2 fallback=26`
 - `node scripts/content-depth-qa.mjs` → `CONTENT_DEPTH_QA_PASS posts=24 pages=2 min_post_words_vi=360 min_page_words_vi=180`
 - `node scripts/static-page-depth-qa.mjs` → `STATIC_PAGE_DEPTH_QA_PASS pages=32 min_words=180`
 - `node scripts/html-structure-qa.mjs` → `HTML_STRUCTURE_QA_PASS pages=35`
 - `node scripts/accessibility-qa.mjs` → `ACCESSIBILITY_QA_PASS pages=35`
-- `RUN_DEPLOY_DRY_RUN=1 node scripts/sprint-0-release-gate.mjs` → all local checks pass, **production surface checks BLOCKED** do fetch fail
+- `node scripts/public-flow-safety-qa.mjs` → `PUBLIC_FLOW_SAFETY_QA_PASS files=43 forms=2`
+- `node scripts/social-metadata-qa.mjs` → `SOCIAL_METADATA_QA_PASS pages=35`
+- `node scripts/structured-data-qa.mjs` → `STRUCTURED_DATA_QA_PASS pages=35 blocks=34 entities=34`
+- `node scripts/public-asset-budget-qa.mjs` → `PUBLIC_ASSET_BUDGET_QA_PASS files=146 total=2.78MB`
 
-### Production/proxy checks
-- `curl`/`curl -sS` tới `https://duongsaotoasang.com` và `https://duongsaotoasang-com-v2.pages.dev` không resolve / fetch thành công trong môi trường hiện tại (`Could not resolve host` / `fetch failed`), nên production smoke chưa chạy được.
-- `wrangler pages deploy . --project-name duongsaotoasang-com-v2` đã thử trong phiên hiện tại:
-  - OAuth wrangler có quyền `pages write`,
-  - nhưng vẫn fail: `Unable to resolve Cloudflare's API hostname (api.cloudflare.com or dash.cloudflare.com)` và `EPERM` khi ghi log ở `/Users/tranhatam/.wrangler/logs/...` (lỗi môi trường, không phải lỗi code/site files).
+### Production checks (re-verify 2026-05-15T10:40:46Z)
 
-## 3) Tình trạng blocker
+| Check | Result |
+|-------|--------|
+| `production-api-surface` | ✅ `API_SURFACE_QA_PASS list_no_body=true search_no_body=true detail_body=true missing_404=true` |
+| `production-link-qa` | ✅ `LINK_QA_PASS pages=32 discovered=291 unique_internal=59` |
+| `production-seo` | ✅ `SEO_ROUTE_QA_PASS indexable=32 noindex=2 redirects=2` |
+| `production-headers` | ⚠️ `HEADERS_QA_FAIL` — 6 mismatches (CDN cache override, KHÔNG phải bug code) |
 
-- **BLOCKED_EXTERNAL_DNS_OR_CONNECTIVITY**: không thể xác nhận lại production 200/headers/API/sitemap/robots với môi trường agent hiện tại.
-- **BLOCKED_EXTERNAL_DNS_OR_CONNECTIVITY**: không thể xác nhận lại production 200/headers/API/sitemap/robots và deploy endpoint do DNS/network từ môi trường hiện tại.
+### Smoke test (pages.dev preview) — `BASE_URL=https://duongsaotoasang-com-v2.pages.dev`
 
-## 4) Next
+- ✅ 60+ route status checks PASS (200 OK, 404 OK, redirects OK)
+- ✅ 120+ content checks PASS (Movement Portal surfaces, NDNUM safety wording, robots, sitemap, etc.)
+- ✅ `HEADERS_QA_PASS base=https://duongsaotoasang-com-v2.pages.dev checks=8` (pages.dev không bị custom-domain cache override → headers pass)
+- ✅ Final: `PASSED: all smoke checks passed`
 
-- Tiếp tục giữ Sprint 0 repo lane ở trạng thái **Code-ready**.
-- Khi môi trường có DNS/network đến `duongsaotoasang.com`, chạy:
-  - `BASE_URL=https://duongsaotoasang-com-v2.pages.dev ./scripts/smoke-test.sh`
-  - `NODE_ENV=production RUN_DEPLOY_DRY_RUN=1 node scripts/sprint-0-release-gate.mjs`
-  - `BASE_URL=https://duongsaotoasang.com node scripts/sprint-0-release-gate.mjs`
+**Kết luận quan trọng:** Headers PASS trên `pages.dev` nhưng FAIL trên custom domain `duongsaotoasang.com` → xác nhận tuyệt đối issue là CDN/cache override ở custom domain layer, không phải file/code.
 
-## 4) Cập nhật chạy tự động gần đây
+---
 
-- `RUN_DEPLOY_DRY_RUN=1` + `node scripts/sprint-0-release-gate.mjs` đã chạy xong local:
-  - Tất cả bước local đều pass và deploy dry-run pass.
-  - `production-api-surface`, `production-link-qa`, `production-seo-route-qa`, `production-headers` đều fail do `fetch failed`/`Could not resolve host`.
-  - Kết luận: vẫn `BLOCKED_EXTERNAL_DNS_OR_CONNECTIVITY`, chưa phải lỗi nội dung hay route.
+## 3) Tình trạng blocker còn lại
 
-## 5) Final pre-deploy QA re-run (2026-05-15)
+### `production-headers` — BLOCKED_EXTERNAL (CDN cache only)
 
-Tất cả 9 local QA gates đều PASS, repo ở trạng thái **READY-TO-DEPLOY**:
+6 mismatches trên `https://duongsaotoasang.com`:
+- `root-html /` → `Referrer-Policy` got `same-origin` (expected `strict-origin-when-cross-origin`)
+- `root-css /app.css` → `max-age=14400` (expected ≤ 300)
+- `tokens-css /tokens.css` → `max-age=14400` (expected ≤ 300)
+- `asset-js /assets/app-v5.js` → `max-age=14400` (expected ≤ 300)
+- `og-image /og.png` → `max-age=14400` (expected ≤ 300)
+- `retired-app-js /assets/app.js` → got 200 (expected 404 — retired file vẫn được serve từ edge cache)
 
-| # | QA Check | Result |
-|---|----------|--------|
-| 1 | `content-qa.mjs` | `CONTENT_QA_PASS posts=24 pages=2 fallback=26` |
-| 2 | `content-depth-qa.mjs` | `CONTENT_DEPTH_QA_PASS posts=24 pages=2` |
-| 3 | `static-page-depth-qa.mjs` | `STATIC_PAGE_DEPTH_QA_PASS pages=32` |
-| 4 | `html-structure-qa.mjs` | `HTML_STRUCTURE_QA_PASS pages=35` |
-| 5 | `accessibility-qa.mjs` | `ACCESSIBILITY_QA_PASS pages=35` |
-| 6 | `public-flow-safety-qa.mjs` | `PUBLIC_FLOW_SAFETY_QA_PASS files=43 forms=2` |
-| 7 | `social-metadata-qa.mjs` | `SOCIAL_METADATA_QA_PASS pages=35` |
-| 8 | `structured-data-qa.mjs` | `STRUCTURED_DATA_QA_PASS pages=35 blocks=34 entities=34` |
-| 9 | `public-asset-budget-qa.mjs` | `PUBLIC_ASSET_BUDGET_QA_PASS files=144 total=2.75MB` |
+**Reference fix packet:** `docs/CLOUDFLARE_CUSTOM_DOMAIN_FIX_PACKET_2026-05-14.md`
 
-## 6) One-shot deploy command (chạy khi có mạng)
+**Resolution paths:**
+1. **Manual purge:** Founder vào Cloudflare dashboard → `duongsaotoasang.com` zone → Caching → Configuration → Purge Cache → Custom Purge → paste 6 URLs trên.
+2. **TTL wait:** Đợi tối đa 4h cho edge cache tự expire.
+3. **Sau purge/wait:** Re-run `BASE_URL=https://duongsaotoasang.com node scripts/sprint-0-release-gate.mjs` → khi `SPRINT_0_RELEASE_GATE_PASS` thì Sprint 0 đóng hoàn toàn.
 
-Xem `docs/FOUNDER_ACTION_CHECKLIST.md` Mục 1.
+---
+
+## 4) Next — Đóng vòng cuối
+
+1. **Founder:** Purge Cloudflare cache theo `docs/FOUNDER_ACTION_CHECKLIST.md` Mục 1.
+2. **Re-run:** `cd <repo> && BASE_URL=https://duongsaotoasang.com node scripts/sprint-0-release-gate.mjs`.
+3. **Verify PASS:** Nếu output là `SPRINT_0_RELEASE_GATE_PASS`, mark sprint ổn định và đóng `production-headers` blocker.
+
+Tất cả Founder action items dài hạn (NDNUM decisions, hire CSO/Legal, A7 confirm, sponsor pricing, legal opinion) → `docs/FOUNDER_ACTION_CHECKLIST.md`.
+
+---
+
+## 5) Lịch sử commit chốt (2026-05-13 → 2026-05-15)
+
+```
+c5651bf docs: production re-verify 2026-05-15
+25d33d4 docs: finalize production deploy log with smoke test pass
+11ef795 docs: production deploy complete + founder action checklist
+30894ad docs: refresh release gate blocker details
+1113c75 chore(docs): log latest release gate block cause
+8e39dcc chore(docs): record external deploy blocker in state report
+... (toàn bộ Wave 1-2-3 NDNUM specs, Movement Portal pages, QA scaffolding)
+```
+
+Branch `main`/`origin/main` đồng bộ. Repo sạch (dirty local chỉ là `.wrangler`, `.DS_Store`, `"_redirects 2"`, `"content 2.js"` — không stage).
