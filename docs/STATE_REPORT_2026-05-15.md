@@ -38,3 +38,10 @@
   - `BASE_URL=https://duongsaotoasang-com-v2.pages.dev ./scripts/smoke-test.sh`
   - `NODE_ENV=production RUN_DEPLOY_DRY_RUN=1 node scripts/sprint-0-release-gate.mjs`
   - `BASE_URL=https://duongsaotoasang.com node scripts/sprint-0-release-gate.mjs`
+
+## 4) Cập nhật chạy tự động gần đây
+
+- `RUN_DEPLOY_DRY_RUN=1` + `node scripts/sprint-0-release-gate.mjs` đã chạy xong local:
+  - Tất cả bước local đều pass và deploy dry-run pass.
+  - `production-api-surface`, `production-link-qa`, `production-seo-route-qa`, `production-headers` đều fail do `fetch failed`/`Could not resolve host`.
+  - Kết luận: vẫn `BLOCKED_EXTERNAL_DNS_OR_CONNECTIVITY`, chưa phải lỗi nội dung hay route.
