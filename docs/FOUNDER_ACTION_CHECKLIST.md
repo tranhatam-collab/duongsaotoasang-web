@@ -214,6 +214,8 @@ Nếu anh muốn em deploy tự động trong tương lai, anh tạo Cloudflare 
 ╠════════════════════════════════════════════╣
 ║ 1. Production deploy           [✅] DONE    ║
 ║ 1.5. CDN cache purge            [⏳] CF token pending ║
+║    → bash scripts/cf-token-setup.sh          ║
+║    → bash scripts/cf-cache-purge.sh          ║
 ║ 2. NDNUM D1 Pháp nhân          [✅] Option C locked  ║
 ║ 2. NDNUM D2-D6 còn lại         [ ][ ][ ][ ][ ]        ║
 ║ 3. CSO recruit (P1)            [⏳] T6/2026 active   ║
@@ -223,6 +225,11 @@ Nếu anh muốn em deploy tự động trong tương lai, anh tạo Cloudflare 
 ║ 5. Sponsor tier pricing lock   [ ]          ║
 ║ 6. Legal opinion (external)    [ ]          ║
 ║ 7. CF API token                 [⏳] pending paste   ║
+║                                              ║
+║ CODE ITEMS (DONE by dev 2026-05-15):         ║
+║ · Email receipt automation     [✅]          ║
+║ · Entity disclosure C-002      [✅] 24 pages ║
+║ · Donation polling fallback    [✅]          ║
 ╚════════════════════════════════════════════╝
 ```
 
