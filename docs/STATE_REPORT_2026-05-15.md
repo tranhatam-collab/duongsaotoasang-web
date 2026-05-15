@@ -3,7 +3,7 @@
 > **Scope:** Sprint 0 / public-site stability handoff snapshot
 > **Repo:** `/Users/tranhatam/Documents/Devnewproject/duongsaotoasang.com`
 > **Branch:** `main`
-> **Latest commit:** `e5e9d23` (`Update state report baseline to latest wording QA commit`)
+> **Latest commit:** `c15167a` (`chore(docs): add 2026-05-15 sprint-0 state report`)
 > **Cloudflare Pages project:** `duongsaotoasang-com-v2`
 
 ## 1) Trạng thái tổng quan
@@ -11,6 +11,7 @@
 - ✅ **Route/API/Content/SEO/SEO metadata/Structured data/asset budget/QA gates** đều pass ở mức local checks (script-based, không phụ thuộc DNS).
 - ❌ **Full production verification vẫn chưa thể hoàn tất** vì môi trường hiện tại không resolve DNS của `duongsaotoasang.com` và không reach được Cloudflare Pages endpoint để chạy link/SEO/API/header smoke.
 - ✅ **Deploy dry-run đã xác nhận bundle sạch** cho project đúng: `duongsaotoasang-com-v2`.
+- ✅ **Function API logic được kiểm trực tiếp**: gọi trực tiếp `functions/api/contents.js`, `functions/api/content.js`, `functions/api/search.js` (không cần DNS) đều trả về fallback/local JSON đúng trạng thái và 404 khi thiếu slug.
 
 ## 2) Bằng chứng QA đã chạy lại
 
