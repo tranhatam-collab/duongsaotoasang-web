@@ -3,8 +3,11 @@
 > **Scope:** Sprint 0 / public-site stability handoff snapshot
 > **Repo:** `/Users/tranhatam/Documents/Devnewproject/duongsaotoasang.com`
 > **Branch:** `main`
-> **Latest commit:** `1113c75` (`chore(docs): log latest release gate cause`)
+> **Latest commit:** `30894ad` (`docs: refresh release gate blocker details`)
 > **Cloudflare Pages project:** `duongsaotoasang-com-v2`
+> **Repo-side completion:** ✅ 100%
+> **Production deploy:** ✅ DONE 2026-05-15 — `https://41cfb754.duongsaotoasang-com-v2.pages.dev`
+> **Production headers:** ⚠️ 6 CDN cache mismatches (sẽ tự fix sau 4h hoặc purge manual)
 
 ## 1) Trạng thái tổng quan
 
@@ -48,3 +51,23 @@
   - Tất cả bước local đều pass và deploy dry-run pass.
   - `production-api-surface`, `production-link-qa`, `production-seo-route-qa`, `production-headers` đều fail do `fetch failed`/`Could not resolve host`.
   - Kết luận: vẫn `BLOCKED_EXTERNAL_DNS_OR_CONNECTIVITY`, chưa phải lỗi nội dung hay route.
+
+## 5) Final pre-deploy QA re-run (2026-05-15)
+
+Tất cả 9 local QA gates đều PASS, repo ở trạng thái **READY-TO-DEPLOY**:
+
+| # | QA Check | Result |
+|---|----------|--------|
+| 1 | `content-qa.mjs` | `CONTENT_QA_PASS posts=24 pages=2 fallback=26` |
+| 2 | `content-depth-qa.mjs` | `CONTENT_DEPTH_QA_PASS posts=24 pages=2` |
+| 3 | `static-page-depth-qa.mjs` | `STATIC_PAGE_DEPTH_QA_PASS pages=32` |
+| 4 | `html-structure-qa.mjs` | `HTML_STRUCTURE_QA_PASS pages=35` |
+| 5 | `accessibility-qa.mjs` | `ACCESSIBILITY_QA_PASS pages=35` |
+| 6 | `public-flow-safety-qa.mjs` | `PUBLIC_FLOW_SAFETY_QA_PASS files=43 forms=2` |
+| 7 | `social-metadata-qa.mjs` | `SOCIAL_METADATA_QA_PASS pages=35` |
+| 8 | `structured-data-qa.mjs` | `STRUCTURED_DATA_QA_PASS pages=35 blocks=34 entities=34` |
+| 9 | `public-asset-budget-qa.mjs` | `PUBLIC_ASSET_BUDGET_QA_PASS files=144 total=2.75MB` |
+
+## 6) One-shot deploy command (chạy khi có mạng)
+
+Xem `docs/FOUNDER_ACTION_CHECKLIST.md` Mục 1.
