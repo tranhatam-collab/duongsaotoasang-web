@@ -3,7 +3,7 @@
 > **Scope:** Sprint 0 / public-site stability handoff snapshot
 > **Repo:** `/Users/tranhatam/Documents/Devnewproject/duongsaotoasang.com`
 > **Branch:** `main`
-> **Latest commit:** `c15167a` (`chore(docs): add 2026-05-15 sprint-0 state report`)
+> **Latest commit:** `66a5fc5` (`chore(docs): update state report latest commit note`)
 > **Cloudflare Pages project:** `duongsaotoasang-com-v2`
 
 ## 1) Trạng thái tổng quan
@@ -11,7 +11,7 @@
 - ✅ **Route/API/Content/SEO/SEO metadata/Structured data/asset budget/QA gates** đều pass ở mức local checks (script-based, không phụ thuộc DNS).
 - ❌ **Full production verification vẫn chưa thể hoàn tất** vì môi trường hiện tại không resolve DNS của `duongsaotoasang.com` và không reach được Cloudflare Pages endpoint để chạy link/SEO/API/header smoke.
 - ✅ **Deploy dry-run đã xác nhận bundle sạch** cho project đúng: `duongsaotoasang-com-v2`.
-- ✅ **Function API logic được kiểm trực tiếp**: gọi trực tiếp `functions/api/contents.js`, `functions/api/content.js`, `functions/api/search.js` (không cần DNS) đều trả về fallback/local JSON đúng trạng thái và 404 khi thiếu slug.
+- ✅ **Function API logic được kiểm trực tiếp**: gọi trực tiếp `functions/api/contents.js`, `functions/api/content.js`, `functions/api/search.js` (không cần DNS) đều trả về fallback/local JSON đúng trạng thái và `404` khi thiếu slug.
 
 ## 2) Bằng chứng QA đã chạy lại
 
@@ -29,6 +29,7 @@
 ## 3) Tình trạng blocker
 
 - **BLOCKED_EXTERNAL_DNS_OR_CONNECTIVITY**: không thể xác nhận lại production 200/headers/API/sitemap/robots với môi trường agent hiện tại.
+- **BLOCKED_CLOUDFLARE_CLI_TOKEN**: không có `CLOUDFLARE_API_TOKEN` nên chưa thể deploy/verify bằng `wrangler pages deploy` từ môi trường hiện tại.
 
 ## 4) Next
 
