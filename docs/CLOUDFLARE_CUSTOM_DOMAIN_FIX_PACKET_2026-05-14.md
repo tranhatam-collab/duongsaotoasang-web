@@ -218,3 +218,35 @@ to:
 PRODUCTION HEADER/CACHE: DONE
 FULL PRODUCTION SMOKE: DONE
 ```
+
+---
+
+## 8. Quickest Path — 3-Command Sequence (Founder)
+
+This resolves the last remaining `SPRINT_0_RELEASE_GATE_BLOCKED_EXTERNAL` in under 5 minutes:
+
+```bash
+# Step 1: save CF token securely (one-time setup)
+bash scripts/cf-token-setup.sh
+# → prompts for Cloudflare API token (zone cache purge permission)
+# → prompts for Zone ID (from Cloudflare dash → Overview → Zone ID)
+# → saves to ~/.dsts-secrets/ (chmod 600, never committed)
+
+# Step 2: purge 6 stale URLs
+bash scripts/cf-cache-purge.sh
+# → purges: /, app.css, tokens.css, assets/app-v5.js, assets/app.js, og.png
+# → expects: {"success":true} for all 6
+
+# Step 3: verify headers pass
+BASE_URL=https://duongsaotoasang.com node scripts/sprint-0-release-gate.mjs
+# → expects: SPRINT_0_RELEASE_GATE_PASS
+```
+
+Token requirements:
+- **Permission needed:** Zone → Cache Purge (Edit)
+- **Zone ID:** visible on Cloudflare Dashboard → duongsaotoasang.com → Overview → right sidebar
+- Token scope: only this zone, only cache purge — minimal permission principle
+
+After `SPRINT_0_RELEASE_GATE_PASS`, Sprint 0 is 100% complete. No further code work needed.
+
+**Status as of 2026-05-15:** 16/17 gates PASS locally. Only CF CDN edge cache on custom domain pending purge.
