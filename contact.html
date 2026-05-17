@@ -249,12 +249,45 @@ Hãy để lại thông tin hoặc các câu hỏi của bạn. Chúng tôi sẽ
 
 <div class="contact-form">
 
-<h2 style="margin-top:0">Kênh liên hệ thủ công</h2>
+<h2 style="margin-top:0">Đăng ký nhận tin tức</h2>
 
-<div class="contact-panel" data-dsts-contact-mode="manual-only">
-<h3>Không có public contact form trong giai đoạn này</h3>
-<p>DSTS hiện không thu dữ liệu qua form trên trang public. Các yêu cầu hợp tác, báo lỗi nội dung, xác nhận thủ công hoặc câu hỏi chương trình nên gửi qua email chính thức để team phụ trách xử lý đúng lane.</p>
-<p class="status-note">Vui lòng không gửi dữ liệu nhạy cảm, thông tin trẻ em, giấy tờ định danh, thông tin thanh toán hoặc mật khẩu qua email công khai. Các flow email automation, payment và đăng ký/đăng nhập do team khác phụ trách và chưa được mở trên trang này.</p>
+<div class="contact-panel">
+<h3>Nhận cập nhật từ cộng đồng</h3>
+<p>Đăng ký để nhận thông tin về các chương trình, sự kiện và câu chuyện từ cộng đồng Đường Sao Tỏa Sáng.</p>
+
+<form id="subscribeForm" style="display:flex;flex-direction:column;gap:12px;max-width:440px">
+  <div class="form-group">
+    <label for="subName">Họ và tên</label>
+    <input id="subName" type="text" placeholder="Nguyễn Văn A" />
+  </div>
+  <div class="form-group">
+    <label for="subEmail">Email *</label>
+    <input id="subEmail" type="email" placeholder="email@example.com" required />
+  </div>
+  <button type="submit" class="submit-btn">Đăng ký nhận tin</button>
+  <p id="subMsg" style="display:none;color:#4caf50;font-size:14px"></p>
+</form>
+<script>
+document.getElementById('subscribeForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const email = document.getElementById('subEmail').value;
+  const name = document.getElementById('subName').value;
+  const msg = document.getElementById('subMsg');
+  try {
+    const r = await fetch('/api/subscribe', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email, name}) });
+    const d = await r.json();
+    msg.textContent = d.ok ? 'Đăng ký thành công! Cảm ơn bạn.' : (d.error || 'Lỗi, thử lại sau.');
+    msg.style.color = d.ok ? '#4caf50' : '#f44336';
+    msg.style.display = 'block';
+    if (d.ok) this.reset();
+  } catch { msg.textContent = 'Lỗi kết nối.'; msg.style.display = 'block'; }
+});
+</script>
+</div>
+
+<div class="contact-panel" style="margin-top:20px" data-dsts-contact-mode="manual-only">
+<h3>Liên hệ thủ công</h3>
+<p class="status-note">Vui lòng không gửi dữ liệu nhạy cảm, thông tin trẻ em, giấy tờ định danh, thông tin thanh toán hoặc mật khẩu qua email công khai.</p>
 <div class="contact-actions">
 <a class="primary" href="mailto:hello@duongsaotoasang.com?subject=DSTS%20-%20Yeu%20cau%20lien%20he%20thu%20cong">Gửi email thủ công</a>
 <a href="/support">Xem hướng dẫn hỗ trợ</a>
