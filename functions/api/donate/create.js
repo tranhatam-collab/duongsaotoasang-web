@@ -85,8 +85,9 @@ export const onRequestPost = async ({ request, env }) => {
   let checkoutUrl = null;
 
   try {
-    // Endpoint: public merchant API per pay.iai.one OpenAPI v2026-04-15
-    const resp = await fetch(`${baseUrl}/api/v1/checkout/session`, {
+    // Endpoint: internal contract per pay.iai.one routes
+    // (/api/v1/checkout/session is vetuonglai-specific; generic tenants use /internal/checkout-session)
+    const resp = await fetch(`${baseUrl}/internal/checkout-session`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
