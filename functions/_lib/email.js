@@ -10,7 +10,10 @@
 
 const FROM_ADDRESS = "DSTS <hello@duongsaotoasang.com>";
 const RESEND_API = "https://api.resend.com/emails";
-const MAIL_IAI_ONE_SEND_API = "https://api.mail.iai.one/v1/send";
+// mail.iai.one canonical endpoint — base from env (with /_mail/v1 path) or hardcoded default
+// CORRECT: mail.iai.one/_mail/v1/send — NOT api.mail.iai.one/v1/send
+const getMailIaiOneBase = (env) =>
+  (env?.MAIL_API_BASE_URL ?? "https://mail.iai.one/_mail/v1").replace(/\/+$/, "");
 
 // ── Core sender ───────────────────────────────────────────────────────────────
 
@@ -60,7 +63,8 @@ export async function sendEmail(env, { to, subject, html, replyTo, tags = [] }) 
 async function sendViaMailIaiOne(env, { to, subject, html, replyTo, tags = [] }) {
   try {
     const recipients = Array.isArray(to) ? to : [to];
-    const res = await fetch(MAIL_IAI_ONE_SEND_API, {
+    const mailBase = getMailIaiOneBase(env);
+    const res = await fetch(`${mailBase}/send`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

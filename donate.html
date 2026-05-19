@@ -56,6 +56,20 @@
     .wide{grid-column:span 2}
     .full{grid-column:1/-1}
     @media (max-width:900px){.grid{grid-template-columns:1fr}.wide{grid-column:span 1}.hero h1{font-size:34px}}
+    /* donate form */
+    .donate-form{max-width:560px;margin:0 auto;border:1px solid rgba(216,188,119,.22);border-radius:20px;background:rgba(216,188,119,.05);padding:28px}
+    .donate-form h2{margin:0 0 18px;color:#f5e7c7;font-size:22px}
+    .amount-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+    .amount-btn{border:1px solid rgba(216,188,119,.24);border-radius:12px;padding:12px 0;background:transparent;color:#f6d894;cursor:pointer;font-size:15px;font-weight:700;transition:background .15s,border-color .15s}
+    .amount-btn:hover,.amount-btn.active{background:rgba(216,188,119,.15);border-color:rgba(216,188,119,.55)}
+    .field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+    .field label{font-size:13px;color:var(--muted);font-weight:600}
+    .field input,.field textarea{background:rgba(255,255,255,.05);border:1px solid rgba(216,188,119,.18);border-radius:10px;padding:10px 12px;color:#e2e8f0;font-size:15px;outline:none;width:100%;box-sizing:border-box}
+    .field input:focus,.field textarea:focus{border-color:rgba(216,188,119,.45)}
+    .donate-entity{font-size:12px;color:#8a96a8;margin-top:10px;line-height:1.6}
+    #donateMsg{margin-top:12px;padding:10px 14px;border-radius:10px;font-size:14px;display:none}
+    #donateMsg.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#86efac}
+    #donateMsg.err{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.22);color:#fca5a5}
   </style>
 </head>
 <body>
@@ -63,14 +77,56 @@
   <main>
     <section class="hero">
       <div class="wrap">
-        <h1>Gây quỹ Đường Sao Tỏa Sáng</h1>
-        <p class="lead">Trang này công khai mục tiêu đóng góp, hình thức xác nhận, chính sách hoàn tiền, nguyên tắc sử dụng nguồn lực và lịch báo cáo. DSTS chỉ mở nhận đóng góp khi quy trình xác minh, biên nhận và báo cáo minh bạch đã sẵn sàng.</p>
-        <div class="status">Trạng thái: TẠM ĐÓNG · chưa mở nhận đóng góp đại chúng</div>
-        <div class="notice">Không chuyển khoản, quét QR hoặc gửi tiền nếu chưa nhận hướng dẫn chính thức và mã xác nhận từ kênh liên hệ của DSTS.</div>
+        <h1>Ủng hộ Đường Sao Tỏa Sáng</h1>
+        <p class="lead">Trang này công khai mục tiêu đóng góp, hình thức xác nhận, chính sách hoàn tiền, nguyên tắc sử dụng nguồn lực và lịch báo cáo. Thanh toán qua cổng PayOS — có giấy phép NHNN.</p>
       </div>
     </section>
 
-    <section class="section">
+    <!-- ── Donate form ─────────────────────────────────────────────── -->
+    <section class="section" style="padding-top:32px;padding-bottom:20px">
+      <div class="wrap">
+        <div class="donate-form">
+          <h2>Ủng hộ DSTS · VND</h2>
+          <div class="amount-grid">
+            <button class="amount-btn" data-amount="50000">50.000</button>
+            <button class="amount-btn" data-amount="100000">100.000</button>
+            <button class="amount-btn" data-amount="200000">200.000</button>
+            <button class="amount-btn" data-amount="500000">500.000</button>
+            <button class="amount-btn" data-amount="1000000">1.000.000</button>
+            <button class="amount-btn" data-amount="2000000">2.000.000</button>
+          </div>
+          <div class="field">
+            <label for="donateAmt">Hoặc nhập số tiền (VND, tối thiểu 5.000)</label>
+            <input type="number" id="donateAmt" placeholder="Ví dụ: 150000" min="5000" max="100000000">
+          </div>
+          <div class="field">
+            <label for="donorName">Họ tên (tuỳ chọn)</label>
+            <input type="text" id="donorName" placeholder="Tên của bạn">
+          </div>
+          <div class="field">
+            <label for="donorEmail">Email nhận biên nhận (tuỳ chọn)</label>
+            <input type="email" id="donorEmail" placeholder="email@example.com">
+          </div>
+          <div class="field">
+            <label for="donorMsg">Lời nhắn (tuỳ chọn)</label>
+            <input type="text" id="donorMsg" placeholder="Ủng hộ dự án...">
+          </div>
+          <div class="cta-row">
+            <button class="btn primary" id="donateBtnSubmit" style="width:100%;font-size:16px;min-height:50px">
+              Thanh toán qua VietQR / PayOS →
+            </button>
+          </div>
+          <div id="donateMsg"></div>
+          <div class="donate-entity">
+            Merchant of record: <strong>CÔNG TY CỔ PHẦN GIẢI TRÍ NGÔI SAO VIỆT CAN</strong> (MST 0315462505)<br>
+            Thanh toán xử lý qua pay.iai.one → PayOS (giấy phép NHNN) → VietQR ACB<br>
+            <a href="/legal" style="color:#c9b688">Điều khoản · Hoàn tiền</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
       <div class="wrap grid">
         <article class="card wide">
           <h2>1. Mục tiêu đóng góp</h2>
@@ -118,13 +174,84 @@
     <div class="wrap site-footer-inner">
       <p>© 2026 Đường Sao Tỏa Sáng · DSTS</p>
       <p><a href="/transparency">Minh bạch</a> · <a href="/legal">Pháp lý</a> · <a href="/contact">Liên hệ</a></p>
-      <p data-dsts-claim="C-002" style="margin-top:14px;font-size:12px;color:#9ca7b8;line-height:1.6">Đường Sao Tỏa Sáng được vận hành bởi <strong>Công ty Cổ phần Giải trí Ngôi Sao Việt Can</strong> (Việt Nam) cho hoạt động thương mại và <strong>Viet Can New Corp</strong> (Hoa Kỳ) cho hoạt động quốc tế. Hoạt động phi lợi nhuận triển khai qua <strong>Angel Edu Tam Foundation</strong> khi đủ điều kiện pháp lý.</p>
+      <div data-dsts-claim="C-002" style="margin-top:14px;font-size:12px;color:#9ca7b8;line-height:1.7;border-top:1px solid rgba(216,188,119,.1);padding-top:12px">
+        <div><strong>Đơn vị vận hành:</strong> CÔNG TY CỔ PHẦN GIẢI TRÍ NGÔI SAO VIỆT CAN</div>
+        <div style="opacity:0.75">MST: 0315462505 — Lầu 23, 76A Lê Lai, P.Bến Thành, Q.1, TP. Hồ Chí Minh</div>
+        <div style="margin-top:4px"><strong>Thanh toán nội địa:</strong> VietQR ACB qua pay.iai.one (PayOS — NHNN-licensed)</div>
+        <div style="margin-top:4px;opacity:0.7">Quốc tế: <strong>Viet Can New Corp</strong> (Hoa Kỳ) · Phi lợi nhuận: <strong>Angel Edu Tam Foundation</strong> khi đủ điều kiện.</div>
+      </div>
     </div>
   </footer>
   <script src="/assets/app-v5.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       DSTS.mountSiteChrome({ active: "donate" });
+
+      // ── Donate form logic ──────────────────────────────────────────
+      let selectedAmount = 0;
+
+      document.querySelectorAll(".amount-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".amount-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          selectedAmount = parseInt(btn.dataset.amount, 10);
+          document.getElementById("donateAmt").value = selectedAmount;
+        });
+      });
+
+      document.getElementById("donateAmt").addEventListener("input", e => {
+        selectedAmount = parseInt(e.target.value, 10) || 0;
+        document.querySelectorAll(".amount-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".amount-btn").forEach(b => {
+          if (parseInt(b.dataset.amount, 10) === selectedAmount) b.classList.add("active");
+        });
+      });
+
+      document.getElementById("donateBtnSubmit").addEventListener("click", async () => {
+        const amt = parseInt(document.getElementById("donateAmt").value, 10) || selectedAmount;
+        const msgEl = document.getElementById("donateMsg");
+        const btn = document.getElementById("donateBtnSubmit");
+
+        if (!amt || amt < 5000) {
+          msgEl.className = "err"; msgEl.style.display = "block";
+          msgEl.textContent = "Vui lòng nhập số tiền tối thiểu 5.000 VND.";
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = "Đang tạo thanh toán…";
+        msgEl.style.display = "none";
+
+        try {
+          const res = await fetch("/api/donate/create", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+              amount_vnd: amt,
+              donor_name: document.getElementById("donorName").value.trim() || null,
+              donor_email: document.getElementById("donorEmail").value.trim() || null,
+              message: document.getElementById("donorMsg").value.trim() || null,
+            }),
+          });
+          const data = await res.json();
+
+          if (data.ok && data.checkout_url) {
+            msgEl.className = "ok"; msgEl.style.display = "block";
+            msgEl.textContent = "Đang chuyển đến trang thanh toán…";
+            setTimeout(() => { window.location.href = data.checkout_url; }, 600);
+          } else if (!res.ok && data.error === "PAYMENT_NOT_CONFIGURED") {
+            msgEl.className = "err"; msgEl.style.display = "block";
+            msgEl.textContent = "Cổng thanh toán đang hoàn thiện cấu hình. Vui lòng thử lại sau hoặc liên hệ support.";
+            btn.disabled = false; btn.textContent = "Thanh toán qua VietQR / PayOS →";
+          } else {
+            throw new Error(data.message || "Lỗi không xác định");
+          }
+        } catch (e) {
+          msgEl.className = "err"; msgEl.style.display = "block";
+          msgEl.textContent = "Lỗi kết nối. Vui lòng thử lại hoặc liên hệ support.";
+          btn.disabled = false; btn.textContent = "Thanh toán qua VietQR / PayOS →";
+        }
+      });
     });
   </script>
 </body>

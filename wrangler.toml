@@ -15,6 +15,10 @@ PAY_IAI_ONE_TENANT_CODE     = "dsts"
 PAY_IAI_ONE_SITE_CODE       = "duongsaotoasang"
 PAY_IAI_ONE_PROVIDER        = "payos"
 PAY_IAI_ONE_CALLBACK_BASE   = "https://duongsaotoasang.com"
+MAIL_API_BASE_URL           = "https://mail.iai.one/_mail/v1"
+EMAIL_FROM                  = "DSTS <hello@duongsaotoasang.com>"
+EMAIL_FROM_NOREPLY          = "DSTS <noreply@duongsaotoasang.com>"
+SUPPORT_EMAIL               = "support@duongsaotoasang.com"
 # Required secrets (wrangler pages secret put <NAME> --project-name duongsaotoasang-com-v2):
 #   PAY_IAI_ONE_API_KEY  — from Team Pay (tenant: dsts, site: duongsaotoasang)
 #   PAY_DSTS_HMAC        — openssl rand -hex 32
