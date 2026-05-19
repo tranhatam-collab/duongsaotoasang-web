@@ -1,0 +1,64 @@
+# DSTS CLUB DATABASE AND API SPEC 2026
+
+## Core tables
+- users
+- creators
+- creator_profiles
+- clubs
+- club_memberships
+- club_posts
+- club_media
+- club_talkshows
+- club_tickets
+- subscriptions
+- orders
+- payments
+- wallets
+- point_ledger
+- point_packages
+- point_expiry_rules
+- creator_point_ledger
+- creator_levels
+- reward_catalog
+- reward_redemptions
+- referral_links
+- referral_events
+- creator_revenue_shares
+- creator_payouts
+- creator_contracts
+- campaigns
+- sponsor_campaigns
+- content_access_logs
+- moderation_cases
+- notifications
+- reports
+- audit_logs
+- app_store_purchase_locks
+- eligibility_rules
+
+## API core
+- GET /api/clubs
+- GET /api/clubs/:slug
+- GET /api/clubs/:slug/posts
+- POST /api/clubs/:slug/subscribe
+- GET /api/me/subscriptions
+- GET /api/me/wallet
+- GET /api/me/points
+- POST /api/points/purchase
+- POST /api/rewards/redeem
+- POST /api/referrals/create
+- GET /api/referrals/me
+- GET /api/talkshows
+- POST /api/talkshows/:id/register
+- POST /api/reports
+- GET /api/creator/revenue
+- GET /api/creator/points
+- POST /api/admin/payouts/:id/approve
+- POST /api/admin/points/adjust
+- GET /api/rewards/catalog
+- GET /api/me/tickets
+- POST /api/creator/posts
+- POST /api/creator/talkshows
+- GET /api/admin/subscriptions
+- GET /api/admin/referrals
+- POST /api/admin/rewards/update
