@@ -1,5 +1,8 @@
 # 00_DSTS_MASTER_INDEX_2026
 
+> 📝 **DRAFT v1.6.0** — 2026-05-19 (supersedes v1.5.25)
+> **v1.6.0 changes:** Layer 3 — DSTS Club introduced. See `docs/00_DSTS_CLUB_MASTER_INDEX_2026.md` for Club-scope index. 8 strategy/kickoff docs (`DSTS_CLUB_*_2026.md`) in `docs/`; `migrations/0007_club_phase1.sql` ready. Phase 1 Web MVP scope locked in `DSTS_CLUB_DEV_KICKOFF_PROMPT_2026.md`. Blocked by: (1) donation Layer 0 go-live, (2) pay.iai.one Club contract lane, (3) legal counsel sign-off on 16 Club policy docs.
+
 > 📝 **DRAFT v1.5.25** — 2026-05-14 (supersedes v1.5.24)
 > Bản đồ master cho cả ecosystem DSTS. Gom toàn bộ Drive cũ + kế hoạch mới thành 1 chỉ mục chính thức.
 > **Đối tượng dùng:** dev, content, legal, product, founder — cùng một bản truth.
