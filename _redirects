@@ -62,6 +62,15 @@
 /creator/settings                  /creator/settings.html               200
 /creator/profile                   /creator/profile.html                200
 /creator/reports                   /creator/reports.html                200
+# Admin dashboard placeholder routes (Phase 5)
+/admin/clubs                       /admin/clubs.html                    200
+/admin/creators                    /admin/creators.html                 200
+/admin/payouts                     /admin/payouts.html                  200
+/admin/subscriptions               /admin/clubs.html                    200
+/admin/points                      /admin/clubs.html                    200
+/admin/rewards                     /admin/clubs.html                    200
+/admin/referrals                   /admin/clubs.html                    200
+/admin/talkshows                   /admin/clubs.html                    200
 
 # === Layer 1 Movement Portal — Phase 1.1 (placeholder, từ Tháng 9/2026) ===
 # Mọi route /movement/* point vào /movement/coming-soon.html cho đến khi
