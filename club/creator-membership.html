@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b111d">
+  <meta name="robots" content="index,follow">
+  <title>Membership | DSTS Club</title>
+  <link rel="canonical" href="https://duongsaotoasang.com/club/creator-membership">
+  <meta property="og:image" content="https://duongsaotoasang.com/og.png">
+  <link rel="stylesheet" href="/app.css">
+  <style>
+    .hero{padding:48px 0 24px;border-bottom:1px solid var(--line)}
+    .hero h1{margin:0 0 6px;font-size:32px;color:#f5e7c7}
+    .hero .sub{color:var(--muted);font-size:15px}
+    .section{padding:28px 0}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .card{border:1px solid var(--line);border-radius:16px;padding:22px;background:rgba(255,255,255,.03);text-align:center}
+    .card.featured{border-color:rgba(224,200,150,.35);background:rgba(224,200,150,.06)}
+    .card h3{margin:0;color:#f5e7c7;font-size:20px}
+    .price{font-size:28px;color:#e0c896;font-weight:700;margin:8px 0}
+    .price small{font-size:13px;color:var(--muted);font-weight:400}
+    .btn{display:inline-block;padding:10px 20px;border:1px solid var(--line);border-radius:12px;color:#f5e7c7;text-decoration:none;background:rgba(255,255,255,.04);font-weight:700;margin-top:12px;width:100%;box-sizing:border-box}
+    .btn.primary{border-color:rgba(216,188,119,.32);background:rgba(216,188,119,.12)}
+    .notice{border:1px solid rgba(239,68,68,.22);border-radius:16px;background:rgba(239,68,68,.07);padding:14px 16px;color:#fecaca!important;font-size:14px;margin-top:20px}
+    @media (max-width:760px){.hero h1{font-size:28px}.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div id="siteHeader"></div>
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1 id="pageTitle">Đăng ký membership</h1>
+        <p class="sub" id="pageSub">Chọn gói thành viên phù hợp để ủng hộ creator và nhận quyền lợi độc quyền.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap">
+        <div class="grid">
+          <div class="card">
+            <h3>Member</h3>
+            <div class="price">99K <small>VND/tháng</small></div>
+            <p style="color:var(--muted);font-size:14px">100 Star Points/tháng<br>Truy cập nội dung Member<br>Tham gia cộng đồng</p>
+            <a href="/club/join" class="btn primary">Đăng ký waitlist</a>
+          </div>
+          <div class="card featured">
+            <h3>Circle</h3>
+            <div class="price">299K <small>VND/tháng</small></div>
+            <p style="color:var(--muted);font-size:14px">400 Star Points/tháng<br>Nội dung Circle độc quyền<br>Talk show riêng</p>
+            <a href="/club/join" class="btn primary">Đăng ký waitlist</a>
+          </div>
+          <div class="card" style="border-color:rgba(224,200,150,.45);background:rgba(224,200,150,.08)">
+            <h3>Inner Circle</h3>
+            <div class="price">990K <small>VND/tháng</small></div>
+            <p style="color:var(--muted);font-size:14px">1.500 Star Points/tháng<br>Private room với Creator<br>Q&A ưu tiên</p>
+            <a href="/club/join" class="btn primary">Đăng ký waitlist</a>
+          </div>
+        </div>
+        <div class="notice">
+          <strong>⚠️ Star Points:</strong> Star Points là điểm thưởng nội bộ của DSTS Club. Điểm không phải tiền, không phải chứng khoán, không phải tài sản đầu tư, không bảo đảm quy đổi thành tiền mặt, và chỉ được sử dụng trong phạm vi quyền lợi do DSTS công bố theo từng thời kỳ.
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap site-footer-inner">
+      <p>© 2026 Đường Sao Tỏa Sáng · DSTS</p>
+      <p><a href="/club">Club</a> · <a href="/club/levels">Gói thành viên</a> · <a href="/club/join">Đăng ký</a></p>
+      <div data-dsts-claim="C-002" style="margin-top:14px;font-size:12px;color:#9ca7b8;line-height:1.7;border-top:1px solid rgba(216,188,119,.1);padding-top:12px">
+        <div><strong>Đơn vị vận hành:</strong> CÔNG TY CỔ PHẦN GIẢI TRÍ NGÔI SAO VIỆT CAN</div>
+        <div style="opacity:0.75">MST: 0315462505 — Lầu 23, 76A Lê Lai, P.Bến Thành, Q.1, TP. Hồ Chí Minh</div>
+        <div style="margin-top:4px"><strong>Thanh toán nội địa:</strong> VietQR ACB qua pay.iai.one (PayOS — NHNN-licensed)</div>
+        <div style="margin-top:4px;opacity:0.7">Quốc tế: <strong>Viet Can New Corp</strong> (Hoa Kỳ) · Phi lợi nhuận: <strong>Angel Edu Tam Foundation</strong> khi đủ điều kiện pháp lý.</div>
+      </div>
+    </div>
+  </footer>
+  <script src="/assets/app-v5.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded",function(){
+      DSTS.mountSiteChrome({active:"club"});
+      const slug=new URLSearchParams(window.location.search).get("slug");
+      if(slug){
+        fetch("/api/clubs/"+encodeURIComponent(slug)).then(r=>r.ok?r.json():null).then(j=>{
+          if(j?.data?.creator) document.getElementById("pageTitle").textContent="Membership — "+j.data.creator.display_name;
+        }).catch(()=>{});
+      }
+    });
+  </script>
+</body>
+</html>

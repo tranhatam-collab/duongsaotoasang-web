@@ -38,6 +38,20 @@
 /scripts/dsts-legacy.html         /scripts/dsts-legacy                  301
 /scripts/global-story.html        /scripts/global-story                 301
 
+# === DSTS Club Phase 1 ===
+# Exact routes first (Cloudflare Pages first-match wins)
+/club                              /club.html                       200
+/club/join                         /club/join.html                  200
+/club/levels                       /club/levels.html                200
+/club/faq                          /club/faq.html                   200
+/club/legal                        /club/legal.html                 200
+/club/creators                     /club/creators.html              200
+# Account shell (Phase 1 placeholder)
+/account/library                   /account/library.html            200
+/account/calendar                  /account/calendar.html           200
+/account/wallet                    /account/wallet.html             200
+# Dynamic creator routes handled by functions/club/[[catchall]].js
+
 # === Layer 1 Movement Portal — Phase 1.1 (placeholder, từ Tháng 9/2026) ===
 # Mọi route /movement/* point vào /movement/coming-soon.html cho đến khi
 # nội dung thật sẵn sàng + Founder approve. Khi launch Phase 1.2,

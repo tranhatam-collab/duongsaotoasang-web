@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b111d">
+  <meta name="robots" content="index,follow">
+  <title>Rewards | DSTS Club</title>
+  <link rel="canonical" href="https://duongsaotoasang.com/club/creator-rewards">
+  <meta property="og:image" content="https://duongsaotoasang.com/og.png">
+  <link rel="stylesheet" href="/app.css">
+  <style>
+    .hero{padding:48px 0 24px;border-bottom:1px solid var(--line)}
+    .hero h1{margin:0 0 6px;font-size:32px;color:#f5e7c7}
+    .hero .sub{color:var(--muted);font-size:15px}
+    .section{padding:28px 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+    .card{border:1px solid var(--line);border-radius:14px;padding:18px;background:rgba(255,255,255,.02)}
+    .card h3{margin:0 0 6px;color:#f5e7c7;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:13px;line-height:1.7}
+    .pts{font-size:20px;color:#e0c896;font-weight:700;margin:8px 0}
+    .badge{display:inline-block;font-size:11px;padding:3px 8px;border-radius:999px;background:rgba(216,188,119,.1);color:#f6d894;margin-top:6px}
+    .badge.digital{background:rgba(34,197,94,.1);color:#86efac}
+    .badge.event{background:rgba(96,165,250,.15);color:#93c5fd}
+    .badge.experience{background:rgba(216,180,254,.15);color:#d8b4fe}
+    .notice{border:1px solid rgba(239,68,68,.22);border-radius:16px;background:rgba(239,68,68,.07);padding:14px 16px;color:#fecaca!important;font-size:14px;margin-top:20px}
+    .filter{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+    .filter button{border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:transparent;color:var(--muted);cursor:pointer;font-size:13px}
+    .filter button.active{border-color:#e0c896;color:#f6d894;background:rgba(216,188,119,.08)}
+    @media (max-width:760px){.hero h1{font-size:28px}}
+  </style>
+</head>
+<body>
+  <div id="siteHeader"></div>
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1 id="pageTitle">Reward Catalog</h1>
+        <p class="sub" id="pageSub">Đổi Star Points lấy reward độc quyền</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap">
+        <div class="filter">
+          <button class="active" data-cat="">Tất cả</button>
+          <button data-cat="digital">Digital</button>
+          <button data-cat="event">Event</button>
+          <button data-cat="experience">Experience</button>
+        </div>
+        <div class="grid" id="rewardGrid"><p style="color:var(--muted)">Đang tải…</p></div>
+        <div class="notice">
+          <strong>⚠️ Star Points:</strong> Star Points là điểm thưởng nội bộ của DSTS Club. Điểm không phải tiền, không phải chứng khoán, không phải tài sản đầu tư, không bảo đảm quy đổi thành tiền mặt, và chỉ được sử dụng trong phạm vi quyền lợi do DSTS công bố theo từng thời kỳ.
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap site-footer-inner">
+      <p>© 2026 Đường Sao Tỏa Sáng · DSTS</p>
+      <p><a href="/club">Club</a> · <a href="/club/levels">Gói thành viên</a></p>
+      <div data-dsts-claim="C-002" style="margin-top:14px;font-size:12px;color:#9ca7b8;line-height:1.7;border-top:1px solid rgba(216,188,119,.1);padding-top:12px">
+        <div><strong>Đơn vị vận hành:</strong> CÔNG TY CỔ PHẦN GIẢI TRÍ NGÔI SAO VIỆT CAN</div>
+        <div style="opacity:0.75">MST: 0315462505 — Lầu 23, 76A Lê Lai, P.Bến Thành, Q.1, TP. Hồ Chí Minh</div>
+        <div style="margin-top:4px"><strong>Thanh toán nội địa:</strong> VietQR ACB qua pay.iai.one (PayOS — NHNN-licensed)</div>
+        <div style="margin-top:4px;opacity:0.7">Quốc tế: <strong>Viet Can New Corp</strong> (Hoa Kỳ) · Phi lợi nhuận: <strong>Angel Edu Tam Foundation</strong> khi đủ điều kiện pháp lý.</div>
+      </div>
+    </div>
+  </footer>
+  <script src="/assets/app-v5.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded",function(){
+      DSTS.mountSiteChrome({active:"club"});
+      const grid=document.getElementById("rewardGrid");
+      function esc(s){const d=document.createElement("div");d.textContent=s||"";return d.innerHTML}
+
+      function loadRewards(cat){
+        grid.innerHTML='<p style="color:var(--muted)">Đang tải…</p>';
+        const url=cat?"/api/rewards/catalog?category="+encodeURIComponent(cat):"/api/rewards/catalog";
+        fetch(url).then(r=>r.ok?r.json():null).then(j=>{
+          const items=j?.data||[];
+          if(!items.length){grid.innerHTML='<p style="color:var(--muted)">Chưa có reward nào.</p>';return}
+          grid.innerHTML=items.map(r=>
+            `<div class="card">
+              <h3>${esc(r.title)}</h3>
+              <div class="pts">${r.points_cost} Star Points</div>
+              <p>${esc(r.description_html||'')}</p>
+              <span class="badge ${r.reward_type||''}">${esc(r.reward_type||'')} · ${esc(r.status||'')}</span>
+            </div>`
+          ).join("");
+        }).catch(()=>{grid.innerHTML='<p style="color:#fca5a5">Không thể tải reward catalog.</p>'});
+      }
+
+      document.querySelectorAll(".filter button").forEach(btn=>{
+        btn.addEventListener("click",function(){
+          document.querySelectorAll(".filter button").forEach(b=>b.classList.remove("active"));
+          this.classList.add("active");
+          loadRewards(this.dataset.cat);
+        });
+      });
+      loadRewards("");
+    });
+  </script>
+</body>
+</html>

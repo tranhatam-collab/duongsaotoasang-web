@@ -49,6 +49,13 @@ await requirePass("local-payment-legal-alignment-qa", "node", ["scripts/payment-
 await requirePass("local-donate-webhook-behavior-qa", "node", ["scripts/donate-webhook-behavior-qa.mjs"])
 await requirePass("local-social-metadata-qa", "node", ["scripts/social-metadata-qa.mjs"])
 await requirePass("local-structured-data-qa", "node", ["scripts/structured-data-qa.mjs"])
+await requirePass("local-club-phase1-qa", "node", ["scripts/club-phase1-qa.mjs"])
+await requirePass("local-club-api-syntax-clubs-index", "node", ["--check", "functions/api/clubs/index.js"])
+await requirePass("local-club-api-syntax-clubs-slug", "node", ["--check", "functions/api/clubs/[slug]/index.js"])
+await requirePass("local-club-api-syntax-clubs-posts", "node", ["--check", "functions/api/clubs/[slug]/posts.js"])
+await requirePass("local-club-api-syntax-clubs-waitlist", "node", ["--check", "functions/api/clubs/waitlist.js"])
+await requirePass("local-club-api-syntax-talkshows", "node", ["--check", "functions/api/talkshows.js"])
+await requirePass("local-club-api-syntax-rewards-catalog", "node", ["--check", "functions/api/rewards/catalog.js"])
 await requirePass("local-public-asset-budget-qa", "node", ["scripts/public-asset-budget-qa.mjs"])
 if (RUN_DEPLOY_DRY_RUN) {
   await requirePass("local-deploy-dry-run", "bash", ["scripts/deploy-pages-clean.sh", "--dry-run"], {

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b111d">
+  <meta name="robots" content="index,follow">
+  <title>Creator | DSTS Club</title>
+  <link rel="canonical" href="https://duongsaotoasang.com/club/creator">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Đường Sao Tỏa Sáng">
+  <meta property="og:image" content="https://duongsaotoasang.com/og.png">
+  <link rel="stylesheet" href="/app.css">
+  <style>
+    .hero-wrap{padding:48px 0 28px;border-bottom:1px solid var(--line)}
+    .hero-wrap .avatar{width:80px;height:80px;border-radius:50%;object-fit:cover;margin-bottom:12px}
+    .hero-wrap h1{margin:0 0 6px;font-size:36px;color:#f5e7c7}
+    .hero-wrap .headline{color:var(--muted);font-size:16px}
+    .section{padding:32px 0}
+    .section h2{color:#f5e7c7;margin:0 0 14px;font-size:22px}
+    .card{border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:10px}
+    .card h3{margin:0 0 6px;color:#f5e7c7;font-size:16px}
+    .card p{color:var(--muted);margin:0;font-size:14px;line-height:1.7}
+    .story{border:1px solid var(--line);border-radius:14px;padding:20px;background:rgba(255,255,255,.02);line-height:1.9;color:var(--muted)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border:1px solid var(--line);border-radius:12px;color:#f5e7c7;text-decoration:none;background:rgba(255,255,255,.04);font-weight:700;font-size:14px}
+    .btn.primary{border-color:rgba(216,188,119,.32);background:rgba(216,188,119,.12)}
+    .meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .meta a{color:#e0c896;font-size:13px}
+    .error{color:#fca5a5;padding:20px 0}
+    @media (max-width:760px){.hero-wrap h1{font-size:28px}}
+  </style>
+</head>
+<body>
+  <div id="siteHeader"></div>
+  <main>
+    <div id="creatorContent"><p style="color:var(--muted);padding:40px 0;text-align:center">Đang tải…</p></div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap site-footer-inner">
+      <p>© 2026 Đường Sao Tỏa Sáng · DSTS</p>
+      <p><a href="/club">Club</a> · <a href="/club/creators">Creators</a> · <a href="/club/join">Đăng ký</a></p>
+      <div data-dsts-claim="C-002" style="margin-top:14px;font-size:12px;color:#9ca7b8;line-height:1.7;border-top:1px solid rgba(216,188,119,.1);padding-top:12px">
+        <div><strong>Đơn vị vận hành:</strong> CÔNG TY CỔ PHẦN GIẢI TRÍ NGÔI SAO VIỆT CAN</div>
+        <div style="opacity:0.75">MST: 0315462505 — Lầu 23, 76A Lê Lai, P.Bến Thành, Q.1, TP. Hồ Chí Minh</div>
+        <div style="margin-top:4px"><strong>Thanh toán nội địa:</strong> VietQR ACB qua pay.iai.one (PayOS — NHNN-licensed)</div>
+        <div style="margin-top:4px;opacity:0.7">Quốc tế: <strong>Viet Can New Corp</strong> (Hoa Kỳ) · Phi lợi nhuận: <strong>Angel Edu Tam Foundation</strong> khi đủ điều kiện pháp lý.</div>
+      </div>
+    </div>
+  </footer>
+  <script src="/assets/app-v5.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded",function(){
+      DSTS.mountSiteChrome({active:"club"});
+      const params=new URLSearchParams(window.location.search);
+      const slug=params.get("slug")||window.location.pathname.split("/").filter(Boolean).pop();
+      if(!slug){document.getElementById("creatorContent").innerHTML='<p class="error" style="text-align:center">Không tìm thấy creator.</p>';return}
+
+      const main=document.getElementById("creatorContent");
+      function esc(s){const d=document.createElement("div");d.textContent=s||"";return d.innerHTML}
+
+      Promise.all([
+        fetch("/api/clubs/"+encodeURIComponent(slug)).then(r=>r.ok?r.json():null),
+        fetch("/api/clubs/"+encodeURIComponent(slug)+"/posts?visibility=public").then(r=>r.ok?r.json():null),
+        fetch("/api/talkshows?visibility=public").then(r=>r.ok?r.json():null)
+      ]).then(([creatorJ,postsJ,talksJ])=>{
+        if(!creatorJ||!creatorJ.data){main.innerHTML='<p class="error" style="text-align:center">Không tìm thấy creator.</p>';return}
+        const d=creatorJ.data.creator, p=creatorJ.data.profile;
+        const posts=postsJ?.data||[], talks=talksJ?.data||[];
+
+        let html=`
+          <div class="wrap hero-wrap">
+            <img class="avatar" src="${esc(p?.avatar_url||'/img/og-default.svg')}" alt="">
+            <h1>${esc(d.display_name)}</h1>
+            <div class="headline">${esc(d.headline||'')}</div>
+            <div class="meta">
+              <a href="/club/${esc(d.slug)}/public">Bài viết</a>
+              <a href="/club/${esc(d.slug)}/talkshows">Talk shows</a>
+              <a href="/club/${esc(d.slug)}/membership">Đăng ký membership</a>
+              <a href="/club/${esc(d.slug)}/rewards">Rewards</a>
+            </div>
+          </div>`;
+
+        if(p?.bio_long){
+          html+=`<section class="section"><div class="wrap"><h2>Về ${esc(d.display_name)}</h2><div class="card"><p>${esc(p.bio_long)}</p></div></div></section>`;
+        }
+        if(p?.public_story_html){
+          html+=`<section class="section"><div class="wrap"><h2>Câu chuyện</h2><div class="story">${p.public_story_html}</div></div></section>`;
+        }
+        if(p?.social_links_json){
+          try{
+            const links=JSON.parse(p.social_links_json);
+            if(links&&Object.keys(links).length){
+              html+=`<section class="section"><div class="wrap"><h2>Kết nối</h2><div style="display:flex;gap:10px;flex-wrap:wrap">`;
+              Object.entries(links).forEach(([k,v])=>{html+=`<a href="${esc(v)}" class="btn" target="_blank" rel="noopener">${esc(k)}</a>`});
+              html+=`</div></div></section>`;
+            }
+          }catch(e){}
+        }
+        if(talks.filter(t=>t.creator_slug===slug).length){
+          html+=`<section class="section"><div class="wrap"><h2>Talk shows</h2>`;
+          talks.filter(t=>t.creator_slug===slug).slice(0,5).forEach(t=>{
+            html+=`<div class="card"><h3>${esc(t.title)}</h3><p>${esc(t.summary||'')} · ${esc(t.status)}</p></div>`;
+          });
+          html+=`</div></section>`;
+        }
+        if(posts.length){
+          html+=`<section class="section"><div class="wrap"><h2>Bài viết public</h2>`;
+          posts.slice(0,5).forEach(pt=>{
+            html+=`<div class="card"><h3>${esc(pt.title)}</h3><p>${esc(pt.excerpt||'')}</p></div>`;
+          });
+          html+=`<div style="margin-top:10px"><a href="/club/${esc(d.slug)}/public" class="btn">Xem tất cả bài viết →</a></div>`;
+          html+=`</div></section>`;
+        }
+        html+=`<section class="section"><div class="wrap" style="text-align:center;padding:20px 0">
+          <a href="/club/${esc(d.slug)}/membership" class="btn primary" style="font-size:16px;padding:0 28px;min-height:48px">Đăng ký membership →</a>
+        </div></section>`;
+        main.innerHTML=html;
+      }).catch(()=>{main.innerHTML='<p class="error" style="text-align:center">Không thể tải thông tin creator.</p>'});
+    });
+  </script>
+</body>
+</html>
