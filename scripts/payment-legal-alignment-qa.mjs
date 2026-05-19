@@ -14,7 +14,7 @@ const wranglerToml = read(join(repoRoot, "wrangler.toml"))
 const payOwnerScript = read(join(repoRoot, "scripts", "pay-owner-go-live.sh"))
 const payGroundTruth = read(join(repoRoot, "docs", "PAY_IAI_ONE_INTEGRATION_GROUND_TRUTH_2026-05-15.md"))
 
-requireIncludes(donateCreate, "/api/v1/checkout/session", "functions/api/donate/create.js must use /api/v1/checkout/session")
+requireIncludes(donateCreate, "/internal/checkout-session", "functions/api/donate/create.js must use /internal/checkout-session (generic tenant route; /api/v1/checkout/session is vetuonglai-specific)")
 requireIncludes(donateCreate, "internal_order_id", "functions/api/donate/create.js must send internal_order_id")
 requireIncludes(donateCreate, "billing_cycle: \"one_time\"", "functions/api/donate/create.js must lock billing_cycle=one_time")
 requireIncludes(donateCreate, "\"x-idempotency-key\"", "functions/api/donate/create.js must use x-idempotency-key")

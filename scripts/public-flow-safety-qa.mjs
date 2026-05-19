@@ -20,6 +20,10 @@ const allowedSensitiveManualLinks = new Set([
   "/contact?type=payment-confirmation",
   "/payment-confirmation"
 ])
+// Files where JS-driven inputs are allowed outside a <form> element
+// (POST to /api/* via fetch, no native HTML form submit).
+const allowedJsInputFiles = new Set(["donate.html"])
+const allowedDonateInputIds = new Set(["donateAmt", "donorName", "donorEmail", "donorMsg"])
 
 for (const file of files) {
   const source = readFileSync(join(repoRoot, file), "utf8")
@@ -79,6 +83,12 @@ function validateControlTags(file, source) {
   const controls = [...withoutForms.matchAll(/<(input|textarea|select)\b[^>]*>/gi)]
 
   controls.forEach((match, index) => {
+    if (allowedJsInputFiles.has(file)) {
+      const idAttr = readAttribute(match[0], "id")
+      if (allowedDonateInputIds.has(idAttr)) return
+      assert(false, `${file} ${match[1]} id="${idAttr}" not in donate whitelist`)
+      return
+    }
     assert(false, `${file} ${match[1]} ${index + 1} appears outside an allowed search form`)
   })
 }

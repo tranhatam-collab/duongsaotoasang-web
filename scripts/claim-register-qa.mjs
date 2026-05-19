@@ -20,14 +20,18 @@ for (const file of trackedPublicFiles) {
 validateRequiredSurface(
   "donate.html",
   [
-    "Trạng thái: TẠM ĐÓNG",
-    "Không chuyển khoản, quét QR hoặc gửi tiền nếu chưa nhận hướng dẫn chính thức và mã xác nhận từ kênh liên hệ của DSTS."
+    "VietQR",
+    "PayOS",
+    "CÔNG TY CỔ PHẦN GIẢI TRÍ NGÔI SAO VIỆT CAN",
+    "0315462505",
+    "Mức tối thiểu 5.000 VND",
+    "Hệ thống sinh checkout PayOS riêng cho từng giao dịch"
   ],
   [
     "tax-deductible",
-    "pay.iai.one/checkout",
     "stripe.com",
-    "paypal.com"
+    "paypal.com",
+    "Trạng thái: TẠM ĐÓNG"
   ]
 )
 
