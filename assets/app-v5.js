@@ -118,7 +118,7 @@
         legal: "Pháp lý",
         support: "Hỗ trợ",
         contact: "Liên hệ",
-        entityDisclosure: "Đơn vị vận hành sẽ được công bố sau khi hoàn tất xác minh pháp lý.",
+        entityDisclosure: '<strong style="color:#c9b688">Đơn vị nhận quỹ / Fund recipient:</strong> <strong>Angel Edu Tam Foundation Inc.</strong> (South Dakota, Hoa Kỳ / USA)<br><strong style="color:#c9b688">Đại diện tại Việt Nam / Vietnam Representative:</strong> CÔNG TY CỔ PHẦN GIẢI TRÍ NGÔI SAO VIỆT CAN (MST 0315462505) — Lầu 23, 76A Lê Lai, P.Bến Thành, Q.1, TP.HCM<br><strong>Chịu trách nhiệm hoàn toàn / Fully responsible:</strong> <strong>Viet Can New Corp</strong> (Hoa Kỳ / USA)<br><strong>Thanh toán / Payment:</strong> <a href="https://pay.iai.one" target="_blank" rel="noopener">pay.iai.one</a> (PayOS — NHNN)<br><strong>Liên hệ / Contact:</strong> <a href="mailto:contact@mail.iai.one">mail.iai.one</a>',
         scriptsLibrary: "Thư viện kịch bản",
         script1: "The Rising Entrepreneur",
         script2: "The Global Artist",
@@ -143,7 +143,7 @@
         legal: "Legal",
         support: "Support",
         contact: "Contact",
-        entityDisclosure: "The operating entity will be published after legal verification is complete.",
+        entityDisclosure: '<strong style="color:#c9b688">Fund recipient:</strong> <strong>Angel Edu Tam Foundation Inc.</strong> (South Dakota, USA)<br><strong style="color:#c9b688">Vietnam Representative:</strong> VIET CAN STAR ENTERTAINMENT JSC (MST 0315462505) — 23F, 76A Le Lai, Ben Thanh Ward, Dist.1, Ho Chi Minh City<br><strong>Fully responsible:</strong> <strong>Viet Can New Corp</strong> (USA)<br><strong>Payment:</strong> <a href="https://pay.iai.one" target="_blank" rel="noopener">pay.iai.one</a> (PayOS — NHNN-licensed)<br><strong>Contact:</strong> <a href="mailto:contact@mail.iai.one">mail.iai.one</a>',
         scriptsLibrary: "Script library",
         script1: "The Rising Entrepreneur",
         script2: "The Global Artist",
@@ -361,7 +361,13 @@
             </a>
 
             <div class="site-nav-right">
-              <button class="site-mobile-toggle" type="button" aria-expanded="false" aria-label="${DSTS.escapeHTML(t.openMenu)}">☰</button>
+              <button class="site-mobile-toggle" type="button" aria-expanded="false" aria-label="${DSTS.escapeHTML(t.openMenu)}">
+                <svg width="22" height="18" viewBox="0 0 22 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:block">
+                  <line x1="1" y1="2" x2="21" y2="2"/>
+                  <line x1="1" y1="9" x2="21" y2="9"/>
+                  <line x1="1" y1="16" x2="21" y2="16"/>
+                </svg>
+              </button>
 
               <nav class="site-menu" aria-label="Main navigation">
                 <a href="${DSTS.withLang("/")}" data-key="home">${DSTS.escapeHTML(t.home)}</a>
@@ -461,14 +467,29 @@
       }
     });
 
-    const footer = document.querySelector(".site-footer-inner, .footer");
-    if (footer && !footer.querySelector(".dsts-entity-disclosure")) {
+    const footer = document.querySelector(".site-footer-inner, .footer, .site-footer");
+    if (footer && !footer.textContent.includes("Angel Edu Tam Foundation")) {
       const disclosure = document.createElement("p");
       disclosure.className = "dsts-entity-disclosure";
-      disclosure.textContent = t.entityDisclosure;
+      disclosure.innerHTML = t.entityDisclosure;
       disclosure.style.cssText = "margin:10px 0 0;color:#8f9bad;font-size:13px;line-height:1.65;";
       footer.appendChild(disclosure);
     }
+    DSTS.initCookieBanner();
+  };
+
+  DSTS.initCookieBanner = function () {
+    if (localStorage.getItem("dsts_cookie_consent")) return;
+    const banner = document.createElement("div");
+    banner.id = "dsts-cookie-banner";
+    banner.innerHTML = '<span>Trang web sử dụng cookie để cải thiện trải nghiệm. Tiếp tục sử dụng nghĩa là bạn đồng ý.</span><button id="dsts-cookie-ok">Đồng ý</button>';
+    banner.style.cssText = "position:fixed;bottom:0;left:0;right:0;z-index:9999;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;padding:14px 18px;background:rgba(8,12,19,.95);border-top:1px solid rgba(224,200,150,.15);color:#cfd9e8;font-size:14px;line-height:1.5;";
+    banner.querySelector("button").style.cssText = "padding:6px 14px;border-radius:8px;border:1px solid rgba(224,200,150,.3);background:rgba(224,200,150,.12);color:#f0e4c8;cursor:pointer;font-size:13px;font-weight:700;";
+    document.body.appendChild(banner);
+    banner.querySelector("button").addEventListener("click", function () {
+      localStorage.setItem("dsts_cookie_consent", "1");
+      banner.remove();
+    });
   };
 
   window.DSTS = DSTS;

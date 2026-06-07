@@ -7,7 +7,7 @@
 
 # Special route normalization
 /programs                         /program                              301
-/refund                           /legal#refund                         302
+/refund                           /refund.html                        200
 /payment-confirmation             /contact?type=payment-confirmation    302
 
 # Legacy clean URL redirects
@@ -40,6 +40,8 @@
 
 # === DSTS Club Phase 1 ===
 # Exact routes first (Cloudflare Pages first-match wins)
+/app                              /app/index.html                  200
+/app/                             /app/index.html                  200
 /club                              /club.html                       200
 /club/join                         /club/join.html                  200
 /club/levels                       /club/levels.html                200

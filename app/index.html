@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#1a1a2e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>DSTS Club App</title>
+  <link rel="stylesheet" href="/app/app.css">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" type="image/png" href="/assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+</head>
+<body>
+  <div id="app">
+    <!-- Auth Loading -->
+    <div id="auth-loading" class="auth-loading">
+      <div class="spinner"></div>
+      <p>Đang kiểm tra đăng nhập...</p>
+    </div>
+
+    <!-- App Shell (hidden until auth check) -->
+    <div id="app-shell" class="app-shell hidden">
+      <!-- Header -->
+      <header class="app-header">
+        <button id="hamburger-btn" class="hamburger-btn" aria-label="Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+        <h1 class="app-title">DSTS Club</h1>
+        <div class="header-spacer"></div>
+      </header>
+
+      <!-- Main Content -->
+      <main id="main-content" class="main-content">
+        <!-- Dynamic content loaded here -->
+      </main>
+
+      <!-- Bottom Navigation -->
+      <nav class="bottom-nav">
+        <a href="/app/home" class="nav-item active" data-route="home">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Home</span>
+        </a>
+        <a href="/app/club" class="nav-item" data-route="club">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <span>Club</span>
+        </a>
+        <a href="/app/talkshows" class="nav-item" data-route="talkshows">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+          <span>Talk Shows</span>
+        </a>
+        <a href="/app/rewards" class="nav-item" data-route="rewards">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+          </svg>
+          <span>Rewards</span>
+        </a>
+        <a href="/app/profile" class="nav-item" data-route="profile">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>Profile</span>
+        </a>
+      </nav>
+
+      <!-- Hamburger Menu Drawer -->
+      <div id="hamburger-drawer" class="hamburger-drawer hidden">
+        <div class="drawer-backdrop"></div>
+        <div class="drawer-content">
+          <button id="close-drawer" class="close-drawer" aria-label="Close menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+          <nav class="drawer-nav">
+            <a href="/app/home" class="drawer-item">Home</a>
+            <a href="/app/club" class="drawer-item">Club</a>
+            <a href="/app/talkshows" class="drawer-item">Talk Shows</a>
+            <a href="/app/rewards" class="drawer-item">Rewards</a>
+            <a href="/app/profile" class="drawer-item">Profile</a>
+            <div class="drawer-divider"></div>
+            <a href="/app/wallet" class="drawer-item">Wallet</a>
+            <a href="/app/referrals" class="drawer-item">Referrals</a>
+            <a href="/app/tickets" class="drawer-item">Tickets</a>
+            <a href="/app/library" class="drawer-item">Library</a>
+            <a href="/app/support" class="drawer-item">Support</a>
+            <div class="drawer-divider"></div>
+            <a href="/logout" class="drawer-item drawer-logout">Đăng xuất</a>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Session Expired Modal -->
+      <div id="session-expired-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+          <h2>Phiên đăng nhập hết hạn</h2>
+          <p>Vui lòng đăng nhập lại để tiếp tục.</p>
+          <button id="session-expired-btn" class="btn btn-primary">Đăng nhập lại</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app/app.js"></script>
+</body>
+</html>
