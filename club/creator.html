@@ -112,6 +112,13 @@
           html+=`<div style="margin-top:10px"><a href="/club/${esc(d.slug)}/public" class="btn">Xem tất cả bài viết →</a></div>`;
           html+=`</div></section>`;
         }
+
+        // Paid preview section
+        html+=`<section class="section"><div class="wrap"><h2>Nội dung độc quyền</h2>`;
+        html+=`<div class="card" style="border-color:rgba(216,188,119,.3);background:rgba(216,188,119,.04)">
+          <p style="color:var(--muted)">Đăng ký membership để truy cập nội dung độc quyền từ ${esc(d.display_name)}.</p>
+          <div style="margin-top:12px"><a href="/club/${esc(d.slug)}/membership" class="btn primary">Xem gói membership →</a></div>
+        </div></div></section>`;
         html+=`<section class="section"><div class="wrap" style="text-align:center;padding:20px 0">
           <a href="/club/${esc(d.slug)}/membership" class="btn primary" style="font-size:16px;padding:0 28px;min-height:48px">Đăng ký membership →</a>
         </div></section>`;
