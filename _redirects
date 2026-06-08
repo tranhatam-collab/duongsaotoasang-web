@@ -40,20 +40,19 @@
 
 # === DSTS Club Phase 1 ===
 # Exact routes first (Cloudflare Pages first-match wins)
+# Note: Cloudflare Pages auto-serves clean URLs from HTML files.
+# Only add explicit redirects when needed for rewrite or dynamic params.
 /app                              /app/index.html                  200
 /app/                             /app/index.html                  200
-/club                              /club.html                       200
 /club/join                         /club/join.html                  200
 /club/levels                       /club/levels.html                200
 /club/faq                          /club/faq.html                   200
 /club/legal                        /club/legal.html                 200
-/club/creators                     /club/creators.html              200
 # Account shell (Phase 1 placeholder)
 /account/library                   /account/library.html            200
 /account/calendar                  /account/calendar.html           200
 /account/wallet                    /account/wallet.html             200
 /account/referrals                 /account/referrals.html          200
-/talkshows                         /talkshows.html                  200
 # Dynamic creator routes handled by functions/club/[[catchall]].js
 # Creator dashboard placeholder routes (Phase 3 — all shell)
 /creator/dashboard                 /creator/dashboard.html              200
