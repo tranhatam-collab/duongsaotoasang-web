@@ -45,8 +45,6 @@
 /app                              /app/index.html                  200
 /app/                             /app/index.html                  200
 /club                              /club/index.html                  200
-/club/levels                       /club/levels.html                200
-/club/faq                          /club/faq.html                   200
 /club/legal                        /club/legal.html                 200
 # Dynamic creator routes handled by functions/club/[[catchall]].js
 # Creator dashboard placeholder routes (Phase 3 — all shell)
