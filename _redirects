@@ -44,7 +44,6 @@
 # Only add explicit redirects when needed for rewrite or dynamic params.
 /app                              /app/index.html                  200
 /app/                             /app/index.html                  200
-/club                              /club.html                       200
 /club/join                         /club/join.html                  200
 /club/levels                       /club/levels.html                200
 /club/faq                          /club/faq.html                   200
