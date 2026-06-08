@@ -54,6 +54,7 @@
 /account/wallet                    /account/wallet.html             200
 /account/referrals                 /account/referrals.html          200
 /rewards                           /rewards.html                    200
+/talkshows                         /talkshows.html                  200
 # Dynamic creator routes handled by functions/club/[[catchall]].js
 # Creator dashboard placeholder routes (Phase 3 — all shell)
 /creator/dashboard                 /creator/dashboard.html              200
