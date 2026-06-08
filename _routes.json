@@ -10,6 +10,8 @@
     "/og.png",
     "/robots.txt",
     "/club",
-    "/club/*"
+    "/club/*",
+    "/account",
+    "/account/*"
   ]
 }
