@@ -2,6 +2,12 @@ export const onRequest = async ({ request, env, params }) => {
   const url = new URL(request.url);
   let path = url.pathname.replace(/^\/club\//, "").replace(/\/$/, "");
 
+  // Let static routes pass through (creators, join, levels, faq, legal)
+  const staticRoutes = ['creators', 'join', 'levels', 'faq', 'legal'];
+  if (staticRoutes.includes(path)) {
+    return new Response(null, { status: 404 });
+  }
+
   if (!path) {
     return new Response(null, { status: 302, headers: { location: "/club" } });
   }

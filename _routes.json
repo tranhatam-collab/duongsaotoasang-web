@@ -8,6 +8,8 @@
     "/app.css",
     "/tokens.css",
     "/og.png",
-    "/robots.txt"
+    "/robots.txt",
+    "/club",
+    "/club/*"
   ]
 }
