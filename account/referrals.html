@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b111d">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Trung tâm Referral | DSTS Club</title>
+  <link rel="canonical" href="https://duongsaotoasang.com/account/referrals">
+  <link rel="stylesheet" href="/app.css">
+  <style>
+    .hero{padding:58px 0 28px;border-bottom:1px solid var(--line)}
+    .hero h1{margin:0 0 14px;font-size:36px;color:#f5e7c7}
+    .lead{color:var(--muted);font-size:16px}
+    .section{padding:38px 0}
+    .pill{border:1px solid rgba(216,188,119,.24);border-radius:999px;padding:8px 12px;color:#f6d894;background:rgba(216,188,119,.08);font-size:13px;display:inline-block}
+    .card{border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:16px;background:rgba(255,255,255,.02)}
+    .card h3{margin:0 0 12px;color:#f5e7c7;font-size:18px}
+    .card p{color:var(--muted);margin:0;font-size:14px;line-height:1.7}
+    .link-box{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid rgba(216,188,119,.2);border-radius:10px;background:rgba(216,188,119,.04);margin-top:12px}
+    .link-box input{flex:1;background:transparent;border:none;color:#e0c896;font-size:14px;outline:none}
+    .link-box button{padding:8px 16px;border:1px solid rgba(216,188,119,.3);border-radius:8px;background:rgba(216,188,119,.1);color:#f5e7c7;font-size:13px;cursor:pointer;font-weight:600}
+    .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+    .stat{padding:16px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);text-align:center}
+    .stat-value{font-size:28px;color:#e0c896;font-weight:700;margin-bottom:4px}
+    .stat-label{color:var(--muted);font-size:12px}
+    .state-tag{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:600;margin-right:6px}
+    .state-pending{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);color:#fbbf24}
+    .state-earned{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#4ade80}
+    .state-clawed{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#f87171}
+    .notice{border:1px solid rgba(239,68,68,.22);border-radius:16px;background:rgba(239,68,68,.07);padding:14px 16px;color:#fecaca!important;font-size:14px;max-width:600px;margin:20px auto 0;text-align:left}
+    @media (max-width:760px){.hero h1{font-size:28px}.stats-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div id="siteHeader"></div>
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>Trung tâm Referral</h1>
+        <p class="lead">Giới thiệu bạn bè, tích điểm và nhận thưởng.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="pill">🔒 Đăng nhập sẽ mở ở Phase 2</div>
+        <p style="color:var(--muted);margin-top:16px">Trung tâm Referral sẽ khả dụng khi hệ thống đăng nhập và referral tracking được triển khai. Quay lại sau!</p>
+
+        <div class="card">
+          <h3>Referral Link của bạn</h3>
+          <p style="color:var(--muted)">Chia sẻ link này để giới thiệu bạn bè tham gia DSTS Club.</p>
+          <div class="link-box">
+            <input type="text" value="https://duongsaotoasang.com/club/join?ref=..." readonly>
+            <button onclick="navigator.clipboard.writeText('https://duongsaotoasang.com/club/join?ref=...')">Sao chép</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Thống kê Referral</h3>
+          <div class="stats-grid">
+            <div class="stat">
+              <div class="stat-value">0</div>
+              <div class="stat-label">Tổng referrals</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">0</div>
+              <div class="stat-label">Đã active</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">0</div>
+              <div class="stat-label">Đã trả thưởng</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Trạng thái Referral</h3>
+          <p style="color:var(--muted);margin-bottom:12px">Theo dõi trạng thái từng referral:</p>
+          <div style="margin-bottom:8px">
+            <span class="state-tag state-pending">Pending</span>
+            <span style="color:var(--muted);font-size:14px">Đang chờ người được giới thiệu đăng ký</span>
+          </div>
+          <div style="margin-bottom:8px">
+            <span class="state-tag state-earned">Earned</span>
+            <span style="color:var(--muted);font-size:14px">Đã trả thưởng</span>
+          </div>
+          <div>
+            <span class="state-tag state-clawed">Clawed Back</span>
+            <span style="color:var(--muted);font-size:14px">Đã hoàn trả (hoàn tiền/refund)</span>
+          </div>
+        </div>
+
+        <div class="notice">
+          <strong>⚠️ Lưu ý:</strong> Referral points chỉ được trả khi người được giới thiệu đăng ký membership thành công và thanh toán qua kênh chính thức. Points có thể bị hoàn trả (clawed back) nếu người được giới thiệu hủy hoặc hoàn tiền.
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap site-footer-inner">
+      <p>© 2026 Đường Sao Tỏa Sáng · DSTS</p>
+      <p><a href="/club">Club</a></p>
+      <div data-dsts-claim="C-002" style="margin-top:14px;font-size:12px;color:#9ca7b8;line-height:1.7;border-top:1px solid rgba(216,188,119,.1);padding-top:12px">
+        <div><strong>Đại diện tại Việt Nam / Vietnam Representative:</strong> CÔNG TY CỔ PHẦN GIẢI TRÍ NGÔI SAO VIỆT CAN</div>
+        <div style="opacity:0.75">MST: 0315462505 — Lầu 23, 76A Lê Lai, P.Bến Thành, Q.1, TP. Hồ Chí Minh</div>
+        <div style="margin-top:4px"><strong>Thanh toán / Payment:</strong> VietQR ACB qua <a href="https://pay.iai.one">pay.iai.one</a> (PayOS — NHNN-licensed)</div>
+        <div style="margin-top:4px"><strong>Liên hệ / Contact:</strong> <a href="mailto:contact@mail.iai.one">mail.iai.one</a></div>
+        <div style="margin-top:4px;opacity:0.7">Chịu trách nhiệm hoàn toàn / Fully responsible: <strong>Viet Can New Corp</strong> (Hoa Kỳ / USA). Đơn vị nhận quỹ / Fund recipient: <strong>Angel Edu Tam Foundation Inc.</strong> (South Dakota, Hoa Kỳ / USA).</div>
+      </div>
+    </div>
+  </footer>
+  <script src="/assets/app-v5.js"></script>
+  <script>document.addEventListener("DOMContentLoaded",function(){DSTS.mountSiteChrome({active:"club"})});</script>
+</body>
+</html>
