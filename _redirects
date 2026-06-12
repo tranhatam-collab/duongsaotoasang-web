@@ -27,6 +27,23 @@
 /dream-nurture.html               /dream-nurture                        301
 /ndnum                            /dream-nurture                        301
 
+# Evergreen Assets legacy redirects (Three Pillars)
+/stories                          /story-library                   301
+/global-vietnamese-stories        /story-library                   301
+/story-library.html               /story-library                   301
+/mentors                          /mentor-network                  301
+/mentor-network.html              /mentor-network                  301
+/nuoi-duong-nhung-uoc-mo          /dream-nurture                   301
+/dreams                           /dream-nurture                   301
+
+# Ecosystem Layer redirects
+/verified.html                    /verified                         301
+/legacy.html                      /legacy                           301
+/creator-dashboard.html           /creator-dashboard                301
+/sponsors.html                    /sponsors                         301
+/trust-layer.html                 /trust-layer                      301
+/global-map.html                  /global-map                       301
+
 # Legacy script detail URLs
 /scripts/rising-entrepreneur.html /scripts/rising-entrepreneur          301
 /scripts/global-artist.html       /scripts/global-artist                301

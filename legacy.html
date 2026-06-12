@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b111d">
+  <meta name="robots" content="index,follow">
+  <title>Hệ Thống Lưu Giữ Di Sản Số | Digital Legacy System | Đường Sao Tỏa Sáng</title>
+  <meta name="description" content="Digital Legacy System của DSTS: lưu giữ câu chuyện người Việt bằng video, audio, tài liệu, ảnh, timeline, cây gia phả và kho lưu trữ bền vững — sống hàng chục năm.">
+  <link rel="canonical" href="https://duongsaotoasang.com/legacy">
+  <link rel="alternate" hreflang="vi" href="https://duongsaotoasang.com/legacy">
+  <link rel="alternate" hreflang="en" href="https://duongsaotoasang.com/legacy?lang=en">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Đường Sao Tỏa Sáng">
+  <meta property="og:title" content="Digital Legacy System | Hệ Thống Lưu Giữ Di Sản Số">
+  <meta property="og:description" content="Mỗi câu chuyện người Việt được lưu trữ đa phương tiện với timeline, gia phả và kho lưu trữ bền vững — để sống hàng chục năm.">
+  <meta property="og:url" content="https://duongsaotoasang.com/legacy">
+  <meta property="og:image" content="https://duongsaotoasang.com/og.png">
+  <link rel="stylesheet" href="/app.css">
+
+  <style>
+    :root{ --bg:#0b111d; --bg-alt:#0f172a; --panel:rgba(255,255,255,.035); --panel-strong:rgba(255,255,255,.055); --text:#e2e8f0; --muted:#9eb0c8; --line:rgba(224,200,150,.14); --gold:#e0c896; --gold-dark:#c9a66b; --blue:rgba(96,165,250,.18); --green:rgba(74,222,128,.14); --amber:rgba(251,191,36,.16); }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--text);background: radial-gradient(1000px 620px at 8% 0%, rgba(224,200,150,.14), transparent 60%), radial-gradient(880px 520px at 92% 8%, rgba(96,165,250,.14), transparent 58%), radial-gradient(740px 500px at 50% 100%, rgba(74,222,128,.07), transparent 62%), linear-gradient(180deg,#0b111d 0%, #101827 50%, #0b111d 100%); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+    a{color:inherit}
+    .wrap{width:min(1180px,calc(100% - 32px));margin:0 auto}
+    .skip-link{position:absolute;left:16px;top:-44px;z-index:999;background:#fff;color:#111;padding:10px 14px;border-radius:10px;text-decoration:none;transition:top .2s ease}
+    .skip-link:focus{top:16px}
+    #siteHeader .site-topbar{background:rgba(8,12,19,.82);border-bottom:1px solid rgba(224,200,150,.12)}
+    .hero{padding:70px 0 44px;border-bottom:1px solid rgba(224,200,150,.10)}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:stretch}
+    .eyebrow{color:var(--gold);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800}
+    h1{font-size:56px;font-weight:800;line-height:1.08;letter-spacing:-.02em;margin:10px 0 0}
+    .lead{color:var(--muted);font-size:18px;line-height:1.65;margin-top:14px;max-width:640px}
+    .hero-panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px 24px;display:flex;flex-direction:column;gap:16px}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(224,200,150,.10);border:1px solid rgba(224,200,150,.18);color:var(--gold);padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700}
+    .status-list{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+    .status-item{display:flex;align-items:flex-start;gap:10px;font-size:14px;line-height:1.55}
+    .status-item b{min-width:0;color:var(--gold-dark);font-weight:700}
+    .status-item span{color:var(--muted)}
+    .actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:12px;font-size:14px;font-weight:700;text-decoration:none;border:1px solid rgba(224,200,150,.22);background:rgba(224,200,150,.06);color:#f6e6bd;transition:transform .15s ease,box-shadow .2s ease}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(0,0,0,.25)}
+    .btn.primary{background:linear-gradient(135deg,rgba(224,200,150,.22),rgba(224,200,150,.08));border-color:rgba(224,200,150,.35);color:#f6e6bd}
+    .section{padding:56px 0 48px;border-bottom:1px solid rgba(224,200,150,.08)}
+    .section-head{display:grid;grid-template-columns:1.15fr 1fr;gap:24px;align-items:end;margin-bottom:28px}
+    .section-head h2{font-size:32px;font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:6px 0 0}
+    .section-head p{color:var(--muted);font-size:15px;line-height:1.65;margin:0}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .span-4{grid-column:span 4} .span-6{grid-column:span 6} .span-8{grid-column:span 8}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px}
+    .card h3{font-size:18px;font-weight:800;margin:0 0 10px}
+    .card p, .card li{color:var(--muted);font-size:14px;line-height:1.65}
+    .card ul{padding-left:18px;margin:8px 0 0}
+    .card li{margin:6px 0}
+    .card .meta{margin-top:14px;font-size:12px;color:var(--gold);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+    .card.soft{background:rgba(255,255,255,.02);border-color:rgba(255,255,255,.06)}
+    .pillar-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .pillar-nav a{display:block;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--panel);text-decoration:none;transition:transform .15s ease,border-color .2s ease}
+    .pillar-nav a:hover{border-color:rgba(224,200,150,.35);transform:translateY(-1px)}
+    .pillar-nav b{display:block;font-size:16px;font-weight:800;margin-bottom:6px}
+    .pillar-nav span{display:block;color:var(--muted);line-height:1.7;font-size:14px}
+    .pillar-nav a.current{border-color:rgba(224,200,150,.4);background:linear-gradient(145deg,rgba(224,200,150,.1),rgba(255,255,255,.03))}
+    .story-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+    .story-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:transform .15s ease}
+    .story-card:hover{transform:translateY(-2px)}
+    .story-card .media{aspect-ratio:16/9;background:linear-gradient(135deg,#0f172a,#1a2236);display:flex;align-items:center;justify-content:center;position:relative}
+    .story-card .media .type-label{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;color:var(--gold);border:1px solid rgba(224,200,150,.2)}
+    .story-card .content{padding:16px}
+    .story-card h4{font-size:16px;font-weight:800;margin:0 0 6px}
+    .story-card .subject{color:var(--muted);font-size:13px;margin-bottom:8px}
+    .story-card .meta-row{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+    .story-card .meta-row span{background:rgba(255,255,255,.04);padding:3px 8px;border-radius:6px}
+    footer{padding:42px 0;text-align:center;color:var(--muted)}
+    footer a{color:#f6e6bd;text-decoration:none} footer a:hover{text-decoration:underline}
+    @media (max-width:980px){.hero-grid,.section-head{grid-template-columns:1fr} h1{font-size:42px} .span-4,.span-6,.span-8{grid-column:span 12} .pillar-nav{grid-template-columns:1fr}}
+    @media (max-width:640px){.hero{padding:42px 0 28px} h1{font-size:31px} h2{font-size:25px} .lead{font-size:16px} .actions{flex-direction:column} .btn{width:100%}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Bỏ qua nội dung điều hướng</a>
+  <div id="siteHeader"></div>
+
+  <main id="mainContent">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">TẦNG 2 · STORY PRESERVATION ENGINE</div>
+          <h1>Hệ Thống Lưu Giữ Di Sản Số</h1>
+          <p class="lead">
+            Câu chuyện không chỉ là nội dung — mà là di sản. Hệ thống này lưu giữ mỗi câu chuyện người Việt bằng video, audio, tài liệu, ảnh, timeline, cây gia phả và kho lưu trữ bền vững — để sống hàng chục năm, thậm chí hàng thế kỷ.
+          </p>
+          <div class="actions" aria-label="Lối đi an toàn">
+            <a class="btn primary" href="#legacy-stories">Khám phá kho lưu trữ</a>
+            <a class="btn" href="/story-library">Story Library</a>
+            <a class="btn" href="/contact">Đóng góp câu chuyện</a>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="Loại hình lưu trữ">
+          <span class="badge">Đa phương tiện &middot; Có timeline &middot; Bền vững</span>
+          <div class="status-list">
+            <div class="status-item"><b>Video &amp; Audio</b><span>Phỏng vấn, kể chuyện, ghi âm tiếng nói thế hệ trước.</span></div>
+            <div class="status-item"><b>Tài liệu &amp; Ảnh</b><span>Hồ sơ, giấy tờ, ảnh gia đình, kỷ vật số hóa.</span></div>
+            <div class="status-item"><b>Timeline &amp; Gia phả</b><span>Dòng thời gian cuộc đời và cây gia phả tương tác.</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">CẤU TRÚC LƯU TRỮ</div>
+            <h2>Mỗi hồ sơ di sản là một hệ sinh thái thông tin.</h2>
+          </div>
+          <p>Không chỉ là một bài viết. Mỗi hồ sơ bao gồm nhiều thành phần đa phương tiện, có cấu trúc chuẩn và có khả năng tương tác.</p>
+        </div>
+        <div class="grid">
+          <article class="card span-4">
+            <h3>Phương tiện đa dạng</h3>
+            <ul>
+              <li>Video phỏng vấn chất lượng cao</li>
+              <li>Audio podcast / kể chuyện</li>
+              <li>Ảnh và tài liệu scan</li>
+              <li>Transcript tự động và thủ công</li>
+            </ul>
+            <div class="meta">Media</div>
+          </article>
+          <article class="card span-4">
+            <h3>Cấu trúc thời gian</h3>
+            <ul>
+              <li>Timeline cuộc đời tương tác</li>
+              <li>Mốc sự kiện quan trọng</li>
+              <li>Giai đoạn phát triển rõ ràng</li>
+              <li>Liên kết với bối cảnh lịch sử</li>
+            </ul>
+            <div class="meta">Timeline</div>
+          </article>
+          <article class="card span-4">
+            <h3>Gia phả &amp; Kết nối</h3>
+            <ul>
+              <li>Cây gia phả tương tác</li>
+              <li>Liên kết mentor-mentee</li>
+              <li>Kết nối cộng đồng địa phương</li>
+              <li>Mạng lưới người Việt toàn cầu</li>
+            </ul>
+            <div class="meta">Family Tree</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="legacy-stories">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">KHO LƯU TRỮ</div>
+            <h2>Những hồ sơ di sản đã được lưu giữ.</h2>
+          </div>
+          <p>Mỗi hồ sơ đều có trạng thái lưu trữ, mức độ bảo tồn và liên kết với hệ thống xác thực.</p>
+        </div>
+        <div id="legacy-stories-container" class="story-grid">
+          <p style="color:var(--muted);text-align:center;grid-column:1/-1;padding:40px 0">Đang tải kho lưu trữ...</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">HỆ SINH THÁI DSTS</div>
+            <h2>Di sản là nền tảng. Các tầng khác xây trên đó.</h2>
+          </div>
+          <p>Khám phá các tầng năng lực cốt lõi khác.</p>
+        </div>
+        <nav class="pillar-nav" aria-label="Tầng năng lực DSTS">
+          <a href="/verified"><b>Hệ Thống Xác Thực</b><span>Minh bạch, có chuẩn, có lịch sử.</span></a>
+          <a href="/mentor-network"><b>Mạng Lưới Mentor</b><span>Người đi trước giúp người đi sau.</span></a>
+          <a href="/creator-dashboard"><b>Creator Economy</b><span>Bảng điều khiển kinh tế sáng tạo.</span></a>
+          <a href="/sponsors"><b>Sponsor Ecosystem</b><span>Hệ thống tài trợ có báo cáo tác động.</span></a>
+          <a href="/trust-layer"><b>Trust Layer</b><span>Xác minh từ Trust.iai.one.</span></a>
+          <a href="/global-map"><b>Bản Đồ Người Việt</b><span>Người Việt thành công toàn cầu.</span></a>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>Đường Sao Tỏa Sáng &middot; DSTS</strong></p>
+      <p><a href="/">Trang chủ</a> &middot; <a href="/club">DSTS Club</a> &middot; <a href="/mentor-network">Mentor</a> &middot; <a href="/dream-nurture">Nuôi Dưỡng Ước Mơ</a> &middot; <a href="/contact">Liên hệ</a></p>
+    </div>
+  </footer>
+
+  <script src="/assets/app-v5.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      DSTS.mountSiteChrome({ active: 'legacy' });
+      loadLegacyStories();
+    });
+
+    async function loadLegacyStories() {
+      const container = document.getElementById('legacy-stories-container');
+      try {
+        const res = await fetch('/api/legacy-stories?archive_status=active&limit=50');
+        const data = await res.json();
+        if (!data.ok || !data.stories || data.stories.length === 0) {
+          container.innerHTML = '<p style="color:var(--muted);text-align:center;grid-column:1/-1;padding:40px 0">Kho lưu trữ đang trong giai đoạn khởi động. Các hồ sơ di sản sẽ được cập nhật khi hệ thống vận hành.</p>';
+          return;
+        }
+        container.innerHTML = data.stories.map(s => renderStoryCard(s)).join('');
+      } catch (e) {
+        container.innerHTML = '<p style="color:var(--muted);text-align:center;grid-column:1/-1;padding:40px 0">Không thể tải kho lưu trữ. Vui lòng thử lại sau.</p>';
+      }
+    }
+
+    function renderStoryCard(s) {
+      return `
+        <article class="story-card">
+          <div class="media">
+            ${s.video_url ? '<div class="type-label">VIDEO</div>' : '<div class="type-label">' + (s.story_type || 'STORY').toUpperCase() + '</div>'}
+            <div style="font-size:40px;opacity:.3">&#127891;</div>
+          </div>
+          <div class="content">
+            <h4>${s.title}</h4>
+            <div class="subject">${s.subject_name}${s.subject_origin ? ' · ' + s.subject_origin : ''}</div>
+            <p style="font-size:13px;color:var(--muted);margin:0 0 10px;line-height:1.55">${s.summary || 'Hồ sơ đang được biên tập.'}</p>
+            <div class="meta-row">
+              <span>${s.story_type}</span>
+              <span>${s.preservation_level || 'standard'}</span>
+              <span>${s.archive_status}</span>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+  </script>
+</body>
+</html>

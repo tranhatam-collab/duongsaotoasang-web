@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b111d">
+  <meta name="robots" content="index,follow">
+  <title>Bảng Điều Khiển Kinh Tế Sáng Tạo | Creator Economy Dashboard | Đường Sao Tỏa Sáng</title>
+  <meta name="description" content="Creator Economy Dashboard của DSTS: doanh thu, người theo dõi, retention, conversion, referrals, talk show performance — tất cả trong một giao diện minh bạch.">
+  <link rel="canonical" href="https://duongsaotoasang.com/creator-dashboard">
+  <link rel="alternate" hreflang="vi" href="https://duongsaotoasang.com/creator-dashboard">
+  <link rel="alternate" hreflang="en" href="https://duongsaotoasang.com/creator-dashboard?lang=en">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Đường Sao Tỏa Sáng">
+  <meta property="og:title" content="Creator Economy Dashboard | Bảng Điều Khiển Kinh Tế Sáng Tạo">
+  <meta property="og:description" content="Người nổi tiếng cần thấy doanh thu, người theo dõi, retention, conversion, referrals và talk show performance — minh bạch, có chuẩn.">
+  <meta property="og:url" content="https://duongsaotoasang.com/creator-dashboard">
+  <meta property="og:image" content="https://duongsaotoasang.com/og.png">
+  <link rel="stylesheet" href="/app.css">
+
+  <style>
+    :root{ --bg:#0b111d; --bg-alt:#0f172a; --panel:rgba(255,255,255,.035); --panel-strong:rgba(255,255,255,.055); --text:#e2e8f0; --muted:#9eb0c8; --line:rgba(224,200,150,.14); --gold:#e0c896; --gold-dark:#c9a66b; --blue:rgba(96,165,250,.18); --green:rgba(74,222,128,.14); --amber:rgba(251,191,36,.16); }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--text);background: radial-gradient(1000px 620px at 8% 0%, rgba(224,200,150,.14), transparent 60%), radial-gradient(880px 520px at 92% 8%, rgba(96,165,250,.14), transparent 58%), radial-gradient(740px 500px at 50% 100%, rgba(74,222,128,.07), transparent 62%), linear-gradient(180deg,#0b111d 0%, #101827 50%, #0b111d 100%); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+    a{color:inherit}
+    .wrap{width:min(1180px,calc(100% - 32px));margin:0 auto}
+    .skip-link{position:absolute;left:16px;top:-44px;z-index:999;background:#fff;color:#111;padding:10px 14px;border-radius:10px;text-decoration:none;transition:top .2s ease}
+    .skip-link:focus{top:16px}
+    #siteHeader .site-topbar{background:rgba(8,12,19,.82);border-bottom:1px solid rgba(224,200,150,.12)}
+    .hero{padding:70px 0 44px;border-bottom:1px solid rgba(224,200,150,.10)}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:stretch}
+    .eyebrow{color:var(--gold);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800}
+    h1{font-size:56px;font-weight:800;line-height:1.08;letter-spacing:-.02em;margin:10px 0 0}
+    .lead{color:var(--muted);font-size:18px;line-height:1.65;margin-top:14px;max-width:640px}
+    .hero-panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px 24px;display:flex;flex-direction:column;gap:16px}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(224,200,150,.10);border:1px solid rgba(224,200,150,.18);color:var(--gold);padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700}
+    .status-list{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+    .status-item{display:flex;align-items:flex-start;gap:10px;font-size:14px;line-height:1.55}
+    .status-item b{min-width:0;color:var(--gold-dark);font-weight:700}
+    .status-item span{color:var(--muted)}
+    .actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:12px;font-size:14px;font-weight:700;text-decoration:none;border:1px solid rgba(224,200,150,.22);background:rgba(224,200,150,.06);color:#f6e6bd;transition:transform .15s ease,box-shadow .2s ease}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(0,0,0,.25)}
+    .btn.primary{background:linear-gradient(135deg,rgba(224,200,150,.22),rgba(224,200,150,.08));border-color:rgba(224,200,150,.35);color:#f6e6bd}
+    .section{padding:56px 0 48px;border-bottom:1px solid rgba(224,200,150,.08)}
+    .section-head{display:grid;grid-template-columns:1.15fr 1fr;gap:24px;align-items:end;margin-bottom:28px}
+    .section-head h2{font-size:32px;font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:6px 0 0}
+    .section-head p{color:var(--muted);font-size:15px;line-height:1.65;margin:0}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .span-4{grid-column:span 4} .span-6{grid-column:span 6} .span-8{grid-column:span 8}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px}
+    .card h3{font-size:18px;font-weight:800;margin:0 0 10px}
+    .card p, .card li{color:var(--muted);font-size:14px;line-height:1.65}
+    .card ul{padding-left:18px;margin:8px 0 0}
+    .card li{margin:6px 0}
+    .card .meta{margin-top:14px;font-size:12px;color:var(--gold);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+    .card.soft{background:rgba(255,255,255,.02);border-color:rgba(255,255,255,.06)}
+    .pillar-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .pillar-nav a{display:block;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--panel);text-decoration:none;transition:transform .15s ease,border-color .2s ease}
+    .pillar-nav a:hover{border-color:rgba(224,200,150,.35);transform:translateY(-1px)}
+    .pillar-nav b{display:block;font-size:16px;font-weight:800;margin-bottom:6px}
+    .pillar-nav span{display:block;color:var(--muted);line-height:1.7;font-size:14px}
+    .pillar-nav a.current{border-color:rgba(224,200,150,.4);background:linear-gradient(145deg,rgba(224,200,150,.1),rgba(255,255,255,.03))}
+    .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:18px}
+    .kpi-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;text-align:center}
+    .kpi-card .value{font-size:28px;font-weight:800;color:var(--gold);margin-bottom:4px}
+    .kpi-card .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+    .kpi-card .change{font-size:12px;margin-top:6px}
+    .kpi-card .change.up{color:#86efac} .kpi-card .change.down{color:#fca5a5}
+    .leaderboard-table{width:100%;border-collapse:collapse;margin-top:18px;font-size:14px}
+    .leaderboard-table th{text-align:left;padding:10px 14px;color:var(--gold);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--line)}
+    .leaderboard-table td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--muted)}
+    .leaderboard-table td:first-child{color:var(--text);font-weight:700}
+    footer{padding:42px 0;text-align:center;color:var(--muted}}
+    footer a{color:#f6e6bd;text-decoration:none} footer a:hover{text-decoration:underline}
+    @media (max-width:980px){.hero-grid,.section-head{grid-template-columns:1fr} h1{font-size:42px} .span-4,.span-6,.span-8{grid-column:span 12} .pillar-nav{grid-template-columns:1fr}}
+    @media (max-width:640px){.hero{padding:42px 0 28px} h1{font-size:31px} h2{font-size:25px} .lead{font-size:16px} .actions{flex-direction:column} .btn{width:100%}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Bỏ qua nội dung điều hướng</a>
+  <div id="siteHeader"></div>
+
+  <main id="mainContent">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">TẦNG 3 · CREATOR ECONOMY DASHBOARD</div>
+          <h1>Bảng Điều Khiển Kinh Tế Sáng Tạo</h1>
+          <p class="lead">
+            Người nổi tiếng trong hệ sinh thái DSTS cần thấy rõ: doanh thu, người theo dõi, retention, conversion, referrals và talk show performance — tất cả trong một giao diện minh bạch, có chuẩn và có thể kiểm chứng.
+          </p>
+          <div class="actions" aria-label="Lối đi an toàn">
+            <a class="btn primary" href="#dashboard">Xem bảng điều khiển</a>
+            <a class="btn" href="/club">DSTS Club</a>
+            <a class="btn" href="/contact">Đăng ký Creator</a>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="Chỉ số chính">
+          <span class="badge">Minh bạch &middot; Real-time &middot; Có chuẩn</span>
+          <div class="status-list">
+            <div class="status-item"><b>Revenue</b><span>Doanh thu từ subscription, donation, ticket, merchandise, sponsorship.</span></div>
+            <div class="status-item"><b>Audience</b><span>Người theo dõi, tăng trưởng, retention rate và engagement.</span></div>
+            <div class="status-item"><b>Performance</b><span>Talk show metrics, conversion funnel, referral tracking.</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="dashboard">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">TỔNG QUAN</div>
+            <h2>Chỉ số tổng hợp của hệ sinh thái creator DSTS.</h2>
+          </div>
+          <p>Dashboard này hiển thị dữ liệu tổng hợp. Creator cá nhân sẽ có bảng riêng sau khi đăng nhập.</p>
+        </div>
+        <div class="kpi-grid" id="kpi-container">
+          <div class="kpi-card"><div class="value">—</div><div class="label">Tổng doanh thu</div></div>
+          <div class="kpi-card"><div class="value">—</div><div class="label">Creator đã xác thực</div></div>
+          <div class="kpi-card"><div class="value">—</div><div class="label">Lượt xem nội dung</div></div>
+          <div class="kpi-card"><div class="value">—</div><div class="label">Retention trung bình</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">BẢNG XẾP HẠNG</div>
+            <h2>Top creator theo hiệu suất.</h2>
+          </div>
+          <p>Được sắp xếp theo doanh thu trong kỳ gần nhất.</p>
+        </div>
+        <div id="leaderboard-container">
+          <p style="color:var(--muted);text-align:center;padding:40px 0">Đang tải bảng xếp hạng...</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">HỆ SINH THÁI DSTS</div>
+            <h2>Kinh tế sáng tạo là một phần của hệ sinh thái lớn hơn.</h2>
+          </div>
+          <p>Khám phá các tầng năng lực cốt lõi khác.</p>
+        </div>
+        <nav class="pillar-nav" aria-label="Tầng năng lực DSTS">
+          <a href="/verified"><b>Hệ Thống Xác Thực</b><span>Minh bạch, có chuẩn, có lịch sử.</span></a>
+          <a href="/legacy"><b>Digital Legacy System</b><span>Lưu giữ câu chuyện thành di sản số.</span></a>
+          <a href="/sponsors"><b>Sponsor Ecosystem</b><span>Hệ thống tài trợ có báo cáo tác động.</span></a>
+          <a href="/trust-layer"><b>Trust Layer</b><span>Xác minh từ Trust.iai.one.</span></a>
+          <a href="/global-map"><b>Bản Đồ Người Việt</b><span>Người Việt thành công toàn cầu.</span></a>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>Đường Sao Tỏa Sáng &middot; DSTS</strong></p>
+      <p><a href="/">Trang chủ</a> &middot; <a href="/club">DSTS Club</a> &middot; <a href="/mentor-network">Mentor</a> &middot; <a href="/dream-nurture">Nuôi Dưỡng Ước Mơ</a> &middot; <a href="/contact">Liên hệ</a></p>
+    </div>
+  </footer>
+
+  <script src="/assets/app-v5.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      DSTS.mountSiteChrome({ active: 'creator-dashboard' });
+      loadLeaderboard();
+    });
+
+    async function loadLeaderboard() {
+      const container = document.getElementById('leaderboard-container');
+      try {
+        const res = await fetch('/api/creator-metrics?leaderboard=true&metric=revenue_vnd&limit=20');
+        const data = await res.json();
+        if (!data.ok || !data.leaderboard || data.leaderboard.length === 0) {
+          container.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0">Chưa có dữ liệu creator metrics. Hệ thống đang trong giai đoạn khởi động.</p>';
+          return;
+        }
+        container.innerHTML = `
+          <table class="leaderboard-table">
+            <thead><tr><th>#</th><th>Creator</th><th>Doanh thu (VND)</th><th>Followers</th><th>Views</th><th>Retention</th></tr></thead>
+            <tbody>
+              ${data.leaderboard.map((c, i) => `
+                <tr>
+                  <td>${i + 1}</td>
+                  <td>${c.display_name || '—'}</td>
+                  <td>${c.revenue_vnd ? c.revenue_vnd.toLocaleString('vi-VN') : '0'}</td>
+                  <td>${c.follower_count ? c.follower_count.toLocaleString('vi-VN') : '0'}</td>
+                  <td>${c.content_views ? c.content_views.toLocaleString('vi-VN') : '0'}</td>
+                  <td>${c.retention_rate ? (c.retention_rate * 100).toFixed(1) + '%' : '—'}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+      } catch (e) {
+        container.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px 0">Không thể tải bảng xếp hạng. Vui lòng thử lại sau.</p>';
+      }
+    }
+  </script>
+</body>
+</html>

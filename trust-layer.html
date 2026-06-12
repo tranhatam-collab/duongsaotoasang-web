@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b111d">
+  <meta name="robots" content="index,follow">
+  <title>Tầng Tin Cậy | Trust Layer | Đường Sao Tỏa Sáng</title>
+  <meta name="description" content="Trust Layer của DSTS — tích hợp Trust.iai.one: mentor verification, story verification, creator verification, achievement verification. Minh bạch, có chuẩn, có lịch sử.">
+  <link rel="canonical" href="https://duongsaotoasang.com/trust-layer">
+  <link rel="alternate" hreflang="vi" href="https://duongsaotoasang.com/trust-layer">
+  <link rel="alternate" hreflang="en" href="https://duongsaotoasang.com/trust-layer?lang=en">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Đường Sao Tỏa Sáng">
+  <meta property="og:title" content="Trust Layer | Tầng Tin Cậy">
+  <meta property="og:description" content="Tích hợp Trust.iai.one cho mentor, story, creator và achievement verification. Minh bạch, có chuẩn, có thể kiểm chứng.">
+  <meta property="og:url" content="https://duongsaotoasang.com/trust-layer">
+  <meta property="og:image" content="https://duongsaotoasang.com/og.png">
+  <link rel="stylesheet" href="/app.css">
+
+  <style>
+    :root{ --bg:#0b111d; --bg-alt:#0f172a; --panel:rgba(255,255,255,.035); --panel-strong:rgba(255,255,255,.055); --text:#e2e8f0; --muted:#9eb0c8; --line:rgba(224,200,150,.14); --gold:#e0c896; --gold-dark:#c9a66b; --blue:rgba(96,165,250,.18); --green:rgba(74,222,128,.14); --amber:rgba(251,191,36,.16); }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;color:var(--text);background: radial-gradient(1000px 620px at 8% 0%, rgba(224,200,150,.14), transparent 60%), radial-gradient(880px 520px at 92% 8%, rgba(96,165,250,.14), transparent 58%), radial-gradient(740px 500px at 50% 100%, rgba(74,222,128,.07), transparent 62%), linear-gradient(180deg,#0b111d 0%, #101827 50%, #0b111d 100%); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+    a{color:inherit}
+    .wrap{width:min(1180px,calc(100% - 32px));margin:0 auto}
+    .skip-link{position:absolute;left:16px;top:-44px;z-index:999;background:#fff;color:#111;padding:10px 14px;border-radius:10px;text-decoration:none;transition:top .2s ease}
+    .skip-link:focus{top:16px}
+    #siteHeader .site-topbar{background:rgba(8,12,19,.82);border-bottom:1px solid rgba(224,200,150,.12)}
+    .hero{padding:70px 0 44px;border-bottom:1px solid rgba(224,200,150,.10)}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:stretch}
+    .eyebrow{color:var(--gold);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800}
+    h1{font-size:56px;font-weight:800;line-height:1.08;letter-spacing:-.02em;margin:10px 0 0}
+    .lead{color:var(--muted);font-size:18px;line-height:1.65;margin-top:14px;max-width:640px}
+    .hero-panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px 24px;display:flex;flex-direction:column;gap:16px}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(224,200,150,.10);border:1px solid rgba(224,200,150,.18);color:var(--gold);padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700}
+    .status-list{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+    .status-item{display:flex;align-items:flex-start;gap:10px;font-size:14px;line-height:1.55}
+    .status-item b{min-width:0;color:var(--gold-dark);font-weight:700}
+    .status-item span{color:var(--muted)}
+    .actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:12px;font-size:14px;font-weight:700;text-decoration:none;border:1px solid rgba(224,200,150,.22);background:rgba(224,200,150,.06);color:#f6e6bd;transition:transform .15s ease,box-shadow .2s ease}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(0,0,0,.25)}
+    .btn.primary{background:linear-gradient(135deg,rgba(224,200,150,.22),rgba(224,200,150,.08));border-color:rgba(224,200,150,.35);color:#f6e6bd}
+    .section{padding:56px 0 48px;border-bottom:1px solid rgba(224,200,150,.08)}
+    .section-head{display:grid;grid-template-columns:1.15fr 1fr;gap:24px;align-items:end;margin-bottom:28px}
+    .section-head h2{font-size:32px;font-weight:800;line-height:1.15;letter-spacing:-.01em;margin:6px 0 0}
+    .section-head p{color:var(--muted);font-size:15px;line-height:1.65;margin:0}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .span-4{grid-column:span 4} .span-6{grid-column:span 6} .span-8{grid-column:span 8}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px}
+    .card h3{font-size:18px;font-weight:800;margin:0 0 10px}
+    .card p, .card li{color:var(--muted);font-size:14px;line-height:1.65}
+    .card ul{padding-left:18px;margin:8px 0 0}
+    .card li{margin:6px 0}
+    .card .meta{margin-top:14px;font-size:12px;color:var(--gold);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+    .card.soft{background:rgba(255,255,255,.02);border-color:rgba(255,255,255,.06)}
+    .pillar-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .pillar-nav a{display:block;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--panel);text-decoration:none;transition:transform .15s ease,border-color .2s ease}
+    .pillar-nav a:hover{border-color:rgba(224,200,150,.35);transform:translateY(-1px)}
+    .pillar-nav b{display:block;font-size:16px;font-weight:800;margin-bottom:6px}
+    .pillar-nav span{display:block;color:var(--muted);line-height:1.7;font-size:14px}
+    .pillar-nav a.current{border-color:rgba(224,200,150,.4);background:linear-gradient(145deg,rgba(224,200,150,.1),rgba(255,255,255,.03))}
+    .trust-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+    .trust-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;transition:transform .15s ease}
+    .trust-card:hover{transform:translateY(-2px)}
+    .trust-card .status-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+    .trust-card .status-row span{font-size:11px;padding:4px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.1);color:var(--muted)}
+    .trust-card .status-row .verified{background:rgba(74,222,128,.12);border-color:rgba(74,222,128,.25);color:#86efac}
+    .trust-card h4{font-size:16px;font-weight:800;margin:0 0 6px}
+    .trust-card .provider{font-size:12px;color:var(--muted);margin-bottom:10px}
+    .trust-card .score{font-size:24px;font-weight:800;color:var(--gold)}
+    .trust-card .score-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+    footer{padding:42px 0;text-align:center;color:var(--muted}}
+    footer a{color:#f6e6bd;text-decoration:none} footer a:hover{text-decoration:underline}
+    @media (max-width:980px){.hero-grid,.section-head{grid-template-columns:1fr} h1{font-size:42px} .span-4,.span-6,.span-8{grid-column:span 12} .pillar-nav{grid-template-columns:1fr}}
+    @media (max-width:640px){.hero{padding:42px 0 28px} h1{font-size:31px} h2{font-size:25px} .lead{font-size:16px} .actions{flex-direction:column} .btn{width:100%}}
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Bỏ qua nội dung điều hướng</a>
+  <div id="siteHeader"></div>
+
+  <main id="mainContent">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">TẦNG 5 · TRUST LAYER</div>
+          <h1>Tầng Tin Cậy</h1>
+          <p class="lead">
+            Đây là thứ làm DSTS khác biệt. Mỗi mentor, mỗi câu chuyện, mỗi creator và mỗi thành tựu đều có thể được xác minh qua Trust.iai.one — tạo thành một lớp tin cậy có thể kiểm chứng trên toàn bộ hệ sinh thái.
+          </p>
+          <div class="actions" aria-label="Lối đi an toàn">
+            <a class="btn primary" href="#trust-list">Xem danh sách xác minh</a>
+            <a class="btn" href="/verified">Verified Identity</a>
+            <a class="btn" href="/contact">Yêu cầu xác minh</a>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="Loại xác minh">
+          <span class="badge">Trust.iai.one &middot; Blockchain-ready &middot; Có lịch sử</span>
+          <div class="status-list">
+            <div class="status-item"><b>Identity</b><span>Xác minh danh tính thật của mentor, creator và contributor.</span></div>
+            <div class="status-item"><b>Professional History</b><span>Kiểm chứng lịch sử nghề nghiệp và thành tựu đã công bố.</span></div>
+            <div class="status-item"><b>Community Endorsement</b><span>Xác thực từ cộng đồng và on-chain attestation.</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">CƠ CHẾ TIN CẬY</div>
+            <h2>Không phải lời hứa — mà là bằng chứng có thể kiểm chứng.</h2>
+          </div>
+          <p>Trust Layer của DSTS tích hợp với Trust.iai.one để cung cấp nhiều lớp xác minh độc lập.</p>
+        </div>
+        <div class="grid">
+          <article class="card span-4">
+            <h3>Mentor Verification</h3>
+            <ul>
+              <li>Xác minh danh tính thật</li>
+              <li>Kiểm chứng bằng cấp và kinh nghiệm</li>
+              <li>Đánh giá từ mentee đã hoàn thành</li>
+              <li>Background check theo tiêu chuẩn</li>
+            </ul>
+            <div class="meta">Mentor</div>
+          </article>
+          <article class="card span-4">
+            <h3>Story Verification</h3>
+            <ul>
+              <li>Xác thực nguồn gốc câu chuyện</li>
+              <li>Kiểm chứng tư liệu và hình ảnh</li>
+              <li>Xác minh qua phỏng vấn trực tiếp</li>
+              <li>On-chain timestamp khi cần</li>
+            </ul>
+            <div class="meta">Story</div>
+          </article>
+          <article class="card span-4">
+            <h3>Achievement Verification</h3>
+            <ul>
+              <li>Kiểm chứng giải thưởng và chứng nhận</li>
+              <li>Xác minh từ tổ chức cấp giải</li>
+              <li>Lưu trữ bằng chứng không thể thay đổi</li>
+              <li>Cộng đồng có thể báo cáo sai lệch</li>
+            </ul>
+            <div class="meta">Achievement</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="trust-list">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">DANH SÁCH XÁC MINH</div>
+            <h2>Thực thể đã qua Trust Layer.</h2>
+          </div>
+          <p>Mỗi xác minh đều có provider, loại kiểm tra và Trust Score công khai.</p>
+        </div>
+        <div id="trust-verifications-container" class="trust-grid">
+          <p style="color:var(--muted);text-align:center;grid-column:1/-1;padding:40px 0">Đang tải danh sách xác minh...</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">HỆ SINH THÁI DSTS</div>
+            <h2>Tin cậy là nền tảng của mọi tầng khác.</h2>
+          </div>
+          <p>Khám phá các tầng năng lực cốt lõi khác.</p>
+        </div>
+        <nav class="pillar-nav" aria-label="Tầng năng lực DSTS">
+          <a href="/verified"><b>Hệ Thống Xác Thực</b><span>Minh bạch, có chuẩn, có lịch sử.</span></a>
+          <a href="/legacy"><b>Digital Legacy System</b><span>Lưu giữ câu chuyện thành di sản số.</span></a>
+          <a href="/creator-dashboard"><b>Creator Economy</b><span>Bảng điều khiển kinh tế sáng tạo.</span></a>
+          <a href="/sponsors"><b>Sponsor Ecosystem</b><span>Hệ thống tài trợ có báo cáo tác động.</span></a>
+          <a href="/global-map"><b>Bản Đồ Người Việt</b><span>Người Việt thành công toàn cầu.</span></a>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>Đường Sao Tỏa Sáng &middot; DSTS</strong></p>
+      <p><a href="/">Trang chủ</a> &middot; <a href="/club">DSTS Club</a> &middot; <a href="/mentor-network">Mentor</a> &middot; <a href="/dream-nurture">Nuôi Dưỡng Ước Mơ</a> &middot; <a href="/contact">Liên hệ</a></p>
+    </div>
+  </footer>
+
+  <script src="/assets/app-v5.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      DSTS.mountSiteChrome({ active: 'trust-layer' });
+      loadTrustVerifications();
+    });
+
+    async function loadTrustVerifications() {
+      const container = document.getElementById('trust-verifications-container');
+      try {
+        const res = await fetch('/api/trust-verifications?status=verified&limit=50');
+        const data = await res.json();
+        if (!data.ok || !data.verifications || data.verifications.length === 0) {
+          container.innerHTML = '<p style="color:var(--muted);text-align:center;grid-column:1/-1;padding:40px 0">Chưa có xác minh nào được công bố công khai. Hệ thống đang trong giai đoạn khởi động.</p>';
+          return;
+        }
+        container.innerHTML = data.verifications.map(v => renderTrustCard(v)).join('');
+      } catch (e) {
+        container.innerHTML = '<p style="color:var(--muted);text-align:center;grid-column:1/-1;padding:40px 0">Không thể tải danh sách. Vui lòng thử lại sau.</p>';
+      }
+    }
+
+    function renderTrustCard(v) {
+      const statusClass = v.status === 'verified' ? 'verified' : '';
+      const statusLabel = v.status === 'verified' ? 'Verified' : v.status;
+      return `
+        <article class="trust-card">
+          <div class="status-row">
+            <span class="${statusClass}">${statusLabel}</span>
+            <span>${v.verification_type}</span>
+          </div>
+          <h4>${v.entity_slug || v.entity_id}</h4>
+          <div class="provider">${v.trust_provider}</div>
+          <div style="display:flex;align-items:flex-end;gap:8px;margin-top:8px">
+            <div class="score">${v.trust_score || 0}</div>
+            <div class="score-label">Trust Score</div>
+          </div>
+          ${v.verified_at ? `<div style="font-size:12px;color:var(--muted);margin-top:8px">Verified: ${new Date(v.verified_at).toLocaleDateString('vi-VN')}</div>` : ''}
+        </article>
+      `;
+    }
+  </script>
+</body>
+</html>

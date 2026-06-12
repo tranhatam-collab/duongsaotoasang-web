@@ -113,6 +113,15 @@
         posts: "Bài viết",
         events: "Sự kiện",
         scripts: "Kịch bản",
+        stories: "Câu chuyện",
+        mentors: "Mentor",
+        ecosystem: "Hệ sinh thái",
+        verified: "Xác thực",
+        legacy: "Di sản số",
+        creatorDashboard: "Creator",
+        sponsors: "Tài trợ",
+        trustLayer: "Trust",
+        globalMap: "Bản đồ",
         donate: "Gây quỹ",
         transparency: "Minh bạch",
         legal: "Pháp lý",
@@ -138,6 +147,15 @@
         posts: "Posts",
         events: "Events",
         scripts: "Scripts",
+        stories: "Stories",
+        mentors: "Mentors",
+        ecosystem: "Ecosystem",
+        verified: "Verified",
+        legacy: "Legacy",
+        creatorDashboard: "Creator",
+        sponsors: "Sponsors",
+        trustLayer: "Trust",
+        globalMap: "Map",
         donate: "Donate",
         transparency: "Transparency",
         legal: "Legal",
@@ -375,6 +393,23 @@
                 <a href="${DSTS.withLang("/program")}" data-key="program">${DSTS.escapeHTML(t.program)}</a>
                 <a href="${DSTS.withLang("/posts")}" data-key="posts">${DSTS.escapeHTML(t.posts)}</a>
                 <a href="${DSTS.withLang("/events")}" data-key="events">${DSTS.escapeHTML(t.events)}</a>
+                <a href="${DSTS.withLang("/story-library")}" data-key="stories">${DSTS.escapeHTML(t.stories)}</a>
+                <a href="${DSTS.withLang("/mentor-network")}" data-key="mentors">${DSTS.escapeHTML(t.mentors)}</a>
+
+                <div class="site-scripts" data-key="ecosystem">
+                  <button class="site-scripts-toggle" type="button" aria-expanded="false" aria-label="${DSTS.escapeHTML(t.scriptMenu)}">
+                    <span>${DSTS.escapeHTML(t.ecosystem)}</span>
+                    <span class="site-scripts-caret">▾</span>
+                  </button>
+                  <div class="site-scripts-panel">
+                    <a href="${DSTS.withLang("/verified")}" data-key="verified">${DSTS.escapeHTML(t.verified)}</a>
+                    <a href="${DSTS.withLang("/legacy")}" data-key="legacy">${DSTS.escapeHTML(t.legacy)}</a>
+                    <a href="${DSTS.withLang("/creator-dashboard")}" data-key="creator-dashboard">${DSTS.escapeHTML(t.creatorDashboard)}</a>
+                    <a href="${DSTS.withLang("/sponsors")}" data-key="sponsors">${DSTS.escapeHTML(t.sponsors)}</a>
+                    <a href="${DSTS.withLang("/trust-layer")}" data-key="trust-layer">${DSTS.escapeHTML(t.trustLayer)}</a>
+                    <a href="${DSTS.withLang("/global-map")}" data-key="global-map">${DSTS.escapeHTML(t.globalMap)}</a>
+                  </div>
+                </div>
 
                 <div class="site-scripts" data-key="scripts">
                   <button class="site-scripts-toggle" type="button" aria-expanded="false" aria-label="${DSTS.escapeHTML(t.scriptMenu)}">
