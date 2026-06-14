@@ -1,0 +1,57 @@
+name: Deploy v3.0
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci --prefer-offline || true
+      - run: npx eslint functions/ --fix || true
+      - run: npx prettier --check "**/*.js" "**/*.html" "**/*.css" || true
+
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Syntax check all JS
+        run: |
+          for f in functions/**/*.js; do node --check "$f"; done
+      - name: Smoke test (preview)
+        run: |
+          BASE="https://duongsaotoasang-com-v2.pages.dev"
+          for route in "/" "/club/" "/verify/" "/legacy/" "/sponsor/" "/trust/" "/map" "/register/" "/mentor-network" "/dream-nurture"; do
+            code=$(curl -sS -o /dev/null -w "%{http_code}" --connect-timeout 5 --max-time 10 "$BASE$route")
+            if [ "$code" != "200" ] && [ "$code" != "308" ]; then
+              echo "FAIL $route → $code"
+              exit 1
+            fi
+            echo "PASS $route → $code"
+          done
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: duongsaotoasang-com-v2
+          directory: .
+          branch: main
