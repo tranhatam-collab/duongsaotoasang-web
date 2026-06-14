@@ -1,0 +1,96 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "lang": "vi",
+    "note": "Tiếng Việt là bản chuẩn nguồn. Mọi text public phải dùng từ trong file này.",
+    "rules": [
+      "Có dấu đầy đủ 100%",
+      "Không viết tắt tùy tiện",
+      "Không dùng slang",
+      "Không pha giọng quảng cáo",
+      "Câu rõ, ngắn, đúng nghĩa",
+      "Viết như một hệ thống nghiêm túc"
+    ]
+  },
+  "brand": {
+    "full_name": "Đường Sao Tỏa Sáng",
+    "short_name": "DSTS",
+    "slogan": "Hành trình tỏa sáng của người Việt toàn cầu",
+    "tagline": "Nền tảng tri thức, chương trình và cộng đồng"
+  },
+  "programs": {
+    "dream_nurture": {
+      "vi": "Nuôi Dưỡng Ước Mơ",
+      "en": "Dream Nurture",
+      "note": "Trong text tiếng Việt, dùng 'Nuôi Dưỡng Ước Mơ'. Trong text tiếng Anh, dùng 'Dream Nurture'. KHÔNG lẫn trong cùng một câu."
+    },
+    "story_library": {
+      "vi": "Thư Viện Câu Chuyện",
+      "en": "Story Library"
+    },
+    "mentor_network": {
+      "vi": "Mạng Lưới Người Hướng Dẫn",
+      "en": "Mentor Network"
+    }
+  },
+  "features": {
+    "verified_identity": {
+      "vi": "Danh Tính Đã Xác Thực",
+      "en": "Verified Identity",
+      "note": "KHÔNG dùng 'Verified Identity' trong text tiếng Việt. Dùng 'Danh Tính Đã Xác Thực'."
+    },
+    "trust_score": {
+      "vi": "Điểm Tin Cậy",
+      "en": "Trust Score"
+    },
+    "star_points": {
+      "vi": "Điểm Sao",
+      "en": "Star Points",
+      "note": "KHÔNG dùng 'Star Points' trong text tiếng Việt trừ khi là tên thương hiệu nội bộ. Dùng 'Điểm Sao'."
+    },
+    "digital_legacy": {
+      "vi": "Kho Lưu Trữ Kỹ Thuật Số",
+      "en": "Digital Legacy",
+      "note": "KHÔNG dùng 'Digital Legacy System' trong text tiếng Việt."
+    }
+  },
+  "ui": {
+    "cta": {
+      "join": "Tham gia",
+      "register": "Đăng ký",
+      "login": "Đăng nhập",
+      "donate": "Ủng hộ",
+      "contact": "Liên hệ",
+      "learn_more": "Tìm hiểu thêm",
+      "apply": "Đăng ký",
+      "submit": "Gửi",
+      "cancel": "Hủy",
+      "save": "Lưu",
+      "next": "Tiếp theo",
+      "back": "Quay lại"
+    },
+    "form": {
+      "email": "Email",
+      "password": "Mật khẩu",
+      "display_name": "Tên hiển thị",
+      "role": "Vai trò",
+      "agree_terms": "Tôi đồng ý với Điều khoản sử dụng và Chính sách bảo mật",
+      "agree_age": "Tôi xác nhận đã đủ 18 tuổi, hoặc có sự đồng ý của người giám hộ"
+    },
+    "status": {
+      "loading": "Đang tải...",
+      "error": "Có lỗi xảy ra. Vui lòng thử lại.",
+      "success": "Thành công",
+      "pending": "Đang chờ",
+      "approved": "Đã duyệt",
+      "rejected": "Từ chối"
+    }
+  },
+  "forbidden": {
+    "words": [
+      "FOMO", "NDNUM", "script journey", "manual verification", "cash-out",
+      "hype", "cực kỳ", "tuyệt vời nhất", "số 1", "hàng đầu"
+    ],
+    "note": "Những từ này KHÔNG ĐƯỢC xuất hiện trên trang public. 'NDNUM' là viết tắt nội bộ, không dùng cho người dùng. 'FOMO' là tiếng lóng, không dùng trong text chính thức."
+  }
+}

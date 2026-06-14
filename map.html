@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Global Vietnamese Map — Bản đồ người Việt toàn cầu | DSTS</title>
-<meta name="description" content="Bản đồ tương tác toàn cầu của người Việt thành công đã xác thực: Creator, Mentor, Doanh nhân, Nhà khoa học, Người cống hiến.">
+<title>Bản Đồ Người Việt Toàn Cầu | DSTS</title>
+<meta name="description" content="Bản đồ tương tác toàn cầu của người Việt thành công đã xác thực: người sáng tạo, người hướng dẫn, doanh nhân, nhà khoa học, người cống hiến.">
 <link rel="canonical" href="https://duongsaotoasang.com/map">
 <link rel="stylesheet" href="/app.css">
 <style>
@@ -19,16 +19,16 @@
 </head>
 <body>
 <main class="container">
-  <h1>Global Vietnamese Map</h1>
-  <p class="lead">Bản đồ tương tác toàn cầu của người Việt thành công đã xác thực. Filter theo loại, quốc gia, Trust Score.</p>
+  <h1>Bản Đồ Người Việt Toàn Cầu</h1>
+  <p class="lead">Bản đồ tương tác toàn cầu của người Việt thành công đã xác thực. Lọc theo loại, quốc gia, điểm tin cậy.</p>
 
   <div id="map-filters">
     <button class="active" data-type="">Tất cả</button>
-    <button data-type="creator">Creator</button>
-    <button data-type="mentor">Mentor</button>
-    <button data-type="doanh-nhan">Doanh nhân</button>
-    <button data-type="nha-khoa-hoc">Nhà khoa học</button>
-    <button data-type="nguoi-cong-hien">Người cống hiến</button>
+    <button data-type="creator">Người Sáng Tạo</button>
+    <button data-type="mentor">Người Hướng Dẫn</button>
+    <button data-type="doanh-nhan">Doanh Nhân</button>
+    <button data-type="nha-khoa-hoc">Nhà Khoa Học</button>
+    <button data-type="nguoi-cong-hien">Người Cống Hiến</button>
   </div>
 
   <div id="map-container">
@@ -39,13 +39,13 @@
   <section id="map-legend">
     <h2>Chú thích</h2>
     <ul>
-      <li>Creator — người sáng tạo đã xác thực</li>
-      <li>Mentor — người hướng dẫn đã xác thực</li>
-      <li>Doanh nhân — doanh nhân Việt đã xác thực</li>
-      <li>Nhà khoa học — nhà khoa học, học giả đã xác thực</li>
-      <li>Người cống hiến — người có đóng góp xã hội đã xác thực</li>
+      <li>Người Sáng Tạo — đã xác thực</li>
+      <li>Người Hướng Dẫn — đã xác thực</li>
+      <li>Doanh Nhân — doanh nhân Việt đã xác thực</li>
+      <li>Nhà Khoa Học — nhà khoa học, học giả đã xác thực</li>
+      <li>Người Cống Hiến — người có đóng góp xã hội đã xác thực</li>
     </ul>
-    <p>Location hiển thị ở city-level. Không hiển thị địa chỉ nhà riêng trừ khi user opt-in.</p>
+    <p>Vị trí hiển thị ở cấp thành phố. Không hiển thị địa chỉ nhà riêng trừ khi người dùng đồng ý.</p>
   </section>
 </main>
 <script>
@@ -58,14 +58,13 @@ async function loadMap() {
       container.innerHTML = '<p style="padding:40px;text-align:center;">Chưa có dữ liệu bản đồ. Hãy đăng ký xác thực để xuất hiện trên bản đồ.</p>';
       return;
     }
-    // Simple projection (not real geo — just demo markers)
     json.data.forEach((e, i) => {
       if (!e.display_lat || !e.display_lon) return;
       const el = document.createElement('div');
       el.className = 'map-marker';
       el.style.left = (50 + (e.display_lon / 180) * 45) + '%';
       el.style.top = (50 - (e.display_lat / 90) * 45) + '%';
-      el.title = e.badge_display_name || e.role;
+      el.title = e.display_name || e.role;
       el.dataset.type = e.role;
       container.appendChild(el);
     });
@@ -75,7 +74,6 @@ async function loadMap() {
 }
 loadMap();
 
-// Filter buttons
 document.querySelectorAll('#map-filters button').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('#map-filters button').forEach(b => b.classList.remove('active'));

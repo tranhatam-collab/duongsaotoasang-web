@@ -3,38 +3,38 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Trust Layer — Xác minh độc lập | DSTS</title>
-<meta name="description" content="Trust Layer của DSTS tích hợp trust.iai.one — nền tảng xác minh độc lập cho mentor, creator, story, sponsor.">
+<title>Lớp Tin Cậy — Xác Minh Độc Lập | DSTS</title>
+<meta name="description" content="Lớp tin cậy của DSTS tích hợp trust.iai.one — nền tảng xác minh độc lập cho người hướng dẫn, người sáng tạo, câu chuyện, nhà tài trợ.">
 <link rel="canonical" href="https://duongsaotoasang.com/trust/">
 <link rel="stylesheet" href="/app.css">
 </head>
 <body>
 <main class="container">
-  <h1>Trust Layer</h1>
+  <h1>Lớp Tin Cậy</h1>
   <p class="lead">Tích hợp trust.iai.one làm nền tảng xác minh độc lập cho DSTS. Đây là thứ làm DSTS khác biệt: không chỉ nội dung, mà là hệ thống xác thực.</p>
 
   <section id="scope">
-    <h2>Scope xác minh</h2>
+    <h2>Phạm vi xác minh</h2>
     <ul>
-      <li><strong>Mentor:</strong> Verify credential + background check</li>
-      <li><strong>Success Story:</strong> Verify achievement claim</li>
-      <li><strong>Creator:</strong> Verify identity + social presence</li>
-      <li><strong>Sponsor:</strong> Verify business + tax standing</li>
-      <li><strong>Achievement:</strong> Verify award, degree, publication</li>
+      <li><strong>Người Hướng Dẫn:</strong> Xác minh bằng cấp + kiểm tra lý lịch</li>
+      <li><strong>Câu Chuyện Thành Công:</strong> Xác minh tuyên bố thành tựu</li>
+      <li><strong>Người Sáng Tạo:</strong> Xác minh danh tính + hiện diện xã hội</li>
+      <li><strong>Nhà Tài Trợ:</strong> Xác minh doanh nghiệp + tình trạng thuế</li>
+      <li><strong>Thành Tựu:</strong> Xác minh giải thưởng, bằng cấp, xuất bản</li>
     </ul>
   </section>
 
   <section id="seal">
-    <h2>Verified Seal</h2>
-    <p>Mọi trang profile hiển thị <code>trust.iai.one</code> verified seal nếu có. Click seal để xem báo cáo xác minh đầy đủ.</p>
-    <p>Nếu verification expired, hiển thị cảnh báo vàng + CTA renew.</p>
+    <h2>Huy Hiệu Xác Minh</h2>
+    <p>Mọi trang hồ sơ hiển thị huy hiệu xác minh của trust.iai.one nếu có. Nhấn huy hiệu để xem báo cáo xác minh đầy đủ.</p>
+    <p>Nếu xác minh hết hạn, hiển thị cảnh báo vàng + lời kêu gọi gia hạn.</p>
   </section>
 
   <section id="integration">
     <h2>Tích hợp kỹ thuật</h2>
-    <p>API endpoint: <code>POST https://trust.iai.one/api/v1/verify</code></p>
-    <p>Webhook callback: <code>POST https://duongsaotoasang.com/webhooks/trust-iai</code></p>
-    <p>Entity ID format: <code>dsts-{internal_user_id}</code></p>
+    <p>Điểm cuối API: <code>POST https://trust.iai.one/api/v1/verify</code></p>
+    <p>Webhook gọi lại: <code>POST https://duongsaotoasang.com/webhooks/trust-iai</code></p>
+    <p>Định dạng mã định danh thực thể: <code>dsts-{internal_user_id}</code></p>
   </section>
 </main>
 </body>

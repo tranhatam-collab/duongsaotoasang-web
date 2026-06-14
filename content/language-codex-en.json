@@ -1,0 +1,89 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "lang": "en",
+    "note": "English is the secondary international language. Must read like content written by a professional international team, not machine-translated from Vietnamese.",
+    "rules": [
+      "Standard US English",
+      "No word-by-word translation from Vietnamese",
+      "No hype words",
+      "No cheap sales copy",
+      "No machine-translation structures",
+      "Short, clear sentences"
+    ]
+  },
+  "brand": {
+    "full_name": "Path of Shining Stars",
+    "short_name": "DSTS",
+    "slogan": "The journey of Vietnamese people shining globally",
+    "tagline": "A platform for knowledge, programs, and community"
+  },
+  "programs": {
+    "dream_nurture": {
+      "en": "Dream Nurture",
+      "note": "In English text, use 'Dream Nurture'. In Vietnamese text, use 'Nuôi Dưỡng Ước Mơ'. Do NOT mix in the same sentence."
+    },
+    "story_library": {
+      "en": "Story Library"
+    },
+    "mentor_network": {
+      "en": "Mentor Network"
+    }
+  },
+  "features": {
+    "verified_identity": {
+      "en": "Verified Identity",
+      "note": "In English text, use 'Verified Identity'. In Vietnamese text, use 'Danh Tính Đã Xác Thực'."
+    },
+    "trust_score": {
+      "en": "Trust Score"
+    },
+    "star_points": {
+      "en": "Star Points",
+      "note": "In English text, use 'Star Points'. In Vietnamese text, use 'Điểm Sao'."
+    },
+    "digital_legacy": {
+      "en": "Digital Legacy",
+      "note": "In English text, use 'Digital Legacy'. In Vietnamese text, use 'Kho Lưu Trữ Kỹ Thuật Số'."
+    }
+  },
+  "ui": {
+    "cta": {
+      "join": "Join",
+      "register": "Register",
+      "login": "Log in",
+      "donate": "Donate",
+      "contact": "Contact",
+      "learn_more": "Learn more",
+      "apply": "Apply",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "save": "Save",
+      "next": "Next",
+      "back": "Back"
+    },
+    "form": {
+      "email": "Email",
+      "password": "Password",
+      "display_name": "Display name",
+      "role": "Role",
+      "agree_terms": "I agree to the Terms of Service and Privacy Policy",
+      "agree_age": "I confirm I am 18 or older, or have guardian consent"
+    },
+    "status": {
+      "loading": "Loading...",
+      "error": "Something went wrong. Please try again.",
+      "success": "Success",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    }
+  },
+  "forbidden": {
+    "words": [
+      "FOMO", "NDNUM", "cash-out", "hype", "amazing", "best ever", "#1", "top tier",
+      "revolutionary", "game-changing", "disruptive"
+    ],
+    "note": "These words MUST NOT appear on public pages. 'NDNUM' is an internal abbreviation, never for users. 'FOMO' is slang, not for formal content."
+  }
+}

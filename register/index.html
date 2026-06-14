@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Đăng ký — Tạo tài khoản DSTS</title>
-<meta name="description" content="Đăng ký tài khoản DSTS để tham gia Club, tích điểm Star Points, kết nối mentor, và truy cập content độc quyền.">
+<title>Đăng Ký — Tạo Tài Khoản DSTS</title>
+<meta name="description" content="Đăng ký tài khoản DSTS để tham gia Câu Lạc Bộ, tích điểm Điểm Sao, kết nối người hướng dẫn, và truy cập nội dung độc quyền.">
 <link rel="canonical" href="https://duongsaotoasang.com/register">
 <link rel="stylesheet" href="/app.css">
 </head>
 <body>
 <main class="container" style="max-width:480px;margin:0 auto;padding:40px 20px;">
-  <h1>Tạo tài khoản DSTS</h1>
-  <p class="lead">Một tài khoản cho toàn bộ hệ sinh thái: Club, Mentor Network, Dream Nurture, Content.</p>
+  <h1>Tạo Tài Khoản DSTS</h1>
+  <p class="lead">Một tài khoản cho toàn bộ hệ sinh thái: Câu Lạc Bộ, Mạng Lưới Người Hướng Dẫn, Nuôi Dưỡng Ước Mơ, Nội Dung.</p>
 
   <form id="register-form">
     <label for="email">Email</label>
-    <input type="email" id="email" name="email" required placeholder="you@example.com">
+    <input type="email" id="email" name="email" required placeholder="ten@example.com">
 
     <label for="password">Mật khẩu</label>
     <input type="password" id="password" name="password" required minlength="8" placeholder="Ít nhất 8 ký tự">
@@ -25,20 +25,20 @@
 
     <label for="role">Vai trò dự định</label>
     <select id="role" name="role">
-      <option value="member">Thành viên (Fan / Member)</option>
-      <option value="creator">Creator (muốn tạo nội dung)</option>
-      <option value="mentor">Mentor (muốn hướng dẫn)</option>
-      <option value="sponsor">Sponsor (muốn tài trợ)</option>
+      <option value="member">Thành viên (Người hâm mộ / Thành viên)</option>
+      <option value="creator">Người Sáng Tạo (muốn tạo nội dung)</option>
+      <option value="mentor">Người Hướng Dẫn (muốn hướng dẫn)</option>
+      <option value="sponsor">Nhà Tài Trợ (muốn tài trợ)</option>
     </select>
 
     <label>
       <input type="checkbox" id="agree_terms" name="agree_terms" required>
-      Tôi đồng ý với <a href="/terms.html" target="_blank">Điều khoản</a> và <a href="/privacy.html" target="_blank">Chính sách bảo mật</a>
+      Tôi đồng ý với <a href="/terms.html" target="_blank">Điều Khoản Sử Dụng</a> và <a href="/privacy.html" target="_blank">Chính Sách Bảo Mật</a>
     </label>
 
     <label>
       <input type="checkbox" id="agree_age" name="agree_age" required>
-      Tôi xác nhận đã đủ 18 tuổi, hoặc có sự đồng ý của phụ huynh/người giám hộ
+      Tôi xác nhận đã đủ 18 tuổi, hoặc có sự đồng ý của người giám hộ
     </label>
 
     <button type="submit" class="btn btn-primary">Tạo tài khoản</button>
@@ -58,7 +58,7 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
       body: JSON.stringify(data)
     });
     const json = await res.json();
-    document.getElementById('message').textContent = json.ok ? 'Tạo tài khoản thành công! Chuyển đến Club...' : (json.error || 'Có lỗi xảy ra.');
+    document.getElementById('message').textContent = json.ok ? 'Tạo tài khoản thành công! Chuyển đến Câu Lạc Bộ...' : (json.error || 'Có lỗi xảy ra.');
     if (json.ok) setTimeout(() => window.location.href = '/club/', 2000);
   } catch (err) {
     document.getElementById('message').textContent = 'Lỗi kết nối. Vui lòng thử lại.';
