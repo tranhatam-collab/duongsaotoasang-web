@@ -3,7 +3,7 @@
 
 # Special
 /programs /program 301
-/refund /refund.html 200
+/refund /legal#refund 302
 /payment-confirmation /contact?type=payment-confirmation 302
 
 # Legacy clean URL
@@ -46,13 +46,8 @@
 /map /map.html 200
 /map.html /map 301
 
-# Content pages
-/mentor-network /mentor-network.html 200
-/dream-nurture /dream-nurture.html 200
-
 # Ecosystem redirects
 /verified.html /verified 301
-/legacy.html /legacy 301
 /creator-dashboard.html /creator-dashboard 301
 /sponsors.html /sponsors 301
 /trust-layer.html /trust-layer 301

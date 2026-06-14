@@ -29,8 +29,6 @@
 <meta name="twitter:image" content="https://duongsaotoasang.com/og.png">
 
 <link rel="stylesheet" href="/app.css">
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -251,48 +249,15 @@ Hãy để lại thông tin hoặc các câu hỏi của bạn. Chúng tôi sẽ
 
 <div class="contact-form">
 
-<h2 style="margin-top:0">Đăng ký nhận tin tức</h2>
+<h2 style="margin-top:0">Kênh liên hệ công khai</h2>
 
 <div class="contact-panel">
-<h3>Nhận cập nhật từ cộng đồng</h3>
-<p>Đăng ký để nhận thông tin về các chương trình, sự kiện và câu chuyện từ cộng đồng Đường Sao Tỏa Sáng.</p>
-
-<form id="subscribeForm" style="display:flex;flex-direction:column;gap:12px;max-width:440px">
-  <div class="form-group">
-    <label for="subName">Họ và tên</label>
-    <input id="subName" type="text" placeholder="Nguyễn Văn A" />
-  </div>
-  <div class="form-group">
-    <label for="subEmail">Email *</label>
-    <input id="subEmail" type="email" placeholder="email@example.com" required />
-  </div>
-  <div class="cf-turnstile" data-sitekey="REPLACE_WITH_TURNSTILE_SITE_KEY" data-theme="dark" style="margin-top:4px"></div>
-  <button type="submit" class="submit-btn">Đăng ký nhận tin</button>
-  <p id="subMsg" style="display:none;color:#4caf50;font-size:14px"></p>
-</form>
-<script>
-document.getElementById('subscribeForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const email = document.getElementById('subEmail').value;
-  const name = document.getElementById('subName').value;
-  const msg = document.getElementById('subMsg');
-  const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]')?.value;
-  if (!turnstileResponse) {
-    msg.textContent = 'Vui lòng hoàn thành xác minh bảo mật.';
-    msg.style.color = '#f44336';
-    msg.style.display = 'block';
-    return;
-  }
-  try {
-    const r = await fetch('/api/subscribe', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email, name, turnstile_token: turnstileResponse}) });
-    const d = await r.json();
-    msg.textContent = d.ok ? 'Đăng ký thành công! Cảm ơn bạn.' : (d.error || 'Lỗi, thử lại sau.');
-    msg.style.color = d.ok ? '#4caf50' : '#f44336';
-    msg.style.display = 'block';
-    if (d.ok) { this.reset(); turnstile.reset(); }
-  } catch { msg.textContent = 'Lỗi kết nối.'; msg.style.display = 'block'; }
-});
-</script>
+<h3>Chưa mở biểu mẫu hoặc đăng ký nhận tin</h3>
+<p><strong>Không có public contact form trong giai đoạn này.</strong> Website hiện chỉ công bố hướng dẫn liên hệ thủ công. Biểu mẫu thu email sẽ chỉ được mở sau khi lane email automation hoàn tất kiểm duyệt dữ liệu, chống spam và quy trình phản hồi.</p>
+<div class="contact-actions">
+<a class="primary" href="/support">Xem hướng dẫn hỗ trợ</a>
+<a href="/privacy">Xem chính sách dữ liệu</a>
+</div>
 </div>
 
 <div class="contact-panel" style="margin-top:20px" data-dsts-contact-mode="manual-only">

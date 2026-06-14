@@ -2,11 +2,12 @@ name = "duongsaotoasang-com-v2"
 compatibility_date = "2026-03-09"
 pages_build_output_dir = "."
 
-[[d1_databases]]
-binding = "DB"
-database_name = "cf-d1-dsts-content-prod"
-database_id = "de526895-6824-469b-809c-abcd052d9312"
-migrations_dir = "migrations"
+# D1 binding tạm comment out - sẽ thêm lại sau khi deploy thành công
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "audit-binder-prod"
+# database_id = "84b5d905-7abe-492d-b3b8-4eb7288f4053"
+# migrations_dir = "migrations"
 
 [vars]
 # Payment routing — pay.iai.one canonical gateway
