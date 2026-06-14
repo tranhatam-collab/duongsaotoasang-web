@@ -43,8 +43,7 @@
 /trust.html /trust 301
 /register /register/index.html 200
 /register.html /register 301
-/map /map.html 200
-/map.html /map 301
+/map /map.html 301
 
 # Ecosystem redirects
 /verified.html /verified 301
