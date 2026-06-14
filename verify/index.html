@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Xác thực Danh tính — Verified Identity | DSTS</title>
+<meta name="description" content="Hệ thống xác thực danh tính của DSTS: Verified Creator, Verified Mentor, Verified Success Story, Verified Sponsor. Trust Score minh bạch, bằng chứng thật.">
+<link rel="canonical" href="https://duongsaotoasang.com/verify/">
+<meta property="og:title" content="Xác thực Danh tính — Verified Identity | DSTS">
+<meta property="og:description" content="Hệ thống xác thực đáng tin cậy cho người Việt toàn cầu trên DSTS.">
+<meta property="og:url" content="https://duongsaotoasang.com/verify/">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<main class="container">
+  <h1>Xác thực Danh tính trên DSTS</h1>
+  <p class="lead">DSTS xây dựng hệ thống danh tính đáng tin cậy cho người Việt toàn cầu. Mỗi badge xác thực đều dựa trên bằng chứng thật, không hình thức.</p>
+
+  <section id="roles">
+    <h2>Các vai trò xác thực</h2>
+    <div class="grid-3">
+      <article class="card">
+        <h3>Verified Creator</h3>
+        <p>Người sáng tạo nội dung, nghệ sĩ, chuyên gia đã xác thực danh tính và portfolio.</p>
+        <a href="/apply/verified-creator" class="btn">Đăng ký xác thực</a>
+      </article>
+      <article class="card">
+        <h3>Verified Mentor</h3>
+        <p>Người hướng dẫn đã xác thực bằng cấp, kinh nghiệm và tham chiếu từ mentee.</p>
+        <a href="/apply/verified-mentor" class="btn">Đăng ký xác thực</a>
+      </article>
+      <article class="card">
+        <h3>Verified Success Story</h3>
+        <p>Câu chuyện thành công đã xác thực bằng bằng chứng thành tựu thật.</p>
+        <a href="/apply/verified-story" class="btn">Đăng ký xác thực</a>
+      </article>
+    </div>
+  </section>
+
+  <section id="trust-score">
+    <h2>Trust Score Algorithm</h2>
+    <p>Trust Score (0–100) được tính từ 5 chiều minh bạch:</p>
+    <ul>
+      <li><strong>Identity Verification (25 điểm):</strong> Gov ID matched</li>
+      <li><strong>Social Proof (25 điểm):</strong> LinkedIn, Website, Press</li>
+      <li><strong>Activity History (20 điểm):</strong> Contribution log trên DSTS</li>
+      <li><strong>Peer Endorsement (15 điểm):</strong> Verified user vouch</li>
+      <li><strong>Community Standing (15 điểm):</strong> No violation report</li>
+    </ul>
+    <p>Trust Score dưới 60 = không hiển thị badge. Verification không bao giờ là hình thức.</p>
+  </section>
+
+  <section id="verified-list">
+    <h2>Danh sách đã xác thực</h2>
+    <div id="verified-grid">Đang tải...</div>
+  </section>
+</main>
+<script>
+async function loadVerified() {
+  try {
+    const res = await fetch('/api/verify/1'); // sample
+    const json = await res.json();
+    const grid = document.getElementById('verified-grid');
+    if (json.ok && json.data) {
+      grid.innerHTML = `<div class="verified-card"><strong>${json.data.badge_display_name || 'User ' + json.data.user_id}</strong> — Trust Score: ${json.data.trust_score}</div>`;
+    } else {
+      grid.innerHTML = '<p>Chưa có dữ liệu xác thực. Hãy đăng ký để trở thành người xác thực đầu tiên.</p>';
+    }
+  } catch (e) {
+    document.getElementById('verified-grid').innerHTML = '<p>Đang cập nhật hệ thống xác thực. Vui lòng quay lại sau.</p>';
+  }
+}
+loadVerified();
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Global Vietnamese Map — Bản đồ người Việt toàn cầu | DSTS</title>
+<meta name="description" content="Bản đồ tương tác toàn cầu của người Việt thành công đã xác thực: Creator, Mentor, Doanh nhân, Nhà khoa học, Người cống hiến.">
+<link rel="canonical" href="https://duongsaotoasang.com/map">
+<link rel="stylesheet" href="/app.css">
+<style>
+#map-container { width:100%; height:500px; background:#0f172a; border-radius:12px; position:relative; overflow:hidden; }
+.map-marker { position:absolute; width:12px; height:12px; border-radius:50%; background:var(--gold); box-shadow:0 0 8px var(--gold-glow); cursor:pointer; }
+.map-marker:hover { transform:scale(1.5); }
+.map-tooltip { position:absolute; background:rgba(15,23,42,.95); border:1px solid var(--line); padding:8px 12px; border-radius:8px; font-size:13px; pointer-events:none; display:none; }
+#map-filters { display:flex; gap:8px; flex-wrap:wrap; margin:16px 0; }
+#map-filters button { padding:6px 14px; border-radius:20px; border:1px solid var(--line); background:transparent; color:var(--text); cursor:pointer; }
+#map-filters button.active { background:var(--gold); color:#0b111d; }
+</style>
+</head>
+<body>
+<main class="container">
+  <h1>Global Vietnamese Map</h1>
+  <p class="lead">Bản đồ tương tác toàn cầu của người Việt thành công đã xác thực. Filter theo loại, quốc gia, Trust Score.</p>
+
+  <div id="map-filters">
+    <button class="active" data-type="">Tất cả</button>
+    <button data-type="creator">Creator</button>
+    <button data-type="mentor">Mentor</button>
+    <button data-type="doanh-nhan">Doanh nhân</button>
+    <button data-type="nha-khoa-hoc">Nhà khoa học</button>
+    <button data-type="nguoi-cong-hien">Người cống hiến</button>
+  </div>
+
+  <div id="map-container">
+    <div id="map-markers"></div>
+    <div id="map-tooltip" class="map-tooltip"></div>
+  </div>
+
+  <section id="map-legend">
+    <h2>Chú thích</h2>
+    <ul>
+      <li>Creator — người sáng tạo đã xác thực</li>
+      <li>Mentor — người hướng dẫn đã xác thực</li>
+      <li>Doanh nhân — doanh nhân Việt đã xác thực</li>
+      <li>Nhà khoa học — nhà khoa học, học giả đã xác thực</li>
+      <li>Người cống hiến — người có đóng góp xã hội đã xác thực</li>
+    </ul>
+    <p>Location hiển thị ở city-level. Không hiển thị địa chỉ nhà riêng trừ khi user opt-in.</p>
+  </section>
+</main>
+<script>
+async function loadMap() {
+  try {
+    const res = await fetch('/api/map/entities?limit=200');
+    const json = await res.json();
+    const container = document.getElementById('map-markers');
+    if (!json.ok || !json.data || !json.data.length) {
+      container.innerHTML = '<p style="padding:40px;text-align:center;">Chưa có dữ liệu bản đồ. Hãy đăng ký xác thực để xuất hiện trên bản đồ.</p>';
+      return;
+    }
+    // Simple projection (not real geo — just demo markers)
+    json.data.forEach((e, i) => {
+      if (!e.display_lat || !e.display_lon) return;
+      const el = document.createElement('div');
+      el.className = 'map-marker';
+      el.style.left = (50 + (e.display_lon / 180) * 45) + '%';
+      el.style.top = (50 - (e.display_lat / 90) * 45) + '%';
+      el.title = e.badge_display_name || e.role;
+      el.dataset.type = e.role;
+      container.appendChild(el);
+    });
+  } catch (err) {
+    document.getElementById('map-markers').innerHTML = '<p style="padding:40px;text-align:center;">Đang cập nhật bản đồ. Vui lòng quay lại sau.</p>';
+  }
+}
+loadMap();
+
+// Filter buttons
+document.querySelectorAll('#map-filters button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#map-filters button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const type = btn.dataset.type;
+    document.querySelectorAll('.map-marker').forEach(m => {
+      m.style.display = (!type || m.dataset.type === type) ? 'block' : 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

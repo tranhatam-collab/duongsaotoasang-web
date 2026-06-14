@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digital Legacy System — Lưu giữ hành trình | DSTS</title>
+<meta name="description" content="Story Preservation Engine của DSTS: lưu giữ video, audio, tài liệu, ảnh, timeline, family tree — sống hàng chục năm, không chỉ là content.">
+<link rel="canonical" href="https://duongsaotoasang.com/legacy/">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<main class="container">
+  <h1>Digital Legacy System</h1>
+  <p class="lead">Story Library hiện tại là content. Digital Legacy System biến nó thành tài sản lưu giữ hàng chục năm: video, audio, tài liệu, ảnh, timeline, family tree.</p>
+
+  <section id="components">
+    <h2>Thành phần hệ thống</h2>
+    <div class="grid-3">
+      <article class="card"><h3>Legacy Video</h3><p>Interview, talk show, message to future — MP4, WebM, lưu trữ trên R2.</p></article>
+      <article class="card"><h3>Legacy Audio</h3><p>Podcast, audio diary, oral history — MP3, AAC.</p></article>
+      <article class="card"><h3>Legacy Document</h3><p>Essay, letter, manuscript, research — PDF, Markdown.</p></article>
+      <article class="card"><h3>Legacy Photo</h3><p>Timeline photo, family album, event — JPG, WebP, AVIF.</p></article>
+      <article class="card"><h3>Timeline</h3><p>Interactive life timeline — scrollable, zoomable theo năm/thập kỷ.</p></article>
+      <article class="card"><h3>Family Tree</h3><p>Genealogy — private, encrypted, chỉ owner và invited members.</p></article>
+    </div>
+  </section>
+
+  <section id="archive">
+    <h2>Legacy Archive</h2>
+    <div id="legacy-list">Đang tải...</div>
+  </section>
+</main>
+<script>
+async function loadLegacy() {
+  try {
+    const res = await fetch('/api/legacy?privacy=public');
+    const json = await res.json();
+    const list = document.getElementById('legacy-list');
+    if (json.ok && json.data && json.data.length) {
+      list.innerHTML = json.data.map(item => `<div class="legacy-item"><strong>${item.title}</strong> (${item.item_type}) — ${item.capture_date || 'N/A'}</div>`).join('');
+    } else {
+      list.innerHTML = '<p>Chưa có tài liệu lưu trữ công khai. Hãy bắt đầu xây dựng legacy của bạn.</p>';
+    }
+  } catch (e) {
+    document.getElementById('legacy-list').innerHTML = '<p>Đang cập nhật hệ thống lưu trữ. Vui lòng quay lại sau.</p>';
+  }
+}
+loadLegacy();
+</script>
+</body>
+</html>

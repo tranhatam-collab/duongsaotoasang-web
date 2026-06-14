@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sponsor Ecosystem — Đồng hành cùng DSTS</title>
+<meta name="description" content="Sponsor Ecosystem của DSTS: Sponsor Portal, Dashboard, Impact Reports, Campaigns. Minh bạch từng đồng tài trợ.">
+<link rel="canonical" href="https://duongsaotoasang.com/sponsor/">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<main class="container">
+  <h1>Sponsor Ecosystem</h1>
+  <p class="lead">Biến sponsor từ ý tưởng thành hệ thống portal + dashboard + báo cáo tác động. Minh bạch từng đồng.</p>
+
+  <section id="campaign-types">
+    <h2>Loại hình tài trợ</h2>
+    <div class="grid-3">
+      <article class="card"><h3>Story Grant</h3><p>Tài trợ ghi lại một Success Story. Min: 500 USD.</p></article>
+      <article class="card"><h3>Mentor Stipend</h3><p>Tài trợ lương/thù lao cho Mentor Network. Min: 1,000 USD/quý.</p></article>
+      <article class="card"><h3>Event Sponsorship</h3><p>Tài trợ talk show, workshop. Min: 2,000 USD.</p></article>
+      <article class="card"><h3>Dream Nurture Fund</h3><p>Tài trợ học bổng, cơ hội. Min: 5,000 USD.</p></article>
+      <article class="card"><h3>Infrastructure</h3><p>Tài trợ vận hành hạ tầng DSTS. Thương lượng.</p></article>
+    </div>
+  </section>
+
+  <section id="sponsor-wall">
+    <h2>Đối tác đã xác thực</h2>
+    <div id="sponsor-list">Đang tải...</div>
+  </section>
+
+  <section id="impact">
+    <h2>Báo cáo tác động</h2>
+    <p>Mỗi campaign kết thúc có báo cáo tác động công khai: số người tiếp cận, story được tài trợ, mentor được hỗ trợ, học sinh được giúp đỡ.</p>
+  </section>
+</main>
+<script>
+async function loadSponsors() {
+  try {
+    const res = await fetch('/api/sponsor');
+    const json = await res.json();
+    const list = document.getElementById('sponsor-list');
+    if (json.ok && json.data && json.data.length) {
+      list.innerHTML = json.data.map(s => `<div class="sponsor-card"><strong>${s.org_name}</strong> — ${s.org_type} — Đã đóng góp: ${s.total_contributed_cents/100} USD</div>`).join('');
+    } else {
+      list.innerHTML = '<p>Chưa có sponsor công khai. <a href="/sponsor/portal">Trở thành sponsor đầu tiên</a>.</p>';
+    }
+  } catch (e) {
+    document.getElementById('sponsor-list').innerHTML = '<p>Đang cập nhật danh sách sponsor. Vui lòng quay lại sau.</p>';
+  }
+}
+loadSponsors();
+</script>
+</body>
+</html>
