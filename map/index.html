@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b111d">
+  <title>Global Vietnamese Map | Đường Sao Tỏa Sáng</title>
+  <meta name="description" content="Bản đồ người Việt toàn cầu với locations, stories và connections.">
+  <link rel="canonical" href="https://duongsaotoasang.com/map">
+  <link rel="stylesheet" href="/app.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
+  <style>
+    :root{
+      --bg:#0b111d;
+      --bg-alt:#0f172a;
+      --panel:rgba(255,255,255,.035);
+      --panel-strong:rgba(255,255,255,.055);
+      --text:#e2e8f0;
+      --muted:#9eb0c8;
+      --line:rgba(224,200,150,.14);
+      --gold:#e0c896;
+      --gold-dark:#c9a66b;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(1000px 620px at 8% 0%, rgba(224,200,150,.14), transparent 60%),
+        radial-gradient(880px 520px at 92% 8%, rgba(96,165,250,.14), transparent 58%),
+        linear-gradient(180deg,#0b111d 0%, #101827 50%, #0b111d 100%);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    a{color:inherit}
+    .wrap{width:min(1400px,calc(100% - 32px));margin:0 auto}
+    .skip-link{
+      position:absolute;
+      left:16px;
+      top:-44px;
+      z-index:999;
+      background:#fff;
+      color:#111;
+      padding:10px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      transition:top .2s ease;
+    }
+    .skip-link:focus{top:16px}
+
+    #siteHeader .site-topbar{
+      background:rgba(8,12,19,.82);
+      border-bottom:1px solid rgba(224,200,150,.12);
+    }
+
+    .hero{padding:40px 0 24px}
+    .eyebrow{
+      color:var(--gold);
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+    h1{
+      margin:0;
+      font-size:36px;
+      line-height:1.08;
+      letter-spacing:-.02em;
+      color:#f7ead0;
+    }
+    .lead{
+      margin:12px 0 0;
+      color:#cbd5e1;
+      font-size:16px;
+      line-height:1.7;
+    }
+
+    .map-container{
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:var(--panel-strong);
+      padding:24px;
+      margin:24px 0;
+      display:grid;
+      grid-template-columns:280px 1fr;
+      gap:24px;
+    }
+    @media (max-width:768px){
+      .map-container{grid-template-columns:1fr}
+    }
+    .map-sidebar{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+    }
+    .filter-group{display:flex;flex-direction:column;gap:8px}
+    .filter-group label{font-size:13px;font-weight:600;color:#e2e8f0}
+    select{
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:rgba(255,255,255,.04);
+      color:#f8fafc;
+      font-size:14px;
+      font-family:inherit;
+    }
+    select:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.06)}
+    .location-list{
+      max-height:400px;
+      overflow-y:auto;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .location-item{
+      padding:12px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:var(--panel);
+      cursor:pointer;
+      transition:border-color .2s;
+    }
+    .location-item:hover{border-color:var(--gold)}
+    .location-item-name{font-size:14px;font-weight:600;color:#f8fafc;margin-bottom:4px}
+    .location-item-desc{font-size:12px;color:var(--muted)}
+    #map{
+      width:100%;
+      height:600px;
+      border-radius:12px;
+      background:#1a2332;
+    }
+
+    .notice{
+      border:1px solid rgba(251,191,36,.28);
+      background:linear-gradient(145deg,rgba(251,191,36,.13),rgba(251,191,36,.04));
+      border-radius:20px;
+      padding:18px;
+      color:#f6e6bd;
+      margin:20px 0;
+    }
+    .notice b{display:block;margin-bottom:6px;color:#f9e5ad;font-size:16px}
+    .notice p{margin:0;color:#d8caa8;line-height:1.7;font-size:14px}
+
+    footer{padding:32px 0;text-align:center;color:var(--muted)}
+    footer a{color:#f6e6bd;text-decoration:none}
+    footer a:hover{text-decoration:underline}
+
+    @media (max-width:640px){
+      h1{font-size:24px}
+      #map{height:400px}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Bỏ qua nội dung điều hướng</a>
+  <div id="siteHeader"></div>
+
+  <main id="mainContent">
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">LAYER 5 · GLOBAL VIETNAMESE MAP</div>
+        <h1>Global Vietnamese Map</h1>
+        <p class="lead">
+          Bản đồ tương tác hiển thị locations, stories và connections của người Việt toàn cầu.
+        </p>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <div class="notice">
+        <b>Thông báo</b>
+        <p>Bản đồ đang trong giai đoạn beta. Data sẽ được cập nhật liên tục từ verified entities và legacy stories.</p>
+      </div>
+
+      <div class="map-container">
+        <div class="map-sidebar">
+          <div class="filter-group">
+            <label for="typeFilter">Loại Location</label>
+            <select id="typeFilter">
+              <option value="">Tất cả</option>
+              <option value="creator">Creator</option>
+              <option value="mentor">Mentor</option>
+              <option value="success_story">Success Story</option>
+              <option value="sponsor">Sponsor</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="regionFilter">Khu vực</label>
+            <select id="regionFilter">
+              <option value="">Tất cả</option>
+              <option value="vn">Việt Nam</option>
+              <option value="us">Hoa Kỳ</option>
+              <option value="au">Úc</option>
+              <option value="eu">Châu Âu</option>
+              <option value="asia">Châu Á</option>
+            </select>
+          </div>
+          <div class="location-list" id="locationList">
+            <div class="location-item">
+              <div class="location-item-name">Đang tải...</div>
+            </div>
+          </div>
+        </div>
+        <div id="map"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>Đường Sao Tỏa Sáng · DSTS</strong></p>
+      <p>
+        <a href="/">Trang chủ</a> ·
+        <a href="/legacy">Kho Lưu Trữ</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="/assets/app-v5.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      DSTS.mountSiteChrome({ active: 'map' });
+
+      // Initialize map centered on Vietnam
+      const map = L.map('map').setView([14.0583, 108.2772], 5);
+
+      // Dark theme tiles
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+      }).addTo(map);
+
+      // Create marker cluster group
+      const markers = L.markerClusterGroup({
+        iconCreateFunction: function(cluster) {
+          return L.divIcon({
+            html: '<div style="background-color:#e0c896;color:#0b111d;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;">' + cluster.getChildCount() + '</div>',
+            className: 'custom-cluster-icon',
+            iconSize: [40, 40]
+          });
+        }
+      });
+      map.addLayer(markers);
+
+      // Load global Vietnamese locations
+      let allLocations = [];
+
+      async function loadLocations() {
+        try {
+          const typeFilter = document.getElementById('typeFilter').value;
+          const regionFilter = document.getElementById('regionFilter').value;
+
+          const response = await fetch(`/api/map/locations?type=${typeFilter}&region=${regionFilter}`);
+          const data = await response.json();
+
+          if (!data.success) {
+            throw new Error(data.error || 'Failed to load locations');
+          }
+
+          allLocations = data.locations || [];
+
+          // Clear existing markers
+          markers.clearLayers();
+
+          // Add new markers
+          allLocations.forEach(loc => {
+            const marker = L.marker([loc.lat, loc.lng]);
+            marker.bindPopup(`
+              <div style="color:#0b111d;padding:8px;min-width:200px;">
+                <strong style="font-size:14px;margin-bottom:4px;display:block;">${loc.name}</strong>
+                <p style="margin:4px 0;font-size:12px;color:#64748b;">${loc.description || ''}</p>
+                <a href="${loc.url || '#'}" target="_blank" style="color:#e0c896;font-size:12px;font-weight:600;">Xem chi tiết →</a>
+              </div>
+            `);
+            markers.addLayer(marker);
+          });
+
+          // Update location list
+          updateLocationList(allLocations);
+
+        } catch (err) {
+          console.error('Error loading locations:', err);
+        }
+      }
+
+      function updateLocationList(locations) {
+        const list = document.getElementById('locationList');
+        if (locations.length === 0) {
+          list.innerHTML = '<div class="location-item"><div class="location-item-name">Không tìm thấy location</div></div>';
+          return;
+        }
+
+        list.innerHTML = locations.map(loc => `
+          <div class="location-item" onclick="focusLocation(${loc.lat}, ${loc.lng})">
+            <div class="location-item-name">${loc.name}</div>
+            <div class="location-item-desc">${loc.description || ''}</div>
+          </div>
+        `).join('');
+      }
+
+      window.focusLocation = function(lat, lng) {
+        map.setView([lat, lng], 10);
+      };
+
+      document.getElementById('typeFilter').addEventListener('change', loadLocations);
+      document.getElementById('regionFilter').addEventListener('change', loadLocations);
+
+      loadLocations();
+    });
+  </script>
+</body>
+</html>

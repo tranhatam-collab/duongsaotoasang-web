@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b111d">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Đăng ký Xác Thực Creator | Đường Sao Tỏa Sáng</title>
+  <meta name="description" content="Form đăng ký xác thực Creator trên DSTS — yêu cầu chứng minh danh tính, thành tựu và đóng góp cộng đồng.">
+  <link rel="canonical" href="https://duongsaotoasang.com/apply/verified-creator">
+  <link rel="stylesheet" href="/app.css">
+
+  <style>
+    :root{
+      --bg:#0b111d;
+      --bg-alt:#0f172a;
+      --panel:rgba(255,255,255,.035);
+      --panel-strong:rgba(255,255,255,.055);
+      --text:#e2e8f0;
+      --muted:#9eb0c8;
+      --line:rgba(224,200,150,.14);
+      --gold:#e0c896;
+      --gold-dark:#c9a66b;
+      --blue:rgba(96,165,250,.18);
+      --green:rgba(74,222,128,.14);
+      --amber:rgba(251,191,36,.16);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(1000px 620px at 8% 0%, rgba(224,200,150,.14), transparent 60%),
+        radial-gradient(880px 520px at 92% 8%, rgba(96,165,250,.14), transparent 58%),
+        linear-gradient(180deg,#0b111d 0%, #101827 50%, #0b111d 100%);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    a{color:inherit}
+    .wrap{width:min(900px,calc(100% - 32px));margin:0 auto}
+    .skip-link{
+      position:absolute;
+      left:16px;
+      top:-44px;
+      z-index:999;
+      background:#fff;
+      color:#111;
+      padding:10px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      transition:top .2s ease;
+    }
+    .skip-link:focus{top:16px}
+
+    #siteHeader .site-topbar{
+      background:rgba(8,12,19,.82);
+      border-bottom:1px solid rgba(224,200,150,.12);
+    }
+
+    .hero{padding:50px 0 30px}
+    .eyebrow{
+      color:var(--gold);
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:800;
+      margin-bottom:12px;
+    }
+    h1{
+      margin:0;
+      font-size:42px;
+      line-height:1.08;
+      letter-spacing:-.02em;
+      color:#f7ead0;
+    }
+    .lead{
+      margin:16px 0 0;
+      color:#cbd5e1;
+      font-size:17px;
+      line-height:1.8;
+    }
+
+    .form-section{padding:36px 0;border-bottom:1px solid rgba(224,200,150,.08)}
+    .form-section h2{
+      margin:0 0 16px;
+      color:#f7ead0;
+      font-size:24px;
+      line-height:1.2;
+    }
+    .form-section p{margin:0 0 20px;color:var(--muted);line-height:1.7;font-size:15px}
+
+    .form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .form-group{display:grid;gap:6px}
+    .form-group.full{grid-column:span 2}
+    label{
+      font-size:13px;
+      font-weight:600;
+      color:#e2e8f0;
+    }
+    label .required{color:#fca5a5}
+    input,textarea,select{
+      width:100%;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:10px;
+      background:rgba(255,255,255,.04);
+      color:#f8fafc;
+      font-size:14px;
+      font-family:inherit;
+    }
+    input:focus,textarea:focus,select:focus{
+      outline:none;
+      border-color:var(--gold);
+      background:rgba(255,255,255,.06);
+    }
+    textarea{min-height:120px;resize:vertical}
+    .hint{
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    .evidence-list{display:grid;gap:12px}
+    .evidence-item{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:var(--panel);
+      padding:16px;
+    }
+    .evidence-item h3{margin:0 0 8px;color:#f8fafc;font-size:15px}
+    .evidence-item p{margin:0;color:var(--muted);line-height:1.6;font-size:13px}
+
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:0 18px;
+      border-radius:12px;
+      border:1px solid rgba(224,200,150,.18);
+      color:#e2e8f0;
+      background:rgba(255,255,255,.035);
+      text-decoration:none;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .18s ease,border-color .18s ease,background .18s ease;
+    }
+    .btn.primary{background:var(--gold-dark);border-color:var(--gold-dark);color:#0b111d}
+    .btn:hover{transform:translateY(-2px);border-color:var(--gold);background:rgba(255,255,255,.06)}
+    .btn.primary:hover{background:var(--gold)}
+    .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+    .notice{
+      border:1px solid rgba(251,191,36,.28);
+      background:linear-gradient(145deg,rgba(251,191,36,.13),rgba(251,191,36,.04));
+      border-radius:20px;
+      padding:18px;
+      color:#f6e6bd;
+      margin:20px 0;
+    }
+    .notice b{display:block;margin-bottom:6px;color:#f9e5ad;font-size:16px}
+    .notice p{margin:0;color:#d8caa8;line-height:1.7;font-size:14px}
+
+    footer{padding:32px 0;text-align:center;color:var(--muted)}
+    footer a{color:#f6e6bd;text-decoration:none}
+    footer a:hover{text-decoration:underline}
+
+    @media (max-width:640px){
+      .form-grid{grid-template-columns:1fr}
+      .form-group.full{grid-column:span 1}
+      h1{font-size:28px}
+      .actions{flex-direction:column}
+      .btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Bỏ qua nội dung điều hướng</a>
+  <div id="siteHeader"></div>
+
+  <main id="mainContent">
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">LAYER 1 · VERIFIED IDENTITY</div>
+        <h1>Đăng ký Xác Thực Creator</h1>
+        <p class="lead">
+          Creator đã xác thực trên DSTS có badge tin cậy, ưu tiên hiển thị trên bản đồ toàn cầu và quyền truy cập Creator Dashboard. Quy trình review mất 3-7 ngày làm việc.
+        </p>
+      </div>
+    </section>
+
+    <form id="applyForm" class="wrap">
+      <div class="notice">
+        <b>Yêu cầu trước khi đăng ký</b>
+        <p>Bạn phải là Creator đã đăng ký trên DSTS Club với status active. Chỉ Creator có Creator Profile mới đủ điều kiện apply.</p>
+      </div>
+
+      <section class="form-section">
+        <h2>Thông tin cơ bản</h2>
+        <p>Thông tin hiển thị công khai trên profile Creator đã xác thực.</p>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label for="displayName">Tên hiển thị <span class="required">*</span></label>
+            <input type="text" id="displayName" name="displayName" required placeholder="Tên hoặc nghệ danh của bạn">
+            <div class="hint">Tên này sẽ hiển thị trên badge và public profile.</div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email <span class="required">*</span></label>
+            <input type="email" id="email" name="email" required placeholder="email@example.com">
+          </div>
+          <div class="form-group">
+            <label for="phone">Số điện thoại</label>
+            <input type="tel" id="phone" name="phone" placeholder="+84 xxx xxx xxxx">
+          </div>
+          <div class="form-group full">
+            <label for="bio">Giới thiệu ngắn <span class="required">*</span></label>
+            <textarea id="bio" name="bio" required placeholder="Tóm tắt về bạn, lĩnh vực hoạt động, và thành tựu chính (tối đa 200 ký tự)"></textarea>
+            <div class="hint">Tối đa 200 ký tự. Sẽ hiển thị trên profile card.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>Thông tin Creator</h2>
+        <p>Liên kết với Creator Profile hiện có trên DSTS Club.</p>
+        <div class="form-grid">
+          <div class="form-group full">
+            <label for="creatorProfileId">Creator Profile ID <span class="required">*</span></label>
+            <input type="text" id="creatorProfileId" name="creatorProfileId" required placeholder="dsts-creator-xxxxx">
+            <div class="hint">ID Creator Profile của bạn trên DSTS Club. Tìm trong trang Creator Dashboard.</div>
+          </div>
+          <div class="form-group">
+            <label for="creatorType">Loại Creator <span class="required">*</span></label>
+            <select id="creatorType" name="creatorType" required>
+              <option value="">Chọn loại Creator</option>
+              <option value="entrepreneur">Doanh nhân</option>
+              <option value="artist">Nghệ sĩ</option>
+              <option value="musician">Nhạc sĩ</option>
+              <option value="actor">Diễn viên</option>
+              <option value="writer">Nhà văn</option>
+              <option value="speaker">Diễn giả</option>
+              <option value="educator">Giáo dục</option>
+              <option value="other">Khác</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="country">Quốc gia <span class="required">*</span></label>
+            <input type="text" id="country" name="country" required placeholder="Vietnam">
+          </div>
+          <div class="form-group">
+            <label for="city">Thành phố <span class="required">*</span></label>
+            <input type="text" id="city" name="city" required placeholder="Ho Chi Minh City">
+          </div>
+          <div class="form-group">
+            <label for="industry">Ngành nghề</label>
+            <input type="text" id="industry" name="industry" placeholder="Technology, Education, Arts...">
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>Bằng chứng xác thực (Evidence Pack)</h2>
+        <p>Cung cấp ít nhất 2 loại bằng chứng để chứng minh danh tính và thành tựu.</p>
+        <div class="evidence-list">
+          <div class="evidence-item">
+            <h3>1. Chứng minh danh tính <span class="required">*</span></h3>
+            <p>Link đến tài liệu xác minh danh tính (CCCD, passport, hoặc giấy tờ hợp lệ). Upload lên R2 và dán link.</p>
+            <div class="form-group" style="margin-top:8px">
+              <input type="url" name="evidence_identity" required placeholder="https://r2.duongsaotoasang.com/evidence/...">
+            </div>
+          </div>
+          <div class="evidence-item">
+            <h3>2. Chứng minh nghề nghiệp <span class="required">*</span></h3>
+            <p>Link đến bằng cấp, chứng chỉ, hoặc giấy phép hành nghề.</p>
+            <div class="form-group" style="margin-top:8px">
+              <input type="url" name="evidence_professional" required placeholder="https://r2.duongsaotoasang.com/evidence/...">
+            </div>
+          </div>
+          <div class="evidence-item">
+            <h3>3. Bằng chứng truyền thông (tùy chọn)</h3>
+            <p>Link đến bài báo, phỏng vấn, hoặc xuất hiện trên media.</p>
+            <div class="form-group" style="margin-top:8px">
+              <input type="url" name="evidence_media" placeholder="https://...">
+            </div>
+          </div>
+          <div class="evidence-item">
+            <h3>4. Bằng chứng xã hội (tùy chọn)</h3>
+            <p>Link đến social proof (LinkedIn, Facebook, Instagram với follower >1000).</p>
+            <div class="form-group" style="margin-top:8px">
+              <input type="url" name="evidence_social" placeholder="https://linkedin.com/in/...">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>Đồng ý điều khoản</h2>
+        <div class="form-group full">
+          <label style="display:flex;align-items:start;gap:10px;font-weight:400;font-size:14px;">
+            <input type="checkbox" id="agreeTerms" name="agreeTerms" required style="width:auto;margin-top:2px">
+            <span>Tôi đồng ý với <a href="/legal" target="_blank">Điều khoản dịch vụ</a> và <a href="/privacy" target="_blank">Chính sách quyền riêng tư</a> của DSTS. Tôi hiểu rằng thông tin tôi cung cấp sẽ được sử dụng cho mục đích xác thực và hiển thị công khai nếu được duyệt. <span class="required">*</span></span>
+          </label>
+        </div>
+      </section>
+
+      <div class="actions">
+        <button type="submit" class="btn primary" id="submitBtn">Gửi đăng ký</button>
+        <a href="/club" class="btn">Hủy</a>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>Đường Sao Tỏa Sáng · DSTS</strong></p>
+      <p>
+        <a href="/">Trang chủ</a> ·
+        <a href="/club">DSTS Club</a> ·
+        <a href="/contact">Liên hệ</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="/assets/app-v5.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      DSTS.mountSiteChrome({ active: 'apply' });
+
+      const form = document.getElementById('applyForm');
+      const submitBtn = document.getElementById('submitBtn');
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Đang gửi...';
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+          const response = await fetch('/api/verify/apply-creator', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+
+          if (response.ok) {
+            alert('Đăng ký thành công! Chúng tôi sẽ review trong 3-7 ngày làm việc.');
+            window.location.href = '/club';
+          } else {
+            const error = await response.text();
+            alert('Lỗi: ' + error);
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Gửi đăng ký';
+          }
+        } catch (err) {
+          alert('Lỗi kết nối: ' + err.message);
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Gửi đăng ký';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

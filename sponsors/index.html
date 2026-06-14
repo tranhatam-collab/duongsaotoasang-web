@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b111d">
+  <title>Sponsor Portal | Đường Sao Tỏa Sáng</title>
+  <meta name="description" content="Portal cho Sponsor đăng ký tài trợ, xem campaigns và tracking impact.">
+  <link rel="canonical" href="https://duongsaotoasang.com/sponsors">
+  <link rel="stylesheet" href="/app.css">
+
+  <style>
+    :root{
+      --bg:#0b111d;
+      --bg-alt:#0f172a;
+      --panel:rgba(255,255,255,.035);
+      --panel-strong:rgba(255,255,255,.055);
+      --text:#e2e8f0;
+      --muted:#9eb0c8;
+      --line:rgba(224,200,150,.14);
+      --gold:#e0c896;
+      --gold-dark:#c9a66b;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(1000px 620px at 8% 0%, rgba(224,200,150,.14), transparent 60%),
+        radial-gradient(880px 520px at 92% 8%, rgba(96,165,250,.14), transparent 58%),
+        linear-gradient(180deg,#0b111d 0%, #101827 50%, #0b111d 100%);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    a{color:inherit}
+    .wrap{width:min(1200px,calc(100% - 32px));margin:0 auto}
+    .skip-link{
+      position:absolute;
+      left:16px;
+      top:-44px;
+      z-index:999;
+      background:#fff;
+      color:#111;
+      padding:10px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      transition:top .2s ease;
+    }
+    .skip-link:focus{top:16px}
+
+    #siteHeader .site-topbar{
+      background:rgba(8,12,19,.82);
+      border-bottom:1px solid rgba(224,200,150,.12);
+    }
+
+    .hero{padding:40px 0 24px}
+    .eyebrow{
+      color:var(--gold);
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+    h1{
+      margin:0;
+      font-size:36px;
+      line-height:1.08;
+      letter-spacing:-.02em;
+      color:#f7ead0;
+    }
+    .lead{
+      margin:12px 0 0;
+      color:#cbd5e1;
+      font-size:16px;
+      line-height:1.7;
+    }
+
+    .cta-group{display:flex;gap:12px;margin:20px 0;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:0 18px;
+      border-radius:12px;
+      border:1px solid rgba(224,200,150,.18);
+      color:#e2e8f0;
+      background:rgba(255,255,255,.035);
+      text-decoration:none;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .18s ease,border-color .18s ease,background .18s ease;
+    }
+    .btn.primary{background:var(--gold-dark);border-color:var(--gold-dark);color:#0b111d}
+    .btn:hover{transform:translateY(-2px);border-color:var(--gold);background:rgba(255,255,255,.06)}
+    .btn.primary:hover{background:var(--gold)}
+
+    .section{padding:32px 0}
+    .section h2{margin:0 0 20px;color:#f7ead0;font-size:24px}
+
+    .campaigns-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+    .campaign-card{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:var(--panel);
+      padding:20px;
+    }
+    .campaign-title{font-size:18px;font-weight:700;color:#f8fafc;margin-bottom:8px}
+    .campaign-desc{color:var(--muted);line-height:1.6;font-size:14px;margin-bottom:12px}
+    .campaign-meta{display:flex;gap:12px;font-size:12px;color:var(--muted)}
+    .campaign-status{
+      display:inline-block;
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+    .campaign-status.active{background:rgba(74,222,128,.16);color:#86efac}
+    .campaign-status.pending{background:rgba(251,191,36,.16);color:#fde68a}
+    .campaign-status.completed{background:rgba(148,163,184,.16);color:#cbd5e1}
+
+    .notice{
+      border:1px solid rgba(251,191,36,.28);
+      background:linear-gradient(145deg,rgba(251,191,36,.13),rgba(251,191,36,.04));
+      border-radius:20px;
+      padding:18px;
+      color:#f6e6bd;
+      margin:20px 0;
+    }
+    .notice b{display:block;margin-bottom:6px;color:#f9e5ad;font-size:16px}
+    .notice p{margin:0;color:#d8caa8;line-height:1.7;font-size:14px}
+
+    footer{padding:32px 0;text-align:center;color:var(--muted)}
+    footer a{color:#f6e6bd;text-decoration:none}
+    footer a:hover{text-decoration:underline}
+
+    @media (max-width:640px){
+      h1{font-size:24px}
+      .cta-group{flex-direction:column}
+      .btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Bỏ qua nội dung điều hướng</a>
+  <div id="siteHeader"></div>
+
+  <main id="mainContent">
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">LAYER 4 · SPONSOR ECOSYSTEM</div>
+        <h1>Sponsor Portal</h1>
+        <p class="lead">
+          Portal cho Sponsor đăng ký tài trợ, xem campaigns active và tracking impact của các chương trình đã tài trợ.
+        </p>
+        <div class="cta-group">
+          <a href="/apply/verified-sponsor" class="btn primary">Đăng ký Sponsor</a>
+          <a href="/sponsors/dashboard" class="btn">Sponsor Dashboard</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <div class="notice">
+        <b>Thông báo</b>
+        <p>Sponsor Portal đang trong giai đoạn beta. Một số tính năng có thể chưa hoàn thiện.</p>
+      </div>
+
+      <section class="section">
+        <h2>Campaigns Active</h2>
+        <div class="campaigns-grid" id="campaignsGrid">
+          <div class="campaign-card">
+            <div class="campaign-title">Đang tải...</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Tại sao tài trợ DSTS?</h2>
+        <div class="campaigns-grid">
+          <div class="campaign-card">
+            <div class="campaign-title">Tác động xã hội</div>
+            <div class="campaign-desc">Hỗ trợ cộng đồng người Việt toàn cầu thông qua các chương trình giáo dục và lưu trữ di sản.</div>
+          </div>
+          <div class="campaign-card">
+            <div class="campaign-title">Brand Visibility</div>
+            <div class="campaign-desc">Hiển thị logo và thông tin trên DSTS Club, talk shows và các sự kiện lớn.</div>
+          </div>
+          <div class="campaign-card">
+            <div class="campaign-title">Impact Tracking</div>
+            <div class="campaign-desc">Theo dõi impact real-time qua dashboard với metrics chi tiết.</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>Đường Sao Tỏa Sáng · DSTS</strong></p>
+      <p>
+        <a href="/">Trang chủ</a> ·
+        <a href="/club">DSTS Club</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="/assets/app-v5.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      DSTS.mountSiteChrome({ active: 'sponsors' });
+
+      async function loadCampaigns() {
+        try {
+          const response = await fetch('/api/sponsors/campaigns');
+          const data = await response.json();
+
+          if (!data.success) {
+            throw new Error(data.error || 'Failed to load campaigns');
+          }
+
+          const campaigns = data.campaigns || [];
+
+          if (campaigns.length === 0) {
+            document.getElementById('campaignsGrid').innerHTML = '<div class="campaign-card"><div class="campaign-title">Chưa có campaign nào</div></div>';
+            return;
+          }
+
+          document.getElementById('campaignsGrid').innerHTML = campaigns.map(c => `
+            <div class="campaign-card">
+              <div class="campaign-title">${c.title}</div>
+              <div class="campaign-desc">${c.description || ''}</div>
+              <div class="campaign-meta">
+                <span class="campaign-status ${c.status}">${c.status}</span>
+                <span>${new Date(c.start_date).toLocaleDateString('vi-VN')} - ${new Date(c.end_date).toLocaleDateString('vi-VN')}</span>
+              </div>
+            </div>
+          `).join('');
+
+        } catch (err) {
+          console.error('Error loading campaigns:', err);
+          document.getElementById('campaignsGrid').innerHTML = '<div class="campaign-card"><div class="campaign-title">Lỗi tải campaigns</div></div>';
+        }
+      }
+
+      loadCampaigns();
+    });
+  </script>
+</body>
+</html>

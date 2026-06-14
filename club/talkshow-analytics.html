@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b111d">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Talk Show Analytics | Đường Sao Tỏa Sáng</title>
+  <meta name="description" content="Analytics cho talk show với charts về views, engagement và performance.">
+  <link rel="canonical" href="https://duongsaotoasang.com/club/talkshow-analytics">
+  <link rel="stylesheet" href="/app.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <style>
+    :root{
+      --bg:#0b111d;
+      --bg-alt:#0f172a;
+      --panel:rgba(255,255,255,.035);
+      --panel-strong:rgba(255,255,255,.055);
+      --text:#e2e8f0;
+      --muted:#9eb0c8;
+      --line:rgba(224,200,150,.14);
+      --gold:#e0c896;
+      --gold-dark:#c9a66b;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(1000px 620px at 8% 0%, rgba(224,200,150,.14), transparent 60%),
+        radial-gradient(880px 520px at 92% 8%, rgba(96,165,250,.14), transparent 58%),
+        linear-gradient(180deg,#0b111d 0%, #101827 50%, #0b111d 100%);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    a{color:inherit}
+    .wrap{width:min(1200px,calc(100% - 32px));margin:0 auto}
+    .skip-link{
+      position:absolute;
+      left:16px;
+      top:-44px;
+      z-index:999;
+      background:#fff;
+      color:#111;
+      padding:10px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      transition:top .2s ease;
+    }
+    .skip-link:focus{top:16px}
+
+    #siteHeader .site-topbar{
+      background:rgba(8,12,19,.82);
+      border-bottom:1px solid rgba(224,200,150,.12);
+    }
+
+    .hero{padding:40px 0 24px}
+    .eyebrow{
+      color:var(--gold);
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+    h1{
+      margin:0;
+      font-size:36px;
+      line-height:1.08;
+      letter-spacing:-.02em;
+      color:#f7ead0;
+    }
+    .lead{
+      margin:12px 0 0;
+      color:#cbd5e1;
+      font-size:16px;
+      line-height:1.7;
+    }
+
+    .charts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:24px;margin:32px 0}
+    .chart-container{
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:var(--panel-strong);
+      padding:24px;
+    }
+    .chart-container h2{margin:0 0 16px;color:#f7ead0;font-size:18px}
+    .chart-wrapper{position:relative;height:300px}
+
+    .filters{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0;padding:16px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+    .filter-group{display:flex;align-items:center;gap:8px}
+    label{font-size:13px;font-weight:600;color:#e2e8f0}
+    select{
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:rgba(255,255,255,.04);
+      color:#f8fafc;
+      font-size:14px;
+      font-family:inherit;
+    }
+    select:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.06)}
+
+    footer{padding:32px 0;text-align:center;color:var(--muted)}
+    footer a{color:#f6e6bd;text-decoration:none}
+    footer a:hover{text-decoration:underline}
+
+    @media (max-width:640px){
+      h1{font-size:24px}
+      .charts-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Bỏ qua nội dung điều hướng</a>
+  <div id="siteHeader"></div>
+
+  <main id="mainContent">
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">LAYER 3 · CREATOR ECONOMY</div>
+        <h1>Talk Show Analytics</h1>
+        <p class="lead">
+          Xem biểu đồ analytics cho talk show: views, engagement, và performance metrics.
+        </p>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <div class="filters">
+        <div class="filter-group">
+          <label for="periodFilter">Khoảng thời gian:</label>
+          <select id="periodFilter">
+            <option value="7">7 ngày</option>
+            <option value="30" selected>30 ngày</option>
+            <option value="90">90 ngày</option>
+            <option value="365">1 năm</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="creatorFilter">Creator:</label>
+          <select id="creatorFilter">
+            <option value="">Tất cả</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+        <div class="chart-container">
+          <h2>Views theo thời gian</h2>
+          <div class="chart-wrapper">
+            <canvas id="viewsChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-container">
+          <h2>Engagement Rate</h2>
+          <div class="chart-wrapper">
+            <canvas id="engagementChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-container">
+          <h2>Talk Shows theo Creator</h2>
+          <div class="chart-wrapper">
+            <canvas id="creatorChart"></canvas>
+          </div>
+        </div>
+        <div class="chart-container">
+          <h2>Top Performing Talk Shows</h2>
+          <div class="chart-wrapper">
+            <canvas id="topChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>Đường Sao Tỏa Sáng · DSTS</strong></p>
+      <p>
+        <a href="/">Trang chủ</a> ·
+        <a href="/club">DSTS Club</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="/assets/app-v5.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      DSTS.mountSiteChrome({ active: 'club' });
+
+      let viewsChart, engagementChart, creatorChart, topChart;
+
+      async function loadAnalytics() {
+        try {
+          const period = document.getElementById('periodFilter').value;
+          const creatorId = document.getElementById('creatorFilter').value;
+
+          const response = await fetch(`/api/talkshow/analytics?period=${period}&creator_id=${creatorId}`);
+          const data = await response.json();
+
+          if (!data.success) {
+            throw new Error(data.error || 'Failed to load analytics');
+          }
+
+          renderCharts(data);
+
+        } catch (err) {
+          console.error('Error loading analytics:', err);
+        }
+      }
+
+      function renderCharts(data) {
+        const chartOptions = {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: { color: '#e2e8f0' }
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: '#9eb0c8' },
+              grid: { color: 'rgba(224,200,150,.08)' }
+            },
+            y: {
+              ticks: { color: '#9eb0c8' },
+              grid: { color: 'rgba(224,200,150,.08)' }
+            }
+          }
+        };
+
+        // Views Chart
+        if (viewsChart) viewsChart.destroy();
+        viewsChart = new Chart(document.getElementById('viewsChart'), {
+          type: 'line',
+          data: {
+            labels: data.views_by_date?.map(d => d.date) || [],
+            datasets: [{
+              label: 'Views',
+              data: data.views_by_date?.map(d => d.views) || [],
+              borderColor: '#e0c896',
+              backgroundColor: 'rgba(224,200,150,.2)',
+              fill: true,
+              tension: 0.4
+            }]
+          },
+          options: chartOptions
+        });
+
+        // Engagement Chart
+        if (engagementChart) engagementChart.destroy();
+        engagementChart = new Chart(document.getElementById('engagementChart'), {
+          type: 'line',
+          data: {
+            labels: data.engagement_by_date?.map(d => d.date) || [],
+            datasets: [{
+              label: 'Engagement Rate',
+              data: data.engagement_by_date?.map(d => d.rate) || [],
+              borderColor: '#60a5fa',
+              backgroundColor: 'rgba(96,165,250,.2)',
+              fill: true,
+              tension: 0.4
+            }]
+          },
+          options: chartOptions
+        });
+
+        // Creator Chart
+        if (creatorChart) creatorChart.destroy();
+        creatorChart = new Chart(document.getElementById('creatorChart'), {
+          type: 'bar',
+          data: {
+            labels: data.by_creator?.map(d => d.creator_name) || [],
+            datasets: [{
+              label: 'Talk Shows',
+              data: data.by_creator?.map(d => d.count) || [],
+              backgroundColor: 'rgba(224,200,150,.6)',
+              borderColor: '#e0c896',
+              borderWidth: 1
+            }]
+          },
+          options: chartOptions
+        });
+
+        // Top Chart
+        if (topChart) topChart.destroy();
+        topChart = new Chart(document.getElementById('topChart'), {
+          type: 'bar',
+          data: {
+            labels: data.top_talkshows?.map(d => d.title) || [],
+            datasets: [{
+              label: 'Views',
+              data: data.top_talkshows?.map(d => d.views) || [],
+              backgroundColor: 'rgba(74,222,128,.6)',
+              borderColor: '#4ade80',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            ...chartOptions,
+            indexAxis: 'y'
+          }
+        });
+      }
+
+      document.getElementById('periodFilter').addEventListener('change', loadAnalytics);
+      document.getElementById('creatorFilter').addEventListener('change', loadAnalytics);
+
+      loadAnalytics();
+    });
+  </script>
+</body>
+</html>

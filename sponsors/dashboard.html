@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b111d">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Sponsor Dashboard | Đường Sao Tỏa Sáng</title>
+  <meta name="description" content="Dashboard cho Sponsor xem metrics, impact và performance của campaigns.">
+  <link rel="canonical" href="https://duongsaotoasang.com/sponsors/dashboard">
+  <link rel="stylesheet" href="/app.css">
+
+  <style>
+    :root{
+      --bg:#0b111d;
+      --bg-alt:#0f172a;
+      --panel:rgba(255,255,255,.035);
+      --panel-strong:rgba(255,255,255,.055);
+      --text:#e2e8f0;
+      --muted:#9eb0c8;
+      --line:rgba(224,200,150,.14);
+      --gold:#e0c896;
+      --gold-dark:#c9a66b;
+      --green:rgba(74,222,128,.14);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      background:
+        radial-gradient(1000px 620px at 8% 0%, rgba(224,200,150,.14), transparent 60%),
+        radial-gradient(880px 520px at 92% 8%, rgba(96,165,250,.14), transparent 58%),
+        linear-gradient(180deg,#0b111d 0%, #101827 50%, #0b111d 100%);
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    a{color:inherit}
+    .wrap{width:min(1200px,calc(100% - 32px));margin:0 auto}
+    .skip-link{
+      position:absolute;
+      left:16px;
+      top:-44px;
+      z-index:999;
+      background:#fff;
+      color:#111;
+      padding:10px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      transition:top .2s ease;
+    }
+    .skip-link:focus{top:16px}
+
+    #siteHeader .site-topbar{
+      background:rgba(8,12,19,.82);
+      border-bottom:1px solid rgba(224,200,150,.12);
+    }
+
+    .hero{padding:40px 0 24px}
+    .eyebrow{
+      color:var(--gold);
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+    h1{
+      margin:0;
+      font-size:36px;
+      line-height:1.08;
+      letter-spacing:-.02em;
+      color:#f7ead0;
+    }
+    .lead{
+      margin:12px 0 0;
+      color:#cbd5e1;
+      font-size:16px;
+      line-height:1.7;
+    }
+
+    .metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:24px 0}
+    .metric-card{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:var(--panel);
+      padding:20px;
+    }
+    .metric-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+    .metric-value{font-size:32px;font-weight:700;color:#f8fafc}
+    .metric-delta{font-size:13px;margin-top:4px}
+    .metric-delta.positive{color:#86efac}
+    .metric-delta.negative{color:#fca5a5}
+
+    .dashboard-grid{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-top:32px}
+    .panel{
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:var(--panel-strong);
+      padding:24px;
+    }
+    .panel h2{margin:0 0 16px;color:#f7ead0;font-size:20px}
+
+    .list-item{
+      padding:12px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .list-item:last-child{border-bottom:none}
+    .list-item-title{font-size:14px;font-weight:600;color:#f8fafc;margin-bottom:4px}
+    .list-item-meta{font-size:12px;color:var(--muted)}
+
+    .notice{
+      border:1px solid rgba(251,191,36,.28);
+      background:linear-gradient(145deg,rgba(251,191,36,.13),rgba(251,191,36,.04));
+      border-radius:20px;
+      padding:18px;
+      color:#f6e6bd;
+      margin:20px 0;
+    }
+    .notice b{display:block;margin-bottom:6px;color:#f9e5ad;font-size:16px}
+    .notice p{margin:0;color:#d8caa8;line-height:1.7;font-size:14px}
+
+    footer{padding:32px 0;text-align:center;color:var(--muted)}
+    footer a{color:#f6e6bd;text-decoration:none}
+    footer a:hover{text-decoration:underline}
+
+    @media (max-width:768px){
+      .dashboard-grid{grid-template-columns:1fr}
+      h1{font-size:24px}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Bỏ qua nội dung điều hướng</a>
+  <div id="siteHeader"></div>
+
+  <main id="mainContent">
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">LAYER 4 · SPONSOR ECOSYSTEM</div>
+        <h1>Sponsor Dashboard</h1>
+        <p class="lead">
+          Xem metrics, impact và performance của các campaigns bạn đã tài trợ.
+        </p>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <div class="notice">
+        <b>Thông báo</b>
+        <p>Dữ liệu dashboard được cập nhật hàng ngày. Impact metrics được tính toán dựa trên các engagement và conversion tracking.</p>
+      </div>
+
+      <div class="metrics-grid" id="metricsGrid">
+        <div class="metric-card">
+          <div class="metric-label">Total Investment (VND)</div>
+          <div class="metric-value" id="investmentValue">...</div>
+          <div class="metric-delta">Đã tài trợ</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Impressions</div>
+          <div class="metric-value" id="impressionsValue">...</div>
+          <div class="metric-delta" id="impressionsDelta">...</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Engagement Rate</div>
+          <div class="metric-value" id="engagementValue">...</div>
+          <div class="metric-delta">%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Impact Score</div>
+          <div class="metric-value" id="impactValue">...</div>
+          <div class="metric-delta">/100</div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="panel">
+          <h2>Campaigns Performance</h2>
+          <div id="campaignsList">
+            <div class="list-item">
+              <div class="list-item-title">Đang tải...</div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>Impact Report</h2>
+          <div id="impactReport">
+            <div class="list-item">
+              <div class="list-item-title">Đang tải...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>Đường Sao Tỏa Sáng · DSTS</strong></p>
+      <p>
+        <a href="/">Trang chủ</a> ·
+        <a href="/sponsors">Sponsor Portal</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="/assets/app-v5.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      DSTS.mountSiteChrome({ active: 'sponsors' });
+
+      async function loadDashboard() {
+        try {
+          const sponsorId = localStorage.getItem('dsts_sponsor_id');
+          if (!sponsorId) {
+            document.getElementById('metricsGrid').innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:40px;">Vui lòng đăng nhập để xem dashboard</p>';
+            return;
+          }
+
+          const response = await fetch(`/api/sponsors/dashboard?sponsor_id=${sponsorId}`);
+          const data = await response.json();
+
+          if (!data.success) {
+            throw new Error(data.error || 'Failed to load dashboard');
+          }
+
+          const metrics = data.metrics;
+
+          document.getElementById('investmentValue').textContent = formatNumber(metrics.total_investment_vnd || 0);
+          document.getElementById('impressionsValue').textContent = formatNumber(metrics.impressions || 0);
+          document.getElementById('engagementValue').textContent = (metrics.engagement_rate * 100).toFixed(1);
+          document.getElementById('impactValue').textContent = metrics.impact_score || 0;
+
+          if (data.campaigns && data.campaigns.length > 0) {
+            document.getElementById('campaignsList').innerHTML = data.campaigns.map(c => `
+              <div class="list-item">
+                <div class="list-item-title">${c.title}</div>
+                <div class="list-item-meta">${new Date(c.start_date).toLocaleDateString('vi-VN')} - ${new Date(c.end_date).toLocaleDateString('vi-VN')} · ${c.status}</div>
+              </div>
+            `).join('');
+          } else {
+            document.getElementById('campaignsList').innerHTML = '<div class="list-item"><div class="list-item-title">Chưa có campaign nào</div></div>';
+          }
+
+          if (data.impact_report) {
+            document.getElementById('impactReport').innerHTML = `
+              <div class="list-item">
+                <div class="list-item-title">Reach</div>
+                <div class="list-item-meta">${formatNumber(data.impact_report.reach || 0)} người</div>
+              </div>
+              <div class="list-item">
+                <div class="list-item-title">Conversions</div>
+                <div class="list-item-meta">${data.impact_report.conversions || 0}</div>
+              </div>
+              <div class="list-item">
+                <div class="list-item-title">ROI</div>
+                <div class="list-item-meta">${(data.impact_report.roi * 100).toFixed(1)}%</div>
+              </div>
+            `;
+          } else {
+            document.getElementById('impactReport').innerHTML = '<div class="list-item"><div class="list-item-title">Chưa có impact report</div></div>';
+          }
+
+        } catch (err) {
+          console.error('Error loading dashboard:', err);
+          document.getElementById('metricsGrid').innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:40px;">Lỗi tải dashboard</p>';
+        }
+      }
+
+      function formatNumber(num) {
+        if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+        if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+        return num.toString();
+      }
+
+      loadDashboard();
+    });
+  </script>
+</body>
+</html>

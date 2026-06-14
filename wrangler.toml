@@ -2,18 +2,6 @@ name = "duongsaotoasang-com-v2"
 compatibility_date = "2026-03-09"
 pages_build_output_dir = "."
 
-# D1 binding
-[[d1_databases]]
-binding = "DB"
-database_name = "audit-binder-prod"
-database_id = "84b5d905-7abe-492d-b3b8-4eb7288f4053"
-migrations_dir = "migrations"
-
-# R2 bucket for legacy media storage
-[[r2_buckets]]
-binding = "LEGACY_BUCKET"
-bucket_name = "dsts-legacy-media"
-
 [vars]
 # Payment routing — pay.iai.one canonical gateway
 PAY_IAI_ONE_BASE_URL        = "https://pay.iai.one"
