@@ -44,6 +44,24 @@
 /trust-layer.html                 /trust-layer                      301
 /global-map.html                  /global-map                       301
 
+# v3.0 Layer routes — explicit 200 rewrites for subfolder index + clean URLs
+/verify                           /verify/index.html                200
+/verify.html                      /verify                           301
+/legacy                           /legacy/index.html                200
+/sponsor                          /sponsor/index.html             200
+/sponsor.html                     /sponsor                          301
+/trust                            /trust/index.html                 200
+/trust.html                       /trust                             301
+/register                         /register/index.html              200
+/register.html                    /register                         301
+/map                              /map.html                         200
+/map.html                         /map                              301
+
+# v3.0 Content pages clean URL
+/mentor-network.html              /mentor-network                   301
+/mentor-network                   /mentor-network.html              200
+/dream-nurture.html               /dream-nurture                    301
+
 # Legacy script detail URLs
 /scripts/rising-entrepreneur.html /scripts/rising-entrepreneur          301
 /scripts/global-artist.html       /scripts/global-artist                301
