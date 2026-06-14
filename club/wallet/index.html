@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ví Star Points — DSTS Club Wallet</title>
+<meta name="description" content="Quản lý Star Points trong DSTS Club. Xem số dư, lịch sử giao dịch, cách kiếm điểm, và đổi đặc quyền.">
+<link rel="canonical" href="https://duongsaotoasang.com/club/wallet/">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<main class="container">
+  <h1>Ví Star Points</h1>
+  <p class="lead">Quản lý điểm nội bộ DSTS Club. <strong>Không phải tiền, không cash-out, không chuyển nhượng.</strong></p>
+
+  <section id="balance">
+    <h2>Số dư hiện tại</h2>
+    <div id="balance-display">Đang tải...</div>
+  </section>
+
+  <section id="history">
+    <h2>Lịch sử giao dịch</h2>
+    <div id="history-list">Đang tải...</div>
+  </section>
+
+  <section id="earn">
+    <h2>Cách kiếm Star Points</h2>
+    <ul>
+      <li><strong>Tham gia sự kiện:</strong> +10 điểm/sự kiện</li>
+      <li><strong>Đọc content độc quyền:</strong> +2 điểm/bài</li>
+      <li><strong>Giới thiệu bạn bè (verified signup):</strong> +15 điểm/người</li>
+      <li><strong>Đóng góp nội dung (approved):</strong> +50 điểm/bài</li>
+      <li><strong>Feedback mentor (verified):</strong> +5 điểm</li>
+      <li><strong>Hoàn thành workshop:</strong> +20 điểm</li>
+    </ul>
+  </section>
+
+  <section id="redeem">
+    <h2>Đổi đặc quyền</h2>
+    <div class="grid-3">
+      <article class="card"><h3>Early Access</h3><p>Truy cập content mới trước 7 ngày. <strong>100 điểm</strong></p></article>
+      <article class="card"><h3>Đặc quyền Mentor</h3><p>Ưu tiên match mentor trong 30 ngày. <strong>200 điểm</strong></p></article>
+      <article class="card"><h3>Vé sự kiện</h3><p>1 vé talkshow/workshop miễn phí. <strong>150 điểm</strong></p></article>
+    </div>
+  </section>
+
+  <section id="disclaimer">
+    <h2>Lưu ý pháp lý</h2>
+    <p>Star Points là điểm nội bộ thuần túy, không có giá trị tiền tệ, không quy đổi tiền mặt, không chuyển nhượng, không thừa kế. Khi hủy membership, Star Points bị xóa. Xem đầy đủ tại <a href="/terms.html">Điều khoản</a>.</p>
+  </section>
+</main>
+<script>
+async function loadWallet() {
+  try {
+    const res = await fetch('/api/wallet');
+    const json = await res.json();
+    if (json.ok) {
+      document.getElementById('balance-display').innerHTML = '<div class="big-number">' + (json.balance || 0) + ' <span>Star Points</span></div>';
+      const list = document.getElementById('history-list');
+      if (json.history && json.history.length) {
+        list.innerHTML = json.history.map(h => '<div class="tx">' + h.description + ' <strong>' + (h.amount > 0 ? '+' : '') + h.amount + '</strong></div>').join('');
+      } else {
+        list.innerHTML = '<p>Chưa có giao dịch. Hãy tham gia sự kiện để tích điểm đầu tiên.</p>';
+      }
+    } else {
+      document.getElementById('balance-display').innerHTML = '<p>Vui lòng <a href="/login">đăng nhập</a> để xem số dư.</p>';
+      document.getElementById('history-list').innerHTML = '';
+    }
+  } catch (e) {
+    document.getElementById('balance-display').innerHTML = '<p>Đang cập nhật ví. Vui lòng quay lại sau.</p>';
+  }
+}
+loadWallet();
+</script>
+</body>
+</html>
