@@ -1,133 +1,98 @@
-# DSTS Routing v1.1 - Cloudflare Pages
-# Cloudflare Pages automatically serves clean URLs from matching HTML files:
-# /about -> about.html, /program -> program.html, etc.
-# It also automatically renders /404.html for missing assets.
-# Do not add /* /404.html 404 here: Pages _redirects does not support 404 rewrites
-# and redirects are applied even when a matching asset exists.
+# DSTS Routing v3.0 — Cloudflare Pages
+# Cột 1: source, Cột 2: destination, Cột 3: status (không có = 302)
 
-# Special route normalization
-/programs                         /program                              301
-/refund                           /refund.html                        200
-/payment-confirmation             /contact?type=payment-confirmation    302
+# Special
+/programs /program 301
+/refund /refund.html 200
+/payment-confirmation /contact?type=payment-confirmation 302
 
-# Legacy clean URL redirects
-/about.html                       /about                                301
-/program.html                     /program                              301
-/contact.html                     /contact                              301
-/donate.html                      /donate                               301
-/transparency.html                /transparency                         301
-/legal.html                       /legal                                301
-/privacy.html                     /privacy                              301
-/terms.html                       /terms                                301
-/support.html                     /support                              301
-/posts.html                       /posts                                301
-/events.html                      /events                               301
-/scripts.html                     /scripts                              301
-/content.html                     /content                              301
-/dream-nurture.html               /dream-nurture                        301
-/ndnum                            /dream-nurture                        301
+# Legacy clean URL
+/about.html /about 301
+/program.html /program 301
+/contact.html /contact 301
+/donate.html /donate 301
+/transparency.html /transparency 301
+/legal.html /legal 301
+/privacy.html /privacy 301
+/terms.html /terms 301
+/support.html /support 301
+/posts.html /posts 301
+/events.html /events 301
+/scripts.html /scripts 301
+/content.html /content 301
+/dream-nurture.html /dream-nurture 301
+/ndnum /dream-nurture 301
 
-# Evergreen Assets legacy redirects (Three Pillars)
-/stories                          /story-library                   301
-/global-vietnamese-stories        /story-library                   301
-/story-library.html               /story-library                   301
-/mentors                          /mentor-network                  301
-/mentor-network.html              /mentor-network                  301
-/nuoi-duong-nhung-uoc-mo          /dream-nurture                   301
-/dreams                           /dream-nurture                   301
+# Evergreen
+/stories /story-library 301
+/global-vietnamese-stories /story-library 301
+/story-library.html /story-library 301
+/mentors /mentor-network 301
+/mentor-network.html /mentor-network 301
+/nuoi-duong-nhung-uoc-mo /dream-nurture 301
+/dreams /dream-nurture 301
 
-# Ecosystem Layer redirects
-/verified.html                    /verified                         301
-/legacy.html                      /legacy                           301
-/creator-dashboard.html           /creator-dashboard                301
-/sponsors.html                    /sponsors                         301
-/trust-layer.html                 /trust-layer                      301
-/global-map.html                  /global-map                       301
+# v3.0 Layer routes — 200 rewrites
+/verify /verify/index.html 200
+/verify.html /verify 301
+/legacy /legacy/index.html 200
+/legacy.html /legacy 301
+/sponsor /sponsor/index.html 200
+/sponsor.html /sponsor 301
+/trust /trust/index.html 200
+/trust.html /trust 301
+/register /register/index.html 200
+/register.html /register 301
+/map /map.html 200
+/map.html /map 301
 
-# v3.0 Layer routes — explicit 200 rewrites for subfolder index + clean URLs
-/verify                           /verify/index.html                200
-/verify.html                      /verify                           301
-/legacy                           /legacy/index.html                200
-/sponsor                          /sponsor/index.html             200
-/sponsor.html                     /sponsor                          301
-/trust                            /trust/index.html                 200
-/trust.html                       /trust                             301
-/register                         /register/index.html              200
-/register.html                    /register                         301
-/map                              /map.html                         200
-/map.html                         /map                              301
+# Content pages
+/mentor-network /mentor-network.html 200
+/dream-nurture /dream-nurture.html 200
 
-# v3.0 Content pages clean URL
-/mentor-network.html              /mentor-network                   301
-/mentor-network                   /mentor-network.html              200
-/dream-nurture.html               /dream-nurture                    301
+# Ecosystem redirects
+/verified.html /verified 301
+/legacy.html /legacy 301
+/creator-dashboard.html /creator-dashboard 301
+/sponsors.html /sponsors 301
+/trust-layer.html /trust-layer 301
+/global-map.html /global-map 301
 
-# Legacy script detail URLs
-/scripts/rising-entrepreneur.html /scripts/rising-entrepreneur          301
-/scripts/global-artist.html       /scripts/global-artist                301
-/scripts/singing-icon.html        /scripts/singing-icon                 301
-/scripts/cinematic-actor.html     /scripts/cinematic-actor              301
-/scripts/the-thinker.html         /scripts/the-thinker                  301
-/scripts/creative-leader.html     /scripts/creative-leader              301
-/scripts/cultural-ambassador.html /scripts/cultural-ambassador          301
-/scripts/dsts-legacy.html         /scripts/dsts-legacy                  301
-/scripts/global-story.html        /scripts/global-story                 301
+# Script detail
+/scripts/rising-entrepreneur.html /scripts/rising-entrepreneur 301
+/scripts/global-artist.html /scripts/global-artist 301
+/scripts/singing-icon.html /scripts/singing-icon 301
+/scripts/cinematic-actor.html /scripts/cinematic-actor 301
+/scripts/the-thinker.html /scripts/the-thinker 301
+/scripts/creative-leader.html /scripts/creative-leader 301
+/scripts/cultural-ambassador.html /scripts/cultural-ambassador 301
+/scripts/dsts-legacy.html /scripts/dsts-legacy 301
+/scripts/global-story.html /scripts/global-story 301
 
-# === DSTS Club Phase 1 ===
-# Exact routes first (Cloudflare Pages first-match wins)
-# Note: Cloudflare Pages auto-serves clean URLs from HTML files.
-# Only add explicit redirects when needed for rewrite or dynamic params.
-/app                              /app/index.html                  200
-/app/                             /app/index.html                  200
-/club                              /club/index.html                  200
-# Dynamic creator routes handled by functions/club/[[catchall]].js
-# Creator dashboard placeholder routes (Phase 3 — all shell)
-/creator/dashboard                 /creator/dashboard.html              200
-/creator/posts                     /creator/posts.html                  200
-/creator/talkshows                 /creator/talkshows.html              200
-/creator/members                   /creator/members.html                200
-/creator/revenue                   /creator/revenue.html                200
-/creator/payouts                   /creator/payouts.html                200
-/creator/points                    /creator/points.html                 200
-/creator/settings                  /creator/settings.html               200
-/creator/profile                   /creator/profile.html                200
-/creator/reports                   /creator/reports.html                200
-# Admin dashboard placeholder routes (Phase 5)
-/admin/clubs                       /admin/clubs.html                    200
-/admin/creators                    /admin/creators.html                 200
-/admin/payouts                     /admin/payouts.html                  200
-/admin/subscriptions               /admin/clubs.html                    200
-/admin/points                      /admin/clubs.html                    200
-/admin/rewards                     /admin/clubs.html                    200
-/admin/referrals                   /admin/clubs.html                    200
-/admin/talkshows                   /admin/clubs.html                    200
+# DSTS Club
+/app /app/index.html 200
+/app/ /app/index.html 200
+/club /club/index.html 200
+/creator/dashboard /creator/dashboard.html 200
+/creator/posts /creator/posts.html 200
+/creator/talkshows /creator/talkshows.html 200
+/creator/members /creator/members.html 200
+/creator/revenue /creator/revenue.html 200
+/creator/payouts /creator/payouts.html 200
+/creator/points /creator/points.html 200
+/creator/settings /creator/settings.html 200
+/creator/profile /creator/profile.html 200
+/creator/reports /creator/reports.html 200
+/admin/clubs /admin/clubs.html 200
+/admin/creators /admin/creators.html 200
+/admin/payouts /admin/payouts.html 200
+/admin/subscriptions /admin/clubs.html 200
+/admin/points /admin/clubs.html 200
+/admin/rewards /admin/clubs.html 200
+/admin/referrals /admin/clubs.html 200
+/admin/talkshows /admin/clubs.html 200
 
-# === Layer 1 Movement Portal — Phase 1.1 (placeholder, từ Tháng 9/2026) ===
-# Mọi route /movement/* point vào /movement/coming-soon.html cho đến khi
-# nội dung thật sẵn sàng + Founder approve. Khi launch Phase 1.2,
-# bỏ comment block 'Phase 1.2' bên dưới và xoá block placeholder này.
-# Reference: docs/DSTS_MOVEMENT_UI_ROUTES_MOCKUP.md Mục 4 + Mục 10.
-#
-# /movement is now served by movement/index.html as an indexable explainer.
-# Sub-route placeholders below stay noindex and do NOT open sponsor inquiry,
-# event registration, payment, or auth flows.
-/movement/sponsors/*            /movement/coming-soon             200
-/movement/events/*              /movement/coming-soon             200
-/movement/tour-2026-2027/*      /movement/coming-soon             200
-
-# === Layer 1 Movement Portal — Phase 1.2+ (real routes, từ Tháng 10/2026) ===
-# Khi Layer 1 launch, uncomment block dưới + xoá block placeholder trên.
-# Cloudflare Pages tự serve clean URL từ HTML khớp; chỉ cần thêm rule khi cần
-# rewrite hoặc dynamic param.
-#
-# /movement                       /movement/index.html              200
-# /movement/sponsors              /movement/sponsors/index.html     200
-# /movement/sponsors/:tier        /movement/sponsors/:tier.html     200
-# /movement/events                /movement/events/index.html       200
-# /movement/events/:slug          /movement/events/:slug.html       200
-# /movement/tour-2026-2027        /movement/tour-2026-2027/index.html  200
-# /movement/tour-2026-2027/:country  /movement/tour-2026-2027/:country.html  200
-# /movement/gala-2026             /movement/gala-2026.html          200
-# /movement/diaspora-map          /movement/diaspora-map.html       200
-# /movement/press                 /movement/press.html              200
-# /movement/partners              /movement/partners.html           200
+# Movement placeholders
+/movement/sponsors/* /movement/coming-soon 200
+/movement/events/* /movement/coming-soon 200
+/movement/tour-2026-2027/* /movement/coming-soon 200
