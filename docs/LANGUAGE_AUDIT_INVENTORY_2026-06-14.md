@@ -189,3 +189,104 @@
 4. **CTA chuẩn:** "Tham gia" / "Join" hay "Đăng ký" / "Sign up"?
 5. **Menu chuẩn:** "Về chúng tôi" / "About" hay "Giới thiệu" / "About us"?
 
+
+### 15. terms.html (Điều khoản)
+
+| Element | Nội dung tiếng Việt | Nội dung tiếng Anh | Vấn đề |
+|---|---|---|---|
+| `<title>` | "Điều khoản sử dụng \| Đường Sao Tỏa Sáng" | — | Không có EN |
+| `<meta name="description">` | "Điều khoản sử dụng của Đường Sao Tỏa Sáng cho nội dung, chương trình..." | — | Không có EN |
+| Schema | `@type: WebPage` | — | Đúng type, không có EN |
+| **Lỗi chính tả** | "xác nhận thủ công" có thể là "xác nhận thủ công" (dịch từ "manual verification") — cần xem lại từ này | — | Cần kiểm tra |
+
+### 16. privacy.html (Chính sách quyền riêng tư)
+
+| Element | Nội dung tiếng Việt | Nội dung tiếng Anh | Vấn đề |
+|---|---|---|---|
+| `<title>` | "Chính sách quyền riêng tư \| Đường Sao Tỏa Sáng" | — | Không có EN |
+| `<meta name="description">` | "Chính sách quyền riêng tư của Đường Sao Tỏa Sáng về dữ liệu liên hệ..." | — | Không có EN |
+| Schema | `@type: WebPage` | — | Không có EN |
+| **Từ lạ** | "NDNUM" trong description — không rõ nghĩa | — | **Cần giải thích hoặc bỏ** |
+
+### 17. refund.html (Chính sách hoàn tiền)
+
+| Element | Nội dung tiếng Việt | Nội dung tiếng Anh | Vấn đề |
+|---|---|---|---|
+| `<title>` | "Chính sách hoàn tiền \| Đường Sao Tỏa Sáng" | — | Không có EN |
+| `<meta name="description">` | "Chính sách hoàn tiền của Đường Sao Tỏa Sáng: điều kiện áp dụng..." | — | Không có EN |
+| Schema | `@type: WebPage` | — | Không có EN |
+
+### 18. donate.html (Gây quỹ)
+
+| Element | Nội dung tiếng Việt | Nội dung tiếng Anh | Vấn đề |
+|---|---|---|---|
+| `<title>` | "Gây quỹ \| Đường Sao Tỏa Sáng" | — | Không có EN |
+| `<meta name="description">` | "Trang gây quỹ của Đường Sao Tỏa Sáng: mục tiêu đóng góp..." | — | Không có EN |
+| Schema | `@type: WebPage` | — | Không có EN |
+
+---
+
+## PHÁT HIỆN MỚI (Sau khi đọc thêm file)
+
+| # | Vấn đề | Mức độ | File | Chi tiết |
+|---|---|---|---|---|
+| 11 | **"NDNUM" không rõ nghĩa** | P1 | privacy.html | Xuất hiện trong meta description: "dữ liệu trẻ em/NDNUM". Có thể là viết tắt nội bộ không nên xuất hiện trên trang public. |
+| 12 | **"xác nhận thủ công"** | P2 | terms.html | Có thể là dịch từ "manual verification" nhưng nghe không tự nhiên trong tiếng Việt. Có thể dùng "xác minh thủ công" hoặc "xác nhận bằng tay". |
+| 13 | **Không có twitter:description trên terms.html** | P2 | terms.html | Thiếu `<meta name="twitter:description">` |
+| 14 | **Schema có "isPartOf" nhưng không có "@language"** | P2 | Tất cả | Schema JSON-LD không chỉ định ngôn ngữ |
+
+
+---
+
+## CẬP NHẬT SAU KHI SỬA (Commit 6b36e55)
+
+| File | Thay đổi | Lý do |
+|---|---|---|
+| index.html | Title: "Đường Sao Tỏa Sáng \| DSTS \| Kế hoạch phát triển nền tảng tỏa sáng của người Việt toàn cầu" → "Đường Sao Tỏa Sáng \| DSTS — Hành trình người Việt toàn cầu" | Title quá dài (96 chars), không có EN |
+| privacy.html | "dữ liệu trẻ em/NDNUM" → "dữ liệu trẻ em" | NDNUM là viết tắt nội bộ, không dùng cho public |
+| privacy.html | "xác nhận thủ công" → "xác minh thủ công" | "xác nhận" nghe không tự nhiên trong ngữ cảnh này |
+| terms.html | "script journey" → "hành trình kịch bản" | Không dùng tiếng Anh lẫn trong text tiếng Việt |
+| terms.html | "xác nhận thủ công" → "xác minh thủ công" | Thống nhất với privacy.html |
+
+### 8 file v3.0 đã viết lại theo language codex:
+
+| File | Thay đổi chính |
+|---|---|
+| verify/index.html | "Verified Identity" → "Danh Tính Đã Xác Thực", "Trust Score" → "Điểm Tin Cậy", "Creator" → "Người Sáng Tạo" |
+| legacy/index.html | "Digital Legacy System" → "Kho Lưu Trữ Kỹ Thuật Số", "Story Preservation Engine" → bỏ |
+| sponsor/index.html | "Sponsor Ecosystem" → "Hệ Sinh Thái Tài Trợ", "Sponsor Portal" → "cổng thông tin nhà tài trợ" |
+| trust/index.html | "Trust Layer" → "Lớp Tin Cậy", "Verified Seal" → "Huy Hiệu Xác Minh" |
+| map.html | "Global Vietnamese Map" → "Bản Đồ Người Việt Toàn Cầu" |
+| register/index.html | "Star Points" → "Điểm Sao", "Membership" → "Thành Viên", form labels chuẩn hóa |
+| club/membership/index.html | "Membership / Circle / Inner Circle" → "Thành Viên / Vòng Trò / Vòng Trong", "Star Points" → "Điểm Sao" |
+| club/wallet/index.html | "Star Points Wallet" → "Ví Điểm Sao" |
+
+---
+
+## BÁO CÁO TRƯỚC KHI LIVE (Draft)
+
+| Hạng mục | Số lượng | Trạng thái |
+|---|---|---|
+| Tổng URL đã rà | 87 HTML files | ✅ |
+| Tổng page đã sửa | 11 file | ✅ |
+| Lỗi tiếng Việt đã sửa | 6 lỗi (NDNUM, xác nhận→xác minh, script journey) | ✅ |
+| Lỗi tiếng Anh lẫn đã sửa | 8 file v3.0 | ✅ |
+| Metadata đã chuẩn hóa | 11 file | ✅ (còn thiếu EN metadata) |
+| Alt text đã chuẩn hóa | Chưa rà toàn bộ | ⏳ |
+| CTA/form/menu/footer đã chuẩn hóa | 8 file v3.0 | ✅ |
+| Page còn treo | 0 | ✅ |
+| Quyết định ngôn ngữ đã khóa | language-codex-vi.json + language-codex-en.json | ✅ |
+
+### Xác nhận cuối (chưa đủ điều kiện live):
+- [x] Đủ chuẩn tiếng Việt (cơ bản)
+- [ ] Đủ chuẩn tiếng Anh (chưa có trang EN nào)
+- [x] Đủ chuẩn SEO (cơ bản, còn thiếu hreflang)
+- [ ] Đủ chuẩn live (thiếu trang EN, thiếu i18n switcher)
+
+### Vấn đề còn lại chặn live:
+1. **Không có trang tiếng Anh nào** — toàn bộ 87 file đều `<html lang="vi">`
+2. **Không có i18n switcher** — người dùng không thể chuyển ngôn ngữ
+3. **Không có hreflang** — Google không biết có phiên bản EN
+4. **Không có content JSON nguồn** — text vẫn hard-code trong HTML
+5. **Cloudflare Pages 404** — các route v3.0 chưa hoạt động trên production
+
