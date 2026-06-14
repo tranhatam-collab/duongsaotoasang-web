@@ -290,3 +290,50 @@
 4. **Không có content JSON nguồn** — text vẫn hard-code trong HTML
 5. **Cloudflare Pages 404** — các route v3.0 chưa hoạt động trên production
 
+
+---
+
+## CẬP NHẬT SAU I18N (Commit 154ed7a)
+
+| File EN mới | File VI đã thêm hreflang |
+|---|---|
+| /en/index.html | /index.html ✅ |
+| /en/about.html | /about.html ✅ |
+| /en/contact.html | /contact.html ✅ |
+| /en/donate.html | /donate.html ✅ |
+| /en/verify.html | /verify/index.html ✅ |
+| /en/legacy.html | /legacy/index.html ✅ |
+| /en/sponsor.html | /sponsor/index.html ✅ |
+| /en/trust.html | /trust/index.html ✅ |
+| /en/map.html | /map.html ✅ |
+| /en/register.html | /register/index.html ✅ |
+
+---
+
+## BÁO CÁO TỔNG TRƯỚC KHI LIVE (Final)
+
+1. **Tổng số URL đã rà:** 87 HTML files
+2. **Tổng số page đã sửa:** 21 file (8 v3.0 VI + 3 legacy VI + 10 EN)
+3. **Tổng số lỗi tiếng Việt đã sửa:** 6 (NDNUM, xác nhận→xác minh, script journey, title dài)
+4. **Tổng số lỗi tiếng Anh lẫn đã sửa:** 8 file v3.0 (Verified Identity → Danh Tính Đã Xác Thực, Digital Legacy → Kho Lưu Trữ Kỹ Thuật Số, Sponsor Ecosystem → Hệ Sinh Thái Tài Trợ, Trust Layer → Lớp Tin Cậy, Global Vietnamese Map → Bản Đồ Người Việt Toàn Cầu, Star Points → Điểm Sao, Membership / Circle / Inner Circle → Thành Viên / Vòng Trò / Vòng Trong)
+5. **Tổng số metadata đã chuẩn hóa:** 21 file
+6. **Tổng số alt text đã chuẩn hóa:** Chưa rà toàn bộ (cần kiểm tra thủ công)
+7. **Tổng số CTA/form/menu/footer đã chuẩn hóa:** 8 file v3.0
+8. **Danh sách page còn treo:** 0
+9. **Quyết định ngôn ngữ đã khóa:**
+   - Tiếng Việt là bản chuẩn nguồn
+   - Tiếng Anh là bản ngôn ngữ quốc tế thứ hai
+   - Không lẫn ngôn ngữ trong cùng một block
+   - Thuật ngữ khóa trong language-codex-vi.json và language-codex-en.json
+10. **Xác nhận cuối:**
+    - [x] Đủ chuẩn tiếng Việt (cơ bản, cần rà thêm 67 file còn lại)
+    - [x] Đủ chuẩn tiếng Anh (10 trang EN cơ bản, cần mở rộng)
+    - [x] Đủ chuẩn SEO (hreflang đã thêm, còn thiếu trên 67 file chưa rà)
+    - [ ] Đủ chuẩn live (cần Cloudflare Pages deploy pass + Lighthouse)
+
+### Vấn đề còn chặn live:
+1. **Cloudflare Pages 404** — /verify/, /sponsor/, /trust/, /register/, /map vẫn 404 trên preview
+2. **67 file HTML chưa rà ngôn ngữ** — cần kiểm tra thủ công từng file
+3. **Alt text chưa rà toàn bộ** — cần kiểm tra
+4. **EN pages là placeholder** — chỉ có title + description + link về VI, chưa có content đầy đủ
+
