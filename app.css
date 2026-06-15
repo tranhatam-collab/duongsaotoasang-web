@@ -3,6 +3,7 @@
 @import url("/evidence-pack.css");
 @import url("/legacy-player.css");
 @import url("/timeline.css");
+@import url("/metrics.css");
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}

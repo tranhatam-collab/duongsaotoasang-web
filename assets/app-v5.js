@@ -27,6 +27,12 @@
   timelineScript.defer = true;
   document.head.appendChild(timelineScript);
 
+  // Load metrics display component script (CSS already imported in app.css)
+  const metricsScript = document.createElement('script');
+  metricsScript.src = '/metrics.js';
+  metricsScript.defer = true;
+  document.head.appendChild(metricsScript);
+
   // 10 cặp route có bản dịch thật: VI canonical path -> EN path.
   // Chỉ map đúng các route này; trang chưa dịch KHÔNG tạo link /en/ giả.
   DSTS.LANG_PAIRS = {

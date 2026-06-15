@@ -1,0 +1,153 @@
+/* DSTS Creator Metrics Display */
+/* 8 metrics display for Creator Economy Dashboard */
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.metric-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.metric-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.metric-card__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metric-card__icon {
+  font-size: 20px;
+}
+
+.metric-card__value {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.metric-card__value--currency {
+  font-size: 24px;
+}
+
+.metric-card__change {
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.metric-card__change--positive {
+  color: #10b981;
+}
+
+.metric-card__change--negative {
+  color: #ef4444;
+}
+
+.metric-card__change--neutral {
+  color: var(--text-dim);
+}
+
+.metric-card__period {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 8px;
+}
+
+.metric-card__sparkline {
+  height: 40px;
+  margin-top: 12px;
+  background: var(--surface-dim);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.metric-card__sparkline svg {
+  width: 100%;
+  height: 100%;
+}
+
+.metric-card__sparkline path {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 2;
+}
+
+.metric-card__footer {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metric-card__footer-label {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.metric-card__footer-value {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.metrics-grid--compact .metric-card {
+  padding: 12px;
+}
+
+.metrics-grid--compact .metric-card__value {
+  font-size: 20px;
+}
+
+.metrics-grid--compact .metric-card__value--currency {
+  font-size: 16px;
+}
+
+.metrics-grid--compact .metric-card__sparkline {
+  height: 24px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .metrics-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  
+  .metric-card {
+    padding: 16px;
+  }
+  
+  .metric-card__value {
+    font-size: 24px;
+  }
+  
+  .metric-card__value--currency {
+    font-size: 18px;
+  }
+}
