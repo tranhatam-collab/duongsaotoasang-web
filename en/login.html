@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Login — DSTS</title>
+<meta name="description" content="Sign in to your DSTS account to access exclusive content, manage your profile, and connect with the community.">
+<link rel="alternate" hreflang="vi" href="https://duongsaotoasang.com/login">
+<link rel="canonical" href="https://duongsaotoasang.com/en/login">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<main class="container" style="max-width:480px;margin:0 auto;padding:40px 20px;">
+  <h1>Sign In</h1>
+  <p class="lead">Access your DSTS account</p>
+
+  <form id="login-form">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required placeholder="your@email.com">
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required placeholder="Your password">
+
+    <button type="submit" class="btn btn-primary">Sign In</button>
+  </form>
+
+  <p>Don't have an account? <a href="/en/register">Sign up</a></p>
+  <p><a href="/account/password-reset">Forgot password?</a></p>
+  <div id="message"></div>
+</main>
+
+<script>
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const message = document.getElementById('message');
+  message.textContent = 'Signing in...';
+  message.style.color = '#9eb0c8';
+
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData);
+
+  try {
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const result = await res.json();
+
+    if (result.ok) {
+      message.textContent = 'Sign in successful! Redirecting...';
+      message.style.color = '#74e274';
+      setTimeout(() => window.location.href = '/account', 1000);
+    } else {
+      message.textContent = result.error || 'Sign in failed';
+      message.style.color = '#f87171';
+    }
+  } catch (err) {
+    message.textContent = 'Connection error';
+    message.style.color = '#f87171';
+  }
+});
+</script>
+</body>
+</html>

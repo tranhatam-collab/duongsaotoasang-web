@@ -24,14 +24,6 @@
     <label for="display_name">Tên hiển thị</label>
     <input type="text" id="display_name" name="display_name" required placeholder="Tên bạn muốn hiển thị">
 
-    <label for="role">Vai trò dự định</label>
-    <select id="role" name="role">
-      <option value="member">Thành viên (Người hâm mộ / Thành viên)</option>
-      <option value="creator">Người Sáng Tạo (muốn tạo nội dung)</option>
-      <option value="mentor">Người Hướng Dẫn (muốn hướng dẫn)</option>
-      <option value="sponsor">Nhà Tài Trợ (muốn tài trợ)</option>
-    </select>
-
     <label>
       <input type="checkbox" id="agree_terms" name="agree_terms" required>
       Tôi đồng ý với <a href="/terms.html" target="_blank">Điều Khoản Sử Dụng</a> và <a href="/privacy.html" target="_blank">Chính Sách Bảo Mật</a>
@@ -48,21 +40,39 @@
   <p>Đã có tài khoản? <a href="/login">Đăng nhập</a></p>
   <div id="message"></div>
 </main>
+
 <script>
 document.getElementById('register-form').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const data = Object.fromEntries(new FormData(e.target));
+  const message = document.getElementById('message');
+  message.textContent = 'Đang tạo tài khoản...';
+  message.style.color = '#9eb0c8';
+
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData);
+  
+  // Remove role from data (force role='member' server-side)
+  delete data.role;
+
   try {
     const res = await fetch('/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     });
-    const json = await res.json();
-    document.getElementById('message').textContent = json.ok ? 'Tạo tài khoản thành công! Chuyển đến Câu Lạc Bộ...' : (json.error || 'Có lỗi xảy ra.');
-    if (json.ok) setTimeout(() => window.location.href = '/club/', 2000);
+    const result = await res.json();
+
+    if (result.ok) {
+      message.textContent = 'Tài khoản đã tạo! Đang chuyển hướng...';
+      message.style.color = '#74e274';
+      setTimeout(() => window.location.href = '/account', 1000);
+    } else {
+      message.textContent = result.error || 'Tạo tài khoản thất bại';
+      message.style.color = '#f87171';
+    }
   } catch (err) {
-    document.getElementById('message').textContent = 'Lỗi kết nối. Vui lòng thử lại.';
+    message.textContent = 'Lỗi kết nối';
+    message.style.color = '#f87171';
   }
 });
 </script>

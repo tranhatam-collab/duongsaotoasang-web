@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Đăng Nhập — DSTS</title>
+<meta name="description" content="Đăng nhập vào tài khoản DSTS để truy cập nội dung độc quyền, quản lý profile, và kết nối với cộng đồng.">
+<link rel="alternate" hreflang="en" href="https://duongsaotoasang.com/en/login">
+<link rel="canonical" href="https://duongsaotoasang.com/login">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<main class="container" style="max-width:480px;margin:0 auto;padding:40px 20px;">
+  <h1>Đăng Nhập</h1>
+  <p class="lead">Truy cập tài khoản DSTS của bạn</p>
+
+  <form id="login-form">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required placeholder="ten@example.com">
+
+    <label for="password">Mật khẩu</label>
+    <input type="password" id="password" name="password" required placeholder="Mật khẩu của bạn">
+
+    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+  </form>
+
+  <p>Chưa có tài khoản? <a href="/register">Đăng ký</a></p>
+  <p><a href="/account/password-reset">Quên mật khẩu?</a></p>
+  <div id="message"></div>
+</main>
+
+<script>
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const message = document.getElementById('message');
+  message.textContent = 'Đang đăng nhập...';
+  message.style.color = '#9eb0c8';
+
+  const formData = new FormData(e.target);
+  const data = Object.fromEntries(formData);
+
+  try {
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    const result = await res.json();
+
+    if (result.ok) {
+      message.textContent = 'Đăng nhập thành công! Đang chuyển hướng...';
+      message.style.color = '#74e274';
+      setTimeout(() => window.location.href = '/account', 1000);
+    } else {
+      message.textContent = result.error || 'Đăng nhập thất bại';
+      message.style.color = '#f87171';
+    }
+  } catch (err) {
+    message.textContent = 'Lỗi kết nối';
+    message.style.color = '#f87171';
+  }
+});
+</script>
+</body>
+</html>
