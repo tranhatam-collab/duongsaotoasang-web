@@ -33,7 +33,7 @@
 - `duongsaotoasang.com` **đang resolve, HTTPS 200, Pages domain `active`** — KHÔNG còn NXDOMAIN.
 - Project `duongsaotoasang-com-v2` **đã hoạt động trong account `62d57eaa`** — KHÔNG còn việc migrate Pages; chỉ còn D1 thiếu capacity.
 
-**Tóm lại:** Report cũ đúng về các blocker hạ tầng (D1, cache TTL, GA4). Report cũ **chưa** chạm tới lớp QA production song ngữ (header coverage `/en/`, SEO meta, hreflang) — đó là phần bổ sung bên dưới.
+**Tóm lại:** Report cũ đúng về các blocker hạ tầng (D1, cache TTL, GA4). Report cũ **chưa** chạm tới (a) lớp QA song ngữ (header `/en/`, SEO meta, hreflang) và (b) **lớp bảo mật/runtime** (mật khẩu plaintext, cookie giả mạo, payment webhook không ký, mất DB binding) — lớp (b) mới là blocker nặng nhất, chặn công bố đăng ký/thanh toán. Cả hai bổ sung ở Mục II (P0-SEC) và đồng bộ với launch plan.
 
 ---
 
@@ -73,6 +73,29 @@
 **P0-3 · Cache TTL bị zone rule ép `14400` (infrastructure blocker)**
 - Founder xác minh: asset đúng nhưng custom domain bị zone rule ép TTL `14400`; Pages alias dùng `300`. Deploy mới có thể không phản ánh kịp do cache 4h.
 - Việc: chỉnh zone cache rule về `300` + purge (ngoài repo — DevOps/Dashboard).
+
+### 🔴🔴 P0-SEC — Security/runtime blockers (chặn release Track B auth + Track C payment — nghiêm trọng hơn song ngữ)
+
+> Bổ sung sau khi audit launch plan `docs/superpowers/plans/2026-06-15-dsts-launch-readiness.md`. **Tất cả verify trực tiếp bằng code thật**, không qua script. Đây là blocker chặn việc công bố "đăng ký/thanh toán đã live" — KHÔNG chặn site thông tin public (Track A) đang live.
+
+**P0-SEC-1 · Lưu mật khẩu dạng thô (plaintext)**
+- `functions/api/auth/register.js:18-19`: `INSERT INTO users (..., password_hash, ...) VALUES (?, ?, ...)` bind thẳng `password` thô vào cột `password_hash`. Comment trong code: *"password should be hashed in production — this is skeleton"*.
+- Tác động: rò DB = lộ toàn bộ mật khẩu người dùng. **Phải PBKDF2-SHA-256 + salt/user (≥310k vòng).**
+
+**P0-SEC-2 · So sánh mật khẩu thô + cookie phiên giả mạo được**
+- `login.js:11`: `SELECT ... WHERE email = ? AND password_hash = ?` bind `password` thô.
+- `login.js:18`: `Set-Cookie: dsts_session=${row.id}` — cookie phiên CHÍNH là user ID → đoán/giả mạo session của bất kỳ ai. **Phải session opaque, hash token lưu server-side.**
+
+**P0-SEC-3 · Privilege escalation khi đăng ký**
+- `register.js:9,19`: nhận `role` từ client → `role || 'member'`. Client tự gửi `role:"admin"` là thành admin. **Public register phải ép `member`, bỏ qua role client.**
+
+**P0-SEC-4 · Payment webhook nhận lệnh không ký (catastrophic)**
+- `functions/webhooks/payment.js` (20 dòng): nhận bất kỳ POST JSON nào và `UPDATE payments SET status=?` — **KHÔNG verify HMAC/chữ ký**. Bất kỳ ai POST `{payment_id, status:"completed"}` đều đánh dấu giao dịch hoàn tất.
+- Các webhook khác (`points`, `clubs/subscription`, `donate`) verify HMAC nhưng **fail-open khi thiếu secret**. **Phải fail-closed: thiếu secret→503, thiếu/sai chữ ký→401; chống replay + unknown-id guard.**
+
+**P0-SEC-5 · Không có DB binding trong `wrangler.toml`**
+- `wrangler.toml` hiện KHÔNG có khối `[[d1_databases]]` (gỡ ở commit `8a83f4f "remove D1/R2 bindings"`). `webhooks/payment.js` trả `'DB not bound', 500`.
+- Tác động: mọi tính năng cần DB (auth, payment, donation, club) **không thể chạy**. Cần (a) free 1 D1 slot account `62d57eaa` (đang 10/10), (b) trỏ binding tới DB đã verify, (c) apply migrations. Phụ thuộc Founder/DevOps.
 
 ### 🟡 P1 — Cao (ảnh hưởng chất lượng/SEO/analytics)
 
@@ -166,22 +189,32 @@ _redirects
 
 ## IV. RELEASE GATE — QUY TRÌNH KIỂM DUYỆT
 
-**TRẠNG THÁI HIỆN TẠI: 🟡 BILINGUAL RELEASE QUALITY HOLD — Production hiện tại vẫn live**
+**TRẠNG THÁI HIỆN TẠI (3 track — theo launch plan + tracker):**
+- 🟢 **Track A — Public info/song ngữ/SEO:** được phép release sau khi clear P0-1/P0-2 + P1. Site hiện tại vẫn live.
+- 🔴 **Track B — Đăng ký/đăng nhập:** BLOCKED bởi P0-SEC-1/2/3/5.
+- 🔴 **Track C — Thanh toán thật:** BLOCKED bởi P0-SEC-4/5 + credential Founder/DevOps.
 
-Production (`duongsaotoasang.com`) đang resolve, HTTPS 200, Pages `active`. Gate này chặn **release thay đổi song ngữ/SEO mới**, KHÔNG chặn site hiện tại. Không được báo "bilingual ready / SEO ready" cho tới khi clear hết:
+> Đồng bộ với `docs/superpowers/plans/2026-06-15-dsts-launch-readiness.md` + `docs/DSTS_LAUNCH_EXECUTION_TRACKER_2026-06-15.md`. Gate tự động: `node scripts/launch-readiness-qa.mjs` (hiện FAIL đúng như kỳ vọng).
 
+**KHÔNG được công bố "đăng ký/thanh toán đã live" cho tới khi clear hết:**
+
+Track A (song ngữ/SEO):
 - [ ] P0-1 hreflang/`?lang` xung đột + getLang không nhận `/en/` — **CHƯA fix**
 - [ ] P0-1b `/map /map.html 301` mâu thuẫn canonical `/map` (sửa `_redirects`→200) — **CHƯA fix**
 - [ ] P0-1c `verify/index.html` 2 `hreflang="en"` trùng (dòng 8 + 20) — **CHƯA fix**
 - [ ] P0-2 trang /en/ không header — **CHƯA fix**
 - [ ] P0-3 cache TTL `14400` (infra, ngoài repo) — **CHƯA fix**
-- [ ] P1-1 GA4 placeholder — **CHƯA fix**
-- [ ] P1-2 `i18n.js` dead code — **CHƯA dọn**
-- [ ] P1-3 OG thiếu 9 trang /en/ — **CHƯA fix**
-- [ ] P1-6 Sentry DSN placeholder (`index.html:38`) — **CHƯA fix**
-- [ ] Payment runtime chưa được chứng nhận (kiểm credential đúng tenant/site trên endpoint canonical) — **CHƯA verify live**
-- [ ] Donation gate: là cổng đóng có chủ đích (`donate.html:140`) — chỉ mở khi đủ payment prod + biên nhận + QA proof
-- [ ] Chưa chạy browser test (mobile menu mở/đóng, console error, responsive, axe a11y)
+- [ ] P1-1/2/3/5/6 GA4 + Sentry placeholder, i18n.js dead code, OG thiếu, header thiếu — **CHƯA fix**
+
+Track B/C (security/runtime — chặn auth + payment):
+- [ ] P0-SEC-1 mật khẩu plaintext (`register.js:18`) → PBKDF2+salt — **CHƯA fix**
+- [ ] P0-SEC-2 so sánh mật khẩu thô + cookie = user ID (`login.js:11,18`) → session opaque — **CHƯA fix**
+- [ ] P0-SEC-3 privilege escalation role client (`register.js:19`) → ép `member` — **CHƯA fix**
+- [ ] P0-SEC-4 payment webhook không ký (`webhooks/payment.js`) → fail-closed HMAC + replay/unknown guard — **CHƯA fix**
+- [ ] P0-SEC-5 `wrangler.toml` không có DB binding → cần free D1 slot + trỏ binding + migrations — **BLOCKED (Founder/DevOps)**
+- [ ] Payment credential prod (key + HMAC) chưa verify; 1 giao dịch thật được uỷ quyền chưa có — **BLOCKED (Founder)**
+- [ ] Donation gate: cổng đóng có chủ đích (`donate.html:140`) — chỉ mở khi đủ payment prod + biên nhận + QA proof
+- [ ] Chưa chạy browser test (mobile menu, console error, responsive, axe a11y)
 
 **Checklist bắt buộc PASS trước mỗi lần xin live (QA gate):**
 1. Build/serve không lỗi (static — kiểm `wrangler pages dev` load được trang chính).
