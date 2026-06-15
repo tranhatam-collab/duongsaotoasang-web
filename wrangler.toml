@@ -2,6 +2,13 @@ name = "duongsaotoasang-com-v2"
 compatibility_date = "2026-03-09"
 pages_build_output_dir = "."
 
+# D1 binding
+[[d1_databases]]
+binding = "DB"
+database_name = "dsts-db"
+database_id = "d1b1df1d-cb0b-4643-83ec-979acc803cae"
+migrations_dir = "migrations"
+
 [vars]
 # Payment routing — pay.iai.one canonical gateway
 PAY_IAI_ONE_BASE_URL        = "https://pay.iai.one"
