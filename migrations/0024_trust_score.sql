@@ -1,21 +1,17 @@
 -- 0024_trust_score.sql
 -- DSTS Trust Score — Trust score calculation and history
--- Scope: Add trust level column to verified_entities, create trust_score_history table, add helper columns
+-- Scope: Add trust level column to verified_entities, add columns to existing trust_score_history, add helper columns
 -- Status: production-ready schema
+-- Note: trust_score_history table already exists in migration 0013 with old_score/new_score columns
 
 -- Add trust level column (trust_score already exists)
 ALTER TABLE verified_entities ADD COLUMN trust_level TEXT DEFAULT 'unverified';
 ALTER TABLE verified_entities ADD COLUMN trust_score_updated_at TEXT;
 
--- Create trust score history table
-CREATE TABLE IF NOT EXISTS trust_score_history (
-  id TEXT PRIMARY KEY,
-  entity_id TEXT NOT NULL,
-  score INTEGER NOT NULL,
-  level TEXT NOT NULL,
-  breakdown TEXT,
-  created_at TEXT NOT NULL DEFAULT (datetime('now'))
-);
+-- Add columns to existing trust_score_history table (from migration 0013)
+-- Add new columns for 5-dimension trust score calculation
+ALTER TABLE trust_score_history ADD COLUMN level TEXT DEFAULT 'unverified';
+ALTER TABLE trust_score_history ADD COLUMN breakdown TEXT; -- JSON string of dimension breakdown
 
 -- Add helper columns for trust score calculation (optional, can be computed on-the-fly)
 ALTER TABLE verified_entities ADD COLUMN verification_tier TEXT DEFAULT 'tier1';

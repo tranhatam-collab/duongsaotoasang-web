@@ -216,14 +216,18 @@ export async function updateTrustScore(db, entityId) {
       WHERE id = ?
     `).bind(trustScore.total, trustScore.level, entityId).run();
     
-    // Log to trust score history
+    // Log to trust score history (use old_score/new_score columns from migration 0013)
     await db.prepare(`
-      INSERT INTO trust_score_history (id, entity_id, score, level, breakdown, created_at)
-      VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+      INSERT INTO trust_score_history (id, entity_type, entity_id, old_score, new_score, reason, changed_by, level, breakdown, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
     `).bind(
       crypto.randomUUID(),
+      'verified_entity',
       entityId,
-      trustScore.total,
+      0, // old_score (placeholder)
+      trustScore.total, // new_score
+      'Trust score calculation',
+      'system',
       trustScore.level,
       JSON.stringify(trustScore.breakdown)
     ).run();
