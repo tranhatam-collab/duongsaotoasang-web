@@ -2,11 +2,16 @@
 // GET /api/analytics/:creator_id?range=30d
 
 export async function onRequestGet(context) {
-  const { creator_id } = context.params;
   const db = context.env.DB;
   if (!db) return new Response(JSON.stringify({ error: 'DB not bound' }), { status: 500 });
   try {
     const { searchParams } = new URL(context.request.url);
+    const creator_id = context.params?.creator_id || searchParams.get('creator_id');
+    if (!creator_id) {
+      return new Response(JSON.stringify({ ok: true, data: [] }), {
+        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+      });
+    }
     const range = searchParams.get('range') || '30d';
     const days = parseInt(range) || 30;
     const { results } = await db.prepare(

@@ -80,7 +80,9 @@ export async function onRequestGet(context) {
   const db = env.DB;
   if (!db) return new Response(JSON.stringify({ ok: false, error: 'DB not bound' }), { status: 500 });
 
-  const verificationId = context.params?.id || new URL(context.request.url).searchParams.get('id');
+  let verificationId = context.params?.id;
+  if (Array.isArray(verificationId)) verificationId = verificationId.join('/');
+  verificationId = verificationId || new URL(context.request.url).searchParams.get('id');
   if (!verificationId) return new Response(JSON.stringify({ ok: false, error: 'id required' }), { status: 400 });
 
   try {
