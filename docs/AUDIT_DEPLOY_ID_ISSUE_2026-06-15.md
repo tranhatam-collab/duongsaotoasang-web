@@ -31,7 +31,7 @@ Verified result:
 - custom domains include `duongsaotoasang.com` and `www.duongsaotoasang.com`;
 - Git provider is `No`, so direct upload through Wrangler/GitHub Actions is expected.
 
-Latest production deployment verified with:
+Production deployment state was verified with:
 
 ```bash
 CLOUDFLARE_ACCOUNT_ID=62d57eaa548617aeecac766e5a1cb98e \
@@ -41,12 +41,45 @@ CLOUDFLARE_ACCOUNT_ID=62d57eaa548617aeecac766e5a1cb98e \
   --json
 ```
 
-Latest deployment:
+Baseline deployment before this fix:
 
 - deployment ID: `cf0905e7-ea62-447a-bd69-eb59698457f5`;
 - deployment URL: `https://cf0905e7.duongsaotoasang-com-v2-dd2.pages.dev`;
 - branch: `main`;
 - environment: `Production`.
+
+## Post-Fix Production Deployment
+
+Repo fix commit:
+
+```text
+3d93f24 fix: lock Cloudflare Pages deploy target
+```
+
+Clean production deploy:
+
+```text
+deployment ID: 4b10a601-a71f-4cbf-a551-0c004330acb0
+source commit: 3d93f24
+branch: main
+environment: Production
+URL: https://4b10a601.duongsaotoasang-com-v2-dd2.pages.dev
+```
+
+Route verification on both the deployment URL and custom domain:
+
+| Route | Deployment URL | Custom domain |
+|---|---:|---:|
+| `/` | 200 | 200 |
+| `/about` | 200 | 200 |
+| `/register` | 308 to canonical route | 308 to canonical route |
+| `/en/` | 200 | 200 |
+| `/map` | 308 to canonical route | 308 to canonical route |
+| `/legacy/` | 200 | 200 |
+
+The deploy itself is healthy. Separate application APIs that require D1 remain
+unavailable until an approved DSTS database is created and bound. This is a
+known runtime dependency, not a Pages project-ID failure.
 
 Both `https://duongsaotoasang.com/` and
 `https://duongsaotoasang-com-v2-dd2.pages.dev/` return HTTP `200` with the
