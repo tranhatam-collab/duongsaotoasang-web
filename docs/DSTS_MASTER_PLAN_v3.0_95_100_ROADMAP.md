@@ -1,7 +1,7 @@
 # DSTS — MASTER PLAN v3.0 (95–100 Roadmap)
 
 > **Founder:** Trần Hà Tâm · **Brand:** Đường Sao Tỏa Sáng (DSTS)
-> **Phiên bản:** v3.0 — 2026-06-11
+> **Phiên bản:** v3.1 — 2026-06-15 (UPDATED: Deploy Live Status)
 > **Thay thế:** `MASTER_PLAN_v2.md`, `dsts-master-plan-v1.2-DRAFT.md`
 > **Domain chính:** https://duongsaotoasang.com
 > **Hệ sinh thái:** IAI.ONE · Người Việt Muôn Nơi · Phương Đông · VIET CAN NEW CORP / VFA
@@ -717,6 +717,81 @@ DSTS đã có **nền tảng mạnh**: Story Library, Mentor Network, Dream Nurt
 
 ---
 
-**Báo cáo này dựa trên audit thực tế repo-side và production đến 2026-06-11.**
+## XIII. DEPLOY LIVE STATUS UPDATE (2026-06-15)
+
+### 13.1. Kết luận
+Website đã được khôi phục và deploy live thành công. Tuy nhiên, chưa thể tuyên bố toàn bộ repo đạt 100% QA.
+
+### 13.2. Đã hoàn thành
+
+- **Custom domain:** [duongsaotoasang.com](https://duongsaotoasang.com)
+  - Cloudflare Pages API: `active / active / active`
+- **Project đúng:** `duongsaotoasang-com-v2`
+- **Account đúng:** `62d57eaa548617aeecac766e5a1cb98e`
+- **Deployment:** [cf0905e7.pages.dev](https://cf0905e7.duongsaotoasang-com-v2-dd2.pages.dev)
+- **Full smoke test trên Pages:** **PASS**
+- **12 route production trọng yếu đều trả `200`**, gồm `/posts`, `/content`, `/about`, `/program`, `/donate`, `/transparency`, `/scripts`, `/api/search`, sitemap và robots.
+- **HTTPS homepage trả `200`**, HSTS và security headers hoạt động.
+- **Khôi phục 49 Cloudflare Pages Functions** đã bị commit trước xóa nhầm.
+- **Functions syntax:** `49/49 PASS`
+- **Webhook behavior:** `6 tests / 18 assertions PASS`
+- **Commit đã push:** `3f3fda2 fix(deploy): restore Pages Functions for public routes`
+- **`main` đã đồng bộ `origin/main`**
+
+### 13.3. Nguyên nhân gốc đã xử lý
+
+1. Project Pages đúng chưa tồn tại trong account.
+2. Commit `8a83f4f` xóa toàn bộ `functions/`, làm hỏng API và route động.
+3. Local có cấu hình D1 sai, database không tồn tại.
+4. Một số file bị iCloud/File Provider để ở trạng thái chưa tải, khiến deploy treo.
+5. Deploy trực tiếp cả workspace chứa nhiều file nội bộ; đã chuyển sang runtime artifact sạch.
+
+### 13.4. Hạng mục còn mở
+
+1. **Cache rule custom domain**
+
+   Asset đúng checksum nhưng zone rule đang ép:
+
+   ```text
+   Cache-Control: public, max-age=14400
+   ```
+
+   Trong khi cấu hình Pages yêu cầu tối đa 300 giây. Website vẫn hoạt động, nhưng `HEADERS_QA` chưa đạt.
+
+   File `~/.dsts-secrets/cf-zone-id` hiện chứa nhầm token 53 ký tự. Zone ID thật là:
+
+   ```text
+   551f3742f1ab3f8babd106ffa1abde8c
+   ```
+
+   Token Wrangler không có quyền `Zone → Cache Purge → Edit`, nên không thể purge bằng API hiện tại.
+
+2. **Strict QA toàn repo chưa đạt**
+
+   Nhiều trang mới thuộc Club/Admin/Creator/English còn thiếu:
+
+   - Nội dung tối thiểu
+   - Meta description, canonical, robots
+   - OG/Twitter metadata
+   - JSON-LD
+   - Cấu trúc accessibility
+   - Route `club.html`
+
+3. **`/dream-nurture` thiếu robots/OG metadata** và câu disclosure bắt buộc.
+
+4. **`robots.txt` thực tế cho phép public site**; gate đang hiểu nhầm các `Disallow` dành riêng cho AI crawlers.
+
+5. **Payment gateway trước đó trả `403 API_KEY_INVALID`**. Donation đang "TẠM ĐÓNG", chưa phải lỗi deploy website.
+
+6. **D1 chưa bind** vì account không có database DSTS hợp lệ và đã chạm giới hạn database.
+
+7. **Các HTML đang chỉnh dở vẫn giữ nguyên trong working tree**, không bị stage hoặc ghi đè.
+
+### 13.5. Đánh giá cuối
+Deploy live và public core đã phục hồi. Phần Club/Admin/English và cache policy vẫn cần một sprint QA riêng trước khi công bố "toàn bộ dự án hoàn tất".
+
+---
+
+**Báo cáo này dựa trên audit thực tế repo-side và production đến 2026-06-15.**
 **Mọi claim về "đã có" đều có bằng chứng trong repo hoặc production.**
 **Mọi claim về "cần xây" đều là spec chưa implement.**
