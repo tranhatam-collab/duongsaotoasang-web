@@ -1,0 +1,134 @@
+/* DSTS Evidence Pack UI */
+/* Public/private evidence display component */
+
+.evidence-pack {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  background: var(--surface);
+}
+
+.evidence-pack__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.evidence-pack__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.evidence-pack__toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.evidence-pack__toggle-btn {
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.evidence-pack__toggle-btn--active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.evidence-pack__list {
+  display: grid;
+  gap: 12px;
+}
+
+.evidence-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.evidence-item__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background: var(--surface-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.evidence-item__content {
+  flex: 1;
+}
+
+.evidence-item__type {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.evidence-item__description {
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.evidence-item__meta {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.evidence-item__status {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.evidence-item__status--verified {
+  background: #10b981;
+  color: white;
+}
+
+.evidence-item__status--pending {
+  background: #f59e0b;
+  color: white;
+}
+
+.evidence-item__status--rejected {
+  background: #ef4444;
+  color: white;
+}
+
+.evidence-item__private-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  background: #6b7280;
+  color: white;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.evidence-pack__empty {
+  text-align: center;
+  padding: 24px;
+  color: var(--text-dim);
+  font-size: 14px;
+}
