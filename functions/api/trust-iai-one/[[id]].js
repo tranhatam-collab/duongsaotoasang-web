@@ -77,12 +77,19 @@ export async function onRequestPost(context) {
       });
     }
     
-    // Verify with trust.iai.one
-    const result = await verifyWithTrustIAIOne(context.env, entity);
-    
+    // Verify with trust.iai.one (passes db for local fallback if no key)
+    const result = await verifyWithTrustIAIOne(context.env, entity, db);
+
+    // If local fallback, just return the result without updating DB
+    if (result.mode === 'local_fallback' || result.mode === 'api_error' || result.mode === 'network_error') {
+      return new Response(JSON.stringify(result), {
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
     // Update local database with verification result
     await db.prepare(`
-      UPDATE verified_entities 
+      UPDATE verified_entities
       SET status = ?, trust_score = ?, verified_at = ?, expires_at = ?, updated_at = CURRENT_TIMESTAMP
       WHERE id = ?
     `).bind(
@@ -92,10 +99,10 @@ export async function onRequestPost(context) {
       result.expires_at || null,
       entityId
     ).run();
-    
-    return new Response(JSON.stringify({ 
-      ok: true, 
-      result 
+
+    return new Response(JSON.stringify({
+      ok: true,
+      result
     }), {
       headers: { 'Content-Type': 'application/json' }
     });
