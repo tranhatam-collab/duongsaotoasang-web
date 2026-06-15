@@ -10,11 +10,11 @@ export async function onRequestGet(context) {
     const owner_id = searchParams.get('owner_id');
     const type = searchParams.get('type');
     const privacy = searchParams.get('privacy') || 'public';
-    let sql = 'SELECT id, owner_user_id, item_type, title, description, r2_object_key, capture_date, location_text, privacy_level, tags, timeline_year FROM legacy_items WHERE privacy_level = ?';
-    const params = [privacy];
-    if (owner_id) { sql += ' AND owner_user_id = ?'; params.push(owner_id); }
-    if (type) { sql += ' AND item_type = ?'; params.push(type); }
-    sql += ' ORDER BY timeline_year DESC, timeline_order ASC LIMIT 100';
+    let sql = 'SELECT id, slug, creator_id, story_type, title, summary, subject_name, subject_origin, archive_status, preservation_level, view_count, created_at FROM legacy_stories WHERE archive_status = ?';
+    const params = [privacy === 'public' ? 'active' : privacy];
+    if (owner_id) { sql += ' AND creator_id = ?'; params.push(owner_id); }
+    if (type) { sql += ' AND story_type = ?'; params.push(type); }
+    sql += ' ORDER BY created_at DESC LIMIT 100';
     const { results } = await db.prepare(sql).bind(...params).all();
     return new Response(JSON.stringify({ ok: true, data: results || [] }), {
       headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }

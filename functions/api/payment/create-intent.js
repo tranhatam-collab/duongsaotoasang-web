@@ -6,7 +6,7 @@
 //
 // ⚠️ Canonical rule (ADR + F10): EVERY payment goes through pay.iai.one.
 //   - VN lane: provider=payos via /internal/checkout-session (ACTIVE)
-//   - INTL lane (Stripe/PayPal direct): DEFERRED — Viet Can New Corp US not yet
+//   - INTL lane (Stripe/PayPal direct): DEFERRED — VIET CAN NEW CORP (Georgia C-Corp, USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA — not yet
 //     activated. Direct-provider bypass is NOT allowed; such requests are
 //     rejected with INTL_DEFERRED until Founder activates the US lane.
 //

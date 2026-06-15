@@ -168,20 +168,28 @@
     return "";
   };
 
-  DSTS.apiFetch = async function (path) {
+  DSTS.apiFetch = async function (path, opts) {
     const cleanPath = String(path || "");
     const apiPath = cleanPath.startsWith("/api/")
       ? cleanPath
       : `/api${cleanPath.startsWith("/") ? cleanPath : `/${cleanPath}`}`;
-    const controller = new AbortController();
-    const timeout = window.setTimeout(() => controller.abort(), 5000);
+    const retries = (opts && opts.retries) || 3;
+    const baseDelay = (opts && opts.baseDelay) || 300;
 
-    try {
-      const res = await fetch(apiPath, { signal: controller.signal });
-      if (!res.ok) throw new Error(`API request failed: ${res.status}`);
-      return res.json();
-    } finally {
-      window.clearTimeout(timeout);
+    for (let attempt = 0; attempt < retries; attempt++) {
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 5000);
+      try {
+        const res = await fetch(apiPath, { signal: controller.signal });
+        if (!res.ok) throw new Error(`API request failed: ${res.status}`);
+        return await res.json();
+      } catch (err) {
+        if (attempt === retries - 1) throw err;
+        const delay = baseDelay * Math.pow(2, attempt);
+        await new Promise(r => window.setTimeout(r, delay));
+      } finally {
+        window.clearTimeout(timeout);
+      }
     }
   };
 
@@ -217,7 +225,7 @@
         legal: "Pháp lý",
         support: "Hỗ trợ",
         contact: "Liên hệ",
-        entityDisclosure: '<strong style="color:#c9b688">Đơn vị nhận quỹ / Fund recipient:</strong> <strong>Angel Edu Tam Foundation Inc.</strong> (South Dakota, Hoa Kỳ / USA)<br><strong style="color:#c9b688">Đại diện tại Việt Nam / Vietnam Representative:</strong> CÔNG TY CỔ PHẦN GIẢI TRÍ NGÔI SAO VIỆT CAN (MST 0315462505) — Lầu 23, 76A Lê Lai, P.Bến Thành, Q.1, TP.HCM<br><strong>Chịu trách nhiệm hoàn toàn / Fully responsible:</strong> <strong>Viet Can New Corp</strong> (Hoa Kỳ / USA)<br><strong>Thanh toán / Payment:</strong> <a href="https://pay.iai.one" target="_blank" rel="noopener">pay.iai.one</a> (PayOS — NHNN)<br><strong>Liên hệ / Contact:</strong> <a href="mailto:contact@mail.iai.one">mail.iai.one</a>',
+        entityDisclosure: '<strong style="color:#c9b688">Đơn vị nhận quỹ / Fund recipient:</strong> <strong>Angel Edu Tam Foundation Inc.</strong> (South Dakota, Hoa Kỳ / USA)<br><strong style="color:#c9b688">Đại diện tại Việt Nam / Vietnam Representative:</strong> CÔNG TY CỔ PHẦN GIẢI TRÍ NGÔI SAO VIỆT CAN (MST 0315462505) — Lầu 23, 76A Lê Lai, P.Bến Thành, Q.1, TP.HCM<br><strong>Chịu trách nhiệm hoàn toàn / Fully responsible:</strong> <strong>VIET CAN NEW CORP</strong> (Georgia C-Corp, Hoa Kỳ / USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA<br><strong>Thanh toán / Payment:</strong> <a href="https://pay.iai.one" target="_blank" rel="noopener">pay.iai.one</a> (PayOS — NHNN)<br><strong>Liên hệ / Contact:</strong> <a href="mailto:contact@duongsaotoasang.com">contact@duongsaotoasang.com</a>',
         scriptsLibrary: "Thư viện kịch bản",
         script1: "The Rising Entrepreneur",
         script2: "The Global Artist",
@@ -251,7 +259,7 @@
         legal: "Legal",
         support: "Support",
         contact: "Contact",
-        entityDisclosure: '<strong style="color:#c9b688">Fund recipient:</strong> <strong>Angel Edu Tam Foundation Inc.</strong> (South Dakota, USA)<br><strong style="color:#c9b688">Vietnam Representative:</strong> VIET CAN STAR ENTERTAINMENT JSC (MST 0315462505) — 23F, 76A Le Lai, Ben Thanh Ward, Dist.1, Ho Chi Minh City<br><strong>Fully responsible:</strong> <strong>Viet Can New Corp</strong> (USA)<br><strong>Payment:</strong> <a href="https://pay.iai.one" target="_blank" rel="noopener">pay.iai.one</a> (PayOS — NHNN-licensed)<br><strong>Contact:</strong> <a href="mailto:contact@mail.iai.one">mail.iai.one</a>',
+        entityDisclosure: '<strong style="color:#c9b688">Fund recipient:</strong> <strong>Angel Edu Tam Foundation Inc.</strong> (South Dakota, USA)<br><strong style="color:#c9b688">Vietnam Representative:</strong> VIET CAN STAR ENTERTAINMENT JSC (MST 0315462505) — 23F, 76A Le Lai, Ben Thanh Ward, Dist.1, Ho Chi Minh City<br><strong>Fully responsible:</strong> <strong>VIET CAN NEW CORP</strong> (Georgia C-Corp, USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA<br><strong>Payment:</strong> <a href="https://pay.iai.one" target="_blank" rel="noopener">pay.iai.one</a> (PayOS — NHNN-licensed)<br><strong>Contact:</strong> <a href="mailto:contact@duongsaotoasang.com">contact@duongsaotoasang.com</a>',
         scriptsLibrary: "Script library",
         script1: "The Rising Entrepreneur",
         script2: "The Global Artist",
@@ -263,6 +271,17 @@
         scriptMenu: "Open scripts menu"
       }
     }[lang];
+
+    const skipId = "dsts-main-content";
+    // Inject skip link before header if not present
+    if (!document.getElementById("dsts-skip-link")) {
+      const skip = document.createElement("a");
+      skip.id = "dsts-skip-link";
+      skip.href = "#" + skipId;
+      skip.className = "dsts-skip-link";
+      skip.textContent = lang === "vi" ? "Chuyển đến nội dung chính" : "Skip to main content";
+      host.parentNode.insertBefore(skip, host);
+    }
 
     host.innerHTML = `
       <style>

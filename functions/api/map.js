@@ -17,13 +17,13 @@ export async function onRequestGet(context) {
     const latDelta = radius / 111;
     const lonDelta = radius / (111 * Math.cos(lat * Math.PI / 180));
     
-    let sql = 'SELECT user_id, role, badge_display_name, trust_score, display_location, display_lat, display_lon FROM verified_identities WHERE status = "approved" AND map_visible = 1 AND display_lat IS NOT NULL';
+    let sql = 'SELECT g.id, g.slug, g.name, g.category, g.headline, g.country, g.city, g.latitude, g.longitude, g.avatar_url, COALESCE(v.trust_score, 0) AS trust_score FROM global_vietnamese g LEFT JOIN verified_entities v ON g.verified_entity_id = v.id WHERE g.status = "active" AND g.latitude IS NOT NULL';
     const params = [];
-    
-    if (type) { sql += ' AND role = ?'; params.push(type); }
-    if (country) { sql += ' AND display_location LIKE ?'; params.push(`%${country}%`); }
+
+    if (type) { sql += ' AND g.category = ?'; params.push(type); }
+    if (country) { sql += ' AND g.country = ?'; params.push(country); }
     if (lat && lon) {
-      sql += ' AND display_lat BETWEEN ? AND ? AND display_lon BETWEEN ? AND ?';
+      sql += ' AND g.latitude BETWEEN ? AND ? AND g.longitude BETWEEN ? AND ?';
       params.push(lat - latDelta, lat + latDelta, lon - lonDelta, lon + lonDelta);
     }
     sql += ' ORDER BY trust_score DESC LIMIT ?';

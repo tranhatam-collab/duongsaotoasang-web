@@ -10,7 +10,7 @@ export async function onRequestGet(context) {
     const { searchParams } = new URL(context.request.url);
     const status = searchParams.get('status') || 'active';
     const { results } = await db.prepare(
-      'SELECT s.id, s.org_name, s.org_type, s.total_contributed_cents, s.public_profile_json, v.trust_score FROM sponsors s LEFT JOIN verified_identities v ON s.verified_identity_id = v.id WHERE s.status = ? ORDER BY s.total_contributed_cents DESC LIMIT 50'
+      'SELECT id, slug, name, logo_url, website_url, tier, status, country, total_contributed_vnd FROM sponsors WHERE status = ? ORDER BY total_contributed_vnd DESC LIMIT 50'
     ).bind(status).all();
     return new Response(JSON.stringify({ ok: true, data: results || [] }), {
       headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }

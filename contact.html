@@ -11,6 +11,8 @@
 <meta name="keywords" content="liên hệ, DSTS, Đường Sao Tỏa Sáng, cộng đồng người Việt, chương trình, sự kiện, hợp tác">
 
 <meta name="theme-color" content="#0b111d">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="robots" content="index,follow">
 
 <link rel="alternate" hreflang="en" href="https://duongsaotoasang.com/en/contact">
@@ -53,6 +55,46 @@
   }
 }
 </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Làm cách nào để tham gia cộng đồng Đường Sao Tỏa Sáng?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Trong giai đoạn public hiện tại, bạn nên bắt đầu từ trang chủ, chương trình, thư viện bài viết và Movement Portal. Các flow đăng ký hoặc tài khoản chưa mở trên trang này."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Có phí tham gia các chương trình không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Trang public hiện không xử lý payment hoặc checkout. Nếu một chương trình có chi phí trong tương lai, DSTS phải công bố điều khoản, refund, pháp nhân, xác nhận thủ công và trạng thái minh bạch trước khi mở."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Tôi sống ở nước ngoài, tôi có thể tham gia không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "DSTS được thiết kế cho người Việt toàn cầu, nhưng các sự kiện, tour và community flow chỉ mở theo readiness gate. Xem Movement Portal để biết phần nào đang read-only và phần nào còn chờ owner."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Tôi muốn chia sẻ câu chuyện hoặc dự án của mình, tôi nên làm gì?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hãy gửi email thủ công với phần mô tả ngắn, quyền công bố, phạm vi mong muốn và dữ liệu nào được phép chia sẻ. Không gửi nội dung riêng tư hoặc dữ liệu trẻ em qua kênh public."
+        }
+      }
+    ]
+  }
+  </script>
 
 <style>
   body{
@@ -252,19 +294,37 @@ Hãy để lại thông tin hoặc các câu hỏi của bạn. Chúng tôi sẽ
 <h2 style="margin-top:0">Kênh liên hệ công khai</h2>
 
 <div class="contact-panel">
-<h3>Chưa mở biểu mẫu hoặc đăng ký nhận tin</h3>
-<p><strong>Không có public contact form trong giai đoạn này.</strong> Website hiện chỉ công bố hướng dẫn liên hệ thủ công. Biểu mẫu thu email sẽ chỉ được mở sau khi lane email automation hoàn tất kiểm duyệt dữ liệu, chống spam và quy trình phản hồi.</p>
-<div class="contact-actions">
-<a class="primary" href="/support">Xem hướng dẫn hỗ trợ</a>
-<a href="/privacy">Xem chính sách dữ liệu</a>
-</div>
+<h3>Gửi tin nhắn cho DSTS</h3>
+<form id="contactForm" class="contact-form" style="gap:14px;margin-top:10px">
+  <div class="form-group">
+    <label for="cf-name">Họ và tên / Name *</label>
+    <input type="text" id="cf-name" name="name" required maxlength="100" placeholder="Nguyễn Văn A">
+  </div>
+  <div class="form-group">
+    <label for="cf-email">Email *</label>
+    <input type="email" id="cf-email" name="email" required maxlength="100" placeholder="you@example.com">
+  </div>
+  <div class="form-group">
+    <label for="cf-subject">Chủ đề / Subject</label>
+    <input type="text" id="cf-subject" name="subject" maxlength="200" placeholder="Hợp tác, báo lỗi, chương trình, press...">
+  </div>
+  <div class="form-group">
+    <label for="cf-message">Nội dung / Message *</label>
+    <textarea id="cf-message" name="message" required maxlength="2000" rows="5" placeholder="Nhập nội dung bạn muốn trao đổi..."></textarea>
+  </div>
+  <div class="contact-actions" style="margin-top:4px">
+    <button type="submit" class="primary" id="cf-submit">Gửi tin nhắn</button>
+    <span id="cf-status" style="font-size:14px;color:#94a3b8"></span>
+  </div>
+  <p class="status-note" style="margin-top:8px">Phản hồi trong vòng 3-5 ngày làm việc. Không gửi thông tin nhạy cảm, giấy tờ định danh hoặc thông tin thanh toán.</p>
+</form>
 </div>
 
 <div class="contact-panel" style="margin-top:20px" data-dsts-contact-mode="manual-only">
 <h3>Liên hệ thủ công</h3>
 <p class="status-note">Vui lòng không gửi dữ liệu nhạy cảm, thông tin trẻ em, giấy tờ định danh, thông tin thanh toán hoặc mật khẩu qua email công khai.</p>
 <div class="contact-actions">
-<a class="primary" href="mailto:hello@duongsaotoasang.com?subject=DSTS%20-%20Yeu%20cau%20lien%20he%20thu%20cong">Gửi email thủ công</a>
+<a class="primary" href="mailto:contact@duongsaotoasang.com?subject=DSTS%20-%20Yeu%20cau%20lien%20he%20thu%20cong">Gửi email thủ công</a>
 <a href="/support">Xem hướng dẫn hỗ trợ</a>
 <a href="/transparency">Xem minh bạch</a>
 </div>
@@ -285,7 +345,7 @@ Hãy để lại thông tin hoặc các câu hỏi của bạn. Chúng tôi sẽ
 <div class="info-icon">✉</div>
 <div class="info-content">
 <h3>Email</h3>
-<p><a href="mailto:hello@duongsaotoasang.com">hello@duongsaotoasang.com</a></p>
+<p><a href="mailto:contact@duongsaotoasang.com">contact@duongsaotoasang.com</a></p>
 </div>
 </div>
 
@@ -392,7 +452,7 @@ Dù bạn là một nghệ sĩ, một nhà khoa học, một doanh nhân, một 
 <p>Kết nối cộng đồng người Việt muôn nơi.</p>
 
 <p style="margin-top:14px;font-size:13px"><a href="/terms">Điều khoản</a> · <a href="/privacy">Quyền riêng tư</a> · <a href="/refund">Hoàn tiền</a> · <a href="/legal">Pháp lý</a> · <a href="/contact">Liên hệ</a></p>
-<p data-dsts-claim="C-002" style="margin-top:14px;font-size:12px;color:#9ca7b8;line-height:1.6">Đại diện tại Việt Nam / Vietnam Representative: <strong>Công ty Cổ phần Giải trí Ngôi Sao Việt Can</strong> (MST 0315462505) — Lầu 23, 76A Lê Lai, P.Bến Thành, Q.1, TP.HCM. Chịu trách nhiệm hoàn toàn / Fully responsible: <strong>Viet Can New Corp</strong> (Hoa Kỳ / USA). Thanh toán / Payment: <a href="https://pay.iai.one">pay.iai.one</a> (PayOS — NHNN). Liên hệ / Contact: <a href="mailto:contact@mail.iai.one">mail.iai.one</a>. Đơn vị nhận quỹ / Fund recipient: <strong>Angel Edu Tam Foundation Inc.</strong> (South Dakota, Hoa Kỳ / USA).</p>
+<p data-dsts-claim="C-002" style="margin-top:14px;font-size:12px;color:#9ca7b8;line-height:1.6">Đại diện tại Việt Nam / Vietnam Representative: <strong>Công ty Cổ phần Giải trí Ngôi Sao Việt Can</strong> (MST 0315462505) — Lầu 23, 76A Lê Lai, P.Bến Thành, Q.1, TP.HCM. Chịu trách nhiệm hoàn toàn / Fully responsible: <strong>VIET CAN NEW CORP</strong> (Georgia C-Corp, Hoa Kỳ / USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA. Thanh toán / Payment: <a href="https://pay.iai.one">pay.iai.one</a> (PayOS — NHNN). Liên hệ / Contact: <a href="mailto:contact@duongsaotoasang.com">contact@duongsaotoasang.com</a>. Đơn vị nhận quỹ / Fund recipient: <strong>Angel Edu Tam Foundation Inc.</strong> (South Dakota, Hoa Kỳ / USA).</p>
 
 </div>
 
@@ -404,6 +464,49 @@ Dù bạn là một nghệ sĩ, một nhà khoa học, một doanh nhân, một 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     DSTS.mountSiteChrome({ active: 'contact' });
+
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('cf-status');
+    const btn = document.getElementById('cf-submit');
+    if (!form) return;
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'Đang gửi...';
+      status.textContent = '';
+      status.style.color = '#94a3b8';
+
+      const body = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        subject: form.subject.value.trim(),
+        message: form.message.value.trim()
+      };
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.ok) {
+          status.textContent = 'Đã gửi. Chúng tôi sẽ phản hồi trong 3-5 ngày làm việc.';
+          status.style.color = '#86efac';
+          form.reset();
+        } else {
+          status.textContent = data.error || 'Gửi thất bại. Vui lòng thử lại.';
+          status.style.color = '#fca5a5';
+        }
+      } catch (err) {
+        status.textContent = 'Không thể kết nối. Vui lòng thử lại sau.';
+        status.style.color = '#fca5a5';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Gửi tin nhắn';
+      }
+    });
   });
 </script>
 

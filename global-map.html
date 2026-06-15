@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#0b111d">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
   <meta name="robots" content="index,follow">
   <title>Bản Đồ Người Việt Toàn Cầu | Global Vietnamese Map | Đường Sao Tỏa Sáng</title>
   <meta name="description" content="Bản đồ người Việt thành công toàn cầu: Mentor, Creator, Doanh nhân, Nhà khoa học, Người cống hiến — đã xác thực, có vị trí, có câu chuyện.">
@@ -242,7 +245,7 @@
     function renderProfileCard(p) {
       return `
         <article class="profile-card">
-          <div class="avatar">${p.avatar_url ? '<img src="'+p.avatar_url+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover">' : '&#127758;'}</div>
+          <div class="avatar">${p.avatar_url ? '<img loading="lazy" src="'+p.avatar_url+'" style="width:100%;height:100%;border-radius:50%;object-fit:cover">' : '&#127758;'}</div>
           <div class="info">
             <div class="cat">${p.category}</div>
             <h4>${p.name}</h4>
