@@ -9,6 +9,11 @@ database_name = "dsts-db"
 database_id = "d1b1df1d-cb0b-4643-83ec-979acc803cae"
 migrations_dir = "migrations"
 
+# R2 binding
+[[r2_buckets]]
+binding = "DSTS_LEGACY_MEDIA"
+bucket_name = "dsts-legacy-media"
+
 [vars]
 # Payment routing — pay.iai.one canonical gateway
 PAY_IAI_ONE_BASE_URL        = "https://pay.iai.one"
