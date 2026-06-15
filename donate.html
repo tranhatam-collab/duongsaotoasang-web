@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#0b111d">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
   <meta name="robots" content="index,follow">
   <title>Gây quỹ | Đường Sao Tỏa Sáng</title>
   <meta name="description" content="Trang gây quỹ của Đường Sao Tỏa Sáng: mục tiêu đóng góp, trạng thái mở quỹ, nguyên tắc sử dụng nguồn lực, hoàn tiền, xác minh và báo cáo minh bạch.">
@@ -37,6 +40,16 @@
       "name": "Đường Sao Tỏa Sáng",
       "url": "https://duongsaotoasang.com/"
     }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Trang chủ","item":"https://duongsaotoasang.com/"},
+      {"@type":"ListItem","position":2,"name":"Gây quỹ","item":"https://duongsaotoasang.com/donate"}
+    ]
   }
   </script>
   <style>
@@ -121,9 +134,9 @@
           <div class="donate-entity">
             Đơn vị nhận quỹ / Fund recipient: <strong>Angel Edu Tam Foundation Inc.</strong> (South Dakota, Hoa Kỳ / USA)<br>
             Đại diện tại Việt Nam / Vietnam Representative: <strong>CÔNG TY CỔ PHẦN GIẢI TRÍ NGÔI SAO VIỆT CAN</strong> (MST 0315462505)<br>
-            Chịu trách nhiệm hoàn toàn / Fully responsible: <strong>Viet Can New Corp</strong> (Hoa Kỳ / USA)<br>
+            Chịu trách nhiệm hoàn toàn / Fully responsible: <strong>VIET CAN NEW CORP</strong> (Georgia C-Corp, Hoa Kỳ / USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA<br>
             Thanh toán / Payment: <a href="https://pay.iai.one" style="color:#c9b688">pay.iai.one</a> → PayOS (giấy phép NHNN) → VietQR ACB<br>
-            Liên hệ / Contact: <a href="mailto:contact@mail.iai.one" style="color:#c9b688">mail.iai.one</a> · <a href="/legal" style="color:#c9b688">Điều khoản · Hoàn tiền</a>
+            Liên hệ / Contact: <a href="mailto:contact@duongsaotoasang.com" style="color:#c9b688">contact@duongsaotoasang.com</a> · <a href="/legal" style="color:#c9b688">Điều khoản · Hoàn tiền</a>
           </div>
         </div>
       </div>
@@ -180,9 +193,9 @@
       <div data-dsts-claim="C-002" style="margin-top:14px;font-size:12px;color:#9ca7b8;line-height:1.7;border-top:1px solid rgba(216,188,119,.1);padding-top:12px">
         <div><strong>Đại diện tại Việt Nam / Vietnam Representative:</strong> CÔNG TY CỔ PHẦN GIẢI TRÍ NGÔI SAO VIỆT CAN</div>
         <div style="opacity:0.75">MST: 0315462505 — Lầu 23, 76A Lê Lai, P.Bến Thành, Q.1, TP. Hồ Chí Minh</div>
-        <div style="margin-top:4px"><strong>Chịu trách nhiệm hoàn toàn / Fully responsible:</strong> <strong>Viet Can New Corp</strong> (Hoa Kỳ / USA)</div>
+        <div style="margin-top:4px"><strong>Chịu trách nhiệm hoàn toàn / Fully responsible:</strong> <strong>VIET CAN NEW CORP</strong> (Georgia C-Corp, Hoa Kỳ / USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA</div>
         <div style="margin-top:4px"><strong>Thanh toán / Payment:</strong> VietQR ACB qua <a href="https://pay.iai.one">pay.iai.one</a> (PayOS — NHNN-licensed)</div>
-        <div style="margin-top:4px"><strong>Liên hệ / Contact:</strong> <a href="mailto:contact@mail.iai.one">mail.iai.one</a></div>
+        <div style="margin-top:4px"><strong>Liên hệ / Contact:</strong> <a href="mailto:contact@duongsaotoasang.com">contact@duongsaotoasang.com</a></div>
         <div style="margin-top:4px;opacity:0.7">Đơn vị nhận quỹ / Fund recipient: <strong>Angel Edu Tam Foundation Inc.</strong> (South Dakota, Hoa Kỳ / USA).</div>
       </div>
     </div>
@@ -236,6 +249,7 @@
               donor_name: document.getElementById("donorName").value.trim() || null,
               donor_email: document.getElementById("donorEmail").value.trim() || null,
               message: document.getElementById("donorMsg").value.trim() || null,
+              return_url: "https://duongsaotoasang.com/donate/success.html"
             }),
           });
           const data = await res.json();
