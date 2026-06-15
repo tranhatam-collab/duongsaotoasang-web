@@ -20,9 +20,20 @@ export async function onRequestPost(context) {
     const url = new URL(context.request.url);
     const pathParts = url.pathname.split('/');
     
-    // Check if this is a batch update
-    if (pathParts.includes('batch')) {
-      const updated = await batchUpdateTrustScores(db);
+    // Check if this is a batch update (ends with /batch)
+    if (pathParts[pathParts.length - 1] === 'batch') {
+      const body = await context.request.json();
+      const { entity_ids } = body;
+      
+      if (!entity_ids || !Array.isArray(entity_ids)) {
+        return new Response(JSON.stringify({ error: 'entity_ids array required' }), { 
+          status: 400,
+          headers: { 'Content-Type': 'application/json' }
+        });
+      }
+      
+      const updated = await batchUpdateTrustScores(db, entity_ids);
+      
       return new Response(JSON.stringify({ 
         ok: true, 
         updated,
@@ -32,7 +43,7 @@ export async function onRequestPost(context) {
       });
     }
     
-    // Single entity update
+    // Single entity update (ends with /{entityId})
     const entityId = pathParts[pathParts.length - 1];
     if (!entityId || entityId === 'update') {
       return new Response(JSON.stringify({ error: 'Entity ID required' }), { 
