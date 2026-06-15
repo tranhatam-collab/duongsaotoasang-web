@@ -2,17 +2,9 @@ name = "duongsaotoasang-com-v2"
 compatibility_date = "2026-03-09"
 pages_build_output_dir = "."
 
-# D1 binding
-[[d1_databases]]
-binding = "DB"
-database_name = "dsts-db"
-database_id = "d1b1df1d-cb0b-4643-83ec-979acc803cae"
-migrations_dir = "migrations"
-
-# R2 binding
-[[r2_buckets]]
-binding = "DSTS_LEGACY_MEDIA"
-bucket_name = "dsts-legacy-media"
+# D1 and R2 are intentionally not bound.
+# The locked account currently has no DSTS database or dsts-legacy-media bucket.
+# Add bindings only after the resource IDs are verified in Cloudflare.
 
 [vars]
 # Payment routing — pay.iai.one canonical gateway

@@ -5,6 +5,15 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: dsts-pages-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   lint:
@@ -28,10 +37,10 @@ jobs:
           node-version: 20
       - name: Syntax check all JS
         run: |
-          for f in functions/**/*.js; do node --check "$f"; done
+          find functions -type f -name '*.js' -print0 | xargs -0 -n1 node --check
       - name: Smoke test (preview)
         run: |
-          BASE="https://duongsaotoasang-com-v2.pages.dev"
+          BASE="https://duongsaotoasang-com-v2-dd2.pages.dev"
           for route in "/" "/club/" "/verify/" "/legacy/" "/sponsor/" "/trust/" "/map" "/register/" "/mentor-network" "/dream-nurture"; do
             code=$(curl -sS -o /dev/null -w "%{http_code}" --connect-timeout 5 --max-time 10 "$BASE$route")
             if [ "$code" != "200" ] && [ "$code" != "308" ]; then
@@ -48,10 +57,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: duongsaotoasang-com-v2
-          directory: .
-          branch: main
+          command: pages deploy . --project-name=duongsaotoasang-com-v2 --branch=main --commit-hash=${{ github.sha }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
