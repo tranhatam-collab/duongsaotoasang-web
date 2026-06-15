@@ -46,7 +46,7 @@ async function verifyHmac(secret, payload, signature) {
 }
 
 export const onRequestPost = async ({ request, env }) => {
-  const hmacSecret = env.PAY_DSTS_HMAC || env.PAY_IAI_ONE_HMAC || "";
+  const hmacSecret = env.PAY_DSTS_HMAC || env.PAY_IAI_ONE_HMAC;
   const rawBody = await request.text();
   const signature = (
     request.headers.get("x-iai-signature") ||
@@ -54,14 +54,16 @@ export const onRequestPost = async ({ request, env }) => {
     ""
   ).trim();
 
-  // FAIL-CLOSED: if HMAC secret configured, signature is mandatory + valid.
-  if (hmacSecret) {
-    if (!signature) {
-      return errorJson("SIGNATURE_REQUIRED", "Webhook signature header required.", 401);
-    }
-    const valid = await verifyHmac(hmacSecret, rawBody, signature);
-    if (!valid) return errorJson("SIGNATURE_INVALID", "Webhook signature mismatch.", 401);
+  // FAIL-CLOSED: HMAC secret is required in production
+  if (!hmacSecret) {
+    return errorJson("HMAC_SECRET_NOT_CONFIGURED", "Webhook HMAC secret not configured.", 500);
   }
+  
+  if (!signature) {
+    return errorJson("SIGNATURE_REQUIRED", "Webhook signature header required.", 401);
+  }
+  const valid = await verifyHmac(hmacSecret, rawBody, signature);
+  if (!valid) return errorJson("SIGNATURE_INVALID", "Webhook signature mismatch.", 401);
 
   let payload;
   try {
