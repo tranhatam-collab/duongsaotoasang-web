@@ -31,3 +31,4 @@ SUPPORT_EMAIL               = "support@duongsaotoasang.com"
 #   MAIL_API_KEY         — from mail.iai.one (for donation receipt automation)
 #   MAIL_API_WORKSPACE_ID — paired workspace id for MAIL_API_KEY (secret, not in vars)
 #   POLL_TOKEN           — openssl rand -hex 32 (auth for POST /api/donate/poll)
+#   TRUST_IAI_ONE_API_KEY — from trust.iai.one (for Layer 5 verification integration)
