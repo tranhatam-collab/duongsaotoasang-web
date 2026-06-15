@@ -1,63 +1,29 @@
 /**
  * functions/_lib/email.js
- * Email wrapper using mail.iai.one API (preferred) or Resend (fallback).
- * Falls back gracefully (logs warning) if no mail provider key is set.
+ * Email via mail.iai.one (sole provider).
+ * Skips gracefully if MAIL_API_KEY not set.
  *
- * Templates needed:
- *   Sponsor: auto-reply to inquirer, Founder alert, Sponsor Manager alert
- *   Event:   registration confirm, T-7 reminder, T-1 reminder, T+7 recap
+ * Templates:
+ *   Sponsor: auto-reply to inquirer, Founder alert
+ *   Event:   registration confirm, reminder, recap
+ *   Donate:  receipt
  */
 
 const FROM_ADDRESS = "DSTS <hello@duongsaotoasang.com>";
-const RESEND_API = "https://api.resend.com/emails";
-// mail.iai.one canonical endpoint — base from env (with /_mail/v1 path) or hardcoded default
-// CORRECT: mail.iai.one/_mail/v1/send — NOT api.mail.iai.one/v1/send
 const getMailIaiOneBase = (env) =>
   (env?.MAIL_API_BASE_URL ?? "https://mail.iai.one/_mail/v1").replace(/\/+$/, "");
 
 // ── Core sender ───────────────────────────────────────────────────────────────
 
 /**
- * Send a single email via Resend.
  * @returns {{ ok: boolean, id?: string, error?: string }}
  */
 export async function sendEmail(env, { to, subject, html, replyTo, tags = [] }) {
-  if (env.MAIL_API_KEY) {
-    return sendViaMailIaiOne(env, { to, subject, html, replyTo, tags });
-  }
-
-  if (!env.RESEND_API_KEY) {
-    console.warn("[email] MAIL_API_KEY/RESEND_API_KEY not set — skipping email to:", to);
+  if (!env.MAIL_API_KEY) {
+    console.warn("[email] MAIL_API_KEY not set — skipping email to:", to);
     return { ok: true, skipped: true };
   }
-
-  try {
-    const res = await fetch(RESEND_API, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        "authorization": `Bearer ${env.RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: FROM_ADDRESS,
-        to: Array.isArray(to) ? to : [to],
-        subject,
-        html,
-        ...(replyTo ? { reply_to: replyTo } : {}),
-        ...(tags.length ? { tags } : {}),
-      }),
-    });
-
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) {
-      console.error("[email] Resend error", res.status, data);
-      return { ok: false, error: data?.message || `Resend ${res.status}` };
-    }
-    return { ok: true, id: data.id };
-  } catch (e) {
-    console.error("[email] Network error", e?.message);
-    return { ok: false, error: e?.message || "network error" };
-  }
+  return sendViaMailIaiOne(env, { to, subject, html, replyTo, tags });
 }
 
 async function sendViaMailIaiOne(env, { to, subject, html, replyTo, tags = [] }) {
@@ -242,7 +208,7 @@ export async function sendEventRecap(env, { name, email, eventTitle, recapUrl })
  * a precise status value so downstream QA can verify outcomes:
  *
  *   "sent"                  → mail provider returned ok with provider_message_id
- *   "skipped_no_provider"   → MAIL_API_KEY/RESEND_API_KEY both missing
+ *   "skipped_no_provider"   → MAIL_API_KEY not set
  *   "skipped_no_recipient"  → donor_email null
  *   "skipped"               → provider explicitly returned skipped
  *   "failed"                → provider returned error
@@ -256,9 +222,9 @@ export async function sendAndLogDonationReceipt(env, { donation, eventId, source
     return { ok: false, status: "no_donation" };
   }
 
-  const hasMailProvider = !!(env.MAIL_API_KEY || env.RESEND_API_KEY);
+  const hasMailProvider = !!env.MAIL_API_KEY;
   const hasRecipient = !!donation.donor_email;
-  const providerLabel = env.MAIL_API_KEY ? "mail_iai_one" : (env.RESEND_API_KEY ? "resend" : "none");
+  const providerLabel = env.MAIL_API_KEY ? "mail_iai_one" : "none";
 
   let mailResult;
   let dispatchStatus;

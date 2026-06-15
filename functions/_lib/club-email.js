@@ -1,10 +1,10 @@
 export async function sendAndLogClubReceipt(env, { template, donation, subscription, points }) {
   if (!env.DB) return { ok: false, status: "no_db" };
 
-  const hasMailProvider = !!(env.MAIL_API_KEY || env.RESEND_API_KEY);
+  const hasMailProvider = !!env.MAIL_API_KEY;
   const hasRecipient = !!(donation?.donor_email || subscription?.email);
   const recipientEmail = donation?.donor_email || subscription?.email || null;
-  const providerLabel = env.MAIL_API_KEY ? "mail_iai_one" : (env.RESEND_API_KEY ? "resend" : "none");
+  const providerLabel = env.MAIL_API_KEY ? "mail_iai_one" : "none";
   const dispatchId = `ced_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
   const synthEventId = `${template}_${Date.now()}`;
 

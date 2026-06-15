@@ -8,9 +8,8 @@
   <meta name="theme-color" content="#0b111d">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
   <meta name="robots" content="index,follow">
-  <!-- GSC: Replace FOUNDER_GSC_ID with real verification code from Google Search Console -->
-  <meta name="google-site-verification" content="FOUNDER_GSC_ID">
   <link rel="alternate" hreflang="en" href="https://duongsaotoasang.com/en/">
   <link rel="canonical" href="https://duongsaotoasang.com/">
   <meta property="og:type" content="website">
@@ -25,22 +24,13 @@
   <meta name="twitter:image" content="https://duongsaotoasang.com/og.png">
   <meta name="keywords" content="Đường Sao Tỏa Sáng, DSTS, người Việt muôn nơi, người Việt toàn cầu, nghệ sĩ Việt, doanh nhân Việt, tài năng Việt Nam, cộng đồng người Việt, thư viện tri thức sống">
   <link rel="stylesheet" href="/app.css">
-
-  <!-- Analytics placeholder: Replace G-XXXXXXX with real GA4 Measurement ID -->
-  <!--
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXX');
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(function(reg) { console.log('SW registered', reg.scope); })
+        .catch(function(err) { console.log('SW registration failed', err); });
+    }
   </script>
-  -->
-  <!-- Sentry placeholder: Replace SENTRY_DSN with real DSN -->
-  <!--
-  <script src="https://js.sentry-cdn.com/SENTRY_DSN.min.js" crossorigin="anonymous"></script>
-  -->
-
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
