@@ -37,7 +37,7 @@ export async function onRequestPost(context) {
     
     const signature = context.request.headers.get('X-Webhook-Signature');
     if (!signature) {
-      return new Response(JSON.stringify({ ok: false, error: 'Missing signature' }), { 
+      return new Response(JSON.stringify({ ok: false, error: 'SIGNATURE_REQUIRED', message: 'Webhook signature header required' }), { 
         status: 401,
         headers: { 'Content-Type': 'application/json' }
       });
@@ -45,7 +45,7 @@ export async function onRequestPost(context) {
     
     const isValid = await verifyHmac(hmacSecret, payload, signature);
     if (!isValid) {
-      return new Response(JSON.stringify({ ok: false, error: 'Invalid signature' }), { 
+      return new Response(JSON.stringify({ ok: false, error: 'SIGNATURE_INVALID', message: 'Webhook signature mismatch' }), { 
         status: 401,
         headers: { 'Content-Type': 'application/json' }
       });
