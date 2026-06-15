@@ -8,6 +8,7 @@
 @import url("/campaign-manager.css");
 @import url("/impact-reports.css");
 @import url("/map.css");
+@import url("/lang-switcher.css");
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
