@@ -1,8 +1,8 @@
 // DSTS Trust.iai.one API
 // POST /api/trust-iai-one/sync/{entityId} - Sync verification status (admin only)
 
-import { syncVerificationStatus } from '../../../_lib/trust-iai-one.js';
-import { requireAccessJWT } from '../../../_lib/auth.js';
+import { syncVerificationStatus } from '../../_lib/trust-iai-one.js';
+import { requireAccessJWT } from '../../_lib/auth.js';
 
 export async function onRequestPost(context) {
   const db = context.env.DB;

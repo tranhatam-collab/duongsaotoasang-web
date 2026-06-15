@@ -1,8 +1,8 @@
 // DSTS Trust Score API
 // POST /api/trust-score/batch - Update all entities (admin only)
 
-import { batchUpdateTrustScores } from '../../../_lib/trust-score.js';
-import { requireAccessJWT } from '../../../_lib/auth.js';
+import { batchUpdateTrustScores } from '../../_lib/trust-score.js';
+import { requireAccessJWT } from '../../_lib/auth.js';
 
 export async function onRequestPost(context) {
   const db = context.env.DB;

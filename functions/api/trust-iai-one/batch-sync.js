@@ -1,8 +1,8 @@
 // DSTS Trust.iai.one API
 // POST /api/trust-iai-one/batch-sync - Batch sync multiple entities (admin only)
 
-import { batchSyncVerificationStatus } from '../../../_lib/trust-iai-one.js';
-import { requireAccessJWT } from '../../../_lib/auth.js';
+import { batchSyncVerificationStatus } from '../../_lib/trust-iai-one.js';
+import { requireAccessJWT } from '../../_lib/auth.js';
 
 export async function onRequestPost(context) {
   const db = context.env.DB;
