@@ -52,5 +52,36 @@ export const onRequestPost = async ({ request, env }) => {
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'new', datetime('now'))
   `).bind(id, email, phone, fullName, interestType, creatorSlug, notes, sourceRoute).run();
 
+  // Send confirmation email (fire-and-forget; failure is non-blocking)
+  try {
+    const { sendEmail } = await import("../../_lib/email.js");
+    const interestLabel = {
+      member: "Member", circle: "Circle", inner_circle: "Inner Circle",
+      creator: "Creator", sponsor: "Sponsor", talkshow_reminder: "Talk Show Reminder"
+    }[interestType] || interestType;
+    await sendEmail(env, {
+      to: email,
+      subject: "Xác nhận ghi danh DSTS Club — Đường Sao Tỏa Sáng",
+      replyTo: "hello@duongsaotoasang.com",
+      tags: [{ name: "type", value: "club_waitlist_confirm" }],
+      html: `
+<div style="font-family:Inter,Arial,sans-serif;max-width:600px;margin:0 auto;background:#0b111d;color:#e2e8f0;padding:40px 32px;border-radius:12px">
+  <h1 style="font-size:1.5rem;color:#e0c896;margin:0 0 16px">Cảm ơn bạn đã ghi danh!</h1>
+  <p style="color:#94a3b8;line-height:1.7;margin:0 0 16px">
+    ${fullName ? `Xin chào <strong style="color:#e2e8f0">${fullName}</strong>,` : "Xin chào,"}
+    bạn đã ghi danh thành công vào danh sách chờ <strong style="color:#e2e8f0">DSTS Club — ${interestLabel}</strong>.
+  </p>
+  <p style="color:#94a3b8;line-height:1.7;margin:0 0 24px">
+    Chúng tôi sẽ liên hệ qua email khi chính thức mở cửa. Trong thời gian chờ, bạn có thể tìm hiểu thêm tại
+    <a href="https://duongsaotoasang.com/club" style="color:#e0c896">duongsaotoasang.com/club</a>.
+  </p>
+  <hr style="border:none;border-top:1px solid rgba(216,188,119,.14);margin:0 0 24px">
+  <p style="font-size:.8rem;color:#64748b">
+    &copy; 2026 Đường Sao Tỏa Sáng &middot; <a href="https://duongsaotoasang.com/legal" style="color:#64748b">Chính sách bảo mật</a>
+  </p>
+</div>`
+    });
+  } catch {}
+
   return json({ ok: true, id, status: "new" });
 };

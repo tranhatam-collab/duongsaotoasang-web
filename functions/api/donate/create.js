@@ -76,7 +76,7 @@ export const onRequestPost = async ({ request, env }) => {
     email: body.donor_email || body.email || null,    // was buyer_email
     full_name: body.donor_name || body.name || null,  // was buyer_name
     callback_url: `${callbackBase}/api/donate/webhook`,
-    success_url: `${callbackBase}/donate?status=success`,
+    success_url: body.return_url || `${callbackBase}/donate/success.html`,
     cancel_url: `${callbackBase}/donate?status=cancel`,
     metadata: { lane: "b", source: "dsts-donate" },
   };
