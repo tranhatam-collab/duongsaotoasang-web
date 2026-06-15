@@ -3,6 +3,19 @@
   "use strict";
   const DSTS = {};
 
+  // Load badge component
+  if (document.querySelector('link[href="/badge.css"]') === null) {
+    const badgeLink = document.createElement('link');
+    badgeLink.rel = 'stylesheet';
+    badgeLink.href = '/badge.css';
+    document.head.appendChild(badgeLink);
+  }
+  
+  const badgeScript = document.createElement('script');
+  badgeScript.src = '/badge.js';
+  badgeScript.defer = true;
+  document.head.appendChild(badgeScript);
+
   // 10 cặp route có bản dịch thật: VI canonical path -> EN path.
   // Chỉ map đúng các route này; trang chưa dịch KHÔNG tạo link /en/ giả.
   DSTS.LANG_PAIRS = {

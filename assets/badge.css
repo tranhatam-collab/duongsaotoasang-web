@@ -1,0 +1,79 @@
+/* DSTS Verified Badge Component */
+/* Displays trust score badge across all contexts */
+
+.dsts-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dsts-badge--verified {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.dsts-badge--gold {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+}
+
+.dsts-badge--silver {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+  color: white;
+}
+
+.dsts-badge--bronze {
+  background: linear-gradient(135deg, #cd7f32 0%, #a0522d 100%);
+  color: white;
+}
+
+.dsts-badge--unverified {
+  background: #e5e7eb;
+  color: #6b7280;
+}
+
+.dsts-badge__icon {
+  width: 14px;
+  height: 14px;
+}
+
+.dsts-badge__score {
+  font-weight: 700;
+}
+
+/* Context-specific variations */
+.dsts-badge--small {
+  padding: 2px 6px;
+  font-size: 10px;
+}
+
+.dsts-badge--large {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+/* Profile header badge */
+.dsts-profile-badge {
+  margin-left: 8px;
+}
+
+/* Post author badge */
+.dsts-post-badge {
+  margin-left: 4px;
+}
+
+/* Comment author badge */
+.dsts-comment-badge {
+  margin-left: 4px;
+}
+
+/* Hidden when trust score < 60 */
+.dsts-badge[hidden] {
+  display: none;
+}
