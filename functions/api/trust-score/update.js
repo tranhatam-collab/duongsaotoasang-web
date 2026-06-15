@@ -1,12 +1,20 @@
 // DSTS Trust Score API
-// POST /api/trust-score/update/{entityId} - Update single entity
-// POST /api/trust-score/batch - Update all entities
+// POST /api/trust-score/update/{entityId} - Update single entity (admin only)
+// POST /api/trust-score/batch - Update all entities (admin only)
 
 import { updateTrustScore, batchUpdateTrustScores } from '../../_lib/trust-score.js';
+import { requireAccessJWT } from '../../_lib/auth.js';
 
 export async function onRequestPost(context) {
   const db = context.env.DB;
   if (!db) return new Response('DB not bound', { status: 500 });
+  
+  // Require admin authentication
+  try {
+    await requireAccessJWT(context.request, context.env);
+  } catch (authError) {
+    return authError;
+  }
   
   try {
     const url = new URL(context.request.url);

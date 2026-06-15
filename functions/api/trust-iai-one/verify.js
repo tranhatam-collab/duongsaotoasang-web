@@ -1,13 +1,21 @@
 // DSTS Trust.iai.one API
-// POST /api/trust-iai-one/verify/{entityId} - Verify entity with trust.iai.one
-// POST /api/trust-iai-one/sync/{entityId} - Sync verification status
-// POST /api/trust-iai-one/batch-sync - Batch sync multiple entities
+// POST /api/trust-iai-one/verify/{entityId} - Verify entity with trust.iai.one (admin only)
+// POST /api/trust-iai-one/sync/{entityId} - Sync verification status (admin only)
+// POST /api/trust-iai-one/batch-sync - Batch sync multiple entities (admin only)
 
 import { verifyWithTrustIAIOne, getVerificationStatus, syncVerificationStatus, batchSyncVerificationStatus } from '../../_lib/trust-iai-one.js';
+import { requireAccessJWT } from '../../_lib/auth.js';
 
 export async function onRequestPost(context) {
   const db = context.env.DB;
   if (!db) return new Response('DB not bound', { status: 500 });
+  
+  // Require admin authentication
+  try {
+    await requireAccessJWT(context.request, context.env);
+  } catch (authError) {
+    return authError;
+  }
   
   try {
     const url = new URL(context.request.url);

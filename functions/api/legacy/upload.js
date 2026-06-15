@@ -1,10 +1,32 @@
 // DSTS Legacy Media API
-// POST /api/legacy/upload — Upload media to R2
+// POST /api/legacy/upload — Upload media to R2 (authenticated users only)
 // GET /api/legacy/{id} — Download media from R2
+
+import { requireAccessJWT } from '../../_lib/auth.js';
+
+const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
+const ALLOWED_MIME_TYPES = [
+  'image/jpeg',
+  'image/png',
+  'image/gif',
+  'image/webp',
+  'video/mp4',
+  'video/webm',
+  'audio/mpeg',
+  'audio/wav',
+  'audio/webm'
+];
 
 export async function onRequestPost(context) {
   const r2 = context.env.DSTS_LEGACY_MEDIA;
   if (!r2) return new Response('R2 not bound', { status: 500 });
+  
+  // Require authenticated session (using Access JWT for now)
+  try {
+    await requireAccessJWT(context.request, context.env);
+  } catch (authError) {
+    return authError;
+  }
   
   try {
     const formData = await context.request.formData();
@@ -12,6 +34,23 @@ export async function onRequestPost(context) {
     
     if (!file) {
       return new Response(JSON.stringify({ error: 'No file provided' }), { 
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+    
+    // Check file size
+    if (file.size > MAX_FILE_SIZE) {
+      return new Response(JSON.stringify({ error: 'File too large (max 50MB)' }), { 
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+    
+    // Check MIME type
+    const mimeType = file.type || '';
+    if (!ALLOWED_MIME_TYPES.includes(mimeType)) {
+      return new Response(JSON.stringify({ error: 'Invalid file type' }), { 
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });

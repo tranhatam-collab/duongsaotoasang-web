@@ -1,11 +1,41 @@
 // DSTS Layer 5 — trust.iai.one webhook
 // POST /webhooks/trust-iai
 
+import { verifyHmac } from '../_lib/auth.js';
+
 export async function onRequestPost(context) {
   const db = context.env.DB;
   if (!db) return new Response('DB not bound', { status: 500 });
+  
+  // Verify HMAC signature
+  const signature = context.request.headers.get('X-Signature');
+  const payload = await context.request.text();
+  
+  if (!signature) {
+    return new Response(JSON.stringify({ error: 'Missing signature' }), { 
+      status: 401,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+  
+  const secret = context.env.TRUST_IAI_ONE_WEBHOOK_SECRET;
+  if (!secret) {
+    return new Response(JSON.stringify({ error: 'Webhook secret not configured' }), { 
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+  
+  const isValid = await verifyHmac(secret, payload, signature);
+  if (!isValid) {
+    return new Response(JSON.stringify({ error: 'Invalid signature' }), { 
+      status: 401,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+  
   try {
-    const body = await context.request.json();
+    const body = JSON.parse(payload);
     const { verification_id, status, trust_score, entity_id, verified_at, expires_at } = body;
     
     // Log webhook delivery
