@@ -7,6 +7,7 @@
 @import url("/charts.css");
 @import url("/campaign-manager.css");
 @import url("/impact-reports.css");
+@import url("/map.css");
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
