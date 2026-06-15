@@ -51,6 +51,12 @@
   impactReportsScript.defer = true;
   document.head.appendChild(impactReportsScript);
 
+  // Load marker cluster component script (no CSS, pure JS utility)
+  const markerClusterScript = document.createElement('script');
+  markerClusterScript.src = '/marker-cluster.js';
+  markerClusterScript.defer = true;
+  document.head.appendChild(markerClusterScript);
+
   // 10 cặp route có bản dịch thật: VI canonical path -> EN path.
   // Chỉ map đúng các route này; trang chưa dịch KHÔNG tạo link /en/ giả.
   DSTS.LANG_PAIRS = {
