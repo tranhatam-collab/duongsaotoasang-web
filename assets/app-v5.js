@@ -21,6 +21,12 @@
   legacyPlayerScript.defer = true;
   document.head.appendChild(legacyPlayerScript);
 
+  // Load timeline component script (CSS already imported in app.css)
+  const timelineScript = document.createElement('script');
+  timelineScript.src = '/timeline.js';
+  timelineScript.defer = true;
+  document.head.appendChild(timelineScript);
+
   // 10 cặp route có bản dịch thật: VI canonical path -> EN path.
   // Chỉ map đúng các route này; trang chưa dịch KHÔNG tạo link /en/ giả.
   DSTS.LANG_PAIRS = {
