@@ -1,6 +1,7 @@
 @import url("/tokens.css");
 @import url("/badge.css");
 @import url("/evidence-pack.css");
+@import url("/legacy-player.css");
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}

@@ -15,6 +15,12 @@
   evidenceScript.defer = true;
   document.head.appendChild(evidenceScript);
 
+  // Load legacy player component script (CSS already imported in app.css)
+  const legacyPlayerScript = document.createElement('script');
+  legacyPlayerScript.src = '/legacy-player.js';
+  legacyPlayerScript.defer = true;
+  document.head.appendChild(legacyPlayerScript);
+
   // 10 cặp route có bản dịch thật: VI canonical path -> EN path.
   // Chỉ map đúng các route này; trang chưa dịch KHÔNG tạo link /en/ giả.
   DSTS.LANG_PAIRS = {

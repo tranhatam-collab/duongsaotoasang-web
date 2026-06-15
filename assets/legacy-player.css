@@ -1,0 +1,172 @@
+/* DSTS Legacy Player UI */
+/* Custom video/audio player for Story Preservation Engine */
+
+.legacy-player {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--surface);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.legacy-player__video-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  background: #000;
+}
+
+.legacy-player__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.legacy-player__audio-container {
+  padding: 20px;
+  background: var(--surface-dim);
+}
+
+.legacy-player__audio {
+  width: 100%;
+}
+
+.legacy-player__controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--surface-dim);
+  border-top: 1px solid var(--border);
+}
+
+.legacy-player__play-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: background 0.2s;
+}
+
+.legacy-player__play-btn:hover {
+  background: var(--primary-dark);
+}
+
+.legacy-player__progress {
+  flex: 1;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+}
+
+.legacy-player__progress-bar {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 3px;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+.legacy-player__time {
+  font-size: 12px;
+  color: var(--text-dim);
+  font-family: monospace;
+  min-width: 80px;
+  text-align: center;
+}
+
+.legacy-player__volume {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legacy-player__volume-btn {
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.legacy-player__volume-slider {
+  width: 60px;
+  height: 4px;
+  -webkit-appearance: none;
+  background: var(--border);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.legacy-player__volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: var(--primary);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.legacy-player__fullscreen-btn {
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 8px;
+}
+
+.legacy-player__info {
+  padding: 12px 16px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.legacy-player__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.legacy-player__description {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.legacy-player__loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 14px;
+}
+
+.legacy-player__error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ef4444;
+  font-size: 14px;
+  text-align: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+}
