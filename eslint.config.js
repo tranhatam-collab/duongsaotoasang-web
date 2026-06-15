@@ -18,6 +18,8 @@ export default [
         URL: "readonly",
         URLSearchParams: "readonly",
         AbortController: "readonly",
+        AbortSignal: "readonly",
+        FormData: "readonly",
         crypto: "readonly",
         btoa: "readonly",
         atob: "readonly",
