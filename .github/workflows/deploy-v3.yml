@@ -24,8 +24,8 @@ jobs:
         with:
           node-version: 20
       - run: npm ci --prefer-offline || true
-      - run: npx eslint functions/ --fix || true
-      - run: npx prettier --check "**/*.js" "**/*.html" "**/*.css" || true
+      - run: npx eslint functions/ --fix
+      - run: npx prettier --check "**/*.js" "**/*.html" "**/*.css"
 
   test:
     runs-on: ubuntu-latest
@@ -38,17 +38,6 @@ jobs:
       - name: Syntax check all JS
         run: |
           find functions -type f -name '*.js' -print0 | xargs -0 -n1 node --check
-      - name: Smoke test (preview)
-        run: |
-          BASE="https://duongsaotoasang-com-v2-dd2.pages.dev"
-          for route in "/" "/club/" "/verify/" "/legacy/" "/sponsor/" "/trust/" "/map" "/register/" "/mentor-network" "/dream-nurture"; do
-            code=$(curl -sS -o /dev/null -w "%{http_code}" --connect-timeout 5 --max-time 10 "$BASE$route")
-            if [ "$code" != "200" ] && [ "$code" != "308" ]; then
-              echo "FAIL $route → $code"
-              exit 1
-            fi
-            echo "PASS $route → $code"
-          done
 
   deploy:
     runs-on: ubuntu-latest
@@ -63,3 +52,16 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy . --project-name=duongsaotoasang-com-v2 --branch=main --commit-hash=${{ github.sha }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Verify deployment
+        run: |
+          echo "Waiting for deployment to propagate..."
+          sleep 30
+          BASE="https://duongsaotoasang.com"
+          for route in "/" "/club/" "/verify/" "/legacy/" "/sponsor/" "/trust/" "/map/" "/register/" "/mentor-network" "/dream-nurture"; do
+            code=$(curl -sS -o /dev/null -w "%{http_code}" --connect-timeout 5 --max-time 10 "$BASE$route")
+            if [ "$code" != "200" ] && [ "$code" != "308" ]; then
+              echo "FAIL $route → $code"
+              exit 1
+            fi
+            echo "PASS $route → $code"
+          done
