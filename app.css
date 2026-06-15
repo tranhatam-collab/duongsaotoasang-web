@@ -1,14 +1,14 @@
 @import url("/tokens.css");
-@import url("/badge.css");
-@import url("/evidence-pack.css");
-@import url("/legacy-player.css");
-@import url("/timeline.css");
-@import url("/metrics.css");
-@import url("/charts.css");
-@import url("/campaign-manager.css");
-@import url("/impact-reports.css");
-@import url("/map.css");
-@import url("/lang-switcher.css");
+@import url("/assets/badge.css");
+@import url("/assets/evidence-pack.css");
+@import url("/assets/legacy-player.css");
+@import url("/assets/timeline.css");
+@import url("/assets/metrics.css");
+@import url("/assets/charts.css");
+@import url("/assets/campaign-manager.css");
+@import url("/assets/impact-reports.css");
+@import url("/assets/map.css");
+@import url("/assets/lang-switcher.css");
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}

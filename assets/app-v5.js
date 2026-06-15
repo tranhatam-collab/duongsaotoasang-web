@@ -5,67 +5,67 @@
 
   // Load badge component script (CSS already imported in app.css)
   const badgeScript = document.createElement('script');
-  badgeScript.src = '/badge.js';
+  badgeScript.src = '/assets/badge.js';
   badgeScript.defer = true;
   document.head.appendChild(badgeScript);
 
   // Load evidence pack component script (CSS already imported in app.css)
   const evidenceScript = document.createElement('script');
-  evidenceScript.src = '/evidence-pack.js';
+  evidenceScript.src = '/assets/evidence-pack.js';
   evidenceScript.defer = true;
   document.head.appendChild(evidenceScript);
 
   // Load legacy player component script (CSS already imported in app.css)
   const legacyPlayerScript = document.createElement('script');
-  legacyPlayerScript.src = '/legacy-player.js';
+  legacyPlayerScript.src = '/assets/legacy-player.js';
   legacyPlayerScript.defer = true;
   document.head.appendChild(legacyPlayerScript);
 
   // Load timeline component script (CSS already imported in app.css)
   const timelineScript = document.createElement('script');
-  timelineScript.src = '/timeline.js';
+  timelineScript.src = '/assets/timeline.js';
   timelineScript.defer = true;
   document.head.appendChild(timelineScript);
 
   // Load metrics display component script (CSS already imported in app.css)
   const metricsScript = document.createElement('script');
-  metricsScript.src = '/metrics.js';
+  metricsScript.src = '/assets/metrics.js';
   metricsScript.defer = true;
   document.head.appendChild(metricsScript);
 
   // Load charts component script (CSS already imported in app.css)
   const chartsScript = document.createElement('script');
-  chartsScript.src = '/charts.js';
+  chartsScript.src = '/assets/charts.js';
   chartsScript.defer = true;
   document.head.appendChild(chartsScript);
 
   // Load campaign manager component script (CSS already imported in app.css)
   const campaignManagerScript = document.createElement('script');
-  campaignManagerScript.src = '/campaign-manager.js';
+  campaignManagerScript.src = '/assets/campaign-manager.js';
   campaignManagerScript.defer = true;
   document.head.appendChild(campaignManagerScript);
 
   // Load impact reports component script (CSS already imported in app.css)
   const impactReportsScript = document.createElement('script');
-  impactReportsScript.src = '/impact-reports.js';
+  impactReportsScript.src = '/assets/impact-reports.js';
   impactReportsScript.defer = true;
   document.head.appendChild(impactReportsScript);
 
   // Load marker cluster component script (no CSS, pure JS utility)
   const markerClusterScript = document.createElement('script');
-  markerClusterScript.src = '/marker-cluster.js';
+  markerClusterScript.src = '/assets/marker-cluster.js';
   markerClusterScript.defer = true;
   document.head.appendChild(markerClusterScript);
 
   // Load map component script (CSS already imported in app.css)
   const mapScript = document.createElement('script');
-  mapScript.src = '/map.js';
+  mapScript.src = '/assets/map.js';
   mapScript.defer = true;
   document.head.appendChild(mapScript);
 
   // Load language switcher component script (CSS already imported in app.css)
   const langSwitcherScript = document.createElement('script');
-  langSwitcherScript.src = '/lang-switcher.js';
+  langSwitcherScript.src = '/assets/lang-switcher.js';
   langSwitcherScript.defer = true;
   document.head.appendChild(langSwitcherScript);
 
