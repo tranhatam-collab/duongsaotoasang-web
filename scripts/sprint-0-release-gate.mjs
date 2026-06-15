@@ -38,6 +38,8 @@ await requirePass("local-static-page-depth-qa-syntax", "node", ["--check", "scri
 await requirePass("local-link-qa-syntax", "node", ["--check", "scripts/link-qa.mjs"])
 await requirePass("local-payment-legal-alignment-qa-syntax", "node", ["--check", "scripts/payment-legal-alignment-qa.mjs"])
 await requirePass("local-release-gate-syntax", "node", ["--check", "scripts/sprint-0-release-gate.mjs"])
+await requirePass("local-launch-readiness-qa-syntax", "node", ["--check", "scripts/launch-readiness-qa.mjs"])
+await requirePass("local-launch-readiness-qa", "node", ["scripts/launch-readiness-qa.mjs"])
 await requirePass("local-claim-register-qa", "node", ["scripts/claim-register-qa.mjs"])
 await requirePass("local-content-qa", "node", ["scripts/content-qa.mjs"])
 await requirePass("local-content-depth-qa", "node", ["scripts/content-depth-qa.mjs"])

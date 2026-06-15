@@ -2,9 +2,9 @@
 
 > **Vai trò:** Senior QA Lead · Content Editor · Frontend Engineer · SEO Auditor
 > **Ngày:** 2026-06-15
-> **Phạm vi:** CHỈ repo `duongsaotoasang.com` đang mở. Không sửa/deploy/commit/push.
+> **Phạm vi:** Repo `duongsaotoasang.com`, production routes, và các cổng runtime liên quan đến release.
 > **Chuẩn tham chiếu:** Brand master `_TEMPLATE-MASTER-v2` (09-Bilingual-Messaging, 06-Verbal-Identity) — chỉ đọc, không sửa.
-> **Trạng thái:** BƯỚC 1–3 (Analyze → Audit Report → Fix Plan). Chưa implement. Chờ duyệt.
+> **Trạng thái:** FIX PLAN ĐÃ ĐƯỢC FOUNDER DUYỆT. Implementation phải theo kế hoạch launch khóa ngày 2026-06-15.
 
 ---
 
@@ -110,7 +110,7 @@
 
 ---
 
-## III. FIX PLAN (đề xuất — chờ duyệt mới làm)
+## III. FIX PLAN (đã duyệt — bắt đầu implementation trong worktree riêng)
 
 > Nguyên tắc: sửa nhóm nhỏ, dễ rollback, không đổi kiến trúc, không xóa feature.
 
@@ -195,8 +195,12 @@ Production (`duongsaotoasang.com`) đang resolve, HTTPS 200, Pages `active`. Gat
 
 ---
 
-## V. BÀN GIAO TEAM DEV (sau khi founder duyệt Fix Plan)
+## V. BÀN GIAO TEAM DEV
 
-**Cơ chế song ngữ đã chốt: PHƯƠNG ÁN A (`/en/`).** Thứ tự thực thi đề xuất: **F4 → F3 → F1 → F2 → F5 → F6 → F7**, mỗi F là 1 commit nhỏ, test theo QA gate Mục IV, rồi mới sang F kế.
+**Cơ chế song ngữ đã chốt: PHƯƠNG ÁN A (`/en/`).** Thứ tự thực thi: **F4 → F3 → F1 → F2 → F5 → F6 → F7**, mỗi F là 1 commit nhỏ, test theo QA gate Mục IV, rồi mới sang F kế.
 
-> ⚠️ Tôi (QA) KHÔNG implement ở phiên này. File này là báo cáo + kế hoạch + cổng kiểm duyệt. Chờ founder duyệt Fix Plan.
+Kế hoạch implementation, auth, payment, D1, deploy và truyền thông được khóa tại:
+
+`docs/superpowers/plans/2026-06-15-dsts-launch-readiness.md`
+
+**Điều kiện cứng:** Không được gắn nhãn “đăng ký thật” hoặc “thanh toán thật” chỉ vì UI đã xuất hiện. Hai claim này cần D1 binding, auth behavior test, webhook fail-closed, preview browser QA và bằng chứng runtime production.
