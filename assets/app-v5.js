@@ -524,8 +524,7 @@
               </nav>
 
               <div class="site-lang">
-                <a href="${DSTS.viPath(window.location.pathname) + window.location.search + window.location.hash}" data-lang="vi">VI</a>
-                <a href="${DSTS.LANG_PAIRS[DSTS.viPath(window.location.pathname)] || "/en/"}" data-lang="en">EN</a>
+                <div data-lang-switcher data-current-lang="${DSTS.getLang()}" data-available-langs='["vi","en"]'></div>
               </div>
             </div>
           </div>
