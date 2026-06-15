@@ -117,7 +117,7 @@ export async function onRequestPost(context) {
         description: String(description).slice(0, 200),
         email: body.email || null,
         full_name: body.full_name || null,
-        callback_url: `${callbackBase}/api/payment/webhook`,
+        callback_url: `${callbackBase}/webhooks/payment`,
         success_url: `${callbackBase}/checkout/success?order=${internalOrderId}`,
         cancel_url: `${callbackBase}/`,
         metadata: { payment_id: String(paymentId), type: type || "donation", source: "dsts-create-intent" },
@@ -140,12 +140,15 @@ export async function onRequestPost(context) {
     });
   }
 
-  // Record provider ref + checkout url.
-  if (providerRef || checkoutUrl) {
+  // Record the pay.iai.one provider reference. Schema note: the payments table
+  // has provider_transaction_id (NOT provider_ref/checkout_url), and status is
+  // CHECK-constrained to pending/completed/failed/refunded — so we keep status
+  // 'pending' here and let the webhook flip it to 'completed' on settlement.
+  // checkout_url is returned to the client below (no DB column needed).
+  if (providerRef) {
     await db.prepare(
-      "UPDATE payments SET provider_ref = ?, checkout_url = ?, status = ? WHERE id = ?"
-    ).bind(providerRef, checkoutUrl, checkoutUrl ? "provider_created" : "pending", paymentId)
-      .run().catch(() => {});
+      "UPDATE payments SET provider_transaction_id = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?"
+    ).bind(providerRef, paymentId).run().catch(() => {});
   }
 
   return new Response(JSON.stringify({
