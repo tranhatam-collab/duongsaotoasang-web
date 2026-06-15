@@ -197,3 +197,127 @@ async function _verifyJwtSignature(token, publicKeys) {
   }
   return false;
 }
+
+// ── Password Hashing (PBKDF2-SHA-256) ───────────────────────────────────────────────
+
+/**
+ * Hash a password using PBKDF2-SHA-256 with a random salt.
+ * @param {string} password - The plaintext password
+ * @param {number} iterations - Number of PBKDF2 iterations (default: 310000)
+ * @returns {Promise<{hash: string, salt: string, iterations: number}>}
+ */
+export async function hashPassword(password, iterations = 310000) {
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const saltBase64 = btoa(String.fromCharCode(...salt));
+  
+  const encoder = new TextEncoder();
+  const passwordKey = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(password),
+    { name: "PBKDF2" },
+    false,
+    ["deriveBits"]
+  );
+  
+  const derivedBits = await crypto.subtle.deriveKey(
+    {
+      name: "PBKDF2",
+      salt: salt,
+      iterations: iterations,
+      hash: "SHA-256"
+    },
+    passwordKey,
+    { name: "AES-GCM", length: 256 },
+    true,
+    ["encrypt", "decrypt"]
+  );
+  
+  const hashArray = new Uint8Array(await crypto.subtle.exportKey("raw", derivedBits));
+  const hashBase64 = btoa(String.fromCharCode(...hashArray));
+  
+  return {
+    hash: hashBase64,
+    salt: saltBase64,
+    iterations: iterations
+  };
+}
+
+/**
+ * Verify a password against a stored hash.
+ * @param {string} password - The plaintext password to verify
+ * @param {string} storedHash - The stored hash (base64)
+ * @param {string} storedSalt - The stored salt (base64)
+ * @param {number} iterations - Number of iterations used (default: 310000)
+ * @returns {Promise<boolean>} - True if password matches
+ */
+export async function verifyPassword(password, storedHash, storedSalt, iterations = 310000) {
+  try {
+    const salt = Uint8Array.from(atob(storedSalt), (c) => c.charCodeAt(0));
+    const encoder = new TextEncoder();
+    
+    const passwordKey = await crypto.subtle.importKey(
+      "raw",
+      encoder.encode(password),
+      { name: "PBKDF2" },
+      false,
+      ["deriveBits"]
+    );
+    
+    const derivedBits = await crypto.subtle.deriveKey(
+      {
+        name: "PBKDF2",
+        salt: salt,
+        iterations: iterations,
+        hash: "SHA-256"
+      },
+      passwordKey,
+      { name: "AES-GCM", length: 256 },
+      true,
+      ["encrypt", "decrypt"]
+    );
+    
+    const hashArray = new Uint8Array(await crypto.subtle.exportKey("raw", derivedBits));
+    const hashBase64 = btoa(String.fromCharCode(...hashArray));
+    
+    // Constant-time comparison
+    if (hashBase64.length !== storedHash.length) return false;
+    
+    const a = Uint8Array.from(atob(hashBase64), (c) => c.charCodeAt(0));
+    const b = Uint8Array.from(atob(storedHash), (c) => c.charCodeAt(0));
+    
+    let result = 0;
+    for (let i = 0; i < a.length; i++) {
+      result |= a[i] ^ b[i];
+    }
+    
+    return result === 0;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Generate a random session token (32 bytes).
+ * @returns {Promise<string>} - Hex-encoded token
+ */
+export async function generateSessionToken() {
+  const token = crypto.getRandomValues(new Uint8Array(32));
+  return Array.from(token)
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
+}
+
+/**
+ * Hash a session token for storage in D1.
+ * @param {string} token - The plaintext token
+ * @returns {Promise<string>} - SHA-256 hash (hex)
+ */
+export async function hashSessionToken(token) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(token);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = new Uint8Array(hashBuffer);
+  return Array.from(hashArray)
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
+}
