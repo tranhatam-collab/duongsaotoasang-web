@@ -4,6 +4,7 @@
 @import url("/legacy-player.css");
 @import url("/timeline.css");
 @import url("/metrics.css");
+@import url("/charts.css");
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
