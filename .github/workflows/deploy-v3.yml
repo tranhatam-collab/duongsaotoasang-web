@@ -49,7 +49,9 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # Pinned to the account that OWNS the live domain duongsaotoasang.com
+          # (project subdomain duongsaotoasang-com-v2-dd2.pages.dev). Do NOT change.
+          accountId: 62d57eaa548617aeecac766e5a1cb98e
           command: pages deploy . --project-name=duongsaotoasang-com-v2 --branch=main --commit-hash=${{ github.sha }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Verify deployment
