@@ -1,5 +1,5 @@
 // DSTS Club App Shell JavaScript
-// MVP: localStorage session giả (production cần HttpOnly Secure cookie)
+// Production: HttpOnly Secure cookie + /api/auth/me
 
 const App = {
   isAuthenticated: false,
@@ -11,18 +11,22 @@ const App = {
     this.setupRouter();
   },
 
-  // Auth check (MVP: localStorage, production: HttpOnly cookie)
-  checkAuth() {
-    const session = localStorage.getItem('dsts_session');
-    // MVP: giả định session tồn tại = authenticated
-    // Production: gọi API /api/auth/me với HttpOnly cookie
-    this.isAuthenticated = !!session;
+  // Auth check (production: call /api/auth/me with HttpOnly cookie)
+  async checkAuth() {
+    try {
+      const res = await fetch('/api/auth/me');
+      const result = await res.json();
+      this.isAuthenticated = result.ok;
 
-    if (this.isAuthenticated) {
-      this.showAppShell();
-      this.loadRoute(this.currentRoute);
-    } else {
-      // Redirect to login page
+      if (this.isAuthenticated) {
+        this.showAppShell();
+        this.loadRoute(this.currentRoute);
+      } else {
+        // Redirect to login page
+        window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
+      }
+    } catch (err) {
+      // On error, redirect to login
       window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
     }
   },
@@ -216,9 +220,13 @@ const App = {
     });
   },
 
-  // Logout (clear session and cache)
-  logout() {
-    localStorage.removeItem('dsts_session');
+  // Logout (call API to revoke session)
+  async logout() {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+    } catch (err) {
+      console.error('Logout error:', err);
+    }
     
     // Clear service worker cache for user data
     if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
