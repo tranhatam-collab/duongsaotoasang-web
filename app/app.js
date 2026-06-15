@@ -1,6 +1,8 @@
 // DSTS Club App Shell JavaScript
 // Production: HttpOnly Secure cookie + /api/auth/me
 
+let deferredInstallPrompt = null;
+
 const App = {
   isAuthenticated: false,
   currentRoute: 'home',
@@ -9,6 +11,39 @@ const App = {
     this.checkAuth();
     this.setupEventListeners();
     this.setupRouter();
+    this.setupPWAInstall();
+  },
+
+  setupPWAInstall() {
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredInstallPrompt = e;
+      this.showInstallButton();
+    });
+    window.addEventListener('appinstalled', () => {
+      deferredInstallPrompt = null;
+      this.hideInstallButton();
+    });
+  },
+
+  showInstallButton() {
+    const btn = document.getElementById('pwa-install-btn');
+    if (btn) btn.classList.remove('hidden');
+  },
+
+  hideInstallButton() {
+    const btn = document.getElementById('pwa-install-btn');
+    if (btn) btn.classList.add('hidden');
+  },
+
+  async installPWA() {
+    if (!deferredInstallPrompt) return;
+    deferredInstallPrompt.prompt();
+    const { outcome } = await deferredInstallPrompt.userChoice;
+    if (outcome === 'accepted') {
+      deferredInstallPrompt = null;
+      this.hideInstallButton();
+    }
   },
 
   // Auth check (production: call /api/auth/me with HttpOnly cookie)
@@ -251,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js')
       .then((registration) => {
-        console.log('Service Worker registered:', registration);
+        // Service Worker registered successfully
       })
       .catch((error) => {
         console.error('Service Worker registration failed:', error);

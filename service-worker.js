@@ -1,6 +1,6 @@
 // DSTS Club Service Worker
 // Versioned cache name: update on each deployment
-const CACHE_NAME = 'dsts-club-app-v2026-06-08-001';
+const CACHE_NAME = 'dsts-club-app-v2026-06-15-001';
 
 // Static shell assets (cache-first)
 const STATIC_SHELL = [
@@ -8,8 +8,16 @@ const STATIC_SHELL = [
   '/app/app.css',
   '/app/app.js',
   '/manifest.webmanifest',
+  '/offline.html',
+  '/assets/icons/icon-72.png',
+  '/assets/icons/icon-96.png',
+  '/assets/icons/icon-128.png',
+  '/assets/icons/icon-144.png',
+  '/assets/icons/icon-152.png',
   '/assets/icons/icon-192.png',
-  '/assets/icons/icon-512.png'
+  '/assets/icons/icon-384.png',
+  '/assets/icons/icon-512.png',
+  '/assets/icons/icon-maskable-512.png'
 ];
 
 // Private API routes (network-only, never cache)
