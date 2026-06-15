@@ -14,7 +14,9 @@ export async function onRequestPost(context) {
   if (!db) return new Response('DB not bound', { status: 500 });
   
   try {
-    const body = await context.request.json();
+    // Read body once for HMAC verification
+    const payload = await context.request.text();
+    const body = JSON.parse(payload);
     const { payment_id, status, provider, provider_transaction_id, receipt_url, event_id } = body;
     
     if (!payment_id || !status) {
@@ -26,23 +28,27 @@ export async function onRequestPost(context) {
     
     // HMAC verification (fail-closed)
     const hmacSecret = context.env.PAY_DSTS_HMAC || context.env.PAY_IAI_ONE_HMAC;
-    if (hmacSecret) {
-      const signature = context.request.headers.get('X-Webhook-Signature');
-      if (!signature) {
-        return new Response(JSON.stringify({ ok: false, error: 'Missing signature' }), { 
-          status: 401,
-          headers: { 'Content-Type': 'application/json' }
-        });
-      }
-      
-      const payload = await context.request.text();
-      const isValid = await verifyHmac(hmacSecret, payload, signature);
-      if (!isValid) {
-        return new Response(JSON.stringify({ ok: false, error: 'Invalid signature' }), { 
-          status: 401,
-          headers: { 'Content-Type': 'application/json' }
-        });
-      }
+    if (!hmacSecret) {
+      return new Response(JSON.stringify({ ok: false, error: 'HMAC secret not configured' }), { 
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+    
+    const signature = context.request.headers.get('X-Webhook-Signature');
+    if (!signature) {
+      return new Response(JSON.stringify({ ok: false, error: 'Missing signature' }), { 
+        status: 401,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+    
+    const isValid = await verifyHmac(hmacSecret, payload, signature);
+    if (!isValid) {
+      return new Response(JSON.stringify({ ok: false, error: 'Invalid signature' }), { 
+        status: 401,
+        headers: { 'Content-Type': 'application/json' }
+      });
     }
     
     // Replay guard (event_id dedup)
