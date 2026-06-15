@@ -1,0 +1,230 @@
+/* DSTS Layer 1 — Verified Identity Badge Component */
+
+.dsts-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1.5px solid;
+  transition: all .2s ease;
+  cursor: default;
+  user-select: none;
+}
+
+.dsts-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+
+/* Badge types */
+.dsts-badge--none {
+  background: rgba(100,116,139,.1);
+  border-color: rgba(100,116,139,.3);
+  color: #94a3b8;
+}
+
+.dsts-badge--bronze {
+  background: rgba(205,127,50,.12);
+  border-color: rgba(205,127,50,.4);
+  color: #cd7f32;
+}
+
+.dsts-badge--silver {
+  background: rgba(192,192,192,.12);
+  border-color: rgba(192,192,192,.4);
+  color: #c0c0c0;
+}
+
+.dsts-badge--gold {
+  background: rgba(255,215,0,.12);
+  border-color: rgba(255,215,0,.4);
+  color: #ffd700;
+}
+
+.dsts-badge--platinum {
+  background: rgba(229,228,226,.12);
+  border-color: rgba(229,228,226,.4);
+  color: #e5e4e2;
+}
+
+.dsts-badge--diamond {
+  background: rgba(185,242,255,.12);
+  border-color: rgba(185,242,255,.4);
+  color: #b9f2ff;
+}
+
+/* Verified seal icon */
+.dsts-badge__icon {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.dsts-badge__icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+/* Trust score ring */
+.dsts-trust-ring {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dsts-trust-ring svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.dsts-trust-ring__bg {
+  fill: none;
+  stroke: rgba(255,255,255,.08);
+  stroke-width: 4;
+}
+
+.dsts-trust-ring__fill {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dashoffset .6s ease;
+}
+
+.dsts-trust-ring__score {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--dsts-color-text-strong, #f7ead0);
+  z-index: 1;
+}
+
+/* Score color thresholds */
+.dsts-trust-ring__fill[data-score="low"] { stroke: #ef4444; }
+.dsts-trust-ring__fill[data-score="medium"] { stroke: #f59e0b; }
+.dsts-trust-ring__fill[data-score="high"] { stroke: #22c55e; }
+.dsts-trust-ring__fill[data-score="elite"] { stroke: #d8bc77; }
+
+/* Evidence pack preview */
+.dsts-evidence-pack {
+  border: 1px solid var(--dsts-color-line, rgba(255,255,255,.08));
+  border-radius: var(--dsts-radius-md, 18px);
+  padding: 20px;
+  background: var(--dsts-color-panel, #121821);
+}
+
+.dsts-evidence-pack__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--dsts-color-line, rgba(255,255,255,.08));
+}
+
+.dsts-evidence-pack__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dsts-color-text-strong, #f7ead0);
+  margin: 0;
+}
+
+.dsts-evidence-pack__count {
+  font-size: 12px;
+  color: var(--dsts-color-muted, #9aa7b4);
+  margin-left: auto;
+}
+
+.dsts-evidence-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,.04);
+}
+
+.dsts-evidence-item:last-child {
+  border-bottom: none;
+}
+
+.dsts-evidence-item__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(96,165,250,.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.dsts-evidence-item__icon--verified {
+  background: rgba(74,222,128,.1);
+}
+
+.dsts-evidence-item__icon--pending {
+  background: rgba(251,191,36,.1);
+}
+
+.dsts-evidence-item__icon--rejected {
+  background: rgba(248,113,113,.1);
+}
+
+.dsts-evidence-item__name {
+  font-size: 14px;
+  color: var(--dsts-color-text, #e6edf3);
+  flex: 1;
+}
+
+.dsts-evidence-item__status {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.dsts-evidence-item__status--verified {
+  background: rgba(74,222,128,.12);
+  color: #4ade80;
+}
+
+.dsts-evidence-item__status--pending {
+  background: rgba(251,191,36,.12);
+  color: #fbbf24;
+}
+
+.dsts-evidence-item__status--rejected {
+  background: rgba(248,113,113,.12);
+  color: #f87171;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .dsts-badge {
+    font-size: 10px;
+    padding: 3px 8px;
+    gap: 4px;
+  }
+  .dsts-trust-ring {
+    width: 36px;
+    height: 36px;
+  }
+  .dsts-trust-ring__score {
+    font-size: 11px;
+  }
+}

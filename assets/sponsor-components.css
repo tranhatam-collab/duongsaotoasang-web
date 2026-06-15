@@ -1,0 +1,184 @@
+/* DSTS Layer 4 — Sponsor Ecosystem Styles */
+
+.dsts-campaign-card {
+  background: var(--dsts-color-panel, #121821);
+  border: 1px solid var(--dsts-color-line, rgba(255,255,255,.08));
+  border-radius: var(--dsts-radius-md, 18px);
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: transform .2s, border-color .2s;
+}
+
+.dsts-campaign-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--dsts-color-line-strong, rgba(255,255,255,.14));
+}
+
+.dsts-campaign-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.dsts-campaign-card__header h4 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--dsts-color-text-strong, #f7ead0);
+}
+
+.dsts-campaign-card__sponsor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: var(--dsts-color-muted, #9aa7b4);
+}
+
+.dsts-campaign-card__sponsor img {
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.dsts-campaign-card__tier {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--dsts-color-gold-soft, rgba(216,188,119,.18));
+  color: var(--dsts-color-gold, #d8bc77);
+}
+
+.dsts-campaign-card__progress {
+  height: 6px;
+  background: rgba(255,255,255,.06);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.dsts-campaign-card__bar {
+  height: 100%;
+  background: var(--dsts-color-gold, #d8bc77);
+  border-radius: 999px;
+  transition: width .6s ease;
+}
+
+.dsts-campaign-card__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  text-align: center;
+}
+
+.dsts-campaign-card__stats strong {
+  display: block;
+  font-size: 15px;
+  color: var(--dsts-color-text-strong, #f7ead0);
+}
+
+.dsts-campaign-card__stats small {
+  font-size: 11px;
+  color: var(--dsts-color-muted, #9aa7b4);
+}
+
+/* Impact Report */
+.dsts-impact-report {
+  background: var(--dsts-color-panel, #121821);
+  border: 1px solid var(--dsts-color-line, rgba(255,255,255,.08));
+  border-radius: var(--dsts-radius-md, 18px);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.dsts-impact-report h4 {
+  margin: 0 0 4px;
+  font-size: 16px;
+  color: var(--dsts-color-text-strong, #f7ead0);
+}
+
+.dsts-impact-report__period {
+  margin: 0 0 16px;
+  font-size: 12px;
+  color: var(--dsts-color-muted, #9aa7b4);
+}
+
+.dsts-impact-report__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  text-align: center;
+}
+
+.dsts-impact-report__grid strong {
+  display: block;
+  font-size: 18px;
+  color: var(--dsts-color-text-strong, #f7ead0);
+}
+
+.dsts-impact-report__grid small {
+  font-size: 11px;
+  color: var(--dsts-color-muted, #9aa7b4);
+}
+
+/* Sponsor Wall */
+.dsts-sponsor-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.dsts-sponsor-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background: var(--dsts-color-panel, #121821);
+  border: 1px solid var(--dsts-color-line, rgba(255,255,255,.08));
+  border-radius: var(--dsts-radius-md, 18px);
+  text-decoration: none;
+  color: var(--dsts-color-text, #e6edf3);
+  transition: transform .2s, border-color .2s;
+}
+
+.dsts-sponsor-tile:hover {
+  transform: translateY(-2px);
+  border-color: var(--dsts-color-line-strong, rgba(255,255,255,.14));
+}
+
+.dsts-sponsor-tile img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.dsts-sponsor-tile span {
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.dsts-sponsor-tile__tier {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--dsts-color-gold-soft, rgba(216,188,119,.18));
+  color: var(--dsts-color-gold, #d8bc77);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .dsts-impact-report__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dsts-sponsor-wall {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
