@@ -4,7 +4,7 @@
  * POST /api/trust-iai/verify — submit verification request to trust.iai.one
  * GET  /api/trust-iai/status/:id — check verification status
  *
- * NOTE: Replace TRUST_IAI_API_KEY with real key from founder.
+ * NOTE: Uses TRUST_IAI_ONE_API_KEY secret from Cloudflare (set via wrangler).
  * Falls back to local verification if key not set.
  */
 
@@ -26,8 +26,8 @@ export async function onRequestPost(context) {
   }
 
   // If no trust.iai.one API key, use local fallback
-  if (!env.TRUST_IAI_API_KEY) {
-    console.warn("[trust-iai] No TRUST_IAI_API_KEY — using local verification fallback");
+  if (!env.TRUST_IAI_ONE_API_KEY) {
+    console.warn("[trust-iai] No TRUST_IAI_ONE_API_KEY — using local verification fallback");
 
     // Create local trust verification record
     const id = crypto.randomUUID();
@@ -51,7 +51,7 @@ export async function onRequestPost(context) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${env.TRUST_IAI_API_KEY}`
+        'Authorization': `Bearer ${env.TRUST_IAI_ONE_API_KEY}`
       },
       body: JSON.stringify({ entity_type, entity_id, evidence_urls })
     });
@@ -88,10 +88,10 @@ export async function onRequestGet(context) {
     if (!record) return new Response(JSON.stringify({ ok: false, error: 'Not found' }), { status: 404 });
 
     // If has trust_iai_ref and API key, check external status
-    if (record.trust_iai_ref && env.TRUST_IAI_API_KEY) {
+    if (record.trust_iai_ref && env.TRUST_IAI_ONE_API_KEY) {
       try {
         const res = await fetch(`${TRUST_IAI_BASE}/verify/${record.trust_iai_ref}`, {
-          headers: { 'Authorization': `Bearer ${env.TRUST_IAI_API_KEY}` }
+          headers: { 'Authorization': `Bearer ${env.TRUST_IAI_ONE_API_KEY}` }
         });
         const ext = await res.json().catch(() => ({}));
         return new Response(JSON.stringify({ ok: true, local: record, trust_iai: ext }), {
