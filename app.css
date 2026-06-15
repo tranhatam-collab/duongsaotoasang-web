@@ -5,6 +5,7 @@
 @import url("/timeline.css");
 @import url("/metrics.css");
 @import url("/charts.css");
+@import url("/campaign-manager.css");
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}

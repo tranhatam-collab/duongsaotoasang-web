@@ -1,0 +1,194 @@
+/* DSTS Campaign Manager UI */
+/* Campaign management for Sponsor Ecosystem */
+
+.campaign-manager {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.campaign-manager__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.campaign-manager__title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.campaign-manager__actions {
+  display: flex;
+  gap: 12px;
+}
+
+.campaign-manager__btn {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.campaign-manager__btn--primary {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.campaign-manager__btn--primary:hover {
+  background: var(--primary-dark);
+}
+
+.campaign-manager__btn:hover {
+  background: var(--surface-dim);
+}
+
+.campaign-manager__filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.campaign-manager__filter {
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.campaign-manager__filter--active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.campaign-manager__list {
+  display: grid;
+  gap: 16px;
+}
+
+.campaign-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 16px;
+  align-items: center;
+}
+
+.campaign-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.campaign-card__name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.campaign-card__status {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.campaign-card__status--active {
+  color: #10b981;
+}
+
+.campaign-card__status--pending {
+  color: #f59e0b;
+}
+
+.campaign-card__status--completed {
+  color: #6b7280;
+}
+
+.campaign-card__metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.campaign-card__metric {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.campaign-card__metric-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.campaign-card__budget {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.campaign-card__budget-label {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.campaign-card__budget-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.campaign-card__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.campaign-card__action-btn {
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.campaign-card__action-btn:hover {
+  background: var(--surface-dim);
+}
+
+.campaign-manager__empty {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .campaign-card {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .campaign-manager__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
