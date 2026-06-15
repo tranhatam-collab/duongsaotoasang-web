@@ -3,27 +3,51 @@
   "use strict";
   const DSTS = {};
 
+  // 10 cặp route có bản dịch thật: VI canonical path -> EN path.
+  // Chỉ map đúng các route này; trang chưa dịch KHÔNG tạo link /en/ giả.
+  DSTS.LANG_PAIRS = {
+    "/": "/en/",
+    "/about": "/en/about",
+    "/contact": "/en/contact",
+    "/donate": "/en/donate",
+    "/map": "/en/map",
+    "/legacy": "/en/legacy",
+    "/register": "/en/register",
+    "/sponsor": "/en/sponsor",
+    "/trust": "/en/trust",
+    "/verify": "/en/verify"
+  };
+
+  // Nhận diện ngôn ngữ theo PATHNAME /en/ (không còn dùng ?lang=en).
   DSTS.getLang = function () {
     try {
-      const url = new URL(window.location.href);
-      return url.searchParams.get("lang") === "en" ? "en" : "vi";
+      const p = window.location.pathname || "/";
+      return (p === "/en" || p === "/en/" || p.indexOf("/en/") === 0) ? "en" : "vi";
     } catch (_err) {
       return "vi";
     }
   };
 
+  // Chuẩn hoá một path về dạng VI-canonical (bỏ .html, bỏ tiền tố /en, bỏ trailing slash).
+  DSTS.viPath = function (path) {
+    let p = (path || "/").replace(/\.html$/, "");
+    if (p === "/en" || p === "/en/") return "/";
+    if (p.indexOf("/en/") === 0) p = p.slice(3);
+    if (p.length > 1) p = p.replace(/\/+$/, "");
+    return p || "/";
+  };
+
+  // Ở EN: map path VI -> path /en/ cho đúng 10 cặp; route khác giữ nguyên VI (no fake /en/).
   DSTS.withLang = function (href) {
     if (!href) return href;
-    const lang = DSTS.getLang();
-
     try {
+      if (DSTS.getLang() !== "en") return href;
       const base = window.location.origin || "https://duongsaotoasang.com";
       const url = new URL(href, base);
-      if (lang === "en") url.searchParams.set("lang", "en");
-      else url.searchParams.delete("lang");
-
-      if (/^https?:\/\//i.test(href)) return url.toString();
-      return url.pathname + url.search + url.hash;
+      const enPath = DSTS.LANG_PAIRS[DSTS.viPath(url.pathname)];
+      if (!enPath) return href;
+      const tail = url.search + url.hash;
+      return /^https?:\/\//i.test(href) ? base + enPath + tail : enPath + tail;
     } catch (_err) {
       return href;
     }
@@ -434,16 +458,8 @@
               </nav>
 
               <div class="site-lang">
-                <a href="${DSTS.withLang(window.location.pathname + window.location.search + window.location.hash).replace(/[?&]lang=en/g, "").replace(/\?$/, "")}" data-lang="vi">VI</a>
-                <a href="${(function () {
-                  try {
-                    const url = new URL(window.location.href);
-                    url.searchParams.set("lang", "en");
-                    return url.pathname + url.search + url.hash;
-                  } catch (_err) {
-                    return "?lang=en";
-                  }
-                })()}" data-lang="en">EN</a>
+                <a href="${DSTS.viPath(window.location.pathname) + window.location.search + window.location.hash}" data-lang="vi">VI</a>
+                <a href="${DSTS.LANG_PAIRS[DSTS.viPath(window.location.pathname)] || "/en/"}" data-lang="en">EN</a>
               </div>
             </div>
           </div>
