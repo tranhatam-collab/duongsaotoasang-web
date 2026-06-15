@@ -45,6 +45,12 @@
   campaignManagerScript.defer = true;
   document.head.appendChild(campaignManagerScript);
 
+  // Load impact reports component script (CSS already imported in app.css)
+  const impactReportsScript = document.createElement('script');
+  impactReportsScript.src = '/impact-reports.js';
+  impactReportsScript.defer = true;
+  document.head.appendChild(impactReportsScript);
+
   // 10 cặp route có bản dịch thật: VI canonical path -> EN path.
   // Chỉ map đúng các route này; trang chưa dịch KHÔNG tạo link /en/ giả.
   DSTS.LANG_PAIRS = {
