@@ -18,8 +18,60 @@
   <meta name="twitter:title" content="Membership | DSTS Club">
   <meta name="twitter:description" content="Đăng ký thành viên Câu Lạc Bộ DSTS: 3 gói Thành Viên / Vòng Trò / Vòng Trong. Điểm Sao, đặc quyền nội dung, kết nối người hướng dẫn, sự kiện.">
   <meta name="twitter:image" content="https://duongsaotoasang.com/og.png">
+
+  <style>
+    @media (max-width: 768px) {
+      body { font-size: 14px; }
+      .wrap { padding: 0 16px; }
+    }
+  </style>
+
+  <style>
+    button, a, .btn { min-height: 44px; min-width: 44px; }
+    input, select, textarea { min-height: 44px; font-size: 16px; }
+  </style>
 </head>
 <body>
+
+<header id="siteHeader" style="position:sticky;top:0;z-index:100;background:rgba(8,12,19,.95);border-bottom:1px solid rgba(224,200,150,.12);padding:12px 0">
+  <div class="wrap" style="max-width:980px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between">
+    <a href="/" style="text-decoration:none;color:#f0e4c8;font-weight:600;font-size:16px">
+      Đường Sao Tỏa Sáng
+    </a>
+    <button id="mobileMenuToggle" style="display:none;background:none;border:none;color:#f0e4c8;font-size:24px;cursor:pointer;padding:8px" aria-label="Mở menu">
+      ☰
+    </button>
+    <nav id="desktopMenu" style="display:flex;gap:20px">
+      <a href="/" style="color:#bfc9d7;text-decoration:none;font-size:14px">Trang chủ</a>
+      <a href="/about" style="color:#bfc9d7;text-decoration:none;font-size:14px">Giới thiệu</a>
+      <a href="/program" style="color:#bfc9d7;text-decoration:none;font-size:14px">Chương trình</a>
+      <a href="/posts" style="color:#bfc9d7;text-decoration:none;font-size:14px">Bài viết</a>
+      <a href="/events" style="color:#bfc9d7;text-decoration:none;font-size:14px">Sự kiện</a>
+      <a href="/contact" style="color:#bfc9d7;text-decoration:none;font-size:14px">Liên hệ</a>
+    </nav>
+  </div>
+  <nav id="mobileMenu" style="display:none;background:rgba(8,12,19,.98);padding:20px;flex-direction:column;gap:15px">
+    <a href="/" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Trang chủ</a>
+    <a href="/about" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Giới thiệu</a>
+    <a href="/program" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Chương trình</a>
+    <a href="/posts" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Bài viết</a>
+    <a href="/events" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Sự kiện</a>
+    <a href="/contact" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Liên hệ</a>
+  </nav>
+  <style>
+    @media (max-width: 768px) {
+      #desktopMenu { display: none !important; }
+      #mobileMenuToggle { display: block !important; }
+      #mobileMenu.open { display: flex !important; }
+    }
+  </style>
+  <script>
+    document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    });
+  </script>
+</header>
+
 <main class="container">
   <h1>Tham Gia Câu Lạc Bộ DSTS</h1>
   <p class="lead">Câu Lạc Bộ là nơi bạn tích lũy Điểm Sao, tiếp cận nội dung độc quyền, kết nối người hướng dẫn đã xác thực, và tham dự sự kiện chỉ dành cho thành viên.</p>
@@ -39,7 +91,7 @@
       </article>
       <article class="card featured">
         <h3>Vòng Trò</h3>
-        <p class="price">200.000 VND/tháng</p>
+        <p class="price">200.000 VNĐ/tháng</p>
         <ul>
           <li>Nội dung độc quyền Vòng Trò</li>
           <li>4 buổi đọc chậm/tháng</li>
@@ -50,7 +102,7 @@
       </article>
       <article class="card">
         <h3>Vòng Trong</h3>
-        <p class="price">500.000 VND/tháng</p>
+        <p class="price">500.000 VNĐ/tháng</p>
         <ul>
           <li>Nội dung Vòng Trong + hậu trường</li>
           <li>Không giới hạn sự kiện</li>

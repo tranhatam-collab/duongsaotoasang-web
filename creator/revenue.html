@@ -7,7 +7,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="robots" content="noindex,follow">
   <meta name="description" content="Revenue | Creator Dashboard — Đường Sao Tỏa Sáng (DSTS) là nền tảng nội dung và cộng đồng người Việt toàn cầu.">
-  <title>Revenue | Creator Dashboard</title>
+  <title>Revenue | Creator Bảng điều khiển</title>
   <link rel="canonical" href="https://duongsaotoasang.com/creator/revenue">
   <link rel="stylesheet" href="/app.css">
   <style>body{background:#0b111d;color:#e2e8f0;font-family:Inter,Arial,sans-serif}.wrap{max-width:960px;margin:0 auto;padding:24px}h1{color:#f5e7c7;font-size:24px;margin:0 0 8px}.sub{color:var(--muted)}.placeholder{padding:60px 20px;text-align:center;color:var(--muted)}.pill{border:1px solid rgba(216,188,119,.24);border-radius:999px;padding:8px 12px;color:#f6d894;background:rgba(216,188,119,.08);font-size:13px;display:inline-block;margin-bottom:12px}</style>  <meta property="og:type" content="website">
@@ -22,23 +22,63 @@
   <meta name="twitter:image" content="https://duongsaotoasang.com/og.png">
 </head>
 <body>
+
+<header id="siteHeader" style="position:sticky;top:0;z-index:100;background:rgba(8,12,19,.95);border-bottom:1px solid rgba(224,200,150,.12);padding:12px 0">
+  <div class="wrap" style="max-width:980px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between">
+    <a href="/" style="text-decoration:none;color:#f0e4c8;font-weight:600;font-size:16px">
+      Đường Sao Tỏa Sáng
+    </a>
+    <button id="mobileMenuToggle" style="display:none;background:none;border:none;color:#f0e4c8;font-size:24px;cursor:pointer;padding:8px" aria-label="Mở menu">
+      ☰
+    </button>
+    <nav id="desktopMenu" style="display:flex;gap:20px">
+      <a href="/" style="color:#bfc9d7;text-decoration:none;font-size:14px">Trang chủ</a>
+      <a href="/about" style="color:#bfc9d7;text-decoration:none;font-size:14px">Giới thiệu</a>
+      <a href="/program" style="color:#bfc9d7;text-decoration:none;font-size:14px">Chương trình</a>
+      <a href="/posts" style="color:#bfc9d7;text-decoration:none;font-size:14px">Bài viết</a>
+      <a href="/events" style="color:#bfc9d7;text-decoration:none;font-size:14px">Sự kiện</a>
+      <a href="/contact" style="color:#bfc9d7;text-decoration:none;font-size:14px">Liên hệ</a>
+    </nav>
+  </div>
+  <nav id="mobileMenu" style="display:none;background:rgba(8,12,19,.98);padding:20px;flex-direction:column;gap:15px">
+    <a href="/" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Trang chủ</a>
+    <a href="/about" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Giới thiệu</a>
+    <a href="/program" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Chương trình</a>
+    <a href="/posts" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Bài viết</a>
+    <a href="/events" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Sự kiện</a>
+    <a href="/contact" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Liên hệ</a>
+  </nav>
+  <style>
+    @media (max-width: 768px) {
+      #desktopMenu { display: none !important; }
+      #mobileMenuToggle { display: block !important; }
+      #mobileMenu.open { display: flex !important; }
+    }
+  </style>
+  <script>
+    document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    });
+  </script>
+</header>
+
   <main class="wrap">
     <h1>Doanh thu</h1>
     <div class="sub">Revenue split: 50/30/20 membership · 60/40 talkshow · 70/30 premium</div>
     <div class="placeholder">
       <div class="pill">🔒 Phase 3 — coming soon</div>
-      <p>Revenue dashboard sẽ hiển thị gross revenue, fees, refunds, net revenue, pool formula, event revenue và payout status.</p>
+      <p>Revenue Bảng điều khiển sẽ hiển thị gross revenue, fees, refunds, net revenue, pool formula, Sự kiện revenue và payout Trạng thái.</p>
     </div>
   </main>
   <footer class="site-footer">
     <div class="wrap site-footer-inner">
-      <p>© 2026 Đường Sao Tỏa Sáng · DSTS</p><p><a href="/creator/dashboard">Dashboard</a> · <a href="/club">Club</a> · <a href="/support">Hỗ trợ</a></p>
+      <p>© 2026 Đường Sao Tỏa Sáng · DSTS</p><p><a href="/creator/dashboard">Bảng điều khiển</a> · <a href="/club">Club</a> · <a href="/support">Hỗ trợ</a></p>
       <div data-dsts-claim="C-002" style="margin-top:14px;font-size:12px;color:#9ca7b8;line-height:1.7;border-top:1px solid rgba(216,188,119,.1);padding-top:12px">
-        <div><strong>Đại diện tại Việt Nam / Vietnam Representative:</strong> CÔNG TY CỔ PHẦN GIẢI TRÍ NGÔI SAO VIỆT CAN</div>
+        <div><strong>Đại diện tại Việt Nam / Vietnam Representative:</strong> CÔNG TY CỔ PHẦN GIẢI TRÍ NGÔI SAO VIỆT CÓ THỂ</div>
         <div style="opacity:0.75">MST: 0315462505 — Lầu 23, 76A Lê Lai, P.Bến Thành, Q.1, TP. Hồ Chí Minh</div>
-        <div style="margin-top:4px"><strong>Thanh toán / Payment:</strong> VietQR ACB qua <a href="https://pay.iai.one">pay.iai.one</a> (PayOS — NHNN-licensed)</div>
-        <div style="margin-top:4px"><strong>Liên hệ / Contact:</strong> <a href="mailto:contact@duongsaotoasang.com">contact@duongsaotoasang.com</a></div>
-        <div style="margin-top:4px;opacity:0.7">Chịu trách nhiệm hoàn toàn / Fully responsible: <strong>VIET CAN NEW CORP</strong> (Georgia C-Corp, Hoa Kỳ / USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA. Đơn vị nhận quỹ / Fund recipient: <strong>Angel Edu Tam Foundation Inc.</strong> (South Dakota, Hoa Kỳ / USA).</div>
+        <div style="margin-top:4px"><strong>Thanh toán / Thanh toán:</strong> VietQR ACB qua <a href="https://pay.iai.one">pay.iai.MỘT</a> (PayOS — NHNN-licensed)</div>
+        <div style="margin-top:4px"><strong>Liên hệ / Liên hệ:</strong> <a href="mailto:contact@duongsaotoasang.com">Liên hệ@duongsaotoasang.com</a></div>
+        <div style="margin-top:4px;opacity:0.7">Chịu trách nhiệm hoàn toàn / Fully responsible: <strong>VIET CÓ THỂ MỚI CORP</strong> (Georgia C-Corp, Hoa Kỳ / USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA. Đơn vị nhận quỹ / Fund recipient: <strong>Angel Edu Tam Foundation Inc.</strong> (South Dakota, Hoa Kỳ / USA).</div>
       </div>
     </div>
   </footer>

@@ -29,8 +29,60 @@
   "inLanguage":"vi"
 }
 </script>
+
+  <style>
+    @media (max-width: 768px) {
+      body { font-size: 14px; }
+      .wrap { padding: 0 16px; }
+    }
+  </style>
+
+  <style>
+    button, a, .btn { min-height: 44px; min-width: 44px; }
+    input, select, textarea { min-height: 44px; font-size: 16px; }
+  </style>
 </head>
 <body>
+
+<header id="siteHeader" style="position:sticky;top:0;z-index:100;background:rgba(8,12,19,.95);border-bottom:1px solid rgba(224,200,150,.12);padding:12px 0">
+  <div class="wrap" style="max-width:980px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between">
+    <a href="/" style="text-decoration:none;color:#f0e4c8;font-weight:600;font-size:16px">
+      Đường Sao Tỏa Sáng
+    </a>
+    <button id="mobileMenuToggle" style="display:none;background:none;border:none;color:#f0e4c8;font-size:24px;cursor:pointer;padding:8px" aria-label="Mở menu">
+      ☰
+    </button>
+    <nav id="desktopMenu" style="display:flex;gap:20px">
+      <a href="/" style="color:#bfc9d7;text-decoration:none;font-size:14px">Trang chủ</a>
+      <a href="/about" style="color:#bfc9d7;text-decoration:none;font-size:14px">Giới thiệu</a>
+      <a href="/program" style="color:#bfc9d7;text-decoration:none;font-size:14px">Chương trình</a>
+      <a href="/posts" style="color:#bfc9d7;text-decoration:none;font-size:14px">Bài viết</a>
+      <a href="/events" style="color:#bfc9d7;text-decoration:none;font-size:14px">Sự kiện</a>
+      <a href="/contact" style="color:#bfc9d7;text-decoration:none;font-size:14px">Liên hệ</a>
+    </nav>
+  </div>
+  <nav id="mobileMenu" style="display:none;background:rgba(8,12,19,.98);padding:20px;flex-direction:column;gap:15px">
+    <a href="/" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Trang chủ</a>
+    <a href="/about" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Giới thiệu</a>
+    <a href="/program" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Chương trình</a>
+    <a href="/posts" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Bài viết</a>
+    <a href="/events" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Sự kiện</a>
+    <a href="/contact" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Liên hệ</a>
+  </nav>
+  <style>
+    @media (max-width: 768px) {
+      #desktopMenu { display: none !important; }
+      #mobileMenuToggle { display: block !important; }
+      #mobileMenu.open { display: flex !important; }
+    }
+  </style>
+  <script>
+    document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    });
+  </script>
+</header>
+
 <main class="container">
   <h1>Danh Tính Đã Xác Thực trên DSTS</h1>
   <p class="lead">DSTS xây dựng hệ thống danh tính đáng tin cậy cho người Việt toàn cầu. Mỗi huy hiệu xác thực đều dựa trên bằng chứng thật, không hình thức.</p>
@@ -61,7 +113,7 @@
     <p>Điểm Tin Cậy (0–100) được tính từ 5 chiều minh bạch:</p>
     <ul>
       <li><strong>Xác Thực Danh Tính (25 điểm):</strong> Căn cước khớp</li>
-      <li><strong>Bằng Chứng Xã Hội (25 điểm):</strong> LinkedIn, Website, Báo chí</li>
+      <li><strong>Bằng Chứng Xã Hội (25 điểm):</strong> LinkedIn, trang web, Báo chí</li>
       <li><strong>Lịch Sử Hoạt Động (20 điểm):</strong> Nhật ký đóng góp trên DSTS</li>
       <li><strong>Bảo Lãnh Cùng Đồng (15 điểm):</strong> Người dùng đã xác thực bảo lãnh</li>
       <li><strong>Uy Tín Cộng Đồng (15 điểm):</strong> Không có báo cáo vi phạm</li>

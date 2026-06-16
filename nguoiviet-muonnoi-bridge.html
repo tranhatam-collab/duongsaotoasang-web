@@ -32,6 +32,15 @@
     .btn.primary{border-color:rgba(216,188,119,.34);background:rgba(216,188,119,.12);color:#f6d894}
     .status{display:inline-flex;margin:12px 0 6px;border:1px solid rgba(216,188,119,.28);border-radius:999px;padding:8px 12px;color:#f6d894;background:rgba(216,188,119,.08);font-weight:800;font-size:14px}
   </style>
+
+  <style>
+    @media (max-width: 768px) {
+      body { font-size: 14px; }
+      .wrap { padding: 0 16px; }
+      button, a, .btn { min-height: 44px; min-width: 44px; }
+      input, select, textarea { min-height: 44px; font-size: 16px; }
+    }
+  </style>
 </head>
 <body>
   <div id="siteHeader"></div>
@@ -42,7 +51,7 @@
       <div class="status">Trạng thái: bridge nội bộ · không chuyển hướng ra domain lỗi</div>
       <p>Bridge này giúp người đọc hiểu quan hệ giữa Đường Sao Tỏa Sáng và hệ sinh thái Người Việt Muôn Nơi trong lúc domain ngoài chưa được xác minh ổn định. Đây không phải trang thay thế toàn bộ hệ sinh thái, cũng không phải nơi thu thông tin cá nhân, đăng ký thành viên, thanh toán hoặc gửi hồ sơ.</p>
 
-      <h2>Vì sao DSTS dùng bridge thay vì link trực tiếp</h2>
+      <h2>Vì sao DSTS dùng bridge thay vì Liên kết trực tiếp</h2>
       <p>Một liên kết hệ sinh thái chỉ nên xuất hiện trên trang chủ khi người dùng bấm vào và nhận được trải nghiệm ổn định. Nếu domain ngoài trả lỗi 502, lỗi origin hoặc lỗi chứng chỉ, việc tiếp tục dẫn người dùng ra ngoài sẽ làm giảm niềm tin vào toàn bộ hệ thống. Trang bridge giữ người đọc ở trong DSTS, giải thích trạng thái thật và tránh cảm giác dự án đang dẫn vào một bề mặt hỏng.</p>
       <p>Khi domain Người Việt Muôn Nơi được xác minh lại, DSTS có thể mở liên kết trực tiếp hoặc chuyển hướng có kiểm soát. Trước thời điểm đó, các CTA public nên dẫn về nội dung nội bộ có thể kiểm chứng.</p>
 
@@ -50,12 +59,12 @@
       <ul>
         <li>Domain ngoài phải trả `200` ổn định trên HTTPS.</li>
         <li>Không còn lỗi 502, SSL, DNS hoặc origin trong kiểm tra thủ công.</li>
-        <li>Trang đích phải có nội dung thật, không rơi vào loading vĩnh viễn.</li>
-        <li>Không mở form thu dữ liệu nếu chưa có owner, privacy boundary và support flow.</li>
+        <li>Trang đích phải có nội dung thật, không rơi vào Đang tải vĩnh viễn.</li>
+        <li>Không mở Biểu mẫu thu dữ liệu nếu chưa có owner, privacy boundary và Hỗ trợ flow.</li>
       </ul>
 
       <h2>Trong lúc chờ xác minh</h2>
-      <p>Người đọc có thể quay về trang chủ DSTS để xem roadmap 2026-2027, đọc thư viện tri thức, hoặc dùng trang liên hệ thủ công nếu cần hỏi về quan hệ giữa DSTS và Người Việt Muôn Nơi. DSTS sẽ chỉ cập nhật bridge này khi có bằng chứng vận hành mới, không dựa trên kỳ vọng hoặc lời hứa chưa kiểm chứng.</p>
+      <p>Người đọc có thể quay về trang chủ DSTS để xem lộ trình 2026-2027, đọc thư viện tri thức, hoặc dùng trang liên hệ thủ công nếu cần hỏi về quan hệ giữa DSTS và Người Việt Muôn Nơi. DSTS sẽ chỉ cập nhật bridge này khi có bằng chứng vận hành mới, không dựa trên kỳ vọng hoặc lời hứa chưa kiểm chứng.</p>
       <div class="actions">
         <a class="btn primary" href="/">Về trang chủ DSTS</a>
         <a class="btn" href="/contact">Liên hệ để nhận cập nhật</a>
@@ -63,7 +72,7 @@
     </section>
   </main>
   <div style="padding:16px 20px 10px;max-width:900px;margin:0 auto">
-    <p data-dsts-claim="C-002" style="font-size:12px;color:#9ca7b8;line-height:1.6">Đại diện tại Việt Nam / Vietnam Representative: <strong>Công ty Cổ phần Giải trí Ngôi Sao Việt Can</strong> (MST 0315462505) — Lầu 23, 76A Lê Lai, P.Bến Thành, Q.1, TP.HCM. Chịu trách nhiệm hoàn toàn / Fully responsible: <strong>VIET CAN NEW CORP</strong> (Georgia C-Corp, Hoa Kỳ / USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA. Thanh toán / Payment: <a href="https://pay.iai.one">pay.iai.one</a> (PayOS — NHNN). Liên hệ / Contact: <a href="mailto:contact@duongsaotoasang.com">contact@duongsaotoasang.com</a>. Đơn vị nhận quỹ / Fund recipient: <strong>Angel Edu Tam Foundation Inc.</strong> (South Dakota, Hoa Kỳ / USA).</p>
+    <p data-dsts-claim="C-002" style="font-size:12px;color:#9ca7b8;line-height:1.6">Đại diện tại Việt Nam / Vietnam Representative: <strong>Công ty Cổ phần Giải trí Ngôi Sao Việt CÓ THỂ</strong> (MST 0315462505) — Lầu 23, 76A Lê Lai, P.Bến Thành, Q.1, TP.HCM. Chịu trách nhiệm hoàn toàn / Fully responsible: <strong>VIET CÓ THỂ MỚI CORP</strong> (Georgia C-Corp, Hoa Kỳ / USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA. Thanh toán / Thanh toán: <a href="https://pay.iai.one">pay.iai.MỘT</a> (PayOS — NHNN). Liên hệ / Liên hệ: <a href="mailto:contact@duongsaotoasang.com">Liên hệ@duongsaotoasang.com</a>. Đơn vị nhận quỹ / Fund recipient: <strong>Angel Edu Tam Foundation Inc.</strong> (South Dakota, Hoa Kỳ / USA).</p>
   </div>
   <script src="/assets/app-v5.js"></script>
   <script>

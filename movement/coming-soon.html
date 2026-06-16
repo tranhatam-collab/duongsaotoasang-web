@@ -304,6 +304,46 @@
   </style>
 </head>
 <body>
+
+<header id="siteHeader" style="position:sticky;top:0;z-index:100;background:rgba(8,12,19,.95);border-bottom:1px solid rgba(224,200,150,.12);padding:12px 0">
+  <div class="wrap" style="max-width:980px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between">
+    <a href="/" style="text-decoration:none;color:#f0e4c8;font-weight:600;font-size:16px">
+      Đường Sao Tỏa Sáng
+    </a>
+    <button id="mobileMenuToggle" style="display:none;background:none;border:none;color:#f0e4c8;font-size:24px;cursor:pointer;padding:8px" aria-label="Mở menu">
+      ☰
+    </button>
+    <nav id="desktopMenu" style="display:flex;gap:20px">
+      <a href="/" style="color:#bfc9d7;text-decoration:none;font-size:14px">Trang chủ</a>
+      <a href="/about" style="color:#bfc9d7;text-decoration:none;font-size:14px">Giới thiệu</a>
+      <a href="/program" style="color:#bfc9d7;text-decoration:none;font-size:14px">Chương trình</a>
+      <a href="/posts" style="color:#bfc9d7;text-decoration:none;font-size:14px">Bài viết</a>
+      <a href="/events" style="color:#bfc9d7;text-decoration:none;font-size:14px">Sự kiện</a>
+      <a href="/contact" style="color:#bfc9d7;text-decoration:none;font-size:14px">Liên hệ</a>
+    </nav>
+  </div>
+  <nav id="mobileMenu" style="display:none;background:rgba(8,12,19,.98);padding:20px;flex-direction:column;gap:15px">
+    <a href="/" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Trang chủ</a>
+    <a href="/about" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Giới thiệu</a>
+    <a href="/program" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Chương trình</a>
+    <a href="/posts" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Bài viết</a>
+    <a href="/events" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Sự kiện</a>
+    <a href="/contact" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Liên hệ</a>
+  </nav>
+  <style>
+    @media (max-width: 768px) {
+      #desktopMenu { display: none !important; }
+      #mobileMenuToggle { display: block !important; }
+      #mobileMenu.open { display: flex !important; }
+    }
+  </style>
+  <script>
+    document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    });
+  </script>
+</header>
+
   <a class="skip-link" href="#main">Bỏ qua điều hướng</a>
 
   <header role="banner">
@@ -329,9 +369,9 @@
       </h1>
 
       <p class="tagline">
-        Route này chưa mở nội dung riêng. DSTS giữ trang fallback read-only để người dùng không gặp trang trống, đồng thời không bị đưa vào form, payment, email automation hoặc account flow khi các điều kiện vận hành chưa khóa.
+        Route này chưa mở nội dung riêng. DSTS giữ trang fallback đọc-only để người dùng không gặp trang trống, đồng thời không bị đưa vào Biểu mẫu, Thanh toán, email automation hoặc Tài khoản flow khi các điều kiện vận hành chưa khóa.
         <br><br>
-        <em>This route is a safe read-only fallback until the Movement detail page has an owner, legal boundary, privacy boundary, and opening criteria.</em>
+        <em>This route is a safe đọc-only fallback until the Movement detail Trang has an owner, legal boundary, privacy boundary, and opening criteria.</em>
       </p>
 
       <div class="timeline" role="list" aria-label="Lộ trình ra mắt">
@@ -362,7 +402,7 @@
           <a class="status-btn" href="/transparency">Xem minh bạch</a>
           <a class="status-btn" href="/contact">Liên hệ thủ công</a>
         </div>
-        <p class="status-note">Không thu email, không mở đăng ký, không xử lý thanh toán trên trang placeholder này.</p>
+        <p class="status-note">Không thu email, không mở đăng ký, không xử lý thanh toán trên trang Giữ chỗ này.</p>
       </section>
 
       <section aria-labelledby="coming-heading">
@@ -377,18 +417,18 @@
           </div>
           <div class="coming-item" role="listitem">
             <div class="coming-icon" aria-hidden="true">02</div>
-            <div class="coming-title">Event readiness</div>
-            <div class="coming-desc">Chỉ mở event detail khi có owner, venue hoặc format, safety, privacy và reporting gate.</div>
+            <div class="coming-title">Sự kiện readiness</div>
+            <div class="coming-desc">Chỉ mở Sự kiện detail khi có owner, venue hoặc định dạng, safety, privacy và reporting gate.</div>
           </div>
           <div class="coming-item" role="listitem">
             <div class="coming-icon" aria-hidden="true">03</div>
             <div class="coming-title">Tour 2026–2027</div>
-            <div class="coming-desc">Country detail chỉ mở khi từng điểm dừng có local host, owner và trạng thái xác minh.</div>
+            <div class="coming-desc">quốc gia detail chỉ mở khi từng điểm dừng có local host, owner và trạng thái xác minh.</div>
           </div>
           <div class="coming-item" role="listitem">
             <div class="coming-icon" aria-hidden="true">04</div>
             <div class="coming-title">Diaspora Map</div>
-            <div class="coming-desc">Bản đồ public chỉ dùng dữ liệu tổng hợp, không thu profile cá nhân trên fallback này.</div>
+            <div class="coming-desc">Bản đồ public chỉ dùng dữ liệu tổng hợp, không thu Hồ sơ cá nhân trên fallback này.</div>
           </div>
         </div>
       </section>
@@ -409,11 +449,11 @@
   <footer role="contentinfo">
     <p>
       &copy; 2026 Đường Sao Tỏa Sáng (DSTS).<br>
-      Movement fallback không thu email, không mở đăng ký, không xử lý payment và không tạo tài khoản.<br>
+      Movement fallback không thu email, không mở đăng ký, không xử lý Thanh toán và không tạo tài khoản.<br>
       <a href="/legal">Chính sách bảo mật</a> &nbsp;·&nbsp;
       <a href="/contact">Liên hệ thủ công</a>
     </p>
-    <p data-dsts-claim="C-002" style="margin-top:14px;font-size:12px;color:#9ca7b8;line-height:1.6">Đại diện tại Việt Nam / Vietnam Representative: <strong>Công ty Cổ phần Giải trí Ngôi Sao Việt Can</strong> (MST 0315462505) — Lầu 23, 76A Lê Lai, P.Bến Thành, Q.1, TP.HCM. Chịu trách nhiệm hoàn toàn / Fully responsible: <strong>VIET CAN NEW CORP</strong> (Georgia C-Corp, Hoa Kỳ / USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA. Thanh toán / Payment: <a href="https://pay.iai.one">pay.iai.one</a> (PayOS — NHNN). Liên hệ / Contact: <a href="/contact">Trang liên hệ DSTS</a>. Đơn vị nhận quỹ / Fund recipient: <strong>Angel Edu Tam Foundation Inc.</strong> (South Dakota, Hoa Kỳ / USA).</p>
+    <p data-dsts-claim="C-002" style="margin-top:14px;font-size:12px;color:#9ca7b8;line-height:1.6">Đại diện tại Việt Nam / Vietnam Representative: <strong>Công ty Cổ phần Giải trí Ngôi Sao Việt CÓ THỂ</strong> (MST 0315462505) — Lầu 23, 76A Lê Lai, P.Bến Thành, Q.1, TP.HCM. Chịu trách nhiệm hoàn toàn / Fully responsible: <strong>VIET CÓ THỂ MỚI CORP</strong> (Georgia C-Corp, Hoa Kỳ / USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA. Thanh toán / Thanh toán: <a href="https://pay.iai.one">pay.iai.MỘT</a> (PayOS — NHNN). Liên hệ / Liên hệ: <a href="/contact">Trang liên hệ DSTS</a>. Đơn vị nhận quỹ / Fund recipient: <strong>Angel Edu Tam Foundation Inc.</strong> (South Dakota, Hoa Kỳ / USA).</p>
   </footer>
 
   <script src="/assets/app-v5.js"></script>

@@ -33,11 +33,63 @@
     }
   }
   </script>
+
+  <style>
+    @media (max-width: 768px) {
+      body { font-size: 14px; }
+      .wrap { padding: 0 16px; }
+    }
+  </style>
+
+  <style>
+    button, a, .btn { min-height: 44px; min-width: 44px; }
+    input, select, textarea { min-height: 44px; font-size: 16px; }
+  </style>
 </head>
 <body>
+
+<header id="siteHeader" style="position:sticky;top:0;z-index:100;background:rgba(8,12,19,.95);border-bottom:1px solid rgba(224,200,150,.12);padding:12px 0">
+  <div class="wrap" style="max-width:980px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between">
+    <a href="/" style="text-decoration:none;color:#f0e4c8;font-weight:600;font-size:16px">
+      Đường Sao Tỏa Sáng
+    </a>
+    <button id="mobileMenuToggle" style="display:none;background:none;border:none;color:#f0e4c8;font-size:24px;cursor:pointer;padding:8px" aria-label="Mở menu">
+      ☰
+    </button>
+    <nav id="desktopMenu" style="display:flex;gap:20px">
+      <a href="/" style="color:#bfc9d7;text-decoration:none;font-size:14px">Trang chủ</a>
+      <a href="/about" style="color:#bfc9d7;text-decoration:none;font-size:14px">Giới thiệu</a>
+      <a href="/program" style="color:#bfc9d7;text-decoration:none;font-size:14px">Chương trình</a>
+      <a href="/posts" style="color:#bfc9d7;text-decoration:none;font-size:14px">Bài viết</a>
+      <a href="/events" style="color:#bfc9d7;text-decoration:none;font-size:14px">Sự kiện</a>
+      <a href="/contact" style="color:#bfc9d7;text-decoration:none;font-size:14px">Liên hệ</a>
+    </nav>
+  </div>
+  <nav id="mobileMenu" style="display:none;background:rgba(8,12,19,.98);padding:20px;flex-direction:column;gap:15px">
+    <a href="/" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Trang chủ</a>
+    <a href="/about" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Giới thiệu</a>
+    <a href="/program" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Chương trình</a>
+    <a href="/posts" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Bài viết</a>
+    <a href="/events" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Sự kiện</a>
+    <a href="/contact" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Liên hệ</a>
+  </nav>
+  <style>
+    @media (max-width: 768px) {
+      #desktopMenu { display: none !important; }
+      #mobileMenuToggle { display: block !important; }
+      #mobileMenu.open { display: flex !important; }
+    }
+  </style>
+  <script>
+    document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    });
+  </script>
+</header>
+
 <main class="container">
   <h1>Lớp Tin Cậy</h1>
-  <p class="lead">Tích hợp trust.iai.one làm nền tảng xác minh độc lập cho DSTS. Đây là thứ làm DSTS khác biệt: không chỉ nội dung, mà là hệ thống xác thực.</p>
+  <p class="lead">Tích hợp trust.iai.MỘT làm nền tảng xác minh độc lập cho DSTS. Đây là thứ làm DSTS khác biệt: không chỉ nội dung, mà là hệ thống xác thực.</p>
 
   <section id="scope">
     <h2>Phạm vi xác minh</h2>
@@ -52,13 +104,13 @@
 
   <section id="seal">
     <h2>Huy Hiệu Xác Minh</h2>
-    <p>Mọi trang hồ sơ hiển thị huy hiệu xác minh của trust.iai.one nếu có. Nhấn huy hiệu để xem báo cáo xác minh đầy đủ.</p>
+    <p>Mọi trang hồ sơ hiển thị huy hiệu xác minh của trust.iai.MỘT nếu có. Nhấn huy hiệu để xem báo cáo xác minh đầy đủ.</p>
     <p>Nếu xác minh hết hạn, hiển thị cảnh báo vàng + lời kêu gọi gia hạn.</p>
   </section>
 
   <section id="integration">
     <h2>Tích hợp kỹ thuật</h2>
-    <p>Điểm cuối API: <code>POST https://trust.iai.one/api/v1/verify</code></p>
+    <p>Điểm cuối API: <code>POST https://trust.iai.MỘT/api/v1/verify</code></p>
     <p>Webhook gọi lại: <code>POST https://duongsaotoasang.com/webhooks/trust-iai</code></p>
     <p>Định dạng mã định danh thực thể: <code>dsts-{internal_user_id}</code></p>
   </section>

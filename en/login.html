@@ -33,8 +33,55 @@
     }
   }
   </script>
+
+  <style>
+    @media (max-width: 768px) {
+      body { font-size: 14px; }
+      .wrap { padding: 0 16px; }
+      button, a, .btn { min-height: 44px; min-width: 44px; }
+      input, select, textarea { min-height: 44px; font-size: 16px; }
+    }
+  </style>
 </head>
 <body>
+<header id="siteHeader" style="position:sticky;top:0;z-index:100;background:rgba(8,12,19,.95);border-bottom:1px solid rgba(224,200,150,.12);padding:12px 0">
+  <div class="wrap" style="max-width:980px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between">
+    <a href="/" style="text-decoration:none;color:#f0e4c8;font-weight:600;font-size:16px">
+      Đường Sao Tỏa Sáng
+    </a>
+    <button id="mobileMenuToggle" style="display:none;background:none;border:none;color:#f0e4c8;font-size:24px;cursor:pointer;padding:8px" aria-label="Open menu">
+      ☰
+    </button>
+    <nav id="desktopMenu" style="display:flex;gap:20px">
+      <a href="/" style="color:#bfc9d7;text-decoration:none;font-size:14px">Home</a>
+      <a href="/en/about" style="color:#bfc9d7;text-decoration:none;font-size:14px">About</a>
+      <a href="/en/program" style="color:#bfc9d7;text-decoration:none;font-size:14px">Programs</a>
+      <a href="/en/posts" style="color:#bfc9d7;text-decoration:none;font-size:14px">Posts</a>
+      <a href="/en/events" style="color:#bfc9d7;text-decoration:none;font-size:14px">Events</a>
+      <a href="/en/contact" style="color:#bfc9d7;text-decoration:none;font-size:14px">Contact</a>
+    </nav>
+  </div>
+  <nav id="mobileMenu" style="display:none;background:rgba(8,12,19,.98);padding:20px;flex-direction:column;gap:15px">
+    <a href="/" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Home</a>
+    <a href="/en/about" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">About</a>
+    <a href="/en/program" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Programs</a>
+    <a href="/en/posts" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Posts</a>
+    <a href="/en/events" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Events</a>
+    <a href="/en/contact" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Contact</a>
+  </nav>
+  <style>
+    @media (max-width: 768px) {
+      #desktopMenu { display: none !important; }
+      #mobileMenuToggle { display: block !important; }
+      #mobileMenu.open { display: flex !important; }
+    }
+  </style>
+  <script>
+    document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    });
+  </script>
+</header>
 <main class="container" style="max-width:480px;margin:0 auto;padding:40px 20px;">
   <h1>Sign In</h1>
   <p class="lead">Access your DSTS account</p>

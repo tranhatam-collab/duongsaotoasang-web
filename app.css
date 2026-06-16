@@ -189,4 +189,33 @@ img{max-width:100%;display:block}
     width:100%;
   }
 }
+
+@media (max-width: 768px){
+  .wrap{
+    padding:0 16px;
+  }
+
+  .site-menu a{
+    min-height:44px;
+    min-width:44px;
+    font-size:15px;
+  }
+
+  .site-lang a{
+    min-height:44px;
+    min-width:44px;
+    font-size:14px;
+  }
+
+  button, a, .btn{
+    min-height:44px;
+    min-width:44px;
+    font-size:15px;
+  }
+
+  input, select, textarea{
+    min-height:44px;
+    font-size:16px;
+  }
+}
 /* cache-bust 1781577221 */

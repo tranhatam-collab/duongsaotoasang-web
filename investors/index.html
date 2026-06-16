@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,follow">
 <meta name="description" content="Investors page for Đường Sao Tỏa Sáng — nền tảng nội dung và cộng đồng người Việt toàn cầu.">
-  <title>DSTS — Investor Proposal / Hồ Sơ Kêu Gọi Đầu Tư | VIET CAN NEW CORP</title>
+  <title>DSTS — Investor Proposal / Hồ Sơ Kêu Gọi Đầu Tư | VIET CÓ THỂ MỚI CORP</title>
 <style>
   :root{
     --ink:#0b111d; --ink2:#1b2435; --muted:#5b6678; --line:#e4e7ee;
@@ -79,6 +79,46 @@
 </head>
 <body>
 
+<header id="siteHeader" style="position:sticky;top:0;z-index:100;background:rgba(8,12,19,.95);border-bottom:1px solid rgba(224,200,150,.12);padding:12px 0">
+  <div class="wrap" style="max-width:980px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between">
+    <a href="/" style="text-decoration:none;color:#f0e4c8;font-weight:600;font-size:16px">
+      Đường Sao Tỏa Sáng
+    </a>
+    <button id="mobileMenuToggle" style="display:none;background:none;border:none;color:#f0e4c8;font-size:24px;cursor:pointer;padding:8px" aria-label="Mở menu">
+      ☰
+    </button>
+    <nav id="desktopMenu" style="display:flex;gap:20px">
+      <a href="/" style="color:#bfc9d7;text-decoration:none;font-size:14px">Trang chủ</a>
+      <a href="/about" style="color:#bfc9d7;text-decoration:none;font-size:14px">Giới thiệu</a>
+      <a href="/program" style="color:#bfc9d7;text-decoration:none;font-size:14px">Chương trình</a>
+      <a href="/posts" style="color:#bfc9d7;text-decoration:none;font-size:14px">Bài viết</a>
+      <a href="/events" style="color:#bfc9d7;text-decoration:none;font-size:14px">Sự kiện</a>
+      <a href="/contact" style="color:#bfc9d7;text-decoration:none;font-size:14px">Liên hệ</a>
+    </nav>
+  </div>
+  <nav id="mobileMenu" style="display:none;background:rgba(8,12,19,.98);padding:20px;flex-direction:column;gap:15px">
+    <a href="/" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Trang chủ</a>
+    <a href="/about" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Giới thiệu</a>
+    <a href="/program" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Chương trình</a>
+    <a href="/posts" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Bài viết</a>
+    <a href="/events" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Sự kiện</a>
+    <a href="/contact" style="color:#f0e4c8;text-decoration:none;font-size:16px;padding:10px">Liên hệ</a>
+  </nav>
+  <style>
+    @media (max-width: 768px) {
+      #desktopMenu { display: none !important; }
+      #mobileMenuToggle { display: block !important; }
+      #mobileMenu.open { display: flex !important; }
+    }
+  </style>
+  <script>
+    document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    });
+  </script>
+</header>
+
+
 <div class="langbar"><div class="wrap">
   <span style="color:#9aa6b6;font-size:12px;margin-right:auto">CONFIDENTIAL · BẢN MẬT</span>
   <button class="langbtn active" id="btn-en" onclick="setLang('en')">English</button>
@@ -94,7 +134,7 @@
     <h2 class="vi">Hệ sinh thái tài năng &amp; tác động dựa trên cộng đồng, kết nối hơn 5,3 triệu người Việt toàn cầu</h2>
     <div class="cover-meta">
       <span class="chip">Series A · USD 2–3M</span>
-      <span class="chip">Issuer: VIET CAN NEW CORP (Georgia C-Corp, USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA</span>
+      <span class="chip">Issuer: VIET CÓ THỂ MỚI CORP (Georgia C-Corp, USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA</span>
       <span class="chip" id="cover-date"></span>
       <span class="chip">Confidential / Bản mật</span>
     </div>
@@ -105,7 +145,7 @@
 
 <!-- ============ CONFIDENTIALITY / DISCLAIMER (shown in both langs) ============ -->
 <div class="callout legal small" style="margin-top:20px">
-  <strong>EN — Important notice.</strong> This document is confidential and is provided to a limited number of qualified recipients for information purposes only. It is <strong>not</strong> an offer to sell, or a solicitation of an offer to buy, any security, and does not constitute investment, legal, tax, or accounting advice. Any offering will be made only to eligible/accredited investors through definitive transaction documents and in compliance with applicable U.S. and Vietnamese securities laws. Forward-looking statements, market sizes, valuations, and projections are estimates based on assumptions stated herein and are subject to material change; actual results may differ. Recipients should conduct their own due diligence and consult their own advisers.<br><br>
+  <strong>EN — Important notice.</strong> This Tài liệu is confidential and is provided to a limited number of qualified recipients for Thông tin purposes only. It is <strong>not</strong> an offer to sell, or a solicitation of an offer to buy, any security, and does not constitute investment, legal, Thuế, or accounting advice. Any offering will be made only to eligible/accredited investors through definitive transaction documents and in compliance with applicable U.S. and Vietnamese securities laws. tiến-looking statements, market sizes, valuations, and projections are estimates based on assumptions stated herein and are subject to material change; actual results may differ. Recipients should conduct their own due diligence and consult their own advisers.<br><br>
   <strong>VI — Lưu ý quan trọng.</strong> Tài liệu này là tài liệu mật, cung cấp cho một số người nhận đủ điều kiện chỉ nhằm mục đích thông tin. Đây <strong>không</strong> phải là lời chào bán hay mời chào mua bất kỳ chứng khoán nào, và không cấu thành tư vấn đầu tư, pháp lý, thuế hoặc kế toán. Mọi đợt chào bán (nếu có) sẽ chỉ thực hiện với nhà đầu tư đủ điều kiện thông qua hợp đồng giao dịch chính thức, tuân thủ pháp luật chứng khoán Hoa Kỳ và Việt Nam. Các nhận định tương lai, quy mô thị trường, định giá và dự phóng là ước tính dựa trên các giả định nêu trong tài liệu và có thể thay đổi trọng yếu; kết quả thực tế có thể khác biệt. Người nhận nên tự thẩm định và tham vấn cố vấn riêng.
 </div>
 
@@ -114,7 +154,7 @@
 <section class="doc en">
 
   <h2 class="sec">1. Executive Summary</h2>
-  <p class="lead">Đường Sao Tỏa Sáng ("DSTS") is a bilingual digital ecosystem that connects the global Vietnamese diaspora with talented individuals in Vietnam through verified storytelling, mentorship, structured coaching journeys, membership communities, and transparent giving — operated under a strict three-lane legal architecture (commercial, non-profit, investment) with full legal responsibility held by <strong>VIET CAN NEW CORP</strong> (Georgia C-Corp, USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA.</p>
+  <p class="lead">Đường Sao Tỏa Sáng ("DSTS") is a bilingual digital ecosystem that connects the global Vietnamese diaspora with talented individuals in Vietnam through verified storytelling, mentorship, structured coaching journeys, membership communities, and transparent giving — operated under a strict three-lane legal architecture (commercial, non-profit, investment) with full legal responsibility held by <strong>VIET CÓ THỂ MỚI CORP</strong> (Georgia C-Corp, USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA.</p>
 
   <div class="kpi-grid">
     <div class="kpi"><div class="b">5.3M+</div><div class="l">Vietnamese diaspora (TAM population)</div></div>
@@ -125,21 +165,21 @@
   <p><strong>What we are raising and why.</strong> We are seeking <strong>USD 2–3 million</strong> (Series A) to complete legal build-out across the US and Vietnam, launch the revenue layers (Movement Portal and Star Journey OS), build the operating team, and fund diaspora go-to-market. Capital is structured to be released against execution milestones.</p>
 
   <div class="callout warn small">
-    <strong>Stage &amp; transparency note (read first).</strong> DSTS is currently <strong>pre-revenue</strong>. The public content platform (Layer 0) is live in production; the monetizing layers are specified and partially built but not yet launched. The valuation ranges and financial projections in this document are <em>forward-looking and assumption-based</em>, not historical performance. We present conservative, moderate, and aggressive scenarios so investors can judge the range honestly. We recommend a milestone-tranched structure (or a capped convertible/SAFE) precisely because the company is early stage.
+    <strong>Stage &amp; transparency note (đọc first).</strong> DSTS is currently <strong>pre-revenue</strong>. The public Nội dung platform (Layer 0) is live in production; the monetizing layers are specified and partially built but not yet launched. The valuation ranges and financial projections in this Tài liệu are <em>tiến-looking and assumption-based</em>, not historical Hiệu suất. We present conservative, moderate, and aggressive scenarios so investors CÓ THỂ judge the range honestly. We recommend a milestone-tranched structure (or a capped convertible/SAFE) precisely because the company is early stage.
   </div>
 
   <h2 class="sec">2. Company &amp; Legal Structure</h2>
   <h3>2.1 Responsible entity (United States)</h3>
   <p>Full legal and financial responsibility for the DSTS platform sits with the U.S. entity:</p>
   <table>
-    <tr><th>Entity</th><td><strong>VIET CAN NEW CORP</strong> (Georgia C-Corporation, USA)</td></tr>
-    <tr><th>Registered address</th><td>7722 Stone Meadow Trail, Lithonia, Georgia 30058, United States</td></tr>
-    <tr><th>Official contact</th><td><a href="mailto:contact@duongsaotoasang.com">contact@duongsaotoasang.com</a></td></tr>
+    <tr><th>Entity</th><td><strong>VIET CÓ THỂ MỚI CORP</strong> (Georgia C-Corporation, USA)</td></tr>
+    <tr><th>Registered Địa chỉ</th><td>7722 Stone Meadow Trail, Lithonia, Georgia 30058, United States</td></tr>
+    <tr><th>Official Liên hệ</th><td><a href="mailto:contact@duongsaotoasang.com">Liên hệ@duongsaotoasang.com</a></td></tr>
     <tr><th>Role</th><td>Issuer of this proposal; operator of international commercial activity; fully and solely legally responsible for the platform.</td></tr>
   </table>
 
   <h3>2.2 Vietnam representation (non-legal)</h3>
-  <p>In Vietnam, DSTS is represented for local coordination and operations by <strong>Viet Can Star Entertainment JSC</strong> (Công ty Cổ phần Giải trí Ngôi Sao Việt Can, Tax ID 0315462505). This representation is <strong>operational only and bears no legal responsibility</strong> for the investment; the United States entity (VIET CAN NEW CORP) is fully and solely responsible.</p>
+  <p>In Vietnam, DSTS is represented for local coordination and operations by <strong>Viet CÓ THỂ Star Entertainment JSC</strong> (Công ty Cổ phần Giải trí Ngôi Sao Việt CÓ THỂ, Thuế id 0315462505). This representation is <strong>operational only and bears Không legal responsibility</strong> for the investment; the United States entity (VIET CÓ THỂ MỚI CORP) is fully and solely responsible.</p>
 
   <h3>2.3 Three-lane legal firewall</h3>
   <table>
@@ -151,26 +191,26 @@
   <div class="callout legal small">Investment (Lane C) is deliberately kept private and separate from the public donation and child-program lanes. This proposal is distributed privately and is not a public solicitation.</div>
 
   <h2 class="sec">3. Problem &amp; Opportunity</h2>
-  <p>The Vietnamese diaspora sends an estimated <strong>~USD 18B/year</strong> in remittances home, yet there is no trusted, transparent, diaspora-native platform that channels both money and mentorship into verified talent and impact. Existing options are fragmented: generic crowdfunding (no verification, no journey), informal family transfers (no transparency), and traditional charities (limited diaspora-specific design). DSTS combines verification, structured journeys, and transparent reporting in one bilingual ecosystem.</p>
+  <p>The Vietnamese diaspora sends an estimated <strong>~USD 18B/year</strong> in remittances Trang chủ, yet there is Không trusted, transparent, diaspora-native platform that channels both money and mentorship into verified talent and impact. Existing options are fragmented: generic crowdfunding (Không verification, Không journey), informal family transfers (Không transparency), and traditional charities (limited diaspora-specific design). DSTS combines verification, structured journeys, and transparent reporting in MỘT bilingual ecosystem.</p>
 
   <h2 class="sec">4. Product &amp; Ecosystem</h2>
   <table>
-    <tr><th>Layer</th><th>What it does</th><th>Primary monetization</th><th>Status</th></tr>
-    <tr><td>0 — Foundation</td><td>Public content, story library, mentor directory, SEO</td><td>Top-of-funnel (free)</td><td><strong>Live</strong></td></tr>
-    <tr><td>1 — Movement Portal</td><td>Sponsorship tiers, events/tours, diaspora map</td><td>Sponsorships, tickets</td><td>Specified; build next</td></tr>
+    <tr><th>Layer</th><th>What it does</th><th>Primary monetization</th><th>Trạng thái</th></tr>
+    <tr><td>0 — Foundation</td><td>Public Nội dung, story library, mentor thư mục, SEO</td><td>Top-of-funnel (free)</td><td><strong>Live</strong></td></tr>
+    <tr><td>1 — Movement Portal</td><td>Sponsorship tiers, events/tours, diaspora map</td><td>Sponsorships, tickets</td><td>Specified; build Tiếp</td></tr>
     <tr><td>2 — Star Journey OS</td><td>Assessment, coaching journeys, mentor matching</td><td>Memberships, coaching</td><td>Specified</td></tr>
-    <tr><td>3 — DSTS Club</td><td>Creator economy, talk shows, points/rewards</td><td>Memberships, revenue share</td><td>In development</td></tr>
+    <tr><td>3 — DSTS Club</td><td>Creator economy, talk shows, points/rewards</td><td>Memberships, revenue chia sẻ</td><td>In development</td></tr>
     <tr><td>5 — Trust &amp; Legacy</td><td>Verified identity, trust score, archives</td><td>Premium archive packages</td><td>Specified</td></tr>
-    <tr><td>6 — Global Vietnamese Map</td><td>Diaspora achiever network</td><td>Free (network effect)</td><td>Specified</td></tr>
+    <tr><td>6 — Global Vietnamese Map</td><td>Diaspora achiever Mạng</td><td>Free (Mạng effect)</td><td>Specified</td></tr>
   </table>
 
   <h2 class="sec">5. Business Model &amp; Revenue Streams</h2>
-  <p>All figures USD primary; VND secondary at an indicative rate of <strong>1 USD ≈ 25,400 VND</strong> (June 2026).</p>
+  <p>All figures USD primary; VNĐ secondary at an indicative rate of <strong>1 USD ≈ 25,400 VNĐ</strong> (June 2026).</p>
   <table>
     <tr><th>Stream</th><th>Indicative price</th><th>Platform economics</th></tr>
-    <tr><td>Membership (Member / Circle / Inner Circle)</td><td>USD 5 / 15 / 49 per month (≈99K / 299K / 990K VND)</td><td>50% platform · 30% creator pool · 20% growth/reserve</td></tr>
+    <tr><td>Membership (Thành viên / Circle / Inner Circle)</td><td>USD 5 / 15 / 49 per month (≈99K / 299K / 990K VNĐ)</td><td>50% platform · 30% creator pool · 20% growth/reserve</td></tr>
     <tr><td>Coaching (Script Journey)</td><td>USD 99 – 25,000 per engagement</td><td>Platform fee + creator split</td></tr>
-    <tr><td>Talk shows / premium experiences</td><td>Event-based</td><td>60/40 (talk shows) · 70/30 (premium) creator-favorable</td></tr>
+    <tr><td>Talk shows / premium experiences</td><td>Sự kiện-based</td><td>60/40 (talk shows) · 70/30 (premium) creator-favorable</td></tr>
     <tr><td>Commercial sponsorships</td><td>USD 10 – 10,000+ / month (tiered)</td><td>100% platform</td></tr>
     <tr><td>Points / digital products</td><td>USD 19 – 999</td><td>Loyalty &amp; margin</td></tr>
     <tr><td>Donations (Lane B, non-profit)</td><td>Voluntary</td><td>100% to non-profit lane — not platform revenue</td></tr>
@@ -178,15 +218,15 @@
 
   <h2 class="sec">6. Traction &amp; Current State (honest)</h2>
   <ul>
-    <li><strong>Live:</strong> public website in production; 35+ pages; bilingual content &amp; SEO; database schema (10+ migrations); core APIs; payment integration ~80% ready.</li>
-    <li><strong>Not yet:</strong> no material user, donor, sponsor, or revenue traction to date. Monetizing layers not launched.</li>
-    <li><strong>Implication:</strong> this is a vision/early-execution round. Investors are underwriting the team, market, and roadmap — not historical revenue.</li>
+    <li><strong>Live:</strong> public trang web in production; 35+ pages; bilingual Nội dung &amp; SEO; Cơ sở dữ liệu schema (10+ migrations); core APIs; Thanh toán integration ~80% ready.</li>
+    <li><strong>Not yet:</strong> Không material Người dùng, donor, sponsor, or revenue traction to date. Monetizing layers not launched.</li>
+    <li><strong>Implication:</strong> this is a vision/early-execution round. Investors are underwriting the team, market, and lộ trình — not historical revenue.</li>
   </ul>
 
   <h2 class="sec">7. Market Sizing (TAM / SAM / SOM)</h2>
   <table>
     <tr><th>Layer</th><th>Definition</th><th>Estimate</th><th>Basis (assumption)</th></tr>
-    <tr><td>TAM</td><td>Global Vietnamese diaspora &amp; talent value pools</td><td>USD 10B+ adjacent (coaching/diaspora-giving); 5.3M diaspora; ~USD 18B/yr remittances</td><td>Public diaspora &amp; remittance figures; global coaching market</td></tr>
+    <tr><td>TAM</td><td>Global Vietnamese diaspora &amp; talent Giá trị pools</td><td>USD 10B+ adjacent (coaching/diaspora-giving); 5.3M diaspora; ~USD 18B/yr remittances</td><td>Public diaspora &amp; remittance figures; global coaching market</td></tr>
     <tr><td>SAM</td><td>Digitally-active diaspora willing to sponsor/learn + VN creators</td><td>USD 300–600M annual served market</td><td>Assume 8–12% of diaspora digitally reachable &amp; spending USD 50–150/yr equivalent</td></tr>
     <tr><td>SOM (3–5 yr)</td><td>Realistic near-term capture</td><td>USD 5–15M annual</td><td>Low single-digit % of SAM with disciplined CAC</td></tr>
   </table>
@@ -197,10 +237,10 @@
     <tr><th>Horizon</th><th>Indicative valuation (USD)</th><th>Method</th></tr>
     <tr><td>Now (pre-revenue)</td><td>50K – 150K</td><td>Asset/IP-based (codebase, brand, domain)</td></tr>
     <tr><td>+6 months (post legal + donations live)</td><td>150K – 400K</td><td>Asset + early activation</td></tr>
-    <tr><td>+1 year (Layer 1, first sponsors)</td><td>500K – 2.0M</td><td>Forward revenue multiple (3–8×) on early traction</td></tr>
+    <tr><td>+1 year (Layer 1, first sponsors)</td><td>500K – 2.0M</td><td>tiến revenue multiple (3–8×) on early traction</td></tr>
     <tr><td>+2 years (Layers 1–2 scaling)</td><td>2.0M – 5.0M</td><td>Revenue multiple + market position</td></tr>
   </table>
-  <div class="callout warn small"><strong>Reconciling the ask with valuation.</strong> A USD 2–3M raise implies a post-funding enterprise value well above today's asset-based value. We therefore propose <strong>either</strong> (a) a <strong>priced Series A</strong> at a negotiated pre-money in the <strong>USD 8–12M</strong> range justified by the 24–36 month trajectory and strategic diaspora position, <strong>or</strong> (b) a <strong>capped convertible / SAFE</strong> (illustrative cap USD 10–12M, 20% discount) that defers precise pricing to a later priced round. Capital released in milestone tranches. Final terms subject to negotiation and securities counsel.</div>
+  <div class="callout warn small"><strong>Reconciling the ask with valuation.</strong> A USD 2–3M raise implies a post-funding enterprise Giá trị well above today's asset-based Giá trị. We therefore propose <strong>either</strong> (a) a <strong>priced Series A</strong> at a negotiated pre-money in the <strong>USD 8–12M</strong> range justified by the 24–36 month trajectory and strategic diaspora position, <strong>or</strong> (b) a <strong>capped convertible / SAFE</strong> (illustrative cap USD 10–12M, 20% discount) that defers precise pricing to a later priced round. Capital released in milestone tranches. Final terms subject to negotiation and securities counsel.</div>
 
   <h2 class="sec">9. Financial Projections (2026–2028)</h2>
   <p>Three scenarios. "2-year" = cumulative 2026–2027. USD primary.</p>
@@ -225,24 +265,24 @@
     <tr><td>1 year (2026)</td><td class="num">255,000</td><td class="num">52,000</td><td class="num">203,000</td></tr>
     <tr><td>2 years (2026–27)</td><td class="num">1,270,000</td><td class="num">100,000</td><td class="num">1,170,000</td></tr>
   </table>
-  <p class="small muted">Base-case implied annual growth from 2026 (USD 110K) to cumulative 2-year and onward reflects layer launches and diaspora activation; with successful Series A execution we target a 2028 annual revenue run-rate of USD 1–2M (≈3–5× year-over-year in the scale phase). These are targets, not commitments.</p>
+  <p class="small muted">Base-case implied annual growth from 2026 (USD 110K) to cumulative 2-year and onward reflects layer launches and diaspora activation; with successful Series A execution we mục tiêu a 2028 annual revenue run-rate of USD 1–2M (≈3–5× year-over-year in the scale phase). These are targets, not commitments.</p>
 
   <h2 class="sec">10. The Ask &amp; Use of Funds</h2>
   <p><strong>USD 2–3M Series A.</strong> Illustrative allocation at USD 2.5M midpoint, deployed over 24 months:</p>
   <table>
     <tr><th>Category</th><th class="num">%</th><th class="num">USD</th><th>Purpose</th></tr>
-    <tr><td>Product &amp; engineering</td><td class="num">35%</td><td class="num">875,000</td><td>Layers 1–2, mobile/PWA, security, infra</td></tr>
+    <tr><td>Product &amp; engineering</td><td class="num">35%</td><td class="num">875,000</td><td>Layers 1–2, Di động/PWA, security, infra</td></tr>
     <tr><td>Team &amp; operations</td><td class="num">23%</td><td class="num">575,000</td><td>Key hires; reduce founder concentration</td></tr>
     <tr><td>Marketing &amp; diaspora growth</td><td class="num">20%</td><td class="num">500,000</td><td>CAC, community partnerships, events</td></tr>
     <tr><td>Legal &amp; compliance</td><td class="num">12%</td><td class="num">300,000</td><td>US/VN entities, non-profit, child-safety, securities</td></tr>
-    <tr><td>Content &amp; creator network</td><td class="num">6%</td><td class="num">150,000</td><td>Seed creators/mentors, content engine</td></tr>
+    <tr><td>Nội dung &amp; creator Mạng</td><td class="num">6%</td><td class="num">150,000</td><td>Seed creators/mentors, Nội dung engine</td></tr>
     <tr><td>Reserve / contingency</td><td class="num">4%</td><td class="num">100,000</td><td>Buffer</td></tr>
     <tr><th>Total</th><th class="num">100%</th><th class="num">2,500,000</th><th></th></tr>
   </table>
 
-  <h2 class="sec">11. Roadmap &amp; Milestones (tranche triggers)</h2>
+  <h2 class="sec">11. lộ trình &amp; Milestones (tranche triggers)</h2>
   <table>
-    <tr><th>Milestone</th><th>Target</th><th>Tranche</th></tr>
+    <tr><th>Milestone</th><th>mục tiêu</th><th>Tranche</th></tr>
     <tr><td>Legal build-out complete (US/VN, non-profit, child-safety)</td><td>Q3–Q4 2026</td><td>Tranche 1</td></tr>
     <tr><td>Layer 1 live + first 25–50 sponsors</td><td>Q4 2026 – Q1 2027</td><td>Tranche 2</td></tr>
     <tr><td>Layer 2 live + membership scaling</td><td>2027</td><td>Tranche 3</td></tr>
@@ -252,21 +292,21 @@
   <h2 class="sec">12. Risks &amp; Mitigations</h2>
   <table>
     <tr><th>Risk</th><th>Mitigation</th></tr>
-    <tr><td>Pre-revenue / no traction</td><td>Milestone tranches; validate pricing &amp; secure anchor sponsors pre-launch</td></tr>
+    <tr><td>Pre-revenue / Không traction</td><td>Milestone tranches; validate pricing &amp; secure anchor sponsors pre-launch</td></tr>
     <tr><td>Legal/regulatory (US + VN, child-safety, securities)</td><td>Dedicated legal budget; three-lane firewall; counsel before any offer</td></tr>
     <tr><td>Founder concentration</td><td>Key hires funded in this round</td></tr>
-    <tr><td>Market/pricing unvalidated</td><td>Customer interviews, A/B pricing tests, CAC/LTV discipline</td></tr>
-    <tr><td>Execution/timeline</td><td>MVP-scoped layer launches; monthly investor reporting</td></tr>
+    <tr><td>Market/pricing unvalidated</td><td>Khách hàng interviews, A/B pricing tests, CAC/LTV discipline</td></tr>
+    <tr><td>Execution/dòng thời gian</td><td>MVP-scoped layer launches; monthly investor reporting</td></tr>
   </table>
 
   <h2 class="sec">13. Governance &amp; Investor Reporting</h2>
-  <p>Capital flows through VIET CAN NEW CORP (Georgia C-Corp, USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA. We commit to monthly investor updates (KPIs: users, sponsors, donors, revenue, runway), milestone-based tranching, and transparent impact reporting separated from the non-profit lane.</p>
+  <p>Capital flows through VIET CÓ THỂ MỚI CORP (Georgia C-Corp, USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA. We commit to monthly investor updates (KPIs: users, sponsors, donors, revenue, runway), milestone-based tranching, and transparent impact reporting separated from the non-profit lane.</p>
 
-  <h2 class="sec">14. Contact</h2>
-  <p><strong>VIET CAN NEW CORP</strong><br>
+  <h2 class="sec">14. Liên hệ</h2>
+  <p><strong>VIET CÓ THỂ MỚI CORP</strong><br>
   7722 Stone Meadow Trail, Lithonia, Georgia 30058, United States<br>
-  Email: <a href="mailto:contact@duongsaotoasang.com">contact@duongsaotoasang.com</a> · Web: <a href="https://duongsaotoasang.com">duongsaotoasang.com</a><br>
-  Vietnam representation (operational, non-legal): Viet Can Star Entertainment JSC (Tax ID 0315462505)</p>
+  email: <a href="mailto:contact@duongsaotoasang.com">Liên hệ@duongsaotoasang.com</a> · web: <a href="https://duongsaotoasang.com">duongsaotoasang.com</a><br>
+  Vietnam representation (operational, non-legal): Viet CÓ THỂ Star Entertainment JSC (Thuế id 0315462505)</p>
 
 </section>
 
@@ -275,7 +315,7 @@
 <section class="doc vi">
 
   <h2 class="sec">1. Tóm Tắt Điều Hành</h2>
-  <p class="lead">Đường Sao Tỏa Sáng ("DSTS") là hệ sinh thái số song ngữ kết nối cộng đồng người Việt toàn cầu với các cá nhân tài năng tại Việt Nam thông qua câu chuyện được xác minh, cố vấn, hành trình huấn luyện có cấu trúc, cộng đồng hội viên và hoạt động đóng góp minh bạch — vận hành theo kiến trúc pháp lý ba làn nghiêm ngặt (thương mại, phi lợi nhuận, đầu tư), với trách nhiệm pháp lý hoàn toàn thuộc về <strong>VIET CAN NEW CORP</strong> (Georgia C-Corp, Hoa Kỳ / USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA.</p>
+  <p class="lead">Đường Sao Tỏa Sáng ("DSTS") là hệ sinh thái số song ngữ kết nối cộng đồng người Việt toàn cầu với các cá nhân tài năng tại Việt Nam thông qua câu chuyện được xác minh, cố vấn, hành trình huấn luyện có cấu trúc, cộng đồng hội viên và hoạt động đóng góp minh bạch — vận hành theo kiến trúc pháp lý ba làn nghiêm ngặt (thương mại, phi lợi nhuận, đầu tư), với trách nhiệm pháp lý hoàn toàn thuộc về <strong>VIET CÓ THỂ MỚI CORP</strong> (Georgia C-Corp, Hoa Kỳ / USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA.</p>
 
   <div class="kpi-grid">
     <div class="kpi"><div class="b">5,3 triệu+</div><div class="l">Cộng đồng người Việt (dân số TAM)</div></div>
@@ -293,14 +333,14 @@
   <h3>2.1 Pháp nhân chịu trách nhiệm (Hoa Kỳ)</h3>
   <p>Toàn bộ trách nhiệm pháp lý và tài chính của nền tảng DSTS thuộc về pháp nhân Hoa Kỳ:</p>
   <table>
-    <tr><th>Pháp nhân</th><td><strong>VIET CAN NEW CORP</strong> (C-Corporation bang Georgia, Hoa Kỳ)</td></tr>
+    <tr><th>Pháp nhân</th><td><strong>VIET CÓ THỂ MỚI CORP</strong> (C-Corporation bang Georgia, Hoa Kỳ)</td></tr>
     <tr><th>Địa chỉ đăng ký</th><td>7722 Stone Meadow Trail, Lithonia, Georgia 30058, Hoa Kỳ</td></tr>
-    <tr><th>Email chính thức</th><td><a href="mailto:contact@duongsaotoasang.com">contact@duongsaotoasang.com</a></td></tr>
+    <tr><th>email chính thức</th><td><a href="mailto:contact@duongsaotoasang.com">Liên hệ@duongsaotoasang.com</a></td></tr>
     <tr><th>Vai trò</th><td>Đơn vị phát hành hồ sơ này; vận hành hoạt động thương mại quốc tế; chịu trách nhiệm pháp lý hoàn toàn và duy nhất đối với nền tảng.</td></tr>
   </table>
 
   <h3>2.2 Đại diện tại Việt Nam (không chịu trách nhiệm pháp lý)</h3>
-  <p>Tại Việt Nam, DSTS được đại diện cho công tác điều phối và vận hành địa phương bởi <strong>Công ty Cổ phần Giải trí Ngôi Sao Việt Can</strong> (MST 0315462505). Việc đại diện này <strong>chỉ mang tính vận hành và không chịu bất kỳ trách nhiệm pháp lý nào</strong> đối với khoản đầu tư; pháp nhân Hoa Kỳ (VIET CAN NEW CORP) chịu trách nhiệm hoàn toàn và duy nhất.</p>
+  <p>Tại Việt Nam, DSTS được đại diện cho công tác điều phối và vận hành địa phương bởi <strong>Công ty Cổ phần Giải trí Ngôi Sao Việt CÓ THỂ</strong> (MST 0315462505). Việc đại diện này <strong>chỉ mang tính vận hành và không chịu bất kỳ trách nhiệm pháp lý nào</strong> đối với khoản đầu tư; pháp nhân Hoa Kỳ (VIET CÓ THỂ MỚI CORP) chịu trách nhiệm hoàn toàn và duy nhất.</p>
 
   <h3>2.3 Tường lửa pháp lý ba làn</h3>
   <table>
@@ -320,18 +360,18 @@
     <tr><td>0 — Nền tảng</td><td>Nội dung công khai, thư viện câu chuyện, danh bạ cố vấn, SEO</td><td>Đầu phễu (miễn phí)</td><td><strong>Đã chạy</strong></td></tr>
     <tr><td>1 — Movement Portal</td><td>Gói tài trợ, sự kiện/tour, bản đồ cộng đồng</td><td>Tài trợ, vé</td><td>Đã đặc tả; xây tiếp theo</td></tr>
     <tr><td>2 — Star Journey OS</td><td>Đánh giá, hành trình huấn luyện, ghép cố vấn</td><td>Hội viên, huấn luyện</td><td>Đã đặc tả</td></tr>
-    <tr><td>3 — DSTS Club</td><td>Kinh tế nhà sáng tạo, talk show, điểm thưởng</td><td>Hội viên, chia sẻ doanh thu</td><td>Đang phát triển</td></tr>
+    <tr><td>3 — DSTS Club</td><td>Kinh tế nhà sáng tạo, talk hiển thị, điểm thưởng</td><td>Hội viên, chia sẻ doanh thu</td><td>Đang phát triển</td></tr>
     <tr><td>5 — Trust &amp; Legacy</td><td>Danh tính xác minh, điểm tín nhiệm, lưu trữ</td><td>Gói lưu trữ cao cấp</td><td>Đã đặc tả</td></tr>
     <tr><td>6 — Bản đồ người Việt toàn cầu</td><td>Mạng lưới người Việt thành đạt</td><td>Miễn phí (hiệu ứng mạng)</td><td>Đã đặc tả</td></tr>
   </table>
 
   <h2 class="sec">5. Mô Hình Kinh Doanh &amp; Nguồn Doanh Thu</h2>
-  <p>Số liệu USD là chính; VND là phụ theo tỷ giá tham chiếu <strong>1 USD ≈ 25.400 VND</strong> (tháng 6/2026).</p>
+  <p>Số liệu USD là chính; VNĐ là phụ theo tỷ giá tham chiếu <strong>1 USD ≈ 25.400 VNĐ</strong> (tháng 6/2026).</p>
   <table>
     <tr><th>Nguồn</th><th>Giá tham chiếu</th><th>Cơ chế nền tảng</th></tr>
-    <tr><td>Hội viên (Member / Circle / Inner Circle)</td><td>5 / 15 / 49 USD mỗi tháng (≈99K / 299K / 990K VND)</td><td>50% nền tảng · 30% quỹ nhà sáng tạo · 20% tăng trưởng/dự phòng</td></tr>
+    <tr><td>Hội viên (Thành viên / Circle / Inner Circle)</td><td>5 / 15 / 49 USD mỗi tháng (≈99K / 299K / 990K VNĐ)</td><td>50% nền tảng · 30% quỹ nhà sáng tạo · 20% tăng trưởng/dự phòng</td></tr>
     <tr><td>Huấn luyện (Script Journey)</td><td>99 – 25.000 USD mỗi gói</td><td>Phí nền tảng + chia cho nhà sáng tạo</td></tr>
-    <tr><td>Talk show / trải nghiệm cao cấp</td><td>Theo sự kiện</td><td>60/40 (talk show) · 70/30 (cao cấp) ưu tiên nhà sáng tạo</td></tr>
+    <tr><td>Talk hiển thị / trải nghiệm cao cấp</td><td>Theo sự kiện</td><td>60/40 (talk hiển thị) · 70/30 (cao cấp) ưu tiên nhà sáng tạo</td></tr>
     <tr><td>Tài trợ thương mại</td><td>10 – 10.000+ USD/tháng (theo bậc)</td><td>100% nền tảng</td></tr>
     <tr><td>Điểm / sản phẩm số</td><td>19 – 999 USD</td><td>Khách hàng thân thiết &amp; biên lợi nhuận</td></tr>
     <tr><td>Đóng góp (Làn B, phi lợi nhuận)</td><td>Tự nguyện</td><td>100% cho làn phi lợi nhuận — không phải doanh thu nền tảng</td></tr>
@@ -339,7 +379,7 @@
 
   <h2 class="sec">6. Hiện Trạng &amp; Lực Kéo (trung thực)</h2>
   <ul>
-    <li><strong>Đã có:</strong> website công khai đã lên production; 35+ trang; nội dung &amp; SEO song ngữ; lược đồ CSDL (10+ migration); API lõi; tích hợp thanh toán ~80%.</li>
+    <li><strong>Đã có:</strong> trang web công khai đã lên production; 35+ trang; nội dung &amp; SEO song ngữ; lược đồ CSDL (10+ migration); API lõi; tích hợp thanh toán ~80%.</li>
     <li><strong>Chưa có:</strong> chưa có lực kéo đáng kể về người dùng, nhà tài trợ, người đóng góp hay doanh thu. Các lớp kiếm tiền chưa ra mắt.</li>
     <li><strong>Hệ quả:</strong> đây là vòng tầm nhìn/thực thi sớm. Nhà đầu tư đặt cược vào đội ngũ, thị trường và lộ trình — không phải doanh thu lịch sử.</li>
   </ul>
@@ -392,7 +432,7 @@
   <p><strong>Series A 2–3 triệu USD.</strong> Phân bổ minh hoạ tại điểm giữa 2,5 triệu USD, triển khai trong 24 tháng:</p>
   <table>
     <tr><th>Hạng mục</th><th class="num">%</th><th class="num">USD</th><th>Mục đích</th></tr>
-    <tr><td>Sản phẩm &amp; kỹ thuật</td><td class="num">35%</td><td class="num">875.000</td><td>Layer 1–2, mobile/PWA, bảo mật, hạ tầng</td></tr>
+    <tr><td>Sản phẩm &amp; kỹ thuật</td><td class="num">35%</td><td class="num">875.000</td><td>Layer 1–2, Di động/PWA, bảo mật, hạ tầng</td></tr>
     <tr><td>Đội ngũ &amp; vận hành</td><td class="num">23%</td><td class="num">575.000</td><td>Tuyển dụng then chốt; giảm phụ thuộc nhà sáng lập</td></tr>
     <tr><td>Marketing &amp; tăng trưởng cộng đồng</td><td class="num">20%</td><td class="num">500.000</td><td>CAC, hợp tác cộng đồng, sự kiện</td></tr>
     <tr><td>Pháp lý &amp; tuân thủ</td><td class="num">12%</td><td class="num">300.000</td><td>Pháp nhân US/VN, phi lợi nhuận, an toàn trẻ em, chứng khoán</td></tr>
@@ -421,19 +461,19 @@
   </table>
 
   <h2 class="sec">13. Quản Trị &amp; Báo Cáo Nhà Đầu Tư</h2>
-  <p>Dòng vốn đi qua VIET CAN NEW CORP (Georgia C-Corp, Hoa Kỳ / USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA. Chúng tôi cam kết cập nhật nhà đầu tư hàng tháng (KPI: người dùng, nhà tài trợ, người đóng góp, doanh thu, runway), giải ngân theo mốc, và báo cáo tác động minh bạch tách biệt khỏi làn phi lợi nhuận.</p>
+  <p>Dòng vốn đi qua VIET CÓ THỂ MỚI CORP (Georgia C-Corp, Hoa Kỳ / USA) — 7722 Stone Meadow Trail, Lithonia, Georgia 30058, USA. Chúng tôi cam kết cập nhật nhà đầu tư hàng tháng (KPI: người dùng, nhà tài trợ, người đóng góp, doanh thu, runway), giải ngân theo mốc, và báo cáo tác động minh bạch tách biệt khỏi làn phi lợi nhuận.</p>
 
   <h2 class="sec">14. Liên Hệ</h2>
-  <p><strong>VIET CAN NEW CORP</strong><br>
+  <p><strong>VIET CÓ THỂ MỚI CORP</strong><br>
   7722 Stone Meadow Trail, Lithonia, Georgia 30058, Hoa Kỳ<br>
-  Email: <a href="mailto:contact@duongsaotoasang.com">contact@duongsaotoasang.com</a> · Web: <a href="https://duongsaotoasang.com">duongsaotoasang.com</a><br>
-  Đại diện tại Việt Nam (vận hành, không pháp lý): Công ty Cổ phần Giải trí Ngôi Sao Việt Can (MST 0315462505)</p>
+  email: <a href="mailto:contact@duongsaotoasang.com">Liên hệ@duongsaotoasang.com</a> · web: <a href="https://duongsaotoasang.com">duongsaotoasang.com</a><br>
+  Đại diện tại Việt Nam (vận hành, không pháp lý): Công ty Cổ phần Giải trí Ngôi Sao Việt CÓ THỂ (MST 0315462505)</p>
 
 </section>
 
 <div class="foot wrap">
-  © 2026 VIET CAN NEW CORP · Đường Sao Tỏa Sáng (DSTS) · Confidential / Bản mật ·
-  This document is not an offer of securities / Tài liệu này không phải là chào bán chứng khoán.
+  © 2026 VIET CÓ THỂ MỚI CORP · Đường Sao Tỏa Sáng (DSTS) · Confidential / Bản mật ·
+  This Tài liệu is not an offer of securities / Tài liệu này không phải là chào bán chứng khoán.
 </div>
 
 </main>
