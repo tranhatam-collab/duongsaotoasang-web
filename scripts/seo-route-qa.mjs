@@ -58,7 +58,12 @@ assert(robots.status === 200, `/robots.txt expected 200, got ${robots.status}`)
 assert(robots.body.includes("User-agent: *"), "/robots.txt must target all crawlers")
 assert(robots.body.includes("Allow: /"), "/robots.txt must allow crawling")
 assert(robots.body.includes("Sitemap: https://duongsaotoasang.com/sitemap.xml"), "/robots.txt must point to production sitemap")
-assert(!/Disallow:\s*\//i.test(robots.body), "/robots.txt must not disallow the public site")
+// Only check the generic User-agent: * block for Disallow: / (Cloudflare may inject
+// bot-specific Disallow lines which are acceptable — they target specific crawlers
+// like GPTBot, not the public site).
+const genericBlockMatch = robots.body.match(/User-agent:\s*\*[\s\S]*?(?=User-agent:|$)/i);
+const genericBlock = genericBlockMatch ? genericBlockMatch[0] : robots.body;
+assert(!/Disallow:\s*\//i.test(genericBlock), "/robots.txt generic block must not disallow the public site")
 assert(!robots.body.includes(".html"), "/robots.txt must not point to .html routes")
 assert(!robots.body.includes("pages.dev"), "/robots.txt must not use pages.dev")
 assert(!robots.body.includes("duongsaotoasang-web"), "/robots.txt must not use wrong Pages project")
