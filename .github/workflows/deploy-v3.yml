@@ -54,6 +54,7 @@ jobs:
           accountId: 62d57eaa548617aeecac766e5a1cb98e
           command: pages deploy . --project-name=duongsaotoasang-com-v2 --branch=main --commit-hash=${{ github.sha }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          quiet: true
       - name: Verify deployment
         run: |
           echo "Waiting for deployment to propagate..."
