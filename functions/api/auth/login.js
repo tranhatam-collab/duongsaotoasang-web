@@ -41,7 +41,7 @@ export async function onRequestPost(context) {
     }
     
     // Verify password using PBKDF2
-    const isValid = await verifyPassword(password, row.password_hash, row.password_salt, row.password_iterations || 310000);
+    const isValid = await verifyPassword(password, row.password_hash, row.password_salt, row.password_iterations || 100000);
     
     if (!isValid) {
       // Log failed attempt

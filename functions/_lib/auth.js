@@ -206,7 +206,7 @@ async function _verifyJwtSignature(token, publicKeys) {
  * @param {number} iterations - Number of PBKDF2 iterations (default: 310000)
  * @returns {Promise<{hash: string, salt: string, iterations: number}>}
  */
-export async function hashPassword(password, iterations = 310000) {
+export async function hashPassword(password, iterations = 100000) {
   const salt = crypto.getRandomValues(new Uint8Array(16));
   const saltBase64 = btoa(String.fromCharCode(...salt));
 
@@ -248,7 +248,7 @@ export async function hashPassword(password, iterations = 310000) {
  * @param {number} iterations - Number of iterations used (default: 310000)
  * @returns {Promise<boolean>} - True if password matches
  */
-export async function verifyPassword(password, storedHash, storedSalt, iterations = 310000) {
+export async function verifyPassword(password, storedHash, storedSalt, iterations = 100000) {
   try {
     const salt = Uint8Array.from(atob(storedSalt), (c) => c.charCodeAt(0));
     const encoder = new TextEncoder();
