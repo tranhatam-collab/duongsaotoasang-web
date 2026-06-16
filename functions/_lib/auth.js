@@ -209,7 +209,7 @@ async function _verifyJwtSignature(token, publicKeys) {
 export async function hashPassword(password, iterations = 310000) {
   const salt = crypto.getRandomValues(new Uint8Array(16));
   const saltBase64 = btoa(String.fromCharCode(...salt));
-  
+
   const encoder = new TextEncoder();
   const passwordKey = await crypto.subtle.importKey(
     "raw",
@@ -218,8 +218,8 @@ export async function hashPassword(password, iterations = 310000) {
     false,
     ["deriveBits"]
   );
-  
-  const derivedBits = await crypto.subtle.deriveKey(
+
+  const derivedBits = await crypto.subtle.deriveBits(
     {
       name: "PBKDF2",
       salt: salt,
@@ -227,14 +227,12 @@ export async function hashPassword(password, iterations = 310000) {
       hash: "SHA-256"
     },
     passwordKey,
-    { name: "AES-GCM", length: 256 },
-    true,
-    ["encrypt", "decrypt"]
+    256
   );
-  
-  const hashArray = new Uint8Array(await crypto.subtle.exportKey("raw", derivedBits));
+
+  const hashArray = new Uint8Array(derivedBits);
   const hashBase64 = btoa(String.fromCharCode(...hashArray));
-  
+
   return {
     hash: hashBase64,
     salt: saltBase64,
@@ -254,7 +252,7 @@ export async function verifyPassword(password, storedHash, storedSalt, iteration
   try {
     const salt = Uint8Array.from(atob(storedSalt), (c) => c.charCodeAt(0));
     const encoder = new TextEncoder();
-    
+
     const passwordKey = await crypto.subtle.importKey(
       "raw",
       encoder.encode(password),
@@ -262,8 +260,8 @@ export async function verifyPassword(password, storedHash, storedSalt, iteration
       false,
       ["deriveBits"]
     );
-    
-    const derivedBits = await crypto.subtle.deriveKey(
+
+    const derivedBits = await crypto.subtle.deriveBits(
       {
         name: "PBKDF2",
         salt: salt,
@@ -271,25 +269,23 @@ export async function verifyPassword(password, storedHash, storedSalt, iteration
         hash: "SHA-256"
       },
       passwordKey,
-      { name: "AES-GCM", length: 256 },
-      true,
-      ["encrypt", "decrypt"]
+      256
     );
-    
-    const hashArray = new Uint8Array(await crypto.subtle.exportKey("raw", derivedBits));
+
+    const hashArray = new Uint8Array(derivedBits);
     const hashBase64 = btoa(String.fromCharCode(...hashArray));
-    
+
     // Constant-time comparison
     if (hashBase64.length !== storedHash.length) return false;
-    
+
     const a = Uint8Array.from(atob(hashBase64), (c) => c.charCodeAt(0));
     const b = Uint8Array.from(atob(storedHash), (c) => c.charCodeAt(0));
-    
+
     let result = 0;
     for (let i = 0; i < a.length; i++) {
       result |= a[i] ^ b[i];
     }
-    
+
     return result === 0;
   } catch {
     return false;
