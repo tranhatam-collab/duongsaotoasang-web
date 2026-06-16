@@ -6,12 +6,14 @@
 /refund /legal#refund 302
 /payment-confirmation /contact?type=payment-confirmation 302
 
-# Legacy clean URL
-/about.html /about 301
-/program.html /program 301
-/contact.html /contact 301
-/donate.html /donate 301
-/transparency.html /transparency 301
+# Direct routes — serve clean URLs from .html files (200 = rewrite, no redirect loop)
+/about /about.html 200
+/program /program.html 200
+/contact /contact.html 200
+/donate /donate.html 200
+/transparency /transparency.html 200
+
+# Legacy .html → clean URL (only for pages NOT handled above)
 /legal.html /legal 301
 /privacy.html /privacy 301
 /terms.html /terms 301
@@ -22,13 +24,6 @@
 /content.html /content 301
 /dream-nurture.html /dream-nurture 301
 /ndnum /dream-nurture 301
-
-# Direct routes for main pages (no redirect to /content)
-/about /about.html 200
-/program /program.html 200
-/contact /contact.html 200
-/donate /donate.html 200
-/transparency /transparency.html 200
 
 # Evergreen
 /stories /story-library 301
