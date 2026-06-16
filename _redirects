@@ -23,6 +23,13 @@
 /dream-nurture.html /dream-nurture 301
 /ndnum /dream-nurture 301
 
+# Direct routes for main pages (no redirect to /content)
+/about /about.html 200
+/program /program.html 200
+/contact /contact.html 200
+/donate /donate.html 200
+/transparency /transparency.html 200
+
 # Evergreen
 /stories /story-library 301
 /global-vietnamese-stories /story-library 301

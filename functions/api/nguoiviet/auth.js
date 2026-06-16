@@ -6,7 +6,11 @@ export const onRequestGet = async ({ request, env }) => {
   const state = url.searchParams.get("state");
 
   if (!env.NGUOIVIET_CLIENT_ID || !env.NGUOIVIET_CLIENT_SECRET) {
-    return json({ ok: false, error: "NguoiViet integration not configured" }, 500);
+    return json({ 
+      ok: false, 
+      code: "NGUOIVIET_NOT_CONFIGURED",
+      error: "NguoiViet integration is not configured" 
+    }, 503);
   }
 
   // Generate OAuth 2.0 authorization URL
@@ -34,7 +38,11 @@ export const onRequestPost = async ({ request, env }) => {
     }
 
     if (!env.NGUOIVIET_CLIENT_ID || !env.NGUOIVIET_CLIENT_SECRET) {
-      return json({ ok: false, error: "NguoiViet integration not configured" }, 500);
+      return json({ 
+        ok: false, 
+        code: "NGUOIVIET_NOT_CONFIGURED",
+        error: "NguoiViet integration is not configured" 
+      }, 503);
     }
 
     // Exchange authorization code for access token
