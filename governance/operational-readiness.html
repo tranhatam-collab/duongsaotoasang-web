@@ -80,46 +80,58 @@
 
           <h2>2. Monitoring & Alerting</h2>
           <div class="check-item">
-            <input type="checkbox" id="monitor-1">
-            <label for="monitor-1">Uptime monitoring configured (e.g., UptimeRobot, Pingdom)</label>
+            <input type="checkbox" id="monitor-1" checked>
+            <label for="monitor-1">Health check API implemented (/api/monitoring/health)</label>
           </div>
           <div class="check-item">
-            <input type="checkbox" id="monitor-2">
-            <label for="monitor-2">Error tracking configured (e.g., Sentry, Cloudflare Analytics)</label>
+            <input type="checkbox" id="monitor-2" checked>
+            <label for="monitor-2">Alert system implemented (/api/monitoring/alerts)</label>
           </div>
           <div class="check-item">
             <input type="checkbox" id="monitor-3">
-            <label for="monitor-3">Performance monitoring configured (e.g., Web Vitals)</label>
+            <label for="monitor-3">Uptime monitoring configured (e.g., UptimeRobot, Pingdom)</label>
           </div>
           <div class="check-item">
             <input type="checkbox" id="monitor-4">
-            <label for="monitor-4">Alerting rules configured (email, Slack, SMS)</label>
+            <label for="monitor-4">Error tracking configured (e.g., Sentry, Cloudflare Analytics)</label>
           </div>
           <div class="check-item">
             <input type="checkbox" id="monitor-5">
-            <label for="monitor-5">Log aggregation configured (e.g., Cloudflare Logs, ELK)</label>
+            <label for="monitor-5">Performance monitoring configured (e.g., Web Vitals)</label>
+          </div>
+          <div class="check-item">
+            <input type="checkbox" id="monitor-6">
+            <label for="monitor-6">Alerting rules configured (email, Slack, SMS)</label>
+          </div>
+          <div class="check-item">
+            <input type="checkbox" id="monitor-7">
+            <label for="monitor-7">Log aggregation configured (e.g., Cloudflare Logs, ELK)</label>
           </div>
 
           <h2>3. Backup & Recovery</h2>
           <div class="check-item">
-            <input type="checkbox" id="backup-1">
-            <label for="backup-1">Database backup configured (daily, weekly, monthly)</label>
+            <input type="checkbox" id="backup-1" checked>
+            <label for="backup-1">Backup API implemented (/api/admin/backup)</label>
           </div>
           <div class="check-item">
             <input type="checkbox" id="backup-2">
-            <label for="backup-2">Backup retention policy defined (e.g., 30 days, 90 days, 1 year)</label>
+            <label for="backup-2">Database backup configured (daily, weekly, monthly)</label>
           </div>
           <div class="check-item">
             <input type="checkbox" id="backup-3">
-            <label for="backup-3">Backup restoration tested and documented</label>
+            <label for="backup-3">Backup retention policy defined (e.g., 30 days, 90 days, 1 year)</label>
           </div>
           <div class="check-item">
             <input type="checkbox" id="backup-4">
-            <label for="backup-4">Disaster recovery plan documented and tested</label>
+            <label for="backup-4">Backup restoration tested and documented</label>
           </div>
           <div class="check-item">
-            <input type="checkbox" id="backup-5">
-            <label for="backup-5">Geo-redundancy configured (if applicable)</label>
+            <input type="checkbox" id="backup-5" checked>
+            <label for="backup-5">Incident response plan documented (governance/incident-response.html)</label>
+          </div>
+          <div class="check-item">
+            <input type="checkbox" id="backup-6">
+            <label for="backup-6">Geo-redundancy configured (if applicable)</label>
           </div>
 
           <h2>4. Security Readiness</h2>
@@ -191,6 +203,7 @@
           <div class="notice">
             <strong>Trạng thái hiện tại:</strong> Operational readiness checklist đang trong quá trình hoàn thiện. DSTS sẽ hoàn thành checklist trước khi launch công khai.
           </div>
+          <a href="/governance/incident-response" class="btn primary">Xem Incident Response Plan</a>
         </article>
       </div>
     </section>
