@@ -24,7 +24,9 @@ for (const file of files) {
   const canonical = extractLinkHref(head || "", "canonical", file)
   const robots = extractMetaContent(head || "", "robots", file)
 
-  assert(htmlOpen && /\blang=["']vi["']/i.test(htmlOpen), `${file} html lang must be vi`)
+  const isEnPage = file.startsWith("en/")
+  const expectedLang = isEnPage ? /\blang=["']en["']/i : /\blang=["']vi["']/i
+  assert(htmlOpen && expectedLang.test(htmlOpen), `${file} html lang must be ${isEnPage ? "en" : "vi"}`)
   assert(h1Tags.length === 1, `${file} must have exactly one <h1>, got ${h1Tags.length}`)
 
   validateTextLength(title, 10, 90, `${file} <title>`)

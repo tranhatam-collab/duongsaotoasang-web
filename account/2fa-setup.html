@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bảo Mật 2 Bước | DSTS</title>
+<meta name="description" content="Thiết lập bảo mật 2 bước (Authenticator) cho tài khoản DSTS.">
+<link rel="canonical" href="https://duongsaotoasang.com/account/2fa-setup">
+<link rel="stylesheet" href="/app.css">
+  <meta name="robots" content="noindex,follow">
+  <style>
+    .container-small { max-width:480px;margin:0 auto;padding:40px 20px }
+    .qr-wrap { text-align:center;margin:24px 0 }
+    .qr-wrap img { max-width:200px;border-radius:12px }
+    .secret-box { background:rgba(224,200,150,.06);border:1px solid rgba(224,200,150,.15);border-radius:10px;padding:14px;font-family:monospace;font-size:14px;word-break:break-all;text-align:center }
+    .link { color:#e0c896;text-decoration:none }
+    .link:hover { text-decoration:underline }
+    .info { color:#9eb0c8;font-size:14px;line-height:1.6 }
+  </style>
+</head>
+<body>
+<main class="container-small">
+  <h1>Bảo Mật 2 Bước</h1>
+  <p class="lead">Thiết lập Authenticator để bảo vệ tài khoản.</p>
+
+  <div id="setup-step">
+    <p class="info">Quét mã QR bên dưới bằng <strong>Google Authenticator</strong>, <strong>Microsoft Authenticator</strong>, hoặc <strong>Authy</strong>.</p>
+    <div class="qr-wrap" id="qr-area">
+      <p style="color:#64748b">Đang tải...</p>
+    </div>
+    <p class="info">Hoặc nhập thủ công:</p>
+    <div class="secret-box" id="secret-area">---</div>
+
+    <form id="verify-form" style="margin-top:24px">
+      <label for="code">Nhập mã 6 chữ số từ app</label>
+      <input type="text" id="code" name="code" required maxlength="6" inputmode="numeric" autocomplete="one-time-code" placeholder="000000">
+      <button type="submit" class="btn btn-primary">Kích hoạt 2FA</button>
+    </form>
+  </div>
+
+  <div id="done-step" style="display:none">
+    <p style="color:#74e274;font-size:18px">2FA đã được kích hoạt!</p>
+    <p class="info">Tài khoản của bạn giờ được bảo vệ bằng Authenticator. Mỗi lần đăng nhập sẽ yêu cầu mã từ app.</p>
+    <p><a href="/account" class="link">Quay lại tài khoản</a></p>
+  </div>
+
+  <p><a href="/account" class="link">Quay lại</a></p>
+  <div id="message"></div>
+</main>
+
+<script>
+const message = document.getElementById('message');
+function showMsg(text, isErr) {
+  message.textContent = text;
+  message.style.color = isErr ? '#f87171' : '#74e274';
+}
+
+async function loadSetup() {
+  try {
+    const res = await fetch('/api/auth/totp-setup', { method: 'POST' });
+    const result = await res.json();
+    if (result.ok) {
+      document.getElementById('qr-area').innerHTML = `<img src="${result.qr_url}" alt="QR Code">`;
+      document.getElementById('secret-area').textContent = result.secret;
+    } else {
+      showMsg(result.error || 'Không thể tải cài đặt', true);
+    }
+  } catch (err) { showMsg('Lỗi kết nối', true); }
+}
+loadSetup();
+
+document.getElementById('verify-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  showMsg('Đang xác thực...', false);
+  try {
+    const res = await fetch('/api/auth/totp-verify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: document.getElementById('code').value.trim() })
+    });
+    const result = await res.json();
+    if (result.ok && result.enabled) {
+      document.getElementById('setup-step').style.display = 'none';
+      document.getElementById('done-step').style.display = 'block';
+    } else {
+      showMsg(result.error || 'Mã không đúng', true);
+    }
+  } catch (err) { showMsg('Lỗi kết nối', true); }
+});
+</script>
+</body>
+</html>

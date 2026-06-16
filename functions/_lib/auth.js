@@ -202,8 +202,15 @@ async function _verifyJwtSignature(token, publicKeys) {
 
 /**
  * Hash a password using PBKDF2-SHA-256 with a random salt.
+ *
+ * ⚠️ CLOUDFLARE WORKERS LIMIT: PBKDF2 iterations are capped at 100000 by
+ * Web Crypto in the Workers runtime.  Values above this will throw:
+ *   "Pbkdf2 failed: iteration counts above 100000 are not supported"
+ * DO NOT increase this default.  The OWASP recommendation of 310000 cannot
+ * be met on Workers; 100000 is the runtime maximum.
+ *
  * @param {string} password - The plaintext password
- * @param {number} iterations - Number of PBKDF2 iterations (default: 310000)
+ * @param {number} iterations - Number of PBKDF2 iterations (default: 100000, CF Workers cap)
  * @returns {Promise<{hash: string, salt: string, iterations: number}>}
  */
 export async function hashPassword(password, iterations = 100000) {
@@ -242,10 +249,14 @@ export async function hashPassword(password, iterations = 100000) {
 
 /**
  * Verify a password against a stored hash.
+ *
+ * ⚠️ Must match the iteration count used at hash time (see hashPassword).
+ * Cloudflare Workers caps PBKDF2 iterations at 100000.
+ *
  * @param {string} password - The plaintext password to verify
  * @param {string} storedHash - The stored hash (base64)
  * @param {string} storedSalt - The stored salt (base64)
- * @param {number} iterations - Number of iterations used (default: 310000)
+ * @param {number} iterations - Number of iterations used (default: 100000, CF Workers cap)
  * @returns {Promise<boolean>} - True if password matches
  */
 export async function verifyPassword(password, storedHash, storedSalt, iterations = 100000) {

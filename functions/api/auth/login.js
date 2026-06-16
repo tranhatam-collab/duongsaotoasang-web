@@ -59,6 +59,28 @@ export async function onRequestPost(context) {
       return new Response(JSON.stringify({ error: 'Invalid credentials' }), { status: 401 });
     }
     
+    // Check if 2FA is required
+    const requires2FA = row.totp_enabled === 1;
+    
+    if (requires2FA) {
+      // Issue a temporary 2FA challenge token (10 min)
+      const tempToken = await generateSessionToken();
+      const tempHash = await hashSessionToken(tempToken);
+      const tempExpires = new Date(Date.now() + 10 * 60 * 1000).toISOString();
+      await db.prepare(
+        'INSERT INTO sessions (id, user_id, session_token_hash, ip_address, created_at, expires_at) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, ?)'
+      ).bind(crypto.randomUUID(), row.id, tempHash, context.request.headers.get('CF-Connecting-IP') || 'unknown', tempExpires).run();
+      
+      return new Response(JSON.stringify({
+        ok: true,
+        requires_2fa: true,
+        temp_token: tempToken,
+        user: { id: row.id, display_name: row.display_name }
+      }), {
+        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+      });
+    }
+    
     // Generate opaque session token
     const sessionToken = await generateSessionToken();
     const sessionTokenHash = await hashSessionToken(sessionToken);
