@@ -8,9 +8,27 @@
  * Falls back to local verification if key not set.
  */
 
-import { getUserFromSessionCookie, check2FAGate } from "../../_lib/session.js";
-
 const TRUST_IAI_BASE = "https://trust.iai.one/api/v1";
+
+async function getSessionUser(db, request) {
+  const cookie = request.headers.get("Cookie") || "";
+  const m = cookie.match(/dsts_session=([^;]+)/);
+  if (!m) return null;
+  const hash = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(m[1]))), b => b.toString(16).padStart(2,"0")).join("");
+  return db.prepare("SELECT u.id, u.totp_enabled, u.totp_secret FROM users u JOIN sessions s ON s.user_id=u.id WHERE s.session_token_hash=? AND s.revoked_at IS NULL AND s.expires_at>datetime('now')").bind(hash).first();
+}
+
+import { verifyTotp } from "../../_lib/totp.js";
+
+async function check2FAGate(db, user, code) {
+  if (!user || user.totp_enabled !== 1) return { ok: true };
+  const sec = await db.prepare("SELECT require_2fa_for_trust FROM user_security_settings WHERE user_id=?").bind(user.id).first();
+  if (!sec || sec.require_2fa_for_trust !== 1) return { ok: true };
+  if (!code) return { ok: false, error: "2FA_REQUIRED", message: "Mã xác thực 2 bước là bắt buộc." };
+  const v = await verifyTotp(user.totp_secret, code);
+  if (!v) return { ok: false, error: "INVALID_2FA_CODE", message: "Mã xác thực không đúng." };
+  return { ok: true };
+}
 
 export async function onRequestPost(context) {
   const { request, env } = context;
@@ -22,10 +40,9 @@ export async function onRequestPost(context) {
     return new Response(JSON.stringify({ ok: false, error: 'Invalid JSON' }), { status: 400 });
   }
 
-  // 2FA gate for authenticated users with trust 2FA enabled
-  const sessionUser = await getUserFromSessionCookie(db, request);
-  if (sessionUser) {
-    const gate = await check2FAGate(db, sessionUser, "trust", body.totp_code);
+  const user = await getSessionUser(db, request);
+  if (user) {
+    const gate = await check2FAGate(db, user, body.totp_code);
     if (!gate.ok) return new Response(JSON.stringify(gate), { status: 403, headers: { 'Content-Type': 'application/json' } });
   }
 
