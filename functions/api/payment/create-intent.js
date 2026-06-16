@@ -60,6 +60,7 @@ function randomId(prefix = "") {
 }
 
 export async function onRequestPost(context) {
+  try {
   const { request, env } = context;
   const db = env.DB;
   if (!db) {
@@ -205,4 +206,8 @@ export async function onRequestPost(context) {
     checkout_url: checkoutUrl,
     clientAction: checkoutUrl ? { type: "redirect", url: checkoutUrl } : { type: "pending", url: null },
   }), { headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "https://duongsaotoasang.com" } });
+  } catch (e) {
+    console.error("create-intent fatal:", e);
+    return new Response(JSON.stringify({ ok: false, error: "INTERNAL_ERROR", message: String(e.message || e) }), { status: 500, headers: { "Content-Type": "application/json" } });
+  }
 }
