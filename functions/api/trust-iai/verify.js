@@ -10,48 +10,6 @@
 
 const TRUST_IAI_BASE = "https://trust.iai.one/api/v1";
 
-async function getSessionUser(db, request) {
-  const cookie = request.headers.get("Cookie") || "";
-  const m = cookie.match(/dsts_session=([^;]+)/);
-  if (!m) return null;
-  const hash = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(m[1]))), b => b.toString(16).padStart(2,"0")).join("");
-  return db.prepare("SELECT u.id, u.totp_enabled, u.totp_secret FROM users u JOIN sessions s ON s.user_id=u.id WHERE s.session_token_hash=? AND s.revoked_at IS NULL AND s.expires_at>datetime('now')").bind(hash).first();
-}
-
-async function hotp(secret, counter) {
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
-  const cleaned = secret.toUpperCase().replace(/[^A-Z2-7]/g, "");
-  let bits = "";
-  for (const c of cleaned) bits += alphabet.indexOf(c).toString(2).padStart(5, "0");
-  const bytes = new Uint8Array(Math.floor(bits.length / 8));
-  for (let i = 0; i < bytes.length; i++) bytes[i] = parseInt(bits.slice(i * 8, (i + 1) * 8), 2);
-  const key = await crypto.subtle.importKey("raw", bytes, { name: "HMAC", hash: "SHA-1" }, false, ["sign"]);
-  const counterBuf = new ArrayBuffer(8);
-  new DataView(counterBuf).setUint32(4, counter, false);
-  const sig = await crypto.subtle.sign("HMAC", key, new Uint8Array(counterBuf));
-  const hash = new Uint8Array(sig);
-  const offset = hash[hash.length - 1] & 0x0f;
-  const bin = ((hash[offset] & 0x7f) << 24) | ((hash[offset + 1] & 0xff) << 16) | ((hash[offset + 2] & 0xff) << 8) | (hash[offset + 3] & 0xff);
-  return String(bin % 10 ** 6).padStart(6, "0");
-}
-
-async function verifyTotp(secret, code, window = 1) {
-  if (!secret || !code || code.length !== 6) return false;
-  const counter = Math.floor(Date.now() / 1000 / 30);
-  for (let i = -window; i <= window; i++) if (await hotp(secret, counter + i) === code) return true;
-  return false;
-}
-
-async function check2FAGate(db, user, code) {
-  if (!user || user.totp_enabled !== 1) return { ok: true };
-  const sec = await db.prepare("SELECT require_2fa_for_trust FROM user_security_settings WHERE user_id=?").bind(user.id).first();
-  if (!sec || sec.require_2fa_for_trust !== 1) return { ok: true };
-  if (!code) return { ok: false, error: "2FA_REQUIRED", message: "Mã xác thực 2 bước là bắt buộc." };
-  const v = await verifyTotp(user.totp_secret, code);
-  if (!v) return { ok: false, error: "INVALID_2FA_CODE", message: "Mã xác thực không đúng." };
-  return { ok: true };
-}
-
 export async function onRequestPost(context) {
   const { request, env } = context;
   const db = env.DB;
@@ -60,12 +18,6 @@ export async function onRequestPost(context) {
   let body;
   try { body = await request.json(); } catch {
     return new Response(JSON.stringify({ ok: false, error: 'Invalid JSON' }), { status: 400 });
-  }
-
-  const user = await getSessionUser(db, request);
-  if (user) {
-    const gate = await check2FAGate(db, user, body.totp_code);
-    if (!gate.ok) return new Response(JSON.stringify(gate), { status: 403, headers: { 'Content-Type': 'application/json' } });
   }
 
   const { entity_type, entity_id, evidence_urls } = body || {};
