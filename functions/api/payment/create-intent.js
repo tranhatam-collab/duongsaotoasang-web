@@ -14,6 +14,8 @@
 //   (/api/v1/checkout/session is vetuonglai-specific; /api/v1/intents does NOT exist)
 //   Auth: x-api-key header (NOT Bearer). Idempotency: x-idempotency-key.
 
+import { getUserFromSessionCookie, check2FAGate } from "../../_lib/session.js";
+
 function randomId(prefix = "") {
   const bytes = crypto.getRandomValues(new Uint8Array(12));
   const hex = Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
@@ -44,8 +46,15 @@ export async function onRequestPost(context) {
     });
   }
 
-  const { amount_cents, currency, description, user_id, type } = body;
+  const { amount_cents, currency, description, user_id, type, totp_code } = body;
   const provider = String(body.provider || "payos").toLowerCase();
+
+  // 2FA gate for authenticated users with payment 2FA enabled
+  const sessionUser = await getUserFromSessionCookie(db, request);
+  if (sessionUser) {
+    const gate = await check2FAGate(db, sessionUser, "payment", totp_code);
+    if (!gate.ok) return new Response(JSON.stringify(gate), { status: 403, headers: { "Content-Type": "application/json" } });
+  }
 
   if (!amount_cents || !currency || !description) {
     return new Response(JSON.stringify({ ok: false, error: "MISSING_FIELDS", message: "amount_cents, currency, description required" }), {

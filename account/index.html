@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tài Khoản | DSTS</title>
+<meta name="description" content="Quản lý tài khoản DSTS: bảo mật, thông tin cá nhân.">
+<link rel="canonical" href="https://duongsaotoasang.com/account">
+<link rel="stylesheet" href="/app.css">
+  <meta name="robots" content="noindex,follow">
+  <style>
+    .container-small { max-width:560px;margin:0 auto;padding:40px 20px }
+    .card { background:rgba(224,200,150,.06);border:1px solid rgba(224,200,150,.14);border-radius:14px;padding:24px;margin-bottom:20px }
+    .card h2 { margin:0 0 12px;font-size:1.15rem;color:#e0c896 }
+    .card p { color:#94a3b8;margin:0 0 12px }
+    .status { display:inline-flex;align-items:center;gap:6px;background:rgba(74,222,128,.12);color:#74e274;padding:4px 12px;border-radius:999px;font-size:13px;font-weight:600 }
+    .status.off { background:rgba(248,113,113,.12);color:#f87171 }
+    .link { color:#e0c896;text-decoration:none }
+    .link:hover { text-decoration:underline }
+    .btn-small { padding:8px 16px;font-size:13px }
+    #disable-2fa { display:none }
+  </style>
+</head>
+<body>
+<main class="container-small">
+  <h1>Tài Khoản</h1>
+  <p class="lead">Quản lý bảo mật và thông tin của bạn.</p>
+
+  <div class="card">
+    <h2>Bảo Mật 2 Bước (2FA)</h2>
+    <p id="2fa-status">Đang kiểm tra...</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a href="/account/2fa-setup.html" class="btn btn-primary btn-small" id="enable-2fa">Thiết lập 2FA</a>
+      <button class="btn btn-small" id="disable-2fa" style="background:rgba(248,113,113,.2);color:#f87171;border-color:rgba(248,113,113,.3)">Tắt 2FA</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Mật Khẩu</h2>
+    <p>Đổi mật khẩu hoặc đăng xuất khỏi các thiết bị.</p>
+    <a href="/account/password-reset" class="btn btn-primary btn-small">Đặt lại mật khẩu</a>
+  </div>
+
+  <div class="card">
+    <h2>Đăng Xuất</h2>
+    <p>Đăng xuất khỏi tài khoản trên trình duyệt này.</p>
+    <button class="btn btn-small" id="logout-btn" style="background:rgba(100,116,139,.2);color:#94a3b8;border-color:rgba(100,116,139,.3)">Đăng xuất</button>
+  </div>
+
+  <p><a href="/" class="link">Quay lại trang chủ</a></p>
+  <div id="message"></div>
+</main>
+
+<script>
+const message = document.getElementById('message');
+function showMsg(text, isErr) {
+  message.textContent = text;
+  message.style.color = isErr ? '#f87171' : '#74e274';
+}
+
+async function loadStatus() {
+  try {
+    const res = await fetch('/api/auth/totp-verify');
+    const data = await res.json();
+    const statusEl = document.getElementById('2fa-status');
+    if (data.ok && data.totp_enabled) {
+      statusEl.innerHTML = '<span class="status">Đã bật</span>';
+      document.getElementById('enable-2fa').style.display = 'none';
+      document.getElementById('disable-2fa').style.display = 'inline-block';
+    } else {
+      statusEl.innerHTML = '<span class="status off">Chưa bật</span>';
+      document.getElementById('enable-2fa').style.display = 'inline-block';
+      document.getElementById('disable-2fa').style.display = 'none';
+    }
+  } catch (e) {
+    document.getElementById('2fa-status').innerHTML = '<span class="status off">Không thể kiểm tra</span>';
+  }
+}
+loadStatus();
+
+document.getElementById('disable-2fa').addEventListener('click', async () => {
+  if (!confirm('Tắt 2FA sẽ làm tài khoản của bạn kém an toàn hơn. Tiếp tục?')) return;
+  const pwd = prompt('Nhập mật khẩu để xác nhận:');
+  if (!pwd) return;
+  showMsg('Đang xử lý...', false);
+  try {
+    const res = await fetch('/api/auth/totp-disable', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: pwd })
+    });
+    const result = await res.json();
+    if (result.ok) {
+      showMsg('2FA đã tắt.', false);
+      loadStatus();
+    } else {
+      showMsg(result.error || 'Không thể tắt 2FA', true);
+    }
+  } catch (e) { showMsg('Lỗi kết nối', true); }
+});
+
+document.getElementById('logout-btn').addEventListener('click', async () => {
+  try {
+    await fetch('/api/auth/logout', { method: 'POST' });
+    window.location.href = '/login';
+  } catch (e) { showMsg('Lỗi kết nối', true); }
+});
+</script>
+</body>
+</html>

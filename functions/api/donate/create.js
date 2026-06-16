@@ -18,6 +18,8 @@ function randomId(prefix = "") {
   return prefix ? `${prefix}_${hex}` : hex;
 }
 
+import { getUserFromSessionCookie, check2FAGate } from "../../_lib/session.js";
+
 export const onRequestPost = async ({ request, env }) => {
   if (!env.PAY_IAI_ONE_API_KEY) {
     return errorJson("PAYMENT_NOT_CONFIGURED", "Donation payments not yet activated.", 503);
@@ -28,6 +30,15 @@ export const onRequestPost = async ({ request, env }) => {
     body = await request.json();
   } catch {
     return errorJson("INVALID_JSON", "Request body must be valid JSON.");
+  }
+
+  // 2FA gate for authenticated users with payment 2FA enabled
+  if (env.DB) {
+    const sessionUser = await getUserFromSessionCookie(env.DB, request);
+    if (sessionUser) {
+      const gate = await check2FAGate(env.DB, sessionUser, "payment", body.totp_code);
+      if (!gate.ok) return errorJson(gate.error, gate.message, 403);
+    }
   }
 
   const amountVnd = parseInt(body.amount_vnd || body.amount || 0, 10);

@@ -8,6 +8,8 @@
  * Falls back to local verification if key not set.
  */
 
+import { getUserFromSessionCookie, check2FAGate } from "../../_lib/session.js";
+
 const TRUST_IAI_BASE = "https://trust.iai.one/api/v1";
 
 export async function onRequestPost(context) {
@@ -18,6 +20,13 @@ export async function onRequestPost(context) {
   let body;
   try { body = await request.json(); } catch {
     return new Response(JSON.stringify({ ok: false, error: 'Invalid JSON' }), { status: 400 });
+  }
+
+  // 2FA gate for authenticated users with trust 2FA enabled
+  const sessionUser = await getUserFromSessionCookie(db, request);
+  if (sessionUser) {
+    const gate = await check2FAGate(db, sessionUser, "trust", body.totp_code);
+    if (!gate.ok) return new Response(JSON.stringify(gate), { status: 403, headers: { 'Content-Type': 'application/json' } });
   }
 
   const { entity_type, entity_id, evidence_urls } = body || {};

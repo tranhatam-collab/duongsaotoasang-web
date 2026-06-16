@@ -77,13 +77,27 @@ function showMsg(text, isErr) {
 }
 
 // Google Sign In
+let googleClientId = null;
+async function initGoogle() {
+  try {
+    const res = await fetch('/api/auth/google-config');
+    const cfg = await res.json();
+    if (cfg.client_id) googleClientId = cfg.client_id;
+  } catch (e) { console.warn('google-config failed', e); }
+}
+initGoogle();
+
 document.getElementById('google-signin').addEventListener('click', () => {
   if (typeof google === 'undefined') {
     showMsg('Google login chưa sẵn sàng, vui lòng thử lại.', true);
     return;
   }
+  if (!googleClientId) {
+    showMsg('Google OAuth chưa được cấu hình.', true);
+    return;
+  }
   google.accounts.id.initialize({
-    client_id: 'YOUR_GOOGLE_CLIENT_ID',
+    client_id: googleClientId,
     callback: handleGoogleCredential
   });
   google.accounts.id.prompt();
