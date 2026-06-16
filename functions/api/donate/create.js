@@ -78,8 +78,12 @@ export const onRequestPost = async ({ request, env }) => {
     }
   }
 
-  const amountVnd = parseInt(body.amount_vnd || body.amount || 0, 10);
-  if (!amountVnd || amountVnd < 5000) {
+  const amountRaw = body.amount_vnd || body.amount || 0;
+  const amountVnd = Number(amountRaw);
+  if (isNaN(amountVnd) || !Number.isInteger(amountVnd)) {
+    return errorJson("INVALID_AMOUNT", "Amount must be a valid integer.");
+  }
+  if (amountVnd < 5000) {
     return errorJson("INVALID_AMOUNT", "Minimum donation is 5,000 VND.");
   }
   if (amountVnd > 100_000_000) {

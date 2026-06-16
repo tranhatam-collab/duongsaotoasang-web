@@ -117,6 +117,24 @@ export const onRequestPost = async ({ request, env }) => {
       await env.DB.prepare(`
         UPDATE donation_webhook_log SET processed = 1 WHERE event_id = ?
       `).bind(eventId).run();
+    } else if (donationId && (eventType === "payment.failed" || eventType === "payment.canceled")) {
+      // Handle payment failure/cancellation
+      await env.DB.prepare(`
+        UPDATE donations SET status = 'failed', updated_at = datetime('now') WHERE id = ?
+      `).bind(donationId).run();
+
+      await env.DB.prepare(`
+        UPDATE donation_webhook_log SET processed = 1 WHERE event_id = ?
+      `).bind(eventId).run();
+    } else if (donationId && eventType === "payment.refunded") {
+      // Handle payment refund
+      await env.DB.prepare(`
+        UPDATE donations SET status = 'refunded', updated_at = datetime('now') WHERE id = ?
+      `).bind(donationId).run();
+
+      await env.DB.prepare(`
+        UPDATE donation_webhook_log SET processed = 1 WHERE event_id = ?
+      `).bind(eventId).run();
     }
   }
 

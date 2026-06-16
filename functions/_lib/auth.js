@@ -31,6 +31,13 @@ export async function requireAccessJWT(request, env) {
 
   const teamDomain = env.CF_ACCESS_TEAM_DOMAIN;
   if (!teamDomain) {
+    // Security: Fail-closed in production
+    if (env.ENVIRONMENT === 'production') {
+      throw new Response(
+        JSON.stringify({ ok: false, error: "ACCESS_JWT_UNCONFIGURED", message: "CF_ACCESS_TEAM_DOMAIN not configured in production" }),
+        { status: 503, headers: { "content-type": "application/json" } }
+      );
+    }
     // Dev mode: skip verification but still decode the JWT
     const payload = _decodeJwtPayload(token);
     if (!payload) {
@@ -100,8 +107,15 @@ export function requireStaffRole(jwtPayload, env) {
     .filter(Boolean);
 
   if (staffEmails.length === 0) {
-    // No allow-list configured — allow all authenticated users (dev default)
-    console.warn("[auth] STAFF_EMAILS not set — all Access JWT users are treated as staff");
+    // Security: Fail-closed in production
+    if (env.ENVIRONMENT === 'production') {
+      throw new Response(
+        JSON.stringify({ ok: false, error: "STAFF_NOT_CONFIGURED", message: "STAFF_EMAILS not configured in production" }),
+        { status: 503, headers: { "content-type": "application/json" } }
+      );
+    }
+    // Dev mode: allow all authenticated users
+    console.warn("[auth] STAFF_EMAILS not set — dev mode, all Access JWT users are treated as staff");
     return true;
   }
 

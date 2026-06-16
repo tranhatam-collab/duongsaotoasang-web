@@ -18,9 +18,9 @@ export async function onRequestPost(context) {
       return new Response(JSON.stringify({ error: 'Missing email or password' }), { status: 400 });
     }
     
-    // Fetch user with password hash metadata
+    // Fetch user with password hash metadata and 2FA status
     const row = await db.prepare(
-      'SELECT id, email, password_hash, password_salt, password_iterations, password_algorithm, display_name, role FROM users WHERE email = ?'
+      'SELECT id, email, password_hash, password_salt, password_iterations, password_algorithm, display_name, role, totp_enabled FROM users WHERE email = ?'
     ).bind(normalizedEmail).first();
     
     if (!row) {
@@ -71,13 +71,18 @@ export async function onRequestPost(context) {
         'INSERT INTO sessions (id, user_id, session_token_hash, ip_address, created_at, expires_at) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, ?)'
       ).bind(crypto.randomUUID(), row.id, tempHash, context.request.headers.get('CF-Connecting-IP') || 'unknown', tempExpires).run();
       
+      const allowedOrigin = context.env.PAY_IAI_ONE_CALLBACK_BASE || "https://duongsaotoasang.com";
       return new Response(JSON.stringify({
         ok: true,
         requires_2fa: true,
         temp_token: tempToken,
         user: { id: row.id, display_name: row.display_name }
       }), {
-        headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+        headers: { 
+          'Content-Type': 'application/json', 
+          'Access-Control-Allow-Origin': allowedOrigin,
+          'Access-Control-Allow-Credentials': 'true'
+        }
       });
     }
     
@@ -103,6 +108,7 @@ export async function onRequestPost(context) {
       context.request.headers.get('User-Agent') || 'unknown'
     ).run();
     
+    const allowedOrigin = context.env.PAY_IAI_ONE_CALLBACK_BASE || "https://duongsaotoasang.com";
     return new Response(JSON.stringify({ 
       ok: true, 
       user: { 
@@ -113,7 +119,8 @@ export async function onRequestPost(context) {
     }), {
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': allowedOrigin,
+        'Access-Control-Allow-Credentials': 'true',
         'Set-Cookie': `dsts_session=${sessionToken}; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=2592000`
       }
     });

@@ -18,6 +18,22 @@ export async function onRequestPost(context) {
       return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
     }
     
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(normalizedEmail)) {
+      return new Response(JSON.stringify({ error: 'Invalid email format' }), { status: 400 });
+    }
+    
+    // Validate password strength
+    if (password.length < 8 || !/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
+      return new Response(JSON.stringify({ error: 'Password must be at least 8 characters with uppercase and number' }), { status: 400 });
+    }
+    
+    // Validate display_name
+    if (display_name.length > 100 || display_name.length < 2) {
+      return new Response(JSON.stringify({ error: 'Display name must be 2-100 characters' }), { status: 400 });
+    }
+    
     // Check existing
     const existing = await db.prepare('SELECT id FROM users WHERE email = ?').bind(normalizedEmail).first();
     if (existing) {
@@ -70,10 +86,12 @@ export async function onRequestPost(context) {
       context.request.headers.get('User-Agent') || 'unknown'
     ).run();
     
+    const allowedOrigin = context.env.PAY_IAI_ONE_CALLBACK_BASE || "https://duongsaotoasang.com";
     return new Response(JSON.stringify({ ok: true, user_id: userId }), {
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': allowedOrigin,
+        'Access-Control-Allow-Credentials': 'true',
         'Set-Cookie': `dsts_session=${sessionToken}; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=2592000`
       }
     });

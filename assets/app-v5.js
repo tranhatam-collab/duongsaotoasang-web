@@ -606,6 +606,8 @@
     if (footer && !footer.textContent.includes("Angel Edu Tam Foundation")) {
       const disclosure = document.createElement("p");
       disclosure.className = "dsts-entity-disclosure";
+      // Security: t.entityDisclosure is from trusted translation object (not user input)
+      // Contains static HTML for formatting (<strong>, <a> tags)
       disclosure.innerHTML = t.entityDisclosure;
       disclosure.style.cssText = "margin:10px 0 0;color:#8f9bad;font-size:13px;line-height:1.65;";
       footer.appendChild(disclosure);

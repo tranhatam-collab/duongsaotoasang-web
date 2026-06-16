@@ -55,7 +55,13 @@
         const el = document.createElement('div');
         el.className = 'dsts-map-cluster';
         el.style.cssText = `position:absolute;left:${c.x}px;top:${c.y}px;transform:translate(-50%,-50%)`;
-        el.innerHTML = `<span class="dsts-map-cluster__count">${c.count}</span>`;
+        
+        // Security: Use textContent instead of innerHTML to prevent XSS
+        const countSpan = document.createElement('span');
+        countSpan.className = 'dsts-map-cluster__count';
+        countSpan.textContent = c.count;
+        el.appendChild(countSpan);
+        
         if (opts.onClick) {
           el.style.cursor = 'pointer';
           el.addEventListener('click', () => opts.onClick(c));
