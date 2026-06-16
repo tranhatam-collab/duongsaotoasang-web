@@ -1,7 +1,7 @@
 // DSTS Auth — Login
 // POST /api/auth/login
 
-import { verifyPassword, generateSessionToken, hashSessionToken, validateCsrfToken } from '../../_lib/auth.js';
+import { verifyPassword, generateSessionToken, hashSessionToken } from '../../_lib/auth.js';
 import { checkRateLimit, logRateLimitViolation } from '../../_lib/rate-limit.js';
 
 export async function onRequestPost(context) {
@@ -43,12 +43,6 @@ export async function onRequestPost(context) {
     
     // Verify password using PBKDF2
     const isValid = await verifyPassword(password, row.password_hash, row.password_salt, row.password_iterations || 100000);
-    
-    // Validate CSRF token for state-changing request
-    const csrfToken = body.csrf_token;
-    if (!csrfToken) {
-      return new Response(JSON.stringify({ error: 'CSRF token required' }), { status: 403 });
-    }
     
     // Rate limiting check
     const ip = context.request.headers.get('CF-Connecting-IP') || 'unknown';

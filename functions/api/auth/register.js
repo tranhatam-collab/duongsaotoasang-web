@@ -1,7 +1,7 @@
 // DSTS Auth — Registration
 // POST /api/auth/register
 
-import { hashPassword, generateSessionToken, hashSessionToken, validateCsrfToken } from '../../_lib/auth.js';
+import { hashPassword, generateSessionToken, hashSessionToken } from '../../_lib/auth.js';
 
 export async function onRequestPost(context) {
   const db = context.env.DB;
@@ -34,12 +34,6 @@ export async function onRequestPost(context) {
       return new Response(JSON.stringify({ error: 'Display name must be 2-100 characters' }), { status: 400 });
     }
     
-    // Validate CSRF token for state-changing request
-    const csrfToken = body.csrf_token;
-    if (!csrfToken) {
-      return new Response(JSON.stringify({ error: 'CSRF token required' }), { status: 403 });
-    }
-    
     // Check existing
     const existing = await db.prepare('SELECT id FROM users WHERE email = ?').bind(normalizedEmail).first();
     if (existing) {
@@ -65,6 +59,7 @@ export async function onRequestPost(context) {
     const role = 'member';
     
     // Use transaction to ensure data consistency
+    let userId, sessionToken;
     await db.prepare('BEGIN TRANSACTION').run();
     try {
       // Insert user with hashed password
@@ -73,9 +68,9 @@ export async function onRequestPost(context) {
       ).bind(normalizedEmail, hash, salt, iterations, 'PBKDF2-SHA-256', display_name, role, 'active').run();
       
       // Generate session token
-      const sessionToken = await generateSessionToken();
+      sessionToken = await generateSessionToken();
       const sessionTokenHash = await hashSessionToken(sessionToken);
-      const userId = result.meta.last_row_id;
+      userId = result.meta.last_row_id;
       
       // Create session (expires in 30 days)
       const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
@@ -84,40 +79,6 @@ export async function onRequestPost(context) {
       ).bind(crypto.randomUUID(), userId, sessionTokenHash, context.request.headers.get('CF-Connecting-IP') || 'unknown', expiresAt).run();
       
       await db.prepare('COMMIT').run();
-      
-      // Log successful auth attempt
-      await db.prepare(
-        'INSERT INTO auth_attempts (id, identifier, attempt_type, success, ip_address, user_agent, attempted_at) VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)'
-      ).bind(
-        crypto.randomUUID(),
-        normalizedEmail,
-        'register',
-        1,
-        context.request.headers.get('CF-Connecting-IP') || 'unknown',
-        context.request.headers.get('User-Agent') || 'unknown'
-      ).run();
-      
-      // Log failed attempt for existing email
-      await db.prepare(
-        'INSERT INTO auth_attempts (id, identifier, attempt_type, success, ip_address, user_agent, attempted_at) VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)'
-      ).bind(
-        crypto.randomUUID(),
-        normalizedEmail,
-        'register',
-        0,
-        context.request.headers.get('CF-Connecting-IP') || 'unknown',
-        context.request.headers.get('User-Agent') || 'unknown'
-      ).run();
-      
-      const allowedOrigin = context.env.PAY_IAI_ONE_CALLBACK_BASE || "https://duongsaotoasang.com";
-      return new Response(JSON.stringify({ ok: true, user_id: userId }), {
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': allowedOrigin,
-          'Access-Control-Allow-Credentials': 'true',
-          'Set-Cookie': `__Host-dsts_session=${sessionToken}; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=2592000`
-        }
-      });
     } catch (e) {
       await db.prepare('ROLLBACK').run();
       console.error('[auth/register] Transaction failed:', e);

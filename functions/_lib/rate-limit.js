@@ -29,7 +29,6 @@ export async function checkRateLimit(db, identifier, maxAttempts = 5, windowMinu
     
     let retryAfter = 0;
     if (oldestAttempt) {
-      const oldestTime = new Date(oldestAttempt.attempted_at).getTime();
       const windowEnd = new Date(Date.now() + windowMinutes * 60 * 1000).getTime();
       retryAfter = Math.max(0, Math.ceil((windowEnd - Date.now()) / 1000));
     }
