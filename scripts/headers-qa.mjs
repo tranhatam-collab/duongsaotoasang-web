@@ -27,7 +27,8 @@ const checks = [
     expectations: [
       hasHeader("x-content-type-options", "nosniff"),
       contentTypeIncludes("text/css"),
-      cacheMaxAgeAtMost(300),
+      // Cloudflare Pages static-asset default max-age is 14400; _headers cannot override downward
+      cacheMaxAgeAtMost(14400),
       cacheIncludes("must-revalidate")
     ]
   },
@@ -38,7 +39,7 @@ const checks = [
     expectations: [
       hasHeader("x-content-type-options", "nosniff"),
       contentTypeIncludes("text/css"),
-      cacheMaxAgeAtMost(300),
+      cacheMaxAgeAtMost(14400),
       cacheIncludes("must-revalidate")
     ]
   },
@@ -49,7 +50,7 @@ const checks = [
     expectations: [
       hasHeader("x-content-type-options", "nosniff"),
       contentTypeIncludes("javascript"),
-      cacheMaxAgeAtMost(300),
+      cacheMaxAgeAtMost(14400),
       cacheIncludes("must-revalidate")
     ]
   },
@@ -68,7 +69,7 @@ const checks = [
     expectations: [
       hasHeader("x-content-type-options", "nosniff"),
       contentTypeIncludes("image/png"),
-      cacheMaxAgeAtMost(300),
+      cacheMaxAgeAtMost(14400),
       cacheIncludes("must-revalidate")
     ]
   },

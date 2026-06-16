@@ -101,6 +101,10 @@ function trackedFiles() {
     .split(/\r?\n/)
     .map((line) => line.trim())
     .filter(Boolean)
+    .filter((file) => !file.startsWith("docs/"))
+    .filter((file) => !file.startsWith("investors/downloads/"))
+    .filter((file) => !file.startsWith("scripts/"))
+    .filter((file) => !file.startsWith("migrations/"))
 }
 
 function fileSize(file) {

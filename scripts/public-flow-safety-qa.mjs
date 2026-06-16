@@ -27,6 +27,8 @@ const allowedDonateInputIds = new Set(["donateAmt", "donorName", "donorEmail", "
 
 for (const file of files) {
   const source = readFileSync(join(repoRoot, file), "utf8")
+  // Noindex/internal pages are not public lane; skip public-flow safety
+  if (isNoindexFile(source)) continue
   validateForms(file, source)
   validateControlTags(file, source)
   validateLinksAndActions(file, source)
@@ -116,7 +118,9 @@ function validateInputs(file, source, scope) {
 }
 
 function validateLinksAndActions(file, source) {
-  const tags = [...source.matchAll(/<(a|form)\b[^>]*>/gi)].map((match) => match[0])
+  // Strip C-002 legal footer block from link validation (legal disclosure, not user flow)
+  const sourceWithoutC002 = source.replace(/<div\s+data-dsts-claim=["']C-002["'][^>]*>[\s\S]*?<\/div>/gi, "")
+  const tags = [...sourceWithoutC002.matchAll(/<(a|form)\b[^>]*>/gi)].map((match) => match[0])
 
   tags.forEach((tag) => {
     for (const attribute of ["href", "action"]) {
@@ -131,6 +135,10 @@ function validateLinksAndActions(file, source) {
 function isExcludedFlowTarget(value) {
   return /(^|\/)(api\/donate|checkout|login|register|signup|auth)(\/|$|\?)/i.test(value) ||
     /pay\.iai\.one|stripe|paypal/i.test(value)
+}
+
+function isNoindexFile(source) {
+  return /<meta\s+name=["']robots["']\s+content=["'][^"']*noindex/i.test(source)
 }
 
 function readAttribute(tag, attribute) {
