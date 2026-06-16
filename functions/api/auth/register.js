@@ -78,6 +78,6 @@ export async function onRequestPost(context) {
       }
     });
   } catch (e) {
-    return new Response(JSON.stringify({ error: 'Registration failed' }), { status: 500 });
+    return new Response(JSON.stringify({ error: 'Registration failed', detail: String(e?.message || e) }), { status: 500 });
   }
 }
