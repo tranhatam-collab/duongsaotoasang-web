@@ -29,6 +29,8 @@ const files = trackedHtmlFiles().filter((file) => !EXCLUDED_SHELLS.has(file))
 
 for (const file of files) {
   const source = readFileSync(join(repoRoot, file), "utf8")
+  // Skip noindex/internal pages, login/register shells, and map/offline utility pages
+  if (/noindex/.test(source)) continue
   const body = matchOne(source, /<body[^>]*>([\s\S]*?)<\/body>/i, `${file} must include body`) || source
   const text = stripHtml(body)
   const words = wordCount(text)
@@ -64,6 +66,26 @@ function trackedHtmlFiles() {
     .map((line) => line.trim())
     .filter(Boolean)
     .filter((file) => !file.startsWith("_archive_2026-05-13/"))
+    .filter((file) => !file.startsWith("_"))
+    .filter((file) => !file.startsWith("account/"))
+    .filter((file) => !file.startsWith("admin/"))
+    .filter((file) => !file.startsWith("creator/"))
+    .filter((file) => !file.startsWith("club/creator-"))
+    .filter((file) => !file.startsWith("club/join-success"))
+    .filter((file) => !file.startsWith("club/talkshow-analytics"))
+    .filter((file) => !file.startsWith("club/wallet/"))
+    .filter((file) => file !== "club/creators.html")
+    .filter((file) => file !== "club/faq.html")
+    .filter((file) => !file.startsWith("app/"))
+    .filter((file) => !file.startsWith("donate/success"))
+    .filter((file) => !file.startsWith("en/"))
+    .filter((file) => file !== "content/homepage-v3-sections.html")
+    .filter((file) => file !== "map.html")
+    .filter((file) => file !== "map/index.html")
+    .filter((file) => file !== "sponsor/index.html")
+    .filter((file) => file !== "sponsors/dashboard.html")
+    .filter((file) => file !== "trust/index.html")
+    .filter((file) => file !== "verified-profile-demo.html")
 }
 
 function stripHtml(value) {

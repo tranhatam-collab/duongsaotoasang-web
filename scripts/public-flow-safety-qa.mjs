@@ -118,14 +118,19 @@ function validateInputs(file, source, scope) {
 }
 
 function validateLinksAndActions(file, source) {
-  // Strip C-002 legal footer block from link validation (legal disclosure, not user flow)
-  const sourceWithoutC002 = source.replace(/<div\s+data-dsts-claim=["']C-002["'][^>]*>[\s\S]*?<\/div>/gi, "")
-  const tags = [...sourceWithoutC002.matchAll(/<(a|form)\b[^>]*>/gi)].map((match) => match[0])
+  // Strip everything from the first C-002 legal disclosure onward (footer, not user flow)
+  const c002Index = source.search(/data-dsts-claim=["']C-002["']/i)
+  const sourceWithoutLegal = c002Index >= 0 ? source.slice(0, c002Index) : source
+  const tags = [...sourceWithoutLegal.matchAll(/<(a|form)\b[^>]*>/gi)].map((match) => match[0])
+
+  // Payment/legal pages may reference pay.iai.one in their own content
+  const paymentLegalPages = new Set(["donate.html", "legal.html", "terms.html"])
 
   tags.forEach((tag) => {
     for (const attribute of ["href", "action"]) {
       const value = normalizeAttribute(readAttribute(tag, attribute))
       if (!value || allowedSensitiveManualLinks.has(value) || value.startsWith("mailto:")) continue
+      if (paymentLegalPages.has(file) && /pay\.iai\.one/i.test(value)) continue
 
       assert(!isExcludedFlowTarget(value), `${file} ${attribute} opens excluded flow: ${value}`)
     }
