@@ -257,7 +257,7 @@
 
 </head>
 
-<body>
+<body data-dsts-contact-mode="manual-only">
 
 <div id="siteHeader"></div>
 
@@ -293,31 +293,17 @@ Hãy để lại thông tin hoặc các câu hỏi của bạn. Chúng tôi sẽ
 
 <h2 style="margin-top:0">Kênh liên hệ công khai</h2>
 
-<div class="contact-panel">
-<h3>Gửi tin nhắn cho DSTS</h3>
-<form id="contactForm" class="contact-form" style="gap:14px;margin-top:10px">
-  <div class="form-group">
-    <label for="cf-name">Họ và tên / Name *</label>
-    <input type="text" id="cf-name" name="name" required maxlength="100" placeholder="Nguyễn Văn A">
-  </div>
-  <div class="form-group">
-    <label for="cf-email">Email *</label>
-    <input type="email" id="cf-email" name="email" required maxlength="100" placeholder="you@example.com">
-  </div>
-  <div class="form-group">
-    <label for="cf-subject">Chủ đề / Subject</label>
-    <input type="text" id="cf-subject" name="subject" maxlength="200" placeholder="Hợp tác, báo lỗi, chương trình, press...">
-  </div>
-  <div class="form-group">
-    <label for="cf-message">Nội dung / Message *</label>
-    <textarea id="cf-message" name="message" required maxlength="2000" rows="5" placeholder="Nhập nội dung bạn muốn trao đổi..."></textarea>
-  </div>
-  <div class="contact-actions" style="margin-top:4px">
-    <button type="submit" class="primary" id="cf-submit">Gửi tin nhắn</button>
-    <span id="cf-status" style="font-size:14px;color:#94a3b8"></span>
-  </div>
-  <p class="status-note" style="margin-top:8px">Phản hồi trong vòng 3-5 ngày làm việc. Không gửi thông tin nhạy cảm, giấy tờ định danh hoặc thông tin thanh toán.</p>
-</form>
+<div class="contact-panel" data-dsts-contact-mode="manual-only">
+<h3>Gửi tin nhắn cho DSTS (thủ công)</h3>
+<p class="status-note" style="margin-top:8px">Kênh liên hệ công khai hiện chỉ hỗ trợ gửi email thủ công. Phản hồi trong vòng 3-5 ngày làm việc. Không gửi thông tin nhạy cảm, giấy tờ định danh hoặc thông tin thanh toán.</p>
+<div class="contact-actions" style="margin-top:14px">
+  <a class="primary" href="mailto:contact@duongsaotoasang.com?subject=DSTS%20-%20Yeu%20cau%20lien%20he%20thu%20cong">Gửi email thủ công</a>
+</div>
+<ul style="margin-top:14px">
+  <li>Ghi rõ chủ đề: hợp tác, báo lỗi website, chương trình, press, Movement hoặc Guardian-first.</li>
+  <li>Không kỳ vọng phản hồi tự động; đây là kênh liên hệ thủ công.</li>
+  <li>Nếu liên quan payment hoặc tài khoản, chỉ gửi yêu cầu trạng thái chung, không gửi thông tin nhạy cảm.</li>
+</ul>
 </div>
 
 <div class="contact-panel" style="margin-top:20px" data-dsts-contact-mode="manual-only">
@@ -464,49 +450,6 @@ Dù bạn là một nghệ sĩ, một nhà khoa học, một doanh nhân, một 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     DSTS.mountSiteChrome({ active: 'contact' });
-
-    const form = document.getElementById('contactForm');
-    const status = document.getElementById('cf-status');
-    const btn = document.getElementById('cf-submit');
-    if (!form) return;
-
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      btn.disabled = true;
-      btn.textContent = 'Đang gửi...';
-      status.textContent = '';
-      status.style.color = '#94a3b8';
-
-      const body = {
-        name: form.name.value.trim(),
-        email: form.email.value.trim(),
-        subject: form.subject.value.trim(),
-        message: form.message.value.trim()
-      };
-
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify(body)
-        });
-        const data = await res.json().catch(() => ({}));
-        if (res.ok && data.ok) {
-          status.textContent = 'Đã gửi. Chúng tôi sẽ phản hồi trong 3-5 ngày làm việc.';
-          status.style.color = '#86efac';
-          form.reset();
-        } else {
-          status.textContent = data.error || 'Gửi thất bại. Vui lòng thử lại.';
-          status.style.color = '#fca5a5';
-        }
-      } catch (err) {
-        status.textContent = 'Không thể kết nối. Vui lòng thử lại sau.';
-        status.style.color = '#fca5a5';
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Gửi tin nhắn';
-      }
-    });
   });
 </script>
 

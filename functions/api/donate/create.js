@@ -18,7 +18,44 @@ function randomId(prefix = "") {
   return prefix ? `${prefix}_${hex}` : hex;
 }
 
-import { getUserFromSessionCookie, check2FAGate } from "../../_lib/session.js";
+// Inline 2FA helpers — Cloudflare Pages Functions ESM import from _lib/ can fail
+async function getSessionUser(db, request) {
+  const cookie = request.headers.get("Cookie") || "";
+  const m = cookie.match(/dsts_session=([^;]+)/);
+  if (!m) return null;
+  const hash = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(m[1]))), b => b.toString(16).padStart(2,"0")).join("");
+  return db.prepare("SELECT u.id, u.totp_enabled, u.totp_secret FROM users u JOIN sessions s ON s.user_id=u.id WHERE s.session_token_hash=? AND s.revoked_at IS NULL AND s.expires_at>datetime('now')").bind(hash).first();
+}
+async function totpVerify(secret, code, win = 1) {
+  if (!secret || !code || code.length !== 6) return false;
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+  const cleaned = secret.toUpperCase().replace(/[^A-Z2-7]/g, "");
+  let bits = "";
+  for (const c of cleaned) bits += alphabet.indexOf(c).toString(2).padStart(5, "0");
+  const bytes = new Uint8Array(Math.floor(bits.length / 8));
+  for (let i = 0; i < bytes.length; i++) bytes[i] = parseInt(bits.slice(i * 8, (i + 1) * 8), 2);
+  const key = await crypto.subtle.importKey("raw", bytes, { name: "HMAC", hash: "SHA-1" }, false, ["sign"]);
+  const counter = Math.floor(Date.now() / 1000 / 30);
+  for (let w = -win; w <= win; w++) {
+    const cb = new ArrayBuffer(8);
+    new DataView(cb).setUint32(0, 0, false);
+    new DataView(cb).setUint32(4, counter + w, false);
+    const sig = await crypto.subtle.sign("HMAC", key, new Uint8Array(cb));
+    const h = new Uint8Array(sig);
+    const off = h[h.length - 1] & 0x0f;
+    const bin = ((h[off] & 0x7f) << 24) | ((h[off + 1] & 0xff) << 16) | ((h[off + 2] & 0xff) << 8) | (h[off + 3] & 0xff);
+    if (String(bin % 10 ** 6).padStart(6, "0") === code) return true;
+  }
+  return false;
+}
+async function check2FAGate(db, user, code) {
+  if (!user || user.totp_enabled !== 1) return { ok: true };
+  const sec = await db.prepare("SELECT require_2fa_for_payment FROM user_security_settings WHERE user_id=?").bind(user.id).first();
+  if (!sec || sec.require_2fa_for_payment !== 1) return { ok: true };
+  if (!code) return { ok: false, error: "2FA_REQUIRED", message: "Mã xác thực 2 bước là bắt buộc." };
+  if (!await totpVerify(user.totp_secret, code)) return { ok: false, error: "INVALID_2FA_CODE", message: "Mã xác thực không đúng." };
+  return { ok: true };
+}
 
 export const onRequestPost = async ({ request, env }) => {
   if (!env.PAY_IAI_ONE_API_KEY) {
@@ -34,9 +71,9 @@ export const onRequestPost = async ({ request, env }) => {
 
   // 2FA gate for authenticated users with payment 2FA enabled
   if (env.DB) {
-    const sessionUser = await getUserFromSessionCookie(env.DB, request);
+    const sessionUser = await getSessionUser(env.DB, request);
     if (sessionUser) {
-      const gate = await check2FAGate(env.DB, sessionUser, "payment", body.totp_code);
+      const gate = await check2FAGate(env.DB, sessionUser, body.totp_code);
       if (!gate.ok) return errorJson(gate.error, gate.message, 403);
     }
   }
