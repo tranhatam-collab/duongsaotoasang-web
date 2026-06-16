@@ -30,8 +30,9 @@ export async function onRequestGet(context) {
     params.push(limit);
     
     const { results } = await db.prepare(sql).bind(...params).all();
+    const allowedOrigin = context.env.PAY_IAI_ONE_CALLBACK_BASE || "https://duongsaotoasang.com";
     return new Response(JSON.stringify({ ok: true, count: results?.length || 0, data: results || [] }), {
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': allowedOrigin, 'Access-Control-Allow-Credentials': 'true' }
     });
   } catch (e) {
     return new Response(JSON.stringify({ error: e.message }), { status: 500 });

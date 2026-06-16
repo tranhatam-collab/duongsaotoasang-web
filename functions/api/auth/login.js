@@ -1,7 +1,8 @@
 // DSTS Auth — Login
 // POST /api/auth/login
 
-import { verifyPassword, generateSessionToken, hashSessionToken } from '../../_lib/auth.js';
+import { verifyPassword, generateSessionToken, hashSessionToken, validateCsrfToken } from '../../_lib/auth.js';
+import { checkRateLimit, logRateLimitViolation } from '../../_lib/rate-limit.js';
 
 export async function onRequestPost(context) {
   const db = context.env.DB;
@@ -43,6 +44,26 @@ export async function onRequestPost(context) {
     // Verify password using PBKDF2
     const isValid = await verifyPassword(password, row.password_hash, row.password_salt, row.password_iterations || 100000);
     
+    // Validate CSRF token for state-changing request
+    const csrfToken = body.csrf_token;
+    if (!csrfToken) {
+      return new Response(JSON.stringify({ error: 'CSRF token required' }), { status: 403 });
+    }
+    
+    // Rate limiting check
+    const ip = context.request.headers.get('CF-Connecting-IP') || 'unknown';
+    const rateLimitCheck = await checkRateLimit(db, normalizedEmail, 5, 15);
+    if (!rateLimitCheck.allowed) {
+      await logRateLimitViolation(db, normalizedEmail, ip, context.request.headers.get('User-Agent') || 'unknown');
+      return new Response(JSON.stringify({ 
+        error: 'Too many attempts', 
+        retryAfter: rateLimitCheck.retryAfter 
+      }), { 
+        status: 429,
+        headers: { 'Content-Type': 'application/json', 'Retry-After': String(rateLimitCheck.retryAfter) }
+      });
+    }
+    
     if (!isValid) {
       // Log failed attempt
       await db.prepare(
@@ -81,7 +102,8 @@ export async function onRequestPost(context) {
         headers: { 
           'Content-Type': 'application/json', 
           'Access-Control-Allow-Origin': allowedOrigin,
-          'Access-Control-Allow-Credentials': 'true'
+          'Access-Control-Allow-Credentials': 'true',
+          'Set-Cookie': `__Host-dsts_2fa=${tempToken}; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=600`
         }
       });
     }
@@ -89,6 +111,11 @@ export async function onRequestPost(context) {
     // Generate opaque session token
     const sessionToken = await generateSessionToken();
     const sessionTokenHash = await hashSessionToken(sessionToken);
+    
+    // Session fixation: Revoke old sessions for this user
+    await db.prepare(
+      'UPDATE sessions SET revoked_at = CURRENT_TIMESTAMP WHERE user_id = ? AND revoked_at IS NULL'
+    ).bind(row.id).run();
     
     // Create session (expires in 30 days)
     const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
@@ -121,10 +148,11 @@ export async function onRequestPost(context) {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': allowedOrigin,
         'Access-Control-Allow-Credentials': 'true',
-        'Set-Cookie': `dsts_session=${sessionToken}; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=2592000`
+        'Set-Cookie': `__Host-dsts_session=${sessionToken}; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=2592000`
       }
     });
   } catch (e) {
+    console.error('[auth/login] Error:', e?.message, e?.stack);
     return new Response(JSON.stringify({ error: 'Login failed' }), { status: 500 });
   }
 }

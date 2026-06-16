@@ -168,12 +168,19 @@ export function getClientIp(request) {
 /**
  * Add CORS headers. Call this on all responses for public endpoints.
  * For admin endpoints, Cloudflare Access handles auth so CORS can be restrictive.
+ * 
+ * SECURITY: Use specific origin instead of wildcard to prevent session token theft
  */
-export function addCors(response, origin = "*") {
+export function addCors(response, env) {
+  const allowedOrigin = env.PAY_IAI_ONE_CALLBACK_BASE || env.PAY_IAI_ONE_SITE_CODE 
+    ? `https://${env.PAY_IAI_ONE_SITE_CODE}.pay.iai.one` 
+    : "https://duongsaotoasang.com";
+  
   const headers = new Headers(response.headers);
-  headers.set("Access-Control-Allow-Origin", origin);
+  headers.set("Access-Control-Allow-Origin", allowedOrigin);
+  headers.set("Access-Control-Allow-Credentials", "true");
   headers.set("Access-Control-Allow-Methods", "GET, POST, PATCH, OPTIONS");
-  headers.set("Access-Control-Allow-Headers", "Content-Type, Idempotency-Key");
+  headers.set("Access-Control-Allow-Headers", "Content-Type, Idempotency-Key, Authorization");
   return new Response(response.body, { status: response.status, headers });
 }
 

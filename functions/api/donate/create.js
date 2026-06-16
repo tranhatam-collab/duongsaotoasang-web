@@ -157,23 +157,34 @@ export const onRequestPost = async ({ request, env }) => {
 
     checkoutUrl = data.checkout_url || data.checkoutUrl || data.payment_link || data.url || null;
     providerRef = data.order_id || data.provider_ref || data.id || null;
-  } catch {
+  } catch (e) {
+    console.error('[donate/create] Gateway error:', e?.message, e?.stack);
     return errorJson("GATEWAY_UNREACHABLE", "Payment gateway unreachable.", 502);
   }
 
   if (env.DB) {
-    await env.DB.prepare(`
-      INSERT OR IGNORE INTO donations
-        (id, idempotency_key, amount_vnd, donor_email, donor_name, message,
-         provider, provider_ref, checkout_url, status, expires_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', datetime('now', '+30 minutes'))
-    `).bind(
-      donationId, idempotencyKey, amountVnd,
-      body.donor_email || body.email || null,
-      body.donor_name || body.name || null,
-      body.message || null,
-      provider, providerRef, checkoutUrl
-    ).run();
+    // Use transaction to ensure data consistency
+    await env.DB.prepare('BEGIN TRANSACTION').run();
+    try {
+      await env.DB.prepare(`
+        INSERT OR IGNORE INTO donations
+          (id, idempotency_key, amount_vnd, donor_email, donor_name, message,
+           provider, provider_ref, checkout_url, status, expires_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', datetime('now', '+30 minutes'))
+      `).bind(
+        donationId, idempotencyKey, amountVnd,
+        body.donor_email || body.email || null,
+        body.donor_name || body.name || null,
+        body.message || null,
+        provider, providerRef, checkoutUrl
+      ).run();
+      
+      await env.DB.prepare('COMMIT').run();
+    } catch (e) {
+      await env.DB.prepare('ROLLBACK').run();
+      console.error('[donate/create] Transaction failed:', e);
+      return errorJson("TRANSACTION_FAILED", "Failed to create donation record", 500);
+    }
   }
 
   return json({ ok: true, id: donationId, checkout_url: checkoutUrl, status: "pending" });

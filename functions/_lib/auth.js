@@ -212,6 +212,37 @@ async function _verifyJwtSignature(token, publicKeys) {
   return false;
 }
 
+// ── CSRF Token ───────────────────────────────────────────────────────────────
+
+/**
+ * Generate a CSRF token for state-changing requests.
+ * Returns a random 32-byte hex string.
+ */
+export function generateCsrfToken() {
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  return Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+/**
+ * Validate CSRF token from request header.
+ * Returns true if valid, false otherwise.
+ */
+export function validateCsrfToken(request, sessionCsrfToken) {
+  const requestToken = request.headers.get("X-CSRF-Token");
+  if (!requestToken || !sessionCsrfToken) {
+    return false;
+  }
+  // Use timing-safe comparison to prevent timing attacks
+  if (requestToken.length !== sessionCsrfToken.length) {
+    return false;
+  }
+  let result = 0;
+  for (let i = 0; i < requestToken.length; i++) {
+    result |= requestToken.charCodeAt(i) ^ sessionCsrfToken.charCodeAt(i);
+  }
+  return result === 0;
+}
+
 // ── Password Hashing (PBKDF2-SHA-256) ───────────────────────────────────────────────
 
 /**

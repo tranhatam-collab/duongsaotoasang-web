@@ -38,6 +38,7 @@ export async function onRequestGet(context) {
       'UPDATE sessions SET last_accessed_at = CURRENT_TIMESTAMP WHERE id = ?'
     ).bind(session.id).run();
     
+    const allowedOrigin = context.env.PAY_IAI_ONE_CALLBACK_BASE || "https://duongsaotoasang.com";
     return new Response(JSON.stringify({ 
       ok: true, 
       user: {
@@ -47,7 +48,7 @@ export async function onRequestGet(context) {
         role: session.role
       }
     }), {
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': allowedOrigin, 'Access-Control-Allow-Credentials': 'true' }
     });
   } catch (e) {
     return new Response(JSON.stringify({ error: 'Failed to get user' }), { status: 500 });

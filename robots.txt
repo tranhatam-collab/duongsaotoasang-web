@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
 
+Disallow: /admin/
+Disallow: /api/admin/
+Disallow: /app/
+Disallow: /investors/
+Disallow: /account/
+Disallow: /club/
+
 Sitemap: https://duongsaotoasang.com/sitemap.xml

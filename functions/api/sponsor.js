@@ -12,8 +12,9 @@ export async function onRequestGet(context) {
     const { results } = await db.prepare(
       'SELECT id, slug, name, logo_url, website_url, tier, status, country, total_contributed_vnd FROM sponsors WHERE status = ? ORDER BY total_contributed_vnd DESC LIMIT 50'
     ).bind(status).all();
+    const allowedOrigin = context.env.PAY_IAI_ONE_CALLBACK_BASE || "https://duongsaotoasang.com";
     return new Response(JSON.stringify({ ok: true, data: results || [] }), {
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': allowedOrigin, 'Access-Control-Allow-Credentials': 'true' }
     });
   } catch (e) {
     return new Response(JSON.stringify({ error: e.message }), { status: 500 });
@@ -32,8 +33,9 @@ export async function onRequestPost(context) {
     const result = await db.prepare(
       'INSERT INTO sponsor_campaigns (sponsor_id, campaign_type, title, budget_cents) VALUES (?, ?, ?, ?)'
     ).bind(sponsor_id, campaign_type, title, budget_cents).run();
+    const allowedOrigin = context.env.PAY_IAI_ONE_CALLBACK_BASE || "https://duongsaotoasang.com";
     return new Response(JSON.stringify({ ok: true, id: result.meta.last_row_id }), {
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': allowedOrigin, 'Access-Control-Allow-Credentials': 'true' }
     });
   } catch (e) {
     return new Response(JSON.stringify({ error: e.message }), { status: 500 });
