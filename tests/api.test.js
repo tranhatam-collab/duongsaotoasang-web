@@ -100,6 +100,18 @@ async function runTests() {
   // Test 13: NguoiViet Integration Page (HTML, not JSON)
   await testEndpoint("NguoiViet Integration Page", "/nguoiviet-integration", 200, false);
 
+  // Test 14: Health Check API
+  await testEndpoint("Health Check API", "/api/monitoring/health", 200);
+
+  // Test 15: Backup API (GET) (returns 401 when no auth provided)
+  await testEndpoint("Backup API (GET)", "/api/admin/backup", 401);
+
+  // Test 16: Trust.iai.ONE Verify API (returns 400 when no id provided)
+  await testEndpoint("Trust.iai.ONE Verify API", "/api/trust-iai/verify", 400);
+
+  // Test 17: NguoiViet Auth API (returns 500 when not configured)
+  await testEndpoint("NguoiViet Auth API", "/api/nguoiviet/auth", 500);
+
   // Print results
   console.log("");
   console.log("=== Test Results ===");
