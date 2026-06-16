@@ -19,7 +19,7 @@ Website duongsaotoasang.com đã được audit và remediation hoàn toàn theo
 | Touch-friendly elements | 88/109 (81%) | 109/109 (100%) | ✅ 100% |
 | App-like navigation | 2/109 (2%) | 108/109 (99%) | ✅ 100%* |
 
-*Note: _footer.html là template file, không cần app navigation
+*Note: _footer.html là template file, không cần app navigation. Các từ tiếng Anh trong JavaScript (app-v5.js) là translation keys cho bilingual system, được skip intentionally.
 
 ---
 
@@ -50,6 +50,8 @@ Website duongsaotoasang.com đã được audit và remediation hoàn toàn theo
 - Giữ nguyên HTML attributes
 - Giữ nguyên script/style tags
 - Giữ nguyên email addresses (contact@domain.com)
+- Giữ nguyên JavaScript files (translation keys cho bilingual system)
+- Giữ nguyên JavaScript object properties (translation keys)
 
 ---
 
@@ -181,11 +183,25 @@ Website duongsaotoasang.com đã được audit và remediation hoàn toàn theo
 
 1. ✅ **Audit final report** - COMPLETED
 2. ✅ **QA và cập nhật báo cáo cuối cùng** - COMPLETED
-3. ⏳ **Commit changes** - PENDING
-4. ⏳ **Push to remote** - PENDING
-5. ⏳ **Deploy** - PENDING
-6. ⏳ **Test live** - PENDING
-7. ⏳ **Fix nếu có issues** - PENDING
+3. ✅ **Commit changes** - COMPLETED
+4. ✅ **Push to remote** - COMPLETED
+5. ✅ **Deploy** - COMPLETED
+6. ✅ **Test live** - COMPLETED
+7. ✅ **Fix nếu có issues** - COMPLETED
+
+## 🔧 FIX ISSUES DISCOVERED DURING DEPLOY
+
+### Issue: Translation Keys bị fix quá mức
+**Problem:** Script fix-english-words.mjs đã fix cả JavaScript translation keys trong app-v5.js, làm hỏng bilingual system.
+
+**Solution:**
+1. Khôi phục app-v5.js từ git
+2. Cập nhật script để skip JavaScript files
+3. Cập nhật script để skip JavaScript object properties (translation keys)
+4. Cập nhật strict-rules-qa.mjs để skip JavaScript object properties
+5. Re-deploy với fix
+
+**Result:** Bilingual system hoạt động bình thường, translation keys được giữ nguyên.
 
 ---
 

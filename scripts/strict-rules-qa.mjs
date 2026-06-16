@@ -168,6 +168,11 @@ function findEnglishWords(text) {
       continue;
     }
     
+    // Skip if it's in a JavaScript object property (translation keys)
+    if (text.includes(`"${word}":`) || text.includes(`'${word}':`) || text.includes(`${word}:`)) {
+      continue;
+    }
+    
     // Skip if it's a technical term (check first)
     if (isTechnicalTerm(word)) {
       continue;
