@@ -128,7 +128,7 @@ export async function onRequestPost(context) {
   // Persist payment record (pending) — idempotency anchor.
   const result = await db.prepare(
     "INSERT INTO payments (user_id, amount_cents, currency, description, type, status, provider, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)"
-  ).bind(user_id || null, amountVnd, "VND", description, type || "donation", "payos", "pending").run();
+  ).bind(user_id || null, amountVnd, "VND", description, type || "donation", "pending", "payos").run();
   const paymentId = result.meta.last_row_id;
 
   const baseUrl = String(env.PAY_IAI_ONE_BASE_URL || "https://pay.iai.one").replace(/\/+$/, "");
