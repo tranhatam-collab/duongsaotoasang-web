@@ -7,16 +7,16 @@
   Cache-Control: public, max-age=0, must-revalidate
 
 /app.css
-  Cache-Control: public, max-age=300, must-revalidate
+  Cache-Control: public, max-age=300, s-maxage=300, must-revalidate
 
 /tokens.css
-  Cache-Control: public, max-age=300, must-revalidate
+  Cache-Control: public, max-age=300, s-maxage=300, must-revalidate
 
 /assets/*
-  Cache-Control: public, max-age=300, must-revalidate
+  Cache-Control: public, max-age=300, s-maxage=300, must-revalidate
 
 /og.png
-  Cache-Control: public, max-age=300, must-revalidate
+  Cache-Control: public, max-age=300, s-maxage=300, must-revalidate
 
 /functions/*
   Cache-Control: no-store

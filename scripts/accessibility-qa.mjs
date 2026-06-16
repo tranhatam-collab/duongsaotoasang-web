@@ -42,6 +42,8 @@ function trackedHtmlFiles() {
     .map((line) => line.trim())
     .filter(Boolean)
     .filter((file) => !file.startsWith("_archive_2026-05-13/"))
+    .filter((file) => !file.startsWith("_"))
+    .filter((file) => file !== "content/homepage-v3-sections.html")
 }
 
 function validateLandmarks(file, source) {

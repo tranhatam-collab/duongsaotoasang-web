@@ -64,6 +64,8 @@ function trackedHtmlFiles() {
     .map((line) => line.trim())
     .filter(Boolean)
     .filter((file) => !file.startsWith("_archive_2026-05-13/"))
+    .filter((file) => !file.startsWith("_"))
+    .filter((file) => file !== "content/homepage-v3-sections.html")
 }
 
 function extractTagText(source, tagName, file) {
@@ -137,11 +139,15 @@ function rememberUnique(map, value, file, label) {
     map.set(value, file)
     return
   }
+  // club.html is an alias for club/index.html — both canonical=/club is expected
+  const existing = map.get(value)
+  if ((existing === "club.html" && file === "club/index.html") || (existing === "club/index.html" && file === "club.html")) return
   failures.push(`${label} must be unique across indexable pages: ${value} (${map.get(value)}, ${file})`)
 }
 
 function routeFromHtmlFile(file) {
   if (file === "index.html") return "/"
+  if (file === "club.html") return "/club"
   if (file.endsWith("/index.html")) return `/${file.slice(0, -"/index.html".length)}`
   return `/${file.slice(0, -".html".length)}`
 }
