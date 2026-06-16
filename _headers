@@ -7,20 +7,20 @@
   Cache-Control: public, max-age=0, must-revalidate
 
 /app.css
+  ! Cache-Control
   Cache-Control: public, max-age=300, must-revalidate
-  CDN-Cache-Control: max-age=300
 
 /tokens.css
+  ! Cache-Control
   Cache-Control: public, max-age=300, must-revalidate
-  CDN-Cache-Control: max-age=300
 
 /assets/*
+  ! Cache-Control
   Cache-Control: public, max-age=300, must-revalidate
-  CDN-Cache-Control: max-age=300
 
 /og.png
+  ! Cache-Control
   Cache-Control: public, max-age=300, must-revalidate
-  CDN-Cache-Control: max-age=300
 
 /functions/*
   Cache-Control: no-store
