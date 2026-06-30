@@ -96,10 +96,8 @@ export async function verifyEmailToken(db, rawToken) {
   if (new Date(record.expires_at) < new Date()) return { ok: false, error: "TOKEN_EXPIRED" };
 
   // Mark token as used + verify user
-  await db.batch([
-    db.prepare("UPDATE email_verification_tokens SET used_at = CURRENT_TIMESTAMP WHERE id = ?").bind(record.id),
-    db.prepare("UPDATE users SET email_verified_at = CURRENT_TIMESTAMP, status = 'active' WHERE id = ?").bind(record.user_id),
-  ]);
+  await db.prepare("UPDATE email_verification_tokens SET used_at = CURRENT_TIMESTAMP WHERE id = ?").bind(record.id).run();
+  await db.prepare("UPDATE users SET email_verified_at = CURRENT_TIMESTAMP, status = 'active' WHERE id = ?").bind(record.user_id).run();
 
   return { ok: true, userId: record.user_id };
 }

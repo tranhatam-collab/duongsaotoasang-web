@@ -65,35 +65,33 @@ export async function onRequestPost(context) {
     // Force role = 'member' (ignore client role for security)
     const role = 'member';
     
-    // Use transaction to ensure data consistency
+    // Use db.batch() for atomic transaction (D1 does not support BEGIN/COMMIT via SQL)
     let userId, sessionToken, csrfToken;
-    await db.prepare('BEGIN TRANSACTION').run();
     try {
       // Insert user with hashed password — status pending until email verified
       const result = await db.prepare(
         'INSERT INTO users (email, password_hash, password_salt, password_iterations, password_algorithm, display_name, role, status, password_updated_at, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)'
       ).bind(normalizedEmail, hash, salt, iterations, 'PBKDF2-SHA-256', display_name, role, 'pending_email_verification').run();
-      
+
       // Generate session token
       sessionToken = await generateSessionToken();
       const sessionTokenHash = await hashSessionToken(sessionToken);
       userId = result.meta.last_row_id;
-      
+
       // Create session (expires in 30 days)
       const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
-      await db.prepare(
-        'INSERT INTO sessions (id, user_id, session_token_hash, ip_address, created_at, expires_at) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, ?)'
-      ).bind(crypto.randomUUID(), userId, sessionTokenHash, context.request.headers.get('CF-Connecting-IP') || 'unknown', expiresAt).run();
-
-      // Generate CSRF token for this session
+      const sessionId = crypto.randomUUID();
       csrfToken = generateCsrfToken();
-      await saveCsrfToken(db, sessionTokenHash, csrfToken);
 
-      await db.prepare('COMMIT').run();
+      // Batch insert session + CSRF token atomically
+      await db.batch([
+        db.prepare(
+          'INSERT INTO sessions (id, user_id, session_token_hash, ip_address, created_at, expires_at, csrf_token) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, ?, ?)'
+        ).bind(sessionId, userId, sessionTokenHash, context.request.headers.get('CF-Connecting-IP') || 'unknown', expiresAt, csrfToken),
+      ]);
     } catch (e) {
-      await db.prepare('ROLLBACK').run();
       console.error('[auth/register] Transaction failed:', e);
-      return new Response(JSON.stringify({ error: 'Registration failed' }), { status: 500 });
+      return new Response(JSON.stringify({ error: 'Registration failed: ' + (e?.message || 'unknown') }), { status: 500 });
     }
 
     // Send verification email (outside transaction — non-blocking on failure)
