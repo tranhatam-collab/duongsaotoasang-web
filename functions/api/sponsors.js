@@ -8,15 +8,14 @@
  * GET /api/sponsors/impact — impact reports
  */
 
-import { json, ok, err, randomId, getClientIp, checkRateLimit, addCors } from "../_lib/api-helpers.js";
+import { json, ok, err, randomId, getClientIp, checkRateLimit } from "../_lib/api-helpers.js";
 
 export async function onRequestOptions() {
   return new Response(null, { status: 204 });
 }
 
 export async function onRequestGet(context) {
-  const res = await _get(context);
-  return addCors(res, context.env);
+  return _get(context);
 }
 
 async function _get(context) {
@@ -102,8 +101,7 @@ async function _get(context) {
 }
 
 export async function onRequestPost(context) {
-  const res = await _post(context);
-  return addCors(res, context.env);
+  return _post(context);
 }
 
 async function _post(context) {
@@ -133,8 +131,7 @@ async function _post(context) {
 }
 
 export async function onRequestPatch(context) {
-  const res = await _patch(context);
-  return addCors(res, context.env);
+  return _patch(context);
 }
 
 async function _patch(context) {
