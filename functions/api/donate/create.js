@@ -62,6 +62,13 @@ export const onRequestPost = async ({ request, env }) => {
     return errorJson("PAYMENT_NOT_CONFIGURED", "Donation payments not yet activated.", 503);
   }
 
+  // CSRF validation for authenticated users
+  if (env.DB) {
+    const { validateCsrf } = await import("../../_lib/csrf.js");
+    const csrf = await validateCsrf(env.DB, request);
+    if (!csrf.ok) return csrf.response;
+  }
+
   let body;
   try {
     body = await request.json();

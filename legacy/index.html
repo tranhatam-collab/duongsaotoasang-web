@@ -55,14 +55,24 @@
     <div id="legacy-list">Đang tải...</div>
   </section>
 </main>
+<script src="/assets/app-v5.js"></script>
 <script>
+if (!window.DSTS) window.DSTS = {};
+if (!DSTS.escapeHTML) DSTS.escapeHTML = function (v) {
+  return String(v ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+};
 async function loadLegacy() {
   try {
     const res = await fetch('/api/legacy?privacy=public');
     const json = await res.json();
     const list = document.getElementById('legacy-list');
     if (json.ok && json.data && json.data.length) {
-      list.innerHTML = json.data.map(item => '<div class="legacy-item"><strong>' + item.title + '</strong> (' + item.item_type + ') — ' + (item.capture_date || 'N/A') + '</div>').join('');
+      list.innerHTML = json.data.map(item => {
+        const safeTitle = DSTS.escapeHTML(item.title);
+        const safeType = DSTS.escapeHTML(item.item_type);
+        const safeDate = DSTS.escapeHTML(item.capture_date || 'N/A');
+        return '<div class="legacy-item"><strong>' + safeTitle + '</strong> (' + safeType + ') — ' + safeDate + '</div>';
+      }).join('');
     } else {
       list.innerHTML = '<p>Chưa có tài liệu lưu trữ công khai. Hãy bắt đầu xây dựng kho lưu trữ của bạn.</p>';
     }
@@ -72,6 +82,5 @@ async function loadLegacy() {
 }
 loadLegacy();
 </script>
-<script src="/assets/app-v5.js"></script>
 </body>
 </html>

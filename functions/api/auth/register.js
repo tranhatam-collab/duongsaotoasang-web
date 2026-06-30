@@ -2,6 +2,7 @@
 // POST /api/auth/register
 
 import { hashPassword, generateSessionToken, hashSessionToken } from '../../_lib/auth.js';
+import { generateCsrfToken, saveCsrfToken } from '../../_lib/csrf.js';
 
 export async function onRequestPost(context) {
   const db = context.env.DB;
@@ -59,7 +60,7 @@ export async function onRequestPost(context) {
     const role = 'member';
     
     // Use transaction to ensure data consistency
-    let userId, sessionToken;
+    let userId, sessionToken, csrfToken;
     await db.prepare('BEGIN TRANSACTION').run();
     try {
       // Insert user with hashed password
@@ -77,7 +78,11 @@ export async function onRequestPost(context) {
       await db.prepare(
         'INSERT INTO sessions (id, user_id, session_token_hash, ip_address, created_at, expires_at) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, ?)'
       ).bind(crypto.randomUUID(), userId, sessionTokenHash, context.request.headers.get('CF-Connecting-IP') || 'unknown', expiresAt).run();
-      
+
+      // Generate CSRF token for this session
+      csrfToken = generateCsrfToken();
+      await saveCsrfToken(db, sessionTokenHash, csrfToken);
+
       await db.prepare('COMMIT').run();
     } catch (e) {
       await db.prepare('ROLLBACK').run();
@@ -98,7 +103,7 @@ export async function onRequestPost(context) {
     ).run();
     
     const allowedOrigin = context.env.PAY_IAI_ONE_CALLBACK_BASE || "https://duongsaotoasang.com";
-    return new Response(JSON.stringify({ ok: true, user_id: userId }), {
+    return new Response(JSON.stringify({ ok: true, user_id: userId, csrf_token: csrfToken }), {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': allowedOrigin,

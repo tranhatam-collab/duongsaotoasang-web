@@ -112,16 +112,26 @@
     <p>Điểm Sao là điểm nội bộ thuần túy, không có giá trị tiền tệ, không quy đổi tiền mặt, không chuyển nhượng, không thừa kế. Khi hủy thành viên, Điểm Sao bị xóa. Xem đầy đủ tại <a href="/terms.html">Điều Khoản Sử Dụng</a>.</p>
   </section>
 </main>
+<script src="/assets/app-v5.js"></script>
 <script>
+if (!window.DSTS) window.DSTS = {};
+if (!DSTS.escapeHTML) DSTS.escapeHTML = function (v) {
+  return String(v ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+};
 async function loadWallet() {
   try {
     const res = await fetch('/api/wallet');
     const json = await res.json();
     if (json.ok) {
-      document.getElementById('balance-display').innerHTML = '<div class="big-number">' + (json.balance || 0) + ' <span>Điểm Sao</span></div>';
+      const safeBalance = DSTS.escapeHTML(json.balance || 0);
+      document.getElementById('balance-display').innerHTML = '<div class="big-number">' + safeBalance + ' <span>Điểm Sao</span></div>';
       const list = document.getElementById('history-list');
       if (json.history && json.history.length) {
-        list.innerHTML = json.history.map(h => '<div class="tx">' + h.description + ' <strong>' + (h.amount > 0 ? '+' : '') + h.amount + '</strong></div>').join('');
+        list.innerHTML = json.history.map(h => {
+          const safeDesc = DSTS.escapeHTML(h.description);
+          const safeAmt = DSTS.escapeHTML((h.amount > 0 ? '+' : '') + h.amount);
+          return '<div class="tx">' + safeDesc + ' <strong>' + safeAmt + '</strong></div>';
+        }).join('');
       } else {
         list.innerHTML = '<p>Chưa có giao dịch. Hãy tham gia sự kiện để tích điểm đầu tiên.</p>';
       }

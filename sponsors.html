@@ -240,17 +240,23 @@
 
     function renderSponsorCard(s) {
       const tierClass = s.tier === 'strategic' || s.tier === 'platinum' ? 'tier-strategic' : '';
+      const safeTier = DSTS.escapeHTML(s.tier.toUpperCase());
+      const safeIndustry = DSTS.escapeHTML(s.industry || '—');
+      const safeCountry = DSTS.escapeHTML(s.country || '—');
+      const safeName = DSTS.escapeHTML(s.name);
+      const safeMission = DSTS.escapeHTML(s.mission_alignment || 'Đối tác tài trợ DSTS');
+      const safeAmount = s.total_contributed_vnd ? DSTS.escapeHTML(s.total_contributed_vnd.toLocaleString('vi-VN')) + ' VND' : '—';
       return `
         <article class="sponsor-card">
           <div class="tier-row">
-            <span class="${tierClass}">${s.tier.toUpperCase()}</span>
-            <span>${s.industry || '—'}</span>
-            <span>${s.country || '—'}</span>
+            <span class="${tierClass}">${safeTier}</span>
+            <span>${safeIndustry}</span>
+            <span>${safeCountry}</span>
           </div>
-          <h4>${s.name}</h4>
-          <div class="info">${s.mission_alignment || 'Đối tác tài trợ DSTS'}</div>
+          <h4>${safeName}</h4>
+          <div class="info">${safeMission}</div>
           <div class="amount">
-            ${s.total_contributed_vnd ? s.total_contributed_vnd.toLocaleString('vi-VN') + ' VND' : '—'}
+            ${safeAmount}
             <small>Tổng đóng góp</small>
           </div>
         </article>

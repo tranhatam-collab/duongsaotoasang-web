@@ -6,10 +6,17 @@
 
 // ── Response helpers ──────────────────────────────────────────────────────────
 
+// Default CORS origin — can be overridden via env.PAY_IAI_ONE_CALLBACK_BASE
+const DEFAULT_CORS_ORIGIN = "https://duongsaotoasang.com";
+
 export const json = (data, status = 200) =>
   new Response(JSON.stringify(data), {
     status,
-    headers: { "content-type": "application/json; charset=utf-8" },
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+      "Access-Control-Allow-Origin": DEFAULT_CORS_ORIGIN,
+      "Access-Control-Allow-Credentials": "true",
+    },
   });
 
 export const ok = (data = {}, status = 200) =>

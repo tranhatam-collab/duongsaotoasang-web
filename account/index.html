@@ -150,6 +150,7 @@ document.getElementById('disable-2fa').addEventListener('click', async () => {
 document.getElementById('logout-btn').addEventListener('click', async () => {
   try {
     await fetch('/api/auth/logout', { method: 'POST' });
+    if (window.DSTS) DSTS.clearCsrfToken();
     window.location.href = '/login';
   } catch (e) { showMsg('Lỗi kết nối', true); }
 });

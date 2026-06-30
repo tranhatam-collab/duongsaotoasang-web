@@ -8,9 +8,18 @@
  * GET /api/sponsors/impact — impact reports
  */
 
-import { json, ok, err, randomId, getClientIp, checkRateLimit } from "../_lib/api-helpers.js";
+import { json, ok, err, randomId, getClientIp, checkRateLimit, addCors } from "../_lib/api-helpers.js";
+
+export async function onRequestOptions() {
+  return new Response(null, { status: 204 });
+}
 
 export async function onRequestGet(context) {
+  const res = await _get(context);
+  return addCors(res, context.env);
+}
+
+async function _get(context) {
   const { env, request } = context;
   const url = new URL(request.url);
   const db = env.DB;
@@ -93,6 +102,11 @@ export async function onRequestGet(context) {
 }
 
 export async function onRequestPost(context) {
+  const res = await _post(context);
+  return addCors(res, context.env);
+}
+
+async function _post(context) {
   const { env, request } = context;
   const db = env.DB;
 
@@ -119,6 +133,11 @@ export async function onRequestPost(context) {
 }
 
 export async function onRequestPatch(context) {
+  const res = await _patch(context);
+  return addCors(res, context.env);
+}
+
+async function _patch(context) {
   const { env, request } = context;
   const url = new URL(request.url);
   const id = url.searchParams.get("id");

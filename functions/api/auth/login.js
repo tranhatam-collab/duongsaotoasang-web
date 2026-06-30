@@ -3,6 +3,7 @@
 
 import { verifyPassword, generateSessionToken, hashSessionToken } from '../../_lib/auth.js';
 import { checkRateLimit, logRateLimitViolation } from '../../_lib/rate-limit.js';
+import { generateCsrfToken, saveCsrfToken } from '../../_lib/csrf.js';
 
 export async function onRequestPost(context) {
   const db = context.env.DB;
@@ -116,7 +117,11 @@ export async function onRequestPost(context) {
     await db.prepare(
       'INSERT INTO sessions (id, user_id, session_token_hash, ip_address, created_at, expires_at) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, ?)'
     ).bind(crypto.randomUUID(), row.id, sessionTokenHash, context.request.headers.get('CF-Connecting-IP') || 'unknown', expiresAt).run();
-    
+
+    // Generate CSRF token for this session
+    const csrfToken = generateCsrfToken();
+    await saveCsrfToken(db, sessionTokenHash, csrfToken);
+
     // Log successful attempt
     await db.prepare(
       'INSERT INTO auth_attempts (id, identifier, attempt_type, success, ip_address, user_agent, attempted_at) VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)'
@@ -128,15 +133,16 @@ export async function onRequestPost(context) {
       context.request.headers.get('CF-Connecting-IP') || 'unknown',
       context.request.headers.get('User-Agent') || 'unknown'
     ).run();
-    
+
     const allowedOrigin = context.env.PAY_IAI_ONE_CALLBACK_BASE || "https://duongsaotoasang.com";
-    return new Response(JSON.stringify({ 
-      ok: true, 
-      user: { 
-        id: row.id, 
-        display_name: row.display_name, 
-        role: row.role 
-      } 
+    return new Response(JSON.stringify({
+      ok: true,
+      csrf_token: csrfToken,
+      user: {
+        id: row.id,
+        display_name: row.display_name,
+        role: row.role
+      }
     }), {
       headers: {
         'Content-Type': 'application/json',

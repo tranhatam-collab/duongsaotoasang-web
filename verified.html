@@ -328,16 +328,20 @@
       const badgeClass = e.status === 'verified' ? 'verified' : 'pending';
       const badgeLabel = e.status === 'verified' ? 'Đã xác thực' : 'Đang chờ';
       const trustWidth = Math.min(e.trust_score || 0, 100) + '%';
+      const safeType = DSTS.escapeHTML(e.entity_type);
+      const safeName = DSTS.escapeHTML(e.display_name);
+      const safeBadge = DSTS.escapeHTML(e.badge_type !== 'none' ? e.badge_type : 'Chưa có huy hiệu');
+      const safeScore = DSTS.escapeHTML(e.trust_score || 0);
       return `
         <article class="entity-card">
-          <div class="type">${e.entity_type}</div>
-          <h4>${e.display_name}</h4>
+          <div class="type">${safeType}</div>
+          <h4>${safeName}</h4>
           <div class="badge-row">
             <span class="${badgeClass}">${badgeLabel}</span>
-            <span>${e.badge_type !== 'none' ? e.badge_type : 'Chưa có huy hiệu'}</span>
+            <span>${safeBadge}</span>
           </div>
           <div style="display:flex;align-items:center;gap:12px;margin-top:auto">
-            <div class="score-ring" style="width:48px;height:48px;font-size:14px">${e.trust_score || 0}</div>
+            <div class="score-ring" style="width:48px;height:48px;font-size:14px">${safeScore}</div>
             <div style="flex:1">
               <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Trust Score</div>
               <div class="trust-bar"><i style="width:${trustWidth}"></i></div>

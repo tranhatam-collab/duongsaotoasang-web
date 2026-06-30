@@ -159,6 +159,7 @@ async function handleGoogleCredential(response) {
         document.getElementById('login-form').style.display = 'none';
         document.getElementById('google-signin').style.display = 'none';
       } else {
+        if (result.csrf_token && window.DSTS) DSTS.setCsrfToken(result.csrf_token);
         showMsg('Đăng nhập thành công! Đang chuyển hướng...', false);
         setTimeout(() => window.location.href = '/account', 800);
       }
@@ -189,6 +190,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
         document.getElementById('google-signin').style.display = 'none';
         document.getElementById('totp-temp-token').value = result.temp_token;
       } else {
+        if (result.csrf_token && window.DSTS) DSTS.setCsrfToken(result.csrf_token);
         showMsg('Đăng nhập thành công! Đang chuyển hướng...', false);
         setTimeout(() => window.location.href = '/account', 800);
       }
@@ -215,6 +217,7 @@ document.getElementById('totp-form').addEventListener('submit', async (e) => {
     });
     const result = await res.json();
     if (result.ok) {
+      if (result.csrf_token && window.DSTS) DSTS.setCsrfToken(result.csrf_token);
       showMsg('Xác thực thành công! Đang chuyển hướng...', false);
       setTimeout(() => window.location.href = '/account', 800);
     } else {

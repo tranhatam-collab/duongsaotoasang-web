@@ -193,6 +193,43 @@
     }
   };
 
+  // ── CSRF token management ───────────────────────────────────────────────────
+  DSTS.getCsrfToken = function () {
+    try { return sessionStorage.getItem("dsts_csrf_token") || ""; } catch (_e) { return ""; }
+  };
+  DSTS.setCsrfToken = function (token) {
+    try { if (token) sessionStorage.setItem("dsts_csrf_token", token); } catch (_e) {}
+  };
+  DSTS.clearCsrfToken = function () {
+    try { sessionStorage.removeItem("dsts_csrf_token"); } catch (_e) {}
+  };
+
+  // Global fetch interceptor: add CSRF token to all mutating requests
+  (function () {
+    const origFetch = window.fetch;
+    window.fetch = function (input, init) {
+      const method = ((init && init.method) || "GET").toUpperCase();
+      if (method === "POST" || method === "PATCH" || method === "PUT" || method === "DELETE") {
+        const url = typeof input === "string" ? input : (input && input.url) || "";
+        if (url.indexOf("/api/") !== -1 || url.indexOf("/api") === 0) {
+          const csrf = DSTS.getCsrfToken();
+          if (csrf) {
+            init = init || {};
+            init.headers = init.headers || {};
+            if (init.headers instanceof Headers) {
+              if (!init.headers.has("X-CSRF-Token")) init.headers.set("X-CSRF-Token", csrf);
+            } else {
+              if (!init.headers["X-CSRF-Token"] && !init.headers["x-csrf-token"]) {
+                init.headers["X-CSRF-Token"] = csrf;
+              }
+            }
+          }
+        }
+      }
+      return origFetch.call(this, input, init);
+    };
+  })();
+
   DSTS.mountSiteChrome = function (options) {
     const opts = options || {};
     const active = opts.active || "";

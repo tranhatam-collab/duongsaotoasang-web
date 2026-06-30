@@ -147,6 +147,7 @@ async function handleGoogleCredential(response) {
       if (result.requires_2fa) {
         window.location.href = '/account/2fa-setup';
       } else {
+        if (result.csrf_token && window.DSTS) DSTS.setCsrfToken(result.csrf_token);
         showMsg('Đăng ký thành công! Đang chuyển hướng...', false);
         setTimeout(() => window.location.href = '/account', 800);
       }
@@ -173,6 +174,7 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
     const result = await res.json();
 
     if (result.ok) {
+      if (result.csrf_token && window.DSTS) DSTS.setCsrfToken(result.csrf_token);
       showMsg('Tài khoản đã tạo! Đang chuyển hướng...', false);
       setTimeout(() => window.location.href = '/account', 1000);
     } else {

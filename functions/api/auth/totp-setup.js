@@ -5,6 +5,7 @@
  */
 
 import { generateTotpSecret, buildTotpUri } from "../../_lib/totp.js";
+import { validateCsrf } from "../../_lib/csrf.js";
 
 function requireAuth(request, env) {
   const cookie = request.headers.get("Cookie") || "";
@@ -27,6 +28,10 @@ export async function onRequestPost(context) {
   const { request, env } = context;
   const db = env.DB;
   if (!db) return new Response(JSON.stringify({ error: "DB not bound" }), { status: 500 });
+
+  // CSRF validation
+  const csrf = await validateCsrf(db, request);
+  if (!csrf.ok) return csrf.response;
 
   const sessionToken = requireAuth(request, env);
   const user = await getUserFromSession(db, sessionToken);

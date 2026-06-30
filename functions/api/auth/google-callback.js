@@ -12,6 +12,7 @@
  */
 
 import { generateSessionToken, hashSessionToken } from "../../_lib/auth.js";
+import { generateCsrfToken, saveCsrfToken } from "../../_lib/csrf.js";
 
 const GOOGLE_CERTS_URL = "https://www.googleapis.com/oauth2/v3/certs";
 
@@ -125,8 +126,13 @@ export async function onRequestPost(context) {
     "INSERT INTO sessions (id, user_id, session_token_hash, ip_address, created_at, expires_at) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, ?)"
   ).bind(crypto.randomUUID(), userId, sessionTokenHash, request.headers.get("CF-Connecting-IP") || "unknown", expiresAt).run();
 
+  // Generate CSRF token for this session
+  const csrfToken = generateCsrfToken();
+  await saveCsrfToken(db, sessionTokenHash, csrfToken);
+
   return new Response(JSON.stringify({
     ok: true,
+    csrf_token: csrfToken,
     user: { id: userId, email, display_name: user.display_name, role: user.role },
     requires_2fa: user.totp_enabled === 1,
   }), {

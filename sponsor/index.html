@@ -112,14 +112,24 @@
     <p>Mỗi chiến dịch kết thúc có báo cáo tác động công khai: số người tiếp cận, câu chuyện được tài trợ, người hướng dẫn được hỗ trợ, học sinh được giúp đỡ.</p>
   </section>
 </main>
+<script src="/assets/app-v5.js"></script>
 <script>
+if (!window.DSTS) window.DSTS = {};
+if (!DSTS.escapeHTML) DSTS.escapeHTML = function (v) {
+  return String(v ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+};
 async function loadSponsors() {
   try {
     const res = await fetch('/api/sponsor');
     const json = await res.json();
     const list = document.getElementById('sponsor-list');
     if (json.ok && json.data && json.data.length) {
-      list.innerHTML = json.data.map(s => '<div class="sponsor-card"><strong>' + s.org_name + '</strong> — ' + s.org_type + ' — Đã đóng góp: ' + (s.total_contributed_cents/100) + ' USD</div>').join('');
+      list.innerHTML = json.data.map(s => {
+        const safeName = DSTS.escapeHTML(s.org_name);
+        const safeType = DSTS.escapeHTML(s.org_type);
+        const safeAmt = DSTS.escapeHTML(s.total_contributed_cents / 100);
+        return '<div class="sponsor-card"><strong>' + safeName + '</strong> — ' + safeType + ' — Đã đóng góp: ' + safeAmt + ' USD</div>';
+      }).join('');
     } else {
       list.innerHTML = '<p>Chưa có nhà tài trợ công khai. <a href="/sponsor/portal">Trở thành nhà tài trợ đầu tiên</a>.</p>';
     }
