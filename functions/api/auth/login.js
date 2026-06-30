@@ -75,8 +75,8 @@ export async function onRequestPost(context) {
       return new Response(JSON.stringify({ error: 'Invalid credentials' }), { status: 401 });
     }
 
-    // Block login if email not verified
-    if (row.status === 'pending_email_verification' || !row.email_verified_at) {
+    // Block login if email not verified (email_verified_at is NULL)
+    if (!row.email_verified_at) {
       return new Response(JSON.stringify({
         error: 'EMAIL_NOT_VERIFIED',
         message: 'Vui lòng xác thực email trước khi đăng nhập. Kiểm tra hộp thư của bạn.'

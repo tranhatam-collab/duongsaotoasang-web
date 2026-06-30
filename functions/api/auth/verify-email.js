@@ -76,7 +76,7 @@ export async function onRequestPost(context) {
   }
 
   const user = await db.prepare(
-    "SELECT id, email, display_name, status, email_verified_at FROM users WHERE email = ?"
+    "SELECT id, email, display_name, email_verified_at FROM users WHERE email = ?"
   ).bind(email).first();
 
   if (!user) {

@@ -68,10 +68,10 @@ export async function onRequestPost(context) {
     // Use db.batch() for atomic transaction (D1 does not support BEGIN/COMMIT via SQL)
     let userId, sessionToken, csrfToken;
     try {
-      // Insert user with hashed password — status pending until email verified
+      // Insert user with hashed password — status active but email_verified_at NULL until verified
       const result = await db.prepare(
         'INSERT INTO users (email, password_hash, password_salt, password_iterations, password_algorithm, display_name, role, status, password_updated_at, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)'
-      ).bind(normalizedEmail, hash, salt, iterations, 'PBKDF2-SHA-256', display_name, role, 'pending_email_verification').run();
+      ).bind(normalizedEmail, hash, salt, iterations, 'PBKDF2-SHA-256', display_name, role, 'active').run();
 
       // Generate session token
       sessionToken = await generateSessionToken();
