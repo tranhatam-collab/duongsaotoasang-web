@@ -6,9 +6,14 @@
  */
 
 import { sendEmail } from "../_lib/email.js";
+import { rateLimitPublic } from "../_lib/rate-limit-middleware.js";
 
 export async function onRequestPost(context) {
   const { request, env } = context;
+
+  // Rate limit: 5 contact submissions/hour per IP
+  const rl = await rateLimitPublic(context, "contact", 5, 60);
+  if (rl.limited) return rl.response;
 
   let body;
   try {

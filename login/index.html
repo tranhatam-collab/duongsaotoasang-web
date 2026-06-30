@@ -195,12 +195,32 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
         setTimeout(() => window.location.href = '/account', 800);
       }
     } else {
-      showMsg(result.error || 'Đăng nhập thất bại', true);
+      if (result.error === 'EMAIL_NOT_VERIFIED') {
+        showMsg(result.message + ' <a href="#" onclick="resendVerification();return false" style="color:#e0c896;text-decoration:underline">Gửi lại email</a>', true);
+      } else {
+        showMsg(result.error || 'Đăng nhập thất bại', true);
+      }
     }
   } catch (err) {
     showMsg('Lỗi kết nối', true);
   }
 });
+
+async function resendVerification() {
+  const email = document.querySelector('input[name="email"]')?.value || '';
+  if (!email) { showMsg('Vui lòng nhập email trước', true); return; }
+  showMsg('Đang gửi lại email xác thực...', false);
+  try {
+    const res = await fetch('/api/auth/verify-email/resend', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    const result = await res.json();
+    showMsg(result.message || 'Email đã được gửi.', false);
+  } catch (e) { showMsg('Lỗi kết nối', true); }
+}
+window.resendVerification = resendVerification;
 
 // TOTP verify
 document.getElementById('totp-form').addEventListener('submit', async (e) => {

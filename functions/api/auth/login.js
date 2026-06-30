@@ -22,7 +22,7 @@ export async function onRequestPost(context) {
     
     // Fetch user with password hash metadata and 2FA status
     const row = await db.prepare(
-      'SELECT id, email, password_hash, password_salt, password_iterations, password_algorithm, display_name, role, totp_enabled FROM users WHERE email = ?'
+      'SELECT id, email, password_hash, password_salt, password_iterations, password_algorithm, display_name, role, totp_enabled, status, email_verified_at FROM users WHERE email = ?'
     ).bind(normalizedEmail).first();
     
     if (!row) {
@@ -74,7 +74,15 @@ export async function onRequestPost(context) {
       
       return new Response(JSON.stringify({ error: 'Invalid credentials' }), { status: 401 });
     }
-    
+
+    // Block login if email not verified
+    if (row.status === 'pending_email_verification' || !row.email_verified_at) {
+      return new Response(JSON.stringify({
+        error: 'EMAIL_NOT_VERIFIED',
+        message: 'Vui lòng xác thực email trước khi đăng nhập. Kiểm tra hộp thư của bạn.'
+      }), { status: 403 });
+    }
+
     // Check if 2FA is required
     const requires2FA = row.totp_enabled === 1;
     

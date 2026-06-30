@@ -3,10 +3,16 @@
 
 import { hashPassword, generateSessionToken, hashSessionToken } from '../../_lib/auth.js';
 import { generateCsrfToken, saveCsrfToken } from '../../_lib/csrf.js';
+import { createVerificationToken, sendVerificationEmail } from '../../_lib/email-verification.js';
+import { rateLimitPublic } from '../../_lib/rate-limit-middleware.js';
 
 export async function onRequestPost(context) {
   const db = context.env.DB;
   if (!db) return new Response(JSON.stringify({ error: 'DB not bound' }), { status: 500 });
+
+  // Rate limit: 5 registrations/hour per IP
+  const rl = await rateLimitPublic(context, 'register', 5, 60);
+  if (rl.limited) return rl.response;
   
   try {
     const body = await context.request.json();
@@ -63,10 +69,10 @@ export async function onRequestPost(context) {
     let userId, sessionToken, csrfToken;
     await db.prepare('BEGIN TRANSACTION').run();
     try {
-      // Insert user with hashed password
+      // Insert user with hashed password — status pending until email verified
       const result = await db.prepare(
         'INSERT INTO users (email, password_hash, password_salt, password_iterations, password_algorithm, display_name, role, status, password_updated_at, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)'
-      ).bind(normalizedEmail, hash, salt, iterations, 'PBKDF2-SHA-256', display_name, role, 'active').run();
+      ).bind(normalizedEmail, hash, salt, iterations, 'PBKDF2-SHA-256', display_name, role, 'pending_email_verification').run();
       
       // Generate session token
       sessionToken = await generateSessionToken();
@@ -89,6 +95,15 @@ export async function onRequestPost(context) {
       console.error('[auth/register] Transaction failed:', e);
       return new Response(JSON.stringify({ error: 'Registration failed' }), { status: 500 });
     }
+
+    // Send verification email (outside transaction — non-blocking on failure)
+    try {
+      const verifToken = await createVerificationToken(db, userId);
+      await sendVerificationEmail(context.env, { email: normalizedEmail, display_name, token: verifToken });
+    } catch (e) {
+      console.error('[auth/register] Failed to send verification email:', e?.message);
+      // Non-fatal — user can request resend
+    }
     
     // Log successful auth attempt
     await db.prepare(
@@ -103,7 +118,13 @@ export async function onRequestPost(context) {
     ).run();
     
     const allowedOrigin = context.env.PAY_IAI_ONE_CALLBACK_BASE || "https://duongsaotoasang.com";
-    return new Response(JSON.stringify({ ok: true, user_id: userId, csrf_token: csrfToken }), {
+    return new Response(JSON.stringify({
+      ok: true,
+      user_id: userId,
+      csrf_token: csrfToken,
+      email_verification_required: true,
+      message: 'Vui lòng kiểm tra email để xác thực tài khoản.'
+    }), {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': allowedOrigin,

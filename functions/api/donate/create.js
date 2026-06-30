@@ -57,10 +57,16 @@ async function check2FAGate(db, user, code) {
   return { ok: true };
 }
 
-export const onRequestPost = async ({ request, env }) => {
+export const onRequestPost = async (context) => {
+  const { request, env } = context;
   if (!env.PAY_IAI_ONE_API_KEY) {
     return errorJson("PAYMENT_NOT_CONFIGURED", "Donation payments not yet activated.", 503);
   }
+
+  // Rate limit: 10 donations/hour per IP
+  const { rateLimitPublic } = await import("../../_lib/rate-limit-middleware.js");
+  const rl = await rateLimitPublic(context, "donate_create", 10, 60);
+  if (rl.limited) return rl.response;
 
   // CSRF validation for authenticated users
   if (env.DB) {

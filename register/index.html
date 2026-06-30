@@ -175,8 +175,13 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
 
     if (result.ok) {
       if (result.csrf_token && window.DSTS) DSTS.setCsrfToken(result.csrf_token);
-      showMsg('Tài khoản đã tạo! Đang chuyển hướng...', false);
-      setTimeout(() => window.location.href = '/account', 1000);
+      if (result.email_verification_required) {
+        showMsg('Tài khoản đã tạo! Vui lòng kiểm tra email để xác thực trước khi đăng nhập.', false);
+        setTimeout(() => window.location.href = '/login?msg=verify_email', 2000);
+      } else {
+        showMsg('Tài khoản đã tạo! Đang chuyển hướng...', false);
+        setTimeout(() => window.location.href = '/account', 1000);
+      }
     } else {
       showMsg(result.error || 'Tạo tài khoản thất bại', true);
     }

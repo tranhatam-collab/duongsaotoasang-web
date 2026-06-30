@@ -1,4 +1,12 @@
-export async function onRequestPost({ request, env }) {
+import { rateLimitPublic } from "../_lib/rate-limit-middleware.js";
+
+export async function onRequestPost(context) {
+  const { request, env } = context;
+
+  // Rate limit: 10 subscribes/hour per IP
+  const rl = await rateLimitPublic(context, "subscribe", 10, 60);
+  if (rl.limited) return rl.response;
+
   try {
     const body = await request.json();
     const email = (body.email || '').trim().toLowerCase();
