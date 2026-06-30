@@ -120,15 +120,16 @@ if (!DSTS.escapeHTML) DSTS.escapeHTML = function (v) {
 };
 async function loadSponsors() {
   try {
-    const res = await fetch('/api/sponsor');
+    const res = await fetch('/api/sponsors?status=active');
     const json = await res.json();
     const list = document.getElementById('sponsor-list');
-    if (json.ok && json.data && json.data.length) {
-      list.innerHTML = json.data.map(s => {
-        const safeName = DSTS.escapeHTML(s.org_name);
-        const safeType = DSTS.escapeHTML(s.org_type);
-        const safeAmt = DSTS.escapeHTML(s.total_contributed_cents / 100);
-        return '<div class="sponsor-card"><strong>' + safeName + '</strong> — ' + safeType + ' — Đã đóng góp: ' + safeAmt + ' USD</div>';
+    if (json.ok && json.sponsors && json.sponsors.length) {
+      list.innerHTML = json.sponsors.map(s => {
+        const safeName = DSTS.escapeHTML(s.name);
+        const safeTier = DSTS.escapeHTML(s.tier);
+        const safeIndustry = DSTS.escapeHTML(s.industry || '—');
+        const amt = s.total_contributed_vnd ? DSTS.escapeHTML(s.total_contributed_vnd.toLocaleString('vi-VN')) + ' VND' : '—';
+        return '<div class="sponsor-card"><strong>' + safeName + '</strong> — ' + safeTier + ' — ' + safeIndustry + ' — Đã đóng góp: ' + amt + '</div>';
       }).join('');
     } else {
       list.innerHTML = '<p>Chưa có nhà tài trợ công khai. <a href="/sponsor/portal">Trở thành nhà tài trợ đầu tiên</a>.</p>';

@@ -230,6 +230,58 @@
     };
   })();
 
+  // ── PWA install prompt ──────────────────────────────────────────────────────
+  DSTS._deferredPrompt = null;
+  DSTS.initPwaInstall = function () {
+    if (DSTS._pwaInitialized) return;
+    DSTS._pwaInitialized = true;
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      DSTS._deferredPrompt = e;
+      DSTS._showInstallButton();
+    });
+
+    window.addEventListener("appinstalled", () => {
+      DSTS._deferredPrompt = null;
+      DSTS._hideInstallButton();
+      try { sessionStorage.setItem("dsts_pwa_installed", "1"); } catch (_e) {}
+    });
+  };
+
+  DSTS._showInstallButton = function () {
+    let btn = document.getElementById("dsts-pwa-install-btn");
+    if (!btn) {
+      btn = document.createElement("button");
+      btn.id = "dsts-pwa-install-btn";
+      btn.style.cssText = "position:fixed;bottom:20px;right:20px;z-index:9999;background:#e0c896;color:#0b111d;border:none;border-radius:8px;padding:12px 20px;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.3);display:flex;align-items:center;gap:8px";
+      btn.innerHTML = '<span>📱</span> Cài đặt ứng dụng";
+      btn.addEventListener("click", DSTS.promptInstall);
+      document.body.appendChild(btn);
+    }
+    btn.style.display = "flex";
+  };
+
+  DSTS._hideInstallButton = function () {
+    const btn = document.getElementById("dsts-pwa-install-btn");
+    if (btn) btn.style.display = "none";
+  };
+
+  DSTS.promptInstall = async function () {
+    if (!DSTS._deferredPrompt) return;
+    DSTS._deferredPrompt.prompt();
+    const { outcome } = await DSTS._deferredPrompt.userChoice;
+    DSTS._deferredPrompt = null;
+    DSTS._hideInstallButton();
+  };
+
+  // Auto-init PWA install on DOM ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", DSTS.initPwaInstall);
+  } else {
+    DSTS.initPwaInstall();
+  }
+
   DSTS.mountSiteChrome = function (options) {
     const opts = options || {};
     const active = opts.active || "";

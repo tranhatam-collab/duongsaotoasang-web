@@ -2,11 +2,13 @@
   "name": "DSTS Club",
   "short_name": "DSTS",
   "description": "DSTS Club — Club of Influence, Wisdom, Contribution and Access",
-  "start_url": "/app/home",
-  "scope": "/app/",
+  "id": "/?source=pwa",
+  "start_url": "/?source=pwa",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#0f0f1a",
-  "theme_color": "#1a1a2e",
+  "display_override": ["standalone", "minimal-ui"],
+  "background_color": "#0b111d",
+  "theme_color": "#0b111d",
   "orientation": "portrait-primary",
   "icons": [
     {
